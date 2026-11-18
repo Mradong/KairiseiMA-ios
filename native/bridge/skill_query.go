@@ -10,12 +10,54 @@ import (
 	"kairisei.local/server/battlecore"
 	"kairisei.local/server/battlemodel"
 	"math"
+	"reflect"
 	"strconv"
 	"unsafe"
 )
 
-// queryBranches supports a deliberately limited set of condition families.
-// Unknown families are rejected rather than interpreted as numeric.
+// Unknown conditions are rejected rather than interpreted as numeric.
+func decodeSkillCondition(schema map[string]map[int32]string, c rawSkillCondition) (string, [5]string, error) {
+	name, ok := schema["SKILL_EXTEND_EXEC_ORDER"][c.Order]
+	var params [5]string
+	if !ok {
+		return "", params, fmt.Errorf("unavailable condition enum %d", c.Order)
+	}
+	switch name {
+	case "NONE", "NULL":
+		name = ""
+	case "TARGET_ATTR", "SELF_MAIN_DECK_ATTR", "SELF_MAIN_DECK_SKILL_KIND":
+		family, slots := "ATTR", 1
+		if name == "SELF_MAIN_DECK_ATTR" {
+			slots = 2
+		}
+		if name == "SELF_MAIN_DECK_SKILL_KIND" {
+			family, slots = "SKILL_KIND", 2
+		}
+		for k, value := range c.Parameters {
+			if k >= slots {
+				params[k] = strconv.FormatInt(value, 10)
+				continue
+			}
+			if value < math.MinInt32 || value > math.MaxInt32 {
+				return "", params, fmt.Errorf("condition enum exceeds int32")
+			}
+			var ok bool
+			params[k], ok = schema[family][int32(value)]
+			if !ok {
+				return "", params, fmt.Errorf("unavailable %s enum %d", family, value)
+			}
+		}
+	case "RANDOM", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL",
+		"SELF_MAIN_DECK_TAG", "SELF_SUPPORT_DECK_TAG", "SELF_ALL_DECK_TAG":
+		for k, value := range c.Parameters {
+			params[k] = strconv.FormatInt(value, 10)
+		}
+	default:
+		return "", params, fmt.Errorf("unsupported condition %s", name)
+	}
+	return name, params, nil
+}
+
 func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battlecore.CombatSkillDefinition, error) {
 	result := make([]battlecore.CombatSkillDefinition, 5)
 	for i, ext := range raw.Extends {
@@ -25,34 +67,9 @@ func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battleco
 			continue
 		}
 		for j, c := range ext.Conditions {
-			name, ok := schema["SKILL_EXTEND_EXEC_ORDER"][c.Order]
-			if !ok {
-				return nil, fmt.Errorf("unavailable condition enum %d", c.Order)
-			}
-			var params [5]string
-			switch name {
-			case "NONE", "NULL":
-				name = ""
-			case "TARGET_ATTR":
-				value := c.Parameters[0]
-				if value < math.MinInt32 || value > math.MaxInt32 {
-					return nil, fmt.Errorf("condition enum exceeds int32")
-				}
-				attribute, ok := schema["ATTR"][int32(value)]
-				if !ok {
-					return nil, fmt.Errorf("unavailable attribute enum %d", value)
-				}
-				params[0] = attribute
-				for k := 1; k < len(params); k++ {
-					params[k] = strconv.FormatInt(c.Parameters[k], 10)
-				}
-			case "RANDOM", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL",
-				"SELF_MAIN_DECK_TAG", "SELF_SUPPORT_DECK_TAG", "SELF_ALL_DECK_TAG":
-				for k, value := range c.Parameters {
-					params[k] = strconv.FormatInt(value, 10)
-				}
-			default:
-				return nil, fmt.Errorf("unsupported condition %s", name)
+			name, params, err := decodeSkillCondition(schema, c)
+			if err != nil {
+				return nil, err
 			}
 			if j == 0 {
 				result[i].BranchCondition, result[i].BranchParameters = name, params
@@ -64,9 +81,8 @@ func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battleco
 	return result, nil
 }
 
-// preparedQueryProjects the registered state needed by the engine query.
-// Nonempty skill and enemy records still require registered-content decoding.
-// Do not silently discard them. Zero-ID cards are empty in the original.
+// preparedQuery projects registered state into an isolated catalog. Unsupported
+// conditions and enemy records are rejected; zero-ID cards are empty.
 func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.PreparedSkillQuery, error) {
 	if catalog.schema == nil {
 		return nil, fmt.Errorf("skill query requires content schema")
@@ -81,6 +97,16 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 	for id, card := range catalog.value.Cards {
 		value.Cards[id] = card
 	}
+	value.Skills = make(map[int][]battlemodel.CombatSkillDefinition, len(catalog.value.Skills))
+	for id, skill := range catalog.value.Skills {
+		value.Skills[id] = skill
+	}
+	value.SkillRoles = make(map[int][]battlemodel.CombatSkillRole, len(catalog.value.SkillRoles))
+	for id, roles := range catalog.value.SkillRoles {
+		value.SkillRoles[id] = roles
+	}
+	registeredSkills := make(map[int]registeredSkill)
+	registeredRoles := make(map[int][]battlemodel.CombatSkillRole)
 	registeredCards := make(map[int]battlemodel.CombatCardDefinition)
 	members := make([]battlemodel.Participant, 0, 8)
 	for i, user := range p.users {
@@ -99,15 +125,39 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 			if !ok {
 				return nil, fmt.Errorf("registered card has no master metadata")
 			}
-			for _, offset := range []int{28, 28 + skillWireSize} {
-				skill := raw[offset : offset+skillWireSize]
-				if !validRegisteredSkill(skill) || wireInt(skill, 0) != 0 {
-					return nil, fmt.Errorf("registered skill projection unavailable")
+			wires := [6][]byte{raw[28 : 28+skillWireSize], raw[28+skillWireSize : 28+2*skillWireSize], user.extraSkills[slot][0], user.extraSkills[slot][1], user.extraSkills[slot][2], user.extraSkills[slot][3]}
+			var levels [6]battlemodel.SkillLevel
+			for n, wire := range wires {
+				decoded, e := decodeRegisteredSkill(catalog.schema, catalog.value.RoleParamRules, wire)
+				if e != nil {
+					return nil, e
 				}
-			}
-			for _, extra := range user.extraSkills[slot] {
-				if extra != nil && (!validRegisteredSkill(extra) || wireInt(extra, 0) != 0) {
-					return nil, fmt.Errorf("registered extra skill projection unavailable")
+				levels[n] = decoded.level
+				if n < 2 {
+					levels[n].Value = int(wireInt(raw, 8))
+				}
+				for j := 0; n < 4 && j < n; j++ {
+					if levels[n].ID != 0 && levels[j].ID == levels[n].ID && levels[j].Value != levels[n].Value {
+						return nil, fmt.Errorf("conflicting instance skill levels")
+					}
+				}
+				if decoded.level.ID == 0 {
+					continue
+				}
+				if old, exists := registeredSkills[decoded.level.ID]; exists {
+					if !reflect.DeepEqual(old.variants, decoded.variants) || !reflect.DeepEqual(old.roles, decoded.roles) {
+						return nil, fmt.Errorf("conflicting registered skill")
+					}
+				} else {
+					registeredSkills[decoded.level.ID] = decoded
+					value.Skills[decoded.level.ID] = decoded.variants
+					for key, roles := range decoded.roles {
+						if old, exists := registeredRoles[key]; exists && !reflect.DeepEqual(old, roles) {
+							return nil, fmt.Errorf("conflicting registered role set")
+						}
+						registeredRoles[key] = roles
+						value.SkillRoles[key] = roles
+					}
 				}
 			}
 			rarity, ok := catalog.schema["RARITY"][wireInt(raw, 20)]
@@ -116,13 +166,13 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 			}
 			definition.Rarity = rarity
 			definition.RarityPlus = int(wireInt(raw, 24))
-			definition.NormalSkillID, definition.ArthurSkillID = 0, 0
-			definition.CallSkillID, definition.PassiveSkillID, definition.ArthurPassiveSkillID = 0, 0, 0
+			definition.NormalSkillID, definition.ArthurSkillID = levels[0].ID, levels[1].ID
+			definition.CallSkillID, definition.PassiveSkillID, definition.ArthurPassiveSkillID = levels[3].ID, levels[4].ID, levels[5].ID
 			partition := 0
 			for partition < 3 && catalog.value.SupportLoveRates[partition] <= int(wireInt(raw, 16)) {
 				partition++
 			}
-			definition.SupportSkillIDs[partition] = 0
+			definition.SupportSkillIDs[partition] = levels[2].ID
 			for n := range definition.ProfileTags {
 				definition.ProfileTags[n] = int(wireInt(raw, 4928+n*4))
 			}
@@ -130,7 +180,7 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 				return nil, fmt.Errorf("conflicting registered cards")
 			}
 			registeredCards[id], value.Cards[id] = definition, definition
-			card := battlemodel.Card{CardType: slot + 1, CardID: id, Level: int(wireInt(raw, 8)), Fame: int(wireInt(raw, 12)), LoveRate: int(wireInt(raw, 16)), HasLoveRate: true}
+			card := battlemodel.Card{CardType: slot + 1, CardID: id, Level: int(wireInt(raw, 8)), Fame: int(wireInt(raw, 12)), LoveRate: int(wireInt(raw, 16)), HasLoveRate: true, SkillLevels: levels}
 			if slot < 10 {
 				member.DeckCards = append(member.DeckCards, card)
 			} else {

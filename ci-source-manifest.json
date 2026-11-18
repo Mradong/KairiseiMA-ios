@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T08:14:19.212Z",
+  "generatedAt": "2026-11-18T08:24:48.993Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -20,13 +20,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 13899,
-      "sha256": "e3eff4f4394e725100062ebf00b54a80058d2c735e3c7d4e63994f49264cb8fd"
+      "bytes": 15100,
+      "sha256": "74fd5dcbcf5d02feef92bd55a685214efbba0d63edc0db9890703f045524d4cc"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 3143,
-      "sha256": "fd91a6da0b72ec4d27ac5da9ada090cdd55252ef1483b82068578ff132520843"
+      "bytes": 3229,
+      "sha256": "7900e3c7251b8d60e6bd8ecb769d3315c9bab52b803c043126985c4527997629"
     },
     {
       "path": "evidence/native/go-symbols-summary.json",
@@ -36,27 +36,32 @@
     {
       "path": "evidence/native/prepared-card-query-differential-tests.json",
       "bytes": 659,
-      "sha256": "d0b856015bbd9255c3b18744aa789e6e4c47a56731d448c1068f33a0228cb24d"
+      "sha256": "2806f5da87e9275dbbca9e76b2d141596f449b0b2886c05116b76feeb4d0a523"
     },
     {
       "path": "evidence/native/prepared-skill-query-differential-tests.json",
       "bytes": 664,
-      "sha256": "e241cedf78e4c7c6b13c29ac37cb60569b624b7e8905417c2afdf36a88a5cbc8"
+      "sha256": "47c6a306ffc8f22cb306ad14d88d013f5cfef34e6983bbbf01c8cb32a417c133"
+    },
+    {
+      "path": "evidence/native/registered-skill-query-differential-tests.json",
+      "bytes": 638,
+      "sha256": "769e5a785a004452b80b4ebf001950a112b2c43442de6eddc0e2869a3caff311"
     },
     {
       "path": "evidence/native/registration-state-tests.json",
       "bytes": 1111,
-      "sha256": "5951be92c5489a9723041b656d73a3ba10a82b1eab7c93a3c5908d04083be32b"
+      "sha256": "0e92900beab7af1f71caff0b9831b24f8cb65054fa0018dc1ed0486f6195eab2"
     },
     {
       "path": "evidence/native/skill-query-differential-tests.json",
-      "bytes": 993,
-      "sha256": "e51626a4fa466b54d235c7feacbe3a15f7265d1018dbeedaa85f25093c78f09c"
+      "bytes": 982,
+      "sha256": "67c305178336d45cb438dfcb78ad78914fe732a2bf563d61bb2092e8494fd07e"
     },
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "d246a025c95bf57622943033658279ff10389e60bbece58c1de24909ace3e887"
+      "sha256": "6e42b7efdaa08f42ee6c70ff7b42769430e1212056a45c5d791f708133121276"
     },
     {
       "path": "ios-client/.gitignore",
@@ -159,6 +164,11 @@
       "sha256": "62c1fc2a83743ebc31b1cb8de5a54f5d942ccb81bf3108a5d96bf5a369dec92f"
     },
     {
+      "path": "native/bridge/registered_skill.go",
+      "bytes": 5674,
+      "sha256": "73b3ac67c615e56435e4a7128d8dd0f1084309cf2e8860e4f0372660846cfbbd"
+    },
+    {
       "path": "native/bridge/registration.go",
       "bytes": 4890,
       "sha256": "d875ef9cf5a9e9e105cd98c59bcd24ae19f85486937812353dbd9aa3991ac126"
@@ -180,8 +190,8 @@
     },
     {
       "path": "native/bridge/skill_query.go",
-      "bytes": 7214,
-      "sha256": "cffd933bc5c24a4f15d728e35d695199c442b9574831a1eb0ac972b73be25c4d"
+      "bytes": 9013,
+      "sha256": "e1490c99b22ff2cf1086e89e8a836d7fb4d91af1511cac036b07bdcb79854310"
     },
     {
       "path": "native/bridge/skill_query_test.go",
@@ -225,8 +235,8 @@
     },
     {
       "path": "scripts/test-native-skill-query.mjs",
-      "bytes": 2414,
-      "sha256": "885a2afd496678320f4a7046111a5c3f1d8b46b5d4e15ce850c84f4295feb3ee"
+      "bytes": 2403,
+      "sha256": "2f40ccf8d7b1fcaefec89bd52abd8e9701dabb023d0a95851d46e77a7e750a7e"
     },
     {
       "path": "scripts/test-prepared-card-query.mjs",
@@ -237,6 +247,11 @@
       "path": "scripts/test-prepared-skill-query.mjs",
       "bytes": 2185,
       "sha256": "c8554661836f6f84065b1e6eb2ce9ecdf30181ea595a12884440bf9464e0f19a"
+    },
+    {
+      "path": "scripts/test-registered-skill-query.mjs",
+      "bytes": 2168,
+      "sha256": "577ce24da78e8268bb5f70064b51241d35def3444e990ad8ba0a69a097351b45"
     },
     {
       "path": "scripts/verify-ios-build.mjs",
@@ -254,6 +269,11 @@
       "sha256": "e46badbf4c6b1b4fa4bab0a186b84f53c4b6850210efcdc370827e04fc4afcaf"
     },
     {
+      "path": "tests/RegisteredSkillQueryDifferential.cs",
+      "bytes": 6864,
+      "sha256": "ac29c127bf4055c774b72c3dd4dda34c768d7884aeee2c7b47342b6a7e572537"
+    },
+    {
       "path": "tests/SkillQueryDifferential.cs",
       "bytes": 6796,
       "sha256": "1e42f2143d13a52b3f2d1851a9519441a9046cf63d413aaca2126151315bbc75"
@@ -269,7 +289,7 @@
       "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     }
   ],
-  "bytes": 14083269,
+  "bytes": 14101677,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
