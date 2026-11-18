@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-18T08:44:56.944Z",
+  "success": true,
+  "counts": {
+    "success": true,
+    "checks": 748,
+    "steps": 51,
+    "comparedResultBytes": 28726,
+    "successfulBattleScenarios": 3,
+    "faultedBattleScenarios": 1,
+    "catalogCases": 14,
+    "victories": 1
+  },
+  "exitCode": 0,
+  "stderr": "",
+  "original": {
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "sha256": "b6285908ff269c5cd7eef9111494e4fec86987197243e3055a10091c864ebb64"
+  },
+  "scope": "Windows x64 synthetic combat tables and standalone battles: catalog lifetimes, 64-battle capacity, settings, phase transitions, card attacks, CSV bytes, short reads, score, errors and close. No game server, account or real user resource data. Registered raw-wire battle creation, input journals and iOS integration remain unfinished."
+}

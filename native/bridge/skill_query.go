@@ -81,9 +81,14 @@ func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battleco
 	return result, nil
 }
 
-// preparedQuery projects registered state into an isolated catalog. Unsupported
-// conditions and enemy programs are rejected; zero-ID cards are empty.
-func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.PreparedSkillQuery, error) {
+type preparedProjection struct {
+	catalog   *battlecore.CombatCatalog
+	members   []battlemodel.Participant
+	encounter *battlemodel.Encounter
+}
+
+// projectPreparedState copies registered content into an isolated catalog.
+func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedProjection, error) {
 	if catalog.schema == nil {
 		return nil, fmt.Errorf("skill query requires content schema")
 	}
@@ -205,7 +210,15 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 		}
 		members = append(members, member)
 	}
-	return battlecore.NewPreparedSkillQuery(&value, members, encounter, p.mode == 3 || p.mode == 4)
+	return &preparedProjection{catalog: &value, members: members, encounter: encounter}, nil
+}
+
+func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.PreparedSkillQuery, error) {
+	projection, err := projectPreparedState(p, catalog)
+	if err != nil {
+		return nil, err
+	}
+	return battlecore.NewPreparedSkillQuery(projection.catalog, projection.members, projection.encounter, p.mode == 3 || p.mode == 4)
 }
 
 //export battlecore_skill_extend_index

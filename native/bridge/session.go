@@ -37,13 +37,15 @@ type libraryCatalog struct {
 	references int
 }
 type libraryBattle struct {
-	value     *battlecore.StandaloneBattle
-	catalogID uint64
-	mode      int
-	enemyType int
-	pending   []byte
-	faulted   bool
-	lastError []byte
+	value      *battlecore.StandaloneBattle
+	registered bool
+	identities []battlecore.BattleResult
+	catalogID  uint64
+	mode       int
+	enemyType  int
+	pending    []byte
+	faulted    bool
+	lastError  []byte
 }
 
 var sessions = struct {
@@ -404,6 +406,9 @@ func battlecore_step(handle C.ulonglong, operation C.int, input *C.uchar, count 
 		// engine, without faulting an otherwise usable battle context.
 		return statusInvalid
 	}
+	if operation == 10 && battle.registered {
+		return statusInvalid
+	}
 	if operation == 4 {
 		err := battlecore.CheckSummonSelectionInput(selection.SummonsCardMask, false)
 		if errors.Is(err, battlecore.ErrSummonSelectionUnsupported) {
@@ -454,7 +459,12 @@ func battlecore_step(handle C.ulonglong, operation C.int, input *C.uchar, count 
 		battle.setFault(int(operation), "core", err)
 		return 6
 	}
-	text, err := battlecodec.EncodeOptional(rows)
+	var text string
+	if operation == 1 && battle.registered {
+		text, err = battlecodec.EncodeStart(rows, battle.identities)
+	} else {
+		text, err = battlecodec.EncodeOptional(rows)
+	}
 	if err != nil || len(text) > maxSessionOutput {
 		if err == nil {
 			err = errors.New("encoded battle result exceeds 1 MiB")
