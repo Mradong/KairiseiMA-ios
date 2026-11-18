@@ -399,6 +399,11 @@ func battlecore_step(handle C.ulonglong, operation C.int, input *C.uchar, count 
 	if (operation == 10 || operation == 11 || operation == 13) && member.MemberType > 4 {
 		return statusInvalid
 	}
+	if operation == 10 && len(sessions.catalogs[battle.catalogID].value.NPC.Rules) == 0 {
+		// The original rejects an unavailable NPC program before calling the
+		// engine, without faulting an otherwise usable battle context.
+		return statusInvalid
+	}
 	if operation == 4 {
 		err := battlecore.CheckSummonSelectionInput(selection.SummonsCardMask, false)
 		if errors.Is(err, battlecore.ErrSummonSelectionUnsupported) {

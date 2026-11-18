@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T06:40:39.206Z",
+  "generatedAt": "2026-11-18T06:45:51.596Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -115,8 +115,8 @@
     },
     {
       "path": "native/bridge/session.go",
-      "bytes": 16328,
-      "sha256": "266b06f1fa2d77c5872126296ee6bd698437d126119c23f0d31bf00c9349c684"
+      "bytes": 16579,
+      "sha256": "71cc393a2ba467f1cb5f87e7a68c47abf0b7b020c2ddb1df3ef1fab80a0c5e8a"
     },
     {
       "path": "native/bridge/skill_info.go",
@@ -164,7 +164,7 @@
       "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
     }
   ],
-  "bytes": 14012812,
+  "bytes": 14013063,
   "privacy": "Explicit project source, reconstructed Go source, synthetic combat fixtures and the two previously approved title/font assets. No accounts, saves, credentials, original DLLs, native Windows binaries, licensing files or local tools. Public Go dependency is checked out at its pinned commit only on the runner.",
   "execution": "Prepared locally; upload and hosted build have separate recorded results."
 }
