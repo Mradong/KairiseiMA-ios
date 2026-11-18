@@ -36,9 +36,10 @@
         "evidence/native/skill-query-differential-tests.json",
         "evidence/native/prepared-skill-query-differential-tests.json",
         "evidence/native/prepared-card-query-differential-tests.json",
-        "evidence/native/registered-skill-query-differential-tests.json"
+        "evidence/native/registered-skill-query-differential-tests.json",
+        "evidence/native/prepared-enemy-query-differential-tests.json"
       ],
-      "scope": "Partial active-battle and prepared registered-card/skill queries; nonzero ATTACK_AA role projection and deck attribute/kind selection have synthetic original-DLL comparisons. Other skills/conditions, registered enemies, create/next wave and journals remain incomplete. Windows synthetic differential only; no new iOS or device validation."
+      "scope": "Partial active-battle and prepared registered-card/skill/enemy queries; synthetic original-DLL comparisons cover ATTACK_AA deck attribute/kind and enemy tribe selection. Other skills/conditions, enemy programs/gauges, create/next wave and journals remain incomplete. Windows synthetic differential only; no new iOS or device validation."
     },
     {
       "id": "CLIENT-01",

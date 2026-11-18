@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T08:23:34.657Z",
+  "checkedAt": "2026-11-18T08:32:09.810Z",
   "success": true,
   "exitCode": 0,
   "passed": [
@@ -7,6 +7,7 @@
     "TestInitializationRecordsPreserveWireSemantics",
     "TestEnemyGaugeCapacityAndReplacement",
     "TestStoryHelpCopiesWithoutExtraValidation",
+    "TestDecodePreparedEnemyFieldsAndGuards",
     "TestRegistrationOwnsCallerBuffers/card",
     "TestRegistrationOwnsCallerBuffers/extra",
     "TestRegistrationOwnsCallerBuffers/sphere",

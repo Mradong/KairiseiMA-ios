@@ -47,7 +47,7 @@ func decodeSkillCondition(schema map[string]map[int32]string, c rawSkillConditio
 				return "", params, fmt.Errorf("unavailable %s enum %d", family, value)
 			}
 		}
-	case "RANDOM", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL",
+	case "RANDOM", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL", "ENEMY_TRIBAL",
 		"SELF_MAIN_DECK_TAG", "SELF_SUPPORT_DECK_TAG", "SELF_ALL_DECK_TAG":
 		for k, value := range c.Parameters {
 			params[k] = strconv.FormatInt(value, 10)
@@ -82,15 +82,24 @@ func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battleco
 }
 
 // preparedQuery projects registered state into an isolated catalog. Unsupported
-// conditions and enemy records are rejected; zero-ID cards are empty.
+// conditions and enemy programs are rejected; zero-ID cards are empty.
 func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.PreparedSkillQuery, error) {
 	if catalog.schema == nil {
 		return nil, fmt.Errorf("skill query requires content schema")
 	}
-	for _, enemy := range p.enemies {
-		if enemy != nil {
-			return nil, fmt.Errorf("registered enemy projection unavailable")
+	var encounter *battlemodel.Encounter
+	for index, enemy := range p.enemies {
+		if enemy == nil {
+			continue
 		}
+		if encounter == nil {
+			encounter = &battlemodel.Encounter{}
+		}
+		projected, err := decodePreparedEnemy(catalog.schema, catalog.value.Enemies, enemy, index)
+		if err != nil {
+			return nil, err
+		}
+		encounter.Enemies[index] = projected
 	}
 	value := *catalog.value
 	value.Cards = make(map[int]battlemodel.CombatCardDefinition, len(catalog.value.Cards))
@@ -196,7 +205,7 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 		}
 		members = append(members, member)
 	}
-	return battlecore.NewPreparedSkillQuery(&value, members, nil, p.mode == 3 || p.mode == 4)
+	return battlecore.NewPreparedSkillQuery(&value, members, encounter, p.mode == 3 || p.mode == 4)
 }
 
 //export battlecore_skill_extend_index

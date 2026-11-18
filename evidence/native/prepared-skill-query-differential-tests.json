@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T08:23:27.415Z",
+  "checkedAt": "2026-11-18T08:32:02.502Z",
   "success": true,
   "counts": {
     "checks": 2800,
@@ -12,7 +12,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "96d604aa4008d0bbdc5102e9b679aaec623413ce46867d7bb93fe77ba35bf4bf"
+    "sha256": "c262fa19e1cec7b16a647c4b978ec982f911757b2400c3d23a5ab95b2a5a87de"
   },
   "scope": "Windows x64, synthetic registered users without nonzero cards or enemies. Re-register users across all modes and compare branch status/index as current HP and condition ranges vary. No registered battle creation, real resources, account or iOS test."
 }
