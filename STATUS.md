@@ -16,6 +16,16 @@
 - 根据用户授权，建立独立服务端副本 `server-ios/server`，只在副本增加 `iOS` 平台与 Windows 8.3 路径根目录规范化修复；`patches/ios-server.patch` 已通过对固定参考的 `git apply --check`。`ios-server-tests.json` 的 iOS 登录/资源 GET/HEAD/Range/ETag/错误版本/独立测试角色以及原 Windows/Android 相关回归通过（18 个测试及子测试通过）。原参考源码保持不变。
 - 服务器真实可部署资源仍未齐全。本轮资源包只是启动与 UI 资源的一部分，不能拿它冒充原游戏完整 `main_c/*` 资源集；不会自动把它加进原 Windows 服务。正在准备独立服务端二进制与云端真实 iOS 资源交付校验。
 
+本地提交 `443b6e573ebf46facc77d98c186d553e6b9c7675` 已完成，90 个白名单文件、20,793,098 字节。Windows/Linux amd64 服务端二进制均已编译，见 `evidence/ios-package-search/ios-server-build.json`。两次尝试上传时，自动审批服务均返回 HTTP 503（审批模型无可用通道），**推送未执行，云构建未启动**；属于审批基础设施失败，未认定操作不安全。继续完成不依赖云端的工作，并准备可在本人终端执行的明确构建步骤。
+
+### 服务端到客户端的资源接入
+
+后续增量已补上登录后的公共资源清单下载：服务端 `platform_manifest.go` 校验公共清单与平台注册版本、内容 ID、完整下载清单的大小/哈希/CRC 一致；`client-manifest.json` 支持 GET/HEAD。客户端以登录返回的内容 ID 验证清单，再按原 `patch/<bundle>.v<CRC>` 路由下载，限制响应大小、验证后提交缓存、重用已有版本。此前本地 iOS/Windows/Android 回归及新增公共清单错误路径测试均通过，现共 26 个测试及子测试通过；真实 Unity 编译资源的服务测试已接入云工作流，但尚未执行。
+
+已补充 AssetBundle Unity 模块依赖与 IL2CPP 清单类型保留。C# 纯逻辑 29 项测试通过；尝试用现代 DummyDll 做额外 API 编译检查时，旧 .NET 编译器读取参考程序集元数据失败，**没有完成 Unity 协程/API 编译验证**，详见 `ios-runtime-api-check.json`。不能把纯逻辑测试移作 Unity/Xcode 证据。
+
+部署与云构建步骤见 [iOS服务部署.md](iOS服务部署.md)；本地脚本 `Start-IosResourceCloudBuild.ps1` 已准备完成，供本人终端在审批基础设施不可用时执行。当前仍缺完整游戏资源、真实场景组件和登录后游戏 UI；本轮不会将局部资源配置部署到原服务。
+
 2026-11-18 最新：用户已取消 GPT-6.1 Terra 执行限制，可由当前可用模型继续恢复。用户提供的国服 6.0.2 IPA 已在原路径只读静态检查：138,633,863 字节，SHA-256 `d86d7609d6235ae836d4721591358de496f7f679a6ef192aea7ab054949c930b`，确含 ARMv7/ARM64、Unity 5.3.5p1 场景与资源、IL2CPP v21 元数据。主程序两个架构均标记 `cryptid=1`。资源完整性、现有服务端兼容性、安装及真机运行仍未验证；尚未改变恢复路线。详情见 [旧版iOS包检索.md](旧版iOS包检索.md) 和 `evidence/ios-package-search/ipa-602-static-inspection.json`。
 
 **新窗口续作入口：[新窗口接手.md](新窗口接手.md)**。原 Terra 执行代理已结束；按交接文件、本文最新记录及验收表续作，执行模型限制已取消。

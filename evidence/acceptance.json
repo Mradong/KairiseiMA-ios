@@ -48,7 +48,7 @@
       "requirement": "Original startup, login, home and deck behavior with isolated test identity",
       "status": "incomplete",
       "evidence": ["evidence/ios-package-search/ios-content-tests.json"],
-      "scope": "Startup now initializes a verified persistent content cache. Original login/home/deck behavior remains incomplete; no new Unity or device validation yet."
+      "scope": "Startup content cache and post-login public manifest/download integration implemented in source. Original login/home/deck behavior remains incomplete; Unity iterator/API compilation, iOS execution and live service remain unverified."
     },
     {
       "id": "RESOURCE-01",
@@ -60,9 +60,11 @@
         "evidence/ios-package-search/cn602-resource-analysis.json",
         "evidence/ios-package-search/ios-content-source.json",
         "evidence/ios-package-search/ios-content-tests.json",
-        "evidence/ios-package-search/ios-server-tests.json"
+        "evidence/ios-package-search/ios-server-tests.json",
+        "evidence/ios-package-search/ios-server-build.json",
+        "evidence/ios-package-search/ios-cloud-blocker.json"
       ],
-      "scope": "Partial recovered texture/atlas/font sources selected; real iOS bundle compilation and verified persistent cache implemented but not Unity/device validated yet. Independent server copy accepts iOS profiles and passes isolated target/login/HTTP tests plus Windows/Android regressions. Full game assets, deployment, downloads and device persistence remain incomplete."
+      "scope": "Partial recovered texture/atlas/font sources selected; iOS bundle compiler, verified persistent cache and post-login manifest/download chain implemented but not Unity/device validated yet. Independent server copy accepts iOS profiles and public manifests; 26 server tests/subtests and 29 C# cache checks pass. Windows/Linux server binaries compiled. Upload blocked by approval-service HTTP 503; no new cloud build. Full game assets, deployment, real downloads and device persistence remain incomplete."
     },
     {
       "id": "PLAY-01",

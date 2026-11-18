@@ -109,6 +109,7 @@ jobs:
           path: |
             dist/connection-test-*/*.ipa
             dist/connection-test-*/*.json
+            dist/connection-test-*/*.jsonl
             dist/connection-test-*/*.txt
           if-no-files-found: error
           retention-days: 7

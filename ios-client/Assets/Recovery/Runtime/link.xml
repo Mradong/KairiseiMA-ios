@@ -1,0 +1,6 @@
+<linker>
+  <assembly fullname="Assembly-CSharp">
+    <type fullname="Kairisei.Recovery.ContentManifest" preserve="all" />
+    <type fullname="Kairisei.Recovery.ContentBundle" preserve="all" />
+  </assembly>
+</linker>

@@ -1,8 +1,32 @@
 diff --git a/server/internal/cnbootstrap/platform_delivery.go b/server/internal/cnbootstrap/platform_delivery.go
-index 8df6491..11332be 100644
+index 8df6491..6057ec3 100644
 --- a/server/internal/cnbootstrap/platform_delivery.go
 +++ b/server/internal/cnbootstrap/platform_delivery.go
-@@ -109,7 +109,7 @@ func loadPlatformDelivery(profilePath string) (*platformDelivery, error) {
+@@ -22,14 +22,15 @@ import (
+ // Platform profiles are operator-owned build outputs. Their private filesystem
+ // paths are never sent to the player; requests select only declared bundles.
+ type platformDeliveryProfile struct {
+-	Platform     string                   `json:"platform"`
+-	UnityVersion string                   `json:"unity_version"`
+-	ContentID    string                   `json:"content_id"`
+-	ArtifactRoot string                   `json:"artifact_root"`
+-	Catalog      platformDeliveryCatalog  `json:"catalog"`
+-	Bundles      []platformDeliveryBundle `json:"bundles"`
+-	Packs        []platformDeliveryPack   `json:"packs,omitempty"`
+-	Movies       *platformDeliveryCatalog `json:"movies,omitempty"`
++	Platform       string                   `json:"platform"`
++	UnityVersion   string                   `json:"unity_version"`
++	ContentID      string                   `json:"content_id"`
++	ArtifactRoot   string                   `json:"artifact_root"`
++	Catalog        platformDeliveryCatalog  `json:"catalog"`
++	ClientManifest *platformDeliveryCatalog `json:"client_manifest,omitempty"`
++	Bundles        []platformDeliveryBundle `json:"bundles"`
++	Packs          []platformDeliveryPack   `json:"packs,omitempty"`
++	Movies         *platformDeliveryCatalog `json:"movies,omitempty"`
+ }
+ 
+ type platformDeliveryPack struct {
+@@ -109,7 +110,7 @@ func loadPlatformDelivery(profilePath string) (*platformDelivery, error) {
  	if err := json.Unmarshal(raw, &profile); err != nil {
  		return nil, err
  	}
@@ -11,6 +35,18 @@ index 8df6491..11332be 100644
  		profile.UnityVersion == "" || strings.ContainsAny(profile.UnityVersion, "/\\:\x00\r\n") ||
  		!contentHashValid(profile.ContentID) || profile.ArtifactRoot == "" || len(profile.Bundles) == 0 || len(profile.Bundles) > 16384 {
  		return nil, errors.New("invalid platform delivery identity")
+@@ -249,6 +250,11 @@ func loadPlatformDelivery(profilePath string) (*platformDelivery, error) {
+ 		delivery.registerMovies(movies)
+ 	}
+ 	delivery.bundles = realFiles
++	if profile.ClientManifest != nil {
++		if err := delivery.registerClientManifest(directory, profile); err != nil {
++			return nil, err
++		}
++	}
+ 	return delivery, nil
+ }
+ 
 diff --git a/server/internal/cnbootstrap/cdn_export.go b/server/internal/cnbootstrap/cdn_export.go
 index ef9d23b..fc06456 100644
 --- a/server/internal/cnbootstrap/cdn_export.go
@@ -28,11 +64,105 @@ index ef9d23b..fc06456 100644
  	resolved, err := filepath.EvalSymlinks(filepath.Join(root, filepath.FromSlash(relative)))
  	if err != nil {
  		return "", err
+diff --git a/server/internal/cnbootstrap/platform_content_http.go b/server/internal/cnbootstrap/platform_content_http.go
+index 05e6550..b6625b1 100644
+--- a/server/internal/cnbootstrap/platform_content_http.go
++++ b/server/internal/cnbootstrap/platform_content_http.go
+@@ -46,6 +46,8 @@ func registerPlatformContent(router chi.Router, set platformDeliveries, cpkList,
+ 			})
+ 		})
+ 		catalog := func(w http.ResponseWriter, r *http.Request) { set.serveContent(w, r, "patch/catalog.dat") }
++		r.Get("/client-manifest.json", func(w http.ResponseWriter, r *http.Request) { set.serveContent(w, r, "client-manifest.json") })
++		r.Head("/client-manifest.json", func(w http.ResponseWriter, r *http.Request) { set.serveContent(w, r, "client-manifest.json") })
+ 		r.Get("/patch/catalog.dat", catalog)
+ 		r.Head("/patch/catalog.dat", catalog)
+ 		r.Get("/patch/*", set.serveBundle)
+diff --git a/server/internal/cnbootstrap/platform_manifest.go b/server/internal/cnbootstrap/platform_manifest.go
+new file mode 100644
+--- /dev/null
++++ b/server/internal/cnbootstrap/platform_manifest.go
+@@ -0,0 +1,76 @@
++package cnbootstrap
++
++import (
++	"crypto/sha256"
++	"encoding/hex"
++	"encoding/json"
++	"errors"
++	"os"
++)
++
++type platformClientManifest struct {
++	Format       int                    `json:"format"`
++	Platform     string                 `json:"platform"`
++	UnityVersion string                 `json:"unityVersion"`
++	ContentID    string                 `json:"contentId"`
++	Bundles      []platformClientBundle `json:"bundles"`
++}
++
++type platformClientBundle struct {
++	Name         string   `json:"name"`
++	File         string   `json:"file"`
++	Bytes        int64    `json:"bytes"`
++	SHA256       string   `json:"sha256"`
++	CRC32        string   `json:"crc32"`
++	Dependencies []string `json:"dependencies"`
++}
++
++// The public manifest has no operator paths. It binds downloads to the exact
++// target, content revision and byte identities already registered by the server.
++func (delivery *platformDelivery) registerClientManifest(directory string, profile platformDeliveryProfile) error {
++	meta := profile.ClientManifest
++	if meta.Bytes <= 0 || meta.Bytes > 1<<20 || !contentHashValid(meta.SHA256) {
++		return errors.New("invalid public client manifest identity")
++	}
++	filename, err := platformRelativeFile(directory, meta.File)
++	if err != nil {
++		return err
++	}
++	info, err := os.Stat(filename)
++	if err != nil || !info.Mode().IsRegular() || info.Size() != meta.Bytes {
++		return errors.New("public client manifest size differs")
++	}
++	raw, err := os.ReadFile(filename)
++	if err != nil {
++		return err
++	}
++	digest := sha256.Sum256(raw)
++	if hex.EncodeToString(digest[:]) != meta.SHA256 {
++		return errors.New("public client manifest hash differs")
++	}
++	var wire platformClientManifest
++	if err := json.Unmarshal(raw, &wire); err != nil {
++		return err
++	}
++	if wire.Format != 1 || wire.Platform != delivery.platform || wire.UnityVersion != delivery.unityVersion || wire.ContentID != delivery.contentID || len(wire.Bundles) != len(delivery.bundles) {
++		return errors.New("public client manifest target or inventory differs")
++	}
++	seen := make(map[string]bool)
++	for _, row := range wire.Bundles {
++		file, exists := delivery.bundles[row.Name]
++		if !exists || seen[row.Name] || file.size != row.Bytes || file.sha != row.SHA256 || file.crc != row.CRC32 || row.File != row.SHA256+".bundle" {
++			return errors.New("public client manifest bundle differs")
++		}
++		seen[row.Name] = true
++		for _, dependency := range row.Dependencies {
++			if _, exists := delivery.bundles[dependency]; !exists || dependency == row.Name {
++				return errors.New("public client manifest dependency differs")
++			}
++		}
++	}
++	delivery.objects["client-manifest.json"] = platformContentObject{
++		file:       platformDeliveryFile{path: filename, size: meta.Bytes, sha: meta.SHA256},
++		sourceRoot: "delivery", root: directory, contentType: "application/json", data: raw,
++	}
++	return nil
++}
 diff --git a/server/internal/cnbootstrap/platform_apple_test.go b/server/internal/cnbootstrap/platform_apple_test.go
 new file mode 100644
 --- /dev/null
 +++ b/server/internal/cnbootstrap/platform_apple_test.go
-@@ -0,0 +1,141 @@
+@@ -0,0 +1,212 @@
 +package cnbootstrap
 +
 +import (
@@ -85,6 +215,77 @@ new file mode 100644
 +	}
 +	if _, err := os.Stat(filepath.Join(filepath.Dir(profile), "resource-build.json")); err != nil {
 +		t.Fatal("missing resource build evidence")
++	}
++}
++
++func TestIOSPublicManifestValidationAndDelivery(t *testing.T) {
++	for _, scenario := range []string{"valid", "wrong-platform", "wrong-version", "wrong-revision", "wrong-bundle-hash", "wrong-size", "duplicate"} {
++		t.Run(scenario, func(t *testing.T) {
++			profilePath := writePlatformFixture(t, t.TempDir(), "iOS", []byte("ios-only"))
++			encoded, err := os.ReadFile(profilePath)
++			if err != nil {
++				t.Fatal(err)
++			}
++			var profile platformDeliveryProfile
++			if err := json.Unmarshal(encoded, &profile); err != nil {
++				t.Fatal(err)
++			}
++			file := profile.Bundles[0]
++			wire := platformClientManifest{Format: 1, Platform: "iOS", UnityVersion: profile.UnityVersion, ContentID: profile.ContentID, Bundles: []platformClientBundle{{Name: file.Name, File: file.SHA256 + ".bundle", Bytes: file.Bytes, SHA256: file.SHA256, CRC32: file.CRC32, Dependencies: []string{}}}}
++			switch scenario {
++			case "wrong-platform":
++				wire.Platform = "Android"
++			case "wrong-version":
++				wire.UnityVersion = "5.3.5p1"
++			case "wrong-revision":
++				wire.ContentID = strings.Repeat("0", 64)
++			case "wrong-bundle-hash":
++				wire.Bundles[0].SHA256 = strings.Repeat("0", 64)
++			case "wrong-size":
++				wire.Bundles[0].Bytes++
++			case "duplicate":
++				wire.Bundles = append(wire.Bundles, wire.Bundles[0])
++			}
++			raw, err := json.Marshal(wire)
++			if err != nil {
++				t.Fatal(err)
++			}
++			digest := sha256.Sum256(raw)
++			profile.ClientManifest = &platformDeliveryCatalog{File: "client-manifest.json", Bytes: int64(len(raw)), SHA256: fmt.Sprintf("%x", digest)}
++			if err := os.WriteFile(filepath.Join(filepath.Dir(profilePath), "client-manifest.json"), raw, 0o600); err != nil {
++				t.Fatal(err)
++			}
++			encoded, err = json.Marshal(profile)
++			if err != nil {
++				t.Fatal(err)
++			}
++			if err := os.WriteFile(profilePath, encoded, 0o600); err != nil {
++				t.Fatal(err)
++			}
++			delivery, err := loadPlatformDelivery(profilePath)
++			if scenario != "valid" {
++				if err == nil {
++					t.Fatal("inconsistent public manifest accepted")
++				}
++				return
++			}
++			if err != nil {
++				t.Fatal(err)
++			}
++			router := chi.NewRouter()
++			registerPlatformContent(router, platformDeliveries{platformKey("iOS", profile.UnityVersion): delivery}, nil, nil)
++			url := "/local/content/iOS/" + profile.UnityVersion + "/" + profile.ContentID + "/client-manifest.json"
++			w := httptest.NewRecorder()
++			router.ServeHTTP(w, httptest.NewRequest(http.MethodGet, url, nil))
++			if w.Code != http.StatusOK || !bytes.Equal(w.Body.Bytes(), raw) || w.Header().Get("Content-Type") != "application/json" {
++				t.Fatal("public manifest response differs")
++			}
++			w = httptest.NewRecorder()
++			router.ServeHTTP(w, httptest.NewRequest(http.MethodHead, url, nil))
++			if w.Code != http.StatusOK || w.Body.Len() != 0 {
++				t.Fatal("public manifest HEAD differs")
++			}
++		})
 +	}
 +}
 +

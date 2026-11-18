@@ -16,6 +16,7 @@ namespace Kairisei.Recovery
         private bool busy;
         private ServerEndpoint endpoint;
         private CnLogin login;
+        private bool serverContentReady;
         private UnityWebRequest pending;
         private Texture2D title;
         private Font font;
@@ -43,7 +44,7 @@ namespace Kairisei.Recovery
             try
             {
                 if (!content.Ready) throw new InvalidOperationException(content.Error ?? "资源初始化未完成。");
-                title = content.Load<Texture2D>("recovery/ui", "title-background");
+                title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
                 status = "本地资源已就绪。输入服务器地址后检查连接。完整游戏仍在恢复中。";
             }
             catch (Exception error) { status = "资源加载失败：" + error.Message; }
@@ -86,7 +87,7 @@ namespace Kairisei.Recovery
             if (GUI.Button(new Rect(100, 300, 320, 64), busy ? "连接中…" : "检查连接", buttonStyle)) CheckHealth();
             GUI.enabled = !busy && endpoint != null && verifiedAddress == address;
             if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
-            GUI.enabled = !busy && login != null && verifiedAddress == address;
+            GUI.enabled = !busy && login != null && serverContentReady && verifiedAddress == address;
             if (GUI.Button(new Rect(830, 300, 350, 64), "读取角色数据", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
@@ -105,6 +106,7 @@ namespace Kairisei.Recovery
         private void CheckHealth()
         {
             login = null;
+            serverContentReady = false;
             endpoint = null;
             verifiedAddress = null;
             try { endpoint = ServerEndpoint.Parse(address); }
@@ -123,6 +125,7 @@ namespace Kairisei.Recovery
         {
             if (endpoint == null || verifiedAddress != address) return;
             login = null;
+            serverContentReady = false;
             string key;
             using (SHA256 hash = SHA256.Create())
                 key = "ios-recovery.guest." + BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(endpoint.ToString()))).Replace("-", "");
@@ -130,13 +133,25 @@ namespace Kairisei.Recovery
             if (String.IsNullOrEmpty(uuid)) { uuid = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString(key, uuid); PlayerPrefs.Save(); }
             StartCoroutine(Send("POST", endpoint.Route("/local/client/login"), CnProtocol.CreateLogin(uuid, Application.unityVersion), delegate(string response) {
                 login = CnProtocol.ParseLogin(response, endpoint);
-                status = "测试游客登录成功，角色编号：" + login.UserId + "。可以读取角色初始化数据。";
+                status = "测试游客登录成功，正在检查服务器资源…";
+                StartCoroutine(UpdateServerContent(login));
             }));
+        }
+
+        private IEnumerator UpdateServerContent(CnLogin requestedLogin)
+        {
+            // The login request releases its busy flag after invoking its callback.
+            yield return null;
+            busy = true;
+            yield return content.UpdateFromServer(requestedLogin);
+            serverContentReady = content.Ready && login == requestedLogin;
+            status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以读取角色初始化数据。" : "服务器资源加载失败：" + content.Error;
+            busy = false;
         }
 
         private void ReadConnect()
         {
-            if (login == null || verifiedAddress != address) return;
+            if (login == null || !serverContentReady || verifiedAddress != address) return;
             StartCoroutine(Send("POST", login.Api.Route("/Connect"), CnProtocol.CreateSessionRequest(login.SessionKey, new JObject()), delegate(string response) {
                 CnEnvelope envelope = CnProtocol.ParseEnvelope(response);
                 status = "已收到角色初始化数据（" + envelope.Payload.Type + "）。协议连接验证完成；游戏界面与战斗尚未接入。";

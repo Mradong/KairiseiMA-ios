@@ -38,13 +38,16 @@ namespace Kairisei.Recovery.Editor
             string built = Path.Combine(temporary, "recovery-ui.bundle");
             string hash = ContentIntegrity.HashFile(built);
             string crc = ContentIntegrity.FileCrc(built).ToString("X8", CultureInfo.InvariantCulture);
-            ContentBundle item = new ContentBundle { name = "recovery/ui", file = hash + ".bundle", bytes = new FileInfo(built).Length, sha256 = hash, crc32 = crc, dependencies = new string[0] };
+            ContentBundle item = new ContentBundle { name = "recovery/ui.dat", file = hash + ".bundle", bytes = new FileInfo(built).Length, sha256 = hash, crc32 = crc, dependencies = new string[0] };
             ContentManifest manifest = new ContentManifest { unityVersion = Application.unityVersion, bundles = new[] { item } };
             manifest.contentId = ContentManifest.ComputeId(manifest.bundles);
             string output = "Assets/StreamingAssets/RecoveryContent";
             Directory.CreateDirectory(output);
             File.Copy(built, Path.Combine(output,item.file),true);
-            File.WriteAllText("Assets/Recovery/Resources/IosContentManifest.json", JsonConvert.SerializeObject(manifest,Formatting.Indented),new UTF8Encoding(false));
+            string clientManifest = JsonConvert.SerializeObject(manifest,Formatting.Indented);
+            File.WriteAllText("Assets/Recovery/Resources/IosContentManifest.json",clientManifest,new UTF8Encoding(false));
+            string publicManifest = Path.Combine(output,"client-manifest.json");
+            File.WriteAllText(publicManifest,clientManifest,new UTF8Encoding(false));
             // Same bundle bytes can be served by the patched platform delivery layer.
             string catalogPath = Path.Combine(output,"catalog.dat");
             using (FileStream stream = File.Create(catalogPath)) using (GZipStream gzip = new GZipStream(stream,CompressionMode.Compress))
@@ -54,6 +57,7 @@ namespace Kairisei.Recovery.Editor
             }
             var profile = new { platform = "iOS", unity_version = Application.unityVersion, content_id = manifest.contentId, artifact_root = ".",
                 catalog = new { file = "catalog.dat", bytes = new FileInfo(catalogPath).Length, sha256 = ContentIntegrity.HashFile(catalogPath) },
+                client_manifest = new { file = "client-manifest.json", bytes = new FileInfo(publicManifest).Length, sha256 = ContentIntegrity.HashFile(publicManifest) },
                 bundles = new[] { new { name = "recovery/ui.dat", file = item.file, bytes = item.bytes, sha256 = hash, crc32 = crc } } };
             File.WriteAllText(Path.Combine(output,"ios-delivery.json"),JsonConvert.SerializeObject(profile,Formatting.Indented),new UTF8Encoding(false));
             File.WriteAllText(Path.Combine(output,"resource-build.json"),JsonConvert.SerializeObject(new { generatedAt=DateTime.UtcNow.ToString("o"),platform="iOS",unityVersion=Application.unityVersion,manifest.contentId,bundleSha256=hash,bundleBytes=item.bytes,sourceAssets=paths,fontGlyphCheck=true,scope="Partial recovered UI content and persistent-cache bootstrap; not a complete game resource set.",gameplayReady=false },Formatting.Indented),new UTF8Encoding(false));

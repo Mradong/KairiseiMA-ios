@@ -1,12 +1,17 @@
 {
-  "generatedAt": "2026-11-18T11:05:17.283Z",
+  "generatedAt": "2026-11-18T11:19:39.046Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
     {
+      "path": ".gitattributes",
+      "bytes": 28,
+      "sha256": "9caa144f956baf245cbb0194938c047d656a0363185416f8ad1555131bb18344"
+    },
+    {
       "path": ".github/workflows/build-ios.yml",
-      "bytes": 4613,
-      "sha256": "627d3830fe7f930da9d5faf946b6bb69a07e88d4be4b1375719f73b5080da5bf"
+      "bytes": 4656,
+      "sha256": "fa19ab0f295a496fe71c3486062341bc92b2209ce432600ceda515733072fe06"
     },
     {
       "path": ".gitignore",
@@ -20,13 +25,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 23257,
-      "sha256": "2b463c80a7212a433edf28483ca2cb1b2ef6128006cf255e1d3a7af785871071"
+      "bytes": 25121,
+      "sha256": "896198ec8011de38ab1aa47486c6c7125af68371ee50f2ff29ec6e18679081b4"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 4687,
-      "sha256": "b55b82e7c97e62b5a066e6cbebe24ad9fcf3d60d205f4c1a7cd5785018857436"
+      "bytes": 5025,
+      "sha256": "0a362f7e756f23c0746bd799e29033d88fe4a7b16089604e0d2452135dccc2f1"
     },
     {
       "path": "evidence/ios-package-search/ios-content-source.json",
@@ -36,12 +41,12 @@
     {
       "path": "evidence/ios-package-search/ios-content-tests.json",
       "bytes": 421,
-      "sha256": "8ac46ced270e431732ae7ba9617266b48c5d5a5c6bbeab120458c90453348e2c"
+      "sha256": "0fa2ac9204ab8fb15f0f6028043c3337d0955ac001e02e1d53e1948a5d3b49d5"
     },
     {
       "path": "evidence/ios-package-search/ios-server-tests.json",
-      "bytes": 1723,
-      "sha256": "95dd72cf7a14a021a630288620c966cdddd7b54e6e5f3611d41e012d06ff47bc"
+      "bytes": 2212,
+      "sha256": "4f21ec0b953d77de28480ec4791fa8dc10125ce99fcdada33b6191aacb7b7a22"
     },
     {
       "path": "evidence/native/go-symbols-summary.json",
@@ -165,8 +170,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
-      "bytes": 5048,
-      "sha256": "28b5dcfc8ad6b69e12b2d6ea9bbb766a333490e0073dc0b4857812c5eb7bb64a"
+      "bytes": 5440,
+      "sha256": "8b1fbb5cfe4f3cd4d7dbb5c5be79d4f5acf88d5323df2b04d176e2c7a9714883"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/NativeValidationBattle.json",
@@ -220,8 +225,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 9348,
-      "sha256": "acd2ea0ad242f515aa2141d327b6a0bad737471999d432584e287167fcc6e50b"
+      "bytes": 10149,
+      "sha256": "00a8f0d7ed708a7f7591430f658f9efdd3d94191b3140d8843b717452589f324"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
@@ -230,13 +235,18 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
-      "bytes": 4463,
-      "sha256": "e72fbe24fefb98f1f5aebf9a86cd89e7e5a3b6654a6e0434327582b99f087c3a"
+      "bytes": 8229,
+      "sha256": "cbc93f7564640543a98bc4c33e9784614e1ac05507b1e5a0cf4680b452824394"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/link.xml",
+      "bytes": 217,
+      "sha256": "eef5b4b8f98868adb570067d30e269b2e24912239b748dbd73057d2f2a0c29ac"
     },
     {
       "path": "ios-client/Packages/manifest.json",
-      "bytes": 303,
-      "sha256": "4c0da7fbf94175ddddcb8ccff9a1668cb4ca32edbc25a57274adf3d81f52146e"
+      "bytes": 349,
+      "sha256": "9d1038014d523351c9cc7da4076345fb61b87a959b98d5649a97f729e209ba27"
     },
     {
       "path": "ios-client/ProjectSettings/ProjectVersion.txt",
@@ -335,8 +345,8 @@
     },
     {
       "path": "patches/ios-server.patch",
-      "bytes": 8313,
-      "sha256": "807db58c82b63acc4fc80e62d306a3427382213598d019c5537b37b424ab23a9"
+      "bytes": 16845,
+      "sha256": "7b8d1228e727970c63408843890a58022299b02122578de269bba94c697d7718"
     },
     {
       "path": "scripts/Build-IosServer.ps1",
@@ -454,7 +464,7 @@
       "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     }
   ],
-  "bytes": 20793098,
+  "bytes": 20809614,
   "privacy": "Explicit recovery sources, tests, synthetic fixtures, server patch, selected recovered PNG/atlas JSON and Chinese font sources only. Excludes original executables, raw IPA/player data, SDK config, credentials, account/save data, licenses and tools.",
   "execution": "Prepared locally for Unity/iOS build. Local cache/server checks do not establish iOS execution or full game readiness."
 }
