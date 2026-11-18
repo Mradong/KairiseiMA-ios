@@ -46,7 +46,8 @@ func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battleco
 				for k := 1; k < len(params); k++ {
 					params[k] = strconv.FormatInt(c.Parameters[k], 10)
 				}
-			case "RANDOM", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL":
+			case "RANDOM", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL",
+				"SELF_MAIN_DECK_TAG", "SELF_SUPPORT_DECK_TAG", "SELF_ALL_DECK_TAG":
 				for k, value := range c.Parameters {
 					params[k] = strconv.FormatInt(value, 10)
 				}
@@ -64,8 +65,8 @@ func queryBranches(schema map[string]map[int32]string, raw rawSkill) ([]battleco
 }
 
 // preparedQueryProjects the registered state needed by the engine query.
-// Nonempty cards and enemies require registered-content decoding, so do not
-// silently discard them. Zero-ID card records are empty in the original.
+// Nonempty skill and enemy records still require registered-content decoding.
+// Do not silently discard them. Zero-ID cards are empty in the original.
 func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.PreparedSkillQuery, error) {
 	if catalog.schema == nil {
 		return nil, fmt.Errorf("skill query requires content schema")
@@ -75,19 +76,67 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 			return nil, fmt.Errorf("registered enemy projection unavailable")
 		}
 	}
+	value := *catalog.value
+	value.Cards = make(map[int]battlemodel.CombatCardDefinition, len(catalog.value.Cards))
+	for id, card := range catalog.value.Cards {
+		value.Cards[id] = card
+	}
+	registeredCards := make(map[int]battlemodel.CombatCardDefinition)
 	members := make([]battlemodel.Participant, 0, 8)
 	for i, user := range p.users {
 		if user == nil {
 			continue
 		}
-		for _, card := range user.cards {
-			if card != nil && wireInt(card, 0) != 0 {
-				return nil, fmt.Errorf("registered card projection unavailable")
-			}
-		}
 		job, maxHP := int(user.data[6]), int(user.data[2])
 		member := battlemodel.Participant{MemberType: i + 1, ArthurType: int(user.data[7]), JobType: &job,
 			HP: int(user.data[1]), MaxHP: &maxHP, Attack: int(user.data[3]), Magic: int(user.data[4]), Mind: int(user.data[5])}
+		for slot, raw := range user.cards {
+			if raw == nil || wireInt(raw, 0) == 0 {
+				continue
+			}
+			id := int(wireInt(raw, 0))
+			definition, ok := catalog.value.Cards[id]
+			if !ok {
+				return nil, fmt.Errorf("registered card has no master metadata")
+			}
+			for _, offset := range []int{28, 28 + skillWireSize} {
+				skill := raw[offset : offset+skillWireSize]
+				if !validRegisteredSkill(skill) || wireInt(skill, 0) != 0 {
+					return nil, fmt.Errorf("registered skill projection unavailable")
+				}
+			}
+			for _, extra := range user.extraSkills[slot] {
+				if extra != nil && (!validRegisteredSkill(extra) || wireInt(extra, 0) != 0) {
+					return nil, fmt.Errorf("registered extra skill projection unavailable")
+				}
+			}
+			rarity, ok := catalog.schema["RARITY"][wireInt(raw, 20)]
+			if !ok {
+				return nil, fmt.Errorf("registered card rarity unavailable")
+			}
+			definition.Rarity = rarity
+			definition.RarityPlus = int(wireInt(raw, 24))
+			definition.NormalSkillID, definition.ArthurSkillID = 0, 0
+			definition.CallSkillID, definition.PassiveSkillID, definition.ArthurPassiveSkillID = 0, 0, 0
+			partition := 0
+			for partition < 3 && catalog.value.SupportLoveRates[partition] <= int(wireInt(raw, 16)) {
+				partition++
+			}
+			definition.SupportSkillIDs[partition] = 0
+			for n := range definition.ProfileTags {
+				definition.ProfileTags[n] = int(wireInt(raw, 4928+n*4))
+			}
+			if previous, exists := registeredCards[id]; exists && previous != definition {
+				return nil, fmt.Errorf("conflicting registered cards")
+			}
+			registeredCards[id], value.Cards[id] = definition, definition
+			card := battlemodel.Card{CardType: slot + 1, CardID: id, Level: int(wireInt(raw, 8)), Fame: int(wireInt(raw, 12)), LoveRate: int(wireInt(raw, 16)), HasLoveRate: true}
+			if slot < 10 {
+				member.DeckCards = append(member.DeckCards, card)
+			} else {
+				member.SupportCards = append(member.SupportCards, card)
+			}
+		}
 		if initial := p.settings.initialBurst[i]; initial != nil {
 			value := int(*initial)
 			member.InitialBurst = &value
@@ -97,7 +146,7 @@ func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.Prepare
 		}
 		members = append(members, member)
 	}
-	return battlecore.NewPreparedSkillQuery(catalog.value, members, nil, p.mode == 3 || p.mode == 4)
+	return battlecore.NewPreparedSkillQuery(&value, members, nil, p.mode == 3 || p.mode == 4)
 }
 
 //export battlecore_skill_extend_index

@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T08:03:14.400Z",
+  "checkedAt": "2026-11-18T08:12:23.915Z",
   "success": true,
   "counts": {
     "checks": 450
@@ -10,8 +10,8 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "8998c195e3975f6e18b21c2de028c71a76ef1cae1ee346088f187c7bd5685fad"
+    "sha256": "af8f63f61a426d898a78c6ce0b2ac80292ea30e2b631cf6268706573e865417d"
   },
-  "knownDifference": "Other enum-valued conditions and registered prepared members with nonzero cards or enemies remain unsupported and can differ from the original.",
+  "knownDifference": "Other enum-valued conditions and registered cards with nonzero embedded skills and registered enemies remain unsupported and can differ from the original.",
   "scope": "Windows x64 synthetic standalone battle and empty preparations: 216 numeric-branch comparisons, 65 boundary comparisons and 169 TARGET_ATTR comparisons, including valid, missing and out-of-int32 attributes, signed 64-bit numeric parameters, both condition slots and sparse variants. The standalone query supplies no target, so these comparisons do not establish attribute matching against a target. No real account, registered battle or iOS test."
 }

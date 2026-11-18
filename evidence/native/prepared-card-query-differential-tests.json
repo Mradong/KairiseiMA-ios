@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-18T08:12:55.924Z",
+  "success": true,
+  "counts": {
+    "checks": 312,
+    "selected": 16,
+    "notSelected": 272
+  },
+  "stderr": "",
+  "original": {
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "sha256": "af8f63f61a426d898a78c6ce0b2ac80292ea30e2b631cf6268706573e865417d"
+  },
+  "scope": "Windows x64 synthetic registered cards with zero-ID embedded skills; compare registered profile-tag branch status and index across main and support slots. No nonzero skills, enemies, registered battle creation, real resources, account or iOS test."
+}

@@ -34,9 +34,10 @@
         "evidence/native/registration-differential-tests.json",
         "evidence/native/registration-state-tests.json",
         "evidence/native/skill-query-differential-tests.json",
-        "evidence/native/prepared-skill-query-differential-tests.json"
+        "evidence/native/prepared-skill-query-differential-tests.json",
+        "evidence/native/prepared-card-query-differential-tests.json"
       ],
-      "scope": "Partial active-battle and registered-user prepared queries without nonzero cards or enemies, numeric conditions and TARGET_ATTR conversion; other conditions, card/enemy projection, create/next wave and journals remain incomplete. Windows synthetic differential only; no new iOS or device validation."
+      "scope": "Partial active-battle and prepared registered-user queries, including profile-tag selection for registered cards with zero-ID embedded skills. Nonzero registered skill and enemy projection, other conditions, create/next wave and journals remain incomplete. Windows synthetic differential only; no new iOS or device validation."
     },
     {
       "id": "CLIENT-01",
