@@ -1,6 +1,8 @@
 # iOS 连接验证工程
 
-本仓库用于验证 Unity/Xcode 构建及 iPhone 侧载安装。**尚未恢复完整游戏玩法，也没有已验证的 IPA。** 请保留为私有仓库。
+本仓库用于验证 Unity/Xcode 构建及 iPhone 侧载安装。**首次连接验证 IPA 已构建成功，完整游戏玩法尚未恢复。** 请保留为私有仓库。
+
+[构建 44217212585](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44217212585)已通过官方 Personal 激活、Unity 导出、Xcode 编译和结构检查。产物名为 `ios-connection-test-unsigned`，其中的 IPA 仍需本人签名侧载；手机安装、运行及完整游戏均未验证。本地交付文件保存在恢复目录的 `dist/ready/`。
 
 ## 只在 GitHub 中填写 Unity 登录资料
 
@@ -13,7 +15,7 @@
 
 不要把这些值写进源码、Issue、聊天或普通 Actions Variables。
 
-当前工作流在 macOS 临时环境中运行官方 Unity Licensing Client 的 `--activate-ulf` 命令，为当前机器申请实际 Personal ULF 许可证，再交给 GameCI 编译。无需手工把本机的 `UnityEntitlementLicense.xml` 改名或转换成 `.ulf`，也不需要在本机安装 Editor。账号是否能通过此云端激活流程仍需实际构建验证；失败时不会跳过 Unity 的许可校验或伪报生成安装包。
+当前工作流在 macOS 临时环境中运行官方 Unity Licensing Client 的 `--activate-ulf` 命令，为当前机器申请实际 Personal ULF 许可证，再交给 GameCI 编译。首次实际激活与归还已成功。无需手工把本机的 `UnityEntitlementLicense.xml` 改名或转换成 `.ulf`，也不需要在本机安装 Editor。失败时不会跳过 Unity 的许可校验或伪报生成安装包。
 
 运行结束后会尝试归还本次取得的许可证。激活日志和许可证留在临时 runner 中，不作为构建产物上传。脚本会隐藏凭据、生成的许可证及派生序列号。
 
