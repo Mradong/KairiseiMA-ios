@@ -1,0 +1,155 @@
+using System;
+using System.Collections;
+using System.Security.Cryptography;
+using System.Text;
+using Newtonsoft.Json.Linq;
+using UnityEngine;
+using UnityEngine.Networking;
+
+namespace Kairisei.Recovery
+{
+    public sealed class RecoveryBootstrap : MonoBehaviour
+    {
+        private string address;
+        private string status = "输入服务器地址后检查连接。此工程尚未包含完整游戏玩法。";
+        private string verifiedAddress;
+        private bool busy;
+        private ServerEndpoint endpoint;
+        private CnLogin login;
+        private UnityWebRequest pending;
+        private Texture2D title;
+        private Font font;
+        private GUIStyle headingStyle;
+        private GUIStyle bodyStyle;
+        private GUIStyle inputStyle;
+        private GUIStyle buttonStyle;
+
+        private void Awake()
+        {
+            Application.targetFrameRate = 60;
+            address = PlayerPrefs.GetString("ios-recovery.server", "");
+            title = Resources.Load<Texture2D>("RecoveryTitle");
+            font = Resources.Load<Font>("RecoveryFont");
+        }
+
+        private void OnDestroy()
+        {
+            StopAllCoroutines();
+            if (pending != null) { pending.Abort(); pending.Dispose(); pending = null; }
+            login = null;
+        }
+
+        private void OnGUI()
+        {
+            if (title != null) GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), title, ScaleMode.ScaleAndCrop);
+            Rect safe = Screen.safeArea;
+            float scale = Mathf.Min(safe.width / 1280f, safe.height / 720f);
+            if (scale <= 0) return;
+            Matrix4x4 previousMatrix = GUI.matrix;
+            float left = safe.x + (safe.width - 1280f * scale) / 2f;
+            float top = Screen.height - safe.yMax + (safe.height - 720f * scale) / 2f;
+            GUI.matrix = Matrix4x4.TRS(new Vector3(left, top, 0), Quaternion.identity, new Vector3(scale, scale, 1));
+            if (headingStyle == null)
+            {
+                headingStyle = new GUIStyle(GUI.skin.label) { fontSize = 34, wordWrap = true };
+                bodyStyle = new GUIStyle(GUI.skin.label) { fontSize = 22, wordWrap = true };
+                inputStyle = new GUIStyle(GUI.skin.textField) { fontSize = 25, alignment = TextAnchor.MiddleLeft };
+                buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 23 };
+                if (font != null) { headingStyle.font = font; bodyStyle.font = font; inputStyle.font = font; buttonStyle.font = font; }
+            }
+            Color previousColor = GUI.color;
+            GUI.color = new Color(0, 0, 0, 0.9f);
+            GUI.DrawTexture(new Rect(60, 65, 1160, 590), Texture2D.whiteTexture);
+            GUI.color = previousColor;
+            GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
+            GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
+            GUI.enabled = !busy;
+            address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
+            if (GUI.Button(new Rect(100, 300, 320, 64), busy ? "连接中…" : "检查连接", buttonStyle)) CheckHealth();
+            GUI.enabled = !busy && endpoint != null && verifiedAddress == address;
+            if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
+            GUI.enabled = !busy && login != null && verifiedAddress == address;
+            if (GUI.Button(new Rect(830, 300, 350, 64), "读取角色数据", buttonStyle)) ReadConnect();
+            GUI.enabled = true;
+            GUI.Label(new Rect(100, 390, 1080, 165), status, bodyStyle);
+            GUI.Label(new Rect(100, 570, 1080, 65), "测试游客与现有 Windows 存档独立。登录需要服务端先提供 iOS 资源。", bodyStyle);
+            GUI.matrix = previousMatrix;
+            GUI.color = previousColor;
+        }
+
+        private void CheckHealth()
+        {
+            login = null;
+            endpoint = null;
+            verifiedAddress = null;
+            try { endpoint = ServerEndpoint.Parse(address); }
+            catch (Exception error) { status = error.Message; return; }
+            string requestedAddress = address;
+            StartCoroutine(Send("GET", endpoint.Route("/healthz"), null, delegate(string response) {
+                int battlePort = CnProtocol.ParseHealth(response);
+                verifiedAddress = requestedAddress;
+                PlayerPrefs.SetString("ios-recovery.server", endpoint.ToString());
+                PlayerPrefs.Save();
+                status = "已连接到游戏服务器。战斗端口：" + battlePort + "。可以继续测试 iOS 资源和游客登录。";
+            }));
+        }
+
+        private void LoginGuest()
+        {
+            if (endpoint == null || verifiedAddress != address) return;
+            login = null;
+            string key;
+            using (SHA256 hash = SHA256.Create())
+                key = "ios-recovery.guest." + BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(endpoint.ToString()))).Replace("-", "");
+            string uuid = PlayerPrefs.GetString(key, "");
+            if (String.IsNullOrEmpty(uuid)) { uuid = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString(key, uuid); PlayerPrefs.Save(); }
+            StartCoroutine(Send("POST", endpoint.Route("/local/client/login"), CnProtocol.CreateLogin(uuid, Application.unityVersion), delegate(string response) {
+                login = CnProtocol.ParseLogin(response, endpoint);
+                status = "测试游客登录成功，角色编号：" + login.UserId + "。可以读取角色初始化数据。";
+            }));
+        }
+
+        private void ReadConnect()
+        {
+            if (login == null || verifiedAddress != address) return;
+            StartCoroutine(Send("POST", login.Api.Route("/Connect"), CnProtocol.CreateSessionRequest(login.SessionKey, new JObject()), delegate(string response) {
+                CnEnvelope envelope = CnProtocol.ParseEnvelope(response);
+                status = "已收到角色初始化数据（" + envelope.Payload.Type + "）。协议连接验证完成；游戏界面与战斗尚未接入。";
+            }));
+        }
+
+        private IEnumerator Send(string method, Uri uri, string body, Action<string> receive)
+        {
+            if (busy) yield break;
+            busy = true;
+            status = "正在连接服务器…";
+            using (UnityWebRequest request = new UnityWebRequest(uri.AbsoluteUri, method))
+            {
+                pending = request;
+                request.downloadHandler = new DownloadHandlerBuffer();
+                request.timeout = 20;
+                request.redirectLimit = 0;
+                if (body != null)
+                {
+                    request.uploadHandler = new UploadHandlerRaw(Encoding.UTF8.GetBytes(body));
+                    request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
+                }
+                yield return request.SendWebRequest();
+                try
+                {
+                    if (request.result != UnityWebRequest.Result.Success)
+                    {
+                        string text = request.downloadHandler.text;
+                        if (request.responseCode == 400 && text != null && text.Contains("no content for the requested platform"))
+                            throw new InvalidOperationException("服务器尚未提供与此 Unity 版本匹配的 iOS 资源，需要先构建并配置 iOS 资源包。");
+                        throw new InvalidOperationException("连接失败（HTTP " + request.responseCode + "）：" + request.error);
+                    }
+                    if (request.downloadHandler.data.Length > 4 * 1024 * 1024) throw new FormatException("验证响应超过大小限制。");
+                    receive(request.downloadHandler.text);
+                }
+                catch (Exception error) { status = error.Message; }
+                finally { pending = null; busy = false; }
+            }
+        }
+    }
+}

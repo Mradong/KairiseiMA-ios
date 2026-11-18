@@ -1,0 +1,87 @@
+{
+  "generatedAt": "2026-11-18T01:07:17.124Z",
+  "stage": "connection-validation",
+  "gameplayReady": false,
+  "preparedFor": {
+    "model": "iPhone 13",
+    "iOS": "17.4.1",
+    "installation": "Unsigned IPA for free Apple-ID sideload signing; no App Store publication"
+  },
+  "files": [
+    {
+      "path": "ios-client/Assets/Recovery/Editor/IosLocalNetwork.cs",
+      "bytes": 1314,
+      "sha256": "02c2d01ad81151bde9ae71c6cf7934b4293c71d671a29e0ac0645ded19a1ba67"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
+      "bytes": 4570,
+      "sha256": "88e3dbf35c47b5fa9a31a5cae125ac5fd1b05ab19ec784bb2296a44c053924ed"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/RecoveryFont.otf",
+      "bytes": 10092440,
+      "sha256": "188b7d7cb095a1e3aff9bce1cb7c709bb5fbce197f581512b782f7d53f41b538"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/RecoveryFont.otf.meta",
+      "bytes": 565,
+      "sha256": "d72575b8344011918072248aa451c0f16f1ca57589785caebf189c59ec1e39af"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/RecoveryTitle.png",
+      "bytes": 3807118,
+      "sha256": "65ec90c1b8839196aa2dc8e5a4bec098071f83165cca7284dedfb2d6fbd508f0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/RecoveryTitle.png.meta",
+      "bytes": 2787,
+      "sha256": "6c7e76c2264d618fd2b431ab245b133bb9bf462a0b895f26b79c2060971a72f6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "bytes": 8583,
+      "sha256": "e4f5e5749c1ad18aa344d8de0ee186b87e2087317095cc901c82232aa4c4b656"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
+      "bytes": 8126,
+      "sha256": "22cd4f8a4fbaf4a5d0dba876ac8ad91fb16583b39d116370f9eb383833e829aa"
+    },
+    {
+      "path": "ios-client/Packages/manifest.json",
+      "bytes": 303,
+      "sha256": "4c0da7fbf94175ddddcb8ccff9a1668cb4ca32edbc25a57274adf3d81f52146e"
+    },
+    {
+      "path": "ios-client/ProjectSettings/ProjectVersion.txt",
+      "bytes": 29,
+      "sha256": "6d4698a055aba20775764511b19b380e4bbb9a26560fec1110802be15c549add"
+    },
+    {
+      "path": "ios-client/.gitignore",
+      "bytes": 69,
+      "sha256": "4670b88daf7c6ca39391d71e5067d7e1954870ce06fde8637ab71d047ef2efac"
+    },
+    {
+      "path": "scripts/Build-UnsignedIPA.sh",
+      "bytes": 2897,
+      "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
+    },
+    {
+      "path": "scripts/verify-ios-build.mjs",
+      "bytes": 9240,
+      "sha256": "a45c645e2a453aee7138ab8c8e447800f4d541c60787a6321559008ccc36a3c0"
+    },
+    {
+      "path": ".github/workflows/build-ios.yml",
+      "bytes": 2225,
+      "sha256": "895282c64af9188788a0fb5e2048c577e14fc59623fd48cc3cb6a40c879b5748"
+    }
+  ],
+  "bytes": 13940266,
+  "privacy": "Only the explicitly listed project source and two recovered presentation assets were included. No account data, preferences, saves, credentials, raw code dumps, native DLLs or downloaded tooling were included.",
+  "execution": "Local preparation only. Nothing has been uploaded, no GitHub repository was created, and no hosted build was run.",
+  "macUnityHubVersion": "3.22.6",
+  "macUnityHubReason": "Last Hub 3 release retains the CLI required by the pinned GameCI v4 macOS builder; Hub 4 removed it."
+}
