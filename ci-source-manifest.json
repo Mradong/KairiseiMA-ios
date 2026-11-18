@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T01:07:17.124Z",
+  "generatedAt": "2026-11-18T01:31:29.343Z",
   "stage": "connection-validation",
   "gameplayReady": false,
   "preparedFor": {
@@ -75,13 +75,27 @@
     },
     {
       "path": ".github/workflows/build-ios.yml",
-      "bytes": 2225,
-      "sha256": "895282c64af9188788a0fb5e2048c577e14fc59623fd48cc3cb6a40c879b5748"
+      "bytes": 2940,
+      "sha256": "185f33a77a2778cf70f17b896a7b57e814dd16b6c26e1112e837e02552b0b00c"
+    },
+    {
+      "path": "scripts/Unity-CloudLicense.sh",
+      "bytes": 4942,
+      "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
     }
   ],
-  "bytes": 13940266,
+  "bytes": 13945923,
   "privacy": "Only the explicitly listed project source and two recovered presentation assets were included. No account data, preferences, saves, credentials, raw code dumps, native DLLs or downloaded tooling were included.",
-  "execution": "Local preparation only. Nothing has been uploaded, no GitHub repository was created, and no hosted build was run.",
+  "execution": "Updated source prepared for the authorized private GitHub repository. Real cloud activation and IPA compilation have not run.",
   "macUnityHubVersion": "3.22.6",
-  "macUnityHubReason": "Last Hub 3 release retains the CLI required by the pinned GameCI v4 macOS builder; Hub 4 removed it."
+  "macUnityHubReason": "Last Hub 3 release retains the CLI required by the pinned GameCI v4 macOS builder; Hub 4 removed it.",
+  "cloudActivation": {
+    "method": "Official Unity Licensing Client --activate-ulf on macOS runner",
+    "requiredSecretNames": [
+      "UNITY_EMAIL",
+      "UNITY_PASSWORD"
+    ],
+    "actualCloudRunVerified": false
+  },
+  "runner": "macos-15-intel"
 }
