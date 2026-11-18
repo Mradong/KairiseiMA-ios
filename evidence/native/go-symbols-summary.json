@@ -1,0 +1,15 @@
+{
+  "generatedAt": "2026-11-17T08:58:32.128Z",
+  "input": "inputs/native/kairisei_battlecore.dll",
+  "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "format": "Go pcHeader magic 0xfffffff1, pointer width 8, minimum instruction width 1",
+  "headerFileOffset": 3164672,
+  "imageBase": "0x28f360000",
+  "functions": 3524,
+  "bridgeFunctions": 128,
+  "coreFunctions": 883,
+  "limitations": [
+    "Names, addresses, entry source locations and sizes are decoded static metadata, not recovered method implementations.",
+    "An entry location can identify generated wrappers or an inlined caller; it is not the entire source range."
+  ]
+}

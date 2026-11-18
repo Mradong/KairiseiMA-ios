@@ -1,0 +1,334 @@
+{
+  "mode": 1,
+  "config": {
+    "enemy_party_id": 1,
+    "cost_initial": 10,
+    "hold_max": 5,
+    "burst_gauge_initial": 0,
+    "seed": 12345,
+    "continue_allowed": true,
+    "end_turn": 20
+  },
+  "members": [
+    {
+      "member_type": 1,
+      "arthur_type": 1,
+      "hp": 1000,
+      "attack": 100,
+      "magic": 100,
+      "mind": 100,
+      "cards": [
+        {
+          "CardType": 1,
+          "CardID": 1,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 2,
+          "CardID": 2,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 3,
+          "CardID": 3,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 4,
+          "CardID": 4,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 5,
+          "CardID": 5,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 6,
+          "CardID": 6,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 7,
+          "CardID": 7,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 8,
+          "CardID": 8,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 9,
+          "CardID": 9,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 10,
+          "CardID": 10,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        }
+      ]
+    },
+    {
+      "member_type": 2,
+      "arthur_type": 2,
+      "hp": 1000,
+      "attack": 100,
+      "magic": 100,
+      "mind": 100,
+      "cards": [
+        {
+          "CardType": 1,
+          "CardID": 1,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 2,
+          "CardID": 2,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 3,
+          "CardID": 3,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 4,
+          "CardID": 4,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 5,
+          "CardID": 5,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 6,
+          "CardID": 6,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 7,
+          "CardID": 7,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 8,
+          "CardID": 8,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 9,
+          "CardID": 9,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 10,
+          "CardID": 10,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        }
+      ]
+    },
+    {
+      "member_type": 3,
+      "arthur_type": 3,
+      "hp": 1000,
+      "attack": 100,
+      "magic": 100,
+      "mind": 100,
+      "cards": [
+        {
+          "CardType": 1,
+          "CardID": 1,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 2,
+          "CardID": 2,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 3,
+          "CardID": 3,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 4,
+          "CardID": 4,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 5,
+          "CardID": 5,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 6,
+          "CardID": 6,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 7,
+          "CardID": 7,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 8,
+          "CardID": 8,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 9,
+          "CardID": 9,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 10,
+          "CardID": 10,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        }
+      ]
+    },
+    {
+      "member_type": 4,
+      "arthur_type": 4,
+      "hp": 1000,
+      "attack": 100,
+      "magic": 100,
+      "mind": 100,
+      "cards": [
+        {
+          "CardType": 1,
+          "CardID": 1,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 2,
+          "CardID": 2,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 3,
+          "CardID": 3,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 4,
+          "CardID": 4,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 5,
+          "CardID": 5,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 6,
+          "CardID": 6,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 7,
+          "CardID": 7,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 8,
+          "CardID": 8,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 9,
+          "CardID": 9,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        },
+        {
+          "CardType": 10,
+          "CardID": 10,
+          "Level": 1,
+          "Love": 0,
+          "Fame": 0
+        }
+      ]
+    }
+  ]
+}

@@ -58,7 +58,8 @@ func wireInt(raw []byte, offset int) int32 {
 }
 
 func validRegisteredSkill(raw []byte) bool {
-	return len(raw) == skillWireSize && wireInt(raw, 0) >= 0 && wireInt(raw, 2432) >= 0
+	skill, err := decodeRawSkill(raw)
+	return err == nil && skill.Header[0] >= 0 && skill.Level >= 0
 }
 
 func (p *preparation) configure(operation, member int, value int32) int {

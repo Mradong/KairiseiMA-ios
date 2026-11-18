@@ -1,0 +1,63 @@
+# 当前状态
+
+**新窗口续作入口：[新窗口接手.md](新窗口接手.md)**。用户于 2026-11-18 要求整理交接；当前 Terra 执行代理已结束，本窗口不再新增功能。新窗口按交接文件核对目标与模型后续作。
+
+2026-11-18（Asia/Shanghai）。目标是 iPhone 13 / iOS 17.4.1 私下安装 IPA，不上架 App Store。用户没有 Mac、付费 Apple 开发者账号或现成签名证书。本机与云端 Personal 激活均已确认；连接验证工程已通过实际 Unity/Xcode 构建。所有恢复开发仅限本文件夹。
+
+**最新 0.0.2 内核验证 IPA 已生成，完整游戏仍未完成。** 文件在 `dist/ready/KairiseiMA-ios-native-validation-unsigned.ipa` 和 `install-kit/`，23,747,763 字节。SHA-256：`dc83be178166a91b4923a7447cbcd77380dc2308f77329c0824a349213aa0b3e`。实际 ARM64 库编译、Unity 导出、Xcode 链接和打包均已成功；云端／本地哈希、50 个 ZIP 条目、iOS 结构（最低 iOS 15.0、元数据 39）及实际框架中的 Go 模块标记均通过。用户最新截图已确认新版在 iPhone 13 / iOS 17.4.1 完成 30 步合成战斗并到胜利结算；截图同时暴露部分中文缺字。此项不代表完整游戏恢复，见 `evidence/native/device-validation.json`。
+
+此前的 0.0.1 标题版仍保留在 `dist/ready/KairiseiMA-ios-connection-test-unsigned.ipa`，22,214,689 字节，SHA-256 为 `20917cca959643fc68e1ee66c6a62cf55861c6c5f896b56b5f801f43243f5bb7`。你已确认它在 iPhone 安装后能打开标题，此结果来自本人反馈，未采集手机登录资料或签名后的 IPA。见 `evidence/device-validation.json`。新版操作步骤见 [安装到iPhone.md](安装到iPhone.md)。
+
+新增进展：
+
+- 本轮新增 `evidence/feature-coverage.md`，列出主流程与卡牌、商店、社交、竞技、故事及平台依赖，区分旧版有方法体与现代存根；现代范围仍待核实，不标记完成。新增 `native/bridge/skill_wire.go`，将 2436 字节技能记录解析为有符号原始字段、条件参数和五组扩展/角色，供未来注册创建及分支查询转换使用；目前注册校验接入其 ID/等级，尚无 domain 枚举转换或注册战斗消费。此解析比已有 `skill_info` 的 250 项统计提供完整原始字段，但不能据此宣称技能扩展功能已恢复。
+- 新构建 Windows DLL SHA-256 `5df881ef8f77866bf998771f1b4d593875d1544acb74f4bf79f842b71e5e71dc`；布局 Go 测试及状态测试通过，四套原 DLL 差分共 73,089 项通过，实际 Unity C# 适配器合成回放连续三次通过。注册差分只验证接口状态而非全部解码字段语义；字段布局测试是独立合成夹具，尚需用原 DLL 可观察行为验证 domain 转换。执行者自查见 `evidence/reviews/terra-checkpoint-001.json`。原始文件 7/7 一致，固定参考工作树干净；此版本尚未打包，无新 ARM64 或真机验证；原 0.0.2 证据属于此前构建。
+- REA 6.9.0 / Ghidra 12.2 / JDK 25 已局部配置并实际运行。保留 Go 符号映射及 86 个主模块函数、73 个桥接模块函数的伪代码；缺失模块的原始源码仍未找到。
+- `native/bridge` 已实现 38/41 个导出边界，包含参数、准备注册、战斗表加载、独立战斗创建／推进／结果／错误和观察接口。已跑通合成胜利流程；原客户端的完整注册数据解码、注册式创建／切换战斗及技能扩展查询仍未实现。非注册上下文按原版拒绝输入日志读取，尚无注册输入日志。接口数量不代表完整游戏恢复比例，能力位仍保持保守。
+- 原生对照测试通过 21,340 项检查。新增技能查询 3,323 组：933 组成功、2,390 组拒绝，共比较 830,500 个输出槽，失败时检查输出缓冲保持不变。能力掩码仍只声明参数功能。
+- 准备接口对照测试通过 15,497 项检查，含八种模式共 8,434 组技能查询、4,888 组用户参数 CSV、64 个句柄上限及错误输入优先级。没有创建战斗或读取真实账号；原 21,340 项检查仍通过。
+- 新增注册接口对照测试通过 35,504 项检查（9,390 次成功、26,114 次拒绝），覆盖注册前置条件、成员与槽位边界、NPC 1,024 条和敌方反应 50 条上限、初始化表与错误优先级。另有九组 Go 状态测试，检查缓冲复制、拒绝时保留旧记录、召唤双记录、敌方替换／清空和剧情数值转换。三套原版对照共通过 72,341 项检查。
+- 新增独立战斗对照 748 项：用 20 张合成表创建四人战斗，完成胜利结算；51 次推进调用共比较 28,726 字节结果／错误。覆盖表引用、两个目录／64 场战斗上限、参数覆盖、缓冲区重读和故障保留。四套原版对照累计 73,089 项通过，另有 Go 状态及合成战斗预热检查。Unity 的实际 C# 适配代码在 Windows 上连续三次通过 30 步原版参考哈希验证，没有使用真实账号或服务器。
+- 新版 Unity 0.0.2 源码已接入“离线战斗内核验证”按钮，应用标识仍为 `local.kairisei.recovery`。源码共 32 个清单文件、14,013,063 字节（另有清单文件本身），上传提交为 `e4ea0a59441d663a083c63cd774817374d3ba6b0`。[构建 44253783860](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44253783860)已完成 ARM64 静态库、Unity、Xcode 和 IPA 打包。静态库 9,802,360 字节，SHA-256 为 `b7a0037267863e719a3bba4d1e57a78d5f843569ed1c45e0f729353eeb146e88`；实际框架含 Go 1.25.1 及恢复模块标记。手机上的 30 步回放已由用户截图确认通过（仅合成数据）；字体缺字待修复。
+- 结构检查器通过 23 项合成夹具检查，并已用于实际构建与下载后的 IPA 复核。
+- 已按用户明确授权，通过官方便携 GitHub CLI 2.105.0 连接账号 `Mradong`，创建私有仓库 `Mradong/KairiseiMA-ios` 并完成源码上传。初次 16 个文件逐一核对 Git blob 哈希一致。初始源码审核 ZIP 保留在 `dist/cloud-source/`，不是 IPA。
+- 已增加官方 Unity Licensing Client 云端激活脚本，源码共 15 个构建文件、13,945,923 字节，加 README 与清单共 17 个文件。Runner 为 `macos-15-intel`，Hub 3.22.6，Editor 6000.3.26f1；实际云端 Personal 激活及归还均成功。
+- 首次构建 `44217212585` 于北京时间 2026-11-18 09:37 启动，约 10:05 成功完成。Unity 导出、Xcode 编译、IPA 打包及结构检查全部通过。下载后再次核对 SHA-256、50 个 ZIP 条目、主程序及 UnityFramework；执行文件哈希与云端报告一致。仅手动触发，未上架。
+
+验证情况：
+
+- `evidence/protocol-tests.json`：48 项协议检查通过，并通过仅限本机的 health/login/Connect HTTP 合约测试。
+- `evidence/original-input-verification.json`：7 个原始核心文件 SHA-256 与首次记录一致。
+- `evidence/source-repository.json`：独立参考仓库为提交 `d1a202eb539b99511e8a33f3975fac409ab545bf`，47 次提交、935 个跟踪文件，参考副本工作树未修改。
+- PowerShell 脚本语法检查和 Node 脚本语法检查通过。
+- `evidence/unity-build-preflight.json`：未在检查的位置找到 Unity 6000.3.26f1，构建预检明确失败，没有假报生成 Xcode 工程。
+- REA 静态分析及 Ghidra 反编译记录见 `evidence/rea/NOTES.md` 与 `evidence/native/`。
+- `evidence/native/parameter-differential-tests.json`：原生对照结果、DLL 哈希及 Windows 测试范围。
+- `evidence/ci-source-preparation.json`：本地源码子集清单，非上传记录。
+- `evidence/ipa-delivery.json`：实际 IPA 来源、哈希、本地复核及尚未签名／真机验证的边界。
+
+当前状态：本人已完成签名侧载并确认标题打开。后续新版仍需沿用同一个 Apple 账号和应用标识覆盖安装；不要先删除 App。免费签名续期通常保留应用数据；完整资源下载与持久保存功能尚待恢复及续签验证。本机 17763 不在 Unity 6.3 官方支持范围内（最低 19043），实际编译已在云端完成，无需本机 Editor。本机许可证 XML 未读取或上传；当前连接无法查询 Actions 用量 API，未修改计费设置。
+
+Hub 安装兼容性已定位：本机 Windows 10 Enterprise LTSC 2019 / 1809，内部版本 17763；新版 Hub MSIX 要求至少 19043，报错 `0x80073CFD`。官方 Hub 3.19.5 x64 EXE 的版本和签名 Valid 已核对；来源及哈希在 `tools/unity-hub/download.json`。用户已自行安装并激活 Personal。本机目标 Editor 未安装；云端连接工程构建已完成，完整游戏仍未完成。
+
+后续仍需解决：旧代码到新版场景的移植、真正的 iOS 游戏资源与服务端配置、已注册原生数据到战斗内容的完整解码及三个剩余导出，以及网页／音频／Live2D／Shader。已交付的 0.0.1 IPA 只含标题与连接验证；本次构建的 0.0.2 仍是合成战斗验证工程，完整游戏玩法尚未恢复。ARM64 构建、链接与合成回放真机结果已分别记录；真实游戏流程尚待恢复和验收。
+
+迁移说明：本次恢复工程与参考仓库均已放入本文件夹；仓库迁移前后 997 个文件（含 Git 元数据）逐个核对一致。旧临时位置 `../source-review` 留有受 Windows 访问限制的目录残留，未在该位置继续工作，也没有修改权限来强行清理。原有 Windows 游戏文件未参与移动。
+
+安装准备：`install-kit/` 已集中 3 个官方来源安装包和 IPA，共 530,073,394 字节。iTunes 12.13.12.3 与 iCloud 7.21.0.23 的 Apple 签名有效，Sideloadly 官网包为 NotSigned；安装器未由代理执行。后续只读检查已确认本人安装了 iTunes、iCloud 与手机驱动；本人已确认 IPA 可打开标题。安装、Apple 账号、签名错误排查和七天续签保留数据的步骤已写入两份安装指南，来源和哈希在 `evidence/install-kit.json`。
+
+正式完整恢复目标已于 2026-11-18 建立并保持进行中；指定执行模型为 GPT-6.1 Terra，主代理审核。执行计划见 [EXECUTION_PLAN.md](EXECUTION_PLAN.md)，约束见 [AGENTS.md](AGENTS.md)，验收表见 `evidence/acceptance.json`。0.0.2 真机合成验证通过，完整游戏仍未完成。
+
+## 2026-11-18：BATTLE-01 技能分支查询部分进展
+
+`battlecore_skill_extend_index` 已接入活动独立战斗的受限查询，支持 NONE、NULL、RANDOM、SELF_HP_PER、SELF_OTHER_PLAY_NUM、SELF_PLAY_MOST_LOW_COST、SELF_PLAY_COST_TOTAL 和 TARGET_ATTR。TARGET_ATTR 的首参数按 ATTR 枚举转换，其余参数保留有符号 64 位数值；此前该条件被保守拒绝的问题已修复。其他尚未恢复的条件仍返回无效状态。
+
+Windows x64 合成测试中，与原 DLL 的 450 组状态及索引差分通过，其中 169 组覆盖 TARGET_ATTR 的有效、缺失和越界枚举、两个条件槽及稀疏分支；65 组覆盖缓冲区、句柄优先级、空准备态成员及错误输出保持。查询没有目标对象，因此不能证明带目标时的属性匹配。证据见 `evidence/native/skill-query-differential-tests.json`；Go 桥接测试通过。
+
+准备态已注册角色的卡牌及敌人投影、其他条件枚举转换、注册战斗创建和下一波及日志仍未完成，BATTLE-01 保持未完成。本地 Windows DLL SHA-256 为 `0cf96c78628b32a376b43ef8940f7c609cb70506d08240022dfc323254525c2d`。本次源码没有新的 ARM64 构建或真机验证，旧 0.0.2 IPA 的真机证据不适用于这些改动。
+
+## 2026-11-18：BATTLE-01 准备态注册角色查询
+
+已将准备态注册角色的基础字段接到 `NewPreparedSkillQuery`，支持无非零卡牌及无敌人的准备态查询；注册卡牌或敌人的完整投影仍未完成，遇到这些记录会明确拒绝。Windows x64 使用隔离合成数据，在八种模式下反复注册角色并改变生命值与条件范围，与原 DLL 对照的 2,800 组状态和分支索引一致，其中 880 组选择分支、1,920 组不选择。证据见 `evidence/native/prepared-skill-query-differential-tests.json`。活动战斗查询 450 组差分和 Go 状态测试在当前 DLL 下通过，七个原始核心文件哈希一致，参考工作树干净。
+
+当前 Windows DLL SHA-256 为 `8998c195e3975f6e18b21c2de028c71a76ef1cae1ee346088f187c7bd5685fad`。此证据不覆盖注册卡牌、敌人、真实游戏数据、ARM64 或新真机运行。注册战斗创建、下一波、输入日志、其他条件和资源及客户端流程仍未完成；旧 IPA 的真机结果不适用于当前源码。

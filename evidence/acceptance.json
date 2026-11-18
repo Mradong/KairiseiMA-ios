@@ -1,0 +1,81 @@
+{
+  "schemaVersion": 1,
+  "establishedOn": "2026-11-18",
+  "executorModel": "gpt-6.1-terra",
+  "reviewer": "root agent",
+  "targetDevice": "iPhone 13 / iOS 17.4.1",
+  "overallStatus": "in_progress",
+  "gameplayReady": false,
+  "completionRequires": "All original-supported scope verified, real-device full gameplay flow and persistence evidence; no completion by title/demo/build/export count.",
+  "items": [
+    {
+      "id": "BASE-01",
+      "requirement": "0.0.2 native synthetic 30-step victory on target iPhone",
+      "status": "passed",
+      "evidence": [
+        "evidence/native/device-validation.json"
+      ],
+      "scope": "Synthetic only; not real gameplay"
+    },
+    {
+      "id": "SCOPE-01",
+      "requirement": "Original-supported feature inventory with source references and dependencies",
+      "status": "in_progress",
+      "evidence": [
+        "evidence/feature-coverage.md"
+      ]
+    },
+    {
+      "id": "BATTLE-01",
+      "requirement": "Registered raw data decoding, create/next wave, skill extensions and journal behavior",
+      "status": "incomplete",
+      "evidence": [
+        "evidence/native/implementation-status.json",
+        "evidence/native/registration-differential-tests.json",
+        "evidence/native/registration-state-tests.json",
+        "evidence/native/skill-query-differential-tests.json",
+        "evidence/native/prepared-skill-query-differential-tests.json"
+      ],
+      "scope": "Partial active-battle and registered-user prepared queries without nonzero cards or enemies, numeric conditions and TARGET_ATTR conversion; other conditions, card/enemy projection, create/next wave and journals remain incomplete. Windows synthetic differential only; no new iOS or device validation."
+    },
+    {
+      "id": "CLIENT-01",
+      "requirement": "Original startup, login, home and deck behavior with isolated test identity",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "RESOURCE-01",
+      "requirement": "Real iOS delivery configuration, usable assets, verified persistent downloads and retries",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "PLAY-01",
+      "requirement": "Real quest/battle input, displayed turns, selection, victory/defeat, result and return",
+      "status": "incomplete",
+      "evidence": []
+    },
+    {
+      "id": "PLATFORM-01",
+      "requirement": "Required fonts, audio, shaders, Live2D, web and lifecycle integration",
+      "status": "incomplete",
+      "evidence": [
+        "evidence/native/device-validation.json"
+      ],
+      "knownIssue": "Missing simplified Chinese glyphs in 0.0.2 screenshot"
+    },
+    {
+      "id": "SAVE-01",
+      "requirement": "Progress/resources survive restart and same-identity overwrite/re-sign on device",
+      "status": "not_tested",
+      "evidence": []
+    },
+    {
+      "id": "DELIVERY-01",
+      "requirement": "Final functional IPA reproducible and all scoped device acceptance passed",
+      "status": "incomplete",
+      "evidence": []
+    }
+  ]
+}

@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-18T08:01:16.077Z",
+  "success": true,
+  "exitCode": 0,
+  "passed": [
+    "TestEnemyReplacementAndClear",
+    "TestInitializationRecordsPreserveWireSemantics",
+    "TestEnemyGaugeCapacityAndReplacement",
+    "TestStoryHelpCopiesWithoutExtraValidation",
+    "TestRegistrationOwnsCallerBuffers/card",
+    "TestRegistrationOwnsCallerBuffers/extra",
+    "TestRegistrationOwnsCallerBuffers/sphere",
+    "TestRegistrationOwnsCallerBuffers/buddy",
+    "TestRegistrationOwnsCallerBuffers/summon-card",
+    "TestRegistrationOwnsCallerBuffers",
+    "TestRejectedReplacementPreservesRegisteredData",
+    "TestSummonRegistrationPreservesOtherRecord",
+    "TestNPCBoundedTransactionalAppend",
+    "TestSettingsDefaultsAndIndependentMembers",
+    "TestStandaloneSyntheticCatalogAndBattle",
+    "TestQueryBranchesNumericAndUnsupported",
+    "TestDecodeRawSkill"
+  ],
+  "stderr": "",
+  "scope": "New Go preparation ownership/settings/registration state and a synthetic standalone catalog/battle warmup. Complements original-DLL byte/status comparisons. No real account, server, save or iOS runtime."
+}

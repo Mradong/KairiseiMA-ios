@@ -1,0 +1,84 @@
+{
+  "tables": [
+    {
+      "name": "card.csv",
+      "text": "1,1,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n2,2,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n3,3,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n4,4,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n5,5,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n6,6,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n7,7,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n8,8,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n9,9,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n10,10,,,,,,NORMAL,NONE,,,,,,,,,,,,,,,,,,,,,,,,,,,1,100,,1001,1001,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,\n"
+    },
+    {
+      "name": "buddy.csv",
+      "text": "1,1,,NORMAL,,1,,,,,,,,,,,,,,,,,,,\n"
+    },
+    {
+      "name": "sphr.csv",
+      "text": "1,1,,,NORMAL,,,1,,,,,,1001,,,,1,NONE,\n"
+    },
+    {
+      "name": "burst_gauge.csv",
+      "text": "100,200,1,0\n"
+    },
+    {
+      "name": "burst_gauge_reaction_rate.csv",
+      "text": "1,1,1,1,1\n"
+    },
+    {
+      "name": "skill_role_param_rule.csv",
+      "text": "ATTACK_AA,100,0,VALUE,VALUE,VALUE,VALUE,VALUE,SKILL_ROLE_BATTLE_PARAM,VALUE,ATTR,SKILL_PHYSICS_TYPE\n"
+    },
+    {
+      "name": "skill_player.csv",
+      "text": "1001,Synthetic test attack,,,,,,,,ATTACK,ATTACK,NULL,MERCENARY,PHYSICS,1,,,,,ENEMY_ONE,,,,,,,,,NULL,,NULL,,,,,,NULL,,,,,,NULL,,,,,,,\n"
+    },
+    {
+      "name": "skill_role_player.csv",
+      "text": "1001,,,,,,,,ATTACK_AA,SELECT,,1,1,1,1,1,1,1,1,1,10,0,1000,0,1,ATK,0,FIRE,PHYSICS,,,1000000\n"
+    },
+    {
+      "name": "burst_skill.csv",
+      "text": "1002,Synthetic test attack,,,,,,,,ATTACK,ATTACK,NULL,MERCENARY,PHYSICS,1,,,,,ENEMY_ONE,,,,,,,,,NULL,,NULL,,,,,,NULL,,,,,,NULL,,,,,,,\n"
+    },
+    {
+      "name": "burst_skill_role.csv",
+      "text": "1002,,,,,,,,ATTACK_AA,SELECT,,1,1,1,1,1,1,1,1,1,10,0,1000,0,1,ATK,0,FIRE,PHYSICS,,,1000000\n"
+    },
+    {
+      "name": "support_skill.csv",
+      "text": "1003,Synthetic test attack,,,,,,,,ATTACK,ATTACK,NULL,MERCENARY,PHYSICS,1,,,,,ENEMY_ONE,,,,,,,,,NULL,,NULL,,,,,,NULL,,,,,,NULL,,,,,,,\n"
+    },
+    {
+      "name": "support_skill_role.csv",
+      "text": "1003,,,,,,,,ATTACK_AA,SELECT,,1,1,1,1,1,1,1,1,1,10,0,1000,0,1,ATK,0,FIRE,PHYSICS,,,1000000\n"
+    },
+    {
+      "name": "skill_enemy.csv",
+      "text": "2001,Synthetic test attack,,,,,,,,ATTACK,ATTACK,NULL,MERCENARY,PHYSICS,1,,,,,ENEMY_ONE,,,,,,,,,NULL,,NULL,,,,,,NULL,,,,,,NULL,,,,,,,\n"
+    },
+    {
+      "name": "skill_role_enemy.csv",
+      "text": "2001,,,,,,,,ATTACK_AA,SELECT,,1,1,1,1,1,1,1,1,1,10,0,1000,0,1,ATK,0,FIRE,PHYSICS,,,1000000\n"
+    },
+    {
+      "name": "support_skill_lvup.csv",
+      "text": "1,30\n2,60\n3,100\n"
+    },
+    {
+      "name": "enemy_party.csv",
+      "text": "1,NORMAL,1,1,0,,,,,,,,,,,,\n"
+    },
+    {
+      "name": "enemy.csv",
+      "text": "1,,,,,,,,Synthetic enemy,NEUTRAL,1000,1,1,,,,,,,,,,,NONE,,,,,,,,\n"
+    },
+    {
+      "name": "enemy_lvup.csv",
+      "text": "1,1,100,100,100,100,100,100,100,100,,,,,,,,,,,,,,,,,,,,\n"
+    },
+    {
+      "name": "enemy_ai_order.csv",
+      "text": "1,,,,,,,,,,,,,,,,,,,,,,,,,,,,,NONE,,,,,,,,\n"
+    },
+    {
+      "name": "enemy_trance_gauge_reaction.csv",
+      "text": "1,,,,,,NONE,,,,,,,,,,\n"
+    }
+  ]
+}

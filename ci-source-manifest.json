@@ -1,8 +1,63 @@
 {
-  "generatedAt": "2026-11-18T06:45:51.596Z",
+  "generatedAt": "2026-11-18T08:03:21.258Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
+    {
+      "path": ".github/workflows/build-ios.yml",
+      "bytes": 3535,
+      "sha256": "31629fd9ad78fc5293b176cc5aee42393c4801d0668e6b6f9f45a487bd716d10"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 109,
+      "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3138,
+      "sha256": "ca176faef60d83cec33a1c02f2d55394be2510c19795aba2f194f54a43e00c0e"
+    },
+    {
+      "path": "STATUS.md",
+      "bytes": 12631,
+      "sha256": "041061db18b9da3eca8f7ed2aa21fb94c0a521ba18f8499170a4f721d5b2d4d7"
+    },
+    {
+      "path": "evidence/acceptance.json",
+      "bytes": 3045,
+      "sha256": "b1ab31fb35b8274861c5ec9c154394fa19df79b94524f71bd2d5508b49ac52c0"
+    },
+    {
+      "path": "evidence/native/go-symbols-summary.json",
+      "bytes": 664,
+      "sha256": "d1b1f55f7bb1dd0a812b7c3beb8be6ce41a6d73c76142a0e65cdd147a4354795"
+    },
+    {
+      "path": "evidence/native/prepared-skill-query-differential-tests.json",
+      "bytes": 664,
+      "sha256": "175e1677adce389942f0b48eac9aeedd9cbe8ba52e6125f0c3dce71e23de5585"
+    },
+    {
+      "path": "evidence/native/registration-state-tests.json",
+      "bytes": 1111,
+      "sha256": "7e99a8fa919aff9d2843a928f648cbe7e5834995b1f904ecdc038c424eb7650f"
+    },
+    {
+      "path": "evidence/native/skill-query-differential-tests.json",
+      "bytes": 982,
+      "sha256": "e2cd4f9bd440901eafac901087348bd2378ff7541e062b9a0ee18393a81db295"
+    },
+    {
+      "path": "evidence/original-input-verification.json",
+      "bytes": 2088,
+      "sha256": "4a42dc595767a377f3de240fb806d9142a0eea33b48329f6f13469356a87044b"
+    },
+    {
+      "path": "ios-client/.gitignore",
+      "bytes": 69,
+      "sha256": "4670b88daf7c6ca39391d71e5067d7e1954870ce06fde8637ab71d047ef2efac"
+    },
     {
       "path": "ios-client/Assets/Recovery/Editor/IosLocalNetwork.cs",
       "bytes": 1934,
@@ -74,11 +129,6 @@
       "sha256": "6d4698a055aba20775764511b19b380e4bbb9a26560fec1110802be15c549add"
     },
     {
-      "path": "ios-client/.gitignore",
-      "bytes": 69,
-      "sha256": "4670b88daf7c6ca39391d71e5067d7e1954870ce06fde8637ab71d047ef2efac"
-    },
-    {
       "path": "native/bridge/enemy_exports.go",
       "bytes": 1867,
       "sha256": "a63d0ea38edba93a833d03fcac761be0cb3b0f0296cf051dab7c31dc5db6ebb5"
@@ -105,8 +155,8 @@
     },
     {
       "path": "native/bridge/registration.go",
-      "bytes": 4877,
-      "sha256": "7978e33bbf57ce17dd6271e1689322852158e3c7ae6c123b91410e163adde495"
+      "bytes": 4890,
+      "sha256": "d875ef9cf5a9e9e105cd98c59bcd24ae19f85486937812353dbd9aa3991ac126"
     },
     {
       "path": "native/bridge/registration_exports.go",
@@ -124,19 +174,29 @@
       "sha256": "0c4f29e8c8e55c780c17f02a24a90e9803ef357c98277c974dcdaaf4b8801925"
     },
     {
-      "path": "scripts/Build-UnsignedIPA.sh",
-      "bytes": 2897,
-      "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
+      "path": "native/bridge/skill_query.go",
+      "bytes": 5124,
+      "sha256": "7e1d57a227cee054499294dcd4f4e7a86d1cb39d65ebe0b7fdb3f324ab9fad25"
     },
     {
-      "path": "scripts/verify-ios-build.mjs",
-      "bytes": 9240,
-      "sha256": "a45c645e2a453aee7138ab8c8e447800f4d541c60787a6321559008ccc36a3c0"
+      "path": "native/bridge/skill_query_test.go",
+      "bytes": 1365,
+      "sha256": "7d6c10ee97bb15a37054d067056d33322becfb2dc51864d79ea2f429ccde6f44"
     },
     {
-      "path": "scripts/Unity-CloudLicense.sh",
-      "bytes": 4942,
-      "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
+      "path": "native/bridge/skill_wire.go",
+      "bytes": 2319,
+      "sha256": "9f8cd35f1696a37ee27df66eff72de7627b4d9fecf02415d5a47f8ef2bb2676c"
+    },
+    {
+      "path": "native/bridge/skill_wire_test.go",
+      "bytes": 1764,
+      "sha256": "318bd1ffc1448db008dee8b852ff35f5aac933a7785dbebbba066c40ded58036"
+    },
+    {
+      "path": "scripts/Build-NativeBridge.ps1",
+      "bytes": 1567,
+      "sha256": "3659dd64900739fd6743af9ddb30580bbfcb5904566f0c4c2c0155e668a42bbd"
     },
     {
       "path": "scripts/Build-NativeIOS.sh",
@@ -144,27 +204,57 @@
       "sha256": "d1c806ba90cc5e3e1a234476382abc1c2abecc974ee314269951f3c9389d1b12"
     },
     {
+      "path": "scripts/Build-UnsignedIPA.sh",
+      "bytes": 2897,
+      "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
+    },
+    {
+      "path": "scripts/Unity-CloudLicense.sh",
+      "bytes": 4942,
+      "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
+    },
+    {
       "path": "scripts/ios-clang.sh",
       "bytes": 178,
       "sha256": "4e21a1ca2c1a86382d98dc5313c69692fa09e022bb93d6c62e6e4fe68b1ca271"
     },
     {
-      "path": ".github/workflows/build-ios.yml",
-      "bytes": 3535,
-      "sha256": "31629fd9ad78fc5293b176cc5aee42393c4801d0668e6b6f9f45a487bd716d10"
+      "path": "scripts/test-native-skill-query.mjs",
+      "bytes": 2403,
+      "sha256": "48cc252facdd7075d083aed8bfb8da38852646659f0d3ad6d7a6a94e9d4ef7f6"
     },
     {
-      "path": "README.md",
-      "bytes": 3138,
-      "sha256": "ca176faef60d83cec33a1c02f2d55394be2510c19795aba2f194f54a43e00c0e"
+      "path": "scripts/test-prepared-skill-query.mjs",
+      "bytes": 2185,
+      "sha256": "c8554661836f6f84065b1e6eb2ce9ecdf30181ea595a12884440bf9464e0f19a"
     },
     {
-      "path": ".gitignore",
-      "bytes": 109,
-      "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
+      "path": "scripts/verify-ios-build.mjs",
+      "bytes": 9240,
+      "sha256": "a45c645e2a453aee7138ab8c8e447800f4d541c60787a6321559008ccc36a3c0"
+    },
+    {
+      "path": "tests/PreparedSkillQueryDifferential.cs",
+      "bytes": 3555,
+      "sha256": "e46badbf4c6b1b4fa4bab0a186b84f53c4b6850210efcdc370827e04fc4afcaf"
+    },
+    {
+      "path": "tests/SkillQueryDifferential.cs",
+      "bytes": 6796,
+      "sha256": "1e42f2143d13a52b3f2d1851a9519441a9046cf63d413aaca2126151315bbc75"
+    },
+    {
+      "path": "tests/fixtures/native-session/battle.json",
+      "bytes": 6160,
+      "sha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be"
+    },
+    {
+      "path": "tests/fixtures/native-session/tables.json",
+      "bytes": 4052,
+      "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     }
   ],
-  "bytes": 14013063,
-  "privacy": "Explicit project source, reconstructed Go source, synthetic combat fixtures and the two previously approved title/font assets. No accounts, saves, credentials, original DLLs, native Windows binaries, licensing files or local tools. Public Go dependency is checked out at its pinned commit only on the runner.",
-  "execution": "Prepared locally; upload and hosted build have separate recorded results."
+  "bytes": 14071551,
+  "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
+  "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
