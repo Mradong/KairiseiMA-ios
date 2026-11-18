@@ -20,7 +20,7 @@ const record = {checkedAt: new Date().toISOString(), success: run.status === 0,
  counts: run.status === 0 ? JSON.parse(run.stdout.trim().replace(/^\uFEFF/, '')) : null,
  stderr: run.stderr.trim(), original: {sha256: expected, unchangedAfterTest: hash(original) === expected},
  rebuilt: {sha256: hash(rebuilt)},
- scope: 'Windows x64 synthetic registered mode-1 party: compare creation, 14 battle steps including card selection and attacks, start/resume CSV, and registered-enemy scaled HP. The original input journal succeeds while this implementation returns invalid; other modes, NPCs, nonempty spheres/buddies, enemy programs and wave transition are incomplete. No real resources, account or iOS test.'};
+ scope: 'Windows x64 synthetic registered mode-1 party: compare creation, 15 battle steps, start/resume CSV, registered-enemy scaled HP and 18 cumulative input-journal snapshots with short/null/repeated reads and failure handling. Other modes, NPCs, nonempty spheres/buddies, enemy programs, burst journals and wave transition are unverified or incomplete. No real resources, account or iOS test.'};
 fs.writeFileSync(path.join(root, 'evidence/native/registered-battle-differential-tests.json'), JSON.stringify(record, null, 2) + '\n');
 console.log(JSON.stringify(record, null, 2));
 if (!record.success || !record.original.unchangedAfterTest) process.exitCode = 1;

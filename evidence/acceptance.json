@@ -40,7 +40,7 @@
         "evidence/native/prepared-enemy-query-differential-tests.json",
         "evidence/native/registered-battle-differential-tests.json"
       ],
-      "scope": "Partial mode-1 registered battle creation with restricted content; synthetic original-DLL comparisons cover creation, 14 steps, registered enemy HP, and prepared queries. Other modes, NPCs, nonempty spheres/buddies, enemy programs/gauges, next wave and journals remain incomplete. Windows synthetic differential only; no new iOS or device validation."
+      "scope": "Partial mode-1 registered battle creation and input journals with restricted content; synthetic original-DLL comparisons cover 15 steps, 18 journal snapshots, registered enemy HP, and prepared queries. Other modes, NPCs, nonempty spheres/buddies, enemy programs/gauges, burst journals and next wave remain incomplete or unverified. Windows synthetic differential only; no new iOS or device validation."
     },
     {
       "id": "CLIENT-01",

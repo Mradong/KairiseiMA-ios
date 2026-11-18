@@ -116,7 +116,7 @@ func battlecore_context_create_registered(catalogID, preparationID C.ulonglong, 
 		}
 	}
 	key := nextSessionHandle()
-	sessions.battles[key] = &libraryBattle{value: battle, registered: true, identities: identities, catalogID: uint64(catalogID), mode: request.Mode, enemyType: *request.EnemyType}
+	sessions.battles[key] = &libraryBattle{value: battle, registered: true, identities: identities, journal: &inputJournal{}, catalogID: uint64(catalogID), mode: request.Mode, enemyType: *request.EnemyType}
 	catalog.references++
 	*handle = C.ulonglong(key)
 	return statusOK

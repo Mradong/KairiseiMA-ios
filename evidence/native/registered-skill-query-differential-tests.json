@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T08:44:56.352Z",
+  "checkedAt": "2026-11-18T08:53:27.430Z",
   "success": true,
   "counts": {
     "checks": 155,
@@ -12,7 +12,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "b6285908ff269c5cd7eef9111494e4fec86987197243e3055a10091c864ebb64"
+    "sha256": "aa8a4493c1696ffb48c26f69989f120912b2ea81307b95e149030f681004f180"
   },
   "scope": "Windows x64 synthetic registered cards with nonzero embedded ATTACK_AA skill and role; compare deck attribute and skill-kind branch results with the original. No registered battle creation, real resources, account or iOS test."
 }

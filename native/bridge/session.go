@@ -40,6 +40,7 @@ type libraryBattle struct {
 	value      *battlecore.StandaloneBattle
 	registered bool
 	identities []battlecore.BattleResult
+	journal    *inputJournal
 	catalogID  uint64
 	mode       int
 	enemyType  int
@@ -418,6 +419,21 @@ func battlecore_step(handle C.ulonglong, operation C.int, input *C.uchar, count 
 			return statusInvalid
 		}
 	}
+	if len(battle.pending) != 0 {
+		return 5
+	}
+	if battle.journal != nil {
+		reservedSlot := 0
+		if reservation.Slot != nil {
+			reservedSlot = *reservation.Slot
+		}
+		if err := battle.journal.begin(battle.value.StateView(), int(operation), member.MemberType, battle.enemyType, reservedSlot, selection, burst); err != nil {
+			battle.setFault(int(operation), "journal", err)
+			return 6
+		}
+		battle.value.SetDeckOrderObserver(battle.journal.deckChanged)
+		defer battle.value.SetDeckOrderObserver(nil)
+	}
 	var rows []battlecore.BattleResult
 	var err error
 	switch operation {
@@ -472,6 +488,12 @@ func battlecore_step(handle C.ulonglong, operation C.int, input *C.uchar, count 
 		battle.setFault(int(operation), "result-encode", err)
 		return 6
 	}
+	if battle.journal != nil {
+		if err = battle.journal.commit(); err != nil {
+			battle.setFault(int(operation), "journal", err)
+			return 6
+		}
+	}
 	battle.pending = []byte(text)
 	return statusOK
 }
@@ -490,12 +512,16 @@ func copySessionOutput(handle C.ulonglong, output *C.uchar, count C.int, written
 		if battle.faulted {
 			return 6
 		}
-		// Input journals only exist on registered contexts, which are not yet exposed.
-		return statusInvalid
+		if battle.journal == nil {
+			return statusInvalid
+		}
 	}
 	data := battle.pending
 	if kind == 1 {
 		data = battle.lastError
+	}
+	if kind == 2 {
+		data = battle.journal.data
 	}
 	*written = C.int(len(data))
 	if int(count) < len(data) || (len(data) != 0 && output == nil) {

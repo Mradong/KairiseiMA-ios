@@ -1,13 +1,14 @@
 {
-  "checkedAt": "2026-11-18T08:45:57.603Z",
+  "checkedAt": "2026-11-18T08:55:54.154Z",
   "success": true,
   "counts": {
-    "checks": 19,
+    "checks": 25,
     "startBytes": 1714,
     "attackBytes": 227,
-    "steps": 14,
+    "steps": 15,
     "registeredEnemyStartBytes": 1711,
-    "knownJournalDifference": true
+    "journalSnapshots": 18,
+    "faultProbe": true
   },
   "stderr": "",
   "original": {
@@ -15,7 +16,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "b6285908ff269c5cd7eef9111494e4fec86987197243e3055a10091c864ebb64"
+    "sha256": "aa8a4493c1696ffb48c26f69989f120912b2ea81307b95e149030f681004f180"
   },
-  "scope": "Windows x64 synthetic registered mode-1 party: compare creation, 14 battle steps including card selection and attacks, start/resume CSV, and registered-enemy scaled HP. The original input journal succeeds while this implementation returns invalid; other modes, NPCs, nonempty spheres/buddies, enemy programs and wave transition are incomplete. No real resources, account or iOS test."
+  "scope": "Windows x64 synthetic registered mode-1 party: compare creation, 15 battle steps, start/resume CSV, registered-enemy scaled HP and 18 cumulative input-journal snapshots with short/null/repeated reads and failure handling. Other modes, NPCs, nonempty spheres/buddies, enemy programs, burst journals and wave transition are unverified or incomplete. No real resources, account or iOS test."
 }
