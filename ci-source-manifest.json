@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-18T11:19:39.046Z",
+  "generatedAt": "2026-11-18T11:53:38.933Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -19,19 +19,14 @@
       "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
     },
     {
-      "path": "README.md",
-      "bytes": 3138,
-      "sha256": "ca176faef60d83cec33a1c02f2d55394be2510c19795aba2f194f54a43e00c0e"
-    },
-    {
-      "path": "STATUS.md",
-      "bytes": 25121,
-      "sha256": "896198ec8011de38ab1aa47486c6c7125af68371ee50f2ff29ec6e18679081b4"
-    },
-    {
       "path": "evidence/acceptance.json",
-      "bytes": 5025,
-      "sha256": "0a362f7e756f23c0746bd799e29033d88fe4a7b16089604e0d2452135dccc2f1"
+      "bytes": 5447,
+      "sha256": "afa346fd38a81e71f83b6f1bacb7144661394027016ce25751542caea1398a15"
+    },
+    {
+      "path": "evidence/feature-coverage.md",
+      "bytes": 4613,
+      "sha256": "e984a23a4c73671b8d7f7f87444c5547234be24d23abf27d31345c0ed460ccba"
     },
     {
       "path": "evidence/ios-package-search/ios-content-source.json",
@@ -75,23 +70,28 @@
     },
     {
       "path": "evidence/native/registered-battle-differential-tests.json",
-      "bytes": 910,
-      "sha256": "2627b4d978ef2564b04292d9c1a214ca3c7ac8c949c48efc5d59632d5f6d2940"
+      "bytes": 1389,
+      "sha256": "d2ddbf63301e6ec046e841de6370fac3fd58ee70b32ca95d01eefc636c1aa40a"
     },
     {
       "path": "evidence/native/registered-skill-query-differential-tests.json",
       "bytes": 638,
-      "sha256": "372ebce94b42f411f952f7efee137dbdf2f39b8e60bb6484acf2e3b9be230d6b"
+      "sha256": "9c0a73a3011c7058c3baf578f215e2986ffad3e8973003bd57fbf550d0de2522"
+    },
+    {
+      "path": "evidence/native/registered-wave-checkpoint.json",
+      "bytes": 2651,
+      "sha256": "176be4e1109aca3b3e9d659f8f0d3ffd6fa864517c46809d4ae4fd8d92744a9e"
     },
     {
       "path": "evidence/native/registration-state-tests.json",
       "bytes": 1157,
-      "sha256": "0df0d9f0733652a5c8a761ed3c52083d225fafa27ff8413e13b434a75a9dde3f"
+      "sha256": "ece95107c28e7358b74e98bce86e11792e776363c46603bec47160beabe22c6a"
     },
     {
       "path": "evidence/native/session-differential-tests.json",
       "bytes": 903,
-      "sha256": "e24c8855f25b14c3122a52a54687cd1d767436835df8c45af7bff0f85b87ab5f"
+      "sha256": "eca4a1f98a1e6acf06b74e19f4a41138a2581e8dc7b9c204ed1d6e43a7a2e7c7"
     },
     {
       "path": "evidence/native/skill-query-differential-tests.json",
@@ -149,14 +149,14 @@
       "sha256": "50bf2b1bfc073060ebc0213c1db9860bd5a56c8f8597b3d451281065953e1424"
     },
     {
-      "path": "ios-client/Assets/Recovery/Content/Title.png",
-      "bytes": 173649,
-      "sha256": "3c34f1358f6539b45fe0811bebc948436a3428cd52a3a633ba3d399f38df4afd"
-    },
-    {
       "path": "ios-client/Assets/Recovery/Content/title-background.png",
       "bytes": 534690,
       "sha256": "6808fcd23eb1b411a64e5cf911c15fbedaa28b9cd3f4650ab40e1f15c567528e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Title.png",
+      "bytes": 173649,
+      "sha256": "3c34f1358f6539b45fe0811bebc948436a3428cd52a3a633ba3d399f38df4afd"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/IosLocalNetwork.cs",
@@ -219,9 +219,19 @@
       "sha256": "e4f5e5749c1ad18aa344d8de0ee186b87e2087317095cc901c82232aa4c4b656"
     },
     {
+      "path": "ios-client/Assets/Recovery/Runtime/link.xml",
+      "bytes": 217,
+      "sha256": "eef5b4b8f98868adb570067d30e269b2e24912239b748dbd73057d2f2a0c29ac"
+    },
+    {
       "path": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
       "bytes": 5006,
       "sha256": "73561296629abcb74fa61567c386188b54aa4e8be0ee92c6fc760df66d9beeec"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/NativeRegisteredBattle.cs",
+      "bytes": 10093,
+      "sha256": "c7d2ff9a62cf93fb86b55a30e6b1e2458a909158498ff56c09b88bfb096ac642"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
@@ -239,11 +249,6 @@
       "sha256": "cbc93f7564640543a98bc4c33e9784614e1ac05507b1e5a0cf4680b452824394"
     },
     {
-      "path": "ios-client/Assets/Recovery/Runtime/link.xml",
-      "bytes": 217,
-      "sha256": "eef5b4b8f98868adb570067d30e269b2e24912239b748dbd73057d2f2a0c29ac"
-    },
-    {
       "path": "ios-client/Packages/manifest.json",
       "bytes": 349,
       "sha256": "9d1038014d523351c9cc7da4076345fb61b87a959b98d5649a97f729e209ba27"
@@ -257,6 +262,11 @@
       "path": "native/bridge/enemy_exports.go",
       "bytes": 1867,
       "sha256": "a63d0ea38edba93a833d03fcac761be0cb3b0f0296cf051dab7c31dc5db6ebb5"
+    },
+    {
+      "path": "native/bridge/enemy_registration_test.go",
+      "bytes": 4456,
+      "sha256": "0714a645d4c23ccb2ec09eab6e6494e7e4120ee16ce2584e72bfd80faef163fe"
     },
     {
       "path": "native/bridge/enemy_registration.go",
@@ -285,13 +295,8 @@
     },
     {
       "path": "native/bridge/registered_create.go",
-      "bytes": 4299,
-      "sha256": "846faba6587348687ac8ff86a535ca810bd5d20866d1e55abb8d0eb858079427"
-    },
-    {
-      "path": "native/bridge/registered_enemy.go",
-      "bytes": 3401,
-      "sha256": "1b2aa625171ce7ff19a15ad4dc3a7e4b266147e402d331a2d495510c84481b6c"
+      "bytes": 4419,
+      "sha256": "accc92df0164369a8165fdab5ebf9521cfb3008b9e023ba0fef88e5fd25a265e"
     },
     {
       "path": "native/bridge/registered_enemy_test.go",
@@ -299,9 +304,29 @@
       "sha256": "1871c3c18d0f6e916620e81a89390246cdc8caf8a7dd610bbfc2203aa8a94644"
     },
     {
+      "path": "native/bridge/registered_enemy.go",
+      "bytes": 3401,
+      "sha256": "1b2aa625171ce7ff19a15ad4dc3a7e4b266147e402d331a2d495510c84481b6c"
+    },
+    {
+      "path": "native/bridge/registered_next.go",
+      "bytes": 2677,
+      "sha256": "8c0a934133951c99c442d57d4ab9f89290ae13bf3dc2bff6ed1be7b39f5062c8"
+    },
+    {
       "path": "native/bridge/registered_skill.go",
-      "bytes": 5674,
-      "sha256": "73b3ac67c615e56435e4a7128d8dd0f1084309cf2e8860e4f0372660846cfbbd"
+      "bytes": 5749,
+      "sha256": "6a057d42068d03448d9c7838f207a9e281820c079e0c5e28ebff6495c5448aa1"
+    },
+    {
+      "path": "native/bridge/registration_exports.go",
+      "bytes": 2846,
+      "sha256": "cc8baba8aa6387ab5b2a2a67f84768674a99169d06332fb66554482b7d6e8af0"
+    },
+    {
+      "path": "native/bridge/registration_test.go",
+      "bytes": 5391,
+      "sha256": "47b4a91cd3afbcc976dd95fb7084c4687d441066356ae86b6917f90932a8abd5"
     },
     {
       "path": "native/bridge/registration.go",
@@ -309,9 +334,9 @@
       "sha256": "d875ef9cf5a9e9e105cd98c59bcd24ae19f85486937812353dbd9aa3991ac126"
     },
     {
-      "path": "native/bridge/registration_exports.go",
-      "bytes": 2846,
-      "sha256": "cc8baba8aa6387ab5b2a2a67f84768674a99169d06332fb66554482b7d6e8af0"
+      "path": "native/bridge/session_test.go",
+      "bytes": 1387,
+      "sha256": "4a60905356f74664e24a8283134795543c7e6307a5c77ca839ceed29d77baba3"
     },
     {
       "path": "native/bridge/session.go",
@@ -324,19 +349,14 @@
       "sha256": "0c4f29e8c8e55c780c17f02a24a90e9803ef357c98277c974dcdaaf4b8801925"
     },
     {
-      "path": "native/bridge/skill_query.go",
-      "bytes": 9645,
-      "sha256": "b8581b4fbe62dbb5060567f2c6bbc11b109a46c329728b2cdf42c6e4c854dbcf"
-    },
-    {
       "path": "native/bridge/skill_query_test.go",
       "bytes": 1365,
       "sha256": "7d6c10ee97bb15a37054d067056d33322becfb2dc51864d79ea2f429ccde6f44"
     },
     {
-      "path": "native/bridge/skill_wire.go",
-      "bytes": 2319,
-      "sha256": "9f8cd35f1696a37ee27df66eff72de7627b4d9fecf02415d5a47f8ef2bb2676c"
+      "path": "native/bridge/skill_query.go",
+      "bytes": 9645,
+      "sha256": "b8581b4fbe62dbb5060567f2c6bbc11b109a46c329728b2cdf42c6e4c854dbcf"
     },
     {
       "path": "native/bridge/skill_wire_test.go",
@@ -344,9 +364,19 @@
       "sha256": "318bd1ffc1448db008dee8b852ff35f5aac933a7785dbebbba066c40ded58036"
     },
     {
+      "path": "native/bridge/skill_wire.go",
+      "bytes": 2319,
+      "sha256": "9f8cd35f1696a37ee27df66eff72de7627b4d9fecf02415d5a47f8ef2bb2676c"
+    },
+    {
       "path": "patches/ios-server.patch",
       "bytes": 16845,
       "sha256": "7b8d1228e727970c63408843890a58022299b02122578de269bba94c697d7718"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3138,
+      "sha256": "ca176faef60d83cec33a1c02f2d55394be2510c19795aba2f194f54a43e00c0e"
     },
     {
       "path": "scripts/Build-IosServer.ps1",
@@ -369,14 +399,14 @@
       "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
     },
     {
-      "path": "scripts/Unity-CloudLicense.sh",
-      "bytes": 4942,
-      "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
-    },
-    {
       "path": "scripts/ios-clang.sh",
       "bytes": 178,
       "sha256": "4e21a1ca2c1a86382d98dc5313c69692fa09e022bb93d6c62e6e4fe68b1ca271"
+    },
+    {
+      "path": "scripts/prepare-registered-wave-checkpoint.mjs",
+      "bytes": 4060,
+      "sha256": "2d7834faba539ff7fe694f6e95ac198b0a272db8844ac2d99a48a86076bab8f8"
     },
     {
       "path": "scripts/test-ios-content.mjs",
@@ -405,8 +435,8 @@
     },
     {
       "path": "scripts/test-registered-battle.mjs",
-      "bytes": 2376,
-      "sha256": "1b19b35be29a7248f60f88ffa6c0920de77c843e4e5216c2d59f57cbbba539d4"
+      "bytes": 3068,
+      "sha256": "f8aa7a88accfec1e8f6d2e8b7326e061055213cf7fc03bf2bca9e177ac4bc75c"
     },
     {
       "path": "scripts/test-registered-skill-query.mjs",
@@ -414,9 +444,29 @@
       "sha256": "577ce24da78e8268bb5f70064b51241d35def3444e990ad8ba0a69a097351b45"
     },
     {
+      "path": "scripts/Unity-CloudLicense.sh",
+      "bytes": 4942,
+      "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
+    },
+    {
       "path": "scripts/verify-ios-build.mjs",
       "bytes": 9240,
       "sha256": "a45c645e2a453aee7138ab8c8e447800f4d541c60787a6321559008ccc36a3c0"
+    },
+    {
+      "path": "STATUS.md",
+      "bytes": 29812,
+      "sha256": "e8c96507c80497f9973f65f2ff84b0259b93f91255a92476df188b3d2e40f92e"
+    },
+    {
+      "path": "tests/fixtures/native-session/battle.json",
+      "bytes": 6160,
+      "sha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be"
+    },
+    {
+      "path": "tests/fixtures/native-session/tables.json",
+      "bytes": 4052,
+      "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
@@ -440,8 +490,13 @@
     },
     {
       "path": "tests/RegisteredBattleDifferential.cs",
-      "bytes": 10800,
-      "sha256": "617bbbe2cd26d3e9d5eaf90de8355c74f4be3d943c1017c8bea7c92020d34625"
+      "bytes": 13900,
+      "sha256": "8aa8681281a7a381a7afa0bfa058e282ef1d39fdbb608a97fb5b32aefa0a2ed6"
+    },
+    {
+      "path": "tests/RegisteredManagedCases.cs",
+      "bytes": 7814,
+      "sha256": "50fcb699e149f2d73469982767118e9244b7afe1fbc1c47e45a4c005c544352f"
     },
     {
       "path": "tests/RegisteredSkillQueryDifferential.cs",
@@ -449,22 +504,17 @@
       "sha256": "ac29c127bf4055c774b72c3dd4dda34c768d7884aeee2c7b47342b6a7e572537"
     },
     {
+      "path": "tests/RegisteredWaveCases.cs",
+      "bytes": 5696,
+      "sha256": "75e917a901861dc27b27e5254510f3ca9fabdb0f047c7d414c136e2ca3d7edda"
+    },
+    {
       "path": "tests/SkillQueryDifferential.cs",
       "bytes": 6796,
       "sha256": "1e42f2143d13a52b3f2d1851a9519441a9046cf63d413aaca2126151315bbc75"
-    },
-    {
-      "path": "tests/fixtures/native-session/battle.json",
-      "bytes": 6160,
-      "sha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be"
-    },
-    {
-      "path": "tests/fixtures/native-session/tables.json",
-      "bytes": 4052,
-      "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     }
   ],
-  "bytes": 20809614,
+  "bytes": 20868031,
   "privacy": "Explicit recovery sources, tests, synthetic fixtures, server patch, selected recovered PNG/atlas JSON and Chinese font sources only. Excludes original executables, raw IPA/player data, SDK config, credentials, account/save data, licenses and tools.",
-  "execution": "Prepared locally for Unity/iOS build. Local cache/server checks do not establish iOS execution or full game readiness."
+  "execution": "Local source checkpoint after Windows registered-wave and actual C# consumer comparisons. Not uploaded or cloud built. Run 44293950030 is an earlier commit and cannot certify this source."
 }

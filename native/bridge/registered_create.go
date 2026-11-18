@@ -7,6 +7,42 @@ import "C"
 
 import "kairisei.local/server/battlecore"
 
+func validateRegisteredParty(p *preparation, catalog *libraryCatalog) bool {
+	if p.mode != 1 || catalog.schema == nil || len(p.npcs) != 0 || p.storyHelp != nil {
+		return false
+	}
+	for _, summon := range p.summons {
+		if summon != nil {
+			return false
+		}
+	}
+	for i := 0; i < 4; i++ {
+		u := p.users[i]
+		if u == nil || len(u.spheres) != spheresWireSize {
+			return false
+		}
+		if i > 0 && (u.seed != p.users[0].seed || u.data[8] != p.users[0].data[8] || u.data[17] != p.users[0].data[17]) {
+			return false
+		}
+		for _, card := range u.cards {
+			if len(card) != cardWireSize {
+				return false
+			}
+		}
+		for _, buddy := range u.buddies {
+			if len(buddy) != buddyWireSize || wireInt(buddy, 0) != 0 {
+				return false
+			}
+		}
+		for _, value := range u.spheres {
+			if value != 0 {
+				return false
+			}
+		}
+	}
+	return true
+}
+
 //export battlecore_context_create_registered
 func battlecore_context_create_registered(catalogID, preparationID C.ulonglong, input *C.uchar, count C.int, handle *C.ulonglong) (status C.int) {
 	status = statusPanic
@@ -38,37 +74,8 @@ func battlecore_context_create_registered(catalogID, preparationID C.ulonglong, 
 	if p == nil {
 		return 4
 	}
-	if p.mode != request.Mode || request.Mode != 1 || catalog.schema == nil || len(p.npcs) != 0 || p.storyHelp != nil {
+	if p.mode != request.Mode || !validateRegisteredParty(p, catalog) {
 		return statusInvalid
-	}
-	for _, summon := range p.summons {
-		if summon != nil {
-			return statusInvalid
-		}
-	}
-	for i := 0; i < 4; i++ {
-		u := p.users[i]
-		if u == nil || len(u.spheres) != spheresWireSize {
-			return statusInvalid
-		}
-		if i > 0 && (u.seed != p.users[0].seed || u.data[8] != p.users[0].data[8] || u.data[17] != p.users[0].data[17]) {
-			return statusInvalid
-		}
-		for _, card := range u.cards {
-			if len(card) != cardWireSize {
-				return statusInvalid
-			}
-		}
-		for _, b := range u.buddies {
-			if len(b) != buddyWireSize || wireInt(b, 0) != 0 {
-				return statusInvalid
-			}
-		}
-		for _, b := range u.spheres {
-			if b != 0 {
-				return statusInvalid
-			}
-		}
 	}
 	if p.enemiesRegistered && request.Config.EnemyPartyID != 0 {
 		return statusInvalid

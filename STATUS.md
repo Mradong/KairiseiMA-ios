@@ -1,5 +1,25 @@
 # 当前状态
 
+## 本地继续：CLIENT-01 场景脚本字段恢复（2026-11-18，执行中）
+
+用户要求继续本地 iOS 恢复，不再停留审批后台排查。当前没有本机监控脚本保存的新构建结果；云端状态仍只有此前 queued 证据。本轮复用已有 IL2CPP 工具，尝试从 6.0.2 IPA 的原始主程序与元数据恢复该版本脚本字段，供原场景组件数据读取与主页/卡组 UI 恢复使用。只做静态处理，输出限本项目；不执行旧应用，不修改原 IPA，不将存根方法当作真实游戏实现。若因主程序加密无法恢复，则记录具体边界并推进可用的场景/资源消费者。
+
+静态字段恢复尝试已结束：工具明确报告 Mach-O 加密，退出码 1，类型映射和 DummyDll 生成失败；虽然产生 `dump.cs` 与空 DummyDll 目录，输出含错误映射（如类型基类被错误映射为 string），不可使用。证据 `evidence/ios-package-search/ios602-symbol-recovery.json` 与 `logs/ios602-symbol-recovery.log`；输入主程序副本哈希检查一致。未进行主程序解密或旧应用运行。
+
+转入 BATTLE-01：工作区原已有未通过验证的下一波草稿（未包含在已推送 32f0ece 内），先保留原 DLL、测试源码与失败记录至 `evidence/native/local-resume-20261118/`。复现原失败 `wave did not reach victory`，定位到合成卡牌没有目标属性掩码，原 DLL 同样不攻击；补上 FIRE 掩码后发现注册技能效果序号映射 `slot+1` 与原 DLL 零起始不一致，已改为 `slot`。当前正在重新编译和差分验证，不提前标记通过。
+
+### 本轮已验证的注册连续战斗增量
+
+- 修复 `native/bridge/registered_skill.go` 的效果序号映射，验证原有 `registered_next.go` 草稿能够在普通模式胜利后装载新的注册敌人并继续战斗。新 Windows DLL SHA-256：`64614cfd73b4c50e9c36d5acbac69319f94ee306b2738f9c76eda4339a11775e`。
+- 新增 `tests/RegisteredWaveCases.cs`：12 个合成场景覆盖连续 1/3/5 个技能效果、进入下一波的 enemy_type 0/1/2/3、实际伤害、两波胜利、新敌人 HP、错误准备态/觉醒参数、未读结果优先级和短/空缓冲。2,087 次状态比较、204 次 Advance 辅助调用、234 次完整日志快照与原 DLL 一致。计数分别表示状态、调用与快照，不加总为独立游戏功能数量。
+- 新增 Unity 工程运行时代码 `NativeRegisteredBattle.cs`，让调用方传入真实表与 packed 记录，持有并释放目录/准备态/战斗句柄，消费选卡/伤害结果和日志，支持注册下一波。该类不包含合成数据，尚未接入真实游戏 UI。新增 `RegisteredManagedCases.cs` 实际编译并调用此 C# 类，通过三次双波战斗与 108 次原版结果/日志比较；重复创建和释放未耗尽目录容量。证据为 `evidence/native/registered-battle-differential-tests.json`。
+- 同一新 DLL 下，独立战斗 748 项、非零注册技能查询 155 项、Go 桥接状态测试通过。原始 DLL 只读哈希未变。**上述全部为 Windows / 合成数据证据；不覆盖 ARM64、Unity 引擎、真机或完整游戏 UI/资源。**
+- 本轮源码尚未上传/云构建；已触发的 44293950030 对应旧提交 32f0ece，不包含这批修复，不能混用证据。BATTLE-01 继续 incomplete：其他模式、觉醒、NPC/球/伙伴、敌方程序/量表、完整条件/效果覆盖和真实数据仍未完成。下一步恢复真实注册输入与 UI 消费，或根据新云构建实际日志修复资源链。
+
+**最新云构建：**用户已在本人 PowerShell 成功推送提交 `32f0ece04bb20a0291374ff6aa7aa7f7de6f82ba` 并启动 [44293950030](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44293950030)。用户截图显示该提交处于 `queued`；`ios-resource-cloud-request.json` 记录请求。尚未确认 Unity/Xcode 或产物成功。代理尝试只读查询时自动审批服务仍返回 503，未执行状态查询；准备本人终端的监控/下载/核验脚本继续交付。下方“上传未执行”描述保留为此前审批失败的历史，现已由本人执行解除上传阻塞。
+
+**后续监控与交付工具已准备：**`scripts/Get-IosResourceCloudBuild.ps1 -RunId 44293950030 -Wait` 可由本人终端执行，等待同一提交、失败时保存日志、成功时下载并调用 `verify-ios-resource-delivery.mjs` 与 `Verify-IosResourceIPA.ps1` 核验。新验证器与 0.0.3 使用独立输出和证据路径，原 0.0.2 不覆盖。脚本已完成语法检查，尚未对真实 0.0.3 产物执行；当前没有新 IPA。构建状态和实际核验结果将在本人执行后记录。
+
 ## 2026-11-18：RESOURCE-01 / CLIENT-01 结合旧 IPA 的恢复（执行中）
 
 用户要求结合已提供的 6.0.2 IPA 继续构建，并及时同步文档。本轮先导入本地游戏 Data、恢复资源/场景清单并核验补丁与服务依赖，再接入可验证的客户端资源链；预期用户行为是后续客户端加载真实 iOS 资源并复用持久缓存。依赖是有效资源、与 Unity 6 的转换以及真正 iOS 服务配置。当前尚未产生新 IPA 或新真机结果；原包与 Windows 文件保持只读。

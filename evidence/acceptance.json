@@ -41,7 +41,7 @@
         "evidence/native/prepared-enemy-query-differential-tests.json",
         "evidence/native/registered-battle-differential-tests.json"
       ],
-      "scope": "Partial mode-1 registered battle creation and input journals with restricted content; synthetic original-DLL comparisons cover 15 steps, 18 journal snapshots, registered enemy HP, and prepared queries. Other modes, NPCs, nonempty spheres/buddies, enemy programs/gauges, burst journals and next wave remain incomplete or unverified. Windows synthetic differential only; no new iOS or device validation."
+      "scope": "Partial mode-1 registered creation, journals and next wave verified with Windows synthetic inputs. Fixed zero-based packed role indices. Twelve two-wave cases: 2087 status comparisons, 204 Advance helper calls, 234 journal snapshots. Actual Unity runtime C# NativeRegisteredBattle adapter compiled/executed on Windows in 3 two-wave scenarios with 108 original-DLL result/journal comparisons. No Unity engine, new ARM64 or device validation; run 44293950030 lacks this newer source. Other modes, awakening, NPCs, spheres/buddies, enemy programs/gauges, full conditions/effects and real game content remain incomplete."
     },
     {
       "id": "CLIENT-01",
@@ -64,7 +64,7 @@
         "evidence/ios-package-search/ios-server-build.json",
         "evidence/ios-package-search/ios-cloud-blocker.json"
       ],
-      "scope": "Partial recovered texture/atlas/font sources selected; iOS bundle compiler, verified persistent cache and post-login manifest/download chain implemented but not Unity/device validated yet. Independent server copy accepts iOS profiles and public manifests; 26 server tests/subtests and 29 C# cache checks pass. Windows/Linux server binaries compiled. Upload blocked by approval-service HTTP 503; no new cloud build. Full game assets, deployment, real downloads and device persistence remain incomplete."
+      "scope": "Partial recovered texture/atlas/font sources selected; iOS bundle compiler, persistent cache and post-login download chain implemented but not Unity/device validated yet. Independent server passes 26 tests/subtests; C# cache passes 29 checks. Windows/Linux server binaries compiled. User pushed 32f0ece and triggered run 44293950030; screenshot shows queued, no build success verified. Agent status queries remain blocked by approval-service 503. Full game assets, deployment and device persistence remain incomplete."
     },
     {
       "id": "PLAY-01",
@@ -91,7 +91,8 @@
       "id": "DELIVERY-01",
       "requirement": "Final functional IPA reproducible and all scoped device acceptance passed",
       "status": "incomplete",
-      "evidence": []
+      "evidence": ["evidence/ios-package-search/ios-resource-cloud-request.json"],
+      "scope": "User triggered 44293950030 for 32f0ece; queued screenshot only. No successful 0.0.3 IPA or device evidence yet."
     }
   ]
 }

@@ -132,7 +132,8 @@ func decodeRegisteredSkill(schema map[string]map[int32]string, rules map[string]
 			if !ok {
 				return result, fmt.Errorf("missing role parameter rule %s", function)
 			}
-			role := battlemodel.CombatSkillRole{SkillID: branch.FunctionID, RoleIndex: slot + 1, Function: function, Target: target, ExcludeSelf: rawRole.ExcludeSelf != 0, HasTargetAttributes: true, ChainRate: int(rawRole.Chain), HateLimit: int(rawRole.Hate), PVPRate: int(rawRole.PVP), ValueBoostUse: int(rawRole.ValueBoost)}
+			// Packed roles are zero-based, including the index emitted in ResultCmd60.
+			role := battlemodel.CombatSkillRole{SkillID: branch.FunctionID, RoleIndex: slot, Function: function, Target: target, ExcludeSelf: rawRole.ExcludeSelf != 0, HasTargetAttributes: true, ChainRate: int(rawRole.Chain), HateLimit: int(rawRole.Hate), PVPRate: int(rawRole.PVP), ValueBoostUse: int(rawRole.ValueBoost)}
 			for n := range role.Attributes {
 				role.Attributes[n] = mask&(1<<(n+1)) != 0
 			}
