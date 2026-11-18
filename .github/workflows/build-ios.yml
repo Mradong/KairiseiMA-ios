@@ -21,6 +21,19 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '24'
+      - uses: actions/checkout@v4
+        with:
+          repository: kuuhaku1314/kairisei-ma-ch
+          ref: d1a202eb539b99511e8a33f3975fac409ab545bf
+          path: source-review/kairisei-ma-ch
+          persist-credentials: false
+      - uses: actions/setup-go@v6
+        with:
+          go-version: '1.25.1'
+          cache: false
+      - name: Compile recovered standalone battle bridge for iOS ARM64
+        shell: bash
+        run: bash scripts/Build-NativeIOS.sh
       - name: Check required Unity activation secrets
         shell: bash
         env:
@@ -68,7 +81,9 @@ jobs:
           fi
       - name: Archive device build and package unsigned IPA
         shell: bash
-        run: bash scripts/Build-UnsignedIPA.sh "$GITHUB_WORKSPACE/build/iOS/Xcode" "$GITHUB_WORKSPACE/dist/connection-test-$GITHUB_RUN_ID"
+        run: |
+          bash scripts/Build-UnsignedIPA.sh "$GITHUB_WORKSPACE/build/iOS/Xcode" "$GITHUB_WORKSPACE/dist/connection-test-$GITHUB_RUN_ID"
+          cp native/build/ios-arm64/native-build.json "dist/connection-test-$GITHUB_RUN_ID/native-build.json"
       - name: Save sideload package and validation reports
         uses: actions/upload-artifact@v4
         with:

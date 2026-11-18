@@ -1,0 +1,6 @@
+source-review/
+native/build/
+ios-client/Assets/Plugins/iOS/*.a
+ios-client/Assets/Plugins/iOS/*.h
+*.ulf
+*.alf

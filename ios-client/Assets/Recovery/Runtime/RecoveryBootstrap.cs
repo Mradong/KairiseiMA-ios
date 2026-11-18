@@ -71,8 +71,15 @@ namespace Kairisei.Recovery
             GUI.enabled = !busy && login != null && verifiedAddress == address;
             if (GUI.Button(new Rect(830, 300, 350, 64), "读取角色数据", buttonStyle)) ReadConnect();
             GUI.enabled = true;
-            GUI.Label(new Rect(100, 390, 1080, 165), status, bodyStyle);
-            GUI.Label(new Rect(100, 570, 1080, 65), "测试游客与现有 Windows 存档独立。登录需要服务端先提供 iOS 资源。", bodyStyle);
+            GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
+            GUI.enabled = !busy;
+            if (GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
+            {
+                try { status = NativeBattleValidation.Run(); }
+                catch (Exception error) { status = "战斗内核验证失败：" + error.Message; }
+            }
+            GUI.enabled = true;
+            GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
             GUI.matrix = previousMatrix;
             GUI.color = previousColor;
         }

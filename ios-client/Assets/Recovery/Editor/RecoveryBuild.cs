@@ -18,6 +18,7 @@ namespace Kairisei.Recovery.Editor
         {
             public string stage = "connection-validation";
             public bool gameplayReady = false;
+            public bool nativeBattleValidation = true;
             public string unityVersion;
             public string platform = "iOS";
             public string deviceModel = "iPhone 13";
@@ -60,7 +61,8 @@ namespace Kairisei.Recovery.Editor
             CreateScene();
             PlayerSettings.companyName = "KairiseiRecovery";
             PlayerSettings.productName = "Kairisei Connection Test";
-            PlayerSettings.bundleVersion = "0.0.1";
+            PlayerSettings.bundleVersion = "0.0.2";
+            PlayerSettings.iOS.buildNumber = "2";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "local.kairisei.recovery");
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(NamedBuildTarget.iOS, 1); // ARM64

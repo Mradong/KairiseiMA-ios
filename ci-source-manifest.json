@@ -1,22 +1,32 @@
 {
-  "generatedAt": "2026-11-18T01:31:29.343Z",
-  "stage": "connection-validation",
+  "generatedAt": "2026-11-18T06:40:39.206Z",
+  "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
-  "preparedFor": {
-    "model": "iPhone 13",
-    "iOS": "17.4.1",
-    "installation": "Unsigned IPA for free Apple-ID sideload signing; no App Store publication"
-  },
   "files": [
     {
       "path": "ios-client/Assets/Recovery/Editor/IosLocalNetwork.cs",
-      "bytes": 1314,
-      "sha256": "02c2d01ad81151bde9ae71c6cf7934b4293c71d671a29e0ac0645ded19a1ba67"
+      "bytes": 1934,
+      "sha256": "75175babcf089253796f8ae930da7b4ca3d20efe3bbbee432e7d8e3d22f9902f"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
-      "bytes": 4570,
-      "sha256": "88e3dbf35c47b5fa9a31a5cae125ac5fd1b05ab19ec784bb2296a44c053924ed"
+      "bytes": 4675,
+      "sha256": "563f0327d862b977170474bae894d4a587217f2fde7968e2037393a2ee2df123"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/NativeValidationBattle.json",
+      "bytes": 6160,
+      "sha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/NativeValidationTables.json",
+      "bytes": 4052,
+      "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/NativeValidationTrace.json",
+      "bytes": 4949,
+      "sha256": "51614e0e42bd36f4d4639d1bc348a3cb24ac966ae58e2adff2f68d907bf8d0cb"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/RecoveryFont.otf",
@@ -44,9 +54,14 @@
       "sha256": "e4f5e5749c1ad18aa344d8de0ee186b87e2087317095cc901c82232aa4c4b656"
     },
     {
+      "path": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
+      "bytes": 5006,
+      "sha256": "73561296629abcb74fa61567c386188b54aa4e8be0ee92c6fc760df66d9beeec"
+    },
+    {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 8126,
-      "sha256": "22cd4f8a4fbaf4a5d0dba876ac8ad91fb16583b39d116370f9eb383833e829aa"
+      "bytes": 8462,
+      "sha256": "d2bee17019b930825d3430478f0866ca3223c70a8121173ed7e0588da3719b6d"
     },
     {
       "path": "ios-client/Packages/manifest.json",
@@ -64,6 +79,51 @@
       "sha256": "4670b88daf7c6ca39391d71e5067d7e1954870ce06fde8637ab71d047ef2efac"
     },
     {
+      "path": "native/bridge/enemy_exports.go",
+      "bytes": 1867,
+      "sha256": "a63d0ea38edba93a833d03fcac761be0cb3b0f0296cf051dab7c31dc5db6ebb5"
+    },
+    {
+      "path": "native/bridge/enemy_registration.go",
+      "bytes": 3776,
+      "sha256": "c8c81c24278b76295439d4fb34a241e5a84fec52d81fb9076c4acadff6a3d622"
+    },
+    {
+      "path": "native/bridge/go.mod",
+      "bytes": 174,
+      "sha256": "33f15a910ef29958ccf03cc24334569b3a107d660403930c481845ea07d8ccd3"
+    },
+    {
+      "path": "native/bridge/main.go",
+      "bytes": 4628,
+      "sha256": "d9b83dbc08784c9eeacdf2fe6dc0b4e0e972bae3936508324405fb394f4d566b"
+    },
+    {
+      "path": "native/bridge/preparation.go",
+      "bytes": 4244,
+      "sha256": "62c1fc2a83743ebc31b1cb8de5a54f5d942ccb81bf3108a5d96bf5a369dec92f"
+    },
+    {
+      "path": "native/bridge/registration.go",
+      "bytes": 4877,
+      "sha256": "7978e33bbf57ce17dd6271e1689322852158e3c7ae6c123b91410e163adde495"
+    },
+    {
+      "path": "native/bridge/registration_exports.go",
+      "bytes": 2846,
+      "sha256": "cc8baba8aa6387ab5b2a2a67f84768674a99169d06332fb66554482b7d6e8af0"
+    },
+    {
+      "path": "native/bridge/session.go",
+      "bytes": 16328,
+      "sha256": "266b06f1fa2d77c5872126296ee6bd698437d126119c23f0d31bf00c9349c684"
+    },
+    {
+      "path": "native/bridge/skill_info.go",
+      "bytes": 864,
+      "sha256": "0c4f29e8c8e55c780c17f02a24a90e9803ef357c98277c974dcdaaf4b8801925"
+    },
+    {
       "path": "scripts/Build-UnsignedIPA.sh",
       "bytes": 2897,
       "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
@@ -74,28 +134,37 @@
       "sha256": "a45c645e2a453aee7138ab8c8e447800f4d541c60787a6321559008ccc36a3c0"
     },
     {
-      "path": ".github/workflows/build-ios.yml",
-      "bytes": 2940,
-      "sha256": "185f33a77a2778cf70f17b896a7b57e814dd16b6c26e1112e837e02552b0b00c"
-    },
-    {
       "path": "scripts/Unity-CloudLicense.sh",
       "bytes": 4942,
       "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
+    },
+    {
+      "path": "scripts/Build-NativeIOS.sh",
+      "bytes": 2037,
+      "sha256": "d1c806ba90cc5e3e1a234476382abc1c2abecc974ee314269951f3c9389d1b12"
+    },
+    {
+      "path": "scripts/ios-clang.sh",
+      "bytes": 178,
+      "sha256": "4e21a1ca2c1a86382d98dc5313c69692fa09e022bb93d6c62e6e4fe68b1ca271"
+    },
+    {
+      "path": ".github/workflows/build-ios.yml",
+      "bytes": 3535,
+      "sha256": "31629fd9ad78fc5293b176cc5aee42393c4801d0668e6b6f9f45a487bd716d10"
+    },
+    {
+      "path": "README.md",
+      "bytes": 3138,
+      "sha256": "ca176faef60d83cec33a1c02f2d55394be2510c19795aba2f194f54a43e00c0e"
+    },
+    {
+      "path": ".gitignore",
+      "bytes": 109,
+      "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
     }
   ],
-  "bytes": 13945923,
-  "privacy": "Only the explicitly listed project source and two recovered presentation assets were included. No account data, preferences, saves, credentials, raw code dumps, native DLLs or downloaded tooling were included.",
-  "execution": "Updated source prepared for the authorized private GitHub repository. Real cloud activation and IPA compilation have not run.",
-  "macUnityHubVersion": "3.22.6",
-  "macUnityHubReason": "Last Hub 3 release retains the CLI required by the pinned GameCI v4 macOS builder; Hub 4 removed it.",
-  "cloudActivation": {
-    "method": "Official Unity Licensing Client --activate-ulf on macOS runner",
-    "requiredSecretNames": [
-      "UNITY_EMAIL",
-      "UNITY_PASSWORD"
-    ],
-    "actualCloudRunVerified": false
-  },
-  "runner": "macos-15-intel"
+  "bytes": 14012812,
+  "privacy": "Explicit project source, reconstructed Go source, synthetic combat fixtures and the two previously approved title/font assets. No accounts, saves, credentials, original DLLs, native Windows binaries, licensing files or local tools. Public Go dependency is checked out at its pinned commit only on the runner.",
+  "execution": "Prepared locally; upload and hosted build have separate recorded results."
 }

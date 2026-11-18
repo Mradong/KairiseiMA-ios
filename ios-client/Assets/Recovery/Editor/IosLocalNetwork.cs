@@ -26,6 +26,15 @@ namespace Kairisei.Recovery.Editor
             transport.SetBoolean("NSAllowsArbitraryLoads", true);
             transport.SetBoolean("NSAllowsLocalNetworking", true);
             plist.WriteToFile(path);
+            string projectPath = PBXProject.GetPBXProjectPath(output);
+            PBXProject project = new PBXProject();
+            project.ReadFromFile(projectPath);
+            string framework = project.GetUnityFrameworkTargetGuid();
+            project.AddFrameworkToProject(framework, "Security.framework", false);
+            project.AddFrameworkToProject(framework, "Foundation.framework", false);
+            project.AddFrameworkToProject(framework, "CoreFoundation.framework", false);
+            project.AddBuildProperty(framework, "OTHER_LDFLAGS", "-lresolv");
+            project.WriteToFile(projectPath);
         }
     }
 }
