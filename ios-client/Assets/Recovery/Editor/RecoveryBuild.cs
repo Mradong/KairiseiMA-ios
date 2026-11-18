@@ -16,7 +16,7 @@ namespace Kairisei.Recovery.Editor
         [Serializable]
         private sealed class BuildStage
         {
-            public string stage = "connection-validation";
+            public string stage = "ios-resource-cache-bootstrap";
             public bool gameplayReady = false;
             public bool nativeBattleValidation = true;
             public string unityVersion;
@@ -58,11 +58,12 @@ namespace Kairisei.Recovery.Editor
                 throw new InvalidOperationException("Use Unity " + CnProtocol.UnityVersion + "; resource profiles are version-specific.");
             if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.iOS, BuildTarget.iOS))
                 throw new InvalidOperationException("Unity iOS Build Support is not installed.");
+            RecoveryContentBuild.BuildIOS();
             CreateScene();
             PlayerSettings.companyName = "KairiseiRecovery";
             PlayerSettings.productName = "Kairisei Connection Test";
-            PlayerSettings.bundleVersion = "0.0.2";
-            PlayerSettings.iOS.buildNumber = "2";
+            PlayerSettings.bundleVersion = "0.0.3";
+            PlayerSettings.iOS.buildNumber = "3";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "local.kairisei.recovery");
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(NamedBuildTarget.iOS, 1); // ARM64

@@ -1,0 +1,75 @@
+{
+  "generatedAt": "2026-11-18T10:57:34.925Z",
+  "sourceIpaSha256": "d86d7609d6235ae836d4721591358de496f7f679a6ef192aea7ab054949c930b",
+  "files": [
+    {
+      "source": "Texture2D/bd_01000_bg01.png",
+      "path": "ios-client/Assets/Recovery/Content/title-background.png",
+      "bytes": 534690,
+      "sha256": "6808fcd23eb1b411a64e5cf911c15fbedaa28b9cd3f4650ab40e1f15c567528e"
+    },
+    {
+      "source": "Resources/03_ui_assets/font/basefont/W3(P).ttf",
+      "path": "ios-client/Assets/Recovery/Resources/RecoveryChinese.ttf",
+      "bytes": 2867996,
+      "sha256": "c35d3e08217bcf31a3d10e0e699d9b7fa3a41de2d684c6c59e45c24bf980ef88"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlas/material/Title.png",
+      "path": "ios-client/Assets/Recovery/Content/Title.png",
+      "bytes": 173649,
+      "sha256": "3c34f1358f6539b45fe0811bebc948436a3428cd52a3a633ba3d399f38df4afd"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlas/material/Battle.png",
+      "path": "ios-client/Assets/Recovery/Content/Battle.png",
+      "bytes": 1687432,
+      "sha256": "66a67e4eb1acbe14b9bb4c730204ea8f82e0d20116a3c2090be5d68ee7c5b9cc"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlasc/material/Battle.json",
+      "path": "ios-client/Assets/Recovery/Content/Battle-frames.json",
+      "bytes": 16839,
+      "sha256": "0a4d93e7af22fd54a5c9026c57ad1970b414a9f851d2d764d39c0567cc988202"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlas/material/Cmn.png",
+      "path": "ios-client/Assets/Recovery/Content/Cmn.png",
+      "bytes": 438444,
+      "sha256": "d050635e4593a441b91f33f9233c6a377a503db04c4c34925af99231932eec16"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlasc/material/Cmn.json",
+      "path": "ios-client/Assets/Recovery/Content/Cmn-frames.json",
+      "bytes": 4702,
+      "sha256": "f5bf70caf8d5d284f2df5b3d80d7a71f7f3287a3b540f12a1888e5c4541a6b02"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlas/material/Deck_Battle.png",
+      "path": "ios-client/Assets/Recovery/Content/Deck_Battle.png",
+      "bytes": 317428,
+      "sha256": "e26ee4fe9c478fc7cc10e0491a9075cd60aaa541459817b1fc3ad83f6f392dd8"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlasc/material/Deck_Battle.json",
+      "path": "ios-client/Assets/Recovery/Content/Deck_Battle-frames.json",
+      "bytes": 2166,
+      "sha256": "71198f218a2e80b97998de358e7df9eec89fccdb031c9cddf10484ab599db7b9"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlas/material/Party.png",
+      "path": "ios-client/Assets/Recovery/Content/Party.png",
+      "bytes": 535267,
+      "sha256": "50bf2b1bfc073060ebc0213c1db9860bd5a56c8f8597b3d451281065953e1424"
+    },
+    {
+      "source": "Resources/03_ui_assets/atlasc/material/Party.json",
+      "path": "ios-client/Assets/Recovery/Content/Party-frames.json",
+      "bytes": 19264,
+      "sha256": "54e942c01a7f7953ce0e9807616869ae3f18d2f4bfa32c879783a8e67c25c8e8"
+    }
+  ],
+  "bytes": 6597877,
+  "scope": "Explicit recovered PNG texture, atlas frame JSON and Chinese font sources. Compiled iOS bundles must be rebuilt by Unity; no old serialized players, SDK configuration, encrypted executable or dummy scripts are included.",
+  "gameplayReady": false
+}

@@ -1,0 +1,176 @@
+diff --git a/server/internal/cnbootstrap/platform_delivery.go b/server/internal/cnbootstrap/platform_delivery.go
+index 8df6491..11332be 100644
+--- a/server/internal/cnbootstrap/platform_delivery.go
++++ b/server/internal/cnbootstrap/platform_delivery.go
+@@ -109,7 +109,7 @@ func loadPlatformDelivery(profilePath string) (*platformDelivery, error) {
+ 	if err := json.Unmarshal(raw, &profile); err != nil {
+ 		return nil, err
+ 	}
+-	if (profile.Platform != "StandaloneWindows64" && profile.Platform != "Android") ||
++	if (profile.Platform != "StandaloneWindows64" && profile.Platform != "Android" && profile.Platform != "iOS") ||
+ 		profile.UnityVersion == "" || strings.ContainsAny(profile.UnityVersion, "/\\:\x00\r\n") ||
+ 		!contentHashValid(profile.ContentID) || profile.ArtifactRoot == "" || len(profile.Bundles) == 0 || len(profile.Bundles) > 16384 {
+ 		return nil, errors.New("invalid platform delivery identity")
+diff --git a/server/internal/cnbootstrap/cdn_export.go b/server/internal/cnbootstrap/cdn_export.go
+index ef9d23b..fc06456 100644
+--- a/server/internal/cnbootstrap/cdn_export.go
++++ b/server/internal/cnbootstrap/cdn_export.go
+@@ -289,6 +289,12 @@ func cdnSourcePath(root, relative string) (string, error) {
+ 	if relative == "" || relative == "." || !filepath.IsLocal(relative) || path.Clean(relative) != relative || strings.ContainsAny(relative, "\\:\r\n") {
+ 		return "", fmt.Errorf("unsafe resource path %q", relative)
+ 	}
++	// Compare canonical paths on both sides. Windows temp directories may use
++	// an 8.3 alias while EvalSymlinks returns the expanded directory name.
++	root, err := filepath.EvalSymlinks(root)
++	if err != nil {
++		return "", err
++	}
+ 	resolved, err := filepath.EvalSymlinks(filepath.Join(root, filepath.FromSlash(relative)))
+ 	if err != nil {
+ 		return "", err
+diff --git a/server/internal/cnbootstrap/platform_apple_test.go b/server/internal/cnbootstrap/platform_apple_test.go
+new file mode 100644
+--- /dev/null
++++ b/server/internal/cnbootstrap/platform_apple_test.go
+@@ -0,0 +1,141 @@
++package cnbootstrap
++
++import (
++	"bytes"
++	"crypto/sha256"
++	"encoding/json"
++	"fmt"
++	"net/http"
++	"net/http/httptest"
++	"os"
++	"path/filepath"
++	"strings"
++	"testing"
++
++	"github.com/go-chi/chi/v5"
++	"kairisei.local/server/internal/accountstore"
++	"kairisei.local/server/internal/testfixture"
++)
++
++// This gate uses the real Unity-built iOS profile in cloud builds. Local byte
++// fixtures above establish protocol behavior, not valid AssetBundle content.
++func TestIOSCompiledProfile(t *testing.T) {
++	profile := os.Getenv("IOS_COMPILED_PROFILE")
++	if profile == "" {
++		t.Skip("set IOS_COMPILED_PROFILE to a Unity-built iOS delivery profile")
++	}
++	delivery, err := loadPlatformDelivery(profile)
++	if err != nil {
++		t.Fatal(err)
++	}
++	if delivery.platform != "iOS" || delivery.unityVersion != "6000.3.26f1" {
++		t.Fatal("wrong build target")
++	}
++	router := chi.NewRouter()
++	registerPlatformContent(router, platformDeliveries{platformKey(delivery.platform, delivery.unityVersion): delivery}, nil, nil)
++	for name, file := range delivery.bundles {
++		payload, err := os.ReadFile(file.path)
++		if err != nil {
++			t.Fatal(err)
++		}
++		if !bytes.HasPrefix(payload, []byte("UnityFS\x00")) || fmt.Sprintf("%x", sha256.Sum256(payload)) != file.sha {
++			t.Fatal("compiled bundle format/hash differs")
++		}
++		url := "/local/content/iOS/6000.3.26f1/" + delivery.contentID + "/patch/" + name + ".v" + file.crc
++		w := httptest.NewRecorder()
++		router.ServeHTTP(w, httptest.NewRequest(http.MethodGet, url, nil))
++		if w.Code != http.StatusOK || !bytes.Equal(w.Body.Bytes(), payload) {
++			t.Fatal("server did not deliver exact compiled iOS bytes")
++		}
++	}
++	if _, err := os.Stat(filepath.Join(filepath.Dir(profile), "resource-build.json")); err != nil {
++		t.Fatal("missing resource build evidence")
++	}
++}
++
++func TestIOSDeliveryLoginAndIsolation(t *testing.T) {
++	root := t.TempDir()
++	set, err := loadPlatformDeliveries([]string{
++		writePlatformFixture(t, root, "StandaloneWindows64", []byte("windows-only")),
++		writePlatformFixture(t, root, "Android", []byte("android-only")),
++		writePlatformFixture(t, root, "iOS", []byte("ios-only")),
++	})
++	if err != nil {
++		t.Fatal(err)
++	}
++	accounts := testfixture.NewFriendCapacityTestAccounts(t)
++	if err := accounts.AttachCreationPolicy(func() accountstore.CreationPolicy { return accountstore.CreationPolicy{DailyLimit: 10} }); err != nil {
++		t.Fatal(err)
++	}
++	router := chi.NewRouter()
++	router.Post("/local/client/login", platformClientLogin(accounts, "127.0.0.1", 26040, CDNConfig{}, "images", set))
++	registerPlatformContent(router, set, nil, nil)
++	var userID any
++	expected := map[string]string{"iOS": "ios-only", "StandaloneWindows64": "windows-only", "Android": "android-only"}
++	for _, platform := range []string{"iOS", "StandaloneWindows64", "Android", "iOS"} {
++		body, _ := json.Marshal(localLoginPayload{UUID: "a5750000-0000-4000-8000-000000000001", ClientVersion: cnMinimumClientVersion, ResourcePlatform: platform, UnityVersion: "6000.3.26f1"})
++		response := httptest.NewRecorder()
++		router.ServeHTTP(response, httptest.NewRequest(http.MethodPost, "/local/client/login", bytes.NewReader(body)))
++		var result map[string]any
++		if err := json.Unmarshal(response.Body.Bytes(), &result); err != nil || response.Code != http.StatusOK || result["res_code"] != float64(0) {
++			t.Fatal("target login failed", response.Code, err)
++		}
++		if userID != nil && userID != result["userid"] {
++			t.Fatal("changing platform created a second identity")
++		}
++		userID = result["userid"]
++		delivery := set[platformKey(platform, "6000.3.26f1")]
++		prefix := "/local/content/" + platform + "/6000.3.26f1/" + delivery.contentID
++		if result["version_url"] != "http://127.0.0.1:26040"+prefix+"/" {
++			t.Fatal("login selected wrong platform content")
++		}
++		file := delivery.bundles["main_c/menu.dat"]
++		url := prefix + "/patch/main_c/menu.dat.v" + file.crc
++		t.Run(platform+" delivery", func(t *testing.T) {
++			for _, method := range []string{http.MethodGet, http.MethodHead} {
++				w := httptest.NewRecorder()
++				router.ServeHTTP(w, httptest.NewRequest(method, url, nil))
++				if w.Code != http.StatusOK || w.Header().Get("ETag") != `"`+file.sha+`"` || w.Header().Get("Cache-Control") != "public, max-age=31536000, immutable" {
++					t.Fatal("incorrect immutable response", w.Code)
++				}
++				if method == http.MethodGet && w.Body.String() != expected[platform] {
++					t.Fatal("different platform bytes delivered")
++				}
++				if method == http.MethodHead && w.Body.Len() != 0 {
++					t.Fatal("HEAD had a body")
++				}
++			}
++			conditional := httptest.NewRequest(http.MethodGet, url, nil)
++			conditional.Header.Set("If-None-Match", `"`+file.sha+`"`)
++			w := httptest.NewRecorder()
++			router.ServeHTTP(w, conditional)
++			if w.Code != http.StatusNotModified {
++				t.Fatal("ETag not honored")
++			}
++			ranged := httptest.NewRequest(http.MethodGet, url, nil)
++			ranged.Header.Set("Range", "bytes=0-2")
++			w = httptest.NewRecorder()
++			router.ServeHTTP(w, ranged)
++			if w.Code != http.StatusPartialContent || w.Body.Len() != 3 {
++				t.Fatal("range failed")
++			}
++			for _, invalid := range []string{strings.Replace(url, "/6000.3.26f1/", "/5.3.5p1/", 1), strings.Replace(url, delivery.contentID, strings.Repeat("0", 64), 1), prefix + "/patch/undeclared.dat.v00000000"} {
++				w = httptest.NewRecorder()
++				router.ServeHTTP(w, httptest.NewRequest(http.MethodGet, invalid, nil))
++				if w.Code != http.StatusNotFound {
++					t.Fatal("undeclared content served", invalid, w.Code)
++				}
++			}
++		})
++	}
++	// No account store: missing iOS version must be rejected before account creation.
++	login := platformClientLogin(nil, "127.0.0.1", 26040, CDNConfig{}, "images", set)
++	for _, target := range []struct{ platform, unity string }{{"iOS", "5.3.5p1"}, {"ios", "6000.3.26f1"}, {"iOS", ""}} {
++		payload := fmt.Sprintf(`{"uuid":"a5750000-0000-4000-8000-000000000099","clver":"%s","resource_platform":"%s","unity_version":"%s"}`, cnMinimumClientVersion, target.platform, target.unity)
++		w := httptest.NewRecorder()
++		login(w, httptest.NewRequest(http.MethodPost, "/local/client/login", strings.NewReader(payload)))
++		if w.Code != http.StatusBadRequest {
++			t.Fatal("invalid target reached accounts")
++		}
++	}
++}

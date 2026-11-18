@@ -1,0 +1,188 @@
+{"frames": {
+
+"Cmn_Base02.png":
+{
+	"frame": {"x":197,"y":432,"w":49,"h":153},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":49,"h":153},
+	"sourceSize": {"w":49,"h":153}
+},
+"Cmn_Base04.png":
+{
+	"frame": {"x":308,"y":475,"w":58,"h":59},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":58,"h":59},
+	"sourceSize": {"w":58,"h":59}
+},
+"Cmn_BaseShop.png":
+{
+	"frame": {"x":0,"y":0,"w":402,"h":98},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":402,"h":98},
+	"sourceSize": {"w":402,"h":98}
+},
+"Cmn_BtnShop_00.png":
+{
+	"frame": {"x":0,"y":522,"w":124,"h":44},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":124,"h":44},
+	"sourceSize": {"w":124,"h":44}
+},
+"Cmn_Change.png":
+{
+	"frame": {"x":111,"y":583,"w":60,"h":80},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":80},
+	"sourceSize": {"w":60,"h":80}
+},
+"Cmn_Comment.png":
+{
+	"frame": {"x":0,"y":567,"w":110,"h":174},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":110,"h":174},
+	"sourceSize": {"w":110,"h":174}
+},
+"Cmn_CommentLeft.png":
+{
+	"frame": {"x":341,"y":293,"w":130,"h":104},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":130,"h":104},
+	"sourceSize": {"w":130,"h":104}
+},
+"Cmn_ConflictEdit.png":
+{
+	"frame": {"x":403,"y":0,"w":95,"h":57},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":95,"h":57},
+	"sourceSize": {"w":95,"h":57}
+},
+"Cmn_Hand.png":
+{
+	"frame": {"x":251,"y":361,"w":74,"h":65},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":74,"h":65},
+	"sourceSize": {"w":74,"h":65}
+},
+"Cmn_RookieIcon.png":
+{
+	"frame": {"x":125,"y":522,"w":70,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":70,"h":60},
+	"sourceSize": {"w":70,"h":60}
+},
+"Cmn_TimeBase.png":
+{
+	"frame": {"x":251,"y":427,"w":214,"h":47},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":214,"h":47},
+	"sourceSize": {"w":214,"h":47}
+},
+"Cmn_Title04.png":
+{
+	"frame": {"x":0,"y":300,"w":310,"h":60},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":310,"h":60},
+	"sourceSize": {"w":310,"h":60}
+},
+"Cmn_TitlePart01.png":
+{
+	"frame": {"x":403,"y":58,"w":76,"h":40},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":76,"h":40},
+	"sourceSize": {"w":76,"h":40}
+},
+"Cmn_White.png":
+{
+	"frame": {"x":480,"y":58,"w":32,"h":32},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":32,"h":32},
+	"sourceSize": {"w":32,"h":32}
+},
+"Cmn_crystal.png":
+{
+	"frame": {"x":247,"y":518,"w":54,"h":66},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":54,"h":66},
+	"sourceSize": {"w":54,"h":66}
+},
+"Friend_PopInfo.png":
+{
+	"frame": {"x":247,"y":475,"w":60,"h":42},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":60,"h":42},
+	"sourceSize": {"w":60,"h":42}
+},
+"Friend_PvpRankFont02.png":
+{
+	"frame": {"x":341,"y":99,"w":149,"h":50},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":149,"h":50},
+	"sourceSize": {"w":149,"h":50}
+},
+"ListBase01_00.png":
+{
+	"frame": {"x":0,"y":99,"w":340,"h":200},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":340,"h":200},
+	"sourceSize": {"w":340,"h":200}
+},
+"ListBaseItem.png":
+{
+	"frame": {"x":341,"y":150,"w":142,"h":142},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":142,"h":142},
+	"sourceSize": {"w":142,"h":142}
+},
+"cmn_caution.png":
+{
+	"frame": {"x":0,"y":361,"w":250,"h":70},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":250,"h":70},
+	"sourceSize": {"w":250,"h":70}
+},
+"shop_crystal_item_bg_event.png":
+{
+	"frame": {"x":0,"y":469,"w":192,"h":52},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":192,"h":52},
+	"sourceSize": {"w":192,"h":52}
+},
+"shop_crystal_item_bg_firstonly.png":
+{
+	"frame": {"x":0,"y":432,"w":196,"h":36},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":196,"h":36},
+	"sourceSize": {"w":196,"h":36}
+}},
+"meta": {
+	"app": "http://www.codeandweb.com/texturepacker ",
+	"version": "1.0",
+	"image": "Cmn.png",
+	"format": "RGBA8888",
+	"size": {"w":512,"h":1024},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:bf0d0c6076a62e0747a8e83c70720b6e:36f80dc4a39236926eeba84b0ff80adb:4a8046e305c742bb4590b9c82de9c1a8$"
+}
+}

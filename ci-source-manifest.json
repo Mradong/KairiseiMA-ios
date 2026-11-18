@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2026-11-18T08:56:13.919Z",
-  "stage": "connection-and-synthetic-native-validation",
+  "generatedAt": "2026-11-18T11:05:17.283Z",
+  "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
     {
       "path": ".github/workflows/build-ios.yml",
-      "bytes": 3535,
-      "sha256": "31629fd9ad78fc5293b176cc5aee42393c4801d0668e6b6f9f45a487bd716d10"
+      "bytes": 4613,
+      "sha256": "627d3830fe7f930da9d5faf946b6bb69a07e88d4be4b1375719f73b5080da5bf"
     },
     {
       "path": ".gitignore",
@@ -20,13 +20,28 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 18926,
-      "sha256": "546954cabf63f46d265da07be91b4598685decc59bd3e60fafb24905239c0e16"
+      "bytes": 23257,
+      "sha256": "2b463c80a7212a433edf28483ca2cb1b2ef6128006cf255e1d3a7af785871071"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 3433,
-      "sha256": "d43ffb2140ec80cf5090a6c8a3f5d442412c8798cfd5f165cb4cf4bf24256d85"
+      "bytes": 4687,
+      "sha256": "b55b82e7c97e62b5a066e6cbebe24ad9fcf3d60d205f4c1a7cd5785018857436"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-content-source.json",
+      "bytes": 3220,
+      "sha256": "5d819f1a65d6b04998d1b217aee02f28a72fcf764287581798b2a801cb5cf935"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-content-tests.json",
+      "bytes": 421,
+      "sha256": "8ac46ced270e431732ae7ba9617266b48c5d5a5c6bbeab120458c90453348e2c"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-server-tests.json",
+      "bytes": 1723,
+      "sha256": "95dd72cf7a14a021a630288620c966cdddd7b54e6e5f3611d41e012d06ff47bc"
     },
     {
       "path": "evidence/native/go-symbols-summary.json",
@@ -89,14 +104,69 @@
       "sha256": "4670b88daf7c6ca39391d71e5067d7e1954870ce06fde8637ab71d047ef2efac"
     },
     {
+      "path": "ios-client/Assets/Recovery/Content/Battle-frames.json",
+      "bytes": 16839,
+      "sha256": "0a4d93e7af22fd54a5c9026c57ad1970b414a9f851d2d764d39c0567cc988202"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Battle.png",
+      "bytes": 1687432,
+      "sha256": "66a67e4eb1acbe14b9bb4c730204ea8f82e0d20116a3c2090be5d68ee7c5b9cc"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Cmn-frames.json",
+      "bytes": 4702,
+      "sha256": "f5bf70caf8d5d284f2df5b3d80d7a71f7f3287a3b540f12a1888e5c4541a6b02"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Cmn.png",
+      "bytes": 438444,
+      "sha256": "d050635e4593a441b91f33f9233c6a377a503db04c4c34925af99231932eec16"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Deck_Battle-frames.json",
+      "bytes": 2166,
+      "sha256": "71198f218a2e80b97998de358e7df9eec89fccdb031c9cddf10484ab599db7b9"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Deck_Battle.png",
+      "bytes": 317428,
+      "sha256": "e26ee4fe9c478fc7cc10e0491a9075cd60aaa541459817b1fc3ad83f6f392dd8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Party-frames.json",
+      "bytes": 19264,
+      "sha256": "54e942c01a7f7953ce0e9807616869ae3f18d2f4bfa32c879783a8e67c25c8e8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Party.png",
+      "bytes": 535267,
+      "sha256": "50bf2b1bfc073060ebc0213c1db9860bd5a56c8f8597b3d451281065953e1424"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/Title.png",
+      "bytes": 173649,
+      "sha256": "3c34f1358f6539b45fe0811bebc948436a3428cd52a3a633ba3d399f38df4afd"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Content/title-background.png",
+      "bytes": 534690,
+      "sha256": "6808fcd23eb1b411a64e5cf911c15fbedaa28b9cd3f4650ab40e1f15c567528e"
+    },
+    {
       "path": "ios-client/Assets/Recovery/Editor/IosLocalNetwork.cs",
       "bytes": 1934,
       "sha256": "75175babcf089253796f8ae930da7b4ca3d20efe3bbbee432e7d8e3d22f9902f"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
-      "bytes": 4675,
-      "sha256": "563f0327d862b977170474bae894d4a587217f2fde7968e2037393a2ee2df123"
+      "bytes": 4727,
+      "sha256": "e7a2423e3a890d9ec31319c41fec56bc8d644cfb0282b26e939a5c0df58aac9f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
+      "bytes": 5048,
+      "sha256": "28b5dcfc8ad6b69e12b2d6ea9bbb766a333490e0073dc0b4857812c5eb7bb64a"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/NativeValidationBattle.json",
@@ -112,6 +182,11 @@
       "path": "ios-client/Assets/Recovery/Resources/NativeValidationTrace.json",
       "bytes": 4949,
       "sha256": "51614e0e42bd36f4d4639d1bc348a3cb24ac966ae58e2adff2f68d907bf8d0cb"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/RecoveryChinese.ttf",
+      "bytes": 2867996,
+      "sha256": "c35d3e08217bcf31a3d10e0e699d9b7fa3a41de2d684c6c59e45c24bf980ef88"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/RecoveryFont.otf",
@@ -145,8 +220,18 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 8462,
-      "sha256": "d2bee17019b930825d3430478f0866ca3223c70a8121173ed7e0588da3719b6d"
+      "bytes": 9348,
+      "sha256": "acd2ea0ad242f515aa2141d327b6a0bad737471999d432584e287167fcc6e50b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "bytes": 8463,
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
+      "bytes": 4463,
+      "sha256": "e72fbe24fefb98f1f5aebf9a86cd89e7e5a3b6654a6e0434327582b99f087c3a"
     },
     {
       "path": "ios-client/Packages/manifest.json",
@@ -249,6 +334,16 @@
       "sha256": "318bd1ffc1448db008dee8b852ff35f5aac933a7785dbebbba066c40ded58036"
     },
     {
+      "path": "patches/ios-server.patch",
+      "bytes": 8313,
+      "sha256": "807db58c82b63acc4fc80e62d306a3427382213598d019c5537b37b424ab23a9"
+    },
+    {
+      "path": "scripts/Build-IosServer.ps1",
+      "bytes": 1875,
+      "sha256": "25743c5415290e6ca074993a49f94452db422d1e9a23b60a06df6c4f47acfd59"
+    },
+    {
       "path": "scripts/Build-NativeBridge.ps1",
       "bytes": 1567,
       "sha256": "3659dd64900739fd6743af9ddb30580bbfcb5904566f0c4c2c0155e668a42bbd"
@@ -272,6 +367,11 @@
       "path": "scripts/ios-clang.sh",
       "bytes": 178,
       "sha256": "4e21a1ca2c1a86382d98dc5313c69692fa09e022bb93d6c62e6e4fe68b1ca271"
+    },
+    {
+      "path": "scripts/test-ios-content.mjs",
+      "bytes": 1719,
+      "sha256": "f765265edc432dc0bb1feefd76e963290deb5459cc94c88af97f2f492622fd23"
     },
     {
       "path": "scripts/test-native-skill-query.mjs",
@@ -324,6 +424,11 @@
       "sha256": "e46badbf4c6b1b4fa4bab0a186b84f53c4b6850210efcdc370827e04fc4afcaf"
     },
     {
+      "path": "tests/RecoveryContentTests.cs",
+      "bytes": 5648,
+      "sha256": "b52c749b08b06b114b4a27a02ebf9ddcfe9d9fc15eb00262653999e1775d9368"
+    },
+    {
       "path": "tests/RegisteredBattleDifferential.cs",
       "bytes": 10800,
       "sha256": "617bbbe2cd26d3e9d5eaf90de8355c74f4be3d943c1017c8bea7c92020d34625"
@@ -349,7 +454,7 @@
       "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     }
   ],
-  "bytes": 14146727,
-  "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
+  "bytes": 20793098,
+  "privacy": "Explicit recovery sources, tests, synthetic fixtures, server patch, selected recovered PNG/atlas JSON and Chinese font sources only. Excludes original executables, raw IPA/player data, SDK config, credentials, account/save data, licenses and tools.",
+  "execution": "Prepared locally for Unity/iOS build. Local cache/server checks do not establish iOS execution or full game readiness."
 }

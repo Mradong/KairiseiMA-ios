@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-11-18T11:01:07.875Z",
+  "success": true,
+  "exitCode": 0,
+  "referenceCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+  "workCopy": "server-ios/server",
+  "passed": [
+    "TestIOSDeliveryLoginAndIsolation/iOS_delivery",
+    "TestIOSDeliveryLoginAndIsolation/StandaloneWindows64_delivery",
+    "TestIOSDeliveryLoginAndIsolation/Android_delivery",
+    "TestIOSDeliveryLoginAndIsolation/iOS_delivery#01",
+    "TestIOSDeliveryLoginAndIsolation",
+    "TestPlatformDeliverySelectionAndVersionedBytes",
+    "TestModernLoginSelectsTargetBeforeAccountAndSharesIdentity",
+    "TestPlatformDeliveryRejectsCatalogInventoryMismatch",
+    "TestPlatformOnlyResourcesAndCDN",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/validWithoutLoosePackedFiles",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/packedAndStandalone",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/memberInTwoPacks",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/memberTwiceInOnePack",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/missingTransport",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/unknownMember",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/unlistedStandaloneFileStillInsideArchive",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile/archiveCRCNotManifest",
+    "TestPlatformDeliveryRequiresOneTransportPerRealFile"
+  ],
+  "failed": [],
+  "scope": "Actual Go server platform profile loader, login handler and resource HTTP routes with isolated synthetic content and temporary test accounts only. No live server, real accounts, deployment, Unity bundle bytes or iPhone execution.",
+  "log": "logs/ios-server-tests.jsonl",
+  "stderr": ""
+}

@@ -19,6 +19,7 @@ namespace Kairisei.Recovery
         private UnityWebRequest pending;
         private Texture2D title;
         private Font font;
+        private RecoveryContentLoader content;
         private GUIStyle headingStyle;
         private GUIStyle bodyStyle;
         private GUIStyle inputStyle;
@@ -29,7 +30,24 @@ namespace Kairisei.Recovery
             Application.targetFrameRate = 60;
             address = PlayerPrefs.GetString("ios-recovery.server", "");
             title = Resources.Load<Texture2D>("RecoveryTitle");
-            font = Resources.Load<Font>("RecoveryFont");
+            font = Resources.Load<Font>("RecoveryChinese");
+            if (font == null) font = Resources.Load<Font>("RecoveryFont");
+            content = gameObject.AddComponent<RecoveryContentLoader>();
+        }
+
+        private IEnumerator Start()
+        {
+            busy = true;
+            status = "正在检查并安装游戏资源…";
+            yield return content.Initialize();
+            try
+            {
+                if (!content.Ready) throw new InvalidOperationException(content.Error ?? "资源初始化未完成。");
+                title = content.Load<Texture2D>("recovery/ui", "title-background");
+                status = "本地资源已就绪。输入服务器地址后检查连接。完整游戏仍在恢复中。";
+            }
+            catch (Exception error) { status = "资源加载失败：" + error.Message; }
+            finally { busy = false; }
         }
 
         private void OnDestroy()

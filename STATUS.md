@@ -1,6 +1,24 @@
 # 当前状态
 
-**新窗口续作入口：[新窗口接手.md](新窗口接手.md)**。用户于 2026-11-18 要求整理交接；当前 Terra 执行代理已结束，本窗口不再新增功能。新窗口按交接文件核对目标与模型后续作。
+## 2026-11-18：RESOURCE-01 / CLIENT-01 结合旧 IPA 的恢复（执行中）
+
+用户要求结合已提供的 6.0.2 IPA 继续构建，并及时同步文档。本轮先导入本地游戏 Data、恢复资源/场景清单并核验补丁与服务依赖，再接入可验证的客户端资源链；预期用户行为是后续客户端加载真实 iOS 资源并复用持久缓存。依赖是有效资源、与 Unity 6 的转换以及真正 iOS 服务配置。当前尚未产生新 IPA 或新真机结果；原包与 Windows 文件保持只读。
+
+执行记录：新增 `scripts/Import-LegacyIos.ps1`，固定已核验 SHA-256，仅导入 Data 与 Info.plist 到项目内部，逐文件记录哈希；排除加密主程序、签名和 SDK 配置。已导入 129 个文件、237,631,011 字节至 `inputs/ios/cn602`；AssetRipper 导出至 `ios602-unity`，一个类型 129 的导入错误、零导出错误。得到 53 个场景、338 张纹理、6 个字体；2,223 个脚本均为存根，场景自定义 MonoBehaviour 字段未恢复，不能直接编译为游戏。补丁表有 707 个名称，尚未确定全部字段语义与缺失资源。参考服务端 `platform_delivery.go:112` 仅接受 Windows/Android，必须另行补 iOS 支持。
+
+新增 `scripts/analyze-legacy-ios.mjs` 和 `evidence/ios-package-search/cn602-resource-analysis.json`，记录导出数量、兼容性与字体 cmap 覆盖。原包 `W3(P).ttf`、`W7(P).ttf`、`W9(P).ttf` 对当前代码使用的 194 个中日韩字符均无缺失；三个 FOT 字体缺失多种简体字。接下来接入可重复构建的 iOS 资源包与持久缓存；字体修复随该功能构建核验，尚无新真机结果。
+
+### 本轮实现与本地验证
+
+- `prepare-ios-content.mjs` 选取 11 个明确来源的 PNG、图集 JSON 和 `W3(P).ttf`（共 6,597,877 字节）用于工程；不导入旧版存根、序列化播放器或 SDK 配置。新增代码后重新核验字体，当前 196 个中日韩字符均覆盖。
+- `RecoveryContentBuild.cs` 实现 `BuildTarget.iOS` 资源编译、ASTC 纹理设置、SHA-256/文件 CRC 清单及服务端 `ios-delivery.json` 生成；`RecoveryBuild` 计划版本为 0.0.3，应用标识继续 `local.kairisei.recovery`。当前尚未通过 Unity/Xcode 编译，不能写成已交付。
+- `RecoveryContent.cs` / `RecoveryContentLoader.cs` 接入启动资源初始化、大小/SHA-256/CRC 验证、依赖排序、失败重试及 `persistentDataPath/content-v1` 缓存，成功后加载背景纹理；保留已有字体作为回退并优先使用原国服简体字字体。`ios-content-tests.json` 的 29 项 Windows .NET 检查通过，覆盖中断、同长度损坏、重复加载、重启、新旧内容共存和错误清单；不等于手机资源持久性通过。
+- 根据用户授权，建立独立服务端副本 `server-ios/server`，只在副本增加 `iOS` 平台与 Windows 8.3 路径根目录规范化修复；`patches/ios-server.patch` 已通过对固定参考的 `git apply --check`。`ios-server-tests.json` 的 iOS 登录/资源 GET/HEAD/Range/ETag/错误版本/独立测试角色以及原 Windows/Android 相关回归通过（18 个测试及子测试通过）。原参考源码保持不变。
+- 服务器真实可部署资源仍未齐全。本轮资源包只是启动与 UI 资源的一部分，不能拿它冒充原游戏完整 `main_c/*` 资源集；不会自动把它加进原 Windows 服务。正在准备独立服务端二进制与云端真实 iOS 资源交付校验。
+
+2026-11-18 最新：用户已取消 GPT-6.1 Terra 执行限制，可由当前可用模型继续恢复。用户提供的国服 6.0.2 IPA 已在原路径只读静态检查：138,633,863 字节，SHA-256 `d86d7609d6235ae836d4721591358de496f7f679a6ef192aea7ab054949c930b`，确含 ARMv7/ARM64、Unity 5.3.5p1 场景与资源、IL2CPP v21 元数据。主程序两个架构均标记 `cryptid=1`。资源完整性、现有服务端兼容性、安装及真机运行仍未验证；尚未改变恢复路线。详情见 [旧版iOS包检索.md](旧版iOS包检索.md) 和 `evidence/ios-package-search/ipa-602-static-inspection.json`。
+
+**新窗口续作入口：[新窗口接手.md](新窗口接手.md)**。原 Terra 执行代理已结束；按交接文件、本文最新记录及验收表续作，执行模型限制已取消。
 
 2026-11-18（Asia/Shanghai）。目标是 iPhone 13 / iOS 17.4.1 私下安装 IPA，不上架 App Store。用户没有 Mac、付费 Apple 开发者账号或现成签名证书。本机与云端 Personal 激活均已确认；连接验证工程已通过实际 Unity/Xcode 构建。所有恢复开发仅限本文件夹。
 
@@ -46,7 +64,7 @@ Hub 安装兼容性已定位：本机 Windows 10 Enterprise LTSC 2019 / 1809，�
 
 安装准备：`install-kit/` 已集中 3 个官方来源安装包和 IPA，共 530,073,394 字节。iTunes 12.13.12.3 与 iCloud 7.21.0.23 的 Apple 签名有效，Sideloadly 官网包为 NotSigned；安装器未由代理执行。后续只读检查已确认本人安装了 iTunes、iCloud 与手机驱动；本人已确认 IPA 可打开标题。安装、Apple 账号、签名错误排查和七天续签保留数据的步骤已写入两份安装指南，来源和哈希在 `evidence/install-kit.json`。
 
-正式完整恢复目标已于 2026-11-18 建立并保持进行中；指定执行模型为 GPT-6.1 Terra，主代理审核。执行计划见 [EXECUTION_PLAN.md](EXECUTION_PLAN.md)，约束见 [AGENTS.md](AGENTS.md)，验收表见 `evidence/acceptance.json`。0.0.2 真机合成验证通过，完整游戏仍未完成。
+历史会话的正式完整恢复目标已于 2026-11-18 建立并保持进行中；用户最新指示已取消指定执行模型限制。执行计划见 [EXECUTION_PLAN.md](EXECUTION_PLAN.md)，约束见 [AGENTS.md](AGENTS.md)，验收表见 `evidence/acceptance.json`。0.0.2 真机合成验证通过，完整游戏仍未完成。
 
 ## 2026-11-18：BATTLE-01 技能分支查询部分进展
 
@@ -101,3 +119,5 @@ Windows x64 合成测试中，与原 DLL 的 450 组状态及索引差分通过�
 已恢复受限普通模式注册战斗的输入日志：记录操作前状态和选卡目标，接收洗牌顺序回调，仅在操作成功后提交，并处理短缓冲、重复读取和失败状态。Windows x64 隔离合成数据与原 DLL 对照，15 步战斗中的 18 次完整日志快照逐字节一致；包含多卡选择、重复提交、未读取结果时拒绝下一步、无效请求、短／空缓冲及失败后的日志读取。证据见 `evidence/native/registered-battle-differential-tests.json`。此前独立战斗 748 项、敌人查询 1,856 项、非零技能查询 155 项和 Go 状态测试在同一 DLL 下通过。
 
 当前 Windows DLL SHA-256 为 `aa8a4493c1696ffb48c26f69989f120912b2ea81307b95e149030f681004f180`。本轮未验证 NPC、必杀、其他模式、实际资源、下一波或真实服务；没有 ARM64 或新真机结果。完整可玩和最终 IPA 均未完成。
+
+本轮代码、测试和证据已推送至已授权私有仓库 `main`，提交 `a8c4868171df42f20306f19409aa1a427431ed55`；GitHub API 核实远端哈希。七个原始核心文件哈希一致、参考工作树干净；未发起云构建。

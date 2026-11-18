@@ -1,0 +1,7 @@
+{
+  "generatedAt": "2026-11-18T11:01:03.391Z",
+  "success": true,
+  "stdout": "Passed 29 content integrity, dependency and persistent-cache checks; no Unity/iOS runtime.",
+  "stderr": "",
+  "scope": "Actual resource manifest and persistent cache C# compiled and executed on Windows .NET Framework with byte fixtures. Does not validate Unity imports, iOS bundles, overwrite installation on phone, or network downloads."
+}

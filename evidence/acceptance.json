@@ -1,7 +1,8 @@
 {
   "schemaVersion": 1,
   "establishedOn": "2026-11-18",
-  "executorModel": "gpt-6.1-terra",
+  "executorModel": null,
+  "executorPolicy": "User removed the GPT-6.1 Terra requirement on 2026-11-18; the current available model may continue.",
   "reviewer": "root agent",
   "targetDevice": "iPhone 13 / iOS 17.4.1",
   "overallStatus": "in_progress",
@@ -46,13 +47,22 @@
       "id": "CLIENT-01",
       "requirement": "Original startup, login, home and deck behavior with isolated test identity",
       "status": "incomplete",
-      "evidence": []
+      "evidence": ["evidence/ios-package-search/ios-content-tests.json"],
+      "scope": "Startup now initializes a verified persistent content cache. Original login/home/deck behavior remains incomplete; no new Unity or device validation yet."
     },
     {
       "id": "RESOURCE-01",
       "requirement": "Real iOS delivery configuration, usable assets, verified persistent downloads and retries",
       "status": "incomplete",
-      "evidence": []
+      "evidence": [
+        "evidence/ios-package-search/ipa-602-static-inspection.json",
+        "evidence/ios-package-search/cn602-import.json",
+        "evidence/ios-package-search/cn602-resource-analysis.json",
+        "evidence/ios-package-search/ios-content-source.json",
+        "evidence/ios-package-search/ios-content-tests.json",
+        "evidence/ios-package-search/ios-server-tests.json"
+      ],
+      "scope": "Partial recovered texture/atlas/font sources selected; real iOS bundle compilation and verified persistent cache implemented but not Unity/device validated yet. Independent server copy accepts iOS profiles and passes isolated target/login/HTTP tests plus Windows/Android regressions. Full game assets, deployment, downloads and device persistence remain incomplete."
     },
     {
       "id": "PLAY-01",
@@ -67,7 +77,7 @@
       "evidence": [
         "evidence/native/device-validation.json"
       ],
-      "knownIssue": "Missing simplified Chinese glyphs in 0.0.2 screenshot"
+      "knownIssue": "Missing simplified Chinese glyphs in 0.0.2 screenshot. Recovered W3(P).ttf covers current 196 CJK runtime characters and is now selected in source; Unity import and device rendering remain unverified."
     },
     {
       "id": "SAVE-01",
