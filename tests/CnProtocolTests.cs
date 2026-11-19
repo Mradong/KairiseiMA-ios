@@ -1,4 +1,5 @@
 using System;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -63,6 +64,11 @@ public static class CnProtocolTests
         Check(createdUser.Name == "测试骑士" && createdUser.ArthurType == 3, "created character fields");
         Reject(delegate { CnProtocol.ParseCreatedUser(createdResponse, 1338); }, "wrong created user");
         Reject(delegate { CnProtocol.ParseCreatedUser("{\"res_code\":0}\n{\"user\":{}}", 1337); }, "missing created user fields");
+        string homeResponse = "{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"测试骑士\",\"lv\":4,\"ap\":15,\"ap_max\":20,\"bp\":2,\"bp_max\":3,\"gold\":123456},\"server_time\":100}\n{}";
+        CnHomeState home = CnProtocol.ParseHome(homeResponse, 1337);
+        Check(home.Name == "测试骑士" && home.Level == 4 && home.Ap == 15 && home.ApMax == 20 && home.Bp == 2 && home.BpMax == 3 && home.Gold == 123456 && home.ServerTime == 100, "home user fields");
+        Reject(delegate { CnProtocol.ParseHome(homeResponse, 1338); }, "home user mismatch");
+        Reject(delegate { CnProtocol.ParseHome("{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"name\"}}", 1337); }, "incomplete home response");
         Reject(delegate { CnProtocol.CreateSessionRequest("short", new JObject()); }, "short session");
         Reject(delegate { CnProtocol.CreateSessionRequest(Session + "\n", new JObject()); }, "session newline injection");
         Check(CnProtocol.ParseHealth("{\"state\":\"PASS\",\"battle_port\":26041}") == 26041, "health response");
@@ -133,6 +139,12 @@ public static class CnProtocolTests
                     reconnect.EnsureSuccessStatusCode();
                     Check(CnProtocol.ParseConnect(reconnect.Content.ReadAsStringAsync().GetAwaiter().GetResult()).UserCreated, "loopback created state after reconnect");
                 }
+                using (HttpResponseMessage home = client.PostAsync(login.Api.Route("/HomeShow"), new StringContent(CnProtocol.CreateSessionRequest(login.SessionKey, null), Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
+                {
+                    home.EnsureSuccessStatusCode();
+                    CnHomeState state = CnProtocol.ParseHome(home.Content.ReadAsStringAsync().GetAwaiter().GetResult(), login.UserId);
+                    Check(state.Name == "测试骑士" && state.Ap == 15 && state.Gold == 123456, "loopback home user state");
+                }
             }
         }
     }
@@ -144,6 +156,14 @@ public static class CnProtocolTests
         {
             UnitChecks();
             if (args.Length == 1) NetworkChecks(args[0]);
+            if (args.Length == 2)
+            {
+                NetworkChecks(args[0]);
+                string actual = File.ReadAllText(args[1]);
+                JObject actualUser = (JObject)CnProtocol.ParseEnvelope(actual).Payload["user"];
+                CnHomeState actualHome = CnProtocol.ParseHome(actual, (long)actualUser["userid"]);
+                Check(actualHome.Name == "测试骑士" && actualHome.ServerTime > 0, "actual isolated service home response");
+            }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;
         }

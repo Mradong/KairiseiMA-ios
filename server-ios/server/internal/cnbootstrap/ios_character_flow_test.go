@@ -82,4 +82,39 @@ func TestIOSCharacterCreateConnectFlow(t *testing.T) {
 	if string(call("/Connect", "{}")["is_user"]) != "1" {
 		t.Fatal("created user missing on repeat login")
 	}
+	home := call("/HomeShow", "")
+	var homeUser struct {
+		UserID int64  `json:"userid"`
+		Name   string `json:"name"`
+		Level  int64  `json:"lv"`
+		AP     int64  `json:"ap"`
+		APMax  int64  `json:"ap_max"`
+		BP     int64  `json:"bp"`
+		BPMax  int64  `json:"bp_max"`
+		Gold   int64  `json:"gold"`
+	}
+	var timestamp int64
+	if json.Unmarshal(home["user"], &homeUser) != nil || homeUser.UserID != identity.UserID || homeUser.Name != "测试骑士" ||
+		json.Unmarshal(home["server_time"], &timestamp) != nil || timestamp <= 0 {
+		t.Fatalf("home identity or timestamp: %s", home["user"])
+	}
+	var fields map[string]json.RawMessage
+	if json.Unmarshal(home["user"], &fields) != nil {
+		t.Fatal("home user format")
+	}
+	for _, key := range []string{"lv", "ap", "ap_max", "bp", "bp_max", "gold"} {
+		var n int64
+		if json.Unmarshal(fields[key], &n) != nil {
+			t.Fatalf("home field %s is not an integer", key)
+		}
+	}
+	if target := os.Getenv("IOS_HOME_TEST_FIXTURE"); target != "" {
+		payload, err := json.Marshal(home)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(target, append([]byte("{\"res_code\":0}\n"), payload...), 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
 }

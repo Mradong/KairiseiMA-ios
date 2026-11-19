@@ -45,6 +45,10 @@ const server = http.createServer(async (request, response) => {
       assert.equal(body, session + JSON.stringify({ name: '测试骑士', arthur_type: 3 }));
       userCreated = true;
       response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({user:{userid:1337,name:'测试骑士',active_arthur_type:3},push_option:{enable_flag:0}}) + '\n' + JSON.stringify({popup:[]}));
+    } else if (request.method === 'POST' && request.url === '/HomeShow') {
+      assert.equal(body, session);
+      assert.equal(userCreated, true);
+      response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({user:{userid:1337,name:'测试骑士',lv:4,ap:15,ap_max:20,bp:2,bp_max:3,gold:123456},server_time:100}) + '\n' + JSON.stringify({popup:[]}));
     } else { throw new Error('Unexpected fixture route'); }
   } catch (error) {
     failures.push(error.message);
@@ -58,16 +62,18 @@ let stdout = '';
 let stderr = '';
 let status;
 try {
-  const child = spawn(exe, [origin], { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
+  const args = [origin];
+  if (process.env.IOS_HOME_TEST_FIXTURE) args.push(process.env.IOS_HOME_TEST_FIXTURE);
+  const child = spawn(exe, args, { windowsHide: true, stdio: ['ignore', 'pipe', 'pipe'] });
   child.stdout.on('data', chunk => { stdout += chunk; });
   child.stderr.on('data', chunk => { stderr += chunk; });
   status = await new Promise((resolve, reject) => { child.on('error', reject); child.on('exit', resolve); });
 } finally { await new Promise(resolve => server.close(resolve)); }
-const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect'];
+const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect', 'POST /HomeShow'];
 const result = {
   generatedAt: new Date().toISOString(), success: status === 0 && failures.length === 0 && JSON.stringify(calls) === JSON.stringify(expectedCalls),
   compiler: 'Windows .NET Framework C# compiler', jsonLibrary: 'Newtonsoft.Json 13.0.2 net45',
-  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture only; no Unity/iOS runtime or live game server was tested.',
+  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + '; no Unity/iOS runtime or live game server was tested.',
   stdout: stdout.trim(), stderr: stderr.trim(), calls, failures,
 };
 fs.writeFileSync(path.join(root, 'evidence/protocol-tests.json'), JSON.stringify(result, null, 2) + '\n');

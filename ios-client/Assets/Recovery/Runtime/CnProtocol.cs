@@ -80,6 +80,19 @@ namespace Kairisei.Recovery
         public int ArthurType { get; internal set; }
     }
 
+    public sealed class CnHomeState
+    {
+        public long UserId { get; internal set; }
+        public string Name { get; internal set; }
+        public long Level { get; internal set; }
+        public long Ap { get; internal set; }
+        public long ApMax { get; internal set; }
+        public long Bp { get; internal set; }
+        public long BpMax { get; internal set; }
+        public long Gold { get; internal set; }
+        public long ServerTime { get; internal set; }
+    }
+
     public static class CnProtocol
     {
         public const string ClientVersion = "2.0.4";
@@ -180,6 +193,28 @@ namespace Kairisei.Recovery
             if (tutorial == null || tutorial.Type != JTokenType.Integer)
                 throw new FormatException("服务器缺少有效的教程状态。");
             return new CnConnectState { UserCreated = created.Value<long>() == 1, TutorialFlag = tutorial.Value<long>() };
+        }
+
+        public static CnHomeState ParseHome(string content, long expectedUserId)
+        {
+            JObject payload = ParseEnvelope(content).Payload as JObject;
+            JObject user = payload == null ? null : payload["user"] as JObject;
+            if (user == null) throw new FormatException("主页响应缺少角色信息。");
+            long id = RequiredInteger(user, "userid");
+            if (id < 1 || id != expectedUserId) throw new FormatException("主页角色与登录身份不一致。");
+            return new CnHomeState {
+                UserId = id, Name = RequiredString(user, "name"), Level = RequiredInteger(user, "lv"),
+                Ap = RequiredInteger(user, "ap"), ApMax = RequiredInteger(user, "ap_max"),
+                Bp = RequiredInteger(user, "bp"), BpMax = RequiredInteger(user, "bp_max"),
+                Gold = RequiredInteger(user, "gold"), ServerTime = RequiredInteger(payload, "server_time")
+            };
+        }
+
+        private static long RequiredInteger(JObject value, string name)
+        {
+            JToken token = value[name];
+            if (token == null || token.Type != JTokenType.Integer) throw new FormatException("服务器缺少有效字段：" + name);
+            return token.Value<long>();
         }
 
         private static bool SameOrigin(Uri a, Uri b)

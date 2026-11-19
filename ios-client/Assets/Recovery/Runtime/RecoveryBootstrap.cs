@@ -17,6 +17,7 @@ namespace Kairisei.Recovery
         private ServerEndpoint endpoint;
         private CnLogin login;
         private CnConnectState connectState;
+        private CnHomeState homeState;
         private string characterName = "";
         private int arthurType = 1;
         private bool serverContentReady;
@@ -94,6 +95,14 @@ namespace Kairisei.Recovery
             if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
+            if (connectState != null && connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
+            {
+                GUI.enabled = !busy;
+                if (GUI.Button(new Rect(995, 465, 185, 54), "进入主页", buttonStyle)) ReadHome();
+                GUI.enabled = true;
+                if (homeState != null)
+                    GUI.Label(new Rect(100, 465, 880, 55), homeState.Name + "  等级 " + homeState.Level + "  体力 " + homeState.Ap + "/" + homeState.ApMax + "  战斗点 " + homeState.Bp + "/" + homeState.BpMax + "  金币 " + homeState.Gold, bodyStyle);
+            }
             if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
                 GUI.enabled = !busy;
@@ -120,6 +129,7 @@ namespace Kairisei.Recovery
         {
             login = null;
             connectState = null;
+            homeState = null;
             serverContentReady = false;
             endpoint = null;
             verifiedAddress = null;
@@ -140,6 +150,7 @@ namespace Kairisei.Recovery
             if (endpoint == null || verifiedAddress != address) return;
             login = null;
             connectState = null;
+            homeState = null;
             serverContentReady = false;
             string key;
             using (SHA256 hash = SHA256.Create())
@@ -169,7 +180,19 @@ namespace Kairisei.Recovery
             if (login == null || !serverContentReady || verifiedAddress != address) return;
             StartCoroutine(Send("POST", login.Api.Route("/Connect"), CnProtocol.CreateSessionRequest(login.SessionKey, new JObject()), delegate(string response) {
                 connectState = CnProtocol.ParseConnect(response);
-                status = connectState.UserCreated ? "服务器确认角色已创建。主页和战斗尚未接入。" : "请输入名称并选择职业，然后创建角色。";
+                homeState = null;
+                status = connectState.UserCreated ? "服务器确认角色已创建。进入主页会结束未完成的单人战斗，并可能领取登录奖励；奖励展示尚未恢复。" : "请输入名称并选择职业，然后创建角色。";
+            }));
+        }
+
+        private void ReadHome()
+        {
+            if (login == null || connectState == null || !connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
+            CnLogin requestedLogin = login;
+            homeState = null;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/HomeShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, null), delegate(string response) {
+                homeState = CnProtocol.ParseHome(response, requestedLogin.UserId);
+                status = "已读取服务器主页角色状态；主页场景、奖励与导航仍在恢复。";
             }));
         }
 
