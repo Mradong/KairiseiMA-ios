@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/binary"
 	"fmt"
+	"strconv"
 
 	"kairisei.local/server/battlemodel"
 )
@@ -13,9 +14,13 @@ func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]batt
 	if enemy == nil || len(enemy.data) != 276 || index < 0 || index > 3 {
 		return value, fmt.Errorf("invalid enemy record")
 	}
-	for _, skill := range enemy.normal {
+	for slot, skill := range enemy.normal {
 		if skill != nil && wireInt(skill, 0) != 0 {
-			return value, fmt.Errorf("enemy program projection unavailable")
+			action, err := decodeSimpleEnemyAction(schema, skill, slot)
+			if err != nil {
+				return value, err
+			}
+			value.Level.Actions = append(value.Level.Actions, action)
 		}
 	}
 	for _, skill := range enemy.passive {
@@ -76,6 +81,7 @@ func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]batt
 	for i := range level.DOTReductions {
 		level.DOTReductions[i] = i16(142 + i*2)
 	}
+	level.Actions = value.Level.Actions
 	value = battlemodel.EnemyInput{Definition: def, Level: level, HP: int(hp), MaxHP: int(maxHP), Parent: int(wireInt(raw, 152))}
 	count := int(wireInt(raw, 176))
 	if count < 0 || count > 8 {
@@ -86,4 +92,60 @@ func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]batt
 		value.Drops = append(value.Drops, battlemodel.Drop{EnemyIndex: index, RewardType: int(wireInt(raw, offset)), Num: int(wireInt(raw, offset+4)), RewardTypeID: int(wireInt(raw, offset+8))})
 	}
 	return value, nil
+}
+
+// Simple registered actions currently allow only unconditional selectors. Other
+// enum-dependent targets/triggers remain explicit errors until differential tests exist.
+func decodeSimpleEnemyAction(schema map[string]map[int32]string, raw []byte, slot int) (battlemodel.CombatEnemyAction, error) {
+	var action battlemodel.CombatEnemyAction
+	if len(raw) != 2656 || slot != 0 {
+		return action, fmt.Errorf("unsupported enemy action slot")
+	}
+	target, err := lookupNativeEnum(schema, "ENEMY_AI_TARGET", wireInt(raw, 2440))
+	if err != nil || target != "ENEMY1" {
+		return action, fmt.Errorf("unsupported enemy target")
+	}
+	for _, off := range []int{2500, 2504, 2588} {
+		if wireInt(raw, off) != 0 {
+			return action, fmt.Errorf("unsupported enemy condition")
+		}
+	}
+	for _, family := range []string{"ENEMY_AI_ORDER_PARTY", "ENEMY_AI_ORDER_TRANCE_GAUGE", "ENEMY_AI_ORDER_TRIGGER"} {
+		name, e := lookupNativeEnum(schema, family, 0)
+		if e != nil || name != "NULL" {
+			return action, fmt.Errorf("missing empty enemy condition")
+		}
+	}
+	fields := make([]string, 38)
+	fields[1], fields[2], fields[29] = "NULL", "NULL", "NULL"
+	for i := 0; i < 4; i++ {
+		fields[3+i] = strconv.FormatInt(int64(binary.LittleEndian.Uint64(raw[2508+i*8:])), 10)
+	}
+	for i := 0; i < 11; i++ {
+		fields[7+i] = strconv.Itoa(int(int16(binary.LittleEndian.Uint16(raw[2540+i*2:]))))
+	}
+	fields[18] = strconv.Itoa(int(wireInt(raw, 2584)))
+	for i := 0; i < 10; i++ {
+		fields[19+i] = strconv.Itoa(int(int16(binary.LittleEndian.Uint16(raw[2562+i*2:]))))
+	}
+	for i := 0; i < 8; i++ {
+		fields[30+i] = strconv.FormatInt(int64(binary.LittleEndian.Uint64(raw[2592+i*8:])), 10)
+	}
+	action = battlemodel.CombatEnemyAction{Slot: slot, SkillID: int(wireInt(raw, 0)), Priority: int(wireInt(raw, 2436)), Target: target,
+		ActionCost: int(wireInt(raw, 2484)), MaxUses: int(wireInt(raw, 2488)), Rate: int(wireInt(raw, 2492)), CountOnMiss: wireInt(raw, 2496) != 0,
+		Order: &battlemodel.CombatEnemyAIOrder{Fields: fields}}
+	for i := range action.TargetParams {
+		action.TargetParams[i] = strconv.FormatInt(int64(binary.LittleEndian.Uint64(raw[2444+i*8:])), 10)
+	}
+	switch {
+	case slot == 0:
+		action.Category = "normal"
+	case slot < 15:
+		action.Category = "skill"
+	case slot < 20:
+		action.Category = "special"
+	default:
+		action.Category = "death"
+	}
+	return action, nil
 }

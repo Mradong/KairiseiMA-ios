@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-19：0.0.4 构建交付与敌方普通技能增量
+
+构建 [44434628647](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44434628647) 已成功，源码提交 `090f19003b9bc2ecdc8b024c67024d9398ffc8f0`；ARM64、Unity/Xcode、iOS 资源构建及云端 28 个测试/子测试通过。已下载并核验 [0.0.4 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.4-unsigned.ipa)，26,088,293 字节，SHA-256 `c4e3e39967c3281035d8ea587579425ccab24f77430d45a5a7f15c27805ed463`，安装包两份一致。证据 `evidence/ios-package-search/ipa-client004-delivery.json`、`ios-client004-artifact-verification.json`。尚未签名、安装或真机验证，不能当作完整游戏；该构建不包含之后的关卡列表及下述敌方技能修改。
+
+本地 BATTLE-01 新增受限的非空敌方普通技能：只支持普通槽 0、空 AI 条件和 ENEMY1 目标。Windows 合成数据原 DLL 差分中，命中率 100 时敌人对自身造成 7 点伤害，命中率 0 时无该伤害；结果与日志一致。未知槽位、目标和触发条件仍拒绝。重建 DLL SHA-256 `c99ed5edf428cdce990787788bbba316418f620a66ef9db04789e64ecc0bcd8d`，测试 `evidence/native/registered-battle-differential-tests.json`。这不证明敌人能攻击玩家或 AI 完整，尚无真实资源、ARM64 或本增量真机证据。
+
 ## 2026-11-19：BATTLE-01 敌方空技能槽（本地）
 
 根据原 DLL 行为，注册敌人的技能 ID 为零时跳过空技能槽，不再因为空记录拒绝战斗；实际 C# `NativeRegisteredBattle` 适配类也增加敌方技能注册入口。Windows x64 原 DLL 差分注册全部 35 个普通／被动／增幅相关空槽，创建战斗并推进到敌方回合，结果与输入日志一致；含此前双波及 C# 消费者场景，共 2,182 次状态比较、214 次推进、244 次日志快照。Go 状态测试、独立战斗和敌人查询回归通过。重建 DLL SHA-256 `1990f4768faf6779e8c84578627834c12762d3a59494125cba44807c34554e2b`，证据 `evidence/native/registered-battle-differential-tests.json`。

@@ -50,3 +50,33 @@ func TestDecodePreparedEnemyFieldsAndGuards(t *testing.T) {
 		t.Fatal("unimplemented enemy program must be rejected")
 	}
 }
+
+func TestSimpleEnemyActionRejectsUnsupportedInput(t *testing.T) {
+	schema := map[string]map[int32]string{
+		"ENEMY_AI_TARGET":      {0: "NULL", 1: "RANDOM", 23: "ENEMY1"},
+		"ENEMY_AI_ORDER_PARTY": {0: "NULL"}, "ENEMY_AI_ORDER_TRANCE_GAUGE": {0: "NULL"}, "ENEMY_AI_ORDER_TRIGGER": {0: "NULL"},
+	}
+	raw := make([]byte, 2656)
+	binary.LittleEndian.PutUint32(raw[0:], 2001)
+	binary.LittleEndian.PutUint32(raw[2440:], 23)
+	binary.LittleEndian.PutUint32(raw[2484:], 1)
+	binary.LittleEndian.PutUint32(raw[2488:], 10)
+	binary.LittleEndian.PutUint32(raw[2492:], 100)
+	binary.LittleEndian.PutUint16(raw[2540:], 1)
+	action, err := decodeSimpleEnemyAction(schema, raw, 0)
+	if err != nil || action.SkillID != 2001 || action.Target != "ENEMY1" || action.Rate != 100 || action.Order.Fields[7] != "1" {
+		t.Fatalf("unexpected action: %+v %v", action, err)
+	}
+	if _, err := decodeSimpleEnemyAction(schema, raw, 1); err == nil {
+		t.Fatal("unsupported skill slot accepted")
+	}
+	binary.LittleEndian.PutUint32(raw[2440:], 1)
+	if _, err := decodeSimpleEnemyAction(schema, raw, 0); err == nil {
+		t.Fatal("unsupported random selector accepted")
+	}
+	binary.LittleEndian.PutUint32(raw[2440:], 23)
+	binary.LittleEndian.PutUint32(raw[2588:], 1)
+	if _, err := decodeSimpleEnemyAction(schema, raw, 0); err == nil {
+		t.Fatal("unsupported trigger accepted")
+	}
+}

@@ -26,6 +26,17 @@ if ($state.conclusion -ne 'success') {
     $failure | Select-String -Pattern 'error CS|error:|Error:|Exception|FAIL|failed' | Select-Object -Last 25 | ForEach-Object { $_.Line }
     throw 'Cloud build did not succeed; failure log is saved for repair.'
 }
+$existingReport=Join-Path $recoveryRoot 'evidence\ios-package-search\ipa-client004-delivery.json'
+if (Test-Path -LiteralPath $existingReport) {
+    $existing=Get-Content -LiteralPath $existingReport -Raw -Encoding UTF8 | ConvertFrom-Json
+    $copies=@((Join-Path $recoveryRoot 'dist\ready\KairiseiMA-ios-resource-bootstrap-0.0.4-unsigned.ipa'),(Join-Path $recoveryRoot 'install-kit\KairiseiMA-ios-resource-bootstrap-0.0.4-unsigned.ipa'))
+    if ($existing.runId -ne $RunId -or $existing.version -cne '0.0.4' -or $existing.sha256 -notmatch '^[a-f0-9]{64}$') { throw 'Existing delivery report does not match this build.' }
+    foreach ($copy in $copies) {
+        if (!(Test-Path -LiteralPath $copy) -or (Get-FileHash -LiteralPath $copy -Algorithm SHA256).Hash.ToLowerInvariant() -cne $existing.sha256) { throw 'Existing IPA copy is missing or differs from its verified report.' }
+    }
+    Write-Output ('Previously verified 0.0.4 IPA: ' + $existing.sha256)
+    return
+}
 $artifact=Join-Path $recoveryRoot ('dist\cloud-artifacts\ios-client004-'+$RunId)
 $ipaDirectory=Join-Path $artifact 'ipa'
 $resourceDirectory=Join-Path $artifact 'resources'

@@ -121,6 +121,44 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 	}
 	registeredSkills := make(map[int]registeredSkill)
 	registeredRoles := make(map[int][]battlemodel.CombatSkillRole)
+	installSkill := func(decoded registeredSkill) error {
+		if decoded.level.ID == 0 {
+			return nil
+		}
+		if old, exists := registeredSkills[decoded.level.ID]; exists {
+			if !reflect.DeepEqual(old.variants, decoded.variants) || !reflect.DeepEqual(old.roles, decoded.roles) {
+				return fmt.Errorf("conflicting registered skill")
+			}
+			return nil
+		}
+		registeredSkills[decoded.level.ID] = decoded
+		value.Skills[decoded.level.ID] = decoded.variants
+		for key, roles := range decoded.roles {
+			if old, exists := registeredRoles[key]; exists && !reflect.DeepEqual(old, roles) {
+				return fmt.Errorf("conflicting registered role set")
+			}
+			registeredRoles[key] = roles
+			value.SkillRoles[key] = roles
+		}
+		return nil
+	}
+	for _, enemy := range p.enemies {
+		if enemy == nil {
+			continue
+		}
+		for _, raw := range enemy.normal {
+			if raw == nil || wireInt(raw, 0) == 0 {
+				continue
+			}
+			decoded, e := decodeRegisteredSkill(catalog.schema, catalog.value.RoleParamRules, raw[:skillWireSize])
+			if e != nil {
+				return nil, e
+			}
+			if e = installSkill(decoded); e != nil {
+				return nil, e
+			}
+		}
+	}
 	registeredCards := make(map[int]battlemodel.CombatCardDefinition)
 	members := make([]battlemodel.Participant, 0, 8)
 	for i, user := range p.users {
@@ -155,23 +193,8 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 						return nil, fmt.Errorf("conflicting instance skill levels")
 					}
 				}
-				if decoded.level.ID == 0 {
-					continue
-				}
-				if old, exists := registeredSkills[decoded.level.ID]; exists {
-					if !reflect.DeepEqual(old.variants, decoded.variants) || !reflect.DeepEqual(old.roles, decoded.roles) {
-						return nil, fmt.Errorf("conflicting registered skill")
-					}
-				} else {
-					registeredSkills[decoded.level.ID] = decoded
-					value.Skills[decoded.level.ID] = decoded.variants
-					for key, roles := range decoded.roles {
-						if old, exists := registeredRoles[key]; exists && !reflect.DeepEqual(old, roles) {
-							return nil, fmt.Errorf("conflicting registered role set")
-						}
-						registeredRoles[key] = roles
-						value.SkillRoles[key] = roles
-					}
+				if e = installSkill(decoded); e != nil {
+					return nil, e
 				}
 			}
 			rarity, ok := catalog.schema["RARITY"][wireInt(raw, 20)]

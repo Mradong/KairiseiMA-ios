@@ -1,0 +1,113 @@
+{
+  "checkedAt": "2026-11-19T03:26:57.4066529Z",
+  "runId": 44434628647,
+  "stage": "ios-resource-cache-bootstrap",
+  "version": "0.0.4",
+  "bundleIdentifier": "local.kairisei.recovery",
+  "file": "dist/ready/KairiseiMA-ios-resource-bootstrap-0.0.4-unsigned.ipa",
+  "bytes": 26088293,
+  "sha256": "c4e3e39967c3281035d8ea587579425ccab24f77430d45a5a7f15c27805ed463",
+  "matchesCloudChecksum": true,
+  "ipaZipEntries": 57,
+  "localStructuralValidation": {
+    "structuralValidation": "passed",
+    "device": {
+      "model": "iPhone 13",
+      "iOS": "17.4.1"
+    },
+    "bundleIdentifier": "local.kairisei.recovery",
+    "minimumOS": "15.0",
+    "executable": "KairiseiConnectionTest",
+    "executableSHA256": "1f7045bf8e113737c1fd62cd1650371c1748f793a40a0d7ec204708827f1e827",
+    "slices": [
+      {
+        "architecture": "arm64",
+        "fileType": 2,
+        "platform": "iOS",
+        "minimumOS": "15.0.0",
+        "sdk": "18.5.0",
+        "offset": 0,
+        "bytes": 66368
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "UnityFramework.framework",
+        "slices": [
+          {
+            "architecture": "arm64",
+            "fileType": 6,
+            "platform": "iOS",
+            "minimumOS": "15.0.0",
+            "sdk": "18.5.0",
+            "offset": 0,
+            "bytes": 37367872
+          }
+        ]
+      }
+    ],
+    "il2cppMetadata": "Data/Managed/Metadata/global-metadata.dat",
+    "il2cppMetadataVersion": 39,
+    "hasEmbeddedProvisioningProfile": false,
+    "limitations": [
+      "Structural checks do not establish signing validity, installation success, rendering, networking, or complete gameplay.",
+      "A free Apple ID still has to sign the IPA during sideloading."
+    ]
+  },
+  "embeddedResourceValidation": {
+    "checkedAt": "2026-11-19T03:26:57.331Z",
+    "success": true,
+    "platform": "iOS",
+    "unityVersion": "6000.3.26f1",
+    "contentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+    "bundles": [
+      {
+        "name": "recovery/ui.dat",
+        "file": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17.bundle",
+        "bytes": 713591,
+        "sha256": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17",
+        "crc32": "AD4BAC31"
+      }
+    ],
+    "build": {
+      "generatedAt": "2026-11-19T01:16:26.8475770Z",
+      "platform": "iOS",
+      "unityVersion": "6000.3.26f1",
+      "contentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+      "bundleSha256": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17",
+      "bundleBytes": 713591,
+      "sourceAssets": [
+        "Assets/Recovery/Content/Battle-frames.json",
+        "Assets/Recovery/Content/Battle.png",
+        "Assets/Recovery/Content/Cmn-frames.json",
+        "Assets/Recovery/Content/Cmn.png",
+        "Assets/Recovery/Content/Deck_Battle-frames.json",
+        "Assets/Recovery/Content/Deck_Battle.png",
+        "Assets/Recovery/Content/Party-frames.json",
+        "Assets/Recovery/Content/Party.png",
+        "Assets/Recovery/Content/Title.png",
+        "Assets/Recovery/Content/title-background.png"
+      ],
+      "fontGlyphCheck": true,
+      "scope": "Partial recovered UI content and persistent-cache bootstrap; not a complete game resource set.",
+      "gameplayReady": false
+    },
+    "scope": "Downloaded Unity-built resource artifact metadata, hash/CRC and UnityFS header inspection. Does not prove iPhone bundle loading, graphics, persistence or gameplay."
+  },
+  "linkedGoMarkersVerified": true,
+  "nativeBuild": {
+    "stage": "synthetic-native-validation",
+    "gameplayReady": false,
+    "go": "1.25.1",
+    "target": "ios/arm64",
+    "minimumOS": "15.0",
+    "dependencyCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+    "archiveBytes": 10024304,
+    "archiveSHA256": "d089a0c91375f5102643ef4c89848dd83c094fbce07eae7a90abacbdc1301c99",
+    "deviceTested": false
+  },
+  "signedForUsersPhone": false,
+  "installedOnPhone": false,
+  "deviceRuntimeTested": false,
+  "gameplayReady": false
+}

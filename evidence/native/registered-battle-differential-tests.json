@@ -1,15 +1,15 @@
 {
-  "checkedAt": "2026-11-19T01:19:25.939Z",
+  "checkedAt": "2026-11-19T06:04:55.836Z",
   "success": true,
   "counts": {
-    "checks": 2182,
+    "checks": 2321,
     "waveCases": 12,
     "managedScenarios": 3,
     "managedComparisons": 108,
     "startBytes": 1714,
     "attackBytes": 227,
-    "advanceCalls": 214,
-    "journalSnapshots": 244,
+    "advanceCalls": 236,
+    "journalSnapshots": 266,
     "registeredEnemyStartBytes": 1711,
     "nextStartBytes": 1711,
     "nextWaveWon": true,
@@ -21,7 +21,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "1990f4768faf6779e8c84578627834c12762d3a59494125cba44807c34554e2b"
+    "sha256": "c99ed5edf428cdce990787788bbba316418f620a66ef9db04789e64ecc0bcd8d"
   },
-  "scope": "Windows x64 synthetic registered mode-1 party: original-DLL status, full result CSV and cumulative journal comparisons, actual damage, first-wave victory, registered next wave and second-wave victory. All 35 registered enemy skill slots with zero skill ID are tested through an enemy turn. Twelve cases cover 1/3/5 contiguous packed effects and incoming enemy types 0/1/2/3, changed enemy HP, failure/pending-output priorities and short/null result reads. The actual Unity runtime NativeRegisteredBattle.cs adapter is also compiled and executed against the rebuilt Windows DLL in three two-wave scenarios; 108 result/journal comparisons match the original and repeated disposal/creation does not exhaust catalog capacity. Nonzero enemy programs remain unsupported. No Unity engine, ARM64, real game resources, account state or iPhone execution was tested."
+  "scope": "Windows x64 synthetic registered mode-1 party: original-DLL status, full result CSV and cumulative journal comparisons. All 35 zero-ID enemy skill slots are tested. One nonzero enemy normal action selects ENEMY1 (itself) with null conditions; rates 100 and 0 are compared, including actual self-damage for rate 100. Other nonzero slots, targets and triggers are unverified or rejected. Twelve cases cover player effects and two waves. Actual C# NativeRegisteredBattle adapter is compiled/executed against the rebuilt DLL with original result/journal comparisons. No enemy damage to players, real resources, Unity engine, ARM64 or iPhone execution was tested."
 }

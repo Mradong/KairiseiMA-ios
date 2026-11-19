@@ -1,0 +1,10 @@
+{
+  "checkedAt": "2026-11-19T06:06:10.991Z",
+  "runId": 44434628647,
+  "sourceCommit": "090f19003b9bc2ecdc8b024c67024d9398ffc8f0",
+  "version": "0.0.4",
+  "ipaSHA256": "c4e3e39967c3281035d8ea587579425ccab24f77430d45a5a7f15c27805ed463",
+  "serviceTestsPassed": 28,
+  "serviceTestsFailed": 0,
+  "scope": "Built iOS resources and isolated server tests. No signed IPA, phone installation, complete gameplay or persistence verification."
+}
