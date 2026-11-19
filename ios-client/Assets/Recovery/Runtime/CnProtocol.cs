@@ -266,6 +266,22 @@ namespace Kairisei.Recovery
             return result;
         }
 
+        public static string CreateDeckSetRequest(string sessionKey, CnDeck deck, long[] cards)
+        {
+            if (deck == null || deck.Wire == null || cards == null || cards.Length != deck.Cards.Length)
+                throw new ArgumentException("卡组草稿无效。");
+            JObject wire = deck.Wire;
+            JObject draft = new JObject {
+                { "arthur_type", RequiredInteger(wire, "0") }, { "idx", RequiredInteger(wire, "1") },
+                { "job_type", RequiredInteger(wire, "2") }, { "leader_card_idx", RequiredInteger(wire, "3") },
+                { "card_uniqid", new JArray(cards) }, { "support_card_uniqid", new JArray(deck.Support) },
+                { "sphr_uniqid", new JArray(deck.Spheres) }, { "buddy_uniqid", new JArray(deck.Buddies) },
+                { "name", deck.Name }, { "is_active", RequiredInteger(wire, "9") },
+                { "is_rental", RequiredInteger(wire, "10") }, { "deck_rank", RequiredInteger(wire, "11") }
+            };
+            return CreateSessionRequest(sessionKey, new JObject { { "decks", new JArray(draft) } });
+        }
+
         private static long[] IntegerArray(JObject value, string key)
         {
             JArray array = value[key] as JArray;

@@ -191,6 +191,17 @@ public static class CnProtocolTests
             {
                 CnCardCollection actualCollection = CnProtocol.ParseCardShow(File.ReadAllText(actualCards));
                 Check(actualCollection.Cards.Count == 10 && actualCollection.Decks.Count == 4 && actualCollection.Cards.ContainsKey(actualCollection.Decks[0].Cards[0]), "isolated service starter cards and decks");
+                string expectedPath = Environment.GetEnvironmentVariable("IOS_DECK_REQUEST_FIXTURE");
+                if (!String.IsNullOrEmpty(expectedPath))
+                {
+                    CnDeck deck = actualCollection.Decks[0];
+                    long[] draft = (long[])deck.Cards.Clone();
+                    long temp = draft[1]; draft[1] = draft[2]; draft[2] = temp;
+                    string body = CnProtocol.CreateDeckSetRequest(Session, deck, draft);
+                    Check(JToken.DeepEquals(JObject.Parse(body.Substring(Session.Length)), JObject.Parse(File.ReadAllText(expectedPath))), "deck set request matches actual isolated service reorder");
+                    Check(deck.Cards[1] != draft[1], "editing draft leaves server snapshot unchanged");
+                    Reject(delegate { CnProtocol.CreateDeckSetRequest(Session, deck, new long[0]); }, "invalid draft slot count");
+                }
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;

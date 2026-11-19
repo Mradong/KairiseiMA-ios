@@ -78,7 +78,7 @@ const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connec
 const result = {
   generatedAt: new Date().toISOString(), success: status === 0 && failures.length === 0 && JSON.stringify(calls) === JSON.stringify(expectedCalls),
   compiler: 'Windows .NET Framework C# compiler', jsonLibrary: 'Newtonsoft.Json 13.0.2 net45',
-  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + (process.env.IOS_BONUS_PROJECTION_FIXTURE ? '; parses actual Go reward projections from synthetic claims' : '') + (process.env.IOS_CARD_TEST_FIXTURE ? '; parses actual isolated service starter cards and decks' : '') + '; no Unity/iOS runtime or live game server was tested.',
+  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + (process.env.IOS_BONUS_PROJECTION_FIXTURE ? '; parses actual Go reward projections from synthetic claims' : '') + (process.env.IOS_CARD_TEST_FIXTURE ? '; parses actual isolated service starter cards and decks' : '') + (process.env.IOS_DECK_REQUEST_FIXTURE ? '; compares C# deck save body against isolated service reorder' : '') + '; no Unity/iOS runtime or live game server was tested.',
   stdout: stdout.trim(), stderr: stderr.trim(), calls, failures,
 };
 fs.writeFileSync(path.join(root, 'evidence/protocol-tests.json'), JSON.stringify(result, null, 2) + '\n');

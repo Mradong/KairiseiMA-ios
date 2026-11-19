@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-19T01:00:37.317Z",
+  "generatedAt": "2026-11-19T01:04:25.580Z",
   "success": true,
   "compiler": "Windows .NET Framework C# compiler",
   "jsonLibrary": "Newtonsoft.Json 13.0.2 net45",
-  "scope": "CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture; additionally parses an isolated service test HomeShow response; parses actual Go reward projections from synthetic claims; parses actual isolated service starter cards and decks; no Unity/iOS runtime or live game server was tested.",
-  "stdout": "PASS 77 protocol checks",
+  "scope": "CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture; additionally parses an isolated service test HomeShow response; parses actual Go reward projections from synthetic claims; parses actual isolated service starter cards and decks; compares C# deck save body against isolated service reorder; no Unity/iOS runtime or live game server was tested.",
+  "stdout": "PASS 80 protocol checks",
   "stderr": "",
   "calls": [
     "GET /healthz",

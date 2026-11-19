@@ -99,6 +99,55 @@ func TestIOSCharacterCreateConnectFlow(t *testing.T) {
 	if json.Unmarshal(cardShow["1"], &cards) != nil || json.Unmarshal(cardShow["3"], &decks) != nil {
 		t.Fatalf("card/deck response missing arrays")
 	}
+	if len(decks) == 0 {
+		t.Fatal("starter deck missing")
+	}
+	var deck map[string]json.RawMessage
+	if json.Unmarshal(decks[0], &deck) != nil {
+		t.Fatal("invalid starter deck")
+	}
+	var slots []int64
+	if json.Unmarshal(deck["4"], &slots) != nil || len(slots) < 3 || slots[1] == slots[2] {
+		t.Fatal("starter slots cannot test a reorder")
+	}
+	slots[1], slots[2] = slots[2], slots[1]
+	requestDeck := map[string]any{"arthur_type": deck["0"], "idx": deck["1"], "job_type": deck["2"], "leader_card_idx": deck["3"], "card_uniqid": slots,
+		"support_card_uniqid": deck["5"], "sphr_uniqid": deck["6"], "buddy_uniqid": deck["7"], "name": deck["8"], "is_active": deck["9"], "is_rental": deck["10"], "deck_rank": deck["11"]}
+	request, err := json.Marshal(map[string]any{"decks": []any{requestDeck}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	call("/CardDeckSet", string(request))
+	refreshed := call("/CardShow2", `{"0":1}`)
+	var actualDecks []map[string]json.RawMessage
+	if json.Unmarshal(refreshed["3"], &actualDecks) != nil || len(actualDecks) == 0 {
+		t.Fatal("missing saved decks")
+	}
+	var actual []int64
+	if json.Unmarshal(actualDecks[0]["4"], &actual) != nil || len(actual) != len(slots) || actual[1] != slots[1] || actual[2] != slots[2] {
+		t.Fatal("deck reorder did not persist")
+	}
+	invalid := append([]int64(nil), slots...)
+	invalid[1] = 999999999
+	requestDeck["card_uniqid"] = invalid
+	badBody, err := json.Marshal(map[string]any{"decks": []any{requestDeck}})
+	if err != nil {
+		t.Fatal(err)
+	}
+	bad := httptest.NewRecorder()
+	handler.ServeHTTP(bad, httptest.NewRequest(http.MethodPost, "/CardDeckSet", strings.NewReader(identity.Session+string(badBody))))
+	if bad.Code == http.StatusOK {
+		t.Fatal("unknown card was accepted")
+	}
+	checked := call("/CardShow2", `{"0":1}`)
+	if json.Unmarshal(checked["3"], &actualDecks) != nil || json.Unmarshal(actualDecks[0]["4"], &actual) != nil || actual[1] != slots[1] || actual[2] != slots[2] {
+		t.Fatal("rejected edit changed saved deck")
+	}
+	if target := os.Getenv("IOS_DECK_REQUEST_FIXTURE"); target != "" {
+		if err := os.WriteFile(target, request, 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
 	if target := os.Getenv("IOS_CARD_TEST_FIXTURE"); target != "" {
 		payload, err := json.Marshal(cardShow)
 		if err != nil {

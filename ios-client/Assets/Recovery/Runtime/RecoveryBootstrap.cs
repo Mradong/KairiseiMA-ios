@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using System.Security.Cryptography;
 using System.Text;
 using Newtonsoft.Json.Linq;
@@ -22,6 +23,11 @@ namespace Kairisei.Recovery
         private bool showingDeck;
         private int deckIndex;
         private Vector2 deckScroll;
+        private long[] deckDraft;
+        private List<long> cardChoices;
+        private int editSlot;
+        private int cardChoice;
+        private bool deckDirty;
         private string bonusKey;
         private string bonusNotice = "";
         private Vector2 bonusScroll;
@@ -131,12 +137,27 @@ namespace Kairisei.Recovery
                 GUI.color = previousColor;
                 string deckText = DeckText();
                 GUI.Label(new Rect(240, 115, 800, 50), "服务器卡组", headingStyle);
-                deckScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 330), deckScroll, new Rect(0, 0, 760, Mathf.Max(330, bodyStyle.CalcHeight(new GUIContent(deckText), 750))));
+                deckScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 210), deckScroll, new Rect(0, 0, 760, Mathf.Max(210, bodyStyle.CalcHeight(new GUIContent(deckText), 750))));
                 GUI.Label(new Rect(0, 0, 750, bodyStyle.CalcHeight(new GUIContent(deckText), 750)), deckText, bodyStyle);
                 GUI.EndScrollView();
-                if (GUI.Button(new Rect(240, 530, 200, 55), "上一组", buttonStyle) && deckIndex > 0) { deckIndex--; deckScroll = Vector2.zero; }
-                if (GUI.Button(new Rect(470, 530, 200, 55), "下一组", buttonStyle) && deckIndex + 1 < cardCollection.Decks.Count) { deckIndex++; deckScroll = Vector2.zero; }
-                if (GUI.Button(new Rect(760, 530, 240, 55), "返回", buttonStyle)) showingDeck = false;
+                if (deckDraft != null && deckDraft.Length > 0)
+                {
+                    if (GUI.Button(new Rect(240, 400, 120, 48), "上一槽", buttonStyle)) editSlot = (editSlot + deckDraft.Length - 1) % deckDraft.Length;
+                    if (GUI.Button(new Rect(370, 400, 120, 48), "下一槽", buttonStyle)) editSlot = (editSlot + 1) % deckDraft.Length;
+                    if (GUI.Button(new Rect(510, 400, 120, 48), "上一卡", buttonStyle)) cardChoice = (cardChoice + cardChoices.Count - 1) % cardChoices.Count;
+                    if (GUI.Button(new Rect(640, 400, 120, 48), "下一卡", buttonStyle)) cardChoice = (cardChoice + 1) % cardChoices.Count;
+                    if (GUI.Button(new Rect(780, 400, 220, 48), "放入选中槽", buttonStyle)) { deckDraft[editSlot] = cardChoices[cardChoice]; deckDirty = true; }
+                    CnCard selected;
+                    string choice = cardChoices[cardChoice] == 0 ? "空" : cardCollection.Cards.TryGetValue(cardChoices[cardChoice], out selected) ? "卡牌 " + selected.CardId + " 等级 " + selected.Level : "不可用";
+                    GUI.Label(new Rect(240, 460, 760, 48), "选中槽位 " + (editSlot + 1) + "；候选 " + choice + (deckDirty ? "（未保存）" : ""), bodyStyle);
+                }
+                GUI.enabled = !busy && !deckDirty;
+                if (GUI.Button(new Rect(240, 530, 150, 55), "上一组", buttonStyle) && deckIndex > 0) { deckIndex--; PrepareDeckDraft(); }
+                if (GUI.Button(new Rect(400, 530, 150, 55), "下一组", buttonStyle) && deckIndex + 1 < cardCollection.Decks.Count) { deckIndex++; PrepareDeckDraft(); }
+                GUI.enabled = !busy && deckDirty;
+                if (GUI.Button(new Rect(580, 530, 190, 55), "保存卡组", buttonStyle)) SaveDeck();
+                GUI.enabled = !busy;
+                if (GUI.Button(new Rect(790, 530, 210, 55), deckDirty ? "放弃并返回" : "返回", buttonStyle)) showingDeck = false;
             }
             if (showBonus)
             {
@@ -258,8 +279,30 @@ namespace Kairisei.Recovery
             CnLogin requestedLogin = login;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardShow2"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", 1 } }), delegate(string response) {
                 cardCollection = CnProtocol.ParseCardShow(response);
-                deckIndex = 0; deckScroll = Vector2.zero; showingDeck = true;
-                status = "已读取服务器卡组；卡牌名称和编辑功能仍在恢复。";
+                deckIndex = 0; PrepareDeckDraft(); showingDeck = true;
+                status = "已读取服务器卡组；卡牌名称与插画仍在恢复。";
+            }));
+        }
+
+        private void PrepareDeckDraft()
+        {
+            deckScroll = Vector2.zero; editSlot = 0; cardChoice = 0; deckDirty = false;
+            deckDraft = cardCollection.Decks.Count == 0 ? null : (long[])cardCollection.Decks[deckIndex].Cards.Clone();
+            cardChoices = new List<long>(cardCollection.Cards.Keys); cardChoices.Sort(); cardChoices.Insert(0, 0);
+        }
+
+        private void SaveDeck()
+        {
+            if (busy || login == null || cardCollection == null || deckDraft == null || !deckDirty || verifiedAddress != address) return;
+            string request;
+            try { request = CnProtocol.CreateDeckSetRequest(login.SessionKey, cardCollection.Decks[deckIndex], deckDraft); }
+            catch (Exception error) { status = error.Message; showingDeck = false; return; }
+            CnLogin requestedLogin = login;
+            // After any transport result, force a fresh read before another edit.
+            showingDeck = false; cardCollection = null; deckDraft = null;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardDeckSet"), request, delegate(string response) {
+                CnProtocol.ParseEnvelope(response);
+                status = "服务器已确认保存。请重新读取卡组以查看当前状态。";
             }));
         }
 
@@ -273,7 +316,7 @@ namespace Kairisei.Recovery
             for (int i = 0; i < deck.Cards.Length; i++)
             {
                 CnCard card;
-                long id = deck.Cards[i];
+                long id = deckDraft[i];
                 text.Append(i + 1).Append(". ");
                 if (id == 0) text.AppendLine("空");
                 else if (cardCollection.Cards.TryGetValue(id, out card)) text.Append("卡牌 ").Append(card.CardId).Append("  等级 ").AppendLine(card.Level.ToString());
