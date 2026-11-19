@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-19：CLIENT-01 主页视觉数据及旧资源调查（本地）
+
+客户端解析主页时保留服务器 `background`、用户 `navi_type` 及完整业务数据；字段缺失保留未知值，非法值拒绝。隔离服务主页响应中的背景 1、导航 0 经实际 C# 解析，94 项协议检查通过。该改动只保留数据，尚未加载或显示对应主页资源。
+
+旧版 1.4.0 可读代码根据导航角色背景配置或主页返回的背景编号加载背景，失败后尝试默认 1000；6.0.2 随包 `patch.txt` 包含主页资源包条目，导出有导航角色表，但尚未找到该包本体，也未证明 6.0.2 同样执行 1.4.0 逻辑。证据 `evidence/ios-package-search/ios602-home-resource-audit.json`、`evidence/protocol-tests.json`，复核脚本 `scripts/audit-602-home.mjs`。无 Unity/iOS 或真机验证，不在 0.0.4 中。
+
 ## 2026-11-19：SCOPE-01 旧版场景依赖调查（静态）
 
 对已导出的 6.0.2 Home、Deck、Battle、Result、TeamStOne、StageSt 六个场景扫描对象与 GUID。Home 有 21 个对象、27 个脚本组件，可将 `Instance` 关联到导出的 `Home.cs`，并定位动画、材质及 Live2D 网格；这 27 个组件在 1.4.0 导出中均有同路径脚本，但同名不证明版本兼容。六个场景导出的脚本组件均无自定义字段；Result 的 `Result_PvpCNRank` 有一个空脚本引用。静态 GUID 对应只证明文件可定位，不证明传递依赖、资产可加载或运行时可用。

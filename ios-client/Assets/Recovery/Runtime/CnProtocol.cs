@@ -94,6 +94,9 @@ namespace Kairisei.Recovery
         public long Gold { get; internal set; }
         public long ServerTime { get; internal set; }
         public string BonusNotice { get; internal set; }
+        public long? BackgroundId { get; internal set; }
+        public long? NaviType { get; internal set; }
+        public JObject Wire { get; internal set; }
     }
 
     public sealed class CnCard
@@ -266,8 +269,17 @@ namespace Kairisei.Recovery
                 Ap = RequiredInteger(user, "ap"), ApMax = RequiredInteger(user, "ap_max"),
                 Bp = RequiredInteger(user, "bp"), BpMax = RequiredInteger(user, "bp_max"),
                 Gold = RequiredInteger(user, "gold"), ServerTime = RequiredInteger(payload, "server_time"),
-                BonusNotice = DescribeHomeBonuses(payload)
+                BonusNotice = DescribeHomeBonuses(payload), BackgroundId = OptionalNonNegativeInteger(payload, "background"),
+                NaviType = OptionalNonNegativeInteger(user, "navi_type"), Wire = (JObject)payload.DeepClone()
             };
+        }
+
+        private static long? OptionalNonNegativeInteger(JObject source, string key)
+        {
+            JToken value = source[key];
+            if (value == null || value.Type == JTokenType.Null) return null;
+            if (value.Type != JTokenType.Integer || value.Value<long>() < 0) throw new FormatException("Invalid field: " + key);
+            return value.Value<long>();
         }
 
         public static List<CnQuest> ParseSoloQuests(string content)

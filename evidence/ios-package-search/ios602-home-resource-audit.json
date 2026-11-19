@@ -1,0 +1,36 @@
+{
+  "generatedAt": "2026-11-19T08:18:25.693Z",
+  "sourceIpaSha256": "d86d7609d6235ae836d4721591358de496f7f679a6ef192aea7ab054949c930b",
+  "legacy140": {
+    "path": "legacy-unity/ExportedProject/Assets/Scripts/Assembly-CSharp/Home.cs",
+    "sha256": "c983f187b3aa9d2d03e432934242d5a337ed37d734c0e7715ae51e365c169c2f",
+    "backgroundLogic": "OnInitializedNavi: use nonzero navi background_id when present, otherwise HomeShow.background; failed resource load tries id 1000.",
+    "compatibility": "Reference behavior from 1.4.0, not proven for 6.0.2."
+  },
+  "ipa602": {
+    "patch": {
+      "path": "inputs/ios/cn602/Data/Raw/patch.txt",
+      "sha256": "80eac52c8df6fca62728f8dc91e8af51a2cc434aebe52359a250636418602f84",
+      "entries": [
+        {
+          "line": 210,
+          "value": "02_Map_Assets_Home.bytes,16,0,882523042224,1,0,1,1,5312212,0"
+        }
+      ]
+    },
+    "naviTable": {
+      "path": "ios602-unity/ExportedProject/Assets/Resources/container/navi/navi.csv.csv",
+      "sha256": "f8658988b8a0d8b3f5b6c3ec4a6bb3fc90279039f7f524929f1836b34b8bb7db",
+      "header": "#ID,ナビキャラクター名,PICTID,ITEM_PICT_ID,Live2Dフォルダ名,拠点背景ID,声音,",
+      "rows": 49
+    },
+    "observedLimitation": "The manifest entry alone does not prove a matching bundle is included, accessible, complete, or compatible with Unity 6."
+  },
+  "isolatedHome": {
+    "source": "evidence/ios-package-search/ios-home-isolated-fixture.json",
+    "background": 1,
+    "naviType": 0,
+    "scope": "Disposable isolated service fixture; not a real account or live deployment."
+  },
+  "scope": "Static source comparison only; no 6.0.2 method bodies, version compatibility, resource load, Unity execution or phone behavior established."
+}

@@ -67,6 +67,12 @@ public static class CnProtocolTests
         string homeResponse = "{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"测试骑士\",\"lv\":4,\"active_arthur_type\":3,\"ap\":15,\"ap_max\":20,\"bp\":2,\"bp_max\":3,\"gold\":123456},\"server_time\":100}\n{}";
         CnHomeState home = CnProtocol.ParseHome(homeResponse, 1337);
         Check(home.Name == "测试骑士" && home.Level == 4 && home.Ap == 15 && home.ApMax == 20 && home.Bp == 2 && home.BpMax == 3 && home.Gold == 123456 && home.ServerTime == 100, "home user fields");
+        Check(home.BackgroundId == null && home.NaviType == null, "absent home visual selection remains unknown");
+        string visualResponse = homeResponse.Replace("\"active_arthur_type\":3", "\"active_arthur_type\":3,\"navi_type\":7").Replace("\"server_time\":100", "\"background\":123,\"server_time\":100");
+        CnHomeState visualHome = CnProtocol.ParseHome(visualResponse, 1337);
+        Check(visualHome.BackgroundId == 123 && visualHome.NaviType == 7 && (long)visualHome.Wire["background"] == 123, "home visual fields retained");
+        Reject(delegate { CnProtocol.ParseHome(visualResponse.Replace("\"background\":123", "\"background\":-1"), 1337); }, "negative background");
+        Reject(delegate { CnProtocol.ParseHome(visualResponse.Replace("\"navi_type\":7", "\"navi_type\":\"7\""), 1337); }, "invalid navigator");
         string bonusResponse = homeResponse.Replace("\"server_time\":100", "\"server_time\":100,\"login_bonus_daily\":[{\"day_num\":2,\"reward\":{\"reward\":{\"type\":10,\"reward_typeid\":0,\"num\":20}}}],\"login_bonus_beginner\":[{\"day_num\":2,\"reward\":[{\"reward\":{\"type\":1,\"reward_typeid\":111,\"num\":1}},{\"reward\":{\"type\":2,\"reward_typeid\":222,\"num\":3}}]}],\"login_bonus_total\":[{\"day_num\":7,\"reward\":{\"reward\":{\"type\":3,\"reward_typeid\":333,\"num\":4}}},{\"day_num\":14,\"reward\":{\"reward\":{\"type\":9,\"reward_typeid\":999,\"num\":1}}}]");
         string notices = CnProtocol.ParseHome(bonusResponse, 1337).BonusNotice;
         Check(notices.Contains("编号 222") && notices.Contains("数量 20") && notices.Contains("编号 333") && !notices.Contains("编号 111") && !notices.Contains("编号 999"), "only earned login rewards, not previews");
@@ -206,6 +212,7 @@ public static class CnProtocolTests
                 JObject actualUser = (JObject)CnProtocol.ParseEnvelope(actual).Payload["user"];
                 CnHomeState actualHome = CnProtocol.ParseHome(actual, (long)actualUser["userid"]);
                 Check(actualHome.Name == "测试骑士" && actualHome.ServerTime > 0, "actual isolated service home response");
+                Check(actualHome.BackgroundId == 1 && actualHome.NaviType == 0 && (long)actualHome.Wire["background"] == 1, "isolated service home visual selection");
             }
             string projected = Environment.GetEnvironmentVariable("IOS_BONUS_PROJECTION_FIXTURE");
             if (!String.IsNullOrEmpty(projected))
