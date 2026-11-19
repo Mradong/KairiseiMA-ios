@@ -18,6 +18,9 @@ namespace Kairisei.Recovery
         private CnLogin login;
         private CnConnectState connectState;
         private CnHomeState homeState;
+        private string bonusKey;
+        private string bonusNotice = "";
+        private Vector2 bonusScroll;
         private string characterName = "";
         private int arthurType = 1;
         private bool serverContentReady;
@@ -68,6 +71,7 @@ namespace Kairisei.Recovery
             Rect safe = Screen.safeArea;
             float scale = Mathf.Min(safe.width / 1280f, safe.height / 720f);
             if (scale <= 0) return;
+            bool showBonus = !String.IsNullOrEmpty(bonusNotice) && login != null && verifiedAddress == address;
             Matrix4x4 previousMatrix = GUI.matrix;
             float left = safe.x + (safe.width - 1280f * scale) / 2f;
             float top = Screen.height - safe.yMax + (safe.height - 720f * scale) / 2f;
@@ -86,18 +90,18 @@ namespace Kairisei.Recovery
             GUI.color = previousColor;
             GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
             GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
-            GUI.enabled = !busy;
+            GUI.enabled = !busy && !showBonus;
             address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
             if (GUI.Button(new Rect(100, 300, 320, 64), busy ? "连接中…" : "检查连接", buttonStyle)) CheckHealth();
-            GUI.enabled = !busy && endpoint != null && verifiedAddress == address;
+            GUI.enabled = !busy && !showBonus && endpoint != null && verifiedAddress == address;
             if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
-            GUI.enabled = !busy && login != null && serverContentReady && verifiedAddress == address;
+            GUI.enabled = !busy && !showBonus && login != null && serverContentReady && verifiedAddress == address;
             if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
             if (connectState != null && connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
-                GUI.enabled = !busy;
+                GUI.enabled = !busy && !showBonus;
                 if (GUI.Button(new Rect(995, 465, 185, 54), "进入主页", buttonStyle)) ReadHome();
                 GUI.enabled = true;
                 if (homeState != null)
@@ -105,7 +109,7 @@ namespace Kairisei.Recovery
             }
             if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
-                GUI.enabled = !busy;
+                GUI.enabled = !busy && !showBonus;
                 characterName = GUI.TextField(new Rect(100, 465, 280, 54), characterName, 32, inputStyle);
                 string[] roles = { "佣兵", "富豪", "盗贼", "歌姬" };
                 for (int i = 0; i < roles.Length; i++)
@@ -113,14 +117,29 @@ namespace Kairisei.Recovery
                 if (GUI.Button(new Rect(995, 465, 185, 54), "创建角色", buttonStyle)) CreateCharacter();
                 GUI.enabled = true;
             }
-            GUI.enabled = !busy;
-            if (GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
+            if (showBonus)
+            {
+                GUI.enabled = true;
+                GUI.color = new Color(0, 0, 0, 0.96f);
+                GUI.DrawTexture(new Rect(260, 120, 760, 485), Texture2D.whiteTexture);
+                GUI.color = previousColor;
+                GUI.Label(new Rect(300, 145, 680, 45), "登录奖励", headingStyle);
+                bonusScroll = GUI.BeginScrollView(new Rect(300, 200, 680, 300), bonusScroll, new Rect(0, 0, 640, Mathf.Max(300, bodyStyle.CalcHeight(new GUIContent(bonusNotice), 630))));
+                GUI.Label(new Rect(0, 0, 630, bodyStyle.CalcHeight(new GUIContent(bonusNotice), 630)), bonusNotice, bodyStyle);
+                GUI.EndScrollView();
+                if (GUI.Button(new Rect(490, 525, 300, 55), "知道了", buttonStyle))
+                {
+                    PlayerPrefs.DeleteKey(bonusKey); PlayerPrefs.Save(); bonusNotice = "";
+                }
+            }
+            GUI.enabled = !busy && !showBonus;
+            if (!showBonus && GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
             {
                 try { status = NativeBattleValidation.Run(); }
                 catch (Exception error) { status = "战斗内核验证失败：" + error.Message; }
             }
             GUI.enabled = true;
-            GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
+            if (!showBonus) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
             GUI.matrix = previousMatrix;
             GUI.color = previousColor;
         }
@@ -130,6 +149,8 @@ namespace Kairisei.Recovery
             login = null;
             connectState = null;
             homeState = null;
+            bonusKey = null;
+            bonusNotice = "";
             serverContentReady = false;
             endpoint = null;
             verifiedAddress = null;
@@ -151,6 +172,8 @@ namespace Kairisei.Recovery
             login = null;
             connectState = null;
             homeState = null;
+            bonusKey = null;
+            bonusNotice = "";
             serverContentReady = false;
             string key;
             using (SHA256 hash = SHA256.Create())
@@ -159,6 +182,9 @@ namespace Kairisei.Recovery
             if (String.IsNullOrEmpty(uuid)) { uuid = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString(key, uuid); PlayerPrefs.Save(); }
             StartCoroutine(Send("POST", endpoint.Route("/local/client/login"), CnProtocol.CreateLogin(uuid, Application.unityVersion), delegate(string response) {
                 login = CnProtocol.ParseLogin(response, endpoint);
+                using (SHA256 hash = SHA256.Create())
+                    bonusKey = "ios-recovery.bonus." + BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(endpoint.ToString() + "|" + login.UserId))).Replace("-", "");
+                bonusNotice = PlayerPrefs.GetString(bonusKey, "");
                 status = "测试游客登录成功，正在检查服务器资源…";
                 StartCoroutine(UpdateServerContent(login));
             }));
@@ -192,7 +218,12 @@ namespace Kairisei.Recovery
             homeState = null;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/HomeShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, null), delegate(string response) {
                 homeState = CnProtocol.ParseHome(response, requestedLogin.UserId);
-                status = "已读取服务器主页角色状态；主页场景、奖励与导航仍在恢复。";
+                if (!String.IsNullOrEmpty(homeState.BonusNotice))
+                {
+                    bonusNotice = String.IsNullOrEmpty(bonusNotice) ? homeState.BonusNotice : bonusNotice + "\n" + homeState.BonusNotice;
+                    PlayerPrefs.SetString(bonusKey, bonusNotice); PlayerPrefs.Save();
+                }
+                status = "已读取服务器主页角色状态；主页场景与导航仍在恢复。";
             }));
         }
 

@@ -67,6 +67,11 @@ public static class CnProtocolTests
         string homeResponse = "{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"测试骑士\",\"lv\":4,\"ap\":15,\"ap_max\":20,\"bp\":2,\"bp_max\":3,\"gold\":123456},\"server_time\":100}\n{}";
         CnHomeState home = CnProtocol.ParseHome(homeResponse, 1337);
         Check(home.Name == "测试骑士" && home.Level == 4 && home.Ap == 15 && home.ApMax == 20 && home.Bp == 2 && home.BpMax == 3 && home.Gold == 123456 && home.ServerTime == 100, "home user fields");
+        string bonusResponse = homeResponse.Replace("\"server_time\":100", "\"server_time\":100,\"login_bonus_daily\":[{\"day_num\":2,\"reward\":{\"reward\":{\"type\":10,\"reward_typeid\":0,\"num\":20}}}],\"login_bonus_beginner\":[{\"day_num\":2,\"reward\":[{\"reward\":{\"type\":1,\"reward_typeid\":111,\"num\":1}},{\"reward\":{\"type\":2,\"reward_typeid\":222,\"num\":3}}]}],\"login_bonus_total\":[{\"day_num\":7,\"reward\":{\"reward\":{\"type\":3,\"reward_typeid\":333,\"num\":4}}},{\"day_num\":14,\"reward\":{\"reward\":{\"type\":9,\"reward_typeid\":999,\"num\":1}}}]");
+        string notices = CnProtocol.ParseHome(bonusResponse, 1337).BonusNotice;
+        Check(notices.Contains("编号 222") && notices.Contains("数量 20") && notices.Contains("编号 333") && !notices.Contains("编号 111") && !notices.Contains("编号 999"), "only earned login rewards, not previews");
+        Reject(delegate { CnProtocol.ParseHome(bonusResponse.Replace("\"day_num\":2,\"reward\":[", "\"day_num\":9,\"reward\":["), 1337); }, "invalid beginner reward day");
+        Check(home.BonusNotice == "", "no login reward notice");
         Reject(delegate { CnProtocol.ParseHome(homeResponse, 1338); }, "home user mismatch");
         Reject(delegate { CnProtocol.ParseHome("{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"name\"}}", 1337); }, "incomplete home response");
         Reject(delegate { CnProtocol.CreateSessionRequest("short", new JObject()); }, "short session");
@@ -163,6 +168,12 @@ public static class CnProtocolTests
                 JObject actualUser = (JObject)CnProtocol.ParseEnvelope(actual).Payload["user"];
                 CnHomeState actualHome = CnProtocol.ParseHome(actual, (long)actualUser["userid"]);
                 Check(actualHome.Name == "测试骑士" && actualHome.ServerTime > 0, "actual isolated service home response");
+            }
+            string projected = Environment.GetEnvironmentVariable("IOS_BONUS_PROJECTION_FIXTURE");
+            if (!String.IsNullOrEmpty(projected))
+            {
+                string bonus = CnProtocol.ParseHome(File.ReadAllText(projected), 1337).BonusNotice;
+                Check(bonus.Contains("编号 20") && bonus.Contains("编号 70") && !bonus.Contains("编号 10") && !bonus.Contains("编号 140"), "isolated actual service reward projections exclude previews");
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;

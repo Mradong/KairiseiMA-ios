@@ -17,6 +17,17 @@ func TestIOSCharacterCreateConnectFlow(t *testing.T) {
 		t.Fatal(err)
 	}
 	handler := newTestHandler(t, root, filepath.Join(root, "requests.jsonl"))
+	primary := handler.(testSessionHandler)
+	bonusResponse := httptest.NewRecorder()
+	handler.ServeHTTP(bonusResponse, httptest.NewRequest(http.MethodPost, "/HomeShow", strings.NewReader(primary.sessionKey)))
+	if bonusResponse.Code != http.StatusOK {
+		t.Fatalf("existing fixture home: %d", bonusResponse.Code)
+	}
+	if target := os.Getenv("IOS_BONUS_TEST_FIXTURE"); target != "" {
+		if err := os.WriteFile(target, bonusResponse.Body.Bytes(), 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
 	login := httptest.NewRecorder()
 	handler.ServeHTTP(login, httptest.NewRequest(http.MethodPost, "/local/client/login", strings.NewReader(`{"uuid":"b2510000-0000-4000-8000-000000000001","clver":"2.0.4","resource_platform":"StandaloneWindows64","unity_version":"6000.3.26f1"}`)))
 	var identity struct {

@@ -1,0 +1,4 @@
+=== RUN   TestIOSLoginBonusWireProjection
+--- PASS: TestIOSLoginBonusWireProjection (0.00s)
+PASS
+ok  	kairisei.local/server/internal/httpapi	0.932s

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -91,6 +92,7 @@ namespace Kairisei.Recovery
         public long BpMax { get; internal set; }
         public long Gold { get; internal set; }
         public long ServerTime { get; internal set; }
+        public string BonusNotice { get; internal set; }
     }
 
     public static class CnProtocol
@@ -206,8 +208,35 @@ namespace Kairisei.Recovery
                 UserId = id, Name = RequiredString(user, "name"), Level = RequiredInteger(user, "lv"),
                 Ap = RequiredInteger(user, "ap"), ApMax = RequiredInteger(user, "ap_max"),
                 Bp = RequiredInteger(user, "bp"), BpMax = RequiredInteger(user, "bp_max"),
-                Gold = RequiredInteger(user, "gold"), ServerTime = RequiredInteger(payload, "server_time")
+                Gold = RequiredInteger(user, "gold"), ServerTime = RequiredInteger(payload, "server_time"),
+                BonusNotice = DescribeHomeBonuses(payload)
             };
+        }
+
+        private static string DescribeHomeBonuses(JObject payload)
+        {
+            var lines = new List<string>();
+            foreach (string kind in new[] { "login_bonus_beginner", "login_bonus_daily", "login_bonus_total" })
+            {
+                JToken raw = payload[kind];
+                if (raw == null || raw.Type == JTokenType.Null) continue;
+                JArray entries = raw as JArray;
+                if (entries == null || entries.Count == 0 || !(entries[0] is JObject)) throw new FormatException("登录奖励格式无效：" + kind);
+                JObject entry = (JObject)entries[0];
+                long day = RequiredInteger(entry, "day_num");
+                JToken result = entry["reward"];
+                if (kind == "login_bonus_beginner")
+                {
+                    JArray schedule = result as JArray;
+                    if (schedule == null || day < 1 || day > schedule.Count) throw new FormatException("新手奖励日期无效。");
+                    result = schedule[(int)day - 1];
+                }
+                JObject item = result == null ? null : result["reward"] as JObject;
+                if (item == null) throw new FormatException("登录奖励内容无效。");
+                string label = kind == "login_bonus_beginner" ? "新手" : kind == "login_bonus_daily" ? "每日" : "累计";
+                lines.Add(label + "第 " + day + " 天：类型 " + RequiredInteger(item, "type") + "，编号 " + RequiredInteger(item, "reward_typeid") + "，数量 " + RequiredInteger(item, "num"));
+            }
+            return String.Join("\n", lines.ToArray());
         }
 
         private static long RequiredInteger(JObject value, string name)
