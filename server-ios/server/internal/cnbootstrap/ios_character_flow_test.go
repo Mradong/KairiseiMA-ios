@@ -94,6 +94,20 @@ func TestIOSCharacterCreateConnectFlow(t *testing.T) {
 		t.Fatal("created user missing on repeat login")
 	}
 	home := call("/HomeShow", "")
+	cardShow := call("/CardShow2", `{"0":1}`)
+	var cards, decks []json.RawMessage
+	if json.Unmarshal(cardShow["1"], &cards) != nil || json.Unmarshal(cardShow["3"], &decks) != nil {
+		t.Fatalf("card/deck response missing arrays")
+	}
+	if target := os.Getenv("IOS_CARD_TEST_FIXTURE"); target != "" {
+		payload, err := json.Marshal(cardShow)
+		if err != nil {
+			t.Fatal(err)
+		}
+		if err := os.WriteFile(target, append([]byte("{\"res_code\":0}\n"), payload...), 0600); err != nil {
+			t.Fatal(err)
+		}
+	}
 	var homeUser struct {
 		UserID int64  `json:"userid"`
 		Name   string `json:"name"`

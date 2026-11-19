@@ -95,6 +95,32 @@ namespace Kairisei.Recovery
         public string BonusNotice { get; internal set; }
     }
 
+    public sealed class CnCard
+    {
+        public long UniqueId { get; internal set; }
+        public long CardId { get; internal set; }
+        public long Level { get; internal set; }
+        public JObject Wire { get; internal set; }
+    }
+
+    public sealed class CnDeck
+    {
+        public long ArthurType { get; internal set; }
+        public long Index { get; internal set; }
+        public string Name { get; internal set; }
+        public long[] Cards { get; internal set; }
+        public long[] Support { get; internal set; }
+        public long[] Spheres { get; internal set; }
+        public long[] Buddies { get; internal set; }
+        public JObject Wire { get; internal set; }
+    }
+
+    public sealed class CnCardCollection
+    {
+        public Dictionary<long, CnCard> Cards { get; internal set; }
+        public List<CnDeck> Decks { get; internal set; }
+    }
+
     public static class CnProtocol
     {
         public const string ClientVersion = "2.0.4";
@@ -211,6 +237,46 @@ namespace Kairisei.Recovery
                 Gold = RequiredInteger(user, "gold"), ServerTime = RequiredInteger(payload, "server_time"),
                 BonusNotice = DescribeHomeBonuses(payload)
             };
+        }
+
+        public static CnCardCollection ParseCardShow(string content)
+        {
+            JObject payload = ParseEnvelope(content).Payload as JObject;
+            JArray cards = payload == null ? null : payload["1"] as JArray;
+            JArray decks = payload == null ? null : payload["3"] as JArray;
+            if (cards == null || decks == null) throw new FormatException("服务器未返回卡牌或卡组列表。");
+            var result = new CnCardCollection { Cards = new Dictionary<long, CnCard>(), Decks = new List<CnDeck>() };
+            foreach (JToken token in cards)
+            {
+                JObject card = token as JObject;
+                if (card == null) throw new FormatException("卡牌资料格式无效。");
+                long id = RequiredInteger(card, "0"), cardId = RequiredInteger(card, "1"), level = RequiredInteger(card, "2");
+                if (id <= 0 || cardId <= 0 || level < 0 || result.Cards.ContainsKey(id)) throw new FormatException("卡牌身份无效或重复。");
+                result.Cards.Add(id, new CnCard { UniqueId = id, CardId = cardId, Level = level, Wire = (JObject)card.DeepClone() });
+            }
+            foreach (JToken token in decks)
+            {
+                JObject deck = token as JObject;
+                if (deck == null) throw new FormatException("卡组资料格式无效。");
+                JToken name = deck["8"];
+                if (name == null || name.Type != JTokenType.String) throw new FormatException("卡组名称无效。");
+                result.Decks.Add(new CnDeck { ArthurType = RequiredInteger(deck, "0"), Index = RequiredInteger(deck, "1"), Name = name.Value<string>(),
+                    Cards = IntegerArray(deck, "4"), Support = IntegerArray(deck, "5"), Spheres = IntegerArray(deck, "6"), Buddies = IntegerArray(deck, "7"), Wire = (JObject)deck.DeepClone() });
+            }
+            return result;
+        }
+
+        private static long[] IntegerArray(JObject value, string key)
+        {
+            JArray array = value[key] as JArray;
+            if (array == null) throw new FormatException("服务器缺少卡组字段：" + key);
+            var result = new long[array.Count];
+            for (int i = 0; i < array.Count; i++)
+            {
+                if (array[i].Type != JTokenType.Integer) throw new FormatException("卡组槽位无效。");
+                result[i] = array[i].Value<long>();
+            }
+            return result;
         }
 
         private static string DescribeHomeBonuses(JObject payload)

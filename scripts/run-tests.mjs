@@ -49,6 +49,11 @@ const server = http.createServer(async (request, response) => {
       assert.equal(body, session);
       assert.equal(userCreated, true);
       response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({user:{userid:1337,name:'测试骑士',lv:4,ap:15,ap_max:20,bp:2,bp_max:3,gold:123456},server_time:100}) + '\n' + JSON.stringify({popup:[]}));
+    } else if (request.method === 'POST' && request.url === '/CardShow2') {
+      assert.equal(body, session + '{"0":1}');
+      assert.equal(userCreated, true);
+      if (process.env.IOS_CARD_TEST_FIXTURE) response.end(fs.readFileSync(process.env.IOS_CARD_TEST_FIXTURE, 'utf8'));
+      else response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({'1':[{'0':1,'1':123,'2':1}],'3':[{'0':1,'1':0,'4':[1],'5':[],'6':[],'7':[],'8':'test'}]}) + '\n{}');
     } else { throw new Error('Unexpected fixture route'); }
   } catch (error) {
     failures.push(error.message);
@@ -69,11 +74,11 @@ try {
   child.stderr.on('data', chunk => { stderr += chunk; });
   status = await new Promise((resolve, reject) => { child.on('error', reject); child.on('exit', resolve); });
 } finally { await new Promise(resolve => server.close(resolve)); }
-const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect', 'POST /HomeShow'];
+const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect', 'POST /HomeShow', 'POST /CardShow2'];
 const result = {
   generatedAt: new Date().toISOString(), success: status === 0 && failures.length === 0 && JSON.stringify(calls) === JSON.stringify(expectedCalls),
   compiler: 'Windows .NET Framework C# compiler', jsonLibrary: 'Newtonsoft.Json 13.0.2 net45',
-  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + (process.env.IOS_BONUS_PROJECTION_FIXTURE ? '; parses actual Go reward projections from synthetic claims' : '') + '; no Unity/iOS runtime or live game server was tested.',
+  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + (process.env.IOS_BONUS_PROJECTION_FIXTURE ? '; parses actual Go reward projections from synthetic claims' : '') + (process.env.IOS_CARD_TEST_FIXTURE ? '; parses actual isolated service starter cards and decks' : '') + '; no Unity/iOS runtime or live game server was tested.',
   stdout: stdout.trim(), stderr: stderr.trim(), calls, failures,
 };
 fs.writeFileSync(path.join(root, 'evidence/protocol-tests.json'), JSON.stringify(result, null, 2) + '\n');

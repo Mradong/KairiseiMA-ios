@@ -72,6 +72,11 @@ public static class CnProtocolTests
         Check(notices.Contains("编号 222") && notices.Contains("数量 20") && notices.Contains("编号 333") && !notices.Contains("编号 111") && !notices.Contains("编号 999"), "only earned login rewards, not previews");
         Reject(delegate { CnProtocol.ParseHome(bonusResponse.Replace("\"day_num\":2,\"reward\":[", "\"day_num\":9,\"reward\":["), 1337); }, "invalid beginner reward day");
         Check(home.BonusNotice == "", "no login reward notice");
+        string cardsResponse = "{\"res_code\":0}\n{\"1\":[{\"0\":9223372036,\"1\":123,\"2\":4,\"6\":[1,2]}],\"3\":[{\"0\":1,\"1\":0,\"4\":[9223372036,0],\"5\":[0],\"6\":[0],\"7\":[0],\"8\":\"test deck\",\"9\":1}]}";
+        CnCardCollection collection = CnProtocol.ParseCardShow(cardsResponse);
+        Check(collection.Cards[9223372036].CardId == 123 && collection.Decks[0].Cards[0] == 9223372036 && (int)collection.Cards[9223372036].Wire["6"][1] == 2 && (int)collection.Decks[0].Wire["9"] == 1, "card/deck identifiers and full wire fields retained");
+        Reject(delegate { CnProtocol.ParseCardShow("{\"res_code\":0}\n{\"1\":[],\"3\":[{\"0\":1,\"1\":0,\"4\":[\"1\"],\"5\":[],\"6\":[],\"7\":[],\"8\":\"a\"}]}"); }, "non-integer deck slot");
+        Reject(delegate { CnProtocol.ParseCardShow(cardsResponse.Replace("\"3\":[", "\"3\":null,\"unused\":[")); }, "missing deck array");
         Reject(delegate { CnProtocol.ParseHome(homeResponse, 1338); }, "home user mismatch");
         Reject(delegate { CnProtocol.ParseHome("{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"name\"}}", 1337); }, "incomplete home response");
         Reject(delegate { CnProtocol.CreateSessionRequest("short", new JObject()); }, "short session");
@@ -150,6 +155,12 @@ public static class CnProtocolTests
                     CnHomeState state = CnProtocol.ParseHome(home.Content.ReadAsStringAsync().GetAwaiter().GetResult(), login.UserId);
                     Check(state.Name == "测试骑士" && state.Ap == 15 && state.Gold == 123456, "loopback home user state");
                 }
+                using (HttpResponseMessage cards = client.PostAsync(login.Api.Route("/CardShow2"), new StringContent(CnProtocol.CreateSessionRequest(login.SessionKey, new JObject { { "0", 1 } }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
+                {
+                    cards.EnsureSuccessStatusCode();
+                    CnCardCollection state = CnProtocol.ParseCardShow(cards.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+                    Check(state.Decks.Count > 0 && state.Cards.Count > 0, "loopback cards and decks");
+                }
             }
         }
     }
@@ -174,6 +185,12 @@ public static class CnProtocolTests
             {
                 string bonus = CnProtocol.ParseHome(File.ReadAllText(projected), 1337).BonusNotice;
                 Check(bonus.Contains("编号 20") && bonus.Contains("编号 70") && !bonus.Contains("编号 10") && !bonus.Contains("编号 140"), "isolated actual service reward projections exclude previews");
+            }
+            string actualCards = Environment.GetEnvironmentVariable("IOS_CARD_TEST_FIXTURE");
+            if (!String.IsNullOrEmpty(actualCards))
+            {
+                CnCardCollection actualCollection = CnProtocol.ParseCardShow(File.ReadAllText(actualCards));
+                Check(actualCollection.Cards.Count == 10 && actualCollection.Decks.Count == 4 && actualCollection.Cards.ContainsKey(actualCollection.Decks[0].Cards[0]), "isolated service starter cards and decks");
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;

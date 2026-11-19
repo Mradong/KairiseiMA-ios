@@ -18,6 +18,10 @@ namespace Kairisei.Recovery
         private CnLogin login;
         private CnConnectState connectState;
         private CnHomeState homeState;
+        private CnCardCollection cardCollection;
+        private bool showingDeck;
+        private int deckIndex;
+        private Vector2 deckScroll;
         private string bonusKey;
         private string bonusNotice = "";
         private Vector2 bonusScroll;
@@ -72,6 +76,7 @@ namespace Kairisei.Recovery
             float scale = Mathf.Min(safe.width / 1280f, safe.height / 720f);
             if (scale <= 0) return;
             bool showBonus = !String.IsNullOrEmpty(bonusNotice) && login != null && verifiedAddress == address;
+            bool showDeck = showingDeck && cardCollection != null && login != null && verifiedAddress == address;
             Matrix4x4 previousMatrix = GUI.matrix;
             float left = safe.x + (safe.width - 1280f * scale) / 2f;
             float top = Screen.height - safe.yMax + (safe.height - 720f * scale) / 2f;
@@ -90,32 +95,48 @@ namespace Kairisei.Recovery
             GUI.color = previousColor;
             GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
             GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
-            GUI.enabled = !busy && !showBonus;
+            GUI.enabled = !busy && !showBonus && !showDeck;
             address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
             if (GUI.Button(new Rect(100, 300, 320, 64), busy ? "连接中…" : "检查连接", buttonStyle)) CheckHealth();
-            GUI.enabled = !busy && !showBonus && endpoint != null && verifiedAddress == address;
+            GUI.enabled = !busy && !showBonus && !showDeck && endpoint != null && verifiedAddress == address;
             if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
-            GUI.enabled = !busy && !showBonus && login != null && serverContentReady && verifiedAddress == address;
+            GUI.enabled = !busy && !showBonus && !showDeck && login != null && serverContentReady && verifiedAddress == address;
             if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
             if (connectState != null && connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
-                GUI.enabled = !busy && !showBonus;
+                GUI.enabled = !busy && !showBonus && !showDeck;
                 if (GUI.Button(new Rect(995, 465, 185, 54), "进入主页", buttonStyle)) ReadHome();
+                if (homeState != null && GUI.Button(new Rect(800, 540, 380, 64), "查看服务器卡组", buttonStyle)) ReadDecks();
                 GUI.enabled = true;
                 if (homeState != null)
                     GUI.Label(new Rect(100, 465, 880, 55), homeState.Name + "  等级 " + homeState.Level + "  体力 " + homeState.Ap + "/" + homeState.ApMax + "  战斗点 " + homeState.Bp + "/" + homeState.BpMax + "  金币 " + homeState.Gold, bodyStyle);
             }
             if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
-                GUI.enabled = !busy && !showBonus;
+                GUI.enabled = !busy && !showBonus && !showDeck;
                 characterName = GUI.TextField(new Rect(100, 465, 280, 54), characterName, 32, inputStyle);
                 string[] roles = { "佣兵", "富豪", "盗贼", "歌姬" };
                 for (int i = 0; i < roles.Length; i++)
                     if (GUI.Button(new Rect(400 + i * 145, 465, 135, 54), (arthurType == i + 1 ? "✓ " : "") + roles[i], buttonStyle)) arthurType = i + 1;
                 if (GUI.Button(new Rect(995, 465, 185, 54), "创建角色", buttonStyle)) CreateCharacter();
                 GUI.enabled = true;
+            }
+            if (showDeck && !showBonus)
+            {
+                GUI.enabled = true;
+                GUI.color = new Color(0, 0, 0, 0.96f);
+                GUI.DrawTexture(new Rect(200, 90, 880, 540), Texture2D.whiteTexture);
+                GUI.color = previousColor;
+                string deckText = DeckText();
+                GUI.Label(new Rect(240, 115, 800, 50), "服务器卡组", headingStyle);
+                deckScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 330), deckScroll, new Rect(0, 0, 760, Mathf.Max(330, bodyStyle.CalcHeight(new GUIContent(deckText), 750))));
+                GUI.Label(new Rect(0, 0, 750, bodyStyle.CalcHeight(new GUIContent(deckText), 750)), deckText, bodyStyle);
+                GUI.EndScrollView();
+                if (GUI.Button(new Rect(240, 530, 200, 55), "上一组", buttonStyle) && deckIndex > 0) { deckIndex--; deckScroll = Vector2.zero; }
+                if (GUI.Button(new Rect(470, 530, 200, 55), "下一组", buttonStyle) && deckIndex + 1 < cardCollection.Decks.Count) { deckIndex++; deckScroll = Vector2.zero; }
+                if (GUI.Button(new Rect(760, 530, 240, 55), "返回", buttonStyle)) showingDeck = false;
             }
             if (showBonus)
             {
@@ -132,14 +153,14 @@ namespace Kairisei.Recovery
                     PlayerPrefs.DeleteKey(bonusKey); PlayerPrefs.Save(); bonusNotice = "";
                 }
             }
-            GUI.enabled = !busy && !showBonus;
-            if (!showBonus && GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
+            GUI.enabled = !busy && !showBonus && !showDeck;
+            if (!showBonus && !showDeck && GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
             {
                 try { status = NativeBattleValidation.Run(); }
                 catch (Exception error) { status = "战斗内核验证失败：" + error.Message; }
             }
             GUI.enabled = true;
-            if (!showBonus) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
+            if (!showBonus && !showDeck && homeState == null) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
             GUI.matrix = previousMatrix;
             GUI.color = previousColor;
         }
@@ -149,6 +170,8 @@ namespace Kairisei.Recovery
             login = null;
             connectState = null;
             homeState = null;
+            cardCollection = null;
+            showingDeck = false;
             bonusKey = null;
             bonusNotice = "";
             serverContentReady = false;
@@ -172,6 +195,8 @@ namespace Kairisei.Recovery
             login = null;
             connectState = null;
             homeState = null;
+            cardCollection = null;
+            showingDeck = false;
             bonusKey = null;
             bonusNotice = "";
             serverContentReady = false;
@@ -225,6 +250,48 @@ namespace Kairisei.Recovery
                 }
                 status = "已读取服务器主页角色状态；主页场景与导航仍在恢复。";
             }));
+        }
+
+        private void ReadDecks()
+        {
+            if (login == null || homeState == null || verifiedAddress != address) return;
+            CnLogin requestedLogin = login;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardShow2"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", 1 } }), delegate(string response) {
+                cardCollection = CnProtocol.ParseCardShow(response);
+                deckIndex = 0; deckScroll = Vector2.zero; showingDeck = true;
+                status = "已读取服务器卡组；卡牌名称和编辑功能仍在恢复。";
+            }));
+        }
+
+        private string DeckText()
+        {
+            if (cardCollection.Decks.Count == 0) return "服务器没有返回卡组。";
+            CnDeck deck = cardCollection.Decks[deckIndex];
+            var text = new StringBuilder();
+            text.AppendLine(deck.Name + "  (" + (deckIndex + 1) + "/" + cardCollection.Decks.Count + ")");
+            text.AppendLine("主卡组：");
+            for (int i = 0; i < deck.Cards.Length; i++)
+            {
+                CnCard card;
+                long id = deck.Cards[i];
+                text.Append(i + 1).Append(". ");
+                if (id == 0) text.AppendLine("空");
+                else if (cardCollection.Cards.TryGetValue(id, out card)) text.Append("卡牌 ").Append(card.CardId).Append("  等级 ").AppendLine(card.Level.ToString());
+                else text.Append("未找到卡牌，唯一编号 ").AppendLine(id.ToString());
+            }
+            text.AppendLine("支援卡组：");
+            for (int i = 0; i < deck.Support.Length; i++)
+            {
+                CnCard card;
+                long id = deck.Support[i];
+                text.Append(i + 1).Append(". ");
+                if (id == 0) text.AppendLine("空");
+                else if (cardCollection.Cards.TryGetValue(id, out card)) text.Append("卡牌 ").Append(card.CardId).Append("  等级 ").AppendLine(card.Level.ToString());
+                else text.Append("未找到卡牌，唯一编号 ").AppendLine(id.ToString());
+            }
+            text.AppendLine("球槽唯一编号：" + String.Join(", ", Array.ConvertAll(deck.Spheres, delegate(long id) { return id.ToString(); })));
+            text.AppendLine("伙伴槽唯一编号：" + String.Join(", ", Array.ConvertAll(deck.Buddies, delegate(long id) { return id.ToString(); })));
+            return text.ToString();
         }
 
         private void CreateCharacter()
