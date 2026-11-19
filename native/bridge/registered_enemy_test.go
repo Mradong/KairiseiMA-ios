@@ -70,9 +70,9 @@ func TestSimpleEnemyActionRejectsUnsupportedInput(t *testing.T) {
 	if _, err := decodeSimpleEnemyAction(schema, raw, 1); err == nil {
 		t.Fatal("unsupported skill slot accepted")
 	}
-	binary.LittleEndian.PutUint32(raw[2440:], 1)
+	binary.LittleEndian.PutUint32(raw[2440:], 0)
 	if _, err := decodeSimpleEnemyAction(schema, raw, 0); err == nil {
-		t.Fatal("unsupported random selector accepted")
+		t.Fatal("unsupported null selector accepted")
 	}
 	binary.LittleEndian.PutUint32(raw[2440:], 23)
 	binary.LittleEndian.PutUint32(raw[2588:], 1)

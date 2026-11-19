@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-19：BATTLE-01 敌方普通攻击玩家（本地）
+
+在先前受限敌方普通槽支持上，增加 `RANDOM` 目标；中立属性目标掩码经原 DLL 对照后可命中玩家。Windows x64 合成注册战斗中，原版与重建库都随机选中玩家并造成 7 点伤害，结果 CSV 与输入日志一致；本轮另保留敌人自伤和命中率为零的对照。普通槽以外的非空技能、其他目标和非空 AI 触发仍受限；不能据此认定完整敌方 AI 已恢复。
+
+注册战斗差分及 Go 状态、独立战斗、准备态敌人查询回归通过。Windows DLL SHA-256 `3022733bf34eb3cec998b165f42bb01bbce5ead1e66a035b04fc28da0c38171d`，证据 `evidence/native/registered-battle-differential-tests.json`、`evidence/native/registered-enemy-user-attack.txt`。本增量没有真实资源、ARM64 或手机证据，不在 0.0.4 中。
+
 ## 2026-11-19：0.0.4 构建交付与敌方普通技能增量
 
 构建 [44434628647](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44434628647) 已成功，源码提交 `090f19003b9bc2ecdc8b024c67024d9398ffc8f0`；ARM64、Unity/Xcode、iOS 资源构建及云端 28 个测试/子测试通过。已下载并核验 [0.0.4 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.4-unsigned.ipa)，26,088,293 字节，SHA-256 `c4e3e39967c3281035d8ea587579425ccab24f77430d45a5a7f15c27805ed463`，安装包两份一致。证据 `evidence/ios-package-search/ipa-client004-delivery.json`、`ios-client004-artifact-verification.json`。尚未签名、安装或真机验证，不能当作完整游戏；该构建不包含之后的关卡列表及下述敌方技能修改。

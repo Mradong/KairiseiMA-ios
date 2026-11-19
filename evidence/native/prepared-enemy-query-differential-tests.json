@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-19T06:05:44.269Z",
+  "checkedAt": "2026-11-19T06:09:22.426Z",
   "success": true,
   "counts": {
     "checks": 1856,
@@ -12,7 +12,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "c99ed5edf428cdce990787788bbba316418f620a66ef9db04789e64ecc0bcd8d"
+    "sha256": "3022733bf34eb3cec998b165f42bb01bbce5ead1e66a035b04fc28da0c38171d"
   },
   "scope": "Windows x64 synthetic registered enemy base records without enemy programs or reactive gauges. Compare enemy tribe branch results across slots, modes, HP and rate inputs, including errors and multiple enemies. This condition does not observe enemy HP, so HP projection is not validated by the DLL comparison. No registered battle creation, real resources, account or iOS test."
 }
