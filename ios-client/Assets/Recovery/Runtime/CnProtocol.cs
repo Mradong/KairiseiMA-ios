@@ -125,6 +125,15 @@ namespace Kairisei.Recovery
         public JObject Wire { get; internal set; }
     }
 
+    public sealed class CnSoloPartner
+    {
+        public long UserId { get; internal set; }
+        public long ArthurType { get; internal set; }
+        public string Name { get; internal set; }
+        public long Level { get; internal set; }
+        public JObject Wire { get; internal set; }
+    }
+
     public sealed class CnDeck
     {
         public long ArthurType { get; internal set; }
@@ -307,6 +316,31 @@ namespace Kairisei.Recovery
             }
             return CreateSessionRequest(sessionKey, new JObject { { "bossid", bossId }, { "deck_arthur_type", arthurType },
                 { "deck_arthur_type_idx", deckIndex }, { "partner_deck_selects", partners } });
+        }
+
+        public static List<CnSoloPartner> ParseSoloPartners(string content)
+        {
+            JObject payload = ParseEnvelope(content).Payload as JObject;
+            JArray groups = payload == null ? null : payload["arthurs"] as JArray;
+            if (groups == null) throw new FormatException("Missing partner groups");
+            var result = new List<CnSoloPartner>();
+            foreach (JToken item in groups)
+            {
+                JObject group = item as JObject;
+                JArray partners = group == null ? null : group["partners"] as JArray;
+                if (partners == null) throw new FormatException("Invalid partner group");
+                long role = RequiredInteger(group, "arthur_type");
+                if (role < 1 || role > 4) throw new FormatException("Invalid partner profession");
+                foreach (JToken token in partners)
+                {
+                    JObject partner = token as JObject;
+                    if (partner == null || RequiredInteger(partner, "arthur_type") != role) throw new FormatException("Partner profession differs from group");
+                    long id = RequiredInteger(partner, "userid"), level = RequiredInteger(partner, "lv");
+                    if (id < 1 || level < 0) throw new FormatException("Invalid partner identity");
+                    result.Add(new CnSoloPartner { UserId = id, ArthurType = role, Name = RequiredString(partner, "name"), Level = level, Wire = (JObject)partner.DeepClone() });
+                }
+            }
+            return result;
         }
 
         public static CnSoloBattleStart ParseSoloBattleStart(string content)

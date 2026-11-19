@@ -1,0 +1,7 @@
+{
+  "generatedAt": "2026-11-19T06:27:21.083Z",
+  "success": false,
+  "stdout": "fatal error CS0008: 从文件“d:\\KairiseiMA-Windows\\KairiseiMA-ios\\code-dump\\DummyDll\\UnityEngine.CoreModule.dll”读取元数据时发生错误 --“查找时没有找到记录。”",
+  "stderr": "",
+  "scope": "Runtime C# compile against recovered modern Unity public API metadata only. The referenced assemblies are dummy symbol assemblies and are never executed or uploaded. This is not Unity Editor, IL2CPP, Xcode or device validation."
+}

@@ -81,6 +81,9 @@ public static class CnProtocolTests
         var quest = CnProtocol.ParseSoloQuests(questResponse);
         Check(quest.Count == 1 && quest[0].BossId == 99 && quest[0].BpCost == 5 && quest[0].Category == "普通", "quest identity, category and cost");
         Reject(delegate { CnProtocol.ParseSoloQuests(questResponse.Replace("\"12\":[]", "\"12\":null")); }, "missing quest category");
+        string partnerResponse = "{\"res_code\":0}\n{\"arthurs\":[{\"arthur_type\":1,\"partners\":[{\"userid\":12,\"arthur_type\":1,\"name\":\"test\",\"lv\":10}]}]}";
+        Check(CnProtocol.ParseSoloPartners(partnerResponse)[0].UserId == 12, "partner identity");
+        Reject(delegate { CnProtocol.ParseSoloPartners(partnerResponse.Replace("\"arthur_type\":1,\"name\"", "\"arthur_type\":2,\"name\"")); }, "partner profession mismatch");
         var partners = new JArray(new JObject { { "userid", 1000001 }, { "arthur_type", 1 }, { "deck_idx", 0 } });
         string soloRequest = CnProtocol.CreateSoloBattleStartRequest(Session, 30010102, 3, 0, partners);
         Check((long)JObject.Parse(soloRequest.Substring(Session.Length))["partner_deck_selects"][0]["userid"] == 1000001, "solo partner selection");
@@ -179,6 +182,11 @@ public static class CnProtocolTests
                 {
                     quests.EnsureSuccessStatusCode();
                     Check(CnProtocol.ParseSoloQuests(quests.Content.ReadAsStringAsync().GetAwaiter().GetResult()).Count > 0, "loopback solo quests");
+                }
+                using (HttpResponseMessage partners = client.PostAsync(login.Api.Route("/TeamBattleSoloPartnerShow"), new StringContent(CnProtocol.CreateSessionRequest(login.SessionKey, new JObject { { "bossid", 30010102 } }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
+                {
+                    partners.EnsureSuccessStatusCode();
+                    Check(CnProtocol.ParseSoloPartners(partners.Content.ReadAsStringAsync().GetAwaiter().GetResult()).Count > 0, "loopback solo partners");
                 }
             }
         }

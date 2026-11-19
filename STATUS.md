@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-19：PLAY-01 关卡队友查询（本地）
+
+关卡清单可选择上一关、下一关，并向 `/TeamBattleSoloPartnerShow` 查询和显示该关卡的候选队友及职业、等级；切换关卡会清除旧结果。隔离服务业务处理器生成队友响应，经本机 HTTP 交给实际 C# 协议代码解析；88 项协议检查及服务队友测试通过，证据 `evidence/ios-package-search/ios-partner-flow-test.log`、`ios-partner-isolated-fixture.json` 和 `evidence/protocol-tests.json`。
+
+此界面尚不支持选定队友或开始战斗。Unity 符号编译检查因现有 `code-dump/DummyDll/UnityEngine.CoreModule.dll` 元数据不可读而失败，见 `evidence/ios-package-search/ios-runtime-api-check.json`；没有 Unity 编辑器、iOS 或真机验证，不在 0.0.4 IPA 中。
+
 ## 2026-11-19：PLAY-01 单人战斗入场协议（本地）
 
 客户端协议代码增加单人战斗入场请求构造和响应解析，保留波次、随机种子、开战时间及完整队友卡组等原始字段，供后续真实战斗注册使用。隔离服务业务处理器测试实际接受该请求、扣除战斗点并核对重试沿用同一战斗；C# 生成的请求与测试接受的请求逐字段一致，并解析同次响应。85 项协议检查通过，证据 `evidence/ios-package-search/ios-solo-start-test.log`、`ios-solo-start-fixture.json`、`ios-solo-start-request.json` 和 `evidence/protocol-tests.json`。

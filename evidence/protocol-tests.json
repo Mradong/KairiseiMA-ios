@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-11-19T06:23:36.033Z",
+  "generatedAt": "2026-11-19T06:27:42.926Z",
   "success": true,
   "compiler": "Windows .NET Framework C# compiler",
   "jsonLibrary": "Newtonsoft.Json 13.0.2 net45",
-  "scope": "CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture; parses isolated service battle start and compares its accepted request; no Unity/iOS runtime or live game server was tested.",
-  "stdout": "PASS 85 protocol checks",
+  "scope": "CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture; parses isolated service partner response over loopback; parses isolated service battle start and compares its accepted request; no Unity/iOS runtime or live game server was tested.",
+  "stdout": "PASS 88 protocol checks",
   "stderr": "",
   "calls": [
     "GET /healthz",
@@ -14,7 +14,8 @@
     "POST /Connect",
     "POST /HomeShow",
     "POST /CardShow2",
-    "POST /TeamBattleSoloShow"
+    "POST /TeamBattleSoloShow",
+    "POST /TeamBattleSoloPartnerShow"
   ],
   "failures": []
 }

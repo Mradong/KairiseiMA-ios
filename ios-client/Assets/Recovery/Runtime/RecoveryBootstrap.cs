@@ -23,6 +23,8 @@ namespace Kairisei.Recovery
         private List<CnQuest> quests;
         private bool showingQuests;
         private Vector2 questScroll;
+        private int questIndex;
+        private List<CnSoloPartner> soloPartners;
         private bool showingDeck;
         private int deckIndex;
         private Vector2 deckScroll;
@@ -176,7 +178,11 @@ namespace Kairisei.Recovery
                 questScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 330), questScroll, new Rect(0, 0, 760, Mathf.Max(330, height)));
                 GUI.Label(new Rect(0, 0, 750, height), questText, bodyStyle);
                 GUI.EndScrollView();
-                GUI.Label(new Rect(240, 510, 520, 50), "关卡进入、战斗与炼金塔尚未接入", bodyStyle);
+                GUI.enabled = !busy && quests.Count > 0;
+                if (GUI.Button(new Rect(240, 515, 110, 55), "上一关", buttonStyle) && questIndex > 0) { questIndex--; soloPartners = null; }
+                if (GUI.Button(new Rect(360, 515, 110, 55), "下一关", buttonStyle) && questIndex + 1 < quests.Count) { questIndex++; soloPartners = null; }
+                if (GUI.Button(new Rect(480, 515, 200, 55), "查看队友", buttonStyle)) ReadSoloPartners();
+                GUI.enabled = !busy;
                 if (GUI.Button(new Rect(760, 530, 240, 55), "返回", buttonStyle)) showingQuests = false;
             }
             if (showBonus)
@@ -313,7 +319,7 @@ namespace Kairisei.Recovery
             CnLogin requestedLogin = login;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", homeState.ArthurType } }), delegate(string response) {
                 quests = CnProtocol.ParseSoloQuests(response);
-                questScroll = Vector2.zero; showingQuests = true;
+                questScroll = Vector2.zero; questIndex = 0; soloPartners = null; showingQuests = true;
                 status = "已读取服务器单人关卡；进入战斗尚未接入。";
             }));
         }
@@ -322,10 +328,31 @@ namespace Kairisei.Recovery
         {
             if (quests.Count == 0) return "服务器没有返回可显示的单人关卡。";
             var text = new StringBuilder();
-            foreach (CnQuest quest in quests)
-                text.Append(quest.Category).Append("  ").Append(quest.GroupName).Append("  ").Append(quest.Difficulty)
+            for (int i = 0; i < quests.Count; i++)
+            {
+                CnQuest quest = quests[i];
+                text.Append(i == questIndex ? "▶ " : "   ").Append(quest.Category).Append("  ").Append(quest.GroupName).Append("  ").Append(quest.Difficulty)
                     .Append("  战斗点 ").Append(quest.BpCost).Append(quest.Locked != 0 ? "  已锁定" : "").AppendLine();
+            }
+            if (soloPartners != null)
+            {
+                text.AppendLine().AppendLine("可选队友：");
+                foreach (CnSoloPartner partner in soloPartners)
+                    text.Append("职业 ").Append(partner.ArthurType).Append("  ").Append(partner.Name).Append("  等级 ").Append(partner.Level).AppendLine();
+            }
             return text.ToString();
+        }
+
+        private void ReadSoloPartners()
+        {
+            if (busy || login == null || quests == null || questIndex < 0 || questIndex >= quests.Count || verifiedAddress != address) return;
+            CnLogin requestedLogin = login;
+            CnQuest selected = quests[questIndex];
+            soloPartners = null;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloPartnerShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "bossid", selected.BossId } }), delegate(string response) {
+                soloPartners = CnProtocol.ParseSoloPartners(response);
+                status = "已读取关卡队友；战斗入口尚未接入。";
+            }));
         }
 
         private void PrepareDeckDraft()

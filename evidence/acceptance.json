@@ -99,9 +99,12 @@
         "evidence/protocol-tests.json",
         "evidence/ios-package-search/ios-solo-start-test.log",
         "evidence/ios-package-search/ios-solo-start-fixture.json",
-        "evidence/ios-package-search/ios-solo-start-request.json"
+        "evidence/ios-package-search/ios-solo-start-request.json",
+        "evidence/ios-package-search/ios-partner-flow-test.log",
+        "evidence/ios-package-search/ios-partner-isolated-fixture.json",
+        "evidence/ios-package-search/ios-runtime-api-check.json"
       ],
-      "scope": "Local solo quest list parses normal, special, key and event categories from isolated service; 84 client protocol checks. Battle start, alchemist towers, original scene, actual resources, Unity and device remain incomplete. This source is newer than 0.0.4 cloud build. Local C# start request and response projection compared to isolated service business-handler start and retry fixture, including battle segments and partner loadouts. No client UI or battle adapter consumes it yet; no Unity/iOS or device validation."
+      "scope": "Local solo quest list parses normal, special, key and event categories from isolated service; 84 client protocol checks. Battle start, alchemist towers, original scene, actual resources, Unity and device remain incomplete. This source is newer than 0.0.4 cloud build. Local C# start request and response projection compared to isolated service business-handler start and retry fixture, including battle segments and partner loadouts. No client UI or battle adapter consumes it yet; no Unity/iOS or device validation. Local quest view adds quest selection and partner lookup; isolated service business response parsed over loopback in C# protocol tests. Partner choice and starting battle remain unimplemented. Unity dummy-symbol compile failed due to unreadable metadata; no Unity engine or device validation."
     },
     {
       "id": "PLATFORM-01",

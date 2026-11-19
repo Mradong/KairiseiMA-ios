@@ -58,6 +58,10 @@ const server = http.createServer(async (request, response) => {
       assert.equal(body, session + '{"0":3}');
       if (process.env.IOS_QUEST_TEST_FIXTURE) response.end(fs.readFileSync(process.env.IOS_QUEST_TEST_FIXTURE, 'utf8'));
       else response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({'9':[{'0':23,'4':'Boss','10':[{'0':99,'4':'Hard','5':5,'10':1,'26':0}]}],'10':[],'11':[],'12':[]}) + '\n{}');
+    } else if (request.method === 'POST' && request.url === '/TeamBattleSoloPartnerShow') {
+      assert.equal(body, session + '{"bossid":30010102}');
+      if (process.env.IOS_PARTNER_TEST_FIXTURE) response.end(fs.readFileSync(process.env.IOS_PARTNER_TEST_FIXTURE, 'utf8'));
+      else response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({arthurs:[{arthur_type:1,partners:[{userid:12,arthur_type:1,name:'test',lv:10}]}]}) + '\n{}');
     } else { throw new Error('Unexpected fixture route'); }
   } catch (error) {
     failures.push(error.message);
@@ -78,11 +82,11 @@ try {
   child.stderr.on('data', chunk => { stderr += chunk; });
   status = await new Promise((resolve, reject) => { child.on('error', reject); child.on('exit', resolve); });
 } finally { await new Promise(resolve => server.close(resolve)); }
-const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect', 'POST /HomeShow', 'POST /CardShow2', 'POST /TeamBattleSoloShow'];
+const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect', 'POST /HomeShow', 'POST /CardShow2', 'POST /TeamBattleSoloShow', 'POST /TeamBattleSoloPartnerShow'];
 const result = {
   generatedAt: new Date().toISOString(), success: status === 0 && failures.length === 0 && JSON.stringify(calls) === JSON.stringify(expectedCalls),
   compiler: 'Windows .NET Framework C# compiler', jsonLibrary: 'Newtonsoft.Json 13.0.2 net45',
-  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + (process.env.IOS_BONUS_PROJECTION_FIXTURE ? '; parses actual Go reward projections from synthetic claims' : '') + (process.env.IOS_CARD_TEST_FIXTURE ? '; parses actual isolated service starter cards and decks' : '') + (process.env.IOS_DECK_REQUEST_FIXTURE ? '; compares C# deck save body against isolated service reorder' : '') + (process.env.IOS_QUEST_TEST_FIXTURE ? '; parses isolated service solo quest list' : '') + (process.env.IOS_SOLO_START_FIXTURE && process.env.IOS_SOLO_START_REQUEST_FIXTURE ? '; parses isolated service battle start and compares its accepted request' : '') + '; no Unity/iOS runtime or live game server was tested.',
+  scope: 'CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture' + (process.env.IOS_HOME_TEST_FIXTURE ? '; additionally parses an isolated service test HomeShow response' : '') + (process.env.IOS_BONUS_PROJECTION_FIXTURE ? '; parses actual Go reward projections from synthetic claims' : '') + (process.env.IOS_CARD_TEST_FIXTURE ? '; parses actual isolated service starter cards and decks' : '') + (process.env.IOS_DECK_REQUEST_FIXTURE ? '; compares C# deck save body against isolated service reorder' : '') + (process.env.IOS_QUEST_TEST_FIXTURE ? '; parses isolated service solo quest list' : '') + (process.env.IOS_PARTNER_TEST_FIXTURE ? '; parses isolated service partner response over loopback' : '') + (process.env.IOS_SOLO_START_FIXTURE && process.env.IOS_SOLO_START_REQUEST_FIXTURE ? '; parses isolated service battle start and compares its accepted request' : '') + '; no Unity/iOS runtime or live game server was tested.',
   stdout: stdout.trim(), stderr: stderr.trim(), calls, failures,
 };
 fs.writeFileSync(path.join(root, 'evidence/protocol-tests.json'), JSON.stringify(result, null, 2) + '\n');
