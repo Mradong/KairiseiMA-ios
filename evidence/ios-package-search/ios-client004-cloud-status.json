@@ -76,28 +76,28 @@
           "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-11-19T01:17:35Z",
+          "conclusion": "success",
           "name": "Export Unity connection-test Xcode project",
           "number": 9,
           "startedAt": "2026-11-19T01:11:41Z",
-          "status": "in_progress"
+          "status": "completed"
         },
         {
-          "completedAt": "0001-01-01T00:00:00Z",
-          "conclusion": "",
+          "completedAt": "2026-11-19T01:17:39Z",
+          "conclusion": "success",
           "name": "Return the Personal license acquired for this runner",
           "number": 10,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-11-19T01:17:35Z",
+          "status": "completed"
         },
         {
           "completedAt": "0001-01-01T00:00:00Z",
           "conclusion": "",
           "name": "Archive device build and package unsigned IPA",
           "number": 11,
-          "startedAt": "0001-01-01T00:00:00Z",
-          "status": "pending"
+          "startedAt": "2026-11-19T01:17:39Z",
+          "status": "in_progress"
         },
         {
           "completedAt": "0001-01-01T00:00:00Z",

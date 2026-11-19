@@ -24,6 +24,7 @@ namespace Kairisei.Recovery
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_buddy(ulong prep,int member,int slot,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_spheres(ulong prep,int member,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_enemy(ulong prep,int member,byte[] data,int count);
+        [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_enemy_skill(ulong prep,int member,int kind,int slot,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_create_registered(ulong catalog,ulong prep,byte[] input,int count,out ulong battle);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_next_registered(ulong battle,ulong prep,int enemyType);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_close(ulong battle);
@@ -82,6 +83,16 @@ namespace Kairisei.Recovery
             EnsureOpen();Record(packed,276);
             if(member<5 || member>8)throw new ArgumentOutOfRangeException("member");
             Check(battlecore_preparation_enemy(preparation,member,packed,packed.Length),"register enemy");
+        }
+
+        public void RegisterEnemySkill(int member,int kind,int slot,byte[] packed)
+        {
+            EnsureOpen();
+            if(member<5 || member>8)throw new ArgumentOutOfRangeException("member");
+            int limit = kind==0 ? 21 : kind==1 ? 10 : kind==2 ? 1 : kind==3 ? 3 : 0;
+            if(slot<0 || slot>=limit)throw new ArgumentOutOfRangeException("slot");
+            Record(packed,(kind==0 || kind==3) ? 2656 : 2436);
+            Check(battlecore_preparation_enemy_skill(preparation,member,kind,slot,packed,packed.Length),"register enemy skill");
         }
 
         public string Start(int enemyType,int enemyPartyId)

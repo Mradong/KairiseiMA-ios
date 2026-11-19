@@ -42,6 +42,10 @@ func TestDecodePreparedEnemyFieldsAndGuards(t *testing.T) {
 	}
 	put32(160, 0)
 	enemy.normal[0] = make([]byte, 2656)
+	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0); err != nil {
+		t.Fatal("empty enemy skill must be ignored", err)
+	}
+	binary.LittleEndian.PutUint32(enemy.normal[0], 1001)
 	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0); err == nil {
 		t.Fatal("unimplemented enemy program must be rejected")
 	}

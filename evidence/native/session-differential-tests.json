@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-18T11:47:50.555Z",
+  "checkedAt": "2026-11-19T01:19:44.299Z",
   "success": true,
   "counts": {
     "success": true,
@@ -18,7 +18,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "64614cfd73b4c50e9c36d5acbac69319f94ee306b2738f9c76eda4339a11775e"
+    "sha256": "1990f4768faf6779e8c84578627834c12762d3a59494125cba44807c34554e2b"
   },
   "scope": "Windows x64 synthetic combat tables and standalone battles: catalog lifetimes, 64-battle capacity, settings, phase transitions, card attacks, CSV bytes, short reads, score, errors and close. No game server, account or real user resource data. Registered raw-wire battle creation, input journals and iOS integration remain unfinished."
 }

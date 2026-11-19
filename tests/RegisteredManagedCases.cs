@@ -54,6 +54,12 @@ partial class RegisteredBattleDifferential
                 }
                 byte[] foe=ManagedFoe(920,1);
                 if(reference.enemy(prep,5,foe,foe.Length)!=0)throw new Exception("original enemy");adapter.RegisterEnemy(5,foe);
+                for(int kind=0;kind<4;kind++)
+                {
+                    byte[] empty=new byte[(kind==0 || kind==3)?2656:2436];
+                    if(reference.enemySkill(prep,5,kind,0,empty,empty.Length)!=0)throw new Exception("original empty enemy skill");
+                    adapter.RegisterEnemySkill(5,kind,0,empty);
+                }
                 byte[] request=Encoding.UTF8.GetBytes("{\"mode\":1,\"enemy_type\":0,\"config\":{}}");
                 if(reference.create(catalog,prep,request,request.Length,ref battle)!=0)throw new Exception("original create");
                 ManagedText(ReferenceStep(reference,battle,1,null),adapter.Start(0,0),"start");

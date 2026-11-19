@@ -14,21 +14,21 @@ func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]batt
 		return value, fmt.Errorf("invalid enemy record")
 	}
 	for _, skill := range enemy.normal {
-		if skill != nil {
+		if skill != nil && wireInt(skill, 0) != 0 {
 			return value, fmt.Errorf("enemy program projection unavailable")
 		}
 	}
 	for _, skill := range enemy.passive {
-		if skill != nil {
+		if skill != nil && wireInt(skill, 0) != 0 {
 			return value, fmt.Errorf("enemy passive projection unavailable")
 		}
 	}
 	for _, skill := range enemy.booster {
-		if skill != nil {
+		if skill != nil && wireInt(skill, 0) != 0 {
 			return value, fmt.Errorf("enemy gauge skill projection unavailable")
 		}
 	}
-	if enemy.boost != nil || len(enemy.gaugeReactions) != 0 {
+	if (enemy.boost != nil && wireInt(enemy.boost, 0) != 0) || len(enemy.gaugeReactions) != 0 {
 		return value, fmt.Errorf("enemy gauge projection unavailable")
 	}
 	raw := enemy.data

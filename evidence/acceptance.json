@@ -42,7 +42,7 @@
         "evidence/native/registered-battle-differential-tests.json",
         "evidence/native/registered-wave-checkpoint.json"
       ],
-      "scope": "Partial mode-1 registered creation, journals and next wave verified with Windows synthetic inputs. Fixed zero-based packed role indices. Twelve two-wave cases: 2087 status comparisons, 204 Advance helper calls, 234 journal snapshots. Actual Unity runtime C# NativeRegisteredBattle adapter compiled/executed on Windows in 3 two-wave scenarios with 108 original-DLL result/journal comparisons. No Unity engine, new ARM64 or device validation; run 44293950030 lacks this newer source. Other modes, awakening, NPCs, spheres/buddies, enemy programs/gauges, full conditions/effects and real game content remain incomplete."
+      "scope": "Partial mode-1 registered creation, journals and next wave verified with Windows synthetic inputs. Fixed zero-based packed role indices. Twelve two-wave cases: 2087 status comparisons, 204 Advance helper calls, 234 journal snapshots. Actual Unity runtime C# NativeRegisteredBattle adapter compiled/executed on Windows in 3 two-wave scenarios with 108 original-DLL result/journal comparisons. No Unity engine, new ARM64 or device validation; run 44293950030 lacks this newer source. Other modes, awakening, NPCs, spheres/buddies, enemy programs/gauges, full conditions/effects and real game content remain incomplete. Local 2026-11-19 change ignores zero-ID enemy skill slots; original-DLL comparison covers all 35 slots through enemy turn, and managed adapter registration. Nonzero enemy AI is still unsupported; no ARM64/device validation for this source."
     },
     {
       "id": "CLIENT-01",
