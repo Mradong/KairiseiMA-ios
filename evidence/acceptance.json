@@ -139,5 +139,6 @@
       ],
       "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete. 0.0.4 source prepared for a separate cloud build; no build or device result yet. 0.0.4 commit 090f190 was pushed and run 44434628647 started; build and device outcomes pending. Run 44434628647 succeeded and unsigned 0.0.4 IPA was verified; no phone installation, full gameplay, persistence or later source validation."
     }
-  ]
+  ],
+  "executionPriority": "2026-11-19: investigate reusable 6.0.2 scene components, resources and verified behavior first; evaluate protocol compatibility and direct adaptation versus hybrid recovery as specified in EXECUTION_PLAN.md. Completion scope and evidence requirements are unchanged."
 }

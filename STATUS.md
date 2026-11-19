@@ -1,5 +1,9 @@
 # 当前状态
 
+## 2026-11-19：恢复路线调整
+
+按用户要求重新规划：优先评估 6.0.2 已导出场景、组件字段、资源和可验证逻辑，比较现有服务协议后选择直接适配或复用素材并重建缺失行为。完整功能、iPhone 13 / iOS 17.4.1 真实流程、持久性与可安装 IPA 的验收标准不变。阶段、决策证据及首项场景调查见 `EXECUTION_PLAN.md` 首节；本条仅调整计划，不代表新增功能、构建或真机通过。
+
 ## 2026-11-19：PLAY-01 关卡队友查询（本地）
 
 关卡清单可选择上一关、下一关，并向 `/TeamBattleSoloPartnerShow` 查询和显示该关卡的候选队友及职业、等级；切换关卡会清除旧结果。隔离服务业务处理器生成队友响应，经本机 HTTP 交给实际 C# 协议代码解析；88 项协议检查及服务队友测试通过，证据 `evidence/ios-package-search/ios-partner-flow-test.log`、`ios-partner-isolated-fixture.json` 和 `evidence/protocol-tests.json`。

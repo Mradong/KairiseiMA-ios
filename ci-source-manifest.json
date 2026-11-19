@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T06:28:20.966Z",
+  "generatedAt": "2026-11-19T06:38:47.896Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -19,19 +19,24 @@
       "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
     },
     {
+      "path": "EXECUTION_PLAN.md",
+      "bytes": 8780,
+      "sha256": "22d6fc7c7570aef1e1944d3ebe05d2887362239dcbde0a8c54f3e4cfd1000190"
+    },
+    {
       "path": "README.md",
       "bytes": 3138,
       "sha256": "ca176faef60d83cec33a1c02f2d55394be2510c19795aba2f194f54a43e00c0e"
     },
     {
       "path": "STATUS.md",
-      "bytes": 49158,
-      "sha256": "3a4abb02571c485822f1be895ac72326733810fbd035cf5b4d623d23952c9d4d"
+      "bytes": 49639,
+      "sha256": "7387e92b8624a369e6e5d54ce8496adc59e12465877fb5645af7a01a9e190024"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 12791,
-      "sha256": "5b62a90df369942a288f2ce0f31994476e27009297f09e92e728503a729f8936"
+      "bytes": 13083,
+      "sha256": "0b166e3add292b131b7009a36ddc5a564f23db07a1d5114719d5dcc15203fe9a"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -697,9 +702,14 @@
       "path": "安装到iPhone.md",
       "bytes": 15418,
       "sha256": "768289c8c9c5a93196bd4aa739a040a677746454f514639dfd4a9599e941c497"
+    },
+    {
+      "path": "新窗口接手.md",
+      "bytes": 11612,
+      "sha256": "85421dfce82bea99f73529de92455a1fd15facf2e085ebd11619c7a31acea585"
     }
   ],
-  "bytes": 21056599,
+  "bytes": 21077764,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
