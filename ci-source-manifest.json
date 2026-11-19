@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T06:38:47.896Z",
+  "generatedAt": "2026-11-19T07:56:27.707Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,8 +30,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 49639,
-      "sha256": "7387e92b8624a369e6e5d54ce8496adc59e12465877fb5645af7a01a9e190024"
+      "bytes": 50027,
+      "sha256": "4a5b1a9cac64897192596da8a521491f263488730e002834e17dd99b95111be2"
     },
     {
       "path": "evidence/acceptance.json",
@@ -707,9 +707,14 @@
       "path": "新窗口接手.md",
       "bytes": 11612,
       "sha256": "85421dfce82bea99f73529de92455a1fd15facf2e085ebd11619c7a31acea585"
+    },
+    {
+      "path": "服务端协作需求.md",
+      "bytes": 7417,
+      "sha256": "9d1f80fc07c9b19f94041225fdce765043b5516c2c989a49f0918005d372e3a9"
     }
   ],
-  "bytes": 21077764,
+  "bytes": 21085569,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
