@@ -23,8 +23,10 @@
       "requirement": "Original-supported feature inventory with source references and dependencies",
       "status": "in_progress",
       "evidence": [
-        "evidence/feature-coverage.md"
-      ]
+        "evidence/feature-coverage.md",
+        "evidence/ios-package-search/ios602-scene-audit.json"
+      ],
+      "scope": "Static 6.0.2 exported YAML analysis maps six scenes, script and resource GUIDs; Home component names and 1.4.0 same-path references identified, no custom component fields recovered and one null Result script found. This does not establish runtime compatibility, asset completeness or gameplay."
     },
     {
       "id": "BATTLE-01",

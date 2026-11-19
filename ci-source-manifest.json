@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T07:56:27.707Z",
+  "generatedAt": "2026-11-19T08:15:33.199Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,18 +30,18 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 50027,
-      "sha256": "4a5b1a9cac64897192596da8a521491f263488730e002834e17dd99b95111be2"
+      "bytes": 51033,
+      "sha256": "b9ff92bc80537b8cbd5df2cc1392d5231fe59a16f6894f53e9595bcb07fa2acd"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 13083,
-      "sha256": "0b166e3add292b131b7009a36ddc5a564f23db07a1d5114719d5dcc15203fe9a"
+      "bytes": 13458,
+      "sha256": "30a49b99f6c5448f9eae05da015f95f2863d20e8f0a44fa732cb8699d96e8336"
     },
     {
       "path": "evidence/feature-coverage.md",
-      "bytes": 4613,
-      "sha256": "e984a23a4c73671b8d7f7f87444c5547234be24d23abf27d31345c0ed460ccba"
+      "bytes": 5040,
+      "sha256": "d8e652e9bb0affd51e1f114cf17ecb8c193f658a9e049de80d2ff06e365bdd83"
     },
     {
       "path": "evidence/ios-package-search/ios-bonus-projection-fixture.json",
@@ -164,6 +164,11 @@
       "sha256": "fd014831d99f68d651010ae33fdd76a3a35160967388f5a2b718368021cefe81"
     },
     {
+      "path": "evidence/ios-package-search/ios602-scene-audit.json",
+      "bytes": 210882,
+      "sha256": "4e838137fa59adf15ad674806874c7c893f0c0e391e127dcbdc36511c5c558b3"
+    },
+    {
       "path": "evidence/ios-package-search/ipa-client004-delivery.json",
       "bytes": 4047,
       "sha256": "1137718a77e3e7fbb670e8ad7643c08e62fc0c4ec3f3ed8b5fe8ea26e5f09f0f"
@@ -251,7 +256,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "8e2b989107223146606afa7bf462812da0444f13f500267a16906146f346d814"
+      "sha256": "72415871bfa9f0c7c0bde14639eec9ecf149b443aa889ff6bc0941f8df78ecb1"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -564,6 +569,11 @@
       "sha256": "1b15e834d843a3c8afac9f78498b7edea8f60239e104a0230c63f0fddbf3321c"
     },
     {
+      "path": "scripts/audit-602-scenes.mjs",
+      "bytes": 3847,
+      "sha256": "fb4c058736f98f064d254f46b928e7b2a50191adc4c69b9349323b000c5bd870"
+    },
+    {
       "path": "scripts/ios-clang.sh",
       "bytes": 178,
       "sha256": "4e21a1ca2c1a86382d98dc5313c69692fa09e022bb93d6c62e6e4fe68b1ca271"
@@ -577,6 +587,11 @@
       "path": "scripts/run-tests.mjs",
       "bytes": 7414,
       "sha256": "6842bc3171f641bfa8ac9e4464eead5a69f50653852ba7fe53193e21ae5613d3"
+    },
+    {
+      "path": "scripts/test-602-scene-audit.mjs",
+      "bytes": 1520,
+      "sha256": "ec77821cb5d3834f29795cc9fc79b7c7d1ddc54cf13090557ebb9c10663179e8"
     },
     {
       "path": "scripts/test-ios-content.mjs",
@@ -714,7 +729,7 @@
       "sha256": "9d1f80fc07c9b19f94041225fdce765043b5516c2c989a49f0918005d372e3a9"
     }
   ],
-  "bytes": 21085569,
+  "bytes": 21303626,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
