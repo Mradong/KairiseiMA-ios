@@ -118,7 +118,7 @@
         "evidence/ios-package-search/cloud-resource-review.json",
         "evidence/ios-package-search/device-resource-validation.json"
       ],
-      "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete."
+      "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete. 0.0.4 source prepared for a separate cloud build; no build or device result yet."
     }
   ]
 }

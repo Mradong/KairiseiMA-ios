@@ -90,7 +90,8 @@ jobs:
         run: |
           set -euo pipefail
           mkdir -p server-ios
-          cp -R source-review/kairisei-ma-ch/server server-ios/server
+          mkdir -p server-ios/server
+          cp -R source-review/kairisei-ma-ch/server/. server-ios/server/
           git apply --directory=server-ios patches/ios-server.patch
           export IOS_COMPILED_PROFILE="$GITHUB_WORKSPACE/ios-client/Assets/StreamingAssets/RecoveryContent/ios-delivery.json"
           cd server-ios/server

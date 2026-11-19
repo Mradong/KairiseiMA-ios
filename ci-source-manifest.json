@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T01:05:16.820Z",
+  "generatedAt": "2026-11-19T01:08:00.765Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -10,8 +10,8 @@
     },
     {
       "path": ".github/workflows/build-ios.yml",
-      "bytes": 4656,
-      "sha256": "fa19ab0f295a496fe71c3486062341bc92b2209ce432600ceda515733072fe06"
+      "bytes": 4696,
+      "sha256": "6dd5f7b4313b28034e0af575ec24466d8e081efd2d966feb7731bd7c500c91d5"
     },
     {
       "path": ".gitignore",
@@ -25,13 +25,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 39148,
-      "sha256": "1b5e5f9d86338046810818da5776dae77456a3d2c910f47b19c9a25439db3b29"
+      "bytes": 39759,
+      "sha256": "1e2a4bb73c5da89eed7f163601f9c0708313c003874445df4b0620b304aa8fef"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 8835,
-      "sha256": "dca49781e01802b5df41e4791b660d977bb410fd4e1921c3171eedb632590d03"
+      "bytes": 8916,
+      "sha256": "3f1a78cd3f39ca0107083104f9f3fdd6f7cfa64c27b5cd22161ea3a94982828b"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -156,7 +156,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "4095aa53b2c275f170efaf894fe1e33167c02821b8c4628178c6eca6e966a289"
+      "sha256": "72d074460ec196cf56a097718145b7c5a0307e6f5444bc57ecb45567a63af442"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -226,7 +226,7 @@
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
       "bytes": 4727,
-      "sha256": "e7a2423e3a890d9ec31319c41fec56bc8d644cfb0282b26e939a5c0df58aac9f"
+      "sha256": "bb9c5329cdf51e6304e0cd7e564528f6859857e6acc91b1cd23e14c31edab3cd"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
@@ -454,9 +454,19 @@
       "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
     },
     {
+      "path": "scripts/Get-IosClient004CloudBuild.ps1",
+      "bytes": 3310,
+      "sha256": "70634b35fd4850c1395ed0af36c60a6b4d42fc4e1c1faa5807d434bb47683edc"
+    },
+    {
       "path": "scripts/Unity-CloudLicense.sh",
       "bytes": 4942,
       "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
+    },
+    {
+      "path": "scripts/Verify-IosClient004IPA.ps1",
+      "bytes": 7073,
+      "sha256": "1b15e834d843a3c8afac9f78498b7edea8f60239e104a0230c63f0fddbf3321c"
     },
     {
       "path": "scripts/ios-clang.sh",
@@ -584,7 +594,7 @@
       "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     }
   ],
-  "bytes": 20945206,
+  "bytes": 20956321,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
