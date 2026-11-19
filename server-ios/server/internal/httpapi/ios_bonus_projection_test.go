@@ -32,7 +32,7 @@ func TestIOSLoginBonusWireProjection(t *testing.T) {
 	if err != nil {
 		t.Fatal(err)
 	}
-	payload := map[string]any{"user": map[string]any{"userid": 1337, "name": "test", "lv": 1, "ap": 1, "ap_max": 2, "bp": 1, "bp_max": 2, "gold": 0}, "server_time": 1, "login_bonus_daily": daily, "login_bonus_beginner": beginner, "login_bonus_total": total}
+	payload := map[string]any{"user": map[string]any{"userid": 1337, "name": "test", "lv": 1, "active_arthur_type": 3, "ap": 1, "ap_max": 2, "bp": 1, "bp_max": 2, "gold": 0}, "server_time": 1, "login_bonus_daily": daily, "login_bonus_beginner": beginner, "login_bonus_total": total}
 	raw, err := json.Marshal(payload)
 	if err != nil {
 		t.Fatal(err)

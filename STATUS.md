@@ -1,5 +1,15 @@
 # 当前状态
 
+## 2026-11-19：PLAY-01 单人关卡清单（本地）
+
+客户端按 `/HomeShow` 的当前职业请求 `/TeamBattleSoloShow`，保留普通、活动、钥匙及特别活动的分类，显示服务器返回的关卡名称、难度、战斗点消耗与锁定状态，并保存关卡原始字段供后续战斗入口使用。当前不能启动关卡，炼金塔扩展、原版场景和实际战斗未接入；调用服务端清单接口会清理服务端待处理的关卡选择状态，不扣除战斗点。
+
+隔离服务教程游客返回的关卡清单通过本机 HTTP 交给实际 C# 代码解析；84 项协议和夹具检查通过，证据 `evidence/ios-package-search/ios-quest-list-test.log`、`evidence/ios-package-search/ios-quest-isolated-fixture.json` 和 `evidence/protocol-tests.json`。这批改动晚于 0.0.4 构建提交 `090f190`，不在构建 44434628647 中，尚无 Unity/iOS 或设备验证。下一步根据真实战斗开始响应和表资源恢复战斗输入，不以关卡列表代替玩法。
+
+## 2026-11-19：0.0.4 云构建进行中
+
+源码提交 `090f19003b9bc2ecdc8b024c67024d9398ffc8f0` 已推送至私有仓库 `main` 并核对远端；118 个白名单文件及清单哈希通过核查。构建 [44434628647](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44434628647) 已启动，最新查询为 `in_progress / Run actions/setup-go@v6`，尚无结果或新 IPA。记录 `evidence/ios-package-search/ios-client004-cloud-request.json` 与 `ios-client004-cloud-status.json`。可用 `scripts/Get-IosClient004CloudBuild.ps1 -RunId 44434628647` 查询；成功后脚本下载并核验独立 0.0.4 包，失败时保存日志。设备结果仍未取得，旧 0.0.3 证据不可用于本源码。
+
 ## 2026-11-19：0.0.4 云构建准备（执行中）
 
 本地提交 `0434575` 至 `30b4856` 包含注册双波和游客角色、主页、卡组读写增量，均未包含在 0.0.3。为验证新 Unity 代码，将版本设为 0.0.4（build 4），保留应用标识；修正云工作流将固定参考服务源码复制进已有测试目录时的嵌套路径问题。准备独立的 `Get-IosClient004CloudBuild.ps1` 与 `Verify-IosClient004IPA.ps1`，使用独立产物及证据文件，不覆盖 0.0.3。脚本已通过 PowerShell 语法检查；本条不代表云构建、设备运行或完整游戏通过。

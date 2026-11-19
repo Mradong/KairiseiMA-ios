@@ -89,7 +89,12 @@
       "id": "PLAY-01",
       "requirement": "Real quest/battle input, displayed turns, selection, victory/defeat, result and return",
       "status": "incomplete",
-      "evidence": []
+      "evidence": [
+        "evidence/ios-package-search/ios-quest-list-test.log",
+        "evidence/ios-package-search/ios-quest-isolated-fixture.json",
+        "evidence/protocol-tests.json"
+      ],
+      "scope": "Local solo quest list parses normal, special, key and event categories from isolated service; 84 client protocol checks. Battle start, alchemist towers, original scene, actual resources, Unity and device remain incomplete. This source is newer than 0.0.4 cloud build."
     },
     {
       "id": "PLATFORM-01",
@@ -116,9 +121,11 @@
         "evidence/ios-package-search/ios-resource-cloud-request.json",
         "evidence/ios-package-search/ipa-resource-delivery.json",
         "evidence/ios-package-search/cloud-resource-review.json",
-        "evidence/ios-package-search/device-resource-validation.json"
+        "evidence/ios-package-search/device-resource-validation.json",
+        "evidence/ios-package-search/ios-client004-cloud-request.json",
+        "evidence/ios-package-search/ios-client004-cloud-status.json"
       ],
-      "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete. 0.0.4 source prepared for a separate cloud build; no build or device result yet."
+      "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete. 0.0.4 source prepared for a separate cloud build; no build or device result yet. 0.0.4 commit 090f190 was pushed and run 44434628647 started; build and device outcomes pending."
     }
   ]
 }

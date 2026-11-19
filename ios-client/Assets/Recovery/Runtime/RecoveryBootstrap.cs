@@ -20,6 +20,9 @@ namespace Kairisei.Recovery
         private CnConnectState connectState;
         private CnHomeState homeState;
         private CnCardCollection cardCollection;
+        private List<CnQuest> quests;
+        private bool showingQuests;
+        private Vector2 questScroll;
         private bool showingDeck;
         private int deckIndex;
         private Vector2 deckScroll;
@@ -83,6 +86,7 @@ namespace Kairisei.Recovery
             if (scale <= 0) return;
             bool showBonus = !String.IsNullOrEmpty(bonusNotice) && login != null && verifiedAddress == address;
             bool showDeck = showingDeck && cardCollection != null && login != null && verifiedAddress == address;
+            bool showQuest = showingQuests && quests != null && login != null && verifiedAddress == address;
             Matrix4x4 previousMatrix = GUI.matrix;
             float left = safe.x + (safe.width - 1280f * scale) / 2f;
             float top = Screen.height - safe.yMax + (safe.height - 720f * scale) / 2f;
@@ -101,19 +105,20 @@ namespace Kairisei.Recovery
             GUI.color = previousColor;
             GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
             GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
-            GUI.enabled = !busy && !showBonus && !showDeck;
+            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
             address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
             if (GUI.Button(new Rect(100, 300, 320, 64), busy ? "连接中…" : "检查连接", buttonStyle)) CheckHealth();
-            GUI.enabled = !busy && !showBonus && !showDeck && endpoint != null && verifiedAddress == address;
+            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest && endpoint != null && verifiedAddress == address;
             if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
-            GUI.enabled = !busy && !showBonus && !showDeck && login != null && serverContentReady && verifiedAddress == address;
+            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest && login != null && serverContentReady && verifiedAddress == address;
             if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
             if (connectState != null && connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
-                GUI.enabled = !busy && !showBonus && !showDeck;
+                GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
                 if (GUI.Button(new Rect(995, 465, 185, 54), "进入主页", buttonStyle)) ReadHome();
+                if (homeState != null && GUI.Button(new Rect(460, 540, 320, 64), "查看单人关卡", buttonStyle)) ReadQuests();
                 if (homeState != null && GUI.Button(new Rect(800, 540, 380, 64), "查看服务器卡组", buttonStyle)) ReadDecks();
                 GUI.enabled = true;
                 if (homeState != null)
@@ -121,7 +126,7 @@ namespace Kairisei.Recovery
             }
             if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
-                GUI.enabled = !busy && !showBonus && !showDeck;
+                GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
                 characterName = GUI.TextField(new Rect(100, 465, 280, 54), characterName, 32, inputStyle);
                 string[] roles = { "佣兵", "富豪", "盗贼", "歌姬" };
                 for (int i = 0; i < roles.Length; i++)
@@ -159,6 +164,21 @@ namespace Kairisei.Recovery
                 GUI.enabled = !busy;
                 if (GUI.Button(new Rect(790, 530, 210, 55), deckDirty ? "放弃并返回" : "返回", buttonStyle)) showingDeck = false;
             }
+            if (showQuest && !showBonus && !showDeck)
+            {
+                GUI.enabled = true;
+                GUI.color = new Color(0, 0, 0, 0.96f);
+                GUI.DrawTexture(new Rect(200, 90, 880, 540), Texture2D.whiteTexture);
+                GUI.color = previousColor;
+                GUI.Label(new Rect(240, 115, 800, 50), "单人关卡", headingStyle);
+                string questText = QuestText();
+                float height = bodyStyle.CalcHeight(new GUIContent(questText), 750);
+                questScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 330), questScroll, new Rect(0, 0, 760, Mathf.Max(330, height)));
+                GUI.Label(new Rect(0, 0, 750, height), questText, bodyStyle);
+                GUI.EndScrollView();
+                GUI.Label(new Rect(240, 510, 520, 50), "关卡进入、战斗与炼金塔尚未接入", bodyStyle);
+                if (GUI.Button(new Rect(760, 530, 240, 55), "返回", buttonStyle)) showingQuests = false;
+            }
             if (showBonus)
             {
                 GUI.enabled = true;
@@ -174,14 +194,14 @@ namespace Kairisei.Recovery
                     PlayerPrefs.DeleteKey(bonusKey); PlayerPrefs.Save(); bonusNotice = "";
                 }
             }
-            GUI.enabled = !busy && !showBonus && !showDeck;
-            if (!showBonus && !showDeck && GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
+            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
+            if (!showBonus && !showDeck && !showQuest && GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
             {
                 try { status = NativeBattleValidation.Run(); }
                 catch (Exception error) { status = "战斗内核验证失败：" + error.Message; }
             }
             GUI.enabled = true;
-            if (!showBonus && !showDeck && homeState == null) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
+            if (!showBonus && !showDeck && !showQuest && homeState == null) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
             GUI.matrix = previousMatrix;
             GUI.color = previousColor;
         }
@@ -193,6 +213,7 @@ namespace Kairisei.Recovery
             homeState = null;
             cardCollection = null;
             showingDeck = false;
+            quests = null; showingQuests = false;
             bonusKey = null;
             bonusNotice = "";
             serverContentReady = false;
@@ -218,6 +239,7 @@ namespace Kairisei.Recovery
             homeState = null;
             cardCollection = null;
             showingDeck = false;
+            quests = null; showingQuests = false;
             bonusKey = null;
             bonusNotice = "";
             serverContentReady = false;
@@ -282,6 +304,28 @@ namespace Kairisei.Recovery
                 deckIndex = 0; PrepareDeckDraft(); showingDeck = true;
                 status = "已读取服务器卡组；卡牌名称与插画仍在恢复。";
             }));
+        }
+
+        private void ReadQuests()
+        {
+            if (login == null || homeState == null || verifiedAddress != address) return;
+            if (homeState.ArthurType < 1 || homeState.ArthurType > 5) { status = "服务器返回的当前职业无效。"; return; }
+            CnLogin requestedLogin = login;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", homeState.ArthurType } }), delegate(string response) {
+                quests = CnProtocol.ParseSoloQuests(response);
+                questScroll = Vector2.zero; showingQuests = true;
+                status = "已读取服务器单人关卡；进入战斗尚未接入。";
+            }));
+        }
+
+        private string QuestText()
+        {
+            if (quests.Count == 0) return "服务器没有返回可显示的单人关卡。";
+            var text = new StringBuilder();
+            foreach (CnQuest quest in quests)
+                text.Append(quest.Category).Append("  ").Append(quest.GroupName).Append("  ").Append(quest.Difficulty)
+                    .Append("  战斗点 ").Append(quest.BpCost).Append(quest.Locked != 0 ? "  已锁定" : "").AppendLine();
+            return text.ToString();
         }
 
         private void PrepareDeckDraft()

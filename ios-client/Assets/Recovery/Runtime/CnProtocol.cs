@@ -86,6 +86,7 @@ namespace Kairisei.Recovery
         public long UserId { get; internal set; }
         public string Name { get; internal set; }
         public long Level { get; internal set; }
+        public long ArthurType { get; internal set; }
         public long Ap { get; internal set; }
         public long ApMax { get; internal set; }
         public long Bp { get; internal set; }
@@ -100,6 +101,19 @@ namespace Kairisei.Recovery
         public long UniqueId { get; internal set; }
         public long CardId { get; internal set; }
         public long Level { get; internal set; }
+        public JObject Wire { get; internal set; }
+    }
+
+    public sealed class CnQuest
+    {
+        public long GroupId { get; internal set; }
+        public string GroupName { get; internal set; }
+        public long BossId { get; internal set; }
+        public string Difficulty { get; internal set; }
+        public long BpCost { get; internal set; }
+        public long State { get; internal set; }
+        public long Locked { get; internal set; }
+        public string Category { get; internal set; }
         public JObject Wire { get; internal set; }
     }
 
@@ -231,12 +245,42 @@ namespace Kairisei.Recovery
             long id = RequiredInteger(user, "userid");
             if (id < 1 || id != expectedUserId) throw new FormatException("主页角色与登录身份不一致。");
             return new CnHomeState {
-                UserId = id, Name = RequiredString(user, "name"), Level = RequiredInteger(user, "lv"),
+                UserId = id, Name = RequiredString(user, "name"), Level = RequiredInteger(user, "lv"), ArthurType = RequiredInteger(user, "active_arthur_type"),
                 Ap = RequiredInteger(user, "ap"), ApMax = RequiredInteger(user, "ap_max"),
                 Bp = RequiredInteger(user, "bp"), BpMax = RequiredInteger(user, "bp_max"),
                 Gold = RequiredInteger(user, "gold"), ServerTime = RequiredInteger(payload, "server_time"),
                 BonusNotice = DescribeHomeBonuses(payload)
             };
+        }
+
+        public static List<CnQuest> ParseSoloQuests(string content)
+        {
+            JObject payload = ParseEnvelope(content).Payload as JObject;
+            if (payload == null) throw new FormatException("关卡响应格式无效。");
+            var result = new List<CnQuest>();
+            string[] keys = { "9", "10", "11", "12" };
+            string[] names = { "普通", "活动", "钥匙", "特别活动" };
+            for (int category = 0; category < keys.Length; category++)
+            {
+                JArray groups = payload[keys[category]] as JArray;
+                if (groups == null) throw new FormatException("关卡分类缺失：" + keys[category]);
+                foreach (JToken token in groups)
+                {
+                    JObject group = token as JObject;
+                    if (group == null || !(group["10"] is JArray)) throw new FormatException("关卡组格式无效。");
+                    long id = RequiredInteger(group, "0");
+                    string groupName = FieldString(group, "4");
+                    foreach (JToken item in (JArray)group["10"])
+                    {
+                        JObject boss = item as JObject;
+                        if (boss == null) throw new FormatException("关卡格式无效。");
+                        result.Add(new CnQuest { GroupId = id, GroupName = groupName, BossId = RequiredInteger(boss, "0"),
+                            Difficulty = FieldString(boss, "4"), BpCost = RequiredInteger(boss, "5"), State = RequiredInteger(boss, "10"),
+                            Locked = RequiredInteger(boss, "26"), Category = names[category], Wire = (JObject)boss.DeepClone() });
+                    }
+                }
+            }
+            return result;
         }
 
         public static CnCardCollection ParseCardShow(string content)
@@ -344,6 +388,13 @@ namespace Kairisei.Recovery
             JToken token = value[name];
             if (token == null || token.Type != JTokenType.String || String.IsNullOrWhiteSpace(token.Value<string>()))
                 throw new FormatException("服务器缺少字段：" + name);
+            return token.Value<string>();
+        }
+
+        private static string FieldString(JObject value, string name)
+        {
+            JToken token = value[name];
+            if (token == null || token.Type != JTokenType.String) throw new FormatException("服务器缺少文本字段：" + name);
             return token.Value<string>();
         }
 

@@ -1,0 +1,164 @@
+{
+  "conclusion": "",
+  "databaseId": 44434628647,
+  "headSha": "090f19003b9bc2ecdc8b024c67024d9398ffc8f0",
+  "jobs": [
+    {
+      "completedAt": "0001-01-01T00:00:00Z",
+      "conclusion": "",
+      "databaseId": 135260273319,
+      "name": "build",
+      "startedAt": "2026-11-19T01:08:47Z",
+      "status": "in_progress",
+      "steps": [
+        {
+          "completedAt": "2026-11-19T01:08:54Z",
+          "conclusion": "success",
+          "name": "Set up job",
+          "number": 1,
+          "startedAt": "2026-11-19T01:08:48Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:08:59Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 2,
+          "startedAt": "2026-11-19T01:08:54Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:09:03Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-node@v4",
+          "number": 3,
+          "startedAt": "2026-11-19T01:08:59Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:09:07Z",
+          "conclusion": "success",
+          "name": "Run actions/checkout@v4",
+          "number": 4,
+          "startedAt": "2026-11-19T01:09:03Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:09:53Z",
+          "conclusion": "success",
+          "name": "Run actions/setup-go@v6",
+          "number": 5,
+          "startedAt": "2026-11-19T01:09:07Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:10:32Z",
+          "conclusion": "success",
+          "name": "Compile recovered standalone battle bridge for iOS ARM64",
+          "number": 6,
+          "startedAt": "2026-11-19T01:09:53Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:10:32Z",
+          "conclusion": "success",
+          "name": "Check required Unity activation secrets",
+          "number": 7,
+          "startedAt": "2026-11-19T01:10:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "2026-11-19T01:11:41Z",
+          "conclusion": "success",
+          "name": "Install Hub and activate Personal through the official client",
+          "number": 8,
+          "startedAt": "2026-11-19T01:10:32Z",
+          "status": "completed"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Export Unity connection-test Xcode project",
+          "number": 9,
+          "startedAt": "2026-11-19T01:11:41Z",
+          "status": "in_progress"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Return the Personal license acquired for this runner",
+          "number": 10,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Archive device build and package unsigned IPA",
+          "number": 11,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Validate iOS server against the compiled resource bundle",
+          "number": 12,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Save iOS resource delivery package",
+          "number": 13,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Save sideload package and validation reports",
+          "number": 14,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run actions/setup-go@v6",
+          "number": 25,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run actions/checkout@v4",
+          "number": 26,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run actions/setup-node@v4",
+          "number": 27,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        },
+        {
+          "completedAt": "0001-01-01T00:00:00Z",
+          "conclusion": "",
+          "name": "Post Run actions/checkout@v4",
+          "number": 28,
+          "startedAt": "0001-01-01T00:00:00Z",
+          "status": "pending"
+        }
+      ],
+      "url": "https://github.com/Mradong/KairiseiMA-ios/actions/runs/44434628647/job/135260273319"
+    }
+  ],
+  "status": "in_progress",
+  "url": "https://github.com/Mradong/KairiseiMA-ios/actions/runs/44434628647"
+}

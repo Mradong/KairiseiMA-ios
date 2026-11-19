@@ -64,7 +64,7 @@ public static class CnProtocolTests
         Check(createdUser.Name == "测试骑士" && createdUser.ArthurType == 3, "created character fields");
         Reject(delegate { CnProtocol.ParseCreatedUser(createdResponse, 1338); }, "wrong created user");
         Reject(delegate { CnProtocol.ParseCreatedUser("{\"res_code\":0}\n{\"user\":{}}", 1337); }, "missing created user fields");
-        string homeResponse = "{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"测试骑士\",\"lv\":4,\"ap\":15,\"ap_max\":20,\"bp\":2,\"bp_max\":3,\"gold\":123456},\"server_time\":100}\n{}";
+        string homeResponse = "{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"测试骑士\",\"lv\":4,\"active_arthur_type\":3,\"ap\":15,\"ap_max\":20,\"bp\":2,\"bp_max\":3,\"gold\":123456},\"server_time\":100}\n{}";
         CnHomeState home = CnProtocol.ParseHome(homeResponse, 1337);
         Check(home.Name == "测试骑士" && home.Level == 4 && home.Ap == 15 && home.ApMax == 20 && home.Bp == 2 && home.BpMax == 3 && home.Gold == 123456 && home.ServerTime == 100, "home user fields");
         string bonusResponse = homeResponse.Replace("\"server_time\":100", "\"server_time\":100,\"login_bonus_daily\":[{\"day_num\":2,\"reward\":{\"reward\":{\"type\":10,\"reward_typeid\":0,\"num\":20}}}],\"login_bonus_beginner\":[{\"day_num\":2,\"reward\":[{\"reward\":{\"type\":1,\"reward_typeid\":111,\"num\":1}},{\"reward\":{\"type\":2,\"reward_typeid\":222,\"num\":3}}]}],\"login_bonus_total\":[{\"day_num\":7,\"reward\":{\"reward\":{\"type\":3,\"reward_typeid\":333,\"num\":4}}},{\"day_num\":14,\"reward\":{\"reward\":{\"type\":9,\"reward_typeid\":999,\"num\":1}}}]");
@@ -77,6 +77,10 @@ public static class CnProtocolTests
         Check(collection.Cards[9223372036].CardId == 123 && collection.Decks[0].Cards[0] == 9223372036 && (int)collection.Cards[9223372036].Wire["6"][1] == 2 && (int)collection.Decks[0].Wire["9"] == 1, "card/deck identifiers and full wire fields retained");
         Reject(delegate { CnProtocol.ParseCardShow("{\"res_code\":0}\n{\"1\":[],\"3\":[{\"0\":1,\"1\":0,\"4\":[\"1\"],\"5\":[],\"6\":[],\"7\":[],\"8\":\"a\"}]}"); }, "non-integer deck slot");
         Reject(delegate { CnProtocol.ParseCardShow(cardsResponse.Replace("\"3\":[", "\"3\":null,\"unused\":[")); }, "missing deck array");
+        string questResponse = "{\"res_code\":0}\n{\"9\":[{\"0\":23,\"4\":\"Boss\",\"10\":[{\"0\":99,\"4\":\"Hard\",\"5\":5,\"10\":1,\"26\":0}]}],\"10\":[],\"11\":[],\"12\":[]}";
+        var quest = CnProtocol.ParseSoloQuests(questResponse);
+        Check(quest.Count == 1 && quest[0].BossId == 99 && quest[0].BpCost == 5 && quest[0].Category == "普通", "quest identity, category and cost");
+        Reject(delegate { CnProtocol.ParseSoloQuests(questResponse.Replace("\"12\":[]", "\"12\":null")); }, "missing quest category");
         Reject(delegate { CnProtocol.ParseHome(homeResponse, 1338); }, "home user mismatch");
         Reject(delegate { CnProtocol.ParseHome("{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"name\"}}", 1337); }, "incomplete home response");
         Reject(delegate { CnProtocol.CreateSessionRequest("short", new JObject()); }, "short session");
@@ -161,6 +165,11 @@ public static class CnProtocolTests
                     CnCardCollection state = CnProtocol.ParseCardShow(cards.Content.ReadAsStringAsync().GetAwaiter().GetResult());
                     Check(state.Decks.Count > 0 && state.Cards.Count > 0, "loopback cards and decks");
                 }
+                using (HttpResponseMessage quests = client.PostAsync(login.Api.Route("/TeamBattleSoloShow"), new StringContent(CnProtocol.CreateSessionRequest(login.SessionKey, new JObject { { "0", 3 } }), Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
+                {
+                    quests.EnsureSuccessStatusCode();
+                    Check(CnProtocol.ParseSoloQuests(quests.Content.ReadAsStringAsync().GetAwaiter().GetResult()).Count > 0, "loopback solo quests");
+                }
             }
         }
     }
@@ -202,6 +211,12 @@ public static class CnProtocolTests
                     Check(deck.Cards[1] != draft[1], "editing draft leaves server snapshot unchanged");
                     Reject(delegate { CnProtocol.CreateDeckSetRequest(Session, deck, new long[0]); }, "invalid draft slot count");
                 }
+            }
+            string actualQuests = Environment.GetEnvironmentVariable("IOS_QUEST_TEST_FIXTURE");
+            if (!String.IsNullOrEmpty(actualQuests))
+            {
+                var stages = CnProtocol.ParseSoloQuests(File.ReadAllText(actualQuests));
+                Check(stages.Count > 0 && stages[0].BossId == 30020102 && stages[0].BpCost == 1, "isolated service tutorial quest");
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;
