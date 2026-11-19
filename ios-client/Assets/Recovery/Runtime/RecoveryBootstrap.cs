@@ -88,7 +88,7 @@ namespace Kairisei.Recovery
             GUI.enabled = !busy && endpoint != null && verifiedAddress == address;
             if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
             GUI.enabled = !busy && login != null && serverContentReady && verifiedAddress == address;
-            if (GUI.Button(new Rect(830, 300, 350, 64), "读取角色数据", buttonStyle)) ReadConnect();
+            if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
             GUI.enabled = !busy;
@@ -145,7 +145,7 @@ namespace Kairisei.Recovery
             busy = true;
             yield return content.UpdateFromServer(requestedLogin);
             serverContentReady = content.Ready && login == requestedLogin;
-            status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以读取角色初始化数据。" : "服务器资源加载失败：" + content.Error;
+            status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以检查角色状态。" : "服务器资源加载失败：" + content.Error;
             busy = false;
         }
 
@@ -153,8 +153,8 @@ namespace Kairisei.Recovery
         {
             if (login == null || !serverContentReady || verifiedAddress != address) return;
             StartCoroutine(Send("POST", login.Api.Route("/Connect"), CnProtocol.CreateSessionRequest(login.SessionKey, new JObject()), delegate(string response) {
-                CnEnvelope envelope = CnProtocol.ParseEnvelope(response);
-                status = "已收到角色初始化数据（" + envelope.Payload.Type + "）。协议连接验证完成；游戏界面与战斗尚未接入。";
+                CnConnectState state = CnProtocol.ParseConnect(response);
+                status = state.UserCreated ? "服务器确认角色已创建。主页和战斗尚未接入。" : "服务器确认角色尚未创建。角色创建流程尚未接入。";
             }));
         }
 

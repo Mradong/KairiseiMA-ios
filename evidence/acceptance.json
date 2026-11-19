@@ -39,7 +39,8 @@
         "evidence/native/prepared-card-query-differential-tests.json",
         "evidence/native/registered-skill-query-differential-tests.json",
         "evidence/native/prepared-enemy-query-differential-tests.json",
-        "evidence/native/registered-battle-differential-tests.json"
+        "evidence/native/registered-battle-differential-tests.json",
+        "evidence/native/registered-wave-checkpoint.json"
       ],
       "scope": "Partial mode-1 registered creation, journals and next wave verified with Windows synthetic inputs. Fixed zero-based packed role indices. Twelve two-wave cases: 2087 status comparisons, 204 Advance helper calls, 234 journal snapshots. Actual Unity runtime C# NativeRegisteredBattle adapter compiled/executed on Windows in 3 two-wave scenarios with 108 original-DLL result/journal comparisons. No Unity engine, new ARM64 or device validation; run 44293950030 lacks this newer source. Other modes, awakening, NPCs, spheres/buddies, enemy programs/gauges, full conditions/effects and real game content remain incomplete."
     },
@@ -47,8 +48,13 @@
       "id": "CLIENT-01",
       "requirement": "Original startup, login, home and deck behavior with isolated test identity",
       "status": "incomplete",
-      "evidence": ["evidence/ios-package-search/ios-content-tests.json"],
-      "scope": "Startup content cache and post-login public manifest/download integration implemented in source. Original login/home/deck behavior remains incomplete; Unity iterator/API compilation, iOS execution and live service remain unverified."
+      "evidence": [
+        "evidence/ios-package-search/ios-content-tests.json",
+        "evidence/ios-package-search/ipa-resource-delivery.json",
+        "evidence/ios-package-search/device-resource-validation.json",
+        "evidence/protocol-tests.json"
+      ],
+      "scope": "32f0ece / 0.0.3 compiled and launched on phone per user screenshot; visible Chinese and synthetic replay pass. Startup resource-ready message/cache counters not captured. Live service, original home/deck/UI and full flow remain incomplete. Later 0434575 is not covered by this build. Local 2026-11-19 change parses Connect character-created and tutorial state with 54 Windows protocol and loopback-fixture checks; no Unity/iOS build or real server validation for this change. Character creation and HomeShow remain unimplemented."
     },
     {
       "id": "RESOURCE-01",
@@ -62,9 +68,13 @@
         "evidence/ios-package-search/ios-content-tests.json",
         "evidence/ios-package-search/ios-server-tests.json",
         "evidence/ios-package-search/ios-server-build.json",
-        "evidence/ios-package-search/ios-cloud-blocker.json"
+        "evidence/ios-package-search/ios-cloud-blocker.json",
+        "evidence/ios-package-search/ios-resource-artifact-verification.json",
+        "evidence/ios-package-search/ipa-resource-delivery.json",
+        "evidence/ios-package-search/cloud-resource-review.json",
+        "evidence/ios-package-search/device-resource-validation.json"
       ],
-      "scope": "Partial recovered texture/atlas/font sources selected; iOS bundle compiler, persistent cache and post-login download chain implemented but not Unity/device validated yet. Independent server passes 26 tests/subtests; C# cache passes 29 checks. Windows/Linux server binaries compiled. User pushed 32f0ece and triggered run 44293950030; screenshot shows queued, no build success verified. Agent status queries remain blocked by approval-service 503. Full game assets, deployment and device persistence remain incomplete."
+      "scope": "32f0ece / 44293950030 iOS resource bundle (713900 bytes), manifest/SHA/CRC and embedded IPA copy verified; compiled-profile HTTP delivery passed with 27 cloud tests/subtests. C# cache passes 29 checks. User screenshot after 0.0.3 delivery shows launch/background and synthetic replay, but no resource-ready status/cache counters. Full assets, real service deployment, phone downloads/restart/update persistence remain incomplete. Excludes newer 0434575 source."
     },
     {
       "id": "PLAY-01",
@@ -77,9 +87,11 @@
       "requirement": "Required fonts, audio, shaders, Live2D, web and lifecycle integration",
       "status": "incomplete",
       "evidence": [
-        "evidence/native/device-validation.json"
+        "evidence/native/device-validation.json",
+        "evidence/ios-package-search/ipa-resource-delivery.json",
+        "evidence/ios-package-search/device-resource-validation.json"
       ],
-      "knownIssue": "Missing simplified Chinese glyphs in 0.0.2 screenshot. Recovered W3(P).ttf covers current 196 CJK runtime characters and is now selected in source; Unity import and device rendering remain unverified."
+      "knownIssue": "0.0.2 missing simplified glyphs: visible text in the user 0.0.3 screenshot now renders without boxes. Font also passed 196-character cmap and Unity checks. This does not prove all game glyphs, audio/shaders/Live2D/web or lifecycle; those remain incomplete."
     },
     {
       "id": "SAVE-01",
@@ -91,8 +103,13 @@
       "id": "DELIVERY-01",
       "requirement": "Final functional IPA reproducible and all scoped device acceptance passed",
       "status": "incomplete",
-      "evidence": ["evidence/ios-package-search/ios-resource-cloud-request.json"],
-      "scope": "User triggered 44293950030 for 32f0ece; queued screenshot only. No successful 0.0.3 IPA or device evidence yet."
+      "evidence": [
+        "evidence/ios-package-search/ios-resource-cloud-request.json",
+        "evidence/ios-package-search/ipa-resource-delivery.json",
+        "evidence/ios-package-search/cloud-resource-review.json",
+        "evidence/ios-package-search/device-resource-validation.json"
+      ],
+      "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete."
     }
   ]
 }

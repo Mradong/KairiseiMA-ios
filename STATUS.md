@@ -1,5 +1,20 @@
 # 当前状态
 
+## 2026-11-19：CLIENT-01 连接状态解析（本地）
+
+客户端此前将 `/Connect` 响应当作角色初始化数据；根据 `server-ios/server/internal/httpapi/session_handlers.go` 和旧版 `GameMgr.cs`，该响应实际包含角色是否创建和教程标志。现已增加严格的状态解析，界面区分已有角色与未创建角色，并在字段缺失或无效时报告错误，不自动访问会改变战斗状态的 `/HomeShow`。Windows 下实际 C# 协议代码及本机 HTTP 夹具通过 54 项检查，证据 `evidence/protocol-tests.json`。这是连接状态的一小步，尚未实现角色创建、主页、真实服务联调或 Unity/iOS 编译；0.0.3 真机结果不适用于此源码。下一步恢复角色创建及主页数据与交互，继续保持隔离测试身份。
+
+## 最新交付：0.0.3 iOS 资源启动版（2026-11-18）
+
+构建 [44293950030](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44293950030) 已成功，源提交 `32f0ece04bb20a0291374ff6aa7aa7f7de6f82ba`。用户于北京时间 19:55 执行监控脚本完成下载与核验，代理随后复核本地证据、两份 IPA 哈希和云端服务测试日志。ARM64 原生库、Unity iOS 资源编译/导出、Xcode 打包及实际编译资源的服务端交付测试均通过。
+
+- 最新安装包：`install-kit/KairiseiMA-ios-resource-bootstrap-0.0.3-unsigned.ipa`（同包另存 `dist/ready/`），26,040,111 字节，SHA-256 `83e65a639ad4dc62c6dcb703a585810e926a9c0ed0cbbe51ebb8ae5fd09ce223`；57 个 ZIP 条目、应用标识 `local.kairisei.recovery`、最低 iOS 15.0。保持旧 0.0.2 与其证据。
+- 实际 iOS 资源包 `recovery/ui.dat` 为 713,900 字节，SHA-256 `672c14931393b0f9c92a0eebb1bd83a462f936ab7a75155e829c34bd89ba6d30`，文件 CRC `A52C46F3`；包含从原 IPA 选定的十个纹理/图集数据源，字体已通过 Unity 简体字形检查。内容 ID `35887f789f6dfd29667dacdfaec643a635b392d9cd165baef013a3c18f1a8bea`。
+- 云端 27 个测试及子测试通过，其中 `TestIOSCompiledProfile` 对真正编译的 iOS UnityFS 包核验 SHA-256 并通过服务 HTTP 路由交付完全一致的字节；此证据不等于手机联网流程或真实服务部署通过。
+- 证据：`ios-resource-cloud-status.json`、`ios-resource-artifact-verification.json`、`ipa-resource-delivery.json`、`cloud-resource-review.json`，均位于 `evidence/ios-package-search/`。
+
+**0.0.3 真机反馈：**用户在本版交付后提供截图，应用已打开，当前可见简体中文正常、未见方框，离线合成验证显示 30 步与原版一致并到胜利结算；背景可见。版本按交付后的反馈顺序关联，截图本身没有版本标签，未核验签名后 IPA 哈希。证据 `evidence/ios-package-search/device-resource-validation.json`。资源就绪提示已被合成结果覆盖，尚未捕获缓存安装/复用计数；退出重进、覆盖持久性、服务器登录及完整游戏仍未验收。0.0.3 不包含本地提交 `0434575` 的注册双波修复，不能用本次设备结果认证那批源码。下文 queued/未收到真机反馈等描述属于此前历史。
+
 ## 本地继续：CLIENT-01 场景脚本字段恢复（2026-11-18，执行中）
 
 用户要求继续本地 iOS 恢复，不再停留审批后台排查。当前没有本机监控脚本保存的新构建结果；云端状态仍只有此前 queued 证据。本轮复用已有 IL2CPP 工具，尝试从 6.0.2 IPA 的原始主程序与元数据恢复该版本脚本字段，供原场景组件数据读取与主页/卡组 UI 恢复使用。只做静态处理，输出限本项目；不执行旧应用，不修改原 IPA，不将存根方法当作真实游戏实现。若因主程序加密无法恢复，则记录具体边界并推进可用的场景/资源消费者。
@@ -15,6 +30,8 @@
 - 新增 Unity 工程运行时代码 `NativeRegisteredBattle.cs`，让调用方传入真实表与 packed 记录，持有并释放目录/准备态/战斗句柄，消费选卡/伤害结果和日志，支持注册下一波。该类不包含合成数据，尚未接入真实游戏 UI。新增 `RegisteredManagedCases.cs` 实际编译并调用此 C# 类，通过三次双波战斗与 108 次原版结果/日志比较；重复创建和释放未耗尽目录容量。证据为 `evidence/native/registered-battle-differential-tests.json`。
 - 同一新 DLL 下，独立战斗 748 项、非零注册技能查询 155 项、Go 桥接状态测试通过。原始 DLL 只读哈希未变。**上述全部为 Windows / 合成数据证据；不覆盖 ARM64、Unity 引擎、真机或完整游戏 UI/资源。**
 - 本轮源码尚未上传/云构建；已触发的 44293950030 对应旧提交 32f0ece，不包含这批修复，不能混用证据。BATTLE-01 继续 incomplete：其他模式、觉醒、NPC/球/伙伴、敌方程序/量表、完整条件/效果覆盖和真实数据仍未完成。下一步恢复真实注册输入与 UI 消费，或根据新云构建实际日志修复资源链。
+
+本地审核快照已提交到隔离仓库：`04345758c3f170ee86bab4d4a599a2576fc5cc3a`，102 个白名单源码/证据文件、20,868,031 字节；未上传，未触发新构建。提交前逐文件哈希及清单与工作树范围核对通过，`git diff --cached --check` 通过。七个原始核心文件哈希一致、只读参考工作树干净，0.0.2 安装包哈希仍为 `dc83be178166a91b4923a7447cbcd77380dc2308f77329c0824a349213aa0b3e`。独立本轮证据为 `evidence/native/registered-wave-checkpoint.json`；旧 `implementation-status.json` 中 38/41 及 iOS 标志属于早期快照，不能用于当前源码判断。
 
 **最新云构建：**用户已在本人 PowerShell 成功推送提交 `32f0ece04bb20a0291374ff6aa7aa7f7de6f82ba` 并启动 [44293950030](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44293950030)。用户截图显示该提交处于 `queued`；`ios-resource-cloud-request.json` 记录请求。尚未确认 Unity/Xcode 或产物成功。代理尝试只读查询时自动审批服务仍返回 503，未执行状态查询；准备本人终端的监控/下载/核验脚本继续交付。下方“上传未执行”描述保留为此前审批失败的历史，现已由本人执行解除上传阻塞。
 

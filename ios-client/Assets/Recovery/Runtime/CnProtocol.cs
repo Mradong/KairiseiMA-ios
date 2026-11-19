@@ -67,6 +67,12 @@ namespace Kairisei.Recovery
         public Uri VersionUrl { get; internal set; }
     }
 
+    public sealed class CnConnectState
+    {
+        public bool UserCreated { get; internal set; }
+        public long TutorialFlag { get; internal set; }
+    }
+
     public static class CnProtocol
     {
         public const string ClientVersion = "2.0.4";
@@ -132,6 +138,20 @@ namespace Kairisei.Recovery
             if (payload.Type != JTokenType.Object && payload.Type != JTokenType.Array)
                 throw new FormatException("服务器业务数据必须是对象或数组。");
             return new CnEnvelope { Common = common, Payload = payload, Popup = lines.Length == 3 ? ParseObject(lines[2]) : null };
+        }
+
+        public static CnConnectState ParseConnect(string content)
+        {
+            CnEnvelope envelope = ParseEnvelope(content);
+            JObject payload = envelope.Payload as JObject;
+            if (payload == null) throw new FormatException("连接状态格式无效。");
+            JToken created = payload["is_user"];
+            JToken tutorial = payload["tutorial_flag"];
+            if (created == null || created.Type != JTokenType.Integer || (created.Value<long>() != 0 && created.Value<long>() != 1))
+                throw new FormatException("服务器缺少有效的角色创建状态。");
+            if (tutorial == null || tutorial.Type != JTokenType.Integer)
+                throw new FormatException("服务器缺少有效的教程状态。");
+            return new CnConnectState { UserCreated = created.Value<long>() == 1, TutorialFlag = tutorial.Value<long>() };
         }
 
         private static bool SameOrigin(Uri a, Uri b)
