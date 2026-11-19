@@ -53,7 +53,7 @@ func TestDecodePreparedEnemyFieldsAndGuards(t *testing.T) {
 
 func TestSimpleEnemyActionRejectsUnsupportedInput(t *testing.T) {
 	schema := map[string]map[int32]string{
-		"ENEMY_AI_TARGET":      {0: "NULL", 1: "RANDOM", 23: "ENEMY1"},
+		"ENEMY_AI_TARGET":      {0: "NULL", 1: "RANDOM", 23: "ENEMY1", 47: "MERCENARY", 48: "MILLIONAIRE", 49: "THIEF", 50: "SINGER"},
 		"ENEMY_AI_ORDER_PARTY": {0: "NULL"}, "ENEMY_AI_ORDER_TRANCE_GAUGE": {0: "NULL"}, "ENEMY_AI_ORDER_TRIGGER": {0: "NULL"},
 	}
 	raw := make([]byte, 2656)
@@ -69,6 +69,12 @@ func TestSimpleEnemyActionRejectsUnsupportedInput(t *testing.T) {
 	}
 	if _, err := decodeSimpleEnemyAction(schema, raw, 1); err == nil {
 		t.Fatal("unsupported skill slot accepted")
+	}
+	for _, selector := range []uint32{47, 48, 49, 50} {
+		binary.LittleEndian.PutUint32(raw[2440:], selector)
+		if _, err := decodeSimpleEnemyAction(schema, raw, 0); err != nil {
+			t.Fatalf("profession selector %d rejected: %v", selector, err)
+		}
 	}
 	binary.LittleEndian.PutUint32(raw[2440:], 0)
 	if _, err := decodeSimpleEnemyAction(schema, raw, 0); err == nil {

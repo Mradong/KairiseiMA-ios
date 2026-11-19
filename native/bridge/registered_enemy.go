@@ -102,7 +102,7 @@ func decodeSimpleEnemyAction(schema map[string]map[int32]string, raw []byte, slo
 		return action, fmt.Errorf("unsupported enemy action slot")
 	}
 	target, err := lookupNativeEnum(schema, "ENEMY_AI_TARGET", wireInt(raw, 2440))
-	if err != nil || (target != "ENEMY1" && target != "RANDOM") {
+	if err != nil || (target != "ENEMY1" && target != "RANDOM" && target != "MERCENARY" && target != "MILLIONAIRE" && target != "THIEF" && target != "SINGER") {
 		return action, fmt.Errorf("unsupported enemy target")
 	}
 	for _, off := range []int{2500, 2504, 2588} {
