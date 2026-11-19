@@ -67,8 +67,15 @@ func TestSimpleEnemyActionRejectsUnsupportedInput(t *testing.T) {
 	if err != nil || action.SkillID != 2001 || action.Target != "ENEMY1" || action.Rate != 100 || action.Order.Fields[7] != "1" {
 		t.Fatalf("unexpected action: %+v %v", action, err)
 	}
-	if _, err := decodeSimpleEnemyAction(schema, raw, 1); err == nil {
+	if _, err := decodeSimpleEnemyAction(schema, raw, 2); err == nil {
 		t.Fatal("unsupported skill slot accepted")
+	}
+	if _, err := decodeSimpleEnemyAction(schema, raw, 1); err == nil {
+		t.Fatal("unsupported skill-slot target accepted")
+	}
+	binary.LittleEndian.PutUint32(raw[2440:], 47)
+	if skill, err := decodeSimpleEnemyAction(schema, raw, 1); err != nil || skill.Category != "skill" {
+		t.Fatalf("supported skill slot rejected: %+v %v", skill, err)
 	}
 	for _, selector := range []uint32{47, 48, 49, 50} {
 		binary.LittleEndian.PutUint32(raw[2440:], selector)
