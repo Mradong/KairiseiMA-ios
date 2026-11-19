@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const output=path.join(root,'test-output/atlas');fs.mkdirSync(output,{recursive:true});
+const json=path.join(root,'tools/Newtonsoft.Json/lib/net45/Newtonsoft.Json.dll');
+fs.copyFileSync(json,path.join(output,'Newtonsoft.Json.dll'));
+const exe=path.join(output,'RecoveryAtlasTests.exe');
+const csc=path.join(process.env.WINDIR||'C:/Windows','Microsoft.NET/Framework64/v4.0.30319/csc.exe');
+const build=spawnSync(csc,['/nologo','/target:exe','/out:'+exe,'/reference:'+json,'/reference:System.Drawing.dll',path.join(root,'ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs'),path.join(root,'tests/RecoveryAtlasTests.cs')],{encoding:'utf8'});
+if(build.status!==0)throw new Error(build.stdout+build.stderr);
+const test=spawnSync(exe,[path.join(root,'ios-client/Assets/Recovery/Content/Party-frames.json'),path.join(root,'ios-client/Assets/Recovery/Content/Party.png')],{encoding:'utf8'});
+const report={generatedAt:new Date().toISOString(),success:test.status===0,stdout:test.stdout.trim(),stderr:test.stderr.trim(),scope:'Actual recovered Party atlas image dimensions and JSON coordinates, UV conversion and invalid frame checks in Windows .NET. No Unity texture import, rendered screenshot, iOS or device validation.'};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/ios-atlas-tests.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report,null,2));if(!report.success)process.exitCode=1;

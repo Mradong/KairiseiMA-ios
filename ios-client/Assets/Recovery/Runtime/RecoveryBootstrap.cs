@@ -42,6 +42,8 @@ namespace Kairisei.Recovery
         private UnityWebRequest pending;
         private Texture2D title;
         private Font font;
+        private Texture2D partyAtlasTexture;
+        private RecoveryAtlas partyAtlas;
         private RecoveryContentLoader content;
         private GUIStyle headingStyle;
         private GUIStyle bodyStyle;
@@ -67,6 +69,7 @@ namespace Kairisei.Recovery
             {
                 if (!content.Ready) throw new InvalidOperationException(content.Error ?? "资源初始化未完成。");
                 title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
+                LoadPartyAtlas();
                 status = "本地资源已就绪。输入服务器地址后检查连接。完整游戏仍在恢复中。";
             }
             catch (Exception error) { status = "资源加载失败：" + error.Message; }
@@ -78,6 +81,20 @@ namespace Kairisei.Recovery
             StopAllCoroutines();
             if (pending != null) { pending.Abort(); pending.Dispose(); pending = null; }
             login = null;
+        }
+
+        private void LoadPartyAtlas()
+        {
+            partyAtlasTexture = null; partyAtlas = null;
+            try
+            {
+                Texture2D texture = content.Load<Texture2D>("recovery/ui.dat", "party");
+                TextAsset frames = content.Load<TextAsset>("recovery/ui.dat", "party-frames");
+                RecoveryAtlas atlas = new RecoveryAtlas(frames.text, texture.width, texture.height);
+                for (int role = 1; role <= 4; role++) atlas.Frame("BattleLo_Job0" + role + "_01.png");
+                partyAtlasTexture = texture; partyAtlas = atlas;
+            }
+            catch (Exception error) { Debug.LogWarning("Party atlas unavailable: " + error.Message); }
         }
 
         private void OnGUI()
@@ -124,7 +141,14 @@ namespace Kairisei.Recovery
                 if (homeState != null && GUI.Button(new Rect(800, 540, 380, 64), "查看服务器卡组", buttonStyle)) ReadDecks();
                 GUI.enabled = true;
                 if (homeState != null)
-                    GUI.Label(new Rect(100, 465, 880, 55), homeState.Name + "  等级 " + homeState.Level + "  体力 " + homeState.Ap + "/" + homeState.ApMax + "  战斗点 " + homeState.Bp + "/" + homeState.BpMax + "  金币 " + homeState.Gold, bodyStyle);
+                {
+                    GUI.Label(new Rect(100, 465, 800, 55), homeState.Name + "  等级 " + homeState.Level + "  体力 " + homeState.Ap + "/" + homeState.ApMax + "  战斗点 " + homeState.Bp + "/" + homeState.BpMax + "  金币 " + homeState.Gold, bodyStyle);
+                    if (partyAtlas != null && partyAtlasTexture != null && homeState.ArthurType >= 1 && homeState.ArthurType <= 4)
+                    {
+                        float[] uv = partyAtlas.Frame("BattleLo_Job0" + homeState.ArthurType + "_01.png");
+                        GUI.DrawTextureWithTexCoords(new Rect(915, 462, 50, 52), partyAtlasTexture, new Rect(uv[0], uv[1], uv[2], uv[3]));
+                    }
+                }
             }
             if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
             {
@@ -271,6 +295,7 @@ namespace Kairisei.Recovery
             busy = true;
             yield return content.UpdateFromServer(requestedLogin);
             serverContentReady = content.Ready && login == requestedLogin;
+            if (serverContentReady) LoadPartyAtlas();
             status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以检查角色状态。" : "服务器资源加载失败：" + content.Error;
             busy = false;
         }

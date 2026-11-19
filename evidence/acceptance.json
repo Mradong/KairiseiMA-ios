@@ -88,9 +88,10 @@
         "evidence/ios-package-search/ios-resource-artifact-verification.json",
         "evidence/ios-package-search/ipa-resource-delivery.json",
         "evidence/ios-package-search/cloud-resource-review.json",
-        "evidence/ios-package-search/device-resource-validation.json"
+        "evidence/ios-package-search/device-resource-validation.json",
+        "evidence/ios-package-search/ios-atlas-tests.json"
       ],
-      "scope": "32f0ece / 44293950030 iOS resource bundle (713900 bytes), manifest/SHA/CRC and embedded IPA copy verified; compiled-profile HTTP delivery passed with 27 cloud tests/subtests. C# cache passes 29 checks. User screenshot after 0.0.3 delivery shows launch/background and synthetic replay, but no resource-ready status/cache counters. Full assets, real service deployment, phone downloads/restart/update persistence remain incomplete. Excludes newer 0434575 source."
+      "scope": "32f0ece / 44293950030 iOS resource bundle (713900 bytes), manifest/SHA/CRC and embedded IPA copy verified; compiled-profile HTTP delivery passed with 27 cloud tests/subtests. C# cache passes 29 checks. User screenshot after 0.0.3 delivery shows launch/background and synthetic replay, but no resource-ready status/cache counters. Full assets, real service deployment, phone downloads/restart/update persistence remain incomplete. Excludes newer 0434575 source. Local client reads recovered Party TexturePacker frames and attempts to draw four job icons from the atlas; 10 Windows .NET source-image dimension, UV and rejection checks. No Unity import/render, iOS build or device verification for this change."
     },
     {
       "id": "PLAY-01",
