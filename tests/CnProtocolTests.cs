@@ -81,6 +81,16 @@ public static class CnProtocolTests
         var quest = CnProtocol.ParseSoloQuests(questResponse);
         Check(quest.Count == 1 && quest[0].BossId == 99 && quest[0].BpCost == 5 && quest[0].Category == "普通", "quest identity, category and cost");
         Reject(delegate { CnProtocol.ParseSoloQuests(questResponse.Replace("\"12\":[]", "\"12\":null")); }, "missing quest category");
+        var partners = new JArray(new JObject { { "userid", 1000001 }, { "arthur_type", 1 }, { "deck_idx", 0 } });
+        string soloRequest = CnProtocol.CreateSoloBattleStartRequest(Session, 30010102, 3, 0, partners);
+        Check((long)JObject.Parse(soloRequest.Substring(Session.Length))["partner_deck_selects"][0]["userid"] == 1000001, "solo partner selection");
+        Reject(delegate { CnProtocol.CreateSoloBattleStartRequest(Session, 0, 3, 0, partners); }, "invalid boss");
+        Reject(delegate { CnProtocol.CreateSoloBattleStartRequest(Session, 1, 3, 0, new JArray(new JObject { { "userid", 1 } })); }, "incomplete partner");
+        string startResponse = "{\"res_code\":0}\n{\"seed\":-1,\"start_time\":2,\"battles\":[{\"enemy_partyid\":1,\"enemy_type\":0}],\"partner_deck\":[{\"deck\":[42]}]}";
+        var started = CnProtocol.ParseSoloBattleStart(startResponse);
+        Check(started.Seed == -1 && started.Battles.Count == 1 && (int)started.Wire["partner_deck"][0]["deck"][0] == 42, "start state retains full loadout");
+        Reject(delegate { CnProtocol.ParseSoloBattleStart(startResponse.Replace("\"enemy_partyid\":1", "\"enemy_partyid\":0")); }, "invalid enemy party");
+        Reject(delegate { CnProtocol.ParseSoloBattleStart(startResponse.Replace("\"battles\":[{\"enemy_partyid\":1,\"enemy_type\":0}]", "\"battles\":[]")); }, "empty battles");
         Reject(delegate { CnProtocol.ParseHome(homeResponse, 1338); }, "home user mismatch");
         Reject(delegate { CnProtocol.ParseHome("{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"name\"}}", 1337); }, "incomplete home response");
         Reject(delegate { CnProtocol.CreateSessionRequest("short", new JObject()); }, "short session");
@@ -217,6 +227,16 @@ public static class CnProtocolTests
             {
                 var stages = CnProtocol.ParseSoloQuests(File.ReadAllText(actualQuests));
                 Check(stages.Count > 0 && stages[0].BossId == 30020102 && stages[0].BpCost == 1, "isolated service tutorial quest");
+            }
+            string actualStart = Environment.GetEnvironmentVariable("IOS_SOLO_START_FIXTURE");
+            string actualStartRequest = Environment.GetEnvironmentVariable("IOS_SOLO_START_REQUEST_FIXTURE");
+            if (!String.IsNullOrEmpty(actualStart) && !String.IsNullOrEmpty(actualStartRequest))
+            {
+                JObject expected = JObject.Parse(File.ReadAllText(actualStartRequest));
+                string requestBody = CnProtocol.CreateSoloBattleStartRequest(Session, (long)expected["bossid"], (int)expected["deck_arthur_type"], (int)expected["deck_arthur_type_idx"], (JArray)expected["partner_deck_selects"]);
+                Check(JToken.DeepEquals(expected, JObject.Parse(requestBody.Substring(Session.Length))), "solo request matches isolated service");
+                var result = CnProtocol.ParseSoloBattleStart(File.ReadAllText(actualStart));
+                Check(result.Battles.Count == 1 && (int)result.Battles[0]["enemy_partyid"] == 1 && ((JArray)result.Wire["partner_deck"]).Count == 3 && (int)result.Wire["hold_max"] == 6, "isolated service battle data retained");
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;

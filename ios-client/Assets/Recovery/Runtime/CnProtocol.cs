@@ -117,6 +117,14 @@ namespace Kairisei.Recovery
         public JObject Wire { get; internal set; }
     }
 
+    public sealed class CnSoloBattleStart
+    {
+        public long Seed { get; internal set; }
+        public long StartTime { get; internal set; }
+        public JArray Battles { get; internal set; }
+        public JObject Wire { get; internal set; }
+    }
+
     public sealed class CnDeck
     {
         public long ArthurType { get; internal set; }
@@ -281,6 +289,41 @@ namespace Kairisei.Recovery
                 }
             }
             return result;
+        }
+
+        public static string CreateSoloBattleStartRequest(string sessionKey, long bossId, int arthurType, int deckIndex, JArray partnerDecks)
+        {
+            if (bossId < 1 || arthurType < 1 || arthurType > 5 || deckIndex < 0 || deckIndex > 127 || partnerDecks == null || partnerDecks.Count > 3)
+                throw new ArgumentException("Invalid solo battle selection");
+            var partners = new JArray();
+            foreach (JToken item in partnerDecks)
+            {
+                JObject partner = item as JObject;
+                if (partner == null || partner.Count != 3 || RequiredInteger(partner, "userid") < 1 ||
+                    RequiredInteger(partner, "arthur_type") < 1 || RequiredInteger(partner, "arthur_type") > 5 ||
+                    RequiredInteger(partner, "deck_idx") < 0 || RequiredInteger(partner, "deck_idx") > 127)
+                    throw new ArgumentException("Invalid partner deck selection");
+                partners.Add(partner.DeepClone());
+            }
+            return CreateSessionRequest(sessionKey, new JObject { { "bossid", bossId }, { "deck_arthur_type", arthurType },
+                { "deck_arthur_type_idx", deckIndex }, { "partner_deck_selects", partners } });
+        }
+
+        public static CnSoloBattleStart ParseSoloBattleStart(string content)
+        {
+            JObject payload = ParseEnvelope(content).Payload as JObject;
+            JArray battles = payload == null ? null : payload["battles"] as JArray;
+            if (battles == null || battles.Count == 0) throw new FormatException("Battle segments are missing");
+            foreach (JToken item in battles)
+            {
+                JObject battle = item as JObject;
+                if (battle == null || RequiredInteger(battle, "enemy_partyid") < 1 || RequiredInteger(battle, "enemy_type") < 0)
+                    throw new FormatException("Invalid battle segment");
+            }
+            long seed = RequiredInteger(payload, "seed"), startTime = RequiredInteger(payload, "start_time");
+            if (startTime < 1) throw new FormatException("Invalid battle start time");
+            return new CnSoloBattleStart { Seed = seed, StartTime = startTime,
+                Battles = (JArray)battles.DeepClone(), Wire = (JObject)payload.DeepClone() };
         }
 
         public static CnCardCollection ParseCardShow(string content)

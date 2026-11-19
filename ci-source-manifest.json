@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T06:21:29.296Z",
+  "generatedAt": "2026-11-19T06:24:18.931Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -25,13 +25,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 47470,
-      "sha256": "e795f0abff6acdd64938fdf962fb948de8496e948b4e2aa8c9b15b455bcab43a"
+      "bytes": 48342,
+      "sha256": "36386cbc365ed5cb0a1edd7977dd94f52a1d63dfa7702bed559d1ae97b13e48a"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 11848,
-      "sha256": "f698e0191507bf5c6dc69486f1b86960177d64e574e4ac2aa15b02f937f282af"
+      "bytes": 12294,
+      "sha256": "231a0b2c7c83bec863d572f63e1f01ce4d0702e763189c8fbf3a9b5595d848e2"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -129,6 +129,21 @@
       "sha256": "4f21ec0b953d77de28480ec4791fa8dc10125ce99fcdada33b6191aacb7b7a22"
     },
     {
+      "path": "evidence/ios-package-search/ios-solo-start-fixture.json",
+      "bytes": 8488,
+      "sha256": "621075a9298238af93e0d470bb0246f4418746e0713d44bb3679f3c5276f3363"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-solo-start-request.json",
+      "bytes": 234,
+      "sha256": "437225af3023a74c44ac7e27c729378c611aaf2e988a10a159ab8dcebe13a3da"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-solo-start-test.log",
+      "bytes": 450,
+      "sha256": "fd014831d99f68d651010ae33fdd76a3a35160967388f5a2b718368021cefe81"
+    },
+    {
       "path": "evidence/ios-package-search/ipa-client004-delivery.json",
       "bytes": 4047,
       "sha256": "1137718a77e3e7fbb670e8ad7643c08e62fc0c4ec3f3ed8b5fe8ea26e5f09f0f"
@@ -216,12 +231,12 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "c6bd22685e7e733855f93f0bc7f93f6627e7ef9001264f52e28eefa5172b2ac2"
+      "sha256": "8ffc86ed1656eb7d6cc1079188355fddb689a4956830d866d57932a19c1e2f6e"
     },
     {
       "path": "evidence/protocol-tests.json",
-      "bytes": 882,
-      "sha256": "c08579b814f72704f3cbc456f234cf4fa526fcb6266af33a9397abeb29252a09"
+      "bytes": 673,
+      "sha256": "a21bcbe5443652a63ae4eb599b9f937b47408792e40e961aef8c54a57bc44e68"
     },
     {
       "path": "ios-client/.gitignore",
@@ -335,8 +350,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
-      "bytes": 22084,
-      "sha256": "57522adde3ef942342fd25704c41381863b50b8e80365b7429c526a19a1b039a"
+      "bytes": 24647,
+      "sha256": "92fd45d8d283cd089cf3f416143849adb0bf8b8dd37f6fc2d2023f02e9a2263c"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
@@ -540,8 +555,8 @@
     },
     {
       "path": "scripts/run-tests.mjs",
-      "bytes": 6657,
-      "sha256": "b75a6f60ba43b0a78e51a5defaac142ee81dd684f9628c8ff5e9647c00e37167"
+      "bytes": 6824,
+      "sha256": "3e31b07c7483d19a0d2d1c44487fe60a8b40bf4f9a555dd4b418a6c3cd0c82ee"
     },
     {
       "path": "scripts/test-ios-content.mjs",
@@ -594,9 +609,14 @@
       "sha256": "be0e0e5cbadfc988760a30b46387eca45933afc0bf83bb0eaf25f1a0148468da"
     },
     {
+      "path": "server-ios/server/internal/httpapi/solo_battle_start_test.go",
+      "bytes": 5855,
+      "sha256": "08b3b468fb0ceb77553142afd1fc9d1ede248f3a8888bbc2e2be8d2d99169919"
+    },
+    {
       "path": "tests/CnProtocolTests.cs",
-      "bytes": 18859,
-      "sha256": "38717c2477d955505dd618d81a24b46bfe4d272e66dfd6d451bcabce38d942fd"
+      "bytes": 21345,
+      "sha256": "ba8283115d7d82ad0f6d9a11925664a49cced6a7ef98c2278a83a381c7b6bb47"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
@@ -659,7 +679,7 @@
       "sha256": "768289c8c9c5a93196bd4aa739a040a677746454f514639dfd4a9599e941c497"
     }
   ],
-  "bytes": 21020786,
+  "bytes": 21042138,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
