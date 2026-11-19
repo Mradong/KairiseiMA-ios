@@ -98,14 +98,14 @@ func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]batt
 // enum-dependent targets/triggers remain explicit errors until differential tests exist.
 func decodeSimpleEnemyAction(schema map[string]map[int32]string, raw []byte, slot int) (battlemodel.CombatEnemyAction, error) {
 	var action battlemodel.CombatEnemyAction
-	if len(raw) != 2656 || slot < 0 || slot > 1 {
+	if len(raw) != 2656 || slot < 0 || slot > 14 {
 		return action, fmt.Errorf("unsupported enemy action slot")
 	}
 	target, err := lookupNativeEnum(schema, "ENEMY_AI_TARGET", wireInt(raw, 2440))
 	if err != nil || (target != "ENEMY1" && target != "RANDOM" && target != "MERCENARY" && target != "MILLIONAIRE" && target != "THIEF" && target != "SINGER") {
 		return action, fmt.Errorf("unsupported enemy target")
 	}
-	if slot == 1 && target != "MERCENARY" {
+	if slot > 0 && target != "MERCENARY" {
 		return action, fmt.Errorf("unsupported target for enemy skill slot")
 	}
 	for _, off := range []int{2500, 2504, 2588} {
