@@ -54,6 +54,15 @@ public static class CnProtocolTests
         Check(request.Count == 4, "expected login fields only");
         Check(CnProtocol.CreateSessionRequest(Session, new JObject()) == Session + "{}", "session framing without separator");
         Check(CnProtocol.CreateSessionRequest(Session, null) == Session, "session-only framing");
+        Check(CnProtocol.CreateUserRequest(Session, "测试骑士", 3) == Session + "{\"name\":\"测试骑士\",\"arthur_type\":3}", "character creation payload");
+        Reject(delegate { CnProtocol.CreateUserRequest(Session, "bad name", 1); }, "name with space");
+        Reject(delegate { CnProtocol.CreateUserRequest(Session, " ", 1); }, "empty character name");
+        Reject(delegate { CnProtocol.CreateUserRequest(Session, "name", 5); }, "invalid starting role");
+        string createdResponse = "{\"res_code\":0}\n{\"user\":{\"userid\":1337,\"name\":\"测试骑士\",\"active_arthur_type\":3},\"push_option\":{}}\n{}";
+        CnCreatedUser createdUser = CnProtocol.ParseCreatedUser(createdResponse, 1337);
+        Check(createdUser.Name == "测试骑士" && createdUser.ArthurType == 3, "created character fields");
+        Reject(delegate { CnProtocol.ParseCreatedUser(createdResponse, 1338); }, "wrong created user");
+        Reject(delegate { CnProtocol.ParseCreatedUser("{\"res_code\":0}\n{\"user\":{}}", 1337); }, "missing created user fields");
         Reject(delegate { CnProtocol.CreateSessionRequest("short", new JObject()); }, "short session");
         Reject(delegate { CnProtocol.CreateSessionRequest(Session + "\n", new JObject()); }, "session newline injection");
         Check(CnProtocol.ParseHealth("{\"state\":\"PASS\",\"battle_port\":26041}") == 26041, "health response");
@@ -110,7 +119,19 @@ public static class CnProtocolTests
                 {
                     connect.EnsureSuccessStatusCode();
                     CnConnectState state = CnProtocol.ParseConnect(connect.Content.ReadAsStringAsync().GetAwaiter().GetResult());
-                    Check(state.UserCreated && state.TutorialFlag == 7, "loopback Connect state transport");
+                    Check(!state.UserCreated && state.TutorialFlag == 0, "loopback new character state");
+                }
+                string create = CnProtocol.CreateUserRequest(login.SessionKey, "测试骑士", 3);
+                using (HttpResponseMessage responseCreate = client.PostAsync(login.Api.Route("/UserCreate"), new StringContent(create, Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
+                {
+                    responseCreate.EnsureSuccessStatusCode();
+                    CnCreatedUser user = CnProtocol.ParseCreatedUser(responseCreate.Content.ReadAsStringAsync().GetAwaiter().GetResult(), login.UserId);
+                    Check(user.Name == "测试骑士" && user.ArthurType == 3, "loopback character creation");
+                }
+                using (HttpResponseMessage reconnect = client.PostAsync(login.Api.Route("/Connect"), new StringContent(body, Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
+                {
+                    reconnect.EnsureSuccessStatusCode();
+                    Check(CnProtocol.ParseConnect(reconnect.Content.ReadAsStringAsync().GetAwaiter().GetResult()).UserCreated, "loopback created state after reconnect");
                 }
             }
         }

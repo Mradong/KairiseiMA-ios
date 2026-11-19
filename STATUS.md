@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-19：CLIENT-01 隔离游客角色创建（本地）
+
+连接后若服务器表示角色尚未创建，客户端允许输入名称、选择佣兵／富豪／盗贼／歌姬，并发送原协议 `/UserCreate`；解析服务器返回的角色身份和职业。请求发出后清除本地创建许可，超时或结果不明时须重新检查 `/Connect`，避免直接重复创建。已有角色不会显示创建入口。
+
+Windows 下 63 项客户端协议与本机合成 HTTP 夹具检查通过。独立服务副本使用临时数据库和独立游客，通过实际路由验证新角色状态、创建结果、重复创建拒绝及同游客重新登录后状态；服务测试使用 Windows 平台资源夹具，并非 iOS 联机验收。日志 `evidence/ios-package-search/ios-character-flow-test.log`，协议证据 `evidence/protocol-tests.json`，服务测试 `server-ios/server/internal/cnbootstrap/ios_character_flow_test.go`。未进行 Unity/iOS 构建、设备测试或真实账号操作；原版角色创建场景、教程和主页尚未恢复，本增量不代表可玩。下一步恢复实际主页数据及其交互，并处理进入主页会结束未完成战斗的服务语义。
+
 ## 2026-11-19：CLIENT-01 连接状态解析（本地）
 
 客户端此前将 `/Connect` 响应当作角色初始化数据；根据 `server-ios/server/internal/httpapi/session_handlers.go` 和旧版 `GameMgr.cs`，该响应实际包含角色是否创建和教程标志。现已增加严格的状态解析，界面区分已有角色与未创建角色，并在字段缺失或无效时报告错误，不自动访问会改变战斗状态的 `/HomeShow`。Windows 下实际 C# 协议代码及本机 HTTP 夹具通过 54 项检查，证据 `evidence/protocol-tests.json`。这是连接状态的一小步，尚未实现角色创建、主页、真实服务联调或 Unity/iOS 编译；0.0.3 真机结果不适用于此源码。下一步恢复角色创建及主页数据与交互，继续保持隔离测试身份。

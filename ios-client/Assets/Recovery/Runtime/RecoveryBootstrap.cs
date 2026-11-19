@@ -16,6 +16,9 @@ namespace Kairisei.Recovery
         private bool busy;
         private ServerEndpoint endpoint;
         private CnLogin login;
+        private CnConnectState connectState;
+        private string characterName = "";
+        private int arthurType = 1;
         private bool serverContentReady;
         private UnityWebRequest pending;
         private Texture2D title;
@@ -91,6 +94,16 @@ namespace Kairisei.Recovery
             if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
             GUI.enabled = true;
             GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
+            if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
+            {
+                GUI.enabled = !busy;
+                characterName = GUI.TextField(new Rect(100, 465, 280, 54), characterName, 32, inputStyle);
+                string[] roles = { "佣兵", "富豪", "盗贼", "歌姬" };
+                for (int i = 0; i < roles.Length; i++)
+                    if (GUI.Button(new Rect(400 + i * 145, 465, 135, 54), (arthurType == i + 1 ? "✓ " : "") + roles[i], buttonStyle)) arthurType = i + 1;
+                if (GUI.Button(new Rect(995, 465, 185, 54), "创建角色", buttonStyle)) CreateCharacter();
+                GUI.enabled = true;
+            }
             GUI.enabled = !busy;
             if (GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
             {
@@ -106,6 +119,7 @@ namespace Kairisei.Recovery
         private void CheckHealth()
         {
             login = null;
+            connectState = null;
             serverContentReady = false;
             endpoint = null;
             verifiedAddress = null;
@@ -125,6 +139,7 @@ namespace Kairisei.Recovery
         {
             if (endpoint == null || verifiedAddress != address) return;
             login = null;
+            connectState = null;
             serverContentReady = false;
             string key;
             using (SHA256 hash = SHA256.Create())
@@ -153,8 +168,23 @@ namespace Kairisei.Recovery
         {
             if (login == null || !serverContentReady || verifiedAddress != address) return;
             StartCoroutine(Send("POST", login.Api.Route("/Connect"), CnProtocol.CreateSessionRequest(login.SessionKey, new JObject()), delegate(string response) {
-                CnConnectState state = CnProtocol.ParseConnect(response);
-                status = state.UserCreated ? "服务器确认角色已创建。主页和战斗尚未接入。" : "服务器确认角色尚未创建。角色创建流程尚未接入。";
+                connectState = CnProtocol.ParseConnect(response);
+                status = connectState.UserCreated ? "服务器确认角色已创建。主页和战斗尚未接入。" : "请输入名称并选择职业，然后创建角色。";
+            }));
+        }
+
+        private void CreateCharacter()
+        {
+            if (login == null || connectState == null || connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
+            string body;
+            try { body = CnProtocol.CreateUserRequest(login.SessionKey, characterName, arthurType); }
+            catch (Exception error) { status = error.Message; return; }
+            CnLogin requestedLogin = login;
+            // A timeout can follow a successful server commit: require Connect before another attempt.
+            connectState = null;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/UserCreate"), body, delegate(string response) {
+                CnCreatedUser created = CnProtocol.ParseCreatedUser(response, requestedLogin.UserId);
+                status = "角色“" + created.Name + "”已创建。请再次检查角色状态；主页尚未接入。";
             }));
         }
 

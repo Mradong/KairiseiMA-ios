@@ -23,6 +23,7 @@ const calls = [];
 const failures = [];
 const session = 'recovery-session-0123456789';
 let origin;
+let userCreated = false;
 const server = http.createServer(async (request, response) => {
   const chunks = [];
   for await (const chunk of request) chunks.push(chunk);
@@ -38,7 +39,12 @@ const server = http.createServer(async (request, response) => {
       response.end(JSON.stringify({ res_code: 0, res_str: '', userid: 1337, sess_key: session, api_url: origin + '/', version_url: origin + '/local/content/iOS/6000.3.26f1/current/' }));
     } else if (request.method === 'POST' && request.url === '/Connect') {
       assert.equal(body, session + '{}');
-      response.end(JSON.stringify({ res_code: 0, res_str: '' }) + '\n' + JSON.stringify({ is_user: 1, tutorial_flag: 7 }) + '\n');
+      response.end(JSON.stringify({ res_code: 0, res_str: '' }) + '\n' + JSON.stringify({ is_user: userCreated ? 1 : 0, tutorial_flag: 0 }) + '\n');
+    } else if (request.method === 'POST' && request.url === '/UserCreate') {
+      assert.equal(userCreated, false);
+      assert.equal(body, session + JSON.stringify({ name: '测试骑士', arthur_type: 3 }));
+      userCreated = true;
+      response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({user:{userid:1337,name:'测试骑士',active_arthur_type:3},push_option:{enable_flag:0}}) + '\n' + JSON.stringify({popup:[]}));
     } else { throw new Error('Unexpected fixture route'); }
   } catch (error) {
     failures.push(error.message);
@@ -57,7 +63,7 @@ try {
   child.stderr.on('data', chunk => { stderr += chunk; });
   status = await new Promise((resolve, reject) => { child.on('error', reject); child.on('exit', resolve); });
 } finally { await new Promise(resolve => server.close(resolve)); }
-const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect'];
+const expectedCalls = ['GET /healthz', 'POST /local/client/login', 'POST /Connect', 'POST /UserCreate', 'POST /Connect'];
 const result = {
   generatedAt: new Date().toISOString(), success: status === 0 && failures.length === 0 && JSON.stringify(calls) === JSON.stringify(expectedCalls),
   compiler: 'Windows .NET Framework C# compiler', jsonLibrary: 'Newtonsoft.Json 13.0.2 net45',

@@ -73,6 +73,13 @@ namespace Kairisei.Recovery
         public long TutorialFlag { get; internal set; }
     }
 
+    public sealed class CnCreatedUser
+    {
+        public long UserId { get; internal set; }
+        public string Name { get; internal set; }
+        public int ArthurType { get; internal set; }
+    }
+
     public static class CnProtocol
     {
         public const string ClientVersion = "2.0.4";
@@ -95,6 +102,27 @@ namespace Kairisei.Recovery
             if (sessionKey == null || !SessionFormat.IsMatch(sessionKey)) throw new FormatException("Invalid session key");
             // There is no separator: splitCNSessionPayload scans for the first '{' or '['.
             return sessionKey + (payload == null ? "" : payload.ToString(Formatting.None));
+        }
+
+        public static string CreateUserRequest(string sessionKey, string name, int arthurType)
+        {
+            if (String.IsNullOrWhiteSpace(name) || name.Length > 32 || name.Contains(" "))
+                throw new ArgumentException("请输入不含空格的角色名称（最多 32 字符）。", "name");
+            if (arthurType < 1 || arthurType > 4) throw new ArgumentException("请选择亚瑟职业。", "arthurType");
+            return CreateSessionRequest(sessionKey, new JObject { { "name", name }, { "arthur_type", arthurType } });
+        }
+
+        public static CnCreatedUser ParseCreatedUser(string content, long expectedUserId)
+        {
+            JObject payload = ParseEnvelope(content).Payload as JObject;
+            JObject user = payload == null ? null : payload["user"] as JObject;
+            if (user == null) throw new FormatException("服务器未返回创建的角色。");
+            JToken id = user["userid"], role = user["active_arthur_type"];
+            string name = RequiredString(user, "name");
+            if (id == null || id.Type != JTokenType.Integer || id.Value<long>() != expectedUserId || expectedUserId < 1 ||
+                role == null || role.Type != JTokenType.Integer || role.Value<long>() < 1 || role.Value<long>() > 4)
+                throw new FormatException("服务器返回的角色身份或职业无效。");
+            return new CnCreatedUser { UserId = expectedUserId, Name = name, ArthurType = role.Value<int>() };
         }
 
         public static int ParseHealth(string content)

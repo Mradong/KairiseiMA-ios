@@ -1,0 +1,4 @@
+=== RUN   TestIOSCharacterCreateConnectFlow
+--- PASS: TestIOSCharacterCreateConnectFlow (0.60s)
+PASS
+ok  	kairisei.local/server/internal/cnbootstrap	2.424s
