@@ -22,6 +22,7 @@ namespace Kairisei.Recovery
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_configure(ulong prep,int operation,int member,int value);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_user(ulong prep,int member,int[] values,int count,int seed,[Out] byte[] output,int capacity,out int written);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_card(ulong prep,int member,int slot,byte[] data,int count);
+        [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_extra_skill(ulong prep,int member,int slot,int kind,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_buddy(ulong prep,int member,int slot,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_spheres(ulong prep,int member,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_enemy(ulong prep,int member,byte[] data,int count);
@@ -90,6 +91,14 @@ namespace Kairisei.Recovery
             Player(member);Record(packed,4960);
             if(slot<1 || slot>20)throw new ArgumentOutOfRangeException("slot");
             Check(battlecore_preparation_card(preparation,member,slot,packed,packed.Length),"register card");
+        }
+
+        public void RegisterExtraSkill(int member,int slot,int kind,byte[] packed)
+        {
+            Player(member);Record(packed,2436);
+            if(slot<1 || slot>20)throw new ArgumentOutOfRangeException("slot");
+            if(kind<0 || kind>3)throw new ArgumentOutOfRangeException("kind");
+            Check(battlecore_preparation_extra_skill(preparation,member,slot,kind,packed,packed.Length),"register extra skill");
         }
 
         public void RegisterBuddy(int member,int slot,byte[] packed)

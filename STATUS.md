@@ -1,5 +1,15 @@
 # 当前状态
 
+## 2026-11-20：0.0.5 云构建与 IPA 核验
+
+构建 [44662701250](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44662701250) 对应 `ec71223aa0d433edd098ea6a39141edfc263c203`，已完成 ARM64、Unity/Xcode 和资源构建，28 个云端服务测试及子测试通过。已下载并核验 `install-kit/KairiseiMA-ios-resource-bootstrap-0.0.5-unsigned.ipa` 和 `dist/ready/` 副本：26,101,565 字节，SHA-256 `5d64b80a605fb92fbaf7ff39bd4115915d1bc048c11bc3b19fd65a81b130fcb4`，两份一致；资源和 IPA 结构校验通过。证据 `evidence/ios-package-search/ipa-client005-delivery.json`、`ios-client005-artifact-verification.json`。
+
+尚未签名、安装、真机或完整游戏验证；此构建不包含其后队友选择、我方卡组选择及战斗配置等源码。独立测试服务连接情况尚需确认，不能把旧 IPA 的真机结果用于本版。
+
+## 2026-11-20：BATTLE-01 额外技能注册入口（本地）
+
+实际 C# 注册战斗适配器新增额外技能记录入口，校验成员、卡槽、种类和记录长度。Windows 合成双波夹具为每名角色注册种类 1 的非零额外技能记录，原 DLL 与重建库均成功注册，启动、伤害与日志对照通过；无效技能种类被拒绝。证据 `evidence/native/registered-battle-differential-tests.json`。这不证明该额外技能在战斗中触发，也不代表实际资源转换或完整技能恢复；无 Unity/iOS 或真机验证，不在 0.0.5 源码中。
+
 ## 2026-11-20：BATTLE-01 入场回合上限传递（本地）
 
 单人入场响应解析器验证并保存 `end_turn`，实际 C# 战斗适配器可将其传给注册战斗。隔离服务入场样例的 `end_turn=0` 经解析与适配器传递，配合合成角色、卡牌和敌人数据，与原 DLL 的启动、双波结果及日志一致；另有合成上限 20 的对照。112 项协议检查与注册战斗原 DLL 差分通过，证据 `evidence/protocol-tests.json`、`evidence/native/registered-battle-differential-tests.json` 和 `evidence/native/registered-managed-service-turn-start.txt`。

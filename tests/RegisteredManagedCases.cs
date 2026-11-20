@@ -9,6 +9,7 @@ partial class RegisteredBattleDifferential
     [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)] private static extern bool SetDllDirectory(string directory);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int CloseHandle(ulong handle);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int ConfigureHandle(ulong handle,int operation,int member,int value);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int ExtraSkillHandle(ulong handle,int member,int slot,int kind,byte[] data,int count);
     private static int managedScenarios, managedOperations;
 
     private static void ManagedText(string reference,string actual,string label)
@@ -25,6 +26,7 @@ partial class RegisteredBattleDifferential
         CloseHandle closePreparation=(CloseHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_close"),typeof(CloseHandle));
         CloseHandle closeBattle=(CloseHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_context_close"),typeof(CloseHandle));
         ConfigureHandle configure=(ConfigureHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_configure"),typeof(ConfigureHandle));
+        ExtraSkillHandle extra=(ExtraSkillHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_extra_skill"),typeof(ExtraSkillHandle));
         Lib reference=new Lib(original);
         CnSoloBattleStart serviceStart=CnProtocol.ParseSoloBattleStart(File.ReadAllText(serviceFixture));
         if(serviceStart.EndTurn!=0)throw new Exception("isolated start fixture turn limit changed");
@@ -39,6 +41,8 @@ partial class RegisteredBattleDifferential
                 int turn=scenario==0?serviceStart.EndTurn:20;
                 if(configure(prep,1,0,1)!=0 || configure(prep,2,0,turn)!=0 || configure(prep,3,1,40)!=0)throw new Exception("original preparation configuration");
                 adapter.SetContinueAllowed(true);if(scenario==0)adapter.ApplySoloStartTurnLimit(serviceStart);else adapter.SetEndTurn(turn);adapter.SetInitialBurst(1,40);
+                bool invalidKind=false;try {adapter.RegisterExtraSkill(1,1,4,new byte[2436]);}catch(ArgumentOutOfRangeException){invalidKind=true;}
+                if(!invalidKind)throw new Exception("adapter accepted invalid extra skill kind");
                 for(int member=1;member<=4;member++)
                 {
                     int[] user=new int[18];user[1]=1000;user[2]=1000;user[3]=100;user[4]=100;user[5]=100;user[7]=member;user[8]=10;user[17]=5;
@@ -55,6 +59,12 @@ partial class RegisteredBattleDifferential
                         }
                         if(reference.card(prep,member,slot,card,card.Length)!=0)throw new Exception("original card");
                         adapter.RegisterCard(member,slot,card);
+                        if(slot==1)
+                        {
+                            byte[] skill=new byte[2436];Buffer.BlockCopy(card,28,skill,0,skill.Length);
+                            if(extra(prep,member,slot,1,skill,skill.Length)!=0)throw new Exception("original extra skill");
+                            adapter.RegisterExtraSkill(member,slot,1,skill);
+                        }
                     }
                     byte[] spheres=new byte[21984];if(reference.spheres(prep,member,spheres,spheres.Length)!=0)throw new Exception("original spheres");adapter.RegisterSpheres(member,spheres);
                     for(int slot=1;slot<=5;slot++) {byte[] buddy=new byte[17096];if(reference.buddy(prep,member,slot,buddy,buddy.Length)!=0)throw new Exception("original buddy");adapter.RegisterBuddy(member,slot,buddy);}

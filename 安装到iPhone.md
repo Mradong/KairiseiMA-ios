@@ -1,6 +1,12 @@
 # iPhone 安装与免费 Apple ID 签名
 
-## 最新构建：0.0.4（尚未真机验证）
+## 最新构建：0.0.5（尚未真机验证）
+
+[0.0.5 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.5-unsigned.ipa) 为 26,101,565 字节，SHA-256 `5d64b80a605fb92fbaf7ff39bd4115915d1bc048c11bc3b19fd65a81b130fcb4`。云构建 [44662701250](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44662701250) 对应源码 `ec71223aa0d433edd098ea6a39141edfc263c203`，Unity、ARM64、Xcode、28 个服务测试及子测试和本地 IPA/资源核验通过。该版本包含关卡列表和队友查看等局部代码，但真实战斗尚未接入，仍不是完整游戏；尚未签名、安装或真机验证。此后新增的队友选择、我方卡组选择和战斗配置等本地改动不在该包中。
+
+如需试装，使用已有 Sideloadly 和同一 Apple 账号/应用标识签名覆盖，先不要删除旧应用；覆盖成功不等于资源或存档持久性已验证。独立测试服务 `47.116.51.61:27040` 之前未能从本机连通，具体服务状态须单独确认。下文 0.0.4、0.0.3 等描述为各自版本历史。
+
+## 历史构建：0.0.4（尚未真机验证）
 
 新增 [0.0.4 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.4-unsigned.ipa)，26,088,293 字节，SHA-256 `c4e3e39967c3281035d8ea587579425ccab24f77430d45a5a7f15c27805ed463`。构建 [44434628647](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44434628647) 来自提交 `090f190`；Unity、ARM64、Xcode、iOS 资源和本地包校验已通过。它包含游客角色创建、主页数据和主卡组编辑的部分实现，仍不是完整游戏，也尚未验证手机安装或联机。它不包含稍后的关卡列表和敌方技能增量。
 
