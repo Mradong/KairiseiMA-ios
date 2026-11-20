@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-11-20T08:35:08.5080863Z",
+  "success": false,
+  "stage": "guest_login",
+  "errorType": "HttpRequestException",
+  "protocolCode": null,
+  "login": null,
+  "content": null,
+  "connect": null,
+  "requests": [
+    {
+      "stage": "health",
+      "method": "GET",
+      "path": "/healthz",
+      "status": 200
+    },
+    {
+      "stage": "guest_login",
+      "method": "POST",
+      "path": "/local/client/login",
+      "status": 400
+    }
+  ],
+  "scope": "Actual runtime CnProtocol and RecoveryContent C# against the public isolated iOS service via Windows HttpClient. Public bundle bytes are size/SHA-256/CRC checked and cache reopened. UI AssetBundle loading/rendering, UnityWebRequest, iPhone execution and full gameplay are unverified. No character creation, home rewards, deck edits or battle entry performed.",
+  "sources": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "4f94a66dcbd49281d2881f2c26ad1d1e2f4de28b89648e3d4ebfa5c6365d74e3"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "file": "tests/LiveIosServiceProbe.cs",
+      "sha256": "72309977fea29fa73199af92c3f94b6597547d4a0cc36304aaf154d772106564"
+    }
+  ],
+  "publicResourceDirectory": "test-output/live-ios-service/2026-11-20T08-35-07-729Z"
+}

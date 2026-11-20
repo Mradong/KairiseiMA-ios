@@ -71,6 +71,7 @@ partial class RegisteredBattleDifferential {
   RunWaveCases(a,b,ac,bc,ap,bp,args[3]);
   RunManagedCases(args[0],args[1],tables,args[3],args[4]);
   RunBuddyCases(args[0],args[1],tables,args[3]);
-  Console.WriteLine("{\"checks\":"+apiStatusComparisons+",\"waveCases\":"+completedWaveCases+",\"managedScenarios\":"+managedScenarios+",\"buddyCases\":"+buddyCases+",\"managedComparisons\":"+managedOperations+",\"startBytes\":"+an+",\"attackBytes\":"+Encoding.UTF8.GetByteCount(attack)+",\"advanceCalls\":"+successfulSteps+",\"journalSnapshots\":"+journalReads+",\"registeredEnemyStartBytes\":"+Encoding.UTF8.GetByteCount(enemyStart)+",\"nextStartBytes\":"+nn+",\"nextWaveWon\":true,\"faultProbe\":true}");
+  RunSphereCases(args[0],tables,args[3]);
+  Console.WriteLine("{\"checks\":"+apiStatusComparisons+",\"waveCases\":"+completedWaveCases+",\"managedScenarios\":"+managedScenarios+",\"buddyCases\":"+buddyCases+",\"sphereCases\":"+sphereCases+",\"managedComparisons\":"+managedOperations+",\"startBytes\":"+an+",\"attackBytes\":"+Encoding.UTF8.GetByteCount(attack)+",\"advanceCalls\":"+successfulSteps+",\"journalSnapshots\":"+journalReads+",\"registeredEnemyStartBytes\":"+Encoding.UTF8.GetByteCount(enemyStart)+",\"nextStartBytes\":"+nn+",\"nextWaveWon\":true,\"faultProbe\":true}");
  }
 }

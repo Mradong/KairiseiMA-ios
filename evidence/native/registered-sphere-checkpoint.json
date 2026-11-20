@@ -1,0 +1,150 @@
+{
+  "checkedAt": "2026-11-20T08:42:40.018Z",
+  "acceptanceId": "BATTLE-01",
+  "success": true,
+  "original": {
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "sha256": "b2bd51120e4bb970648ab93e09cfce0c02b5000cff9ede4481b2a4e6b83edddd"
+  },
+  "sphereCases": 5,
+  "managedResultAndJournalComparisons": 518,
+  "verified": "Windows synthetic original-DLL comparison using the actual C# NativeRegisteredBattle adapter. NORMAL slots 1..3 and a delayed TURN_AFTER case execute 11 damage at skill level 3. CHALICE reservation executes 11 self-damage. Turn-boundary use counts decrease 2 to 1 and ordinary next-wave counts reset to 2. Full results and journals match through computed two-wave victories.",
+  "sources": [
+    {
+      "file": "native/bridge/registered_sphere.go",
+      "sha256": "9e096d5e087aa139f53855069fea4a8ba44199ec5f3a911ded5545a1674380fd"
+    },
+    {
+      "file": "native/bridge/registered_create.go",
+      "sha256": "aa07587772a0dc8e31176d9e455b7d5dc59d97a1ba714bcb54aebdfb78100a5f"
+    },
+    {
+      "file": "native/bridge/skill_query.go",
+      "sha256": "a7543acd2999293fdebcaff78a106c2ea78fcffa24f5b9e6685e99203a781b48"
+    },
+    {
+      "file": "tests/RegisteredSphereCases.cs",
+      "sha256": "7438208a680a7672902ff8cd556d031b5b2aecbc2f80400992c728095b0f2c16"
+    }
+  ],
+  "matchedOutputs": [
+    {
+      "file": "evidence/native/registered-sphere-case-1-start.txt",
+      "sha256": "59d7cdbb922f559231b838352012fdf946ed837c6d8191e3e87daa07c1bb8e2d"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-1-action.txt",
+      "sha256": "71a594dfaa88f7d5b96b771cb7f752ab433a2e3ef31ff875b61b1adbd169c99b"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-1-remaining.txt",
+      "sha256": "cbe53ac9b3cc534d35385acdc9dfd2f13e2d5019786756722a862a8e8b9e4673"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-1-next.txt",
+      "sha256": "379183faf72f193ca2bb33c984f4cec324be64da7cca8c66d2a78420d9cb7b39"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-1-next-turn.txt",
+      "sha256": "d79922010036ee149ae4517e6f7c3292ca95ccb7a84009f263142b6c5ef640d0"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-2-start.txt",
+      "sha256": "ee2da75b593699cdcece636a4110df24896162500a7dc8fc98d9a6eeb445aaed"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-2-action.txt",
+      "sha256": "8d4c53a146678972a4d68d13fc9bc98d2843dc7959bcd7c9c721921485e5e23a"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-2-remaining.txt",
+      "sha256": "73a708aa498fcdf4cbdc26c415e72075f60a5bf466d29d6ec8566446fd7e91df"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-2-next.txt",
+      "sha256": "a714524d7623a7431cf3938e1c1d8cba35a641ef6fb6bdc6b759e3f124fcd17e"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-2-next-turn.txt",
+      "sha256": "12a489bbd15aaa6cad5787da97e93fdadc294d2d919df141df2b1608a8bf1782"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-3-start.txt",
+      "sha256": "0549f7fbd0d62089a1216f9045f058a135502c3d9a3f9445868967708265d3df"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-3-action.txt",
+      "sha256": "e99fd3d26086fa8ce34c9f131ea45be75257f46d5ac5e312703108e76f2dedc9"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-3-remaining.txt",
+      "sha256": "13a7e3fd40acccf182d84cb7fadcf79d6eb822c38e2914aaa6874b255c09882a"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-3-next.txt",
+      "sha256": "ea4d7ec3df579d1d645f247ae80723492998fd18fb46e5cb35d05ebf8568cc63"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-3-next-turn.txt",
+      "sha256": "bb7de39b596a799b0672f2a2f716e1570007c1e1e44020067aeca8fc39b09d31"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-4-start.txt",
+      "sha256": "59d7cdbb922f559231b838352012fdf946ed837c6d8191e3e87daa07c1bb8e2d"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-4-action.txt",
+      "sha256": "d1e1bd10fa5c3bce10bccb5bea43722a8ee7aaa1fac0e01976ac58c64dcd65aa"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-4-remaining.txt",
+      "sha256": "cbe53ac9b3cc534d35385acdc9dfd2f13e2d5019786756722a862a8e8b9e4673"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-4-next.txt",
+      "sha256": "379183faf72f193ca2bb33c984f4cec324be64da7cca8c66d2a78420d9cb7b39"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-4-next-turn.txt",
+      "sha256": "d79922010036ee149ae4517e6f7c3292ca95ccb7a84009f263142b6c5ef640d0"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-5-start.txt",
+      "sha256": "379183faf72f193ca2bb33c984f4cec324be64da7cca8c66d2a78420d9cb7b39"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-5-action.txt",
+      "sha256": "f7aa15977aa8624c9c62d4ebe0274a3107b3797d51a6f40f721fb7a7364a612e"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-5-remaining.txt",
+      "sha256": "cbe53ac9b3cc534d35385acdc9dfd2f13e2d5019786756722a862a8e8b9e4673"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-5-next.txt",
+      "sha256": "81a369f78db975c0306646285bea4e4e3078877f22715b77a754736f35cc9153"
+    },
+    {
+      "file": "evidence/native/registered-sphere-case-5-next-turn.txt",
+      "sha256": "d210a525b6ae5fcf0f0bd4ce0cd49c093045053ba376cd2add54feb055b6c22d"
+    },
+    {
+      "file": "evidence/native/registered-sphere-delayed-unavailable.txt",
+      "sha256": "52f703e2a7bfcb7f00859a0fb4c026dd45df815b4cd37b5dd2f327e00e1bb405"
+    },
+    {
+      "file": "evidence/native/registered-sphere-delayed-available.txt",
+      "sha256": "410a84dbd7d58afb2951b00ba3f969aa3cd1fda6f10073bf780d9c9ad82d0a98"
+    }
+  ],
+  "limitations": [
+    "Synthetic skills and master tables only.",
+    "Call/support-skill activation and broader conditions/effects are unverified.",
+    "EVOLUTION type, unknown conditions, missing masters and conflicting definitions/execution levels are rejected.",
+    "No real quest mapping, Unity engine, ARM64 or iPhone execution for this source."
+  ],
+  "gameplayReady": false
+}

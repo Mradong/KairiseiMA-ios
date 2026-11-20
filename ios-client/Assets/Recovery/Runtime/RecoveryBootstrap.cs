@@ -294,7 +294,10 @@ namespace Kairisei.Recovery
             using (SHA256 hash = SHA256.Create())
                 key = "ios-recovery.guest." + BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(endpoint.ToString()))).Replace("-", "");
             string uuid = PlayerPrefs.GetString(key, "");
-            if (String.IsNullOrEmpty(uuid)) { uuid = Guid.NewGuid().ToString("N"); PlayerPrefs.SetString(key, uuid); PlayerPrefs.Save(); }
+            if (String.IsNullOrEmpty(uuid)) uuid = Guid.NewGuid().ToString("D");
+            try { uuid = CnProtocol.NormalizeGuestUuid(uuid); }
+            catch (Exception error) { status = error.Message; return; }
+            PlayerPrefs.SetString(key, uuid); PlayerPrefs.Save();
             StartCoroutine(Send("POST", endpoint.Route("/local/client/login"), CnProtocol.CreateLogin(uuid, Application.unityVersion), delegate(string response) {
                 login = CnProtocol.ParseLogin(response, endpoint);
                 using (SHA256 hash = SHA256.Create())
@@ -312,8 +315,18 @@ namespace Kairisei.Recovery
             busy = true;
             yield return content.UpdateFromServer(requestedLogin);
             serverContentReady = content.Ready && login == requestedLogin;
-            if (serverContentReady) LoadPartyAtlas();
-            status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以检查角色状态。" : "服务器资源加载失败：" + content.Error;
+            string uiError = null;
+            if (serverContentReady)
+            {
+                try
+                {
+                    title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
+                    LoadPartyAtlas();
+                    Debug.Log("Recovery server UI loaded: title=" + title.width + "x" + title.height + ", partyAtlas=" + (partyAtlas != null));
+                }
+                catch (Exception error) { serverContentReady = false; uiError = error.Message; }
+            }
+            status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以检查角色状态。" : "服务器资源加载失败：" + (uiError ?? content.Error);
             busy = false;
         }
 

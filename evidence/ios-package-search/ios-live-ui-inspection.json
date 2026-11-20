@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-11-20T08:39:20.693Z",
+  "success": true,
+  "contentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+  "bundleSha256": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17",
+  "matchesReviewed004Bundle": true,
+  "importErrors": 0,
+  "exportErrors": 0,
+  "images": [
+    {
+      "file": "title-background.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "482ac6ac997a07d8ceca0ac7ca12f7edaa4ed1c921c0a727f84ba29e408ee774"
+    },
+    {
+      "file": "Title.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "20a4b69dc2aabd68615249b85859dfad7abcb7b9139eee9b25608b42e723d39b"
+    },
+    {
+      "file": "Party.png",
+      "width": 512,
+      "height": 1024,
+      "sha256": "dff16bd894ccda12ef5221b050b1f25c1f9a9a86b82a97a4b3abd1faa638c765"
+    },
+    {
+      "file": "Battle.png",
+      "width": 1024,
+      "height": 2048,
+      "sha256": "6810438e35ea2033211fdcee303e9cf2de934ffad84b07f6a7049381fa97b464"
+    },
+    {
+      "file": "Deck_Battle.png",
+      "width": 512,
+      "height": 512,
+      "sha256": "079f43512492f935bad1dfdef9422d20e02c55641d3e10ebc14c28f58e958cda"
+    },
+    {
+      "file": "Cmn.png",
+      "width": 512,
+      "height": 1024,
+      "sha256": "27fe5dff9d4d5bea763481e66a28708339d43a08a3b756ec9efdf57c9dffade2"
+    }
+  ],
+  "metadata": [
+    {
+      "file": "Party-frames.json",
+      "frameCount": 93,
+      "sha256": "54e942c01a7f7953ce0e9807616869ae3f18d2f4bfa32c879783a8e67c25c8e8"
+    },
+    {
+      "file": "Battle-frames.json",
+      "frameCount": 80,
+      "sha256": "0a4d93e7af22fd54a5c9026c57ad1970b414a9f851d2d764d39c0567cc988202"
+    },
+    {
+      "file": "Deck_Battle-frames.json",
+      "frameCount": 9,
+      "sha256": "71198f218a2e80b97998de358e7df9eec89fccdb031c9cddf10484ab599db7b9"
+    },
+    {
+      "file": "Cmn-frames.json",
+      "frameCount": 22,
+      "sha256": "f5bf70caf8d5d284f2df5b3d80d7a71f7f3287a3b540f12a1888e5c4541a6b02"
+    }
+  ],
+  "actualRuntimeAtlasChecks": "PASS 10 atlas checks",
+  "stderr": "",
+  "scope": "AssetRipper statically imports and decodes the exact publicly downloaded iOS bundle; recovered PNG and atlas JSON inspected, actual C# atlas parser tested against downloaded data. This does not execute Unity AssetBundle.LoadAsset, GPU rendering, UnityWebRequest or the iPhone client.",
+  "unityRuntimeLoaded": false,
+  "deviceVerified": false
+}

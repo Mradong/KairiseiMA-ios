@@ -123,6 +123,10 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 	for id, buddy := range catalog.value.Buddies {
 		value.Buddies[id] = buddy
 	}
+	value.Spheres = make(map[int]battlemodel.CombatSphereDefinition, len(catalog.value.Spheres))
+	for id, sphere := range catalog.value.Spheres {
+		value.Spheres[id] = sphere
+	}
 	registeredSkills := make(map[int]registeredSkill)
 	registeredRoles := make(map[int][]battlemodel.CombatSkillRole)
 	installSkill := func(decoded registeredSkill) error {
@@ -165,6 +169,7 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 	}
 	registeredCards := make(map[int]battlemodel.CombatCardDefinition)
 	registeredBuddies := make(map[int]battlemodel.CombatBuddyDefinition)
+	registeredSpheres := make(map[int]battlemodel.CombatSphereDefinition)
 	members := make([]battlemodel.Participant, 0, 8)
 	for i, user := range p.users {
 		if user == nil {
@@ -246,6 +251,23 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 			}
 			registeredBuddies[instance.BuddyID], value.Buddies[instance.BuddyID] = definition, definition
 			member.DeckBuddies = append(member.DeckBuddies, instance)
+		}
+		if user.spheres != nil {
+			for slot := 0; slot < 3; slot++ {
+				raw := user.spheres[slot*sphereWireSize : (slot+1)*sphereWireSize]
+				if wireInt(raw, 0) == 0 {
+					continue
+				}
+				definition, instance, err := decodePreparedSphere(catalog.schema, catalog.value.RoleParamRules, raw, slot+1, catalog.value.Spheres, installSkill)
+				if err != nil {
+					return nil, err
+				}
+				if previous, exists := registeredSpheres[instance.SphereID]; exists && previous != definition {
+					return nil, fmt.Errorf("conflicting registered spheres")
+				}
+				registeredSpheres[instance.SphereID], value.Spheres[instance.SphereID] = definition, definition
+				member.DeckSpheres = append(member.DeckSpheres, instance)
+			}
 		}
 		members = append(members, member)
 	}

@@ -195,9 +195,18 @@ namespace Kairisei.Recovery
         public const string UnityVersion = "6000.3.26f1";
         private static readonly Regex SessionFormat = new Regex(@"\A[A-Za-z0-9_-]{16,128}\z");
 
+        public static string NormalizeGuestUuid(string uuid)
+        {
+            Guid identity;
+            if (uuid == null || (uuid.Length != 32 && uuid.Length != 36) || uuid != uuid.Trim() ||
+                (!Guid.TryParseExact(uuid, "D", out identity) && !Guid.TryParseExact(uuid, "N", out identity)))
+                throw new ArgumentException("Invalid recovery guest UUID", "uuid");
+            return identity.ToString("D");
+        }
+
         public static string CreateLogin(string uuid, string unityVersion)
         {
-            if (String.IsNullOrWhiteSpace(uuid) || uuid.Length > 128) throw new ArgumentException("Invalid recovery guest UUID", "uuid");
+            uuid = NormalizeGuestUuid(uuid);
             if (String.IsNullOrWhiteSpace(unityVersion)) throw new ArgumentException("Unity version required", "unityVersion");
             return new JObject {
                 { "uuid", uuid }, { "clver", ClientVersion },

@@ -35,7 +35,7 @@ const server = http.createServer(async (request, response) => {
       response.end(JSON.stringify({ state: 'PASS', battle_port: 26041 }));
     } else if (request.method === 'POST' && request.url === '/local/client/login') {
       assert.match(request.headers['content-type'], /^application\/json/);
-      assert.deepEqual(JSON.parse(body), { uuid: 'recovery-contract-fixture', clver: '2.0.4', resource_platform: 'iOS', unity_version: '6000.3.26f1' });
+      assert.deepEqual(JSON.parse(body), { uuid: 'abcdef01-2345-6789-abcd-ef0123456789', clver: '2.0.4', resource_platform: 'iOS', unity_version: '6000.3.26f1' });
       response.end(JSON.stringify({ res_code: 0, res_str: '', userid: 1337, sess_key: session, api_url: origin + '/', version_url: origin + '/local/content/iOS/6000.3.26f1/current/' }));
     } else if (request.method === 'POST' && request.url === '/Connect') {
       assert.equal(body, session + '{}');

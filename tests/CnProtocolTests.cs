@@ -48,7 +48,11 @@ public static class CnProtocolTests
         Reject(delegate { server.Route("/Connect?token=x"); }, "route query injection");
         Reject(delegate { server.Route("/Connect\n"); }, "route newline injection");
 
-        JObject request = JObject.Parse(CnProtocol.CreateLogin("recovery-fixture-uuid", CnProtocol.UnityVersion));
+        JObject request = JObject.Parse(CnProtocol.CreateLogin("ABCDEF0123456789ABCDEF0123456789", CnProtocol.UnityVersion));
+        Check((string)request["uuid"] == "abcdef01-2345-6789-abcd-ef0123456789", "legacy compact UUID canonicalized without replacing identity");
+        Check(CnProtocol.NormalizeGuestUuid("abcdef01-2345-6789-abcd-ef0123456789") == (string)request["uuid"], "canonical UUID unchanged");
+        foreach (string badUuid in new[] { "", "recovery-fixture-uuid", "{abcdef01-2345-6789-abcd-ef0123456789}", " abcdef01-2345-6789-abcd-ef0123456789", "abcdef01-2345-6789-abcd-ef012345678z" })
+            Reject(delegate { CnProtocol.CreateLogin(badUuid, CnProtocol.UnityVersion); }, "invalid guest UUID");
         Check((string)request["resource_platform"] == "iOS", "never masquerade as Android or Windows");
         Check((string)request["clver"] == "2.0.4", "current server version gate");
         Check((string)request["unity_version"] == "6000.3.26f1", "exact Unity resource version");
@@ -155,7 +159,7 @@ public static class CnProtocolTests
             client.Timeout = TimeSpan.FromSeconds(10);
             string health = client.GetStringAsync(endpoint.Route("/healthz")).GetAwaiter().GetResult();
             Check(CnProtocol.ParseHealth(health) == 26041, "loopback health transport");
-            string request = CnProtocol.CreateLogin("recovery-contract-fixture", CnProtocol.UnityVersion);
+            string request = CnProtocol.CreateLogin("abcdef0123456789abcdef0123456789", CnProtocol.UnityVersion);
             using (HttpResponseMessage response = client.PostAsync(endpoint.Route("/local/client/login"), new StringContent(request, Encoding.UTF8, "application/json")).GetAwaiter().GetResult())
             {
                 response.EnsureSuccessStatusCode();
