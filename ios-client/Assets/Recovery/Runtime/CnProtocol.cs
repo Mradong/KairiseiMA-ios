@@ -405,6 +405,42 @@ namespace Kairisei.Recovery
                 Battles = (JArray)battles.DeepClone(), Wire = (JObject)payload.DeepClone() };
         }
 
+        // Projects the partner DTO into the 18-field native UserData layout.
+        // Callers still need the corresponding cards, skills and encounter data.
+        public static int[] ProjectSoloPartnerUser(CnSoloBattleStart start, int partnerIndex)
+        {
+            if (start == null || start.Wire == null) throw new ArgumentNullException("start");
+            JArray partners = start.Wire["partner_deck"] as JArray;
+            if (partners == null || partnerIndex < 0 || partnerIndex >= partners.Count) throw new ArgumentOutOfRangeException("partnerIndex");
+            JObject partner = partners[partnerIndex] as JObject;
+            JObject avatar = partner == null ? null : partner["avatar"] as JObject;
+            JArray parts = avatar == null ? null : avatar["avatar_partsids"] as JArray;
+            if (partner == null || avatar == null || parts == null || parts.Count != 7) throw new FormatException("Partner avatar is incomplete.");
+            int[] result = new int[18];
+            result[0] = UserInt(partner, "userid");
+            result[1] = UserInt(partner, "hp"); result[2] = result[1];
+            result[3] = UserInt(partner, "atkp"); result[4] = UserInt(partner, "intp"); result[5] = UserInt(partner, "mndp");
+            result[6] = UserInt(partner, "job_type"); result[7] = UserInt(partner, "arthur_type");
+            result[8] = UserInt(start.Wire, "cost_initial"); result[9] = UserInt(avatar, "costumeid");
+            if (result[0] <= 0 || result[1] <= 0 || result[6] < 1 || result[6] > 4 || result[7] < 1 || result[7] > 4)
+                throw new FormatException("Partner identity or profession is invalid.");
+            for (int i = 0; i < 7; i++)
+            {
+                if (parts[i].Type != JTokenType.Integer || parts[i].Value<long>() < 0 || parts[i].Value<long>() > Int32.MaxValue)
+                    throw new FormatException("Partner avatar part is invalid.");
+                result[10+i] = (int)parts[i].Value<long>();
+            }
+            result[17] = UserInt(start.Wire, "hold_max");
+            return result;
+        }
+
+        private static int UserInt(JObject source, string key)
+        {
+            long value = RequiredInteger(source, key);
+            if (value < 0 || value > Int32.MaxValue) throw new FormatException("Invalid partner field: " + key);
+            return (int)value;
+        }
+
         public static CnCardCollection ParseCardShow(string content)
         {
             JObject payload = ParseEnvelope(content).Payload as JObject;

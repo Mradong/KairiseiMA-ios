@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T03:17:58.499Z",
+  "generatedAt": "2026-11-20T03:22:41.824Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,13 +30,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 59456,
-      "sha256": "2a48eff3b47ffbc9c58f02734ea6b889da33a9d514c32d380552be7f55b7f7cd"
+      "bytes": 60425,
+      "sha256": "15cf475a97077c941ab15fa57916fbdb7af18ba081551e450787c8ec47f1c4ed"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 16512,
-      "sha256": "f8f02aca9f902d5543803f4bb7f3128f18be870e9fec8d7464341f1f0fdc2361"
+      "bytes": 16927,
+      "sha256": "b77e93decea40d14105819c171ef380e953a285c4caf380bd979e8bc1042ab89"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -235,8 +235,8 @@
     },
     {
       "path": "evidence/native/registered-battle-differential-tests.json",
-      "bytes": 2011,
-      "sha256": "70efc5a7d4542f1b32bbe53cd1810ca252df88699049d86514e27270b26e8cee"
+      "bytes": 2070,
+      "sha256": "41dead5c7f633c36f0ab946d0186f5c3bcb56372b599a30ca237ee21d835932d"
     },
     {
       "path": "evidence/native/registered-enemy-normal-action.txt",
@@ -274,6 +274,11 @@
       "sha256": "9b710b29386caa1c81950af23f2f9fd289495a6fb2471c20d573ac41f00d819e"
     },
     {
+      "path": "evidence/native/registered-service-partners.txt",
+      "bytes": 164,
+      "sha256": "88e7c494aa95fd370929e281e74dd660eeeffec7defb83cb0cb0472b43a33676"
+    },
+    {
       "path": "evidence/native/registered-skill-query-differential-tests.json",
       "bytes": 638,
       "sha256": "1447d289a70ea4772f2e14218169bf5fc6636975540162c1e2218407bd4dc188"
@@ -301,12 +306,12 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "10a922a257ff705439c352854f485df999426765f73f469141b642b6135f4cfc"
+      "sha256": "150bed4228f72077c5d407c76444a37a904ed1cfed3a098f0002b71f2f76c3df"
     },
     {
       "path": "evidence/protocol-tests.json",
       "bytes": 991,
-      "sha256": "770eccfc36d9d30f448141ede6be52e9fbdc6983c92bb92ead7fc065443fae8d"
+      "sha256": "687190f069e8dc1057e280dc24a0d19542b94eddf04104d009b35d2d5db5972f"
     },
     {
       "path": "ios-client/.gitignore",
@@ -420,8 +425,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
-      "bytes": 30167,
-      "sha256": "50d6841fa8cecf5062cbff1d4e006f4500befb10498c15baf66f70ad7703e94c"
+      "bytes": 32539,
+      "sha256": "64775d64cfab5d8f39d6f8d0df529ea0125b4d84ba1ada19d1576a8d74121499"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
@@ -430,8 +435,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/NativeRegisteredBattle.cs",
-      "bytes": 12603,
-      "sha256": "4cb2a7c156717d53a1ec47ea54da6d1134332239699963963c704b18d183175f"
+      "bytes": 13036,
+      "sha256": "0eecd82752e92967a5e1d0f3986c5230580c2fa83a7f3d598e24afe18f46fe86"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs",
@@ -695,8 +700,8 @@
     },
     {
       "path": "scripts/test-registered-battle.mjs",
-      "bytes": 3833,
-      "sha256": "2384df992decd22885c3424f6155ffbd34f1e4c94e875e6b6364ba4382b2992e"
+      "bytes": 3892,
+      "sha256": "f6e3d90fedc80872d5a26a6a540afbc364ae2aa64494dc294dd8b50f1ca7b7df"
     },
     {
       "path": "scripts/test-registered-skill-query.mjs",
@@ -730,8 +735,8 @@
     },
     {
       "path": "tests/CnProtocolTests.cs",
-      "bytes": 26394,
-      "sha256": "59d5786c46495234f6dca429f432f31cb04504ab7eaf88827dd4b3c83b396e79"
+      "bytes": 27178,
+      "sha256": "0cd5dfcd9a6a5bae5da002377b18d6f1e6406d6f56efd16331a36336ea547018"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
@@ -765,8 +770,8 @@
     },
     {
       "path": "tests/RegisteredManagedCases.cs",
-      "bytes": 10462,
-      "sha256": "4e4d62badc31fe62db76e1ec2e89784dcaac851c316ac2f5029e97046ac4534d"
+      "bytes": 11053,
+      "sha256": "68acdbc117ab60b8ae630a3a688abaf22d08f539565d45ac36565e594a442296"
     },
     {
       "path": "tests/RegisteredSkillQueryDifferential.cs",
@@ -809,7 +814,7 @@
       "sha256": "9d1f80fc07c9b19f94041225fdce765043b5516c2c989a49f0918005d372e3a9"
     }
   ],
-  "bytes": 21373220,
+  "bytes": 21379066,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

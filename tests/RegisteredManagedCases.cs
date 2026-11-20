@@ -46,9 +46,18 @@ partial class RegisteredBattleDifferential
                 for(int member=1;member<=4;member++)
                 {
                     int[] user=new int[18];user[1]=1000;user[2]=1000;user[3]=100;user[4]=100;user[5]=100;user[7]=member;user[8]=10;user[17]=5;
+                    int seed=54321;
+                    if(scenario==0)
+                    {
+                        seed=(int)serviceStart.Seed;
+                        if(member<=3)user=CnProtocol.ProjectSoloPartnerUser(serviceStart,member-1);
+                        else {user[8]=3;user[17]=6;}
+                    }
                     byte[] output=new byte[4096];int written=0;
-                    if(reference.user(prep,member,user,user.Length,54321,output,output.Length,ref written)!=0)throw new Exception("original user");
-                    ManagedText(Encoding.UTF8.GetString(output,0,written),adapter.RegisterUser(member,user,54321),"user CSV");
+                    if(reference.user(prep,member,user,user.Length,seed,output,output.Length,ref written)!=0)throw new Exception("original user");
+                    string actualUser=scenario==0 && member<=3?adapter.RegisterSoloPartner(member,serviceStart,member-1):adapter.RegisterUser(member,user,seed);
+                    ManagedText(Encoding.UTF8.GetString(output,0,written),actualUser,"user CSV");
+                    if(scenario==0 && member<=3)File.WriteAllText(Path.Combine(dir,"registered-service-user-"+member+".txt"),actualUser);
                     for(int slot=1;slot<=20;slot++)
                     {
                         byte[] card=new byte[4960];

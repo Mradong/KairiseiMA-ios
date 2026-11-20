@@ -60,6 +60,13 @@ namespace Kairisei.Recovery
             return Text(output,written);
         }
 
+        public string RegisterSoloPartner(int member,CnSoloBattleStart start,int partnerIndex)
+        {
+            if(start==null)throw new ArgumentNullException("start");
+            if(start.Seed<Int32.MinValue || start.Seed>Int32.MaxValue)throw new FormatException("Battle seed is outside native range.");
+            return RegisterUser(member,CnProtocol.ProjectSoloPartnerUser(start,partnerIndex),(int)start.Seed);
+        }
+
         public void SetContinueAllowed(bool allowed)
         {
             EnsureOpen();

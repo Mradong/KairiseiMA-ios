@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-20：BATTLE-01 服务队友用户参数投影（本地）
+
+参考 1.4.0 `BattleDefs.cnvPartnerDeckInfo2UserData` 与现代 `battle/UserData.cs` 的字段顺序，将单人入场响应中的队友生命、攻击、职业、外观、初始费用和手牌上限转换为 18 项注册用户参数；拒绝缺失外观或越界数据。实际 C# 战斗适配器可直接注册队友及入场随机种子。
+
+隔离服务入场样例的三名队友经该路径注册，Windows 原 DLL 与重建库的用户参数输出和后续结果/日志一致；第四名成员、卡牌和敌人仍为合成夹具。115 项协议检查及注册战斗差分通过，证据 `evidence/native/registered-service-partners.txt`、`evidence/native/registered-battle-differential-tests.json` 和 `evidence/protocol-tests.json`。旧版参考不证明现代客户端各项语义全部一致；真实卡牌/技能/敌人、Unity/iOS 和真机尚未验证，此改动不在 0.0.5 中。
+
 ## 2026-11-20：0.0.5 云构建与 IPA 核验
 
 构建 [44662701250](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44662701250) 对应 `ec71223aa0d433edd098ea6a39141edfc263c203`，已完成 ARM64、Unity/Xcode 和资源构建，28 个云端服务测试及子测试通过。已下载并核验 `install-kit/KairiseiMA-ios-resource-bootstrap-0.0.5-unsigned.ipa` 和 `dist/ready/` 副本：26,101,565 字节，SHA-256 `5d64b80a605fb92fbaf7ff39bd4115915d1bc048c11bc3b19fd65a81b130fcb4`，两份一致；资源和 IPA 结构校验通过。证据 `evidence/ios-package-search/ipa-client005-delivery.json`、`ios-client005-artifact-verification.json`。

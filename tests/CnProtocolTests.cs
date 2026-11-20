@@ -281,6 +281,13 @@ public static class CnProtocolTests
                 Check(JToken.DeepEquals(expected, JObject.Parse(requestBody.Substring(Session.Length))), "solo request matches isolated service");
                 var result = CnProtocol.ParseSoloBattleStart(File.ReadAllText(actualStart));
                 Check(result.Battles.Count == 1 && (int)result.Battles[0]["enemy_partyid"] == 1 && ((JArray)result.Wire["partner_deck"]).Count == 3 && (int)result.Wire["hold_max"] == 6, "isolated service battle data retained");
+                int[] nativeUser = CnProtocol.ProjectSoloPartnerUser(result,0);
+                int[] expectedUser = {1000001,3298,3298,1276,1110,557,1,1,3,0,0,1,1,0,0,0,0,6};
+                Check(String.Join(",",Array.ConvertAll(nativeUser, x => x.ToString())) == String.Join(",",Array.ConvertAll(expectedUser, x => x.ToString())), "isolated partner maps to native user layout");
+                Reject(delegate { CnProtocol.ProjectSoloPartnerUser(result,-1); }, "invalid partner index");
+                var broken = CnProtocol.ParseSoloBattleStart(File.ReadAllText(actualStart));
+                broken.Wire["partner_deck"][0]["avatar"]["avatar_partsids"] = new JArray(1,2);
+                Reject(delegate { CnProtocol.ProjectSoloPartnerUser(broken,0); }, "short avatar parts");
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;
