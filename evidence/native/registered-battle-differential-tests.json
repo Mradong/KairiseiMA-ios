@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-20T06:34:38.233Z",
+  "checkedAt": "2026-11-20T06:49:44.414Z",
   "success": true,
   "counts": {
     "checks": 3633,
@@ -16,6 +16,7 @@
     "faultProbe": true
   },
   "stderr": "",
+  "malformedCardCsvRejectedByOriginalAndManagedAdapter": true,
   "original": {
     "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
     "unchangedAfterTest": true

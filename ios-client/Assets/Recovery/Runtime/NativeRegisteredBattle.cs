@@ -42,7 +42,7 @@ namespace Kairisei.Recovery
 
         public NativeRegisteredBattle(byte[] tables)
         {
-            if(tables==null || tables.Length==0)throw new ArgumentException("Combat tables are required.","tables");
+            CombatTableSet.Validate(tables);
             try
             {
                 Check(battlecore_catalog_open_tables(tables,tables.Length,out catalog),"catalog");

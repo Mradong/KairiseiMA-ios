@@ -2,6 +2,8 @@ using System;
 using System.IO;
 using System.Runtime.InteropServices;
 using System.Text;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Kairisei.Recovery;
 
 partial class RegisteredBattleDifferential
@@ -28,6 +30,17 @@ partial class RegisteredBattleDifferential
         ConfigureHandle configure=(ConfigureHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_configure"),typeof(ConfigureHandle));
         ExtraSkillHandle extra=(ExtraSkillHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_extra_skill"),typeof(ExtraSkillHandle));
         Lib reference=new Lib(original);
+        JObject invalidCatalog=JObject.Parse(Encoding.UTF8.GetString(tables));
+        invalidCatalog["tables"][0]["text"]="invalid-card-row\n";
+        byte[] invalidTables=Encoding.UTF8.GetBytes(invalidCatalog.ToString(Formatting.None));
+        ulong rejectedCatalog=0;
+        int invalidStatus=reference.open(invalidTables,invalidTables.Length,ref rejectedCatalog);
+        if(rejectedCatalog!=0)closeCatalog(rejectedCatalog);
+        if(invalidStatus!=2)throw new Exception("Original accepted malformed card CSV");
+        bool invalidCsvRejected=false;
+        try { using(var invalidAdapter=new NativeRegisteredBattle(invalidTables)) {} }
+        catch(InvalidOperationException) { invalidCsvRejected=true; }
+        if(!invalidCsvRejected)throw new Exception("Managed catalog accepted malformed card CSV");
         CnSoloBattleStart serviceStart=CnProtocol.ParseSoloBattleStart(File.ReadAllText(serviceFixture));
         File.WriteAllText(Path.Combine(dir,"registered-service-card-registration.txt"),"");
         if(serviceStart.EndTurn!=0)throw new Exception("isolated start fixture turn limit changed");

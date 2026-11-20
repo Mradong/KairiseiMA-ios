@@ -18,6 +18,14 @@ namespace Kairisei.Recovery
         private UnityWebRequest pending;
         private bool running;
 
+        public NativeRegisteredBattle CreateRegisteredBattle()
+        {
+            // Load only from the active, hash/CRC-verified resource set. Never
+            // fall back to the synthetic NativeValidationTables resource.
+            TextAsset tables = Load<TextAsset>(CombatTableSet.BundleName, CombatTableSet.AssetName);
+            return new NativeRegisteredBattle(tables.bytes);
+        }
+
         public T Load<T>(string bundle, string asset) where T : UnityEngine.Object
         {
             AssetBundle source;
@@ -125,6 +133,13 @@ namespace Kairisei.Recovery
                 yield return loading;
                 if (loading.assetBundle == null) { Error = "Verified iOS resource bundle could not be loaded: "+item.name; yield break; }
                 loaded.Add(item.name,loading.assetBundle); hashes[item.name] = item.sha256;
+            }
+            HashSet<string> currentNames = new HashSet<string>(StringComparer.Ordinal);
+            foreach (ContentBundle item in manifest.bundles) currentNames.Add(item.name);
+            foreach (string obsolete in new List<string>(loaded.Keys))
+            {
+                if (currentNames.Contains(obsolete)) continue;
+                loaded[obsolete].Unload(false); loaded.Remove(obsolete); hashes.Remove(obsolete);
             }
             Ready = true;
             Debug.Log("Recovery content ready: installed="+Installed+", reused="+Reused+", content="+manifest.contentId);

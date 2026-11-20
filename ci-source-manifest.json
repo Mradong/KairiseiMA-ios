@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T06:36:35.147Z",
+  "generatedAt": "2026-11-20T06:50:33.431Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,13 +30,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 61446,
-      "sha256": "6a8a5896aced51bb9104924af388adce8a3a58038916e0b69ca8b4c33c5a55d2"
+      "bytes": 62745,
+      "sha256": "9d06c1ccdb4ae327eb20e93fc06cfcf63a0d23ad34429e8a8f5e448e8f8205c9"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 17427,
-      "sha256": "63bbb105ea429d9c6957efffc48442804cbd20e83e9c5467ae45b28f6eaf75ba"
+      "bytes": 18789,
+      "sha256": "3a4dc51b6289a812ae377144d79e76be8b2c5969f5264c6c7e9a4eb4eb0ab91c"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -117,6 +117,11 @@
       "path": "evidence/ios-package-search/ios-client005-download-test.json",
       "bytes": 305,
       "sha256": "1391c94f22bcc67ef2ea5d50457e1f445d8b24590db7350a85f3310bb0ffa5cc"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-combat-table-tests.json",
+      "bytes": 915,
+      "sha256": "d576f3faf0be94e6d15aa73a9b9f7e2e4be9ba11129533044988bdb93d616e2f"
     },
     {
       "path": "evidence/ios-package-search/ios-content-source.json",
@@ -235,8 +240,8 @@
     },
     {
       "path": "evidence/native/registered-battle-differential-tests.json",
-      "bytes": 2286,
-      "sha256": "82dec73303f1236c042b7866dc73b2fcf6283f2e5ef814a43b03722ea02b9c95"
+      "bytes": 2349,
+      "sha256": "a0e7e8d03777d848cff30100268f23ff84612390e34f9ad1411d06f423e2ed8b"
     },
     {
       "path": "evidence/native/registered-enemy-normal-action.txt",
@@ -311,7 +316,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "fd93033d60851051b2f02d43842bd8a68316460bfa23c0030c8cb202ad17b596"
+      "sha256": "8126a41363e792d1b716557e8f4e93ecb0818a21c7e06dd0f84cd23c93086bb5"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -385,8 +390,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
-      "bytes": 5440,
-      "sha256": "8b1fbb5cfe4f3cd4d7dbb5c5be79d4f5acf88d5323df2b04d176e2c7a9714883"
+      "bytes": 7128,
+      "sha256": "fc6d0b97cd6b329ac0bc4bb5d8a71d5c872e1fd158f235c01c3862a02ada4a85"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/NativeValidationBattle.json",
@@ -434,14 +439,19 @@
       "sha256": "4f94a66dcbd49281d2881f2c26ad1d1e2f4de28b89648e3d4ebfa5c6365d74e3"
     },
     {
+      "path": "ios-client/Assets/Recovery/Runtime/CombatTableSet.cs",
+      "bytes": 6818,
+      "sha256": "4ae6ebfc085286eebc84a3b63824d173f5aa1122012a3f8098a113afe84c5409"
+    },
+    {
       "path": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
       "bytes": 5006,
       "sha256": "73561296629abcb74fa61567c386188b54aa4e8be0ee92c6fc760df66d9beeec"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/NativeRegisteredBattle.cs",
-      "bytes": 13441,
-      "sha256": "3944c15559bb4aefffaff05ef2abb1bf7d7d2f23e7762312e7bdb7ae4aba1e10"
+      "bytes": 13369,
+      "sha256": "e1b05d6a86064ff3f8575b954fd17907b91bcf3f1e6e8c9c8676afa83bf1a06e"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs",
@@ -460,8 +470,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
-      "bytes": 8229,
-      "sha256": "cbc93f7564640543a98bc4c33e9784614e1ac05507b1e5a0cf4680b452824394"
+      "bytes": 9068,
+      "sha256": "415bb5181235e5c78fb8445554f5ad08cfd1250c6d6a3936021fed25bc19632d"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/link.xml",
@@ -674,6 +684,11 @@
       "sha256": "ec77821cb5d3834f29795cc9fc79b7c7d1ddc54cf13090557ebb9c10663179e8"
     },
     {
+      "path": "scripts/test-combat-table-set.mjs",
+      "bytes": 2140,
+      "sha256": "6f951e233bfb6676478defe943c5e47fdd18ceebc587d1032184e823a9dd6214"
+    },
+    {
       "path": "scripts/test-ios-content.mjs",
       "bytes": 1719,
       "sha256": "f765265edc432dc0bb1feefd76e963290deb5459cc94c88af97f2f492622fd23"
@@ -705,8 +720,8 @@
     },
     {
       "path": "scripts/test-registered-battle.mjs",
-      "bytes": 4108,
-      "sha256": "c903637a92a3afdae11f247e81bd0708baf90a160862fd59141ed963df1de1b1"
+      "bytes": 4252,
+      "sha256": "36015da3f69aafeb30ca853544921fa25cbb78ebcee8305b6ccaf85a370557ac"
     },
     {
       "path": "scripts/test-registered-skill-query.mjs",
@@ -744,6 +759,11 @@
       "sha256": "677808ba16e007c047a199196819a8984afd510b87e47ae48e7e94d8632d4fb7"
     },
     {
+      "path": "tests/CombatTableSetTests.cs",
+      "bytes": 5095,
+      "sha256": "92dfae759fd9f2c1c7310f187095d800c2a5199cbec12936e73aa3247b1b749b"
+    },
+    {
       "path": "tests/PreparedCardQueryDifferential.cs",
       "bytes": 5401,
       "sha256": "4776dee6766e89bc4998eb78caf8fb185365e8549a9289ccbf553ad8cad381eb"
@@ -775,8 +795,8 @@
     },
     {
       "path": "tests/RegisteredManagedCases.cs",
-      "bytes": 12189,
-      "sha256": "4db1199cac8720a5e460c8868e4ceac3b0ed13aaf59e93e6f011dd461d390dea"
+      "bytes": 13056,
+      "sha256": "f10e3cb02df29c42d35666d9c4491466f3fd224c8beb04677095eb06f113738b"
     },
     {
       "path": "tests/RegisteredSkillQueryDifferential.cs",
@@ -809,17 +829,22 @@
       "sha256": "b25b91c8a3b326179976d25f9bc1626c771798532863dcf6eefdb3130393cde8"
     },
     {
+      "path": "战斗主表接入.md",
+      "bytes": 4163,
+      "sha256": "7fa3d1763897834dc93b7653502c63e1e664cf4ba9ef25d4d9e51afe452d5bcc"
+    },
+    {
       "path": "新窗口接手.md",
       "bytes": 11612,
       "sha256": "85421dfce82bea99f73529de92455a1fd15facf2e085ebd11619c7a31acea585"
     },
     {
       "path": "服务端协作需求.md",
-      "bytes": 7417,
-      "sha256": "9d1f80fc07c9b19f94041225fdce765043b5516c2c989a49f0918005d372e3a9"
+      "bytes": 7778,
+      "sha256": "012ddb51c988d9ac5871260bdebbc22c5bd556d58ed927f45c8de9032a2530f2"
     }
   ],
-  "bytes": 21387021,
+  "bytes": 21412703,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
