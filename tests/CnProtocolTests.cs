@@ -231,6 +231,14 @@ public static class CnProtocolTests
             {
                 CnCardCollection actualCollection = CnProtocol.ParseCardShow(File.ReadAllText(actualCards));
                 Check(actualCollection.Cards.Count == 10 && actualCollection.Decks.Count == 4 && actualCollection.Cards.ContainsKey(actualCollection.Decks[0].Cards[0]), "isolated service starter cards and decks");
+                var choices = CnProtocol.SelectSoloDecks(actualCollection);
+                Check(choices.Count == 4 && choices[2].ArthurType == 3 && choices[2].Index == 0, "isolated service own deck choices");
+                string ownDeckBody = new CnSoloPartyDraft().CreateStartRequest(Session, 30010102, choices[2]);
+                JObject ownDeckRequest = JObject.Parse(ownDeckBody.Substring(Session.Length));
+                Check((int)ownDeckRequest["deck_arthur_type"] == 3 && (int)ownDeckRequest["deck_arthur_type_idx"] == 0 && ((JArray)ownDeckRequest["partner_deck_selects"]).Count == 0, "own deck included in prepared start request");
+                actualCollection.Decks.Add(actualCollection.Decks[2]);
+                Reject(delegate { CnProtocol.SelectSoloDecks(actualCollection); }, "duplicate own deck identity");
+                actualCollection.Decks.RemoveAt(actualCollection.Decks.Count - 1);
                 string expectedPath = Environment.GetEnvironmentVariable("IOS_DECK_REQUEST_FIXTURE");
                 if (!String.IsNullOrEmpty(expectedPath))
                 {

@@ -161,6 +161,12 @@ namespace Kairisei.Recovery
                 result.Add(new JObject { { "userid", partner.UserId }, { "arthur_type", partner.ArthurType }, { "deck_idx", partner.RentalIndex } });
             return result;
         }
+        public string CreateStartRequest(string sessionKey, long bossId, CnDeck deck)
+        {
+            if (deck == null || deck.ArthurType < 1 || deck.ArthurType > 5 || deck.Index < 0 || deck.Index > 127)
+                throw new ArgumentException("请选择有效的我方卡组。");
+            return CnProtocol.CreateSoloBattleStartRequest(sessionKey, bossId, (int)deck.ArthurType, (int)deck.Index, RequestPartners());
+        }
     }
 
     public sealed class CnDeck
@@ -423,6 +429,21 @@ namespace Kairisei.Recovery
                     Cards = IntegerArray(deck, "4"), Support = IntegerArray(deck, "5"), Spheres = IntegerArray(deck, "6"), Buddies = IntegerArray(deck, "7"), Wire = (JObject)deck.DeepClone() });
             }
             return result;
+        }
+
+        public static List<CnDeck> SelectSoloDecks(CnCardCollection collection)
+        {
+            if (collection == null || collection.Decks == null) throw new ArgumentException("缺少卡组资料。");
+            var selected = new List<CnDeck>();
+            var identities = new HashSet<string>();
+            foreach (CnDeck deck in collection.Decks)
+            {
+                if (deck == null || deck.ArthurType < 1 || deck.ArthurType > 5 || deck.Index < 0 || deck.Index > 127 ||
+                    !identities.Add(deck.ArthurType.ToString() + ":" + deck.Index.ToString()))
+                    throw new FormatException("服务器卡组身份无效或重复。");
+                selected.Add(deck);
+            }
+            return selected;
         }
 
         public static string CreateDeckSetRequest(string sessionKey, CnDeck deck, long[] cards)

@@ -27,6 +27,8 @@ namespace Kairisei.Recovery
         private List<CnSoloPartner> soloPartners;
         private int soloPartnerIndex;
         private readonly CnSoloPartyDraft soloParty = new CnSoloPartyDraft();
+        private List<CnDeck> soloDecks;
+        private int soloDeckIndex;
         private bool showingDeck;
         private int deckIndex;
         private Vector2 deckScroll;
@@ -199,6 +201,10 @@ namespace Kairisei.Recovery
                 GUI.DrawTexture(new Rect(200, 90, 880, 540), Texture2D.whiteTexture);
                 GUI.color = previousColor;
                 GUI.Label(new Rect(240, 115, 800, 50), "单人关卡", headingStyle);
+                GUI.enabled = !busy;
+                if (GUI.Button(new Rect(670, 115, 150, 45), "读取卡组", buttonStyle)) ReadSoloDecks();
+                GUI.enabled = !busy && soloDecks != null && soloDecks.Count > 0;
+                if (GUI.Button(new Rect(830, 115, 150, 45), "切换卡组", buttonStyle)) soloDeckIndex = (soloDeckIndex + 1) % soloDecks.Count;
                 string questText = QuestText();
                 float height = bodyStyle.CalcHeight(new GUIContent(questText), 750);
                 questScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 245), questScroll, new Rect(0, 0, 760, Mathf.Max(245, height)));
@@ -355,7 +361,7 @@ namespace Kairisei.Recovery
             CnLogin requestedLogin = login;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", homeState.ArthurType } }), delegate(string response) {
                 quests = CnProtocol.ParseSoloQuests(response);
-                questScroll = Vector2.zero; questIndex = 0; soloPartners = null; soloParty.Clear(); showingQuests = true;
+                questScroll = Vector2.zero; questIndex = 0; soloPartners = null; soloParty.Clear(); soloDecks = null; showingQuests = true;
                 status = "已读取服务器单人关卡；进入战斗尚未接入。";
             }));
         }
@@ -364,6 +370,9 @@ namespace Kairisei.Recovery
         {
             if (quests.Count == 0) return "服务器没有返回可显示的单人关卡。";
             var text = new StringBuilder();
+            if (soloDecks != null && soloDecks.Count > 0)
+                text.Append("我方卡组：").Append(soloDecks[soloDeckIndex].Name).Append("  职业 ").Append(soloDecks[soloDeckIndex].ArthurType).AppendLine().AppendLine();
+            else text.AppendLine("请先读取卡组。").AppendLine();
             for (int i = 0; i < quests.Count; i++)
             {
                 CnQuest quest = quests[i];
@@ -394,6 +403,19 @@ namespace Kairisei.Recovery
                 soloPartners = CnProtocol.ParseSoloPartners(response);
                 soloPartnerIndex = 0;
                 status = "已读取关卡队友；战斗入口尚未接入。";
+            }));
+        }
+
+        private void ReadSoloDecks()
+        {
+            if (busy || login == null || verifiedAddress != address) return;
+            CnLogin requestedLogin = login;
+            soloDecks = null;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardShow2"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", 1 } }), delegate(string response) {
+                CnCardCollection collection = CnProtocol.ParseCardShow(response);
+                soloDecks = CnProtocol.SelectSoloDecks(collection);
+                soloDeckIndex = 0;
+                status = soloDecks.Count == 0 ? "服务器没有可选择的卡组。" : "已读取我方卡组；入场条件仍由服务器校验。";
             }));
         }
 
