@@ -17,7 +17,7 @@ partial class RegisteredBattleDifferential
         if(reference!=actual)throw new Exception("Unity-consumer adapter "+label+" differs from original DLL");
     }
 
-    private static void RunManagedCases(string original,string rebuilt,byte[] tables,string dir)
+    private static void RunManagedCases(string original,string rebuilt,byte[] tables,string dir,string serviceFixture)
     {
         if(!SetDllDirectory(Path.GetDirectoryName(Path.GetFullPath(rebuilt))))throw new Exception("Cannot set local test DLL search path");
         IntPtr module=LoadLibrary(Path.GetFullPath(original));
@@ -26,6 +26,8 @@ partial class RegisteredBattleDifferential
         CloseHandle closeBattle=(CloseHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_context_close"),typeof(CloseHandle));
         ConfigureHandle configure=(ConfigureHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_configure"),typeof(ConfigureHandle));
         Lib reference=new Lib(original);
+        CnSoloBattleStart serviceStart=CnProtocol.ParseSoloBattleStart(File.ReadAllText(serviceFixture));
+        if(serviceStart.EndTurn!=0)throw new Exception("isolated start fixture turn limit changed");
         for(int scenario=0;scenario<3;scenario++)
         {
             ulong catalog=0,prep=0,battle=0;
@@ -34,8 +36,9 @@ partial class RegisteredBattleDifferential
             {
                 if(reference.open(tables,tables.Length,ref catalog)!=0 || reference.prep(1,ref prep)!=0)throw new Exception("Original managed reference preparation");
                 adapter=new NativeRegisteredBattle(tables);
-                if(configure(prep,1,0,1)!=0 || configure(prep,2,0,20)!=0 || configure(prep,3,1,40)!=0)throw new Exception("original preparation configuration");
-                adapter.SetContinueAllowed(true);adapter.SetEndTurn(20);adapter.SetInitialBurst(1,40);
+                int turn=scenario==0?serviceStart.EndTurn:20;
+                if(configure(prep,1,0,1)!=0 || configure(prep,2,0,turn)!=0 || configure(prep,3,1,40)!=0)throw new Exception("original preparation configuration");
+                adapter.SetContinueAllowed(true);if(scenario==0)adapter.ApplySoloStartTurnLimit(serviceStart);else adapter.SetEndTurn(turn);adapter.SetInitialBurst(1,40);
                 for(int member=1;member<=4;member++)
                 {
                     int[] user=new int[18];user[1]=1000;user[2]=1000;user[3]=100;user[4]=100;user[5]=100;user[7]=member;user[8]=10;user[17]=5;
@@ -68,8 +71,8 @@ partial class RegisteredBattleDifferential
                 if(reference.create(catalog,prep,request,request.Length,ref battle)!=0)throw new Exception("original create");
                 string originalStart=ReferenceStep(reference,battle,1,null), actualStart=adapter.Start(0,0);
                 ManagedText(originalStart,actualStart,"start");
-                if(!("\n"+actualStart+"\n").Contains("\n503,20\n"))throw new Exception("Configured end turn not emitted");
-                File.WriteAllText(Path.Combine(dir,"registered-managed-configured-start.txt"),actualStart);
+                if(turn!=0 && !("\n"+actualStart+"\n").Contains("\n503,"+turn+"\n"))throw new Exception("Configured end turn not emitted");
+                File.WriteAllText(Path.Combine(dir,scenario==0?"registered-managed-service-turn-start.txt":"registered-managed-configured-start.txt"),actualStart);
                 ManagedJournal(reference,battle,adapter);
                 PlayManagedWave(reference,battle,adapter);
                 foe=ManagedFoe(921,25);if(reference.enemy(prep,5,foe,foe.Length)!=0)throw new Exception("original next enemy");adapter.RegisterEnemy(5,foe);

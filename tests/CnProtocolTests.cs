@@ -101,9 +101,11 @@ public static class CnProtocolTests
         Check((long)JObject.Parse(soloRequest.Substring(Session.Length))["partner_deck_selects"][0]["userid"] == 1000001, "solo partner selection");
         Reject(delegate { CnProtocol.CreateSoloBattleStartRequest(Session, 0, 3, 0, partners); }, "invalid boss");
         Reject(delegate { CnProtocol.CreateSoloBattleStartRequest(Session, 1, 3, 0, new JArray(new JObject { { "userid", 1 } })); }, "incomplete partner");
-        string startResponse = "{\"res_code\":0}\n{\"seed\":-1,\"start_time\":2,\"battles\":[{\"enemy_partyid\":1,\"enemy_type\":0}],\"partner_deck\":[{\"deck\":[42]}]}";
+        string startResponse = "{\"res_code\":0}\n{\"seed\":-1,\"start_time\":2,\"end_turn\":20,\"battles\":[{\"enemy_partyid\":1,\"enemy_type\":0}],\"partner_deck\":[{\"deck\":[42]}]}";
         var started = CnProtocol.ParseSoloBattleStart(startResponse);
         Check(started.Seed == -1 && started.Battles.Count == 1 && (int)started.Wire["partner_deck"][0]["deck"][0] == 42, "start state retains full loadout");
+        Check(started.EndTurn == 20, "solo start turn limit");
+        Reject(delegate { CnProtocol.ParseSoloBattleStart(startResponse.Replace("\"end_turn\":20", "\"end_turn\":-1")); }, "negative turn limit");
         Reject(delegate { CnProtocol.ParseSoloBattleStart(startResponse.Replace("\"enemy_partyid\":1", "\"enemy_partyid\":0")); }, "invalid enemy party");
         Reject(delegate { CnProtocol.ParseSoloBattleStart(startResponse.Replace("\"battles\":[{\"enemy_partyid\":1,\"enemy_type\":0}]", "\"battles\":[]")); }, "empty battles");
         Reject(delegate { CnProtocol.ParseHome(homeResponse, 1338); }, "home user mismatch");

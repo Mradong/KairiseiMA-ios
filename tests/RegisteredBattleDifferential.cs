@@ -69,7 +69,7 @@ partial class RegisteredBattleDifferential {
   var nextFoe=new byte[276];Put(nextFoe,0,904);Put(nextFoe,4,4);Buffer.BlockCopy(BitConverter.GetBytes(250L),0,nextFoe,8,8);Buffer.BlockCopy(BitConverter.GetBytes(500L),0,nextFoe,16,8);Equal(a.enemy(ap,5,nextFoe,nextFoe.Length),b.enemy(bp,5,nextFoe,nextFoe.Length),"next enemy",0);Equal(a.next(av,ap,0),b.next(bv,bp,0),"next wave",0);CompareLog(a,b,av,bv,200,args[3]);Equal(a.next(av,ap,0),b.next(bv,bp,0),"next pending output",5);
   var na=new byte[1048576];var nb=new byte[1048576];int nn=0,nm=0;Equal(a.read(av,na,na.Length,ref nn),b.read(bv,nb,nb.Length,ref nm),"next start read",0);string ns=Encoding.UTF8.GetString(na,0,nn),nt=Encoding.UTF8.GetString(nb,0,nm);if(ns!=nt){File.WriteAllText(Path.Combine(args[3],"next-original.txt"),ns);File.WriteAllText(Path.Combine(args[3],"next-rebuilt.txt"),nt);throw new Exception("next start differs original="+nn+" rebuilt="+nm);}if(!("\n"+ns+"\n").Contains("\n6,5,250,500,"))throw new Exception("next enemy HP missing");Advance(a,b,av,bv,2,null,args[3]);Advance(a,b,av,bv,3,null,args[3]);
   RunWaveCases(a,b,ac,bc,ap,bp,args[3]);
-  RunManagedCases(args[0],args[1],tables,args[3]);
+  RunManagedCases(args[0],args[1],tables,args[3],args[4]);
   Console.WriteLine("{\"checks\":"+apiStatusComparisons+",\"waveCases\":"+completedWaveCases+",\"managedScenarios\":"+managedScenarios+",\"managedComparisons\":"+managedOperations+",\"startBytes\":"+an+",\"attackBytes\":"+Encoding.UTF8.GetByteCount(attack)+",\"advanceCalls\":"+successfulSteps+",\"journalSnapshots\":"+journalReads+",\"registeredEnemyStartBytes\":"+Encoding.UTF8.GetByteCount(enemyStart)+",\"nextStartBytes\":"+nn+",\"nextWaveWon\":true,\"faultProbe\":true}");
  }
 }

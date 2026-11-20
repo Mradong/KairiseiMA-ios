@@ -72,6 +72,12 @@ namespace Kairisei.Recovery
             Check(battlecore_preparation_configure(preparation,2,0,turn),"set end turn");
         }
 
+        public void ApplySoloStartTurnLimit(CnSoloBattleStart start)
+        {
+            if(start==null)throw new ArgumentNullException("start");
+            SetEndTurn(start.EndTurn);
+        }
+
         public void SetInitialBurst(int member,int gauge)
         {
             Player(member);

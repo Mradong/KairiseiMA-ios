@@ -124,6 +124,7 @@ namespace Kairisei.Recovery
     {
         public long Seed { get; internal set; }
         public long StartTime { get; internal set; }
+        public int EndTurn { get; internal set; }
         public JArray Battles { get; internal set; }
         public JObject Wire { get; internal set; }
     }
@@ -398,9 +399,9 @@ namespace Kairisei.Recovery
                 if (battle == null || RequiredInteger(battle, "enemy_partyid") < 1 || RequiredInteger(battle, "enemy_type") < 0)
                     throw new FormatException("Invalid battle segment");
             }
-            long seed = RequiredInteger(payload, "seed"), startTime = RequiredInteger(payload, "start_time");
-            if (startTime < 1) throw new FormatException("Invalid battle start time");
-            return new CnSoloBattleStart { Seed = seed, StartTime = startTime,
+            long seed = RequiredInteger(payload, "seed"), startTime = RequiredInteger(payload, "start_time"), endTurn = RequiredInteger(payload, "end_turn");
+            if (startTime < 1 || endTurn < 0 || endTurn > Int32.MaxValue) throw new FormatException("Invalid battle start configuration");
+            return new CnSoloBattleStart { Seed = seed, StartTime = startTime, EndTurn = (int)endTurn,
                 Battles = (JArray)battles.DeepClone(), Wire = (JObject)payload.DeepClone() };
         }
 

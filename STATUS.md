@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-20：BATTLE-01 入场回合上限传递（本地）
+
+单人入场响应解析器验证并保存 `end_turn`，实际 C# 战斗适配器可将其传给注册战斗。隔离服务入场样例的 `end_turn=0` 经解析与适配器传递，配合合成角色、卡牌和敌人数据，与原 DLL 的启动、双波结果及日志一致；另有合成上限 20 的对照。112 项协议检查与注册战斗原 DLL 差分通过，证据 `evidence/protocol-tests.json`、`evidence/native/registered-battle-differential-tests.json` 和 `evidence/native/registered-managed-service-turn-start.txt`。
+
+这只接通单个配置字段；真实角色、卡组、敌人、界面与完整战斗仍未接入。没有 Unity/iOS 或真机验证，改动晚于 0.0.5 云构建提交 `ec71223`，不在该包中。
+
 ## 2026-11-20：BATTLE-01 C# 战斗配置入口（本地）
 
 实际客户端 `NativeRegisteredBattle` 增加续关开关、回合上限及玩家初始爆发值的注册入口，供后续服务端入场参数接入。Windows 合成注册战斗中，在原 DLL 和重建库都设置允许续关、上限 20、1 号玩家初始爆发 40，实际 C# 适配器与原版结果和日志一致，启动输出包含 `503,20`；续关与爆发的具体战斗效果没有单独验证。原 DLL 差分及原文件保护检查通过；证据 `evidence/native/registered-battle-differential-tests.json`、`evidence/native/registered-managed-configured-start.txt`。
@@ -24,7 +30,7 @@
 
 ## 2026-11-20：0.0.5 云构建进行中
 
-源码提交 `ec71223aa0d433edd098ea6a39141edfc263c203` 已推送至私有仓库并核对远端；153 个白名单文件及提交内容通过核查。云构建 [44662701250](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44662701250) 已启动，ARM64 桥接编译通过，最近查询为 `in_progress / Install Hub and activate Personal through the official client`，尚无 Unity 编译结果或新 IPA。可用 `scripts/Get-IosClient005CloudBuild.ps1 -RunId 44662701250` 查询并在成功后核验；不得将 0.0.4 或更早的真机结果用于此源码。
+源码提交 `ec71223aa0d433edd098ea6a39141edfc263c203` 已推送至私有仓库并核对远端；153 个白名单文件及提交内容通过核查。云构建 [44662701250](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44662701250) 的 ARM64 桥接编译和 Unity 导出步骤通过，最近查询为 `in_progress / Archive device build and package unsigned IPA`，尚无完整构建结果或新 IPA。可用 `scripts/Get-IosClient005CloudBuild.ps1 -RunId 44662701250` 查询并在成功后核验；不得将 0.0.4 或更早的真机结果用于此源码。
 
 ## 2026-11-20：0.0.5 云构建准备
 
