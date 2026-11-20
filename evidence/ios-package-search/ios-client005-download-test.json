@@ -1,0 +1,7 @@
+{
+  "checkedAt": "2026-11-20T02:47:36.087Z",
+  "success": true,
+  "stdout": "PASS: failed download preserves separate staging and retry promotes only completed artifact.",
+  "stderr": "",
+  "scope": "Mock download failure and retry on Windows; not an actual GitHub artifact download or IPA validation."
+}

@@ -41,14 +41,17 @@ $artifact=Join-Path $recoveryRoot ('dist\cloud-artifacts\ios-client005-'+$RunId)
 $ipaDirectory=Join-Path $artifact 'ipa'
 $resourceDirectory=Join-Path $artifact 'resources'
 New-Item -ItemType Directory -Path $artifact -Force | Out-Null
-if (!(Test-Path -LiteralPath $ipaDirectory)) {
-    & $gh run download $RunId --repo Mradong/KairiseiMA-ios --name ios-connection-test-unsigned --dir $ipaDirectory
-    if ($LASTEXITCODE -ne 0) { throw 'IPA artifact download failed.' }
+function Download-ArtifactOnce([string]$name,[string]$destination) {
+    if (Test-Path -LiteralPath $destination) { return }
+    # A failed download must never leave a directory that a retry treats as complete.
+    $staging = Join-Path $artifact ('download-' + [guid]::NewGuid().ToString('N'))
+    & $gh run download $RunId --repo Mradong/KairiseiMA-ios --name $name --dir $staging
+    if ($LASTEXITCODE -ne 0) { throw ('Artifact download failed; incomplete files retained at ' + $staging) }
+    if (!(Test-Path -LiteralPath $staging -PathType Container)) { throw 'Artifact download did not produce a directory.' }
+    Move-Item -LiteralPath $staging -Destination $destination
 }
-if (!(Test-Path -LiteralPath $resourceDirectory)) {
-    & $gh run download $RunId --repo Mradong/KairiseiMA-ios --name ios-resource-delivery --dir $resourceDirectory
-    if ($LASTEXITCODE -ne 0) { throw 'Resource artifact download failed.' }
-}
+Download-ArtifactOnce 'ios-connection-test-unsigned' $ipaDirectory
+Download-ArtifactOnce 'ios-resource-delivery' $resourceDirectory
 $resourceReport=& $node (Join-Path $PSScriptRoot 'verify-ios-resource-delivery.mjs') $resourceDirectory
 if ($LASTEXITCODE -ne 0) { throw 'Downloaded iOS resource artifact failed verification.' }
 $resourceReport | Set-Content -LiteralPath (Join-Path $recoveryRoot 'evidence\ios-package-search\ios-client005-artifact-verification.json') -Encoding UTF8

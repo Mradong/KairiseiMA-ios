@@ -17,7 +17,7 @@ $info=Get-Content -LiteralPath (Join-Path $reportRoot 'application-info.json') -
 if ($info.CFBundleIdentifier -cne 'local.kairisei.recovery' -or $info.CFBundleShortVersionString -cne '0.0.5' -or [string]$info.CFBundleVersion -cne '5') { throw 'Unexpected app identifier or native-validation version.' }
 $native=Get-Content -LiteralPath (Join-Path $reportRoot 'native-build.json') -Raw -Encoding UTF8 | ConvertFrom-Json
 if ($native.target -cne 'ios/arm64' -or $native.go -cne '1.25.1' -or $native.dependencyCommit -cne 'd1a202eb539b99511e8a33f3975fac409ab545bf' -or $native.gameplayReady) { throw 'Unexpected native build report.' }
-$extraction=[System.IO.Path]::GetFullPath((Join-Path $recoveryRoot ('test-output\ipa-client005-'+$RunId)))
+$extraction=[System.IO.Path]::GetFullPath((Join-Path $recoveryRoot ('test-output\ipa-client005-'+$RunId+'-'+[guid]::NewGuid().ToString('N'))))
 if (!$extraction.StartsWith($recoveryRoot+[System.IO.Path]::DirectorySeparatorChar,[System.StringComparison]::OrdinalIgnoreCase) -or (Test-Path -LiteralPath $extraction)) { throw 'Extraction requires a new directory inside the recovery workspace.' }
 Add-Type -AssemblyName System.IO.Compression.FileSystem
 $archive=[System.IO.Compression.ZipFile]::OpenRead($ipa.FullName)
