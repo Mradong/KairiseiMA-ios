@@ -288,6 +288,16 @@ public static class CnProtocolTests
                 var broken = CnProtocol.ParseSoloBattleStart(File.ReadAllText(actualStart));
                 broken.Wire["partner_deck"][0]["avatar"]["avatar_partsids"] = new JArray(1,2);
                 Reject(delegate { CnProtocol.ProjectSoloPartnerUser(broken,0); }, "short avatar parts");
+                byte[] normal = new byte[2436], bonus = new byte[2436];
+                Buffer.BlockCopy(BitConverter.GetBytes(1001),0,normal,0,4);
+                normal[2435]=17;bonus[2435]=23;
+                int[] profile = {1,80,60,82,160,50,2,101,102,103,104,105,106,107,108};
+                byte[] packed = CnProtocol.ProjectSoloPartnerCard(result,0,0,100,0,0,normal,bonus,profile);
+                Check(packed.Length == 4960 && BitConverter.ToInt32(packed,0) == 10109028 && BitConverter.ToInt32(packed,4) == 500 && BitConverter.ToInt32(packed,8) == 60 && BitConverter.ToInt32(packed,12) == 100, "service card identity and parameters packed");
+                Check(BitConverter.ToInt32(packed,16) == 100 && BitConverter.ToInt32(packed,28) == 1001 && packed[2463] == 17 && packed[4899] == 23 && BitConverter.ToInt32(packed,4900) == 1 && BitConverter.ToInt32(packed,4928) == 101 && BitConverter.ToInt32(packed,4956) == 108, "skills and complete profile use native layout");
+                Reject(delegate { CnProtocol.ProjectSoloPartnerCard(result,0,0,100,0,0,null,bonus,profile); }, "missing master skill");
+                Reject(delegate { CnProtocol.ProjectSoloPartnerCard(result,0,0,100,0,0,new byte[2436],new byte[2436],profile); }, "empty skill records");
+                Reject(delegate { CnProtocol.ProjectSoloPartnerCard(result,0,0,100,0,0,normal,bonus,new int[8]); }, "incomplete card profile");
             }
             Console.WriteLine("PASS " + checks + " protocol checks");
             return 0;

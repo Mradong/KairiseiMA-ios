@@ -441,6 +441,40 @@ namespace Kairisei.Recovery
             return (int)value;
         }
 
+        // The server supplies instance fields, while rarity, love rate, packed
+        // skills and profile must come from the matching client master tables.
+        public static byte[] ProjectSoloPartnerCard(CnSoloBattleStart start, int partnerIndex, int cardIndex,
+            int loveRate, int rarity, int rarityPlus, byte[] normalSkill, byte[] bonusSkill, int[] profile)
+        {
+            if (start == null || start.Wire == null) throw new ArgumentNullException("start");
+            JArray partners = start.Wire["partner_deck"] as JArray;
+            if (partners == null || partnerIndex < 0 || partnerIndex >= partners.Count) throw new ArgumentOutOfRangeException("partnerIndex");
+            JObject partner = partners[partnerIndex] as JObject;
+            JArray cards = partner == null ? null : partner["deck"] as JArray;
+            if (cards == null || cardIndex < 0 || cardIndex >= cards.Count) throw new ArgumentOutOfRangeException("cardIndex");
+            JObject card = cards[cardIndex] as JObject;
+            if (card == null || normalSkill == null || normalSkill.Length != 2436 || bonusSkill == null || bonusSkill.Length != 2436 ||
+                profile == null || profile.Length != 15 || loveRate < 0 || rarity < 0 || rarityPlus < 0)
+                throw new ArgumentException("完整卡牌主表与技能数据是必需的。");
+            if (normalSkill[0] == 0 && normalSkill[1] == 0 && normalSkill[2] == 0 && normalSkill[3] == 0 &&
+                bonusSkill[0] == 0 && bonusSkill[1] == 0 && bonusSkill[2] == 0 && bonusSkill[3] == 0)
+                throw new ArgumentException("卡牌技能记录缺失。");
+            int id = UserInt(card, "cardid"), hp = UserInt(card, "hp"), level = UserInt(card, "lv"), fame = UserInt(card, "fame");
+            if (id == 0 || level == 0) throw new FormatException("Invalid partner card identity or level.");
+            byte[] result = new byte[4960];
+            int[] header = { id, hp, level, fame, loveRate, rarity, rarityPlus };
+            for (int i = 0; i < header.Length; i++) WriteInt32(result, i * 4, header[i]);
+            Buffer.BlockCopy(normalSkill, 0, result, 28, normalSkill.Length);
+            Buffer.BlockCopy(bonusSkill, 0, result, 2464, bonusSkill.Length);
+            for (int i = 0; i < profile.Length; i++) WriteInt32(result, 4900 + i * 4, profile[i]);
+            return result;
+        }
+
+        private static void WriteInt32(byte[] data, int offset, int value)
+        {
+            unchecked { data[offset] = (byte)value; data[offset+1] = (byte)(value >> 8); data[offset+2] = (byte)(value >> 16); data[offset+3] = (byte)(value >> 24); }
+        }
+
         public static CnCardCollection ParseCardShow(string content)
         {
             JObject payload = ParseEnvelope(content).Payload as JObject;

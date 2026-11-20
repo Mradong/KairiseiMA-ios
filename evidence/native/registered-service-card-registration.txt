@@ -1,0 +1,3 @@
+member=1 cardid=10109028 original/rebuilt registration=0; synthetic skill/master metadata; restored synthetic card before combat
+member=2 cardid=10109030 original/rebuilt registration=0; synthetic skill/master metadata; restored synthetic card before combat
+member=3 cardid=10134057 original/rebuilt registration=0; synthetic skill/master metadata; restored synthetic card before combat

@@ -108,6 +108,12 @@ namespace Kairisei.Recovery
             Check(battlecore_preparation_extra_skill(preparation,member,slot,kind,packed,packed.Length),"register extra skill");
         }
 
+        public void RegisterSoloPartnerCard(int member,int slot,CnSoloBattleStart start,int partnerIndex,int cardIndex,
+            int loveRate,int rarity,int rarityPlus,byte[] normalSkill,byte[] bonusSkill,int[] profile)
+        {
+            RegisterCard(member,slot,CnProtocol.ProjectSoloPartnerCard(start,partnerIndex,cardIndex,loveRate,rarity,rarityPlus,normalSkill,bonusSkill,profile));
+        }
+
         public void RegisterBuddy(int member,int slot,byte[] packed)
         {
             Player(member);Record(packed,17096);

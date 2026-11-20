@@ -29,6 +29,7 @@ partial class RegisteredBattleDifferential
         ExtraSkillHandle extra=(ExtraSkillHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_extra_skill"),typeof(ExtraSkillHandle));
         Lib reference=new Lib(original);
         CnSoloBattleStart serviceStart=CnProtocol.ParseSoloBattleStart(File.ReadAllText(serviceFixture));
+        File.WriteAllText(Path.Combine(dir,"registered-service-card-registration.txt"),"");
         if(serviceStart.EndTurn!=0)throw new Exception("isolated start fixture turn limit changed");
         for(int scenario=0;scenario<3;scenario++)
         {
@@ -65,6 +66,15 @@ partial class RegisteredBattleDifferential
                         {
                             Put(card,0,slot);Put(card,8,1);Put(card,28,1001);Put(card,28+228,777);Put(card,28+2432,1);
                             Put(card,28+232,1);Put(card,28+244,2);Put(card,28+248,9);Put(card,28+264,1);
+                        }
+                        if(scenario==0 && member<=3 && slot==1)
+                        {
+                            byte[] normal=new byte[2436],bonus=new byte[2436];Buffer.BlockCopy(card,28,normal,0,normal.Length);
+                            int[] profile={1,80,60,82,160,50,2,101,102,103,104,105,106,107,108};
+                            byte[] serviceCard=CnProtocol.ProjectSoloPartnerCard(serviceStart,member-1,0,100,0,0,normal,bonus,profile);
+                            if(reference.card(prep,member,slot,serviceCard,serviceCard.Length)!=0)throw new Exception("original service card registration");
+                            adapter.RegisterSoloPartnerCard(member,slot,serviceStart,member-1,0,100,0,0,normal,bonus,profile);
+                            File.AppendAllText(Path.Combine(dir,"registered-service-card-registration.txt"),"member="+member+" cardid="+BitConverter.ToInt32(serviceCard,0)+" original/rebuilt registration=0; synthetic skill/master metadata; restored synthetic card before combat\n");
                         }
                         if(reference.card(prep,member,slot,card,card.Length)!=0)throw new Exception("original card");
                         adapter.RegisterCard(member,slot,card);
