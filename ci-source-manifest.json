@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-19T09:07:08.141Z",
+  "generatedAt": "2026-11-20T02:40:54.169Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,8 +30,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 52642,
-      "sha256": "6f30d6bbf52789a8ee8a79f2c396269a27748d8c18d6f05a0d113b1eb24e96b1"
+      "bytes": 53778,
+      "sha256": "7ba794815c125dda0cf4a4a89c4ba793edb1ade830b4d20aa06587aa76044193"
     },
     {
       "path": "evidence/acceptance.json",
@@ -46,7 +46,7 @@
     {
       "path": "evidence/ios-package-search/ios-atlas-tests.json",
       "bytes": 329,
-      "sha256": "a12501b39f5ef64c2dfa192665eeb89363e9a3642bccf95114df8a7e509fdfa0"
+      "sha256": "354e5ae30b0919267cd1ba65b07e59ff851713f6ee1a6abb0a30697b1739dc80"
     },
     {
       "path": "evidence/ios-package-search/ios-bonus-projection-fixture.json",
@@ -336,7 +336,7 @@
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
       "bytes": 4727,
-      "sha256": "bb9c5329cdf51e6304e0cd7e564528f6859857e6acc91b1cd23e14c31edab3cd"
+      "sha256": "b4d82e0b7d22cfdd09315bdab3c8949deb7caf0da2bd3a0183d9653181040146"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
@@ -574,6 +574,11 @@
       "sha256": "d9b523b64229f86c7d7461c9b4f482a7940bf5872ac5ffa128f2c909561af961"
     },
     {
+      "path": "scripts/Get-IosClient005CloudBuild.ps1",
+      "bytes": 4280,
+      "sha256": "a62ae2c1d5d2d0f3f6f2e372ff80d9327efbf6ace8be174380c98a3f682e7281"
+    },
+    {
       "path": "scripts/Unity-CloudLicense.sh",
       "bytes": 4942,
       "sha256": "c22e3d468d6cacef0824c6b303c7a2e6657062f22774762cdf02a7f797b89b9d"
@@ -582,6 +587,11 @@
       "path": "scripts/Verify-IosClient004IPA.ps1",
       "bytes": 7073,
       "sha256": "1b15e834d843a3c8afac9f78498b7edea8f60239e104a0230c63f0fddbf3321c"
+    },
+    {
+      "path": "scripts/Verify-IosClient005IPA.ps1",
+      "bytes": 7073,
+      "sha256": "1d6f37b2b96f21058c3e7a70c99727a89a93edf72302da3be3b1b0b10bd5038a"
     },
     {
       "path": "scripts/audit-602-home.mjs",
@@ -759,7 +769,7 @@
       "sha256": "9d1f80fc07c9b19f94041225fdce765043b5516c2c989a49f0918005d372e3a9"
     }
   ],
-  "bytes": 21319748,
+  "bytes": 21332237,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
