@@ -19,6 +19,7 @@ namespace Kairisei.Recovery
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_catalog_close(ulong handle);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_open(int mode,out ulong handle);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_close(ulong handle);
+        [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_configure(ulong prep,int operation,int member,int value);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_user(ulong prep,int member,int[] values,int count,int seed,[Out] byte[] output,int capacity,out int written);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_card(ulong prep,int member,int slot,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_buddy(ulong prep,int member,int slot,byte[] data,int count);
@@ -56,6 +57,26 @@ namespace Kairisei.Recovery
             byte[] output=new byte[MaximumOutput];int written;
             Check(battlecore_preparation_user(preparation,member,values,values.Length,seed,output,output.Length,out written),"register user");
             return Text(output,written);
+        }
+
+        public void SetContinueAllowed(bool allowed)
+        {
+            EnsureOpen();
+            Check(battlecore_preparation_configure(preparation,1,0,allowed?1:0),"set continue");
+        }
+
+        public void SetEndTurn(int turn)
+        {
+            EnsureOpen();
+            if(turn<0)throw new ArgumentOutOfRangeException("turn");
+            Check(battlecore_preparation_configure(preparation,2,0,turn),"set end turn");
+        }
+
+        public void SetInitialBurst(int member,int gauge)
+        {
+            Player(member);
+            if(gauge<0)throw new ArgumentOutOfRangeException("gauge");
+            Check(battlecore_preparation_configure(preparation,3,member,gauge),"set initial burst");
         }
 
         public void RegisterCard(int member,int slot,byte[] packed)

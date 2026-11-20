@@ -8,6 +8,7 @@ partial class RegisteredBattleDifferential
 {
     [DllImport("kernel32.dll",CharSet=CharSet.Unicode,SetLastError=true)] private static extern bool SetDllDirectory(string directory);
     [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int CloseHandle(ulong handle);
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)] private delegate int ConfigureHandle(ulong handle,int operation,int member,int value);
     private static int managedScenarios, managedOperations;
 
     private static void ManagedText(string reference,string actual,string label)
@@ -23,6 +24,7 @@ partial class RegisteredBattleDifferential
         CloseHandle closeCatalog=(CloseHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_catalog_close"),typeof(CloseHandle));
         CloseHandle closePreparation=(CloseHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_close"),typeof(CloseHandle));
         CloseHandle closeBattle=(CloseHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_context_close"),typeof(CloseHandle));
+        ConfigureHandle configure=(ConfigureHandle)Marshal.GetDelegateForFunctionPointer(GetProcAddress(module,"battlecore_preparation_configure"),typeof(ConfigureHandle));
         Lib reference=new Lib(original);
         for(int scenario=0;scenario<3;scenario++)
         {
@@ -32,6 +34,8 @@ partial class RegisteredBattleDifferential
             {
                 if(reference.open(tables,tables.Length,ref catalog)!=0 || reference.prep(1,ref prep)!=0)throw new Exception("Original managed reference preparation");
                 adapter=new NativeRegisteredBattle(tables);
+                if(configure(prep,1,0,1)!=0 || configure(prep,2,0,20)!=0 || configure(prep,3,1,40)!=0)throw new Exception("original preparation configuration");
+                adapter.SetContinueAllowed(true);adapter.SetEndTurn(20);adapter.SetInitialBurst(1,40);
                 for(int member=1;member<=4;member++)
                 {
                     int[] user=new int[18];user[1]=1000;user[2]=1000;user[3]=100;user[4]=100;user[5]=100;user[7]=member;user[8]=10;user[17]=5;
@@ -62,7 +66,10 @@ partial class RegisteredBattleDifferential
                 }
                 byte[] request=Encoding.UTF8.GetBytes("{\"mode\":1,\"enemy_type\":0,\"config\":{}}");
                 if(reference.create(catalog,prep,request,request.Length,ref battle)!=0)throw new Exception("original create");
-                ManagedText(ReferenceStep(reference,battle,1,null),adapter.Start(0,0),"start");
+                string originalStart=ReferenceStep(reference,battle,1,null), actualStart=adapter.Start(0,0);
+                ManagedText(originalStart,actualStart,"start");
+                if(!("\n"+actualStart+"\n").Contains("\n503,20\n"))throw new Exception("Configured end turn not emitted");
+                File.WriteAllText(Path.Combine(dir,"registered-managed-configured-start.txt"),actualStart);
                 ManagedJournal(reference,battle,adapter);
                 PlayManagedWave(reference,battle,adapter);
                 foe=ManagedFoe(921,25);if(reference.enemy(prep,5,foe,foe.Length)!=0)throw new Exception("original next enemy");adapter.RegisterEnemy(5,foe);
