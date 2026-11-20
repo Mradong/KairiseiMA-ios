@@ -87,8 +87,14 @@ public static class CnProtocolTests
         var quest = CnProtocol.ParseSoloQuests(questResponse);
         Check(quest.Count == 1 && quest[0].BossId == 99 && quest[0].BpCost == 5 && quest[0].Category == "普通", "quest identity, category and cost");
         Reject(delegate { CnProtocol.ParseSoloQuests(questResponse.Replace("\"12\":[]", "\"12\":null")); }, "missing quest category");
-        string partnerResponse = "{\"res_code\":0}\n{\"arthurs\":[{\"arthur_type\":1,\"partners\":[{\"userid\":12,\"arthur_type\":1,\"name\":\"test\",\"lv\":10}]}]}";
+        string partnerResponse = "{\"res_code\":0}\n{\"arthurs\":[{\"arthur_type\":1,\"partners\":[{\"userid\":12,\"arthur_type\":1,\"name\":\"test\",\"lv\":10,\"rental_idx\":2}]}]}";
         Check(CnProtocol.ParseSoloPartners(partnerResponse)[0].UserId == 12, "partner identity");
+        var draft = new CnSoloPartyDraft();
+        draft.Add(CnProtocol.ParseSoloPartners(partnerResponse)[0]);
+        Check(draft.Count == 1 && (long)draft.RequestPartners()[0]["userid"] == 12 && (int)draft.RequestPartners()[0]["deck_idx"] == 2, "partner selection request retains rental index");
+        try { draft.Add(CnProtocol.ParseSoloPartners(partnerResponse)[0]); throw new Exception("duplicate partner accepted"); } catch (InvalidOperationException) { checks++; }
+        draft.RemoveLast(); Check(draft.Count == 0, "remove last partner");
+        Reject(delegate { CnProtocol.ParseSoloPartners(partnerResponse.Replace("\"rental_idx\":2", "\"rental_idx\":-1")); }, "negative partner deck index");
         Reject(delegate { CnProtocol.ParseSoloPartners(partnerResponse.Replace("\"arthur_type\":1,\"name\"", "\"arthur_type\":2,\"name\"")); }, "partner profession mismatch");
         var partners = new JArray(new JObject { { "userid", 1000001 }, { "arthur_type", 1 }, { "deck_idx", 0 } });
         string soloRequest = CnProtocol.CreateSoloBattleStartRequest(Session, 30010102, 3, 0, partners);
@@ -242,6 +248,19 @@ public static class CnProtocolTests
             {
                 var stages = CnProtocol.ParseSoloQuests(File.ReadAllText(actualQuests));
                 Check(stages.Count > 0 && stages[0].BossId == 30020102 && stages[0].BpCost == 1, "isolated service tutorial quest");
+            }
+            string actualPartners = Environment.GetEnvironmentVariable("IOS_PARTNER_TEST_FIXTURE");
+            if (!String.IsNullOrEmpty(actualPartners))
+            {
+                var candidates = CnProtocol.ParseSoloPartners(File.ReadAllText(actualPartners));
+                Check(candidates.Count >= 4, "isolated service partner candidates");
+                var actualDraft = new CnSoloPartyDraft();
+                for (int i = 0; i < 3; i++) actualDraft.Add(candidates[i]);
+                string body = CnProtocol.CreateSoloBattleStartRequest(Session, 30010102, 3, 0, actualDraft.RequestPartners());
+                JArray selections = (JArray)JObject.Parse(body.Substring(Session.Length))["partner_deck_selects"];
+                Check(selections.Count == 3 && (long)selections[0]["userid"] == candidates[0].UserId && (long)selections[2]["deck_idx"] == candidates[2].RentalIndex, "isolated candidates form start request");
+                try { actualDraft.Add(candidates[3]); throw new Exception("fourth partner accepted"); } catch (InvalidOperationException) { checks++; }
+                actualDraft.Clear(); Check(actualDraft.Count == 0, "clear party for new quest");
             }
             string actualStart = Environment.GetEnvironmentVariable("IOS_SOLO_START_FIXTURE");
             string actualStartRequest = Environment.GetEnvironmentVariable("IOS_SOLO_START_REQUEST_FIXTURE");

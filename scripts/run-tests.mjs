@@ -61,7 +61,7 @@ const server = http.createServer(async (request, response) => {
     } else if (request.method === 'POST' && request.url === '/TeamBattleSoloPartnerShow') {
       assert.equal(body, session + '{"bossid":30010102}');
       if (process.env.IOS_PARTNER_TEST_FIXTURE) response.end(fs.readFileSync(process.env.IOS_PARTNER_TEST_FIXTURE, 'utf8'));
-      else response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({arthurs:[{arthur_type:1,partners:[{userid:12,arthur_type:1,name:'test',lv:10}]}]}) + '\n{}');
+      else response.end(JSON.stringify({res_code:0}) + '\n' + JSON.stringify({arthurs:[{arthur_type:1,partners:[{userid:12,arthur_type:1,name:'test',lv:10,rental_idx:0}]}]}) + '\n{}');
     } else { throw new Error('Unexpected fixture route'); }
   } catch (error) {
     failures.push(error.message);

@@ -134,7 +134,33 @@ namespace Kairisei.Recovery
         public long ArthurType { get; internal set; }
         public string Name { get; internal set; }
         public long Level { get; internal set; }
+        public long RentalIndex { get; internal set; }
         public JObject Wire { get; internal set; }
+    }
+
+    public sealed class CnSoloPartyDraft
+    {
+        private readonly List<CnSoloPartner> selected = new List<CnSoloPartner>();
+        public int Count { get { return selected.Count; } }
+        public CnSoloPartner this[int index] { get { return selected[index]; } }
+        public void Add(CnSoloPartner partner)
+        {
+            if (partner == null || partner.UserId < 1 || partner.ArthurType < 1 || partner.ArthurType > 4 || partner.RentalIndex < 0 || partner.RentalIndex > 127)
+                throw new ArgumentException("队友信息无效。");
+            if (selected.Count >= 3) throw new InvalidOperationException("最多选择三名队友。");
+            foreach (CnSoloPartner entry in selected)
+                if (entry.UserId == partner.UserId) throw new InvalidOperationException("已经选择该队友。");
+            selected.Add(partner);
+        }
+        public void RemoveLast() { if (selected.Count > 0) selected.RemoveAt(selected.Count - 1); }
+        public void Clear() { selected.Clear(); }
+        public JArray RequestPartners()
+        {
+            var result = new JArray();
+            foreach (CnSoloPartner partner in selected)
+                result.Add(new JObject { { "userid", partner.UserId }, { "arthur_type", partner.ArthurType }, { "deck_idx", partner.RentalIndex } });
+            return result;
+        }
     }
 
     public sealed class CnDeck
@@ -347,9 +373,9 @@ namespace Kairisei.Recovery
                 {
                     JObject partner = token as JObject;
                     if (partner == null || RequiredInteger(partner, "arthur_type") != role) throw new FormatException("Partner profession differs from group");
-                    long id = RequiredInteger(partner, "userid"), level = RequiredInteger(partner, "lv");
-                    if (id < 1 || level < 0) throw new FormatException("Invalid partner identity");
-                    result.Add(new CnSoloPartner { UserId = id, ArthurType = role, Name = RequiredString(partner, "name"), Level = level, Wire = (JObject)partner.DeepClone() });
+                    long id = RequiredInteger(partner, "userid"), level = RequiredInteger(partner, "lv"), rental = RequiredInteger(partner, "rental_idx");
+                    if (id < 1 || level < 0 || rental < 0 || rental > 127) throw new FormatException("Invalid partner identity or deck");
+                    result.Add(new CnSoloPartner { UserId = id, ArthurType = role, Name = RequiredString(partner, "name"), Level = level, RentalIndex = rental, Wire = (JObject)partner.DeepClone() });
                 }
             }
             return result;

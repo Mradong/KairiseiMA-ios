@@ -25,6 +25,8 @@ namespace Kairisei.Recovery
         private Vector2 questScroll;
         private int questIndex;
         private List<CnSoloPartner> soloPartners;
+        private int soloPartnerIndex;
+        private readonly CnSoloPartyDraft soloParty = new CnSoloPartyDraft();
         private bool showingDeck;
         private int deckIndex;
         private Vector2 deckScroll;
@@ -199,13 +201,22 @@ namespace Kairisei.Recovery
                 GUI.Label(new Rect(240, 115, 800, 50), "单人关卡", headingStyle);
                 string questText = QuestText();
                 float height = bodyStyle.CalcHeight(new GUIContent(questText), 750);
-                questScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 330), questScroll, new Rect(0, 0, 760, Mathf.Max(330, height)));
+                questScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 245), questScroll, new Rect(0, 0, 760, Mathf.Max(245, height)));
                 GUI.Label(new Rect(0, 0, 750, height), questText, bodyStyle);
                 GUI.EndScrollView();
                 GUI.enabled = !busy && quests.Count > 0;
-                if (GUI.Button(new Rect(240, 515, 110, 55), "上一关", buttonStyle) && questIndex > 0) { questIndex--; soloPartners = null; }
-                if (GUI.Button(new Rect(360, 515, 110, 55), "下一关", buttonStyle) && questIndex + 1 < quests.Count) { questIndex++; soloPartners = null; }
+                if (GUI.Button(new Rect(240, 515, 110, 55), "上一关", buttonStyle) && questIndex > 0) { questIndex--; soloPartners = null; soloParty.Clear(); }
+                if (GUI.Button(new Rect(360, 515, 110, 55), "下一关", buttonStyle) && questIndex + 1 < quests.Count) { questIndex++; soloPartners = null; soloParty.Clear(); }
                 if (GUI.Button(new Rect(480, 515, 200, 55), "查看队友", buttonStyle)) ReadSoloPartners();
+                if (soloPartners != null && soloPartners.Count > 0)
+                {
+                    CnSoloPartner candidate = soloPartners[soloPartnerIndex];
+                    GUI.Label(new Rect(240, 425, 760, 38), "候选：" + candidate.Name + "  职业 " + candidate.ArthurType + "  等级 " + candidate.Level + "  已选 " + soloParty.Count + "/3", bodyStyle);
+                    if (GUI.Button(new Rect(240, 465, 150, 42), "上一位", buttonStyle)) soloPartnerIndex = (soloPartnerIndex + soloPartners.Count - 1) % soloPartners.Count;
+                    if (GUI.Button(new Rect(400, 465, 150, 42), "下一位", buttonStyle)) soloPartnerIndex = (soloPartnerIndex + 1) % soloPartners.Count;
+                    if (GUI.Button(new Rect(560, 465, 170, 42), "加入队伍", buttonStyle)) { try { soloParty.Add(candidate); } catch (Exception error) { status = error.Message; } }
+                    if (GUI.Button(new Rect(740, 465, 170, 42), "撤销队友", buttonStyle)) soloParty.RemoveLast();
+                }
                 GUI.enabled = !busy;
                 if (GUI.Button(new Rect(760, 530, 240, 55), "返回", buttonStyle)) showingQuests = false;
             }
@@ -344,7 +355,7 @@ namespace Kairisei.Recovery
             CnLogin requestedLogin = login;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", homeState.ArthurType } }), delegate(string response) {
                 quests = CnProtocol.ParseSoloQuests(response);
-                questScroll = Vector2.zero; questIndex = 0; soloPartners = null; showingQuests = true;
+                questScroll = Vector2.zero; questIndex = 0; soloPartners = null; soloParty.Clear(); showingQuests = true;
                 status = "已读取服务器单人关卡；进入战斗尚未接入。";
             }));
         }
@@ -365,6 +376,11 @@ namespace Kairisei.Recovery
                 foreach (CnSoloPartner partner in soloPartners)
                     text.Append("职业 ").Append(partner.ArthurType).Append("  ").Append(partner.Name).Append("  等级 ").Append(partner.Level).AppendLine();
             }
+            if (soloParty.Count > 0)
+            {
+                text.AppendLine().AppendLine("已选队友：");
+                for (int i = 0; i < soloParty.Count; i++) text.Append(soloParty[i].Name).Append("  职业 ").Append(soloParty[i].ArthurType).AppendLine();
+            }
             return text.ToString();
         }
 
@@ -373,9 +389,10 @@ namespace Kairisei.Recovery
             if (busy || login == null || quests == null || questIndex < 0 || questIndex >= quests.Count || verifiedAddress != address) return;
             CnLogin requestedLogin = login;
             CnQuest selected = quests[questIndex];
-            soloPartners = null;
+            soloPartners = null; soloParty.Clear();
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloPartnerShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "bossid", selected.BossId } }), delegate(string response) {
                 soloPartners = CnProtocol.ParseSoloPartners(response);
+                soloPartnerIndex = 0;
                 status = "已读取关卡队友；战斗入口尚未接入。";
             }));
         }
