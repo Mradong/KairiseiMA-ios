@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T06:50:33.431Z",
+  "generatedAt": "2026-11-20T08:13:14.415Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,13 +30,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 62745,
-      "sha256": "9d06c1ccdb4ae327eb20e93fc06cfcf63a0d23ad34429e8a8f5e448e8f8205c9"
+      "bytes": 64576,
+      "sha256": "6be8d6f9c7e5bbc950e5dad2b5b12475c37eb176739a9910f663be43a333a09d"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 18789,
-      "sha256": "3a4dc51b6289a812ae377144d79e76be8b2c5969f5264c6c7e9a4eb4eb0ab91c"
+      "bytes": 19719,
+      "sha256": "50cccbbf15fbc94c5b79cf68f30f28d2c3025e0a17b2c675ebfed2c2d168954b"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -226,7 +226,7 @@
     {
       "path": "evidence/native/prepared-card-query-differential-tests.json",
       "bytes": 659,
-      "sha256": "5e2661db6757bb8faf5b1123cd4663a4e735e7e92f2263c897e690eb7a857f5c"
+      "sha256": "8ab9e7decee0726cf8b94250e8f82e29b908779cf8eadd0e78cfaa5aac6bad3a"
     },
     {
       "path": "evidence/native/prepared-enemy-query-differential-tests.json",
@@ -236,12 +236,72 @@
     {
       "path": "evidence/native/prepared-skill-query-differential-tests.json",
       "bytes": 664,
-      "sha256": "ca63f9803e415de15cbcfe1a59bc633148db0c3babf2117bee2d13dc48d5e0e5"
+      "sha256": "13cbdeba3064bea3898a2cf81479b1693118a3cd46874df6dd710a5bea1632c4"
     },
     {
       "path": "evidence/native/registered-battle-differential-tests.json",
-      "bytes": 2349,
-      "sha256": "a0e7e8d03777d848cff30100268f23ff84612390e34f9ad1411d06f423e2ed8b"
+      "bytes": 2878,
+      "sha256": "96ac139c2fd1546b4a9a29a6b0aa6d15d07467bf03ceab076d86dd6017512ff1"
+    },
+    {
+      "path": "evidence/native/registered-buddy-bursts.txt",
+      "bytes": 2627,
+      "sha256": "9a7be937a6775c02f117756d09dcd42fcb2e7944d503ee43b6ec8d7e96a7bda5"
+    },
+    {
+      "path": "evidence/native/registered-buddy-case-1-start.txt",
+      "bytes": 1758,
+      "sha256": "435984f09119d11e55ded324040cf01af63088db6b2d63b6cbb03d515b85be13"
+    },
+    {
+      "path": "evidence/native/registered-buddy-case-2-start.txt",
+      "bytes": 1750,
+      "sha256": "421ce8bedc58a8659291c22cca79877479eaf268b609c2390f4d6d68948594a1"
+    },
+    {
+      "path": "evidence/native/registered-buddy-case-3-start.txt",
+      "bytes": 1750,
+      "sha256": "040025fddb4c0bd7552bc241cbcb862acfcfacac5d31051d14ba3e613d56e3b7"
+    },
+    {
+      "path": "evidence/native/registered-buddy-case-4-start.txt",
+      "bytes": 1750,
+      "sha256": "c4caa011ac5627fde44d9d73019b44732a11845511ff6255306dc204652582b0"
+    },
+    {
+      "path": "evidence/native/registered-buddy-case-5-start.txt",
+      "bytes": 1750,
+      "sha256": "05a5a5a5e4706ddb08204915e41751d9249971f56a04c4ce60332d4733efbed8"
+    },
+    {
+      "path": "evidence/native/registered-buddy-case-6-start.txt",
+      "bytes": 1758,
+      "sha256": "435984f09119d11e55ded324040cf01af63088db6b2d63b6cbb03d515b85be13"
+    },
+    {
+      "path": "evidence/native/registered-buddy-checkpoint.json",
+      "bytes": 4132,
+      "sha256": "7361ebc5fda1cdaafc68a336d70cb459a66a69de8929df2a2a51a760d3c49de3"
+    },
+    {
+      "path": "evidence/native/registered-buddy-next.txt",
+      "bytes": 1756,
+      "sha256": "1adad29dfdfc15315b4dfed5c7c26c87553563dbdc8c721df04ebc218a070324"
+    },
+    {
+      "path": "evidence/native/registered-buddy-passive-bursts.txt",
+      "bytes": 2627,
+      "sha256": "abbb1bb60899dd0842043b774faa369d37cc432f6c60c55c56046d85efeeffb0"
+    },
+    {
+      "path": "evidence/native/registered-buddy-passive-next.txt",
+      "bytes": 1752,
+      "sha256": "9d9d67c3b1012272e1f4324fcb422a178cb85b28524c05896fc901856b127097"
+    },
+    {
+      "path": "evidence/native/registered-buddy-passive.txt",
+      "bytes": 756,
+      "sha256": "0d39233b88e838113e38add577624aed043803f907d49d03a97ebfc17675b5ec"
     },
     {
       "path": "evidence/native/registered-enemy-normal-action.txt",
@@ -291,7 +351,7 @@
     {
       "path": "evidence/native/registered-skill-query-differential-tests.json",
       "bytes": 638,
-      "sha256": "1447d289a70ea4772f2e14218169bf5fc6636975540162c1e2218407bd4dc188"
+      "sha256": "c9d09313abff5d42d55601711b97f5f38130d1f8053d025cfb943f8b55187b4a"
     },
     {
       "path": "evidence/native/registered-wave-checkpoint.json",
@@ -300,13 +360,13 @@
     },
     {
       "path": "evidence/native/registration-state-tests.json",
-      "bytes": 1209,
-      "sha256": "7d1a909a5edb73ee5ff9ec57e69b0900e86d1961cba99f8e6d3ee7358b252486"
+      "bytes": 1260,
+      "sha256": "4608daaadff5e1794efd9202af3d5d49e891509b6f62c8a7d55a8de81b82a2d7"
     },
     {
       "path": "evidence/native/session-differential-tests.json",
       "bytes": 903,
-      "sha256": "32742d5c97d83c2d3197d609d04e11e0ce78322a592efb4a8da561b9b8b486e3"
+      "sha256": "43a6b9bbe7b73165be4b621bac0f91edde37a11423104686fa7ee9590d2655a3"
     },
     {
       "path": "evidence/native/skill-query-differential-tests.json",
@@ -316,7 +376,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "8126a41363e792d1b716557e8f4e93ecb0818a21c7e06dd0f84cd23c93086bb5"
+      "sha256": "ecbf067951976758353f6b00fb815922ee1438926e01b7d320900313ac6338be"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -524,9 +584,19 @@
       "sha256": "62c1fc2a83743ebc31b1cb8de5a54f5d942ccb81bf3108a5d96bf5a369dec92f"
     },
     {
+      "path": "native/bridge/registered_buddy.go",
+      "bytes": 2606,
+      "sha256": "a2dadeb142f6b3cc875639f9aad14c79b42d635ee798f7b56c1ac478c5953924"
+    },
+    {
+      "path": "native/bridge/registered_buddy_test.go",
+      "bytes": 2249,
+      "sha256": "1fdf2cf4e96af191741f9496f8053a5e56d95480dd5bb5ec66ff86a746e1ebd1"
+    },
+    {
       "path": "native/bridge/registered_create.go",
-      "bytes": 4419,
-      "sha256": "accc92df0164369a8165fdab5ebf9521cfb3008b9e023ba0fef88e5fd25a265e"
+      "bytes": 4421,
+      "sha256": "32c91843756778370cc683280da090fe09526340e6f90cfc5d06ee7e8803f4e2"
     },
     {
       "path": "native/bridge/registered_enemy.go",
@@ -580,8 +650,8 @@
     },
     {
       "path": "native/bridge/skill_query.go",
-      "bytes": 10125,
-      "sha256": "936d06bec19f1eab85a31d6cc0fa07f9c79ebb8ec7c5e9ad687f0d2fcf6ab5c9"
+      "bytes": 10817,
+      "sha256": "ffdf86f528432f0272e2590eee9afac287276f51ea9158d83c98375dfc51e5a5"
     },
     {
       "path": "native/bridge/skill_query_test.go",
@@ -720,8 +790,8 @@
     },
     {
       "path": "scripts/test-registered-battle.mjs",
-      "bytes": 4252,
-      "sha256": "36015da3f69aafeb30ca853544921fa25cbb78ebcee8305b6ccaf85a370557ac"
+      "bytes": 4808,
+      "sha256": "14d63a28fecbc9ad6e700b86bf8d947a0a08df334c1425ec1c76e67f478a38e3"
     },
     {
       "path": "scripts/test-registered-skill-query.mjs",
@@ -790,8 +860,13 @@
     },
     {
       "path": "tests/RegisteredBattleDifferential.cs",
-      "bytes": 21265,
-      "sha256": "0d164a26079c500de92a2f58c3488259f49471e4c649a97cdf8a2c99bd5f6bf7"
+      "bytes": 21344,
+      "sha256": "594e10b0da470c5c2a285653799f9ad75b0b663f7fe7335b2020ee4e34f9e7c6"
+    },
+    {
+      "path": "tests/RegisteredBuddyCases.cs",
+      "bytes": 9043,
+      "sha256": "ce7dff29ff29aaab9cd23b07dea1a0c0b22cfdaf61ec82fbcdd1c3d53d0e9655"
     },
     {
       "path": "tests/RegisteredManagedCases.cs",
@@ -844,7 +919,7 @@
       "sha256": "012ddb51c988d9ac5871260bdebbc22c5bd556d58ed927f45c8de9032a2530f2"
     }
   ],
-  "bytes": 21412703,
+  "bytes": 21455437,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

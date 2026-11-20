@@ -1,0 +1,95 @@
+{
+  "checkedAt": "2026-11-20T08:12:25.928Z",
+  "acceptanceId": "BATTLE-01",
+  "success": true,
+  "original": {
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "sha256": "18ba6c8a0a19138990061a0c03bddb35aba4abba040ace10ad73f28390e4ae8e"
+  },
+  "buddyCases": 6,
+  "managedResultAndJournalComparisons": 216,
+  "verified": "Six Windows synthetic registered-buddy cases use the actual C# NativeRegisteredBattle adapter. All five equipment positions appear in original-matching starts. Leader active skill slots 1..3 cause 13/14/15 damage with execution levels 2/3/4, gauge costs 20/30/40 and cooldown outputs 3/4/5. Leader passive at level 7 causes 3 self-damage on burst entry. Both leader cases win through card damage and compare next-wave start, journals and next victory.",
+  "sources": [
+    {
+      "file": "native/bridge/registered_buddy.go",
+      "sha256": "a2dadeb142f6b3cc875639f9aad14c79b42d635ee798f7b56c1ac478c5953924"
+    },
+    {
+      "file": "native/bridge/registered_buddy_test.go",
+      "sha256": "1fdf2cf4e96af191741f9496f8053a5e56d95480dd5bb5ec66ff86a746e1ebd1"
+    },
+    {
+      "file": "native/bridge/skill_query.go",
+      "sha256": "ffdf86f528432f0272e2590eee9afac287276f51ea9158d83c98375dfc51e5a5"
+    },
+    {
+      "file": "native/bridge/registered_create.go",
+      "sha256": "32c91843756778370cc683280da090fe09526340e6f90cfc5d06ee7e8803f4e2"
+    },
+    {
+      "file": "tests/RegisteredBuddyCases.cs",
+      "sha256": "ce7dff29ff29aaab9cd23b07dea1a0c0b22cfdaf61ec82fbcdd1c3d53d0e9655"
+    }
+  ],
+  "matchedOutputs": [
+    {
+      "file": "evidence/native/registered-buddy-case-1-start.txt",
+      "sha256": "435984f09119d11e55ded324040cf01af63088db6b2d63b6cbb03d515b85be13"
+    },
+    {
+      "file": "evidence/native/registered-buddy-case-2-start.txt",
+      "sha256": "421ce8bedc58a8659291c22cca79877479eaf268b609c2390f4d6d68948594a1"
+    },
+    {
+      "file": "evidence/native/registered-buddy-case-3-start.txt",
+      "sha256": "040025fddb4c0bd7552bc241cbcb862acfcfacac5d31051d14ba3e613d56e3b7"
+    },
+    {
+      "file": "evidence/native/registered-buddy-case-4-start.txt",
+      "sha256": "c4caa011ac5627fde44d9d73019b44732a11845511ff6255306dc204652582b0"
+    },
+    {
+      "file": "evidence/native/registered-buddy-case-5-start.txt",
+      "sha256": "05a5a5a5e4706ddb08204915e41751d9249971f56a04c4ce60332d4733efbed8"
+    },
+    {
+      "file": "evidence/native/registered-buddy-case-6-start.txt",
+      "sha256": "435984f09119d11e55ded324040cf01af63088db6b2d63b6cbb03d515b85be13"
+    },
+    {
+      "file": "evidence/native/registered-buddy-bursts.txt",
+      "sha256": "9a7be937a6775c02f117756d09dcd42fcb2e7944d503ee43b6ec8d7e96a7bda5"
+    },
+    {
+      "file": "evidence/native/registered-buddy-passive.txt",
+      "sha256": "0d39233b88e838113e38add577624aed043803f907d49d03a97ebfc17675b5ec"
+    },
+    {
+      "file": "evidence/native/registered-buddy-passive-bursts.txt",
+      "sha256": "abbb1bb60899dd0842043b774faa369d37cc432f6c60c55c56046d85efeeffb0"
+    },
+    {
+      "file": "evidence/native/registered-buddy-next.txt",
+      "sha256": "1adad29dfdfc15315b4dfed5c7c26c87553563dbdc8c721df04ebc218a070324"
+    },
+    {
+      "file": "evidence/native/registered-buddy-passive-next.txt",
+      "sha256": "9d9d67c3b1012272e1f4324fcb422a178cb85b28524c05896fc901856b127097"
+    }
+  ],
+  "layoutReferences": [
+    "recovered-unity/ExportedProject/Assets/Scripts/Assembly-CSharp/battle/BuddyData.cs",
+    "recovered-unity/ExportedProject/Assets/Scripts/Assembly-CSharp/battle/BurstSkillData.cs"
+  ],
+  "limitations": [
+    "Synthetic master metadata and packed skill records only.",
+    "Call-skill activation and nonleader passive execution were not verified.",
+    "Conflicting per-instance metadata or same-ID different execution levels are rejected because the shared catalog cannot represent them.",
+    "Broader skill conditions and effects remain incomplete.",
+    "No real buddy/card/quest resource mapping, Unity, ARM64, new IPA or iPhone test for this source."
+  ],
+  "gameplayReady": false
+}

@@ -1,11 +1,12 @@
 {
-  "checkedAt": "2026-11-20T06:49:44.414Z",
+  "checkedAt": "2026-11-20T08:11:38.490Z",
   "success": true,
   "counts": {
     "checks": 3633,
     "waveCases": 12,
     "managedScenarios": 3,
-    "managedComparisons": 108,
+    "buddyCases": 6,
+    "managedComparisons": 216,
     "startBytes": 1714,
     "attackBytes": 227,
     "advanceCalls": 445,
@@ -22,7 +23,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "cf9d11214cd9e16d1d58560566b452866d00be94f3fbcf173773f8965ec9d18a"
+    "sha256": "18ba6c8a0a19138990061a0c03bddb35aba4abba040ace10ad73f28390e4ae8e"
   },
-  "scope": "Windows x64 synthetic registered mode-1 party: original-DLL status, full result CSV and cumulative journal comparisons. All 35 zero-ID enemy skill slots are tested. One nonzero normal action with null conditions selects ENEMY1 (itself) at rates 100 and 0; RANDOM and four profession selectors damage the expected living neutral player at rate 100. Skill slots 1 through 14 separately target the mercenary and cause observed damage. Slot 1 is tested with normal slot 0 also registered, but both actions executing is not proven. Dead-member fallback, special and death slots, other skill targets and nonempty triggers are unverified or rejected. Twelve cases cover player effects and two waves. Actual C# NativeRegisteredBattle adapter is compiled/executed against the rebuilt DLL with original result/journal comparisons, configuring continue, end turn 20 and initial burst 40; end turn is asserted in output. One scenario consumes end_turn=0 and projects three partner user records from an isolated service response through CnProtocol and the managed adapter; its fourth member, cards and enemies are synthetic. A nonzero call-skill record is registered for each member via the managed adapter and original DLL; call-skill execution is not established. Three service card-instance records are temporarily registered with explicitly synthetic skill/master metadata, then replaced by synthetic cards before combat; registration success does not prove real-card gameplay. Continue and burst effects beyond matching results are not separately exercised. No real resources, Unity engine, ARM64 or iPhone execution was tested."
+  "scope": "Windows x64 synthetic registered mode-1 party: original-DLL status, full result CSV and cumulative journal comparisons. All 35 zero-ID enemy skill slots are tested. One nonzero normal action with null conditions selects ENEMY1 (itself) at rates 100 and 0; RANDOM and four profession selectors damage the expected living neutral player at rate 100. Skill slots 1 through 14 separately target the mercenary and cause observed damage. Slot 1 is tested with normal slot 0 also registered, but both actions executing is not proven. Dead-member fallback, special and death slots, other skill targets and nonempty triggers are unverified or rejected. Twelve cases cover player effects and two waves. Actual C# NativeRegisteredBattle adapter is compiled/executed against the rebuilt DLL with original result/journal comparisons, configuring continue, end turn 20 and initial burst 40; end turn is asserted in output. One scenario consumes end_turn=0 and projects three partner user records from an isolated service response through CnProtocol and the managed adapter; its fourth member, cards and enemies are synthetic. A nonzero call-skill record is registered for each member via the managed adapter and original DLL; call-skill execution is not established. Three service card-instance records are temporarily registered with explicitly synthetic skill/master metadata, then replaced by synthetic cards before combat; registration success does not prove real-card gameplay. Continue behavior remains unverified beyond matching results. Six additional managed registered-buddy cases compare full results and journals: nonzero buddies in slots 1 through 5; three leader active skills with distinct packed execution levels deal 13/14/15 damage and preserve gauge costs and cooldown outputs; one leader passive deals 3 self-damage at level 7 upon entering burst. Both leader cases win through actual damage and compare the following wave and victory. Call-skill activation, nonleader passives, real buddy definitions and broader conditions/effects remain unverified. No real resources, Unity engine, ARM64 or iPhone execution was tested."
 }

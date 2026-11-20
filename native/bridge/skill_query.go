@@ -119,6 +119,10 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 	for id, roles := range catalog.value.SkillRoles {
 		value.SkillRoles[id] = roles
 	}
+	value.Buddies = make(map[int]battlemodel.CombatBuddyDefinition, len(catalog.value.Buddies))
+	for id, buddy := range catalog.value.Buddies {
+		value.Buddies[id] = buddy
+	}
 	registeredSkills := make(map[int]registeredSkill)
 	registeredRoles := make(map[int][]battlemodel.CombatSkillRole)
 	installSkill := func(decoded registeredSkill) error {
@@ -160,6 +164,7 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 		}
 	}
 	registeredCards := make(map[int]battlemodel.CombatCardDefinition)
+	registeredBuddies := make(map[int]battlemodel.CombatBuddyDefinition)
 	members := make([]battlemodel.Participant, 0, 8)
 	for i, user := range p.users {
 		if user == nil {
@@ -228,8 +233,19 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 			value := int(*initial)
 			member.InitialBurst = &value
 		}
-		if buddy := user.buddies[0]; buddy != nil && wireInt(buddy, 0) != 0 {
-			member.DeckBuddies = []battlemodel.Buddy{{BuddyType: 1, BuddyID: int(wireInt(buddy, 0))}}
+		for slot, raw := range user.buddies {
+			if raw == nil || wireInt(raw, 0) == 0 {
+				continue
+			}
+			definition, instance, err := decodePreparedBuddy(catalog.schema, catalog.value.RoleParamRules, raw, slot+1, catalog.value.Buddies, installSkill)
+			if err != nil {
+				return nil, err
+			}
+			if previous, exists := registeredBuddies[instance.BuddyID]; exists && previous != definition {
+				return nil, fmt.Errorf("conflicting registered buddies")
+			}
+			registeredBuddies[instance.BuddyID], value.Buddies[instance.BuddyID] = definition, definition
+			member.DeckBuddies = append(member.DeckBuddies, instance)
 		}
 		members = append(members, member)
 	}

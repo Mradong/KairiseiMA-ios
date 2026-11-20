@@ -30,7 +30,7 @@ func validateRegisteredParty(p *preparation, catalog *libraryCatalog) bool {
 			}
 		}
 		for _, buddy := range u.buddies {
-			if len(buddy) != buddyWireSize || wireInt(buddy, 0) != 0 {
+			if len(buddy) != buddyWireSize {
 				return false
 			}
 		}
@@ -105,7 +105,7 @@ func battlecore_context_create_registered(catalogID, preparationID C.ulonglong, 
 	}
 	members := make([]battlecore.StandaloneBattleMember, 0, 4)
 	for _, m := range projection.members {
-		members = append(members, battlecore.StandaloneBattleMember{MemberType: m.MemberType, ArthurType: m.ArthurType, JobType: m.JobType, HP: m.HP, MaxHP: m.MaxHP, Attack: m.Attack, Magic: m.Magic, Mind: m.Mind, InitialBurst: m.InitialBurst, DeckCards: m.DeckCards, SupportCards: m.SupportCards})
+		members = append(members, battlecore.StandaloneBattleMember{MemberType: m.MemberType, ArthurType: m.ArthurType, JobType: m.JobType, HP: m.HP, MaxHP: m.MaxHP, Attack: m.Attack, Magic: m.Magic, Mind: m.Mind, InitialBurst: m.InitialBurst, DeckCards: m.DeckCards, SupportCards: m.SupportCards, DeckBuddies: m.DeckBuddies})
 	}
 	battle, err := battlecore.NewStandaloneBattle(projection.catalog, request.Config, members)
 	if err != nil {
