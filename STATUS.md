@@ -1,5 +1,13 @@
 # 当前状态
 
+## 2026-11-23：客户端显示版本及设备连接反馈
+
+用户确认手机安装的是 0.0.6：应用界面打开后检查连接立即显示 `HTTP 0: Unknown Error`；同一台手机 Safari 访问相同服务 `/healthz` 可见 PASS，应用无线数据允许 WLAN 与蜂窝数据。这些事实缩小了排查范围，尚不足以断定具体根因；0.0.6 自身的 iOS 网络配置允许 HTTP。手机登录和 UI 资源更新尚未通过。
+
+按用户要求，后续客户端主界面标题从 Unity `Application.version` 显示构建版本号，避免手工版本与包版本不一致。此代码目前仅在本地，尚未 Unity/iOS 构建或手机验证，不属于 0.0.6。证据 `evidence/ios-package-search/device-http0-report.json`。
+
+隔离新测试角色还通过公网 C# 读取单人关卡（3788 项）和第一个关卡的 5 名候选队友，未扣点入场；首次探针因自身 1 MiB 读取上限失败，使用与客户端相同的 4 MiB 上限后通过。证据 `evidence/ios-package-search/ios-live-quest-limit-failure.json`、`ios-live-quest-flow.json`。这是工作站协议验证，非设备证据。
+
 ## 2026-11-23：设备截图显示连接失败；隔离角色服务联调
 
 用户截图显示恢复验证界面已打开、服务器地址输入正确，点击连接后显示 `HTTP 0: Unknown Error`；截图没有版本号或设备信息，暂不能归属 0.0.6，也不能判断 HTTP 0 的原因。服务端同期从工作站访问 `/healthz` 为 HTTP 200/PASS；0.0.6 构建产物的 Info.plist 显示允许 HTTP。两项检查不能证明手机可连接或排除运行时问题。已请用户用同一 iPhone 的 Safari 打开健康地址并确认安装包版本，等待反馈。

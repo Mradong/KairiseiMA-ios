@@ -83,7 +83,7 @@ class LiveIosServiceProbe
     public static void Main(string[] args)
     {
         bool success=false;string errorType=null;int? protocolCode=null;
-        object loginInfo=null,contentInfo=null,connectInfo=null,characterInfo=null;
+        object loginInfo=null,contentInfo=null,connectInfo=null,characterInfo=null,questInfo=null;
         try
         {
             ServerEndpoint endpoint=ServerEndpoint.Parse(args[0]);
@@ -142,6 +142,16 @@ class LiveIosServiceProbe
                     stage="cards";
                     CnCardCollection cards=CnProtocol.ParseCardShow(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/CardShow2"),CnProtocol.CreateSessionRequest(repeat.SessionKey,new JObject{{"0",1}}),1024*1024)));
                     if(cards.Cards.Count==0 || cards.Decks.Count==0)throw new InvalidDataException("New character has no starting cards or decks");
+                    stage="quest_list";
+                    List<CnQuest> quests=CnProtocol.ParseSoloQuests(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/TeamBattleSoloShow"),CnProtocol.CreateSessionRequest(repeat.SessionKey,new JObject{{"0",home.ArthurType}}),4*1024*1024)));
+                    int partnerCount=0;bool partnerQueried=false;
+                    if(quests.Count>0)
+                    {
+                        stage="quest_partners";
+                        List<CnSoloPartner> partners=CnProtocol.ParseSoloPartners(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/TeamBattleSoloPartnerShow"),CnProtocol.CreateSessionRequest(repeat.SessionKey,new JObject{{"bossid",quests[0].BossId}}),1024*1024)));
+                        partnerQueried=true;partnerCount=partners.Count;
+                    }
+                    questInfo=new {listParsed=true,questCount=quests.Count,partnerQueried=partnerQueried,partnerCount=partnerCount,battleStarted=false};
                     stage="character_relogin";
                     CnLogin again=CnProtocol.ParseLogin(Encoding.UTF8.GetString(Request(client,endpoint.Route("/local/client/login"),CnProtocol.CreateLogin(uuid,CnProtocol.UnityVersion),262144)),endpoint);
                     if(again.UserId!=repeat.UserId)throw new InvalidDataException("Character identity changed after relogin");
@@ -160,8 +170,8 @@ class LiveIosServiceProbe
             errorType=error.GetType().Name;
             CnProtocolException protocol=error as CnProtocolException;if(protocol!=null)protocolCode=protocol.Code;
         }
-        Console.WriteLine(JsonConvert.SerializeObject(new {checkedAt=DateTime.UtcNow.ToString("o"),success=success,stage=stage,errorType=errorType,protocolCode=protocolCode,login=loginInfo,content=contentInfo,connect=connectInfo,character=characterInfo,requests=Steps,
-            scope="Actual runtime CnProtocol and RecoveryContent C# against the public isolated iOS service via Windows HttpClient. Optional --character creates a new isolated test character, reads HomeShow (which may claim login rewards) and cards, then relogs. No deck edits or battle entry. UI AssetBundle loading/rendering, UnityWebRequest, iPhone execution and full gameplay are unverified."},Formatting.Indented));
+        Console.WriteLine(JsonConvert.SerializeObject(new {checkedAt=DateTime.UtcNow.ToString("o"),success=success,stage=stage,errorType=errorType,protocolCode=protocolCode,login=loginInfo,content=contentInfo,connect=connectInfo,character=characterInfo,quests=questInfo,requests=Steps,
+            scope="Actual runtime CnProtocol and RecoveryContent C# against the public isolated iOS service via Windows HttpClient. Optional --character creates a new isolated test character, reads HomeShow (which may claim login rewards), cards, solo quest list (which may clear pending quest selection) and partner candidates, then relogs. No deck edits or battle entry. UI AssetBundle loading/rendering, UnityWebRequest, iPhone execution and full gameplay are unverified."},Formatting.Indented));
         if(!success)Environment.ExitCode=1;
     }
 }

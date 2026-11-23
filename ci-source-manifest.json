@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T00:59:39.240Z",
+  "generatedAt": "2026-11-23T01:03:59.639Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,13 +30,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 71952,
-      "sha256": "2515615b7b6a37db340d39f094aaa5628a1f8b805c5f563ad4de824c49ab7cfa"
+      "bytes": 73087,
+      "sha256": "d98ad33d8bf7d3f4492095d879970981a7d8e265f0a02412db8e176a9b53da5a"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 28562,
-      "sha256": "34f71f289fb347474710278ea1d06c04040a46c02ae40f57efab760cb88eb61a"
+      "bytes": 29434,
+      "sha256": "fb79360a15ee152487b2673f0ee688d6a1cdcc3445e4b69034f6c9a0f3d837d5"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -45,8 +45,8 @@
     },
     {
       "path": "evidence/ios-package-search/device-http0-report.json",
-      "bytes": 859,
-      "sha256": "dc998112ec0ef179e6574d100cb22ac8b904fbf3bc0cfce9bfa6c0d2126da0b7"
+      "bytes": 1148,
+      "sha256": "dd82d20a28f2a200edd3e954ca89ecf93e5e84066cd2e06b6e86bd7f1acc1248"
     },
     {
       "path": "evidence/ios-package-search/ios-atlas-tests.json",
@@ -177,6 +177,16 @@
       "path": "evidence/ios-package-search/ios-live-character-flow.json",
       "bytes": 4286,
       "sha256": "18efcd5c71781c12ea9ce29c6bd13afdf911bb45ad024335e8aafb06b32d9712"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-live-quest-flow.json",
+      "bytes": 4767,
+      "sha256": "63208883d26dedf04bb251ae7990297f82bb0377b95d171cfde94b1292871e84"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-live-quest-limit-failure.json",
+      "bytes": 4065,
+      "sha256": "d7e34ddf7491deb09a1f24f1af20c8563cfb10bab3caa222b8ab7638908bf055"
     },
     {
       "path": "evidence/ios-package-search/ios-live-service-test.json",
@@ -576,12 +586,12 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "e85fc0a13fdabcfd4bda8d52431df2eafce9defca8f3d1c7752208920fa42e01"
+      "sha256": "cd30622c62dbc3f88e299b0d603c716d81c600a84c89a078d246aa8a30147ec3"
     },
     {
       "path": "evidence/protocol-tests.json",
       "bytes": 991,
-      "sha256": "74a2b1bb2702f996b06b242f7daa4b848f7e41b2589451540d5cd9c81bf9ae0c"
+      "sha256": "e47fae5b7a4c3d29e0cf1ceacfbd70e5058cacd8cf2d895ed5c189ec954de6fa"
     },
     {
       "path": "ios-client/.gitignore",
@@ -720,8 +730,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 32528,
-      "sha256": "739175e1d098b6ae5b89c487a0efea94ec6feb2d552a81e30a33362e10e78325"
+      "bytes": 32553,
+      "sha256": "ecaa1b87c0ab8421c060f57e2a7b9a218b4811014f4b4d090769551e7ac972bd"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
@@ -995,8 +1005,8 @@
     },
     {
       "path": "scripts/test-live-ios-service.mjs",
-      "bytes": 1905,
-      "sha256": "6464726d72c2701d050b05aa5109a872d0d3519531ca29e80bb0535df72654d7"
+      "bytes": 1901,
+      "sha256": "839cb4d0f7dac9a352755381c75f0bcbf391c5c420e1cf763b6100f0013804fa"
     },
     {
       "path": "scripts/test-native-skill-query.mjs",
@@ -1075,8 +1085,8 @@
     },
     {
       "path": "tests/LiveIosServiceProbe.cs",
-      "bytes": 12294,
-      "sha256": "ccedc8f5d2cf7194645338ab11562f661ff438caa9f7f7b106bbc6852275a2c7"
+      "bytes": 13391,
+      "sha256": "419274a4583abef45248e96f5df49645598f00c5050fb7ea9a28c64805cab0f1"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
@@ -1179,7 +1189,7 @@
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
     }
   ],
-  "bytes": 21614195,
+  "bytes": 21626441,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

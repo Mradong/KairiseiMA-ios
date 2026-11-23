@@ -17,5 +17,5 @@ if(!run.stdout.trim())throw new Error('Live probe did not produce a sanitized re
 const report=JSON.parse(run.stdout.replace(/^\uFEFF/,''));
 report.sources=sources.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')}));
 report.publicResourceDirectory=path.relative(root,out).replaceAll('\\','/');
-fs.writeFileSync(path.join(root,'evidence/ios-package-search',character?'ios-live-character-flow.json':'ios-live-service-test.json'),JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync(path.join(root,'evidence/ios-package-search',character?'ios-live-quest-flow.json':'ios-live-service-test.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));if(run.status!==0||!report.success)process.exitCode=1;

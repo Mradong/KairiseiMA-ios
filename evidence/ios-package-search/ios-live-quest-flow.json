@@ -1,0 +1,171 @@
+{
+  "checkedAt": "2026-11-23T01:02:29.3446168Z",
+  "success": true,
+  "stage": "complete",
+  "errorType": null,
+  "protocolCode": null,
+  "login": {
+    "success": true,
+    "userIdRedacted": true,
+    "sessionRedacted": true,
+    "uuidRedacted": true,
+    "apiOrigin": "http://47.116.51.61:27040/",
+    "versionUrl": "http://47.116.51.61:27040/local/content/iOS/6000.3.26f1/55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb/",
+    "battlePort": 27041
+  },
+  "content": {
+    "contentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+    "platform": "iOS",
+    "unityVersion": "6000.3.26f1",
+    "installed": 1,
+    "reopenedCacheReused": 1,
+    "bundles": [
+      {
+        "name": "recovery/ui.dat",
+        "bytes": 713591,
+        "sha256": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17",
+        "crc32": "AD4BAC31",
+        "verified": true
+      }
+    ]
+  },
+  "connect": {
+    "success": true,
+    "userCreated": false,
+    "tutorialFlag": 0,
+    "repeatLoginSameIdentity": true,
+    "repeatConnectSameState": true
+  },
+  "character": {
+    "created": true,
+    "identityRedacted": true,
+    "role": 1,
+    "homeParsed": true,
+    "level": 1,
+    "cardCount": 10,
+    "deckCount": 4,
+    "reloginSameIdentity": true,
+    "characterRetained": true
+  },
+  "quests": {
+    "listParsed": true,
+    "questCount": 3788,
+    "partnerQueried": true,
+    "partnerCount": 5,
+    "battleStarted": false
+  },
+  "requests": [
+    {
+      "stage": "health",
+      "method": "GET",
+      "path": "/healthz",
+      "status": 200
+    },
+    {
+      "stage": "guest_login",
+      "method": "POST",
+      "path": "/local/client/login",
+      "status": 200
+    },
+    {
+      "stage": "manifest",
+      "method": "GET",
+      "path": "/local/content/iOS/6000.3.26f1/55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb/client-manifest.json",
+      "status": 200
+    },
+    {
+      "stage": "bundle_download",
+      "method": "HEAD",
+      "path": "/local/content/iOS/6000.3.26f1/55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb/patch/recovery/ui.dat.vAD4BAC31",
+      "status": 200
+    },
+    {
+      "stage": "bundle_download",
+      "method": "GET",
+      "path": "/local/content/iOS/6000.3.26f1/55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb/patch/recovery/ui.dat.vAD4BAC31",
+      "status": 200
+    },
+    {
+      "stage": "connect",
+      "method": "POST",
+      "path": "/Connect",
+      "status": 200
+    },
+    {
+      "stage": "repeat_guest_login",
+      "method": "POST",
+      "path": "/local/client/login",
+      "status": 200
+    },
+    {
+      "stage": "repeat_connect",
+      "method": "POST",
+      "path": "/Connect",
+      "status": 200
+    },
+    {
+      "stage": "create_character",
+      "method": "POST",
+      "path": "/UserCreate",
+      "status": 200
+    },
+    {
+      "stage": "created_connect",
+      "method": "POST",
+      "path": "/Connect",
+      "status": 200
+    },
+    {
+      "stage": "home",
+      "method": "POST",
+      "path": "/HomeShow",
+      "status": 200
+    },
+    {
+      "stage": "cards",
+      "method": "POST",
+      "path": "/CardShow2",
+      "status": 200
+    },
+    {
+      "stage": "quest_list",
+      "method": "POST",
+      "path": "/TeamBattleSoloShow",
+      "status": 200
+    },
+    {
+      "stage": "quest_partners",
+      "method": "POST",
+      "path": "/TeamBattleSoloPartnerShow",
+      "status": 200
+    },
+    {
+      "stage": "character_relogin",
+      "method": "POST",
+      "path": "/local/client/login",
+      "status": 200
+    },
+    {
+      "stage": "character_reconnect",
+      "method": "POST",
+      "path": "/Connect",
+      "status": 200
+    }
+  ],
+  "scope": "Actual runtime CnProtocol and RecoveryContent C# against the public isolated iOS service via Windows HttpClient. Optional --character creates a new isolated test character, reads HomeShow (which may claim login rewards), cards, solo quest list (which may clear pending quest selection) and partner candidates, then relogs. No deck edits or battle entry. UI AssetBundle loading/rendering, UnityWebRequest, iPhone execution and full gameplay are unverified.",
+  "sources": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "62bebf028a31543d108eeb233fa260b75548e9b49bd1ca02fdd788309c7497e2"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "file": "tests/LiveIosServiceProbe.cs",
+      "sha256": "419274a4583abef45248e96f5df49645598f00c5050fb7ea9a28c64805cab0f1"
+    }
+  ],
+  "publicResourceDirectory": "test-output/live-ios-service/2026-11-23T01-02-17-867Z"
+}

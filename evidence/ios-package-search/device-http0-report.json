@@ -1,7 +1,7 @@
 {
   "recordedAt": "2026-11-23T00:59:22.572Z",
   "source": "User screenshot",
-  "deviceModelConfirmed": false,
+  "deviceModelConfirmed": true,
   "ipaVersionVisible": false,
   "observed": {
     "recoveryScreenVisible": true,
@@ -19,6 +19,11 @@
     "NSAllowsArbitraryLoads": true,
     "NSAllowsLocalNetworking": true
   },
-  "scope": "Screenshot establishes that a recovery interface launched and reported a connection error. Version/device attribution, root cause, Safari connectivity, gameplay and 0.0.6 device runtime remain unverified.",
-  "resolved": false
+  "scope": "User confirms 0.0.6, immediate HTTP 0 error, Safari PASS on same phone and app network access enabled. The screenshot shows launch and failed health request. Root cause, successful app network requests and gameplay remain unverified.",
+  "resolved": false,
+  "deviceModel": "iPhone 13 / iOS 17.4.1 (established user context)",
+  "ipaVersionConfirmedByUser": "0.0.6",
+  "userReportedSafariHealthPass": true,
+  "userReportedFailureTiming": "immediate",
+  "userReportedAppNetworkPermission": "WLAN and cellular allowed"
 }

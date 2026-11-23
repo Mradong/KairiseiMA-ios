@@ -126,7 +126,7 @@ namespace Kairisei.Recovery
             GUI.color = new Color(0, 0, 0, 0.9f);
             GUI.DrawTexture(new Rect(60, 65, 1160, 590), Texture2D.whiteTexture);
             GUI.color = previousColor;
-            GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
+            GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证  v" + Application.version, headingStyle);
             GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
             GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
             address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
