@@ -12,6 +12,7 @@ const ios = load(p + 'order03-ios602-enums.json'), modern = load(p + 'order03-mo
 const numericDefaults = load(p + 'order03-modern-defaults.json');
 const compatibility = load(p + 'order03-ios602-table-compatibility.json');
 const collector = load(p + 'order03-runtime-collector-tests.json');
+const acceptance = load('evidence/acceptance.json');
 if (!ios.success || !modern.success || !ios.independentCsharpAgreement || !modern.independentCsharpAgreement || !modern.candidateEnumAgreement) throw Error('Metadata verification failed');
 if (compatibility.metadataEvidenceSha256 !== sha(p + 'order03-ios602-enums.json')) throw Error('Compatibility report is stale');
 if (ios.csharpReaderSha256 !== sha('tests/Order03MetadataEnumsProbe.cs') || modern.independentReaderSha256 !== sha('tests/Order03MetadataEnumsProbe.cs')) throw Error('Independent reader changed');
@@ -26,7 +27,7 @@ const gates = [
   gate('actual_deployed_version_and_quest_scope', 'awaiting_server_evidence', [p + 'order03-server-delivery-validation.json', p + 'order03-quest-variant-gap.json', p + 'order03-public-version-evidence.json', p + 'order03-server-supplement.json', p + 'order03-runtime-collector-tests.json'], 'Public health has no version/snapshot fields. A tested read-only collector and supplemental handoff are prepared, but not executed on the server. Confirm running source/build and effective loaded table/quest snapshot, 1043 own-deck variants and one other quest outside the static projection. Disk paths/hashes and shape matches alone are insufficient.'),
   gate('safe_battle_contract_and_redacted_interface_evidence', 'awaiting_server_evidence', [p + 'order03-isolated-deck-contract.json', p + 'order03-isolated-quest-contract.json'], 'Existing reply documents source-derived start/continue/end side effects and lack of process-restart recovery; actual deployed semantics and safe isolated admission/retry/recovery/settlement examples still missing. No chargeable entry until the client can continue safely.')
 ];
-const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: 'active', ready: gates.every(x => x.state === 'verified'), gates,
+const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: acceptance.focusedGoal?.status === 'blocked' ? 'blocked' : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),
   scope: 'Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate.'};
 fs.writeFileSync(path.join(root, p + 'order03-readiness.json'), JSON.stringify(report, null, 2) + '\n');

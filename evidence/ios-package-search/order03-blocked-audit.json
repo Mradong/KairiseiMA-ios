@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-11-23T11:56:45.476Z",
+  "planItem": "03",
+  "completionProven": false,
+  "status": "blocked",
+  "sourceCheckpoint": "7072709131a243751c233f18d30814301d86d10d",
+  "previousGoalTurnClassification": "progress: tested read-only collector and verified handoff produced; the server-side evidence requirement remained unresolved",
+  "consecutiveCheckpointsWithSameExternalBlocker": [
+    {
+      "commit": "4237bbf",
+      "progress": "Independent original metadata enum sources and compatibility comparison",
+      "remaining": "Deployment/data-cohort relation, quest scope and safe battle contracts require server evidence"
+    },
+    {
+      "commit": "efb2526",
+      "progress": "Static original Windows numeric default paths",
+      "remaining": "Same server-side deployment/data-cohort/quest/safe battle evidence remains missing"
+    },
+    {
+      "commit": "7072709",
+      "progress": "Read-only collector and supplemental handoff prepared",
+      "remaining": "No new server reply or server execution; same required server evidence missing"
+    }
+  ],
+  "requirements": [
+    {
+      "requirement": "Traceable actual table snapshot and hashes",
+      "result": "partial",
+      "evidence": "29 received files verified against delivered collection/installed-manifest hashes; original client/export provenance and running-process association not established"
+    },
+    {
+      "requirement": "Associated definitions and explicit missing items",
+      "result": "verified_with_scope",
+      "evidence": "446725 specified positive references, zero missing; 25 VALUE and 36 short AI observations retained; this does not cover all symbols or runtime behavior"
+    },
+    {
+      "requirement": "Target enum/source version and compatibility",
+      "result": "partial",
+      "evidence": "23 selected families independently extracted from each original metadata input; 6.0.2 has 670 constants and Windows rebuild has 822. Windows candidate values match. Relation to delivered CSV source/transform and complete runtime compatibility still unverified"
+    },
+    {
+      "requirement": "CombatTables.json source/version/integrity",
+      "result": "partial",
+      "evidence": "Isolated candidate f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb has raw tables and sourced modern enum values; product snapshot remains absent and candidate is not released"
+    },
+    {
+      "requirement": "Actual service deployment and quest-variant scope",
+      "result": "missing",
+      "evidence": "Public health contains no version/snapshot fields; collector is prepared but has not run on the server. 1043 variant-shape matches and one ordinary quest difference are not deployed-source proof"
+    },
+    {
+      "requirement": "Server answer and redacted safe start/recovery/continue/settlement contracts",
+      "result": "missing",
+      "evidence": "Existing source-derived reply documents limits but no new deployment-specific supplemental answer, safe allowed quest or actual redacted battle/error/retry evidence received"
+    }
+  ],
+  "currentInputObservation": {
+    "serverDeliveryDirectories": [
+      "Order03-Combat-Verified-20261123"
+    ],
+    "productSnapshotExists": false
+  },
+  "evidenceHashes": [
+    {
+      "file": "evidence/ios-package-search/order03-server-delivery-validation.json",
+      "sha256": "60060313a36020fbbfffe3cdacacb0b12c58c2de0ce973582289043ec033b941"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-ios602-enums.json",
+      "sha256": "db10dfc1e8aaf9efd14edab967b3a406cb665e92abbae3ff075344e30caa30e7"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-metadata-enums.json",
+      "sha256": "cbfb9d9784ee49e8f151d1baf4d0a670bfbb80214aa972cbaeb2f4ab90a631db"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-ios602-table-compatibility.json",
+      "sha256": "af99a31952a2b0c74b47f753bad86fd2ad33e8de2df3c6a5ffeb57b573a5a54b"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-defaults.json",
+      "sha256": "be989ba0b84ff29bfb5ca6fd67139bd82f6bc67cd7a5ba47d0186a9bc5ec753f"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-public-version-evidence.json",
+      "sha256": "19970feb495a1b1f16518c95102c00e378bdf4fd3083f849f34cf0371f09c4f6"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-server-supplement.json",
+      "sha256": "c22d8b3678c1c0345d662da72e55a25c9b9f5ae290697ffce1b9b231a23be4e0"
+    }
+  ],
+  "blocker": "Missing server-controlled deployed-source/effective-snapshot/data-cohort and safe battle contract evidence. Local client has no authorized process access or deployed-source artifacts that can establish these facts; public health and further synthetic/static work cannot substitute.",
+  "preparedNextAction": {
+    "artifact": "dist/order03-server-supplement-20261123115303754.zip",
+    "sha256": "ab1deca2a66d1edc1b92778e3d3342d1c26604ccf414fb72615fd8f1163b1d5f",
+    "guide": "顺序03补充取证说明.md",
+    "action": "User can pass prepared package to server Codex; resume after deployment-linked evidence, data provenance/transform explanation, quest scope and versioned redacted safe battle contracts arrive. Unknown or unsupported capabilities must remain explicit."
+  },
+  "protection": "No real accounts, chargeable entry, HomeShow, server configuration changes, original file edits, new build or candidate release."
+}

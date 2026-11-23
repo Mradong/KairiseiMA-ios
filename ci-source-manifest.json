@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T11:53:40.076Z",
+  "generatedAt": "2026-11-23T11:57:24.249Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 124481,
-      "sha256": "9244d81d6de853e2741c1d5d06e5bf45a1890790c3f3a6394673c0bc244dab62"
+      "bytes": 125835,
+      "sha256": "b3bbb9004c5eb35b186e6ab25bcd77af692faa9c4a24786148696ceb7a8bb1b8"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 73195,
-      "sha256": "90e0f6a499af18c71e52d0c68c3ca237a730790987512d878585bc82106c51e1"
+      "bytes": 73771,
+      "sha256": "022b932e68afb113d43e0531bce0f7736459834b511296f574a6eeb07056f55f"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -399,6 +399,11 @@
       "sha256": "810f64c9c58dd41283404e051a2b228ca4503075c2437099937c0c656a3a0025"
     },
     {
+      "path": "evidence/ios-package-search/order03-blocked-audit.json",
+      "bytes": 5416,
+      "sha256": "2b7d7903d67b7ef2dcd77a500f54752505ce752a1b40c4d2b6bcb3f8b7009f47"
+    },
+    {
       "path": "evidence/ios-package-search/order03-candidate-enum-coverage-before-combo.json",
       "bytes": 8936,
       "sha256": "61d8afcd6cf51ca043702a8f850f95ab03c73058c89000e740aa0ad6880a9ee7"
@@ -555,8 +560,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 6138,
-      "sha256": "2283bf490300a900be9f1d4f6ad14ec8f1fe65f24093d32458dda57b339518c8"
+      "bytes": 6139,
+      "sha256": "7fdbab3bbe799486734835a88d91075fc9023f0a5ca1204c92c2cf72bfabe8f9"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -956,7 +961,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "65a4c067c7bb1596f199d1de0b870bd30ec82954d3680eebc9c3c9c98bfced0c"
+      "sha256": "d6f07eeea5b07e21dcd3336d7b2d4cb7df3ee1efdf421e20299b7e4bead1458f"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1430,8 +1435,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 5411,
-      "sha256": "ce3b9c0b32dcd3952467ce2eb5cb705aaf6976a49cbfa51de82cc90ef7bb36c7"
+      "bytes": 5523,
+      "sha256": "9fe06600b6ac0f1f2779ac6a89bd8500b56bb368e84bee3e673429c3c111a0cb"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1855,8 +1860,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 36036,
-      "sha256": "636cd3e0f2da014b81bc174bc7ae131e3897dd2f19b717a669da5adb311f8820"
+      "bytes": 36897,
+      "sha256": "ac2d305990bc8d0570c493ca6fe898aecea4019d96a4a0f40932b9d16c9dbe21"
     },
     {
       "path": "服务端协作需求.md",
@@ -1884,7 +1889,7 @@
       "sha256": "c13cb807afc2d9d3a0fdb59a96808bd03560266a35f766447d862d7e86f2d1f0"
     }
   ],
-  "bytes": 23017476,
+  "bytes": 23025796,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Source checkpoint after public health/version evidence and read-only server supplement preparation. Collector not run on the server; no new cloud build, account or battle operation. Raw CSVs, originals, tools and archives excluded."
+  "execution": "Order 03 acceptance audit: incomplete and blocked on missing server-controlled deployment/data provenance, quest and safe battle evidence. Read-only handoff prepared; no new cloud build, account access or candidate release."
 }
