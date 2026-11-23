@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 独立服务脱敏协议局部实测
+
+对已授权独立服务使用新生成的隔离游客身份，实测 `/healthz`、`/local/client/login` 和 `/Connect`：健康检查 PASS，正常登录 HTTP 200 且 API/资源地址同源，Connect HTTP 200、双段响应、公共 `res_code=0`、未创建角色；无效 UUID 登录和 Connect 额外字段分别返回 HTTP 400。证据只记录字段名称、类型、状态和测试状态，不记录 UUID、用户 ID、会话或响应原文：`evidence/ios-package-search/order03-isolated-contract-probe.json`，脚本 `scripts/probe-order03-isolated-contract.mjs`。
+
+游客登录可能在隔离服务保存新身份；没有创建角色，也没有调用 HomeShow、关卡、入场、续关或结算。此结果补充实际登录与连接契约，不能证明卡组或战斗接口、服务端部署版本、真实主表和客户端版本相互匹配。顺序 03 仍需相应脱敏业务证据与枚举/快照核验；无 Unity、iOS 或设备测试。
+
 ## 2026-11-23：03 / 枚举查询拒绝原因与复测
 
 上轮 72 次一致拒绝均发生在 `SELF_MAIN_DECK_SKILL_KIND`（候选值 36）：测试记录的第二技能种类参数为 2，但当时提供的候选 schema 漏掉了现代导出中的 `SKILL_KIND.SORCERY=2`。补齐该测试值后，Windows 原 DLL 与重建 DLL 的 144 组合成查询全部成功且一致：20 组选择、124 组未选择，0 组拒绝；脚本现在核对完整计数。前一次的 12/60/72 结果仍记录在同一证据文件的 `priorPartialSchema` 中。见 `evidence/ios-package-search/order03-modern-enum-differential.json`。
