@@ -1,0 +1,592 @@
+{
+  "checkedAt": "2026-11-23T07:26:27.686Z",
+  "inputAudit": "inputs/server-order03/Order03-Combat-Verified-20261123/audit/raw-role-parameters.json",
+  "inputAuditSha256": "a1b35590ca287ce7a51308330290d87aeab721cf68b17d6232847076f65f0cc8",
+  "sourceDirectory": "recovered-unity/ExportedProject/Assets/Scripts/Assembly-CSharp",
+  "aliasBasis": "1.4.0 SkillDataContainer.getRoleParam; modern implementation is an exported stub",
+  "families": [
+    {
+      "rule": "SKILL_ROLE_BATTLE_PARAM",
+      "enumName": "SKILL_ROLE_BATTLE_PARAM",
+      "sourceAvailable": true,
+      "sourceSha256": "a4dbec97ed690d2ab88a7d9d1fdbbc829adb7c873a329175b58d1260660c9a9b",
+      "uniqueTokens": 7,
+      "matched": [
+        {
+          "token": "ATK",
+          "count": 27608,
+          "value": 2
+        },
+        {
+          "token": "INT",
+          "count": 32064,
+          "value": 3
+        },
+        {
+          "token": "MAX_HP",
+          "count": 1355,
+          "value": 1
+        },
+        {
+          "token": "HP",
+          "count": 4434,
+          "value": 0
+        },
+        {
+          "token": "MDEF",
+          "count": 7440,
+          "value": 6
+        },
+        {
+          "token": "DEF",
+          "count": 7348,
+          "value": 5
+        },
+        {
+          "token": "MND",
+          "count": 11128,
+          "value": 4
+        }
+      ],
+      "special": [],
+      "missing": []
+    },
+    {
+      "rule": "ATTR",
+      "enumName": "ATTR",
+      "sourceAvailable": true,
+      "sourceSha256": "78f70715eb13a6cc0ef5da50355e7790228534378daab6617467f9e5afa3ba53",
+      "uniqueTokens": 16,
+      "matched": [
+        {
+          "token": "FIRE",
+          "count": 7897,
+          "value": 1
+        },
+        {
+          "token": "ICE",
+          "count": 7066,
+          "value": 2
+        },
+        {
+          "token": "WIND",
+          "count": 6864,
+          "value": 3
+        },
+        {
+          "token": "LIGHT",
+          "count": 6979,
+          "value": 4
+        },
+        {
+          "token": "DARK",
+          "count": 6503,
+          "value": 5
+        },
+        {
+          "token": "LIGHT_DARK",
+          "count": 645,
+          "value": 405
+        },
+        {
+          "token": "ICE_LIGHT",
+          "count": 675,
+          "value": 204
+        },
+        {
+          "token": "FIRE_WIND",
+          "count": 596,
+          "value": 103
+        },
+        {
+          "token": "FIRE_DARK",
+          "count": 647,
+          "value": 105
+        },
+        {
+          "token": "WIND_LIGHT",
+          "count": 592,
+          "value": 304
+        },
+        {
+          "token": "FIRE_LIGHT",
+          "count": 582,
+          "value": 104
+        },
+        {
+          "token": "ICE_DARK",
+          "count": 597,
+          "value": 205
+        },
+        {
+          "token": "WIND_DARK",
+          "count": 560,
+          "value": 305
+        },
+        {
+          "token": "FIRE_ICE",
+          "count": 709,
+          "value": 102
+        },
+        {
+          "token": "ICE_WIND",
+          "count": 574,
+          "value": 203
+        }
+      ],
+      "special": [
+        {
+          "token": "NULL",
+          "count": 1364,
+          "kind": "empty_or_null_requires_context"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "rule": "SKILL_PHYSICS_TYPE",
+      "enumName": "SKILL_PHYSICS_TYPE",
+      "sourceAvailable": true,
+      "sourceSha256": "eb4641aee455fe4b14ae0aaa8ca72d31a89261de5ee43d2ef4fcc01e1b81b3f6",
+      "uniqueTokens": 3,
+      "matched": [
+        {
+          "token": "PHYSICS",
+          "count": 13813,
+          "value": 0
+        },
+        {
+          "token": "MAGIC",
+          "count": 15768,
+          "value": 1
+        },
+        {
+          "token": "ALL",
+          "count": 1293,
+          "value": 2
+        }
+      ],
+      "special": [],
+      "missing": []
+    },
+    {
+      "rule": "SKILL_ROLE_KIND_DEBUFF",
+      "enumName": "SKILL_ROLE_KIND_DEBUFF",
+      "sourceAvailable": true,
+      "sourceSha256": "8723e10e4bbde3c834eae58c265c53c98458c2f5f852c2fe792142b0c6ec8ba3",
+      "uniqueTokens": 20,
+      "matched": [
+        {
+          "token": "CARD_SEAL",
+          "count": 146,
+          "value": 15
+        },
+        {
+          "token": "POISON",
+          "count": 158,
+          "value": 7
+        },
+        {
+          "token": "WEAKNESS",
+          "count": 148,
+          "value": 19
+        },
+        {
+          "token": "DARKNESS",
+          "count": 117,
+          "value": 23
+        },
+        {
+          "token": "CARD_TRAP_DAMAGE",
+          "count": 166,
+          "value": 24
+        },
+        {
+          "token": "COST_BLOCK",
+          "count": 94,
+          "value": 26
+        },
+        {
+          "token": "FREEZE",
+          "count": 107,
+          "value": 9
+        },
+        {
+          "token": "BLEED",
+          "count": 102,
+          "value": 10
+        },
+        {
+          "token": "BURN",
+          "count": 149,
+          "value": 8
+        },
+        {
+          "token": "GUARD_BREAK_BY_DEF",
+          "count": 48,
+          "value": 4
+        },
+        {
+          "token": "GUARD_BREAK_BY_MDEF",
+          "count": 48,
+          "value": 5
+        },
+        {
+          "token": "ATK_BREAK_BY_ATK",
+          "count": 121,
+          "value": 1
+        },
+        {
+          "token": "ATK_BREAK_BY_INT",
+          "count": 135,
+          "value": 2
+        },
+        {
+          "token": "ELECTRIC",
+          "count": 94,
+          "value": 22
+        },
+        {
+          "token": "ATK_BREAK_BY_MND",
+          "count": 7,
+          "value": 3
+        },
+        {
+          "token": "ATTR_DEF_DOWN",
+          "count": 6,
+          "value": 27
+        },
+        {
+          "token": "ATTR_SEE",
+          "count": 6,
+          "value": 16
+        },
+        {
+          "token": "HEAL_REVERSE",
+          "count": 3,
+          "value": 20
+        },
+        {
+          "token": "STAN",
+          "count": 3,
+          "value": 12
+        }
+      ],
+      "special": [
+        {
+          "token": "NULL",
+          "count": 557,
+          "kind": "empty_or_null_requires_context"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "rule": "DOT",
+      "enumName": "SKILL_ROLE_DOT",
+      "sourceAvailable": true,
+      "sourceSha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "uniqueTokens": 5,
+      "matched": [
+        {
+          "token": "POISON",
+          "count": 242,
+          "value": 1
+        },
+        {
+          "token": "FREEZE",
+          "count": 111,
+          "value": 3
+        },
+        {
+          "token": "ELECTRIC",
+          "count": 92,
+          "value": 5
+        },
+        {
+          "token": "BURN",
+          "count": 155,
+          "value": 2
+        },
+        {
+          "token": "BLEED",
+          "count": 266,
+          "value": 4
+        }
+      ],
+      "special": [],
+      "missing": []
+    },
+    {
+      "rule": "SKILL_ROLE_KIND_BUFF",
+      "enumName": "SKILL_ROLE_KIND_BUFF",
+      "sourceAvailable": true,
+      "sourceSha256": "51a6b3b8a72ece90657215cc7901d57c95351f75a266c164b1daadf857c0200d",
+      "uniqueTokens": 19,
+      "matched": [
+        {
+          "token": "DEF_UP_BY_DEF",
+          "count": 146,
+          "value": 4
+        },
+        {
+          "token": "DEF_UP_BY_MDEF",
+          "count": 143,
+          "value": 5
+        },
+        {
+          "token": "ATK_UP_BY_ATK",
+          "count": 180,
+          "value": 1
+        },
+        {
+          "token": "ATK_UP_BY_INT",
+          "count": 186,
+          "value": 2
+        },
+        {
+          "token": "ATK_UP_BY_MND",
+          "count": 46,
+          "value": 3
+        },
+        {
+          "token": "COVERING",
+          "count": 115,
+          "value": 16
+        },
+        {
+          "token": "HEAL",
+          "count": 65,
+          "value": 8
+        },
+        {
+          "token": "CRITICAL_UP",
+          "count": 47,
+          "value": 23
+        },
+        {
+          "token": "ENCHANT",
+          "count": 15,
+          "value": 31
+        },
+        {
+          "token": "REFLECTION",
+          "count": 1,
+          "value": 34
+        },
+        {
+          "token": "ATTR_DEF_UP",
+          "count": 30,
+          "value": 33
+        },
+        {
+          "token": "ENDURE",
+          "count": 19,
+          "value": 36
+        },
+        {
+          "token": "PARAM_LIMIT_BREAK_BY_ATK",
+          "count": 11,
+          "value": 48
+        },
+        {
+          "token": "PARAM_LIMIT_BREAK_BY_INT",
+          "count": 11,
+          "value": 49
+        },
+        {
+          "token": "ATK_UP_BY_MAX_HP",
+          "count": 95,
+          "value": 32
+        },
+        {
+          "token": "GUTS",
+          "count": 6,
+          "value": 51
+        },
+        {
+          "token": "DAMAGE_CUT",
+          "count": 12,
+          "value": 7
+        },
+        {
+          "token": "ATTACK_BARRIER",
+          "count": 2,
+          "value": 15
+        }
+      ],
+      "special": [
+        {
+          "token": "NULL",
+          "count": 432,
+          "kind": "empty_or_null_requires_context"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "rule": "SKILL_KIND",
+      "enumName": "SKILL_KIND",
+      "sourceAvailable": true,
+      "sourceSha256": "1312b7560a577f0f130e472bcdcd426b54f7adcc697c59119c2df3d3439b43bd",
+      "uniqueTokens": 7,
+      "matched": [
+        {
+          "token": "ATTACK",
+          "count": 13,
+          "value": 1
+        },
+        {
+          "token": "SORCERY",
+          "count": 20,
+          "value": 2
+        },
+        {
+          "token": "DEFENSE",
+          "count": 4,
+          "value": 5
+        },
+        {
+          "token": "RECOVERY",
+          "count": 8,
+          "value": 3
+        },
+        {
+          "token": "SUPPORT",
+          "count": 10,
+          "value": 4
+        },
+        {
+          "token": "JAMMING",
+          "count": 10,
+          "value": 6
+        }
+      ],
+      "special": [
+        {
+          "token": "NULL",
+          "count": 395,
+          "kind": "empty_or_null_requires_context"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "rule": "TRANCE_GAUGE_STATE",
+      "enumName": "ENEMY_TRANCE_GAUGE_STATE",
+      "sourceAvailable": true,
+      "sourceSha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "uniqueTokens": 2,
+      "matched": [
+        {
+          "token": "TRANCE",
+          "count": 835,
+          "value": 2
+        },
+        {
+          "token": "NORMAL",
+          "count": 281,
+          "value": 1
+        }
+      ],
+      "special": [],
+      "missing": []
+    },
+    {
+      "rule": "SKILL_KIND_BIT",
+      "enumName": "SKILL_KIND",
+      "sourceAvailable": true,
+      "sourceSha256": "1312b7560a577f0f130e472bcdcd426b54f7adcc697c59119c2df3d3439b43bd",
+      "uniqueTokens": 6,
+      "matched": [
+        {
+          "token": "SORCERY",
+          "count": 13,
+          "value": 2
+        },
+        {
+          "token": "SUPPORT",
+          "count": 9,
+          "value": 4
+        },
+        {
+          "token": "ATTACK",
+          "count": 7,
+          "value": 1
+        },
+        {
+          "token": "RECOVERY",
+          "count": 120,
+          "value": 3
+        },
+        {
+          "token": "JAMMING",
+          "count": 5,
+          "value": 6
+        }
+      ],
+      "special": [
+        {
+          "token": "ALL",
+          "count": 365,
+          "kind": "legacy_bitmask_sentinel"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "rule": "ATTR_BIT",
+      "enumName": "ATTR",
+      "sourceAvailable": true,
+      "sourceSha256": "78f70715eb13a6cc0ef5da50355e7790228534378daab6617467f9e5afa3ba53",
+      "uniqueTokens": 5,
+      "matched": [
+        {
+          "token": "FIRE",
+          "count": 25,
+          "value": 1
+        },
+        {
+          "token": "LIGHT",
+          "count": 11,
+          "value": 4
+        },
+        {
+          "token": "WIND",
+          "count": 11,
+          "value": 3
+        },
+        {
+          "token": "ICE",
+          "count": 1,
+          "value": 2
+        }
+      ],
+      "special": [
+        {
+          "token": "ALL",
+          "count": 471,
+          "kind": "legacy_bitmask_sentinel"
+        }
+      ],
+      "missing": []
+    },
+    {
+      "rule": "ARTHUR_TYPE",
+      "enumName": "ARTHUR_TYPE",
+      "sourceAvailable": true,
+      "sourceSha256": "d5a35ea9eea53c4bde17a2dd93b662ec088d651e3cb9cab27b79d65b6b0a0bff",
+      "uniqueTokens": 1,
+      "matched": [],
+      "special": [
+        {
+          "token": "NULL",
+          "count": 86,
+          "kind": "empty_or_null_requires_context"
+        }
+      ],
+      "missing": []
+    }
+  ],
+  "scope": "Static token-name comparison against modern exported enum declarations for role parameter types observed in the supplied server audit. Empty/NULL and bitmask ALL are separated because semantics depend on field type. This does not prove these client enums match the supplied table version, that values fit the registered ABI, or that skill/AI behavior is implemented; no production schema generated."
+}

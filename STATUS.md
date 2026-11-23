@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 真实效果参数枚举名称盘点
+
+对服务端真实效果表审计中观察到的 11 类非 VALUE 规则，将其符号与现代导出枚举声明静态对照：除单独分类的空值、`NULL` 和位掩码 `ALL` 外，所有观察到的名称均有同名项。`DOT` 实际对应 `SKILL_ROLE_DOT`，`TRANCE_GAUGE_STATE` 对应 `ENEMY_TRANCE_GAUGE_STATE`；位掩码规则使用基础 `ATTR` / `SKILL_KIND`，重建桥按规则名查 schema，未来构建时需要明确处理别名。脚本与逐族计数、候选值和源哈希见 `scripts/audit-order03-role-enum-tokens.mjs`、`evidence/ios-package-search/order03-role-enum-token-audit.json`。
+
+别名依据 1.4.0 有方法体代码，现代相应方法为存根；名称存在不证明这批表来自该客户端或数值/语义、ABI 和战斗效果一致，尚未生成生产 schema。下一步核验注册结构映射、版本关联及实际业务脱敏契约；顺序 03 保持进行中。没有新构建或真机结果。
+
 ## 2026-11-23：03 / 独立服务脱敏协议局部实测
 
 对已授权独立服务使用新生成的隔离游客身份，实测 `/healthz`、`/local/client/login` 和 `/Connect`：健康检查 PASS，正常登录 HTTP 200 且 API/资源地址同源，Connect HTTP 200、双段响应、公共 `res_code=0`、未创建角色；无效 UUID 登录和 Connect 额外字段分别返回 HTTP 400。证据只记录字段名称、类型、状态和测试状态，不记录 UUID、用户 ID、会话或响应原文：`evidence/ios-package-search/order03-isolated-contract-probe.json`，脚本 `scripts/probe-order03-isolated-contract.mjs`。
