@@ -1,0 +1,35 @@
+{
+  "checkedAt": "2026-11-23T02:37:03.998Z",
+  "planItem": "03",
+  "status": "waiting_for_real_snapshot_and_server_response",
+  "workspaceSearch": {
+    "method": "rg --files --hidden for card.csv, enemy.csv, skill_player.csv and CombatTables.json, excluding tools, fixed reference and git metadata",
+    "snapshotPresent": false,
+    "foundCSV": "test-output/native-session-masters",
+    "provenance": "scripts/make-native-session-fixture.mjs explicitly generates 20 synthetic tables",
+    "limitation": "Filename search cannot prove absence of differently named, packed or remote data"
+  },
+  "service": {
+    "healthPath": "/healthz",
+    "healthStatus": 200,
+    "healthState": "PASS",
+    "manifestStatus": 200,
+    "manifestContentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+    "manifestBundles": [
+      "recovery/ui.dat"
+    ],
+    "limitation": "Known public manifest only; current login-selected version and deployed server masters not established"
+  },
+  "priorEvidence": [
+    "evidence/ios-package-search/ios-live-quest-flow.json",
+    "evidence/ios-package-search/ios-combat-table-tests.json"
+  ],
+  "handoff": "顺序03服务端交付请求.md",
+  "missing": [
+    "traceable matching real CSV files and snapshot",
+    "per-file provenance version hashes and reference integrity",
+    "verified native enum mapping",
+    "server response and redacted battle contract"
+  ],
+  "next": "Continue earliest independent plan work; request server Codex response through user."
+}

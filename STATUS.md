@@ -1,5 +1,13 @@
 # 当前状态
 
+## 2026-11-23：03 / RESOURCE-01、BATTLE-01：主表盘点，等待服务端
+
+用户本次明确要求将顺序 03 设为正式目标，优先于旧的不设目标指令。未发现 `ios-client/Assets/Recovery/Combat/CombatTables.json`；项目内发现的 20 张同名 CSV 由 `scripts/make-native-session-fixture.mjs` 明确生成，属于合成夹具。文件名检索不能排除其他名称、压缩包或远端数据。真实来源、版本、哈希、关联完整性与枚举仍无法核验。
+
+独立服务 `/healthz` 返回 HTTP 200 / PASS；已知 iOS 内容 ID `55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb` 的公开清单当前 HTTP 200 且仅列 `recovery/ui.dat`。这不证明服务器内部无主表，也不确认目前登录返回该清单。历史 Windows 协议探针读过角色、关卡及伙伴，未入场，不能代替服务端答复或真机战斗。证据 `evidence/ios-package-search/order03-master-inventory.json`，可转交请求 `顺序03服务端交付请求.md`。等待服务端提供真实数据和脱敏接口证据，03 保持未完成。
+
+等待期间增量更新 `evidence/feature-coverage.md` 的主流程版本和证据，顺序 04 仍未完成。无源码、Unity 构建、IPA 或真机变化。下一项：继续顺序 04 未核实的功能范围，同时收到服务端交付后先验证哈希、版本与关联，再推进真实战斗。
+
 ## 2026-11-23：02 / RESOURCE-01：资源切换按记录范围完成
 
 0.0.8 云构建及 IPA 核验通过；用户确认同身份覆盖未删除、资源安装 0/复用 1、重启登录和原有测试角色正常。用户提供的设备日志记录内置内容 ID `2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495` 和服务器内容 ID `55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb`，各为安装 0/复用 1；日志行本身不标识应用版本，版本依用户确认。证据 `evidence/ios-package-search/device-client008-content-log.json`。

@@ -1,5 +1,20 @@
 # 原工程功能和依赖覆盖（持续核实）
 
+## 2026-11-23 顺序 04 增量：主流程证据更新
+
+以下记录覆盖旧表中与现有证据冲突的历史状态；来源中的旧版为 1.4.0，6.0.2 的组件导出缺少业务字段，现代行为仍待核实。各项均未通过完整功能验收。
+
+| 功能 | 已有证据及版本 | 依赖、未验证内容和下一步 |
+| --- | --- | --- |
+| 启动、资源更新 | 0.0.8 真机覆盖和重启后资源安装 0/复用 1 为用户反馈；故障回滚依据提示与源码推断，见 `evidence/ios-package-search/resource-switch-acceptance-008.json`。 | 仅部分 UI 资源；继续取得完整 iOS 资源、真实战斗表及实际 AssetBundle 回滚检查。 |
+| 登录、主页 | 0.0.7 用户报告连接、游客登录、资源及角色状态通过，见 `evidence/ios-package-search/device-client007-connectivity.json`；Windows 独立服务探针读取主页，见 `evidence/ios-package-search/ios-live-quest-flow.json`。 | 手机上的完整身份、角色创建、主页交互、奖励和错误恢复未逐项验证；核实服务副作用并在同一设备版本验证。 |
+| 卡组 | Windows 隔离服务探针读取角色卡牌和卡组；旧版 Deck/DeckChecker 的代码是行为线索。 | 没有设备上编辑、校验、保存及重读证据；依赖匹配的真实卡牌表和隔离角色，核对服务持久化。 |
+| 选关和队友 | Windows 实际客户端协议探针解析 3788 条关卡及首关 5 名伙伴，未入场，见 `evidence/ios-package-search/ios-live-quest-flow.json`。 | 这不是设备 UI 或关卡可用性证明；需要核对权限、体力、角色卡组、伙伴和安全入场契约。 |
+| 战斗及结算 | 注册战斗普通模式有 Windows 合成输入与原 DLL 差分，见 `evidence/native/registered-wave-checkpoint.json`；0.0.2 真机仅合成回放。 | 真实主表、完整注册输入、更多技能和敌方行为、界面、真实入场与结算均未验收；等待顺序 03 数据及契约。 |
+| 持久性 | 0.0.8 同身份覆盖、重启后资源复用与原有测试角色正常由用户报告。 | 尚未验证真实卡组和完整服务状态、资源中断及所有生命周期；保留 SAVE-01 未完成。 |
+
+顺序 04 其余功能族仍按下表待核实；本次仅依据已有记录增量更新，不宣称场景或现代功能范围完整。
+
 2026-11-19 静态场景调查：`evidence/ios-package-search/ios602-scene-audit.json` 映射 6.0.2 六个主流程场景中的对象、脚本 GUID 和直接外部引用。Home 的 27 个组件均能找到导出脚本及 1.4.0 同路径代码，但这些导出组件均无业务字段；Result 有一个空脚本引用。可定位不等于资源完整或版本兼容，具体对象见记录，所有功能验收状态不变。
 
 路径相对于 KairiseiMA-ios。旧版 `legacy-unity/ExportedProject` 为 1.4.0、Unity 5，含方法体；现代 `recovered-unity/ExportedProject` 是 AssetRipper 存根，`code-dump` 是现代符号及无方法体 DLL。旧版存在不证明新版行为相同。固定参考服务端提交 d1a202eb539b99511e8a33f3975fac409ab545bf。本表为待验证清单，不代表范围穷尽或功能已完成。
