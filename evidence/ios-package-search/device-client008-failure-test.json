@@ -1,0 +1,30 @@
+{
+  "recordedDate": "2026-11-23",
+  "source": "User reports in chat",
+  "version": "0.0.8",
+  "buildRunId": 45097069398,
+  "sourceCommit": "66a63fbf1f52f45d8eeefb16502ac7c133da961f",
+  "fixture": "Isolated local synthetic login and integrity-valid invalid Unity bundle; no real account or game state",
+  "fixtureContentId": "d0b3ecaeab939909e900a5a5df23952049486ebda75f63e29a4d8e1517831ede",
+  "fixtureBundleSha256": "5aebbb9a683f5fa65c3dc9f7b8197aeee72743d5d85b873def0007716bbc3370",
+  "embedded008ContentId": "2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495",
+  "userReportedFixtureSafari": "PASS",
+  "userReportedFixtureConnection": "Connected, battle port 1",
+  "userConfirmedLocalContentReadyBeforeFixtureWithoutClosingApp": true,
+  "userReportedFailureTranscription": "服务器资源加载失败:Verified iOS resource bunde could not be loaded:recoverylui.dat",
+  "userReportedReturnToIsolatedService": "normal",
+  "userConfirmedErrorFullyVisibleWithoutRollbackFailed": true,
+  "userReportedAfterFailureResourceCounts": { "installed": 0, "reused": 1 },
+  "userConfirmedRestartReloginCharacterStatus": "normal, original isolated test character",
+  "temporaryFirewall": {
+    "userApproved": true,
+    "profile": "Private",
+    "program": "tools/node-v24.22.3-win-x64/node.exe",
+    "protocol": "TCP",
+    "port": 27108,
+    "remoteAddress": "172.20.10.1",
+    "removedVerified": true,
+    "fixtureStoppedVerified": true
+  },
+  "limitations": "User provided a transcription rather than screenshot or device logs and confirmed it was fully visible without rollback failed. In the 0.0.8 source, the absence of that suffix following this load-failure branch supports the inference that rollback finished without a reported error; no direct inspection of the reloaded AssetBundle was performed. User confirmed normal character after restart and relogin. This does not prove full gameplay or all persistence requirements."
+}

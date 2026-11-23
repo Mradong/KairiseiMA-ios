@@ -1,0 +1,32 @@
+{
+  "date": "2026-11-23",
+  "planItem": "02",
+  "acceptanceId": "RESOURCE-01",
+  "result": "passed_with_recorded_limits",
+  "build": {
+    "runId": 45097069398,
+    "sourceCommit": "66a63fbf1f52f45d8eeefb16502ac7c133da961f",
+    "version": "0.0.8",
+    "ipaSha256": "0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800",
+    "embeddedContentId": "2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495",
+    "evidence": "evidence/ios-package-search/ipa-client008-delivery.json"
+  },
+  "loaderCases": {
+    "result": "passed_windows_simulated_unity_and_network",
+    "cases": ["successful switch", "missing download", "truncated download", "hash mismatch", "retry after failure", "load failure and rollback", "failed rollback", "corrupt previous cache"],
+    "evidence": ["evidence/ios-package-search/content-loader-download-tests.json", "evidence/ios-package-search/content-loader-rollback-tests.json"]
+  },
+  "device": {
+    "result": "user_reported",
+    "sameIdentityOverwriteWithoutDeletion": true,
+    "visibleVersion": "0.0.8",
+    "resourceCounts": {"installed":0,"reused":1},
+    "restartReloginAndOriginalTestCharacter": "user reported normal before and after the fault test",
+    "failureFixtureContentId": "d0b3ecaeab939909e900a5a5df23952049486ebda75f63e29a4d8e1517831ede",
+    "failure": "User reported complete bundle-load error without rollback failed, followed by successful return to the isolated service and restart.",
+    "rollbackInterpretation": "Inferred from the fully visible error and the built source: this failure branch appends a rollback-failed suffix when rollback reports an error. The reloaded AssetBundle was not independently inspected.",
+    "serverContentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+    "evidence": ["evidence/ios-package-search/device-client008-cache-report.json", "evidence/ios-package-search/device-client008-failure-test.json", "evidence/ios-package-search/device-client008-content-log.json"]
+  },
+  "limits": "Device actions and visible version are user-reported; two user-provided resource-ready log lines show the embedded and server content IDs but do not themselves identify the app version. No screenshot or direct inspection of the reloaded AssetBundle was obtained; rollback is inferred from the full error text and built source. Full real iOS asset coverage, complete gameplay, all lifecycle cases and broader SAVE-01 persistence remain incomplete."
+}

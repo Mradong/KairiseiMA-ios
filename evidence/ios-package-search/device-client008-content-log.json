@@ -1,0 +1,10 @@
+{
+  "date": "2026-11-23",
+  "source": "User-pasted iPhone log, filtered to resource-ready messages only",
+  "association": "User supplied the log during 0.0.8 resource switch acceptance; raw pasted lines do not independently identify the app version.",
+  "entries": [
+    { "installed": 0, "reused": 1, "contentId": "2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495", "interpretation": "matches verified 0.0.8 embedded resource content ID" },
+    { "installed": 0, "reused": 1, "contentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb", "interpretation": "matches previously verified isolated server resource content ID" }
+  ],
+  "limitations": "Only filtered resource-ready messages are retained; they do not directly display bundle-load rollback success, app version, signing identity or full gameplay. Fault and overwrite outcomes are separate user reports."
+}

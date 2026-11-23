@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-23T02:26:27.037Z",
+  "success": true,
+  "stdout": "PASS: real cache and manifests restore verified previous revision after simulated load failure\r\nPASS: real cache rejects corrupted rollback revision and preserves new revision\r\nPASS: valid new revision remains usable on retry\r\nPASS: missing download rejected\r\nPASS: truncated download rejected\r\nPASS: hash mismatch rejected\r\nPASS: retry succeeds after corrupt download",
+  "stderr": "",
+  "embeddedContentId": "e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7",
+  "embeddedBundleSha256": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367",
+  "serverContentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+  "serverBundleSha256": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17",
+  "sources": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
+      "sha256": "902844a35cae1fc4ce931f8ea9d695beb54139e6d08f56fbaade65e790efee42"
+    },
+    {
+      "file": "tests/ContentLoaderDownloadTests.cs",
+      "sha256": "2386e871cb0624626c42169fabb803cbada31b128ddc509a98daddd20b30b5a9"
+    }
+  ],
+  "scope": "Windows .NET executes the actual content loader, manifest, cache and retry logic against two real verified iOS resource revisions; Unity AssetBundle and network operations are simulated. This does not establish actual Unity/iOS behavior, device persistence or gameplay."
+}
