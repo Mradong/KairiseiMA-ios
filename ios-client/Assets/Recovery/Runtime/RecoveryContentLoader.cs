@@ -15,6 +15,7 @@ namespace Kairisei.Recovery
         public int Installed { get; private set; }
         private readonly Dictionary<string, AssetBundle> loaded = new Dictionary<string, AssetBundle>();
         private readonly Dictionary<string, string> hashes = new Dictionary<string, string>();
+        private ContentManifest activeManifest;
         private UnityWebRequest pending;
         private bool running;
 
@@ -135,9 +136,9 @@ namespace Kairisei.Recovery
                 AssetBundleCreateRequest loading = null;
                 try { loading = AssetBundle.LoadFromFileAsync(cache.PathFor(item)); }
                 catch (Exception error) { Error = error.Message; }
-                if (Error != null) yield break;
+                if (Error != null) { yield return Rollback(cache); yield break; }
                 yield return loading;
-                if (loading.assetBundle == null) { Error = "Verified iOS resource bundle could not be loaded: "+item.name; yield break; }
+                if (loading.assetBundle == null) { Error = "Verified iOS resource bundle could not be loaded: "+item.name; yield return Rollback(cache); yield break; }
                 loaded.Add(item.name,loading.assetBundle); hashes[item.name] = item.sha256;
             }
             HashSet<string> currentNames = new HashSet<string>(StringComparer.Ordinal);
@@ -147,8 +148,43 @@ namespace Kairisei.Recovery
                 if (currentNames.Contains(obsolete)) continue;
                 loaded[obsolete].Unload(false); loaded.Remove(obsolete); hashes.Remove(obsolete);
             }
+            activeManifest = manifest;
             Ready = true;
             Debug.Log("Recovery content ready: installed="+Installed+", reused="+Reused+", content="+manifest.contentId);
+        }
+
+        private IEnumerator Rollback(ContentCache cache)
+        {
+            string failure = Error;
+            foreach (AssetBundle bundle in loaded.Values) bundle.Unload(false);
+            loaded.Clear(); hashes.Clear();
+            string rollbackError = null;
+            if (activeManifest != null)
+            {
+                foreach (ContentBundle item in activeManifest.DependencyOrder())
+                {
+                    AssetBundleCreateRequest loading = null;
+                    try
+                    {
+                        if (!cache.Contains(item)) throw new InvalidDataException("Previous cached resource failed verification: " + item.name);
+                        loading = AssetBundle.LoadFromFileAsync(cache.PathFor(item));
+                    }
+                    catch (Exception error) { rollbackError = error.Message; }
+                    if (rollbackError != null) break;
+                    yield return loading;
+                    if (loading.assetBundle == null) { rollbackError = "Previous resource could not be loaded: " + item.name; break; }
+                    loaded.Add(item.name, loading.assetBundle); hashes[item.name] = item.sha256;
+                }
+            }
+            if (rollbackError != null)
+            {
+                foreach (AssetBundle bundle in loaded.Values) bundle.Unload(false);
+                loaded.Clear(); hashes.Clear(); activeManifest = null;
+            }
+            // The attempted update failed even if the previous set was restored.
+            // Callers must not mistake recovery of old content for update success.
+            Ready = false;
+            Error = rollbackError == null ? failure : failure + "; rollback failed: " + rollbackError;
         }
 
         private IEnumerator Download(string uri, string stage, long maximum, Action<string> receive)

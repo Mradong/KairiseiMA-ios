@@ -16,9 +16,10 @@ namespace UnityEngine {
     public class WaitForSeconds { public WaitForSeconds(float value) { } }
     public class AssetBundle : Object {
         public bool unloaded;
+        public static readonly HashSet<string> FailPaths = new HashSet<string>();
         public void Unload(bool all) { unloaded = true; }
         public T LoadAsset<T>(string name) where T : Object { return null; }
-        public static AssetBundleCreateRequest LoadFromFileAsync(string path) { return new AssetBundleCreateRequest { assetBundle = new AssetBundle() }; }
+        public static AssetBundleCreateRequest LoadFromFileAsync(string path) { return new AssetBundleCreateRequest { assetBundle = FailPaths.Contains(path) ? null : new AssetBundle() }; }
     }
     public class AssetBundleCreateRequest { public AssetBundle assetBundle; }
 }
@@ -40,21 +41,24 @@ namespace Kairisei.Recovery {
     public class CnLogin { public Uri VersionUrl; }
     public class ContentBundle { public string name, sha256, file, crc32; public long bytes; }
     public class ContentManifest {
+        public static string Revision = "new";
         public string contentId = "test";
-        public List<ContentBundle> bundles = new List<ContentBundle> {
-            new ContentBundle { name="first", sha256="new", file="first", bytes=1 },
-            new ContentBundle { name="second", sha256="new", file="second", bytes=1 }
-        };
+        public List<ContentBundle> bundles;
+        public ContentManifest() { bundles = new List<ContentBundle> {
+            new ContentBundle { name="first", sha256=Revision, file="first", bytes=1 },
+            new ContentBundle { name="second", sha256=Revision, file="second", bytes=1 }
+        }; }
         public static ContentManifest Parse(string text, string version) { return new ContentManifest(); }
         public IEnumerable<ContentBundle> DependencyOrder() { return bundles; }
     }
     public class ContentCache {
         public static bool AllCached;
+        public static string InvalidPath;
         public ContentCache(string path) { }
-        public bool Contains(ContentBundle item) { return AllCached || item.name == "first"; }
+        public bool Contains(ContentBundle item) { return PathFor(item) != InvalidPath && (AllCached || item.name == "first"); }
         public string CreateStagingPath() { return Path.Combine(Path.GetTempPath(), "content-loader-staging-test"); }
         public void Commit(ContentBundle item, string stage) { throw new Exception("unexpected commit"); }
-        public string PathFor(ContentBundle item) { return item.name; }
+        public string PathFor(ContentBundle item) { return item.name + ":" + item.sha256; }
     }
 }
 public static class ContentLoaderStagingTests {
@@ -77,6 +81,29 @@ public static class ContentLoaderStagingTests {
         if (!old.unloaded || !loader.Ready || loader.Error != null || hashes["first"] != "new" || !loaded.ContainsKey("second"))
             throw new Exception("Complete verified cache must switch all bundles and become ready.");
         Console.WriteLine("PASS: complete verified cache switches bundles and becomes ready");
+        ContentManifest.Revision = "next";
+        AssetBundle.FailPaths.Add("second:next");
+        Run(loader.Initialize());
+        if (loader.Ready || loader.Error == null || hashes.Count != 2 || hashes["first"] != "new" || hashes["second"] != "new")
+            throw new Exception("A later bundle load failure must restore the previous complete set while reporting the update failure.");
+        Console.WriteLine("PASS: failed new bundle restores previous complete set and reports failure");
+        AssetBundle.FailPaths.Add("first:new");
+        Run(loader.Initialize());
+        if (loader.Ready || loader.Error == null || !loader.Error.Contains("rollback failed") || loaded.Count != 0 || hashes.Count != 0)
+            throw new Exception("Failed rollback must discard the partial set and report both failures.");
+        Console.WriteLine("PASS: failed rollback discards partial set and reports failure");
+        AssetBundle.FailPaths.Clear();
+        Run(loader.Initialize());
+        if (!loader.Ready || hashes.Count != 2 || hashes["first"] != "next" || hashes["second"] != "next")
+            throw new Exception("A clean retry after failed rollback must load the new complete set.");
+        Console.WriteLine("PASS: retry after failed rollback loads complete new set");
+        ContentManifest.Revision = "next2";
+        ContentCache.InvalidPath = "first:next";
+        AssetBundle.FailPaths.Add("second:next2");
+        Run(loader.Initialize());
+        if (loader.Ready || loader.Error == null || !loader.Error.Contains("Previous cached resource failed verification") || loaded.Count != 0 || hashes.Count != 0)
+            throw new Exception("A corrupted previous cache must not be restored as verified content.");
+        Console.WriteLine("PASS: corrupted previous cache is not restored");
         return 0;
     }
 }

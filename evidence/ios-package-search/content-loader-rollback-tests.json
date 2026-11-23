@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-23",
+  "success": true,
+  "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Test-ContentLoaderStaging.ps1",
+  "cases": ["later download failure preserves loaded bundle", "complete cache switches bundles", "later bundle load failure restores previous complete set", "rollback load failure clears partial set", "retry after failed rollback succeeds", "corrupt previous cache is not restored"],
+  "sourceSha256": {
+    "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs": "902844a35cae1fc4ce931f8ea9d695beb54139e6d08f56fbaade65e790efee42",
+    "tests/ContentLoaderStagingTests.cs": "4ceb2591cedc4e7e773911eb82412eb001ea61f8f76c9d57060ee7b87327486d",
+    "scripts/Test-ContentLoaderStaging.ps1": "674222f0ecf7884fc28bb75f93d3b0619c361171d5c0f267789e05057193b883"
+  },
+  "scope": "Windows .NET executes the actual loader with simulated Unity AssetBundle, network, manifest and cache components. This does not verify actual Unity same-name bundle unload/reload behavior, iOS runtime, persistent device cache or gameplay. The change is later than and absent from 0.0.7 build 45093283023."
+}
