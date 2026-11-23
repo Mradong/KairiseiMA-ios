@@ -1,0 +1,51 @@
+{
+  "date": "2026-11-23",
+  "planItem": "03",
+  "status": "partial_waiting_for_verified_client_enum_and_redacted_live_contract",
+  "archive": {
+    "filename": "Order03-Combat-Verified-20261123.zip",
+    "sha256": "a44390313bb4a0d13897b70f35c313bafd380282189b44689e8a48340c6621ce",
+    "bytes": 6363225,
+    "isolatedCopy": "inputs/server-order03/Order03-Combat-Verified-20261123",
+    "packageEntriesVerified": 58,
+    "packageMismatches": 0,
+    "tableEntriesVerified": 29,
+    "tableMismatches": 0,
+    "utf8WithoutBom": 29,
+    "sourceFingerprintEntriesVerified": 164,
+    "sourceMismatches": 0
+  },
+  "serverReportedProvenance": {
+    "serverDiskSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+    "resourceManifestSha256": "1e499a8fa29efc6616f4de6cfc28b36f032ef97d05cccf0060b9dc1fe316a1ad",
+    "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+    "scope": "Server-provided evidence ties files to one installed manifest and a reviewed disk binary, not independently to process memory or a single original client version. Original export provenance and source client version remain unknown."
+  },
+  "reproducedOfflineAudit": {
+    "reportDirectory": "test-output/order03-independent-audit/reproduced",
+    "goLoader": "PASS with matching reviewed source; six catalog and coverage checks PASS",
+    "rawBytes": 57192661,
+    "positiveReferencesChecked": 446725,
+    "missingReferences": 0,
+    "staticQuests": 3102,
+    "staticQuestsWithMissingEnemyReferences": 0,
+    "rawValueCompatibilityObservations": 25,
+    "rawAiShapeWarnings": 36,
+    "staticallyAssociatedBosses": 34,
+    "scope": "The supplied audit was rerun locally on the received bytes and locally matched server source. Checks cover specified positive ID references, not all symbols, gameplay, visual assets, client ABI or live quest availability. Go's compatibility defaults are not independently proven equivalent to the original client."
+  },
+  "windowsTransportProbe": {
+    "snapshot": "test-output/order03-independent-audit/DO-NOT-USE-synthetic-enum.json",
+    "snapshotBytes": 57706143,
+    "snapshotSha256": "95d34efb1195b28a729bb2b73849d7c79ba9f9cc53792e9d1247f7529e730366",
+    "enum": "one explicitly synthetic TEST_ONLY_PLACEHOLDER family; never suitable for registration or delivery",
+    "validator": "PASS",
+    "rebuiltDllCatalogAndPreparation": "PASS",
+    "rebuiltDllSha256": "b2bd51120e4bb970648ab93e09cfce0c02b5000cff9ede4481b2a4e6b83edddd",
+    "validatorSourceSha256": "4ae6ebfc085286eebc84a3b63824d173f5aa1122012a3f8098a113afe84c5409",
+    "adapterSourceSha256": "e1b05d6a86064ff3f8575b954fd17907b91bcf3f1e6e8c9c8676afa83bf1a06e",
+    "scope": "Windows .NET actual managed validator and adapter with pre-existing rebuilt Windows DLL; no registration, original DLL differential, Unity, ARM64, iOS bundle or device. Placeholder does not establish enum correctness."
+  },
+  "serviceContract": "Package contains versioned source-derived field and side-effect descriptions, not redacted actual live request/response/error captures. No online game API was invoked in this validation.",
+  "remaining": ["Establish versioned native registration enum mapping and compatibility with these masters", "Resolve or explicitly validate 25 VALUE and 36 AI shape cases against appropriate original behavior", "Verify actual live service contract using safe isolated fixtures and obtain redacted evidence", "Build and test the real client resource with validated schema and actual target platform", "Establish quest publication, admission and safe resume before real entry"]
+}
