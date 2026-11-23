@@ -75,7 +75,7 @@ func battlecore_context_create_registered(catalogID, preparationID C.ulonglong, 
 	if p.enemiesRegistered && request.Config.EnemyPartyID != 0 {
 		return statusInvalid
 	}
-	projection, err := projectPreparedState(p, catalog)
+	projection, err := projectPreparedState(p, catalog, false)
 	if err != nil || len(projection.members) != 4 || (p.enemiesRegistered && projection.encounter == nil) {
 		return statusInvalid
 	}

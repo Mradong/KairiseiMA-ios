@@ -52,7 +52,7 @@ func battlecore_context_next_registered(battleID, preparationID C.ulonglong, ene
 	if p.mode != battle.mode || !p.enemiesRegistered || !validateRegisteredParty(p, catalog) {
 		return statusInvalid
 	}
-	projection, err := projectPreparedState(p, catalog)
+	projection, err := projectPreparedState(p, catalog, false)
 	if err != nil || projection.encounter == nil || len(projection.members) != 4 {
 		return statusInvalid
 	}

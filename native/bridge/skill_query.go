@@ -88,7 +88,7 @@ type preparedProjection struct {
 }
 
 // projectPreparedState copies registered content into an isolated catalog.
-func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedProjection, error) {
+func projectPreparedState(p *preparation, catalog *libraryCatalog, allowInertGaugeForQuery bool) (*preparedProjection, error) {
 	if catalog.schema == nil {
 		return nil, fmt.Errorf("skill query requires content schema")
 	}
@@ -100,7 +100,7 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 		if encounter == nil {
 			encounter = &battlemodel.Encounter{}
 		}
-		projected, err := decodePreparedEnemy(catalog.schema, catalog.value.Enemies, enemy, index)
+		projected, err := decodePreparedEnemy(catalog.schema, catalog.value.Enemies, enemy, index, allowInertGaugeForQuery)
 		if err != nil {
 			return nil, err
 		}
@@ -275,7 +275,7 @@ func projectPreparedState(p *preparation, catalog *libraryCatalog) (*preparedPro
 }
 
 func preparedQuery(p *preparation, catalog *libraryCatalog) (*battlecore.PreparedSkillQuery, error) {
-	projection, err := projectPreparedState(p, catalog)
+	projection, err := projectPreparedState(p, catalog, true)
 	if err != nil {
 		return nil, err
 	}

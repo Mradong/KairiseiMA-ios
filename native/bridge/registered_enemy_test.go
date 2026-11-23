@@ -3,6 +3,8 @@ package main
 import (
 	"encoding/binary"
 	"testing"
+
+	"kairisei.local/server/battlemodel"
 )
 
 func TestDecodePreparedEnemyFieldsAndGuards(t *testing.T) {
@@ -29,7 +31,7 @@ func TestDecodePreparedEnemyFieldsAndGuards(t *testing.T) {
 	binary.LittleEndian.PutUint16(data[120:], 65534)
 	binary.LittleEndian.PutUint16(data[142:], 65533)
 	enemy := &preparedEnemy{data: data}
-	got, err := decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0)
+	got, err := decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0, false)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -37,17 +39,53 @@ func TestDecodePreparedEnemyFieldsAndGuards(t *testing.T) {
 		t.Fatalf("unexpected enemy projection: %+v", got)
 	}
 	put32(160, 1)
-	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0); err == nil {
+	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0, false); err == nil {
 		t.Fatal("unimplemented gauge must be rejected")
 	}
 	put32(160, 0)
 	enemy.normal[0] = make([]byte, 2656)
-	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0); err != nil {
+	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0, false); err != nil {
 		t.Fatal("empty enemy skill must be ignored", err)
 	}
 	binary.LittleEndian.PutUint32(enemy.normal[0], 1001)
-	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0); err == nil {
+	if _, err = decodePreparedEnemy(map[string]map[int32]string{"ATTR": {2: "ICE"}}, nil, enemy, 0, false); err == nil {
 		t.Fatal("unimplemented enemy program must be rejected")
+	}
+}
+
+func TestPreparedEnemyInertMasterGaugeIsQueryOnly(t *testing.T) {
+	data := make([]byte, 276)
+	binary.LittleEndian.PutUint32(data, 901)
+	binary.LittleEndian.PutUint32(data[112:], 2)
+	enemy := &preparedEnemy{data: data}
+	schema := map[string]map[int32]string{"ATTR": {2: "ICE"}}
+	master := map[int]battlemodel.CombatEnemyDefinition{901: {ID: 901, ReactiveGauge: &battlemodel.EnemyGaugeDefinition{}}}
+	if _, err := decodePreparedEnemy(schema, master, enemy, 0, true); err != nil {
+		t.Fatalf("inert gauge query rejected: %v", err)
+	}
+	if _, err := decodePreparedEnemy(schema, master, enemy, 0, false); err == nil {
+		t.Fatal("unverified battle projection accepted")
+	}
+	for name, mutate := range map[string]func(*battlemodel.CombatEnemyDefinition){
+		"reaction ID":         func(e *battlemodel.CombatEnemyDefinition) { e.GaugeReactionID = 1 },
+		"master state":        func(e *battlemodel.CombatEnemyDefinition) { e.InitialGaugeState = 1 },
+		"master rate":         func(e *battlemodel.CombatEnemyDefinition) { e.InitialGaugeRate = 1 },
+		"trance limit":        func(e *battlemodel.CombatEnemyDefinition) { e.TranceLimit = 1 },
+		"overheat limit":      func(e *battlemodel.CombatEnemyDefinition) { e.OverheatLimit = 1 },
+		"overheat duration":   func(e *battlemodel.CombatEnemyDefinition) { e.OverheatTurns = 1 },
+		"overheat resistance": func(e *battlemodel.CombatEnemyDefinition) { e.OverheatResist = 1 },
+		"gauge state":         func(e *battlemodel.CombatEnemyDefinition) { e.ReactiveGauge.InitialState = 1 },
+		"gauge rate":          func(e *battlemodel.CombatEnemyDefinition) { e.ReactiveGauge.InitialRate = 1 },
+		"gauge reaction": func(e *battlemodel.CombatEnemyDefinition) {
+			e.ReactiveGauge.Reactions = []battlemodel.EnemyGaugeReaction{{Kind: "DAMAGE"}}
+		},
+	} {
+		active := battlemodel.CombatEnemyDefinition{ID: 901, ReactiveGauge: &battlemodel.EnemyGaugeDefinition{}}
+		mutate(&active)
+		master[901] = active
+		if _, err := decodePreparedEnemy(schema, master, enemy, 0, true); err == nil {
+			t.Fatalf("active gauge query accepted: %s", name)
+		}
 	}
 }
 

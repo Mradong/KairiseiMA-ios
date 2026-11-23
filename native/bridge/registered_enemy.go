@@ -9,7 +9,7 @@ import (
 )
 
 // Enemy programs and reactive gauges need separate decoding and are rejected.
-func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]battlemodel.CombatEnemyDefinition, enemy *preparedEnemy, index int) (battlemodel.EnemyInput, error) {
+func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]battlemodel.CombatEnemyDefinition, enemy *preparedEnemy, index int, allowInertGaugeForQuery bool) (battlemodel.EnemyInput, error) {
 	var value battlemodel.EnemyInput
 	if enemy == nil || len(enemy.data) != 276 || index < 0 || index > 3 {
 		return value, fmt.Errorf("invalid enemy record")
@@ -61,7 +61,9 @@ func decodePreparedEnemy(schema map[string]map[int32]string, master map[int]batt
 		def.AttributeFixed[i] = int(wireInt(raw, 92+i*4))
 	}
 	if existing, ok := master[id]; ok {
-		if existing.ReactiveGauge != nil || existing.GaugeReactionID != 0 {
+		gauge := existing.ReactiveGauge
+		inertGauge := allowInertGaugeForQuery && existing.GaugeReactionID == 0 && existing.InitialGaugeState == 0 && existing.InitialGaugeRate == 0 && existing.TranceLimit == 0 && existing.OverheatLimit == 0 && existing.OverheatTurns == 0 && existing.OverheatResist == 0 && gauge != nil && gauge.InitialState == 0 && gauge.InitialRate == 0 && len(gauge.Reactions) == 0
+		if (gauge != nil || existing.GaugeReactionID != 0) && !inertGauge {
 			return value, fmt.Errorf("enemy master gauge projection unavailable")
 		}
 		if len(existing.TribeIDs) >= 2 {

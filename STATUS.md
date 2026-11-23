@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 真实敌人基础数据的准备态查询
+
+用隔离候选快照和服务端静态候选关卡中两只敌人的基础字段构造注册记录，玩家为合成数据，未注册敌方技能或 AI。修复前，4 组 `ENEMY_TRIBAL` 查询原 DLL 成功而重建桥拒绝：真实目录为无反应敌人也创建了空量表对象，桥将它一概视为活跃量表。修复后只在准备态查询允许完全零状态、零限制、无反应的量表；注册战斗创建/下一波仍保持拒绝，活跃量表仍拒绝。前后证据分别为 `evidence/ios-package-search/order03-real-enemy-query-before-fix.json`、`order03-real-enemy-query.json`。
+
+Windows x64 原 DLL 对照的两敌、两种族条件共 4 组均一致；Go 测试覆盖空量表查询放行、战斗拒绝和十种非空量表字段拒绝；既有 1,856 组准备态敌人查询及注册战斗合成回归通过。当前重建 DLL SHA-256 `e62fa374bd0a94b825dc154517a366747d28695babab1c7ca872d2e944007d8b`。此结果不覆盖真实敌方技能、AI、量表行为、完整注册战斗、客户端版本匹配、ARM64 或设备，修复不在既有 IPA；顺序 03 继续。
+
 ## 2026-11-23：03 / 隔离候选主表快照
 
 将哈希核对过的 29 张交付 CSV 原文与现代导出中当前部分桥接所需的 23 个候选枚举族组合，在 `test-output/order03-candidate/DO-NOT-DEPLOY-CombatTables.json` 生成 57,738,263 字节隔离候选，SHA-256 `f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb`。生成时验证每表哈希、UTF-8 字节往返及枚举声明解析，逐表和逐枚举源哈希见 `evidence/ios-package-search/order03-candidate-snapshot.json`。
