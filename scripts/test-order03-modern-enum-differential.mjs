@@ -13,7 +13,7 @@ const expected=JSON.parse(fs.readFileSync(path.join(root,'evidence/native/go-sym
 if(sha(original)!==expected)throw Error('Original DLL hash differs');
 const families={
  SKILL_EXTEND_EXEC_ORDER:['NONE','SELF_MAIN_DECK_ATTR','SELF_MAIN_DECK_SKILL_KIND'],
- RARITY:['NULL','NORMAL'], SKILL_TYPE:['NORMAL'], SKILL_KIND:['NULL','ATTACK','RECOVERY'],
+ RARITY:['NULL','NORMAL'], SKILL_TYPE:['NORMAL'], SKILL_KIND:['NULL','ATTACK','SORCERY','RECOVERY'],
  ATTR:['NULL','FIRE','ICE'], JOB_TYPE:['NULL'], ARTHUR_TYPE:['NULL'],
  SKILL_PHYSICS_TYPE:['PHYSICS'], SKILL_TARGET:['SELF','ENEMY_ONE'], SKILL_EXEC_TIMING:['NORMAL'],
  SKILL_ROLE:['NULL','ATTACK_AA'], SKILL_ROLE_TARGET:['SELECT'], SKILL_ROLE_BATTLE_PARAM:['HP','ATK']
@@ -46,5 +46,7 @@ if(build.status!==0)throw Error(build.stdout+build.stderr);
 const run=spawnSync(exe,[original,rebuilt,path.join(root,'tests/fixtures/native-session/tables.json')],{encoding:'utf8',timeout:120000,windowsHide:true});
 const report={checkedAt:new Date().toISOString(),success:run.status===0&&sha(original)===expected,counts:run.status===0?JSON.parse(run.stdout.trim().replace(/^\uFEFF/,'')):null,stderr:run.stderr.trim(),originalSha256:sha(original),rebuiltSha256:sha(rebuilt),harnessSha256:sha(path.join(root,'tests/RegisteredSkillQueryDifferential.cs')),fixtureSha256:sha(path.join(root,'tests/fixtures/native-session/tables.json')),enumCandidates:chosen,scope:'Windows synthetic prepared-card branch queries using selected enum values transcribed from modern recovered C# enums; original and rebuilt DLL compared. Failed queries are counted separately and agreement on rejection is not evidence of supported behavior. Enum source version compatibility with the supplied real tables, full schema, real cards, Unity/iOS and device are not proven.'};
 if(report.counts)report.counts.rejected=report.counts.checks-report.counts.selected-report.counts.notSelected;
+report.priorPartialSchema={checks:144,selected:12,notSelected:60,rejected:72,missing:'SKILL_KIND.SORCERY=2',scope:'Earlier test omitted the second condition parameter value; it did not establish unsupported gameplay.'};
+if(report.counts&&(report.counts.checks!==144||report.counts.selected!==20||report.counts.notSelected!==124||report.counts.rejected!==0))report.success=false;
 fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-modern-enum-differential.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));if(!report.success)process.exitCode=1;

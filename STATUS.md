@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 枚举查询拒绝原因与复测
+
+上轮 72 次一致拒绝均发生在 `SELF_MAIN_DECK_SKILL_KIND`（候选值 36）：测试记录的第二技能种类参数为 2，但当时提供的候选 schema 漏掉了现代导出中的 `SKILL_KIND.SORCERY=2`。补齐该测试值后，Windows 原 DLL 与重建 DLL 的 144 组合成查询全部成功且一致：20 组选择、124 组未选择，0 组拒绝；脚本现在核对完整计数。前一次的 12/60/72 结果仍记录在同一证据文件的 `priorPartialSchema` 中。见 `evidence/ios-package-search/order03-modern-enum-differential.json`。
+
+这是对测试清单缺项的修正，并非对真实版本匹配或全部技能行为的证明；未修改产品源码，也未生成生产快照、构建 Unity/iOS 或测试真机。仍需完整注册枚举及真实主表版本关联、隔离服务实际脱敏契约。下一步继续核实真实数据到注册结构的映射和必要分支，不以局部差分替代顺序 03 完成条件。
+
 ## 2026-11-23：03 / 现代导出枚举局部差分
 
 此前部分合成差分的枚举由测试顺序人为编号，不能用作真实客户端定义。本轮从 `recovered-unity/ExportedProject/Assets/Scripts/Assembly-CSharp` 的现代导出中读取所需候选常量，Windows x64 使用原 DLL 和当前重建 DLL 比较合成已注册卡牌的主卡组属性及技能种类查询：144 组状态和输出一致，其中 12 组选择、60 组未选择、72 组双方拒绝。拒绝结果不代表相关行为已支持。脚本与每个枚举来源哈希见 `scripts/test-order03-modern-enum-differential.mjs`、`evidence/ios-package-search/order03-modern-enum-differential.json`。

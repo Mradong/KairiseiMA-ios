@@ -1,11 +1,11 @@
 {
-  "checkedAt": "2026-11-23T07:17:12.981Z",
+  "checkedAt": "2026-11-23T07:20:59.144Z",
   "success": true,
   "counts": {
     "checks": 144,
-    "selected": 12,
-    "notSelected": 60,
-    "rejected": 72
+    "selected": 20,
+    "notSelected": 124,
+    "rejected": 0
   },
   "stderr": "",
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
@@ -39,6 +39,7 @@
       "values": {
         "NULL": 0,
         "ATTACK": 1,
+        "SORCERY": 2,
         "RECOVERY": 3
       }
     },
@@ -102,5 +103,13 @@
       }
     }
   },
-  "scope": "Windows synthetic prepared-card branch queries using selected enum values transcribed from modern recovered C# enums; original and rebuilt DLL compared. Failed queries are counted separately and agreement on rejection is not evidence of supported behavior. Enum source version compatibility with the supplied real tables, full schema, real cards, Unity/iOS and device are not proven."
+  "scope": "Windows synthetic prepared-card branch queries using selected enum values transcribed from modern recovered C# enums; original and rebuilt DLL compared. Failed queries are counted separately and agreement on rejection is not evidence of supported behavior. Enum source version compatibility with the supplied real tables, full schema, real cards, Unity/iOS and device are not proven.",
+  "priorPartialSchema": {
+    "checks": 144,
+    "selected": 12,
+    "notSelected": 60,
+    "rejected": 72,
+    "missing": "SKILL_KIND.SORCERY=2",
+    "scope": "Earlier test omitted the second condition parameter value; it did not establish unsupported gameplay."
+  }
 }
