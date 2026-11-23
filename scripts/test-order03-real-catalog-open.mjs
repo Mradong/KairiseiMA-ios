@@ -1,0 +1,16 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'test-output/order03-real-catalog-open');fs.mkdirSync(out,{recursive:true});
+const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const original=path.join(root,'inputs/native/kairisei_battlecore.dll'),rebuilt=path.join(root,'native/build/windows-amd64/kairisei_battlecore_rebuilt.dll'),snapshot=path.join(root,'test-output/order03-independent-audit/DO-NOT-USE-synthetic-enum.json');
+const expectedOriginal=JSON.parse(fs.readFileSync(path.join(root,'evidence/native/go-symbols-summary.json'),'utf8')).sha256;
+const expectedSnapshot='95d34efb1195b28a729bb2b73849d7c79ba9f9cc53792e9d1247f7529e730366';
+if(sha(original)!==expectedOriginal||sha(snapshot)!==expectedSnapshot)throw Error('Original DLL or isolated test snapshot hash mismatch');
+const source=path.join(root,'tests/Order03RealCatalogOpenProbe.cs'),exe=path.join(out,'probe.exe'),csc=path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe');
+const compile=spawnSync(csc,['/nologo','/platform:x64','/out:'+exe,source],{encoding:'utf8',windowsHide:true});if(compile.status!==0)throw Error(compile.stdout+compile.stderr);
+const run=spawnSync(exe,[original,rebuilt,snapshot],{encoding:'utf8',timeout:180000,windowsHide:true});
+const report={checkedAt:new Date().toISOString(),executionCompleted:run.status===0,originalUnchanged:sha(original)===expectedOriginal,originalSha256:sha(original),rebuiltSha256:sha(rebuilt),snapshotSha256:sha(snapshot),snapshotBytes:fs.statSync(snapshot).size,probeSourceSha256:sha(source),result:run.status===0?JSON.parse(run.stdout.trim().replace(/^\uFEFF/,'')):null,errorClass:run.error?.name||null,scope:'Windows x64 catalog open/close only on 29 delivered real CSV tables serialized with one explicitly synthetic placeholder enum. This snapshot is restricted to test-output and is not a real enum schema, production content, registration, gameplay, Unity, ARM64 or device evidence. An open success is not proof of reference integrity or version matching.'};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-real-catalog-open.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));if(!report.executionCompleted||!report.originalUnchanged)process.exitCode=1;

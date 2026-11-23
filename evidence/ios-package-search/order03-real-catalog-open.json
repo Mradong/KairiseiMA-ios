@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-11-23T07:36:54.385Z",
+  "executionCompleted": true,
+  "originalUnchanged": true,
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "a4553408677125adadf806c0f201bbb0981d9180b6a74ae88bb9e31437b98734",
+  "snapshotSha256": "95d34efb1195b28a729bb2b73849d7c79ba9f9cc53792e9d1247f7529e730366",
+  "snapshotBytes": 57706143,
+  "probeSourceSha256": "cfc499785d7f935e7b6339eadf82e68fdb5a5a210e115dd880aaf57fe57d6d8f",
+  "result": {
+    "originalOpen": 0,
+    "originalClose": 0,
+    "rebuiltOpen": 0,
+    "rebuiltClose": 0
+  },
+  "errorClass": null,
+  "scope": "Windows x64 catalog open/close only on 29 delivered real CSV tables serialized with one explicitly synthetic placeholder enum. This snapshot is restricted to test-output and is not a real enum schema, production content, registration, gameplay, Unity, ARM64 or device evidence. An open success is not proof of reference integrity or version matching."
+}

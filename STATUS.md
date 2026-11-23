@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 交付主表原 DLL 目录加载对照
+
+使用已核验的 29 张交付 CSV 构成的 57,706,143 字节隔离测试快照，Windows x64 原 DLL 和修复后重建 DLL 的 `battlecore_catalog_open_tables` 及关闭均返回 0。测试快照仍仅含虚构占位枚举，保存在 `test-output`，不可用于注册或交付；没有创建战斗。证据 `evidence/ios-package-search/order03-real-catalog-open.json`，脚本 `scripts/test-order03-real-catalog-open.mjs`、测试 `tests/Order03RealCatalogOpenProbe.cs`，原 DLL 哈希保持一致。
+
+目录加载成功不证明真实枚举、主表与客户端版本匹配、各字段及战斗语义、Unity 资源或 iOS 设备行为。完整 schema、真实业务接口证据与生产快照仍待验证；顺序 03 保持进行中。未发起在线业务请求或新构建。
+
 ## 2026-11-23：03 / 修正效果参数枚举族映射
 
 Windows 合成注册技能对照发现：`DOT` 和 `TRANCE_GAUGE_STATE` 两种规则，原 DLL 要求 schema 使用 `SKILL_ROLE_DOT`、`ENEMY_TRANCE_GAUGE_STATE`，而重建桥错误使用规则名。修复 `native/bridge/registered_skill.go` 后重新编译 Windows x64 DLL，四个正确/错误族名查询均与原 DLL 的状态和结果一致；错误族名拒绝时输出保持不变。修复前的四处差异保留在 `evidence/ios-package-search/order03-role-alias-before-fix.json`，修复后见 `evidence/ios-package-search/order03-role-alias-differential.json`。
