@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 独立角色卡牌契约与交付主表编号对照
+
+在已授权独立服务新建隔离游客和测试角色，未调用 HomeShow，实测 `/CardShow2` HTTP 200、三段响应：返回 10 张卡及 4 个卡组，40 个非零主卡槽均能关联返回的卡牌实例。读取前核对交付的 `card.csv` 与 `card_alchemist.csv` SHA-256，10 张卡的定义编号均能在其中找到；不输出或保存账号、卡牌实例编号、会话、名字或响应正文。非法字段请求返回 HTTP 400。可复核脱敏结果 `evidence/ios-package-search/order03-isolated-card-contract.json`，脚本 `scripts/probe-order03-isolated-card-contract.mjs`。
+
+本次创建的测试身份与角色可能持久化；未写卡组或调用主页、关卡、入场、续关及结算。编号存在和初始卡组引用完整不证明完整数据、技能参数、客户端枚举或服务/主表同版本；登录返回的已知 iOS 内容清单仅为 UI 包。顺序 03 仍需真实战斗契约、注册枚举及匹配验证，无新 Unity 或真机结果。
+
 ## 2026-11-23：03 / 真实效果参数枚举名称盘点
 
 对服务端真实效果表审计中观察到的 11 类非 VALUE 规则，将其符号与现代导出枚举声明静态对照：除单独分类的空值、`NULL` 和位掩码 `ALL` 外，所有观察到的名称均有同名项。`DOT` 实际对应 `SKILL_ROLE_DOT`，`TRANCE_GAUGE_STATE` 对应 `ENEMY_TRANCE_GAUGE_STATE`；位掩码规则使用基础 `ATTR` / `SKILL_KIND`，重建桥按规则名查 schema，未来构建时需要明确处理别名。脚本与逐族计数、候选值和源哈希见 `scripts/audit-order03-role-enum-tokens.mjs`、`evidence/ios-package-search/order03-role-enum-token-audit.json`。
