@@ -1,0 +1,23 @@
+{
+  "date": "2026-11-23",
+  "planItem": "03",
+  "test": "tests/Order03LegacyCompatibility.cs",
+  "testSha256": "73a283c343d1aaca8224186bbddde655e0b60b56d5a9675cce6c805eae1b537b",
+  "inputAiSha256": "307707a019a68a9beaff64f6ee575ff2f3d1331b5e0d52e29caf6b44ab2f4afe",
+  "legacySource": {
+    "version": "1.4.0 exported managed code",
+    "csvSha256": "8b5edf2491e21a1b1492dcd7aa3e646b445b320ad53f5ecb35c0db54737db83f",
+    "skillDataContainerSha256": "0e88391c6abf74febb2e59cad62b7d8e3203bf9301bf27ed94b7ccc7b344f371",
+    "globalSha256": "6d838bc9e438648c4e9d1b6bcd72818ab01bf0e0d9aa52010f28aa8c0649f913",
+    "enemyAiContainerSha256": "730d28ae0511158a03282bb0765e17b617bb67f79a4b2c822517f4fb8b82e91e"
+  },
+  "result": {
+    "shortAiRows": 36,
+    "missingTailFieldsCompared": 206,
+    "numericValueCases": 25,
+    "mismatches": 0,
+    "numericTokens": {"INT": 5, "MND": 14, "DARK": 2, "5000000000": 4}
+  },
+  "method": "Compiled and ran original 1.4.0 CSV.cs on Windows .NET with test-only Unity and Global stubs. The splitString and parseInt stubs implement the relevant 1.4.0 Global methods; bisectString is unused. For each reported short row, compared the 38 fields returned through popString on the raw physical row against the same row padded with trailing empty fields. Applied the 1.4.0 VALUE branch (ALL -> -1, otherwise Int32.TryParse/default 0) to each reported raw value and compared to the server audit's bound value.",
+  "scope": "The 1.4.0 SkillDataContainer getRoleParam and Global parseInt source support the tested VALUE behavior; its enemy AI parser reads the listed trigger arguments through CSV. This test does not run the full legacy AI container, interpret trigger-specific enum defaults, compare AI behavior, establish the delivered CSV's original version or prove modern client equivalence. Rules and diagnostic rows came from the server audit; input bytes are unchanged. No real battle, Unity, ARM64 or device test."
+}

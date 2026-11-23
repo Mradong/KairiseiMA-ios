@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 旧版主表兼容性局部核对
+
+对照 1.4.0 有方法体的 `SkillDataContainer.getRoleParam` 和 `Global.parseInt`，25 处服务端报告的 VALUE 异常值按旧版 `Int32.TryParse` / 默认 0 规则均得到报告的 0：INT 5、MND 14、DARK 2、5000000000 4。Windows .NET 使用旧版实际 `CSV.cs`，对 36 条短 AI 行逐字段比较原文与补空读取，206 个缺失尾字段均一致；测试依赖用隔离桩，见 `tests/Order03LegacyCompatibility.cs` 与 `evidence/ios-package-search/order03-legacy-compatibility.json`。
+
+这只证明所列旧版数值及 CSV 字段读取行为，不证明主表源自 1.4.0、现代客户端采用相同行为、完整 AI 触发或数值正确。现代枚举与 ABI、服务端实际脱敏接口和最终真实快照仍待核实；03 保持进行中。无产品源码、Unity 构建、IPA 或真机变更。下一步继续依据实际原始客户端及 DLL 证据核对注册枚举和对应转换，不能拿测试枚举交付。
+
 ## 2026-11-23：03 / 服务端真实主表交付及本机复核
 
 用户提供 `Order03-Combat-Verified-20261123.zip`，SHA-256 `a44390313bb4a0d13897b70f35c313bafd380282189b44689e8a48340c6621ce`。仅解压到 `inputs/server-order03/Order03-Combat-Verified-20261123`；58 个包清单条目及 29 张表哈希全部一致，29 张表有效 UTF-8 无 BOM。交付说明称表属于同一已安装资源清单，原始客户端版本和导出过程未知；不把目录名当作版本证明。
