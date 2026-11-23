@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 关卡差额的自带卡组变体核对
+
+另建隔离角色只调用一次 TeamBattleSoloShow：3,788 个不同编号中仍有 1,044 个不在交付的 3,102 个静态波次投影。1,043 个差额编号减去 100,000,000 后存在于投影，且列表字段 `1=1`、`24=1`；其中类别 10 为 910，类别 12 为 133。剩余 1 个差额位于普通关卡类别 9。结果与本地服务 `masterdata/battle_own_deck.go` 中生成自带卡组变体的编号和字段规则一致；这是形态对照，不能证明线上进程实际源码、具体映射、开放或准入，也没有证明剩余普通关卡的来源。证据 `evidence/ios-package-search/order03-quest-variant-gap.json`，脚本 `scripts/probe-order03-quest-variant-gap.mjs`。
+
+新隔离游客及角色可能持久化；没有 HomeShow、伙伴查询、入场或结算。下一步请服务端提供部署版本对应的变体映射与普通关卡来源的无账号字段统计，继续核对原客户端版本与枚举；真实战斗和设备验证仍未完成。
+
 ## 2026-11-23：03 / 独立角色关卡列表与静态投影对照
 
 对新建隔离测试角色调用一次 `/TeamBattleSoloShow`，HTTP 200、三段响应，四类共 3,788 条、3,788 个不同 boss 编号；与 SHA-256 `259358a74bd68d0c877e93355bfc9575a1172437878092558ec9417847c3a431` 的交付静态战斗投影对照，2,744 条编号存在，1,044 条不在该投影中。投影自身有 3,102 个不同 boss 编号。候选 `30010102` 在列表类别 `10` 出现一次，字段 `state=0`、`locked=0`、`bpCost=15`；这些数字不证明实际准入、开放或安全入场。脱敏结果 `evidence/ios-package-search/order03-isolated-quest-contract.json`，脚本 `scripts/probe-order03-isolated-quest-contract.mjs`。

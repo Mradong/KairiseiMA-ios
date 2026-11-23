@@ -1,0 +1,75 @@
+{
+  "checkedAt": "2026-11-23T08:45:30.922Z",
+  "target": "http://47.116.51.61:27040",
+  "success": true,
+  "stage": "complete",
+  "identity": "fresh isolated guest and fresh test character; IDs, names and sessions never recorded",
+  "steps": [
+    {
+      "path": "/TeamBattleSoloShow",
+      "requestFields": [
+        "0"
+      ],
+      "httpStatus": 200,
+      "segments": 3,
+      "categories": [
+        {
+          "key": "9",
+          "groups": 1,
+          "entries": 1,
+          "absentFromProjection": 1,
+          "offsetMatches": 0,
+          "offsetAndOwnDeckRulesMatch": 0
+        },
+        {
+          "key": "10",
+          "groups": 395,
+          "entries": 2295,
+          "absentFromProjection": 910,
+          "offsetMatches": 910,
+          "offsetAndOwnDeckRulesMatch": 910
+        },
+        {
+          "key": "11",
+          "groups": 8,
+          "entries": 25,
+          "absentFromProjection": 0,
+          "offsetMatches": 0,
+          "offsetAndOwnDeckRulesMatch": 0
+        },
+        {
+          "key": "12",
+          "groups": 451,
+          "entries": 1467,
+          "absentFromProjection": 133,
+          "offsetMatches": 133,
+          "offsetAndOwnDeckRulesMatch": 133
+        }
+      ],
+      "totalEntries": 3788,
+      "uniqueBossIds": 3788,
+      "entriesInStaticProjection": 2744,
+      "entriesAbsentFromStaticProjection": 1044,
+      "absentMatchingSourceOffset100000000": 1043,
+      "offsetMatchesWithOwnDeckRules": 1043,
+      "uniqueBossIdsInStaticProjection": 2744,
+      "candidateBossId": 30010102,
+      "candidateAppearances": [
+        {
+          "category": "10",
+          "state": 0,
+          "locked": 0,
+          "bpCost": 15
+        }
+      ],
+      "staticProjectionBossIds": 3102,
+      "staticProjectionSha256": "259358a74bd68d0c877e93355bfc9575a1172437878092558ec9417847c3a431"
+    }
+  ],
+  "scope": "Isolated service guest and character creation followed by TeamBattleSoloShow once. Quest show can clear a pending stage selection; this is a fresh character with no battle entry. No HomeShow, partner lookup, Start, Continue or End. Matching IDs are not proof of version, admission rules or actual battle availability.",
+  "localSource": {
+    "path": "server-ios/server/internal/masterdata/battle_own_deck.go",
+    "sha256": "65e2f950e96f314a5cb648b6294c2e61ed4d3050fb7c030c7a69043a52fd3781",
+    "scope": "Local source suggests offset and own-deck rule fields; not proof of deployed process code."
+  }
+}
