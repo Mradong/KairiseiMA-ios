@@ -1,0 +1,203 @@
+{
+  "checkedAt": "2026-11-23T08:50:06.630Z",
+  "sourceHashes": {
+    "legacySkill": "0e88391c6abf74febb2e59cad62b7d8e3203bf9301bf27ed94b7ccc7b344f371",
+    "legacyGlobal": "6d838bc9e438648c4e9d1b6bcd72818ab01bf0e0d9aa52010f28aa8c0649f913",
+    "deliveryAudit": "a1b35590ca287ce7a51308330290d87aeab721cf68b17d6232847076f65f0cc8",
+    "goBinder": "fb85f413527745ac81e44ff96bb75c55cd28a4376832086cef16a4836aa1c916",
+    "script": "a37445b37d88bb74bc7afa286a79c055e57b83df11fef94b4f832e578685f4d3"
+  },
+  "observations": 25,
+  "controls": 6,
+  "matched": 31,
+  "observedAllZero": true,
+  "cases": [
+    {
+      "value": "INT",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "INT",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "INT",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "INT",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "DARK",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "DARK",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "5000000000",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "5000000000",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "5000000000",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "5000000000",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "MND",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "INT",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "delivered_observation"
+    },
+    {
+      "value": "ALL",
+      "legacyValue": -1,
+      "goValue": -1,
+      "source": "control"
+    },
+    {
+      "value": "2147483647",
+      "legacyValue": 2147483647,
+      "goValue": 2147483647,
+      "source": "control"
+    },
+    {
+      "value": "-2147483648",
+      "legacyValue": -2147483648,
+      "goValue": -2147483648,
+      "source": "control"
+    },
+    {
+      "value": "2147483648",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "control"
+    },
+    {
+      "value": "-2147483649",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "control"
+    },
+    {
+      "value": "0",
+      "legacyValue": 0,
+      "goValue": 0,
+      "source": "control"
+    }
+  ],
+  "scope": "Windows x64: exact VALUE branch extracted from readable 1.4.0 client source and exact Global.parseInt methods compiled in a minimal harness, compared with actual Go BindSkillRole used by the rebuilt bridge. Raw inputs are the 25 audit observations plus controls. Not 6.0.2 proof, CSV-to-rule/record verification, actual skill execution, original native DLL behavior, ARM64 or device proof."
+}

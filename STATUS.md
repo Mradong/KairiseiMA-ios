@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 25 个异常 VALUE 的旧版解析对照
+
+从可读的 1.4.0 客户端 `SkillDataContainer.getRoleParam` 提取 VALUE 分支及 `Global.parseInt` 原方法编译 Windows 测试，与重建桥实际依赖的 `battlecontent.BindSkillRole` 比较：交付审计的 25 个异常原值均得到 0；另加 `ALL`、Int32 两端、两侧溢出及零共 6 个对照，31 项结果一致。证据 `evidence/ios-package-search/order03-value-parser-differential.json`，可复现脚本 `scripts/audit-order03-value-parser.mjs`，记录源码及审计哈希。
+
+该测试直接使用审计列出的字符串和明确指定的 VALUE 规则，没有重新验证这些字符串对应的 CSV 行及规则（交付审计已另做检查），也不证明目标 6.0.2 的解析、异常数据原意、实际技能效果、原 DLL、ARM64 或设备行为。36 条 AI 形状问题、客户端版本/枚举与真实战斗仍待核实；不能修改原表或据此标记顺序 03 完成。
+
 ## 2026-11-23：03 / 关卡差额的自带卡组变体核对
 
 另建隔离角色只调用一次 TeamBattleSoloShow：3,788 个不同编号中仍有 1,044 个不在交付的 3,102 个静态波次投影。1,043 个差额编号减去 100,000,000 后存在于投影，且列表字段 `1=1`、`24=1`；其中类别 10 为 910，类别 12 为 133。剩余 1 个差额位于普通关卡类别 9。结果与本地服务 `masterdata/battle_own_deck.go` 中生成自带卡组变体的编号和字段规则一致；这是形态对照，不能证明线上进程实际源码、具体映射、开放或准入，也没有证明剩余普通关卡的来源。证据 `evidence/ios-package-search/order03-quest-variant-gap.json`，脚本 `scripts/probe-order03-quest-variant-gap.mjs`。
