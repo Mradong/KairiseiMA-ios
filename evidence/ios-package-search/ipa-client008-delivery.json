@@ -1,0 +1,114 @@
+{
+    "checkedAt":  "2026-11-23T02:11:39.1174488Z",
+    "runId":  45097069398,
+    "stage":  "ios-resource-cache-bootstrap",
+    "version":  "0.0.8",
+    "bundleIdentifier":  "local.kairisei.recovery",
+    "file":  "dist/ready/KairiseiMA-ios-resource-bootstrap-0.0.8-unsigned.ipa",
+    "bytes":  26126717,
+    "sha256":  "0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800",
+    "matchesCloudChecksum":  true,
+    "ipaZipEntries":  57,
+    "localStructuralValidation":  {
+                                      "structuralValidation":  "passed",
+                                      "device":  {
+                                                     "model":  "iPhone 13",
+                                                     "iOS":  "17.4.1"
+                                                 },
+                                      "bundleIdentifier":  "local.kairisei.recovery",
+                                      "minimumOS":  "15.0",
+                                      "executable":  "KairiseiConnectionTest",
+                                      "executableSHA256":  "1f7045bf8e113737c1fd62cd1650371c1748f793a40a0d7ec204708827f1e827",
+                                      "slices":  [
+                                                     {
+                                                         "architecture":  "arm64",
+                                                         "fileType":  2,
+                                                         "platform":  "iOS",
+                                                         "minimumOS":  "15.0.0",
+                                                         "sdk":  "18.5.0",
+                                                         "offset":  0,
+                                                         "bytes":  66368
+                                                     }
+                                                 ],
+                                      "frameworks":  [
+                                                         {
+                                                             "name":  "UnityFramework.framework",
+                                                             "slices":  [
+                                                                            {
+                                                                                "architecture":  "arm64",
+                                                                                "fileType":  6,
+                                                                                "platform":  "iOS",
+                                                                                "minimumOS":  "15.0.0",
+                                                                                "sdk":  "18.5.0",
+                                                                                "offset":  0,
+                                                                                "bytes":  37466360
+                                                                            }
+                                                                        ]
+                                                         }
+                                                     ],
+                                      "il2cppMetadata":  "Data/Managed/Metadata/global-metadata.dat",
+                                      "il2cppMetadataVersion":  39,
+                                      "hasEmbeddedProvisioningProfile":  false,
+                                      "limitations":  [
+                                                          "Structural checks do not establish signing validity, installation success, rendering, networking, or complete gameplay.",
+                                                          "A free Apple ID still has to sign the IPA during sideloading."
+                                                      ]
+                                  },
+    "embeddedResourceValidation":  {
+                                       "checkedAt":  "2026-11-23T02:11:39.069Z",
+                                       "success":  true,
+                                       "platform":  "iOS",
+                                       "unityVersion":  "6000.3.26f1",
+                                       "contentId":  "2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495",
+                                       "bundles":  [
+                                                       {
+                                                           "name":  "recovery/ui.dat",
+                                                           "file":  "46e92d0190f914411a5af3a552d3eae1a47f2cc24154239a837b6581a71b713d.bundle",
+                                                           "bytes":  713941,
+                                                           "sha256":  "46e92d0190f914411a5af3a552d3eae1a47f2cc24154239a837b6581a71b713d",
+                                                           "crc32":  "73276A3D"
+                                                       }
+                                                   ],
+                                       "build":  {
+                                                     "generatedAt":  "2026-11-23T01:59:37.6107950Z",
+                                                     "platform":  "iOS",
+                                                     "unityVersion":  "6000.3.26f1",
+                                                     "contentId":  "2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495",
+                                                     "bundleSha256":  "46e92d0190f914411a5af3a552d3eae1a47f2cc24154239a837b6581a71b713d",
+                                                     "bundleBytes":  713941,
+                                                     "sourceAssets":  [
+                                                                          "Assets/Recovery/Content/Battle-frames.json",
+                                                                          "Assets/Recovery/Content/Battle.png",
+                                                                          "Assets/Recovery/Content/Cmn-frames.json",
+                                                                          "Assets/Recovery/Content/Cmn.png",
+                                                                          "Assets/Recovery/Content/Deck_Battle-frames.json",
+                                                                          "Assets/Recovery/Content/Deck_Battle.png",
+                                                                          "Assets/Recovery/Content/Party-frames.json",
+                                                                          "Assets/Recovery/Content/Party.png",
+                                                                          "Assets/Recovery/Content/Title.png",
+                                                                          "Assets/Recovery/Content/title-background.png"
+                                                                      ],
+                                                     "combatTablesIncluded":  false,
+                                                     "fontGlyphCheck":  true,
+                                                     "scope":  "Partial recovered UI content; optional supplied combat tables. Completeness and gameplay remain unverified.",
+                                                     "gameplayReady":  false
+                                                 },
+                                       "scope":  "Downloaded Unity-built resource artifact metadata, hash/CRC and UnityFS header inspection. Does not prove iPhone bundle loading, graphics, persistence or gameplay."
+                                   },
+    "linkedGoMarkersVerified":  true,
+    "nativeBuild":  {
+                        "stage":  "synthetic-native-validation",
+                        "gameplayReady":  false,
+                        "go":  "1.25.1",
+                        "target":  "ios/arm64",
+                        "minimumOS":  "15.0",
+                        "dependencyCommit":  "d1a202eb539b99511e8a33f3975fac409ab545bf",
+                        "archiveBytes":  10061160,
+                        "archiveSHA256":  "c695e2dd1c16ade09ed55e5eb662c146adf3935bc56c86b4cd80ec8b91933402",
+                        "deviceTested":  false
+                    },
+    "signedForUsersPhone":  false,
+    "installedOnPhone":  false,
+    "deviceRuntimeTested":  false,
+    "gameplayReady":  false
+}

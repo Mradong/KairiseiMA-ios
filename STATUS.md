@@ -1,5 +1,15 @@
 # 当前状态
 
+## 2026-11-23：02 / RESOURCE-01：0.0.8 云构建成功，等待设备结果
+
+运行 `45097069398` / 源码 `66a63fbf1f52f45d8eeefb16502ac7c133da961f` 已完成 ARM64、Unity、Xcode 和资源构建；28 个云端服务测试及子测试通过。下载的两份未签名 IPA 均为 26,126,717 字节，SHA-256 `0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800`；包内为 0.0.8 / 8、`local.kairisei.recovery`，ATS 检查及实际 plist 哈希对照通过。证据 `evidence/ios-package-search/ipa-client008-delivery.json`、`ios-client008-artifact-verification.json`、`ios-client008-cloud-status.json`。包含资源回滚与新安装/复用计数，不包含随后添加的本地测试夹具。
+
+已请求用户同身份覆盖安装并反馈版本、资源计数、登录和重启前后状态；目前没有 0.0.8 安装、真机运行或持久性结果。隔离故障夹具在当前手机热点下从手机不可达，未修改系统防火墙。顺序 02 仍未完成。
+
+## 2026-11-23：02 设备夹具可达性
+
+用户确认电脑通过目标 iPhone 热点联网；隔离夹具在电脑当前 WLAN 地址 `172.20.10.3:27108` 本机 `/healthz` 返回 PASS，但用户报告同一手机 Safari 无法打开。只读检查显示 WLAN 为专用网络、专用网络防火墙默认阻止入站，夹具使用的项目内 Node 可见允许规则仅匹配公用网络；这是可能原因，尚未验证。用户暂时不方便切换普通 Wi-Fi；夹具已停止，未修改防火墙或网络配置。地址会随热点变化而变化。0.0.8 构建 `45097069398` 仍在进行；本窗口负责下载与核验。
+
 ## 2026-11-23：02 / RESOURCE-01：设备加载失败测试夹具
 
 新增 `scripts/resource-failure-fixture.mjs`：仅监听明确指定的 IPv4 地址，提供隔离用合成登录和一个元数据完整、但故意不是 Unity AssetBundle 的资源，不提供游戏接口或保存账号/状态。本地回环 HTTP 测试及实际 C# 清单解析和缓存校验通过，见 `evidence/ios-package-search/resource-failure-fixture-tests.json`。这是为手机触发加载失败与回滚准备的夹具；尚未验证 Unity 确实拒绝它、手机可访问或实际回滚，不是游戏服务。完成后切回独立游戏服务验证重试。

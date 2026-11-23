@@ -1,5 +1,13 @@
 # iPhone 安装与免费 Apple ID 签名
 
+## 2026-11-23：0.0.8 资源切换验证版
+
+[0.0.8 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.8-unsigned.ipa) 已核验：26,126,717 字节，SHA-256 `0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800`；构建 `45097069398` 对应源码 `66a63fbf1f52f45d8eeefb16502ac7c133da961f`，包内版本 0.0.8 / 8，标识 `local.kairisei.recovery`。Unity、Xcode、资源服务云测试和包结构检查通过；手机安装及本版运行待用户确认。
+
+使用与 0.0.7 相同的 Apple 签名身份和应用标识覆盖安装，**不要先删除旧应用**。打开后确认 0.0.8，记录本地资源的“新安装/缓存复用”数；连接 `http://47.116.51.61:27040` 并登录，记录服务器资源计数和角色状态。关闭应用重开，重复记录本地及服务器计数、角色状态。详细失败测试准备见 [资源切换设备验证.md](资源切换设备验证.md)，夹具当前未运行，手机热点下曾无法访问。任何一步失败或提示必须卸载时停止并反馈。
+
+本版用于资源更新和失败恢复验收，不代表完整游戏已恢复。下方旧版内容为历史记录。
+
 ## 2026-11-23：安装 0.0.7 并逐项验证
 
 [0.0.7 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.7-unsigned.ipa) 已下载核验：26,126,010 字节，SHA-256 `07e7a667ca58f142d02be8b922d6701f9d374f8bf7859931e6a74cf059152aa8`。云构建 [45093283023](https://github.com/Mradong/KairiseiMA-ios/actions/runs/45093283023) 成功，源码 `3f42572b4861539baa1ef4f85733b11d3014f640`；包内版本 0.0.7 / 7、标识 `local.kairisei.recovery`，实际 plist 与云端验证文件哈希一致，ATS 包含 `NSAllowsArbitraryLoads=true`，无覆盖该设置的三个键。尚未验证签名后的 plist 或本版真机连接。
