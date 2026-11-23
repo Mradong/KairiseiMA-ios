@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-23",
+  "sourceCommit": "66a63fbf1f52f45d8eeefb16502ac7c133da961f",
+  "repository": "Mradong/KairiseiMA-ios",
+  "requestedAction": "Push reviewed allowlisted 0.0.8 source to the private repository and dispatch the existing iOS workflow",
+  "outcome": "automatic approval rejected before process start",
+  "reason": "The automatic reviewer considered explicit authorization for this particular external source transfer to be missing.",
+  "sourceUploaded": false,
+  "workflowRequested": false,
+  "ipaProduced": false,
+  "scope": "The reviewed manifest contains 257 allowlisted project source, synthetic tests and evidence files. The rejection does not indicate a source compilation or device failure. Existing 0.0.7 is unchanged."
+}
