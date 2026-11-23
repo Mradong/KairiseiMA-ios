@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T01:12:33.957Z",
+  "generatedAt": "2026-11-23T01:19:57.399Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -19,6 +19,11 @@
       "sha256": "ddf81c105943eb682044e8a2d9a5d637bd6f3dff9b7930e78f03622b2b966357"
     },
     {
+      "path": "AGENTS.md",
+      "bytes": 3148,
+      "sha256": "33d1709bcd8089cf44b17c5d221500339f1be6fe885e2e65800aa27665b7385f"
+    },
+    {
       "path": "EXECUTION_PLAN.md",
       "bytes": 8780,
       "sha256": "22d6fc7c7570aef1e1944d3ebe05d2887362239dcbde0a8c54f3e4cfd1000190"
@@ -30,8 +35,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 74061,
-      "sha256": "1e738faacda1d1a3f2485e1b5db486667df424a00d982f1a42d7c208896223ea"
+      "bytes": 74713,
+      "sha256": "ed618b8a6d5813e46a93d601e6150d513fc716e45addfe30684af57548ce1b79"
     },
     {
       "path": "evidence/acceptance.json",
@@ -147,6 +152,11 @@
       "path": "evidence/ios-package-search/ios-client006-cloud-status.json",
       "bytes": 5598,
       "sha256": "8c65d6a88cc86ac7bef11c2a225db933dedb0b599ba9ea6bc185f32958ba0880"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-client007-cloud-request.json",
+      "bytes": 318,
+      "sha256": "8c5d387972d24e1884bc354a3d5e2c5e7974699eb0fedb3eeacb57829cf926fd"
     },
     {
       "path": "evidence/ios-package-search/ios-combat-table-tests.json",
@@ -1200,8 +1210,8 @@
     },
     {
       "path": "安装到iPhone.md",
-      "bytes": 19545,
-      "sha256": "472d39d57f634a4810d48e6f73af6ad42ef07d75306aa29461b12d766a7bfb32"
+      "bytes": 20201,
+      "sha256": "f1357edbfc2e7dd86d024334d8ef01c91d4dd10da06f0eff9062465e08ac8e6b"
     },
     {
       "path": "战斗主表接入.md",
@@ -1210,8 +1220,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 11612,
-      "sha256": "85421dfce82bea99f73529de92455a1fd15facf2e085ebd11619c7a31acea585"
+      "bytes": 14222,
+      "sha256": "3ea65f7ac93c968841d004e3af4fc4d57d699e2f0654214ac8621c00e01b9a93"
     },
     {
       "path": "服务端协作需求.md",
@@ -1219,7 +1229,7 @@
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
     }
   ],
-  "bytes": 21653608,
+  "bytes": 21660992,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

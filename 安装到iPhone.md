@@ -1,5 +1,11 @@
 # iPhone 安装与免费 Apple ID 签名
 
+## 2026-11-23 最新状态：0.0.7 构建中
+
+0.0.6 已在用户手机运行，但检查连接被 iOS ATS 拒绝（-1022）；无需继续排查 Sideloadly 签名。0.0.7 已修正源码并启动云构建 [45093283023](https://github.com/Mradong/KairiseiMA-ios/actions/runs/45093283023)，对应源码 `3f42572b4861539baa1ef4f85733b11d3014f640`。构建完成、下载并核验前没有可交付的 0.0.7 IPA；暂时保留已安装应用，不要删除。后续覆盖安装后再验证版本、连接、登录及资源更新，当前均未通过。
+
+下方 0.0.6 中“尚无本版签名安装或手机运行证据”为历史记录，由本节更新。
+
 ## 最新构建：0.0.6 公网联调版（待真机验证）
 
 [0.0.6 未签名 IPA](install-kit/KairiseiMA-ios-resource-bootstrap-0.0.6-unsigned.ipa) 已核验：26,126,147 字节，SHA-256 `5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249`。构建 [44704875254](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44704875254) 对应源码 `692ef3939dfeb0278f43d8bffee2871dfbdd0dd6`，ARM64、Unity/Xcode、资源构建和 IPA 本地校验通过；尚无本版签名安装或手机运行证据。
