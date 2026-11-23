@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：06 / 卡组保存中断的回环验证
+
+Windows .NET HttpClient 对本地合成服务分别测试保存已提交、未提交、期间出现冲突后截断响应：每次实际 `CardDeckSet` 仅一次，随后读取 `CardShow2`；实际 `CnProtocol` 与 `CnDeckSaveRecovery` 分别判断为已一致、恢复草稿、冲突。见 `evidence/ios-package-search/deck-save-recovery-transport.json`，测试 `tests/DeckSaveRecoveryTransportTests.cs`、`scripts/test-deck-save-recovery-transport.mjs`。
+
+这是本地合成服务和 Windows HttpClient，不运行 RecoveryBootstrap、UnityWebRequest、真实独立服务或设备，也不验证进程重启；不能证明线上幂等性。顺序 03 的目标版本和安全战斗契约仍待确认。
+
 ## 2026-11-23：06 / 卡组保存结果未知后的重读
 
 卡组保存的传输或响应解析失败时，保留内存中的提交前主卡组和拟提交草稿，提示重新读取；不自动重发。重读后按职业/卡组索引查找：若主卡槽已等于拟提交内容，提示一致；若仍等于提交前内容且草稿涉及的卡牌仍在返回库存，恢复未保存草稿；若卡组身份重复/缺失、主卡槽或库存冲突，要求重新编辑。重读采用新服务器元数据，不声称其他卡组字段的提交结果已确认。重新检查连接、重新登录或进程退出会清除内存草稿。

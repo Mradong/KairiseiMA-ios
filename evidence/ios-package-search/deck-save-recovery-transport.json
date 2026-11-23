@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-23T09:19:00.896Z",
+  "success": true,
+  "events": [
+    "committed:reset",
+    "committed:read",
+    "committed:save",
+    "committed:read",
+    "not_committed:reset",
+    "not_committed:read",
+    "not_committed:save",
+    "not_committed:read",
+    "conflict:reset",
+    "conflict:read",
+    "conflict:save",
+    "conflict:read"
+  ],
+  "stdout": "committed: Saved\r\nnot_committed: RestoreDraft\r\nconflict: Conflict",
+  "stderr": "",
+  "failures": [],
+  "sources": [
+    {
+      "file": "tests/DeckSaveRecoveryTransportTests.cs",
+      "sha256": "1b837027bf867cde44bb8335d199b9f09506eaface4a4ffc6ba2494f118b7b87"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "58d1ac65880ba35a6478d32936461c294a61625fa3ddfcddd2691e7a35c3a651"
+    }
+  ],
+  "scope": "Windows .NET HttpClient with a local synthetic server; each simulated save closes a truncated response after either committing, not committing, or an intervening conflicting change. Actual CnProtocol and CnDeckSaveRecovery parse/read/reconcile; no automatic second save. Does not execute RecoveryBootstrap, UnityWebRequest, actual isolated service, iOS, device or process restart."
+}
