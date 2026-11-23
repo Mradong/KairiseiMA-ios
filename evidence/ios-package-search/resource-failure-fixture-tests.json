@@ -1,0 +1,12 @@
+{
+  "date": "2026-11-23",
+  "success": true,
+  "command": "tools/node-v24.22.3-win-x64/node.exe scripts/test-resource-failure-fixture.mjs",
+  "results": ["Isolated loopback HTTP health, synthetic login, manifest and bundle routes respond", "Actual C# manifest parser and cache accept the correctly hashed deliberately invalid Unity bundle", "Gameplay Connect route is unavailable"],
+  "sourceSha256": {
+    "scripts/resource-failure-fixture.mjs": "03706c7d25d648bcd54b63305883e1a9ca5d6310f81033886ae60eaa816a72e8",
+    "scripts/test-resource-failure-fixture.mjs": "021c2996e650801e875f715a382bc5aed8908e2649a4c8ee67141c371595df67",
+    "tests/ResourceFailureFixtureTests.cs": "cc24390d823e004e4a9d1b27491a3715b5afb2aebdf02020f751dafc029d808f"
+  },
+  "scope": "Local isolated failure-injection fixture only: synthetic login and intentionally invalid Unity bundle, not an actual game service or gameplay. Tests verify HTTP routes and actual manifest/cache integrity handling, not Unity rejection, real-device rollback, firewall reachability or persistence. It stores no credentials, UUID or game state."
+}

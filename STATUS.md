@@ -1,5 +1,9 @@
 # 当前状态
 
+## 2026-11-23：02 / RESOURCE-01：设备加载失败测试夹具
+
+新增 `scripts/resource-failure-fixture.mjs`：仅监听明确指定的 IPv4 地址，提供隔离用合成登录和一个元数据完整、但故意不是 Unity AssetBundle 的资源，不提供游戏接口或保存账号/状态。本地回环 HTTP 测试及实际 C# 清单解析和缓存校验通过，见 `evidence/ios-package-search/resource-failure-fixture-tests.json`。这是为手机触发加载失败与回滚准备的夹具；尚未验证 Unity 确实拒绝它、手机可访问或实际回滚，不是游戏服务。完成后切回独立游戏服务验证重试。
+
 ## 2026-11-23：02 / RESOURCE-01：真实缓存与清单的本地回滚检查
 
 实际 `RecoveryContentLoader`、`ContentCache` 和清单解析代码使用两份先前核验过的 iOS 资源：0.0.6 内置包及独立服务包，验证模拟加载失败时恢复旧版本、旧缓存损坏时拒绝恢复且新缓存保持完整、随后重试成功。三项 Windows .NET 检查通过，证据 `evidence/ios-package-search/content-loader-real-cache-tests.json`。AssetBundle 加载及网络仍为模拟，不能证明 Unity 或 iPhone 行为；此测试在正在运行的 0.0.8 源码提交之后，不改变该构建的代码。

@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+import {createFixtureServer} from './resource-failure-fixture.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const server=createFixtureServer('http://127.0.0.1:19191');
+await new Promise((resolve,reject)=>{server.once('error',reject);server.listen(0,'127.0.0.1',resolve);});
+try {
+ const base=`http://127.0.0.1:${server.address().port}`;
+ const health=await (await fetch(base+'/healthz')).json();assert.equal(health.state,'PASS');
+ const login=await (await fetch(base+'/local/client/login',{method:'POST',body:'{}'})).json();assert.equal(login.res_code,0);
+ const pathname=new URL(login.version_url).pathname;
+ const manifestResponse=await fetch(base+pathname+'client-manifest.json');assert.equal(manifestResponse.status,200);
+ const manifest=await manifestResponse.json();const item=manifest.bundles[0];
+ const response=await fetch(base+pathname+'patch/'+item.name+'.v'+item.crc32);assert.equal(response.status,200);
+ const bytes=Buffer.from(await response.arrayBuffer());assert.equal(bytes.length,item.bytes);
+ assert.equal((await fetch(base+'/Connect')).status,404);
+ const out=fs.mkdtempSync(path.join(root,'test-output','resource-fixture-'));
+ const json=path.join(root,'tools/Newtonsoft.Json/lib/net45/Newtonsoft.Json.dll');fs.copyFileSync(json,path.join(out,'Newtonsoft.Json.dll'));
+ const manifestPath=path.join(out,'manifest.json'),bundlePath=path.join(out,'invalid.bundle');
+ fs.writeFileSync(manifestPath,JSON.stringify(manifest));fs.writeFileSync(bundlePath,bytes);
+ const exe=path.join(out,'test.exe');
+ const compile=spawnSync(path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe'),['/nologo','/reference:'+json,'/out:'+exe,path.join(root,'ios-client/Assets/Recovery/Runtime/RecoveryContent.cs'),path.join(root,'tests/ResourceFailureFixtureTests.cs')],{encoding:'utf8'});
+ if(compile.status!==0) throw new Error(compile.stdout+compile.stderr);
+ const run=spawnSync(exe,[manifestPath,bundlePath,path.join(out,'cache')],{encoding:'utf8'});
+ if(run.status!==0) throw new Error(run.stdout+run.stderr);
+ console.log(run.stdout.trim());console.log('PASS: isolated HTTP fixture routes and deliberately unavailable gameplay route');
+} finally { await new Promise(resolve=>server.close(resolve)); }
