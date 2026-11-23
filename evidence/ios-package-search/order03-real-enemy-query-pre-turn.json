@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-11-23T07:47:21.183Z",
+  "completed": true,
+  "allMatched": true,
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "e62fa374bd0a94b825dc154517a366747d28695babab1c7ca872d2e944007d8b",
+  "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+  "projectionSha256": "259d9e153e699ca1bc14d078943f318cb4019a4f921aff9b3597bc04121d0339",
+  "probeSha256": "a0d768bb34b8436fe56d44e1d0100c0cdcd29dd078b1c40261e194a0d643e0e5",
+  "bridgeSourceSha256": "9730d33566555797806022e8cf336d16ebf101fdd0df4b1f62333b7ec4d19b7d",
+  "cases": [
+    {
+      "enemyId": 30010121,
+      "wantedTribe": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "enemyId": 30010121,
+      "wantedTribe": 1,
+      "originalStatus": 0,
+      "originalResult": -1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": -1
+    },
+    {
+      "enemyId": 30010122,
+      "wantedTribe": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "enemyId": 30010122,
+      "wantedTribe": 1,
+      "originalStatus": 0,
+      "originalResult": -1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": -1
+    }
+  ],
+  "scope": "Windows x64 prepared-state ENEMY_TRIBAL query only. Two enemy base records derive from delivered server static projection, candidate enum values from modern export, player is synthetic. Enemy skills, AI, gauge records and battle are intentionally not registered. No live admission, true gameplay, original-version match, Unity/iOS or device proof.",
+  "expectedOutcomes": true
+}
