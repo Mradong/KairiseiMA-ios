@@ -44,6 +44,7 @@ fi
 application="${applications[0]}"
 plutil -convert json -o "$output_root/application-info.json" "$application/Info.plist"
 node "$script_root/verify-ios-build.mjs" "$application" "$output_root/application-info.json" '17.4.1' > "$output_root/structural-validation.json"
+shasum -a 256 "$application/Info.plist" > "$output_root/application-plist-sha256.txt"
 if [[ -f "$application/embedded.mobileprovision" ]]; then
   echo 'An unexpected provisioning profile appeared in this unsigned build.' >&2
   exit 1

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T01:11:21.208Z",
+  "generatedAt": "2026-11-23T01:12:33.957Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -915,8 +915,8 @@
     },
     {
       "path": "scripts/Build-UnsignedIPA.sh",
-      "bytes": 2897,
-      "sha256": "de1904ad70eebdfc029cf2fdaafa4a8ce0662373a7c278568782391f515920ff"
+      "bytes": 2983,
+      "sha256": "fdbe83508abe950f82ab10d163b40ca93d14d0b99edd008999d37d5417018430"
     },
     {
       "path": "scripts/Get-IosClient004CloudBuild.ps1",
@@ -934,9 +934,19 @@
       "sha256": "0984160c6f8eabae3061bdbe1b69f3a18674bcc662737126fbec7a71f7146433"
     },
     {
+      "path": "scripts/Get-IosClient007CloudBuild.ps1",
+      "bytes": 4611,
+      "sha256": "70e9daffde9f69120f3d5130033329522c518876b1fb1a1a2da4b2356a4eb0bc"
+    },
+    {
       "path": "scripts/Start-IosClient006CloudBuild.ps1",
       "bytes": 3109,
       "sha256": "497e75e019625e67708d9b4b11f616ffb2c4dd34531d25dfb2bbdc077eb89500"
+    },
+    {
+      "path": "scripts/Start-IosClient007CloudBuild.ps1",
+      "bytes": 3109,
+      "sha256": "f0252cd345458fa9b2515e2454cb740909ed1b7d29e5f5fe3484e39b31430a74"
     },
     {
       "path": "scripts/Test-IosClient005Download.ps1",
@@ -962,6 +972,11 @@
       "path": "scripts/Verify-IosClient006IPA.ps1",
       "bytes": 7109,
       "sha256": "1c653541dcc78190c192b51406e9c8986b5464f85de896efebe244911e17f9f3"
+    },
+    {
+      "path": "scripts/Verify-IosClient007IPA.ps1",
+      "bytes": 7537,
+      "sha256": "27aab031ad3ad4ec9ca6a64bcdde5c0ab62f086bbe8ac6de08bee7322bb74d76"
     },
     {
       "path": "scripts/audit-602-home.mjs",
@@ -1204,7 +1219,7 @@
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
     }
   ],
-  "bytes": 21638265,
+  "bytes": 21653608,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
