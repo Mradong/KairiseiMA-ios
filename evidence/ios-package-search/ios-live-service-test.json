@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-20T08:40:20.3572399Z",
+  "checkedAt": "2026-11-23T00:47:24.7509534Z",
   "success": true,
   "stage": "complete",
   "errorType": null,
@@ -101,5 +101,5 @@
       "sha256": "72309977fea29fa73199af92c3f94b6597547d4a0cc36304aaf154d772106564"
     }
   ],
-  "publicResourceDirectory": "test-output/live-ios-service/2026-11-20T08-40-16-386Z"
+  "publicResourceDirectory": "test-output/live-ios-service/2026-11-23T00-47-16-785Z"
 }

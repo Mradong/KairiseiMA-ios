@@ -1,5 +1,19 @@
 # 当前状态
 
+## 2026-11-23：0.0.6 交付复核与公网服务复验
+
+两份 0.0.6 IPA 的 SHA-256 仍为 `5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249`，对应构建 `44704875254`、源码 `692ef39`，未重新构建或替换安装包。独立服务在三天后的复验中健康、登录、重复身份、Connect、资源 HEAD/GET 和缓存重开均通过；仍提供 0.0.4 的部分 UI 内容 `55c68a...`。当前 C# 协议源码哈希与构建源码一致，复验记录 `evidence/ios-package-search/ios-live-service-test.json` 已脱敏。
+
+已补齐云构建、安装包及资源验证记录和 0.0.6 覆盖安装步骤。尚无本版签名安装、iPhone 登录、UI 加载/绘制、重启及覆盖持久性的证据；也没有完整战斗主表或真实游戏闭环。原文件与只读参考保护通过。正式目标保持未完成，下一项设备操作见 `安装到iPhone.md`。
+
+## 2026-11-20：0.0.6 云构建成功与联调 IPA 交付
+
+源码 `692ef3939dfeb0278f43d8bffee2871dfbdd0dd6` 已推送并核对远端，224 个白名单文件的已提交内容与清单哈希一致。构建 [44704875254](https://github.com/Mradong/KairiseiMA-ios/actions/runs/44704875254) 已成功完成 ARM64、Unity、Xcode 和资源包服务验证，28 个云端服务测试及子测试通过。已下载并核验 `install-kit/KairiseiMA-ios-resource-bootstrap-0.0.6-unsigned.ipa` 与 `dist/ready/` 副本：26,126,147 字节，SHA-256 `5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249`，两份一致。
+
+此版包含 UUID 格式修复、服务器更新后重新加载标题 UI，以及此前已提交的主表入口、伙伴和球等增量。内嵌部分 UI 资源 ID 为 `e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7`，当前公网服务仍提供 0.0.4 的 `55c68a...`；客户端应按登录返回的清单更新。没有真实战斗主表，`combatTablesIncluded=false`。证据 `evidence/ios-package-search/ipa-client006-delivery.json`、`ios-client006-cloud-review.json`、`ios-client006-artifact-verification.json`。
+
+尚无本版签名安装及 iPhone 登录/资源更新/画面证据；不能用 0.0.3 或其他旧 IPA 的真机结果认证本版。设备操作见 `公网联调结果.md` 和 `安装到iPhone.md`。完整游戏目标保持未完成，下方“0.0.6 准备”是构建前快照。
+
 ## 2026-11-20：CLIENT-01 / RESOURCE-01 公网登录与资源联调、0.0.6 准备
 
 用户确认独立服务 `http://47.116.51.61:27040` 已启动后，以独立测试身份联调。发现实际客户端使用无连字符 UUID，服务端要求标准带连字符格式，旧请求返回 400；修复 GUID 规范化及本地保存，保留原 GUID。实际 C# 网络复测的健康检查、登录、重复登录、Connect 均为 HTTP 200，同身份与状态保持一致，127 项协议回归通过。未创建角色、领奖、编辑卡组或入场。

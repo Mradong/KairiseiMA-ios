@@ -1,0 +1,41 @@
+{
+  "checkedAt": "2026-11-20T09:13:11.024Z",
+  "success": true,
+  "platform": "iOS",
+  "unityVersion": "6000.3.26f1",
+  "contentId": "e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7",
+  "bundles": [
+    {
+      "name": "recovery/ui.dat",
+      "file": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367.bundle",
+      "bytes": 713180,
+      "sha256": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367",
+      "crc32": "F7FE5DDB"
+    }
+  ],
+  "build": {
+    "generatedAt": "2026-11-20T08:57:55.8560500Z",
+    "platform": "iOS",
+    "unityVersion": "6000.3.26f1",
+    "contentId": "e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7",
+    "bundleSha256": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367",
+    "bundleBytes": 713180,
+    "sourceAssets": [
+      "Assets/Recovery/Content/Battle-frames.json",
+      "Assets/Recovery/Content/Battle.png",
+      "Assets/Recovery/Content/Cmn-frames.json",
+      "Assets/Recovery/Content/Cmn.png",
+      "Assets/Recovery/Content/Deck_Battle-frames.json",
+      "Assets/Recovery/Content/Deck_Battle.png",
+      "Assets/Recovery/Content/Party-frames.json",
+      "Assets/Recovery/Content/Party.png",
+      "Assets/Recovery/Content/Title.png",
+      "Assets/Recovery/Content/title-background.png"
+    ],
+    "combatTablesIncluded": false,
+    "fontGlyphCheck": true,
+    "scope": "Partial recovered UI content; optional supplied combat tables. Completeness and gameplay remain unverified.",
+    "gameplayReady": false
+  },
+  "scope": "Downloaded Unity-built resource artifact metadata, hash/CRC and UnityFS header inspection. Does not prove iPhone bundle loading, graphics, persistence or gameplay."
+}

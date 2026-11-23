@@ -1,0 +1,116 @@
+{
+  "checkedAt": "2026-11-20T09:13:12.7171703Z",
+  "runId": 44704875254,
+  "stage": "ios-resource-cache-bootstrap",
+  "version": "0.0.6",
+  "bundleIdentifier": "local.kairisei.recovery",
+  "file": "dist/ready/KairiseiMA-ios-resource-bootstrap-0.0.6-unsigned.ipa",
+  "bytes": 26126147,
+  "sha256": "5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249",
+  "matchesCloudChecksum": true,
+  "ipaZipEntries": 57,
+  "localStructuralValidation": {
+    "structuralValidation": "passed",
+    "device": {
+      "model": "iPhone 13",
+      "iOS": "17.4.1"
+    },
+    "bundleIdentifier": "local.kairisei.recovery",
+    "minimumOS": "15.0",
+    "executable": "KairiseiConnectionTest",
+    "executableSHA256": "1f7045bf8e113737c1fd62cd1650371c1748f793a40a0d7ec204708827f1e827",
+    "slices": [
+      {
+        "architecture": "arm64",
+        "fileType": 2,
+        "platform": "iOS",
+        "minimumOS": "15.0.0",
+        "sdk": "18.5.0",
+        "offset": 0,
+        "bytes": 66368
+      }
+    ],
+    "frameworks": [
+      {
+        "name": "UnityFramework.framework",
+        "slices": [
+          {
+            "architecture": "arm64",
+            "fileType": 6,
+            "platform": "iOS",
+            "minimumOS": "15.0.0",
+            "sdk": "18.5.0",
+            "offset": 0,
+            "bytes": 37466344
+          }
+        ]
+      }
+    ],
+    "il2cppMetadata": "Data/Managed/Metadata/global-metadata.dat",
+    "il2cppMetadataVersion": 39,
+    "hasEmbeddedProvisioningProfile": false,
+    "limitations": [
+      "Structural checks do not establish signing validity, installation success, rendering, networking, or complete gameplay.",
+      "A free Apple ID still has to sign the IPA during sideloading."
+    ]
+  },
+  "embeddedResourceValidation": {
+    "checkedAt": "2026-11-20T09:13:12.663Z",
+    "success": true,
+    "platform": "iOS",
+    "unityVersion": "6000.3.26f1",
+    "contentId": "e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7",
+    "bundles": [
+      {
+        "name": "recovery/ui.dat",
+        "file": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367.bundle",
+        "bytes": 713180,
+        "sha256": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367",
+        "crc32": "F7FE5DDB"
+      }
+    ],
+    "build": {
+      "generatedAt": "2026-11-20T08:57:55.8560500Z",
+      "platform": "iOS",
+      "unityVersion": "6000.3.26f1",
+      "contentId": "e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7",
+      "bundleSha256": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367",
+      "bundleBytes": 713180,
+      "sourceAssets": [
+        "Assets/Recovery/Content/Battle-frames.json",
+        "Assets/Recovery/Content/Battle.png",
+        "Assets/Recovery/Content/Cmn-frames.json",
+        "Assets/Recovery/Content/Cmn.png",
+        "Assets/Recovery/Content/Deck_Battle-frames.json",
+        "Assets/Recovery/Content/Deck_Battle.png",
+        "Assets/Recovery/Content/Party-frames.json",
+        "Assets/Recovery/Content/Party.png",
+        "Assets/Recovery/Content/Title.png",
+        "Assets/Recovery/Content/title-background.png"
+      ],
+      "combatTablesIncluded": false,
+      "fontGlyphCheck": true,
+      "scope": "Partial recovered UI content; optional supplied combat tables. Completeness and gameplay remain unverified.",
+      "gameplayReady": false
+    },
+    "scope": "Downloaded Unity-built resource artifact metadata, hash/CRC and UnityFS header inspection. Does not prove iPhone bundle loading, graphics, persistence or gameplay."
+  },
+  "linkedGoMarkersVerified": true,
+  "nativeBuild": {
+    "stage": "synthetic-native-validation",
+    "gameplayReady": false,
+    "go": "1.25.1",
+    "target": "ios/arm64",
+    "minimumOS": "15.0",
+    "dependencyCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+    "archiveBytes": 10061160,
+    "archiveSHA256": "065a7c4bd22ddb3069b4faacb4df29c884a8fbd570124b9584c99d34d023e7f3",
+    "deviceTested": false
+  },
+  "signedForUsersPhone": false,
+  "installedOnPhone": false,
+  "deviceRuntimeTested": false,
+  "gameplayReady": false,
+  "sourceCommit": "692ef3939dfeb0278f43d8bffee2871dfbdd0dd6",
+  "buildUrl": "https://github.com/Mradong/KairiseiMA-ios/actions/runs/44704875254"
+}

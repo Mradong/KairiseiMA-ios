@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-20T08:43:16.120Z",
+  "generatedAt": "2026-11-23T00:49:14.331Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,13 +30,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 66971,
-      "sha256": "71e351a50e51951b9e70eeb5ed817c410787d91ab3eddd61ddd105f6d1364630"
+      "bytes": 69326,
+      "sha256": "5bd25eb8cd4cc9f7fd71fb9a35418655fa9bd80880167d8d2b9824d6f5dd55e4"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 22073,
-      "sha256": "ea3abff0bcebcf670cfdc630610afad7a8fdd0ca4da9b5c722f7524f07a3bc15"
+      "bytes": 26652,
+      "sha256": "a862527606fbf95c211aac9a4da2ca18e8236d543e214cb6ff46c15f72f0e44c"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -119,6 +119,26 @@
       "sha256": "1391c94f22bcc67ef2ea5d50457e1f445d8b24590db7350a85f3310bb0ffa5cc"
     },
     {
+      "path": "evidence/ios-package-search/ios-client006-artifact-verification.json",
+      "bytes": 1719,
+      "sha256": "feecbe06fc3addb93f75e7e135e2b8324dc9432ad3b6472bfd52929d29c977ea"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-client006-cloud-request.json",
+      "bytes": 281,
+      "sha256": "cd3a83af9e7ea5939f19041cc8716627e1b0a5f960770e9cbf05faa8abb868d6"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-client006-cloud-review.json",
+      "bytes": 1671,
+      "sha256": "ab6947c5217e7fdd98b82e9c7599144a9039bd09fa15064a2e536c059f579cbc"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-client006-cloud-status.json",
+      "bytes": 5598,
+      "sha256": "8c65d6a88cc86ac7bef11c2a225db933dedb0b599ba9ea6bc185f32958ba0880"
+    },
+    {
       "path": "evidence/ios-package-search/ios-combat-table-tests.json",
       "bytes": 915,
       "sha256": "d576f3faf0be94e6d15aa73a9b9f7e2e4be9ba11129533044988bdb93d616e2f"
@@ -151,7 +171,7 @@
     {
       "path": "evidence/ios-package-search/ios-live-service-test.json",
       "bytes": 3331,
-      "sha256": "dbcea2cb38a1554f1af7826cc5cebe00149c746db125f4055a537dc3b6b0abec"
+      "sha256": "773b7e85bbe91938483f9d9122dae6e467e51b2165f7ae0f2ddb151c83f57432"
     },
     {
       "path": "evidence/ios-package-search/ios-live-service-uuid-format-failure.json",
@@ -227,6 +247,11 @@
       "path": "evidence/ios-package-search/ipa-client005-delivery.json",
       "bytes": 4047,
       "sha256": "ff415197fbc3e493846304217042251ee0d591c1aac5dd521406f6d77e3f2e1a"
+    },
+    {
+      "path": "evidence/ios-package-search/ipa-client006-delivery.json",
+      "bytes": 4243,
+      "sha256": "8d6f85f76cbcc4dcad938c59bc000cc99173262b358c1ea7971b017f581faa75"
     },
     {
       "path": "evidence/native/go-symbols-summary.json",
@@ -531,7 +556,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "7ca42ef5835ed08494816823f79837523435627eef22733e4024b61879edb086"
+      "sha256": "c0353fcb0def69753da6a293465df9b9ff58731fee5f4e011a6dd029bc692aa2"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1100,13 +1125,13 @@
     },
     {
       "path": "公网联调结果.md",
-      "bytes": 4155,
-      "sha256": "55680e799b2a5fe5cad3b95738742c9c3e770d3bc90830c91dd431837247efe3"
+      "bytes": 4719,
+      "sha256": "f7d178d92c9063f84a42fbbc09276f4c7670a7fa969bb84c1778a8b400d16f11"
     },
     {
       "path": "安装到iPhone.md",
-      "bytes": 17008,
-      "sha256": "3f6b79f43392e878b18866f42793ff542568cfee3a486df891f3494421d8bb9b"
+      "bytes": 18200,
+      "sha256": "30c779dc196acddaeb3bc2b77837cfe11877749e6f5fc64b3e1eeb29c4d968ee"
     },
     {
       "path": "战斗主表接入.md",
@@ -1124,7 +1149,7 @@
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
     }
   ],
-  "bytes": 21568785,
+  "bytes": 21590987,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

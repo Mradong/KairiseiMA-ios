@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-20T09:14:57.946Z",
+  "success": true,
+  "version": "0.0.6",
+  "buildNumber": 6,
+  "sourceCommit": "692ef3939dfeb0278f43d8bffee2871dfbdd0dd6",
+  "runId": 44704875254,
+  "url": "https://github.com/Mradong/KairiseiMA-ios/actions/runs/44704875254",
+  "cloudConclusion": "success",
+  "steps": [
+    {
+      "name": "Compile recovered standalone battle bridge for iOS ARM64",
+      "conclusion": "success"
+    },
+    {
+      "name": "Export Unity connection-test Xcode project",
+      "conclusion": "success"
+    },
+    {
+      "name": "Archive device build and package unsigned IPA",
+      "conclusion": "success"
+    },
+    {
+      "name": "Validate iOS server against the compiled resource bundle",
+      "conclusion": "success"
+    }
+  ],
+  "cloudServerTestsAndSubtestsPassed": 28,
+  "cloudServerTestsFailed": 0,
+  "sha256": "5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249",
+  "bytes": 26126147,
+  "copies": [
+    {
+      "file": "install-kit/KairiseiMA-ios-resource-bootstrap-0.0.6-unsigned.ipa",
+      "sha256": "5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249"
+    },
+    {
+      "file": "dist/ready/KairiseiMA-ios-resource-bootstrap-0.0.6-unsigned.ipa",
+      "sha256": "5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249"
+    }
+  ],
+  "scope": "Immutable source 692ef39 successfully built as iOS ARM64/Unity/Xcode and downloaded IPA/resources verified. Windows live-service C# checks are separate evidence. This does not prove UnityWebRequest, server AssetBundle loading/rendering, signing, iPhone installation, persistence or gameplay.",
+  "deviceVerified": false,
+  "gameplayReady": false
+}
