@@ -1,0 +1,17 @@
+{
+  "recordedDate": "2026-11-23",
+  "source": "User report in chat; user confirmed all steps in plan item 01 passed",
+  "reportedVersion": "0.0.7",
+  "targetDeviceContext": "iPhone 13 / iOS 17.4.1 (previously established context; not independently inspected in this report)",
+  "associatedBuild": 45093283023,
+  "associatedSourceCommit": "3f42572b4861539baa1ef4f85733b11d3014f640",
+  "associatedUnsignedIpaSha256": "07e7a667ca58f142d02be8b922d6701f9d374f8bf7859931e6a74cf059152aa8",
+  "associationBasis": "0.0.7 delivery and user-reported 0.0.7 validation; installed signed IPA was not independently inspected",
+  "reportedResults": {
+    "appConnectionCheck": "passed",
+    "guestLogin": "passed",
+    "serverResourceUpdate": "passed",
+    "characterStatusCheck": "passed"
+  },
+  "limitations": "User supplied an aggregate confirmation; exact on-screen messages, visible version, signing identity, overwrite method, device model and OS were not separately restated. No signed IPA, logs or screenshots were inspected for this report. This does not establish cache reuse, restart or overwrite persistence, actual gameplay, battle data or full acceptance."
+}
