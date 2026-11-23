@@ -530,6 +530,10 @@ namespace Kairisei.Recovery
         {
             if (deck == null || deck.Wire == null || cards == null || cards.Length != deck.Cards.Length)
                 throw new ArgumentException("卡组草稿无效。");
+            var selectedCards = new HashSet<long>();
+            foreach (long card in cards)
+                if (card != 0 && !selectedCards.Add(card))
+                    throw new ArgumentException("同一张卡牌不能重复放入主卡组，请调整后再保存。");
             JObject wire = deck.Wire;
             JObject draft = new JObject {
                 { "arthur_type", RequiredInteger(wire, "0") }, { "idx", RequiredInteger(wire, "1") },

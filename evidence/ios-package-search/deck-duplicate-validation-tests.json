@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-11-23T09:08:58.863Z",
+  "success": true,
+  "compiler": "Windows .NET Framework C# compiler",
+  "jsonLibrary": "Newtonsoft.Json 13.0.2 net45",
+  "scope": "CnProtocol.cs compilation, validation cases, and loopback HTTP contract fixture; no Unity/iOS runtime or live game server was tested.",
+  "stdout": "PASS 106 protocol checks",
+  "stderr": "",
+  "calls": [
+    "GET /healthz",
+    "POST /local/client/login",
+    "POST /Connect",
+    "POST /UserCreate",
+    "POST /Connect",
+    "POST /HomeShow",
+    "POST /CardShow2",
+    "POST /TeamBattleSoloShow",
+    "POST /TeamBattleSoloPartnerShow"
+  ],
+  "failures": []
+}

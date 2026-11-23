@@ -33,6 +33,7 @@ namespace Kairisei.Recovery
         private int deckIndex;
         private Vector2 deckScroll;
         private long[] deckDraft;
+        private string deckError;
         private List<long> cardChoices;
         private int editSlot;
         private int cardChoice;
@@ -172,6 +173,7 @@ namespace Kairisei.Recovery
                 GUI.color = previousColor;
                 string deckText = DeckText();
                 GUI.Label(new Rect(240, 115, 800, 50), "服务器卡组", headingStyle);
+                if (!String.IsNullOrEmpty(deckError)) GUI.Label(new Rect(490, 115, 540, 50), deckError, bodyStyle);
                 deckScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 210), deckScroll, new Rect(0, 0, 760, Mathf.Max(210, bodyStyle.CalcHeight(new GUIContent(deckText), 750))));
                 GUI.Label(new Rect(0, 0, 750, bodyStyle.CalcHeight(new GUIContent(deckText), 750)), deckText, bodyStyle);
                 GUI.EndScrollView();
@@ -181,7 +183,7 @@ namespace Kairisei.Recovery
                     if (GUI.Button(new Rect(370, 400, 120, 48), "下一槽", buttonStyle)) editSlot = (editSlot + 1) % deckDraft.Length;
                     if (GUI.Button(new Rect(510, 400, 120, 48), "上一卡", buttonStyle)) cardChoice = (cardChoice + cardChoices.Count - 1) % cardChoices.Count;
                     if (GUI.Button(new Rect(640, 400, 120, 48), "下一卡", buttonStyle)) cardChoice = (cardChoice + 1) % cardChoices.Count;
-                    if (GUI.Button(new Rect(780, 400, 220, 48), "放入选中槽", buttonStyle)) { deckDraft[editSlot] = cardChoices[cardChoice]; deckDirty = true; }
+                    if (GUI.Button(new Rect(780, 400, 220, 48), "放入选中槽", buttonStyle)) { deckDraft[editSlot] = cardChoices[cardChoice]; deckDirty = true; deckError = null; }
                     CnCard selected;
                     string choice = cardChoices[cardChoice] == 0 ? "空" : cardCollection.Cards.TryGetValue(cardChoices[cardChoice], out selected) ? "卡牌 " + selected.CardId + " 等级 " + selected.Level : "不可用";
                     GUI.Label(new Rect(240, 460, 760, 48), "选中槽位 " + (editSlot + 1) + "；候选 " + choice + (deckDirty ? "（未保存）" : ""), bodyStyle);
@@ -437,7 +439,7 @@ namespace Kairisei.Recovery
 
         private void PrepareDeckDraft()
         {
-            deckScroll = Vector2.zero; editSlot = 0; cardChoice = 0; deckDirty = false;
+            deckScroll = Vector2.zero; editSlot = 0; cardChoice = 0; deckDirty = false; deckError = null;
             deckDraft = cardCollection.Decks.Count == 0 ? null : (long[])cardCollection.Decks[deckIndex].Cards.Clone();
             cardChoices = new List<long>(cardCollection.Cards.Keys); cardChoices.Sort(); cardChoices.Insert(0, 0);
         }
@@ -447,7 +449,7 @@ namespace Kairisei.Recovery
             if (busy || login == null || cardCollection == null || deckDraft == null || !deckDirty || verifiedAddress != address) return;
             string request;
             try { request = CnProtocol.CreateDeckSetRequest(login.SessionKey, cardCollection.Decks[deckIndex], deckDraft); }
-            catch (Exception error) { status = error.Message; showingDeck = false; return; }
+            catch (Exception error) { deckError = error.Message; status = error.Message; return; }
             CnLogin requestedLogin = login;
             // After any transport result, force a fresh read before another edit.
             showingDeck = false; cardCollection = null; deckDraft = null;
