@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-23T07:50:02.418Z",
+  "target": "http://47.116.51.61:27040",
+  "success": true,
+  "stage": "complete",
+  "identity": "fresh isolated guest and fresh test character; credentials, names and instance IDs never recorded",
+  "steps": [
+    {
+      "path": "/CardDeckSet",
+      "case": "two owned nonleader slots reordered",
+      "httpStatus": 200,
+      "segments": 3,
+      "requestFields": [
+        "decks"
+      ],
+      "responseBody": "omitted"
+    },
+    {
+      "path": "/CardShow2",
+      "case": "read after save",
+      "httpStatus": 200,
+      "allMainSlotsMatchRequested": true
+    },
+    {
+      "path": "/CardShow2",
+      "case": "after relogin",
+      "httpStatus": 200,
+      "sameIdentity": true,
+      "allMainSlotsPersisted": true
+    },
+    {
+      "path": "/CardDeckSet",
+      "case": "unowned card ID",
+      "httpStatus": 400,
+      "responseBody": "omitted"
+    },
+    {
+      "path": "/CardShow2",
+      "case": "after invalid request",
+      "httpStatus": 200,
+      "allMainSlotsUnchanged": true
+    }
+  ],
+  "scope": "Live isolated-service test creates a persistent guest and character, saves a reorder of that character own starter deck, reads it back, relogs and reads it again, then submits one nonexistent card ID and verifies unchanged slots. No HomeShow, quest, battle, currency or other accounts. Counts and status only; not a device, full game, cross-process restart or general idempotency test."
+}
