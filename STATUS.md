@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 现代导出枚举局部差分
+
+此前部分合成差分的枚举由测试顺序人为编号，不能用作真实客户端定义。本轮从 `recovered-unity/ExportedProject/Assets/Scripts/Assembly-CSharp` 的现代导出中读取所需候选常量，Windows x64 使用原 DLL 和当前重建 DLL 比较合成已注册卡牌的主卡组属性及技能种类查询：144 组状态和输出一致，其中 12 组选择、60 组未选择、72 组双方拒绝。拒绝结果不代表相关行为已支持。脚本与每个枚举来源哈希见 `scripts/test-order03-modern-enum-differential.mjs`、`evidence/ios-package-search/order03-modern-enum-differential.json`。
+
+该测试未证明导出枚举与交付主表属于同一版本，也没有覆盖全部枚举、真实卡牌输入、完整战斗、Unity 或目标设备；候选数值尚不能直接用于生产 `CombatTables.json`。顺序 03 仍需完整枚举和表版本关联，以及服务端实际脱敏接口证据。无产品代码、Unity 构建或设备变更。
+
 ## 2026-11-23：03 / 旧版主表兼容性局部核对
 
 对照 1.4.0 有方法体的 `SkillDataContainer.getRoleParam` 和 `Global.parseInt`，25 处服务端报告的 VALUE 异常值按旧版 `Int32.TryParse` / 默认 0 规则均得到报告的 0：INT 5、MND 14、DARK 2、5000000000 4。Windows .NET 使用旧版实际 `CSV.cs`，对 36 条短 AI 行逐字段比较原文与补空读取，206 个缺失尾字段均一致；测试依赖用隔离桩，见 `tests/Order03LegacyCompatibility.cs` 与 `evidence/ios-package-search/order03-legacy-compatibility.json`。

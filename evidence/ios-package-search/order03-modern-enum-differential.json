@@ -1,0 +1,106 @@
+{
+  "checkedAt": "2026-11-23T07:17:12.981Z",
+  "success": true,
+  "counts": {
+    "checks": 144,
+    "selected": 12,
+    "notSelected": 60,
+    "rejected": 72
+  },
+  "stderr": "",
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "b2bd51120e4bb970648ab93e09cfce0c02b5000cff9ede4481b2a4e6b83edddd",
+  "harnessSha256": "ac29c127bf4055c774b72c3dd4dda34c768d7884aeee2c7b47342b6a7e572537",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "enumCandidates": {
+    "SKILL_EXTEND_EXEC_ORDER": {
+      "sourceSha256": "10a3788f0ee5c223791971cbc38eb04dc6b41e5aa88f3653dc8d4cedb1aea8ae",
+      "values": {
+        "NONE": 0,
+        "SELF_MAIN_DECK_ATTR": 35,
+        "SELF_MAIN_DECK_SKILL_KIND": 36
+      }
+    },
+    "RARITY": {
+      "sourceSha256": "ab3185027c00e1e77cea4b6c98dc55079699dc7a9196002b15ce7b10886825a4",
+      "values": {
+        "NULL": 0,
+        "NORMAL": 1
+      }
+    },
+    "SKILL_TYPE": {
+      "sourceSha256": "0db423a051aaa76c90a106d856a89a88c8d89aefdff1f0c2ec63ab8aaf7d5848",
+      "values": {
+        "NORMAL": 0
+      }
+    },
+    "SKILL_KIND": {
+      "sourceSha256": "1312b7560a577f0f130e472bcdcd426b54f7adcc697c59119c2df3d3439b43bd",
+      "values": {
+        "NULL": 0,
+        "ATTACK": 1,
+        "RECOVERY": 3
+      }
+    },
+    "ATTR": {
+      "sourceSha256": "78f70715eb13a6cc0ef5da50355e7790228534378daab6617467f9e5afa3ba53",
+      "values": {
+        "NULL": 0,
+        "FIRE": 1,
+        "ICE": 2
+      }
+    },
+    "JOB_TYPE": {
+      "sourceSha256": "c97e6a0458848af57c1769060697f39fe5b2be007b921432a27f9e88e5cad0f9",
+      "values": {
+        "NULL": 0
+      }
+    },
+    "ARTHUR_TYPE": {
+      "sourceSha256": "d5a35ea9eea53c4bde17a2dd93b662ec088d651e3cb9cab27b79d65b6b0a0bff",
+      "values": {
+        "NULL": 0
+      }
+    },
+    "SKILL_PHYSICS_TYPE": {
+      "sourceSha256": "eb4641aee455fe4b14ae0aaa8ca72d31a89261de5ee43d2ef4fcc01e1b81b3f6",
+      "values": {
+        "PHYSICS": 0
+      }
+    },
+    "SKILL_TARGET": {
+      "sourceSha256": "b7f2e8c41cb0f62921cc8b092cf55e6e979e7f0269d78d88b3a0e5137c0d901d",
+      "values": {
+        "SELF": 0,
+        "ENEMY_ONE": 3
+      }
+    },
+    "SKILL_EXEC_TIMING": {
+      "sourceSha256": "673ac89f8fd1e4dc7bb7ab9f72c8b734a7c7f527429dc3f427418c1be0e12333",
+      "values": {
+        "NORMAL": 0
+      }
+    },
+    "SKILL_ROLE": {
+      "sourceSha256": "ac1a0174894ce7a38f4ae69304f4bff7fe0719d2276feb0dc06e1401bfc1beef",
+      "values": {
+        "NULL": 0,
+        "ATTACK_AA": 1
+      }
+    },
+    "SKILL_ROLE_TARGET": {
+      "sourceSha256": "aa3d0af0d80f7c1a83551a4c0ddbc6535564467f2c1035a8c634f2386e3c291f",
+      "values": {
+        "SELECT": 0
+      }
+    },
+    "SKILL_ROLE_BATTLE_PARAM": {
+      "sourceSha256": "a4dbec97ed690d2ab88a7d9d1fdbbc829adb7c873a329175b58d1260660c9a9b",
+      "values": {
+        "HP": 0,
+        "ATK": 2
+      }
+    }
+  },
+  "scope": "Windows synthetic prepared-card branch queries using selected enum values transcribed from modern recovered C# enums; original and rebuilt DLL compared. Failed queries are counted separately and agreement on rejection is not evidence of supported behavior. Enum source version compatibility with the supplied real tables, full schema, real cards, Unity/iOS and device are not proven."
+}
