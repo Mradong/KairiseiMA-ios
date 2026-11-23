@@ -1,5 +1,9 @@
 # 当前状态
 
+## 2026-11-23：02 / RESOURCE-01：0.0.8 设备缓存计数反馈
+
+针对覆盖安装 0.0.8、重启前后本地和服务器资源检查的请求，用户反馈“都显示新安装0，缓存复用1”，并单独确认界面显示 0.0.8、关闭应用重开并重新登录后原有测试角色状态正常；记录 `evidence/ios-package-search/device-client008-cache-report.json`。这是用户反馈，签名身份和覆盖方式未单独重述，也没有截图、签名包或日志。故障注入与真实 Unity 回滚还未通过；顺序 02 未完成。
+
 ## 2026-11-23：02 / RESOURCE-01：0.0.8 云构建成功，等待设备结果
 
 运行 `45097069398` / 源码 `66a63fbf1f52f45d8eeefb16502ac7c133da961f` 已完成 ARM64、Unity、Xcode 和资源构建；28 个云端服务测试及子测试通过。下载的两份未签名 IPA 均为 26,126,717 字节，SHA-256 `0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800`；包内为 0.0.8 / 8、`local.kairisei.recovery`，ATS 检查及实际 plist 哈希对照通过。证据 `evidence/ios-package-search/ipa-client008-delivery.json`、`ios-client008-artifact-verification.json`、`ios-client008-cloud-status.json`。包含资源回滚与新安装/复用计数，不包含随后添加的本地测试夹具。

@@ -1,0 +1,12 @@
+{
+  "recordedDate": "2026-11-23",
+  "source": "User report in chat in response to 0.0.8 device testing request",
+  "reportedResult": "All resource count displays reported newly installed 0 and cache reused 1.",
+  "userConfirmedVisibleVersion": "0.0.8",
+  "userConfirmedRestartReloginCharacterStatus": "normal, original isolated test character",
+  "requestedContext": "0.0.8 same-identity overwrite, local and server resource checks before and after closing/reopening and relogin",
+  "associatedBuild": 45097069398,
+  "associatedSourceCommit": "66a63fbf1f52f45d8eeefb16502ac7c133da961f",
+  "associatedUnsignedIpaSha256": "0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800",
+  "limitations": "User separately confirmed visible version 0.0.8 and normal original test character status after closing/reopening and relogin. Exact individual messages and signing/overwrite method were not separately described. No signed IPA, screenshot or logs inspected. Does not prove failure injection, rollback, complete game or all persistence requirements."
+}
