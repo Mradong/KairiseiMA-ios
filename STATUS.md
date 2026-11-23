@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 短 AI 行尾部默认值对照
+
+交付审计的 36 条短 AI 行涉及 HEAL_TOTAL、DAMAGE、MAGIC_DAMAGE、PHYSIC_DAMAGE、USER_DEAD。逐条核对原始 CSV 与此前独立 Go 加载投影，原有字段一致、补齐字段为空；以提取的 1.4.0 `CSV` 数值读取及 `Global.parseLong` 方法比较原行与补空行，缺失的 206 个尾部数值位置均得到 0。证据 `evidence/ios-package-search/order03-short-ai-tail.json`，脚本 `scripts/audit-order03-short-ai-tail.mjs`；脚本依赖此前独立审计生成的 `test-output/order03-independent-audit/projected-definitions.json`。
+
+只验证上述五种旧版触发器缺失尾部的数值读取，不验证 USER_DEAD 首个枚举选择器、完整条件判断、原 DLL 或目标 6.0.2，更不证明 ARM64、设备或关卡可用。原表未修改；下一步继续核实目标版本、枚举及真实服务入场契约，顺序 03 未完成。
+
 ## 2026-11-23：03 / 25 个异常 VALUE 的旧版解析对照
 
 从可读的 1.4.0 客户端 `SkillDataContainer.getRoleParam` 提取 VALUE 分支及 `Global.parseInt` 原方法编译 Windows 测试，与重建桥实际依赖的 `battlecontent.BindSkillRole` 比较：交付审计的 25 个异常原值均得到 0；另加 `ALL`、Int32 两端、两侧溢出及零共 6 个对照，31 项结果一致。证据 `evidence/ios-package-search/order03-value-parser-differential.json`，可复现脚本 `scripts/audit-order03-value-parser.mjs`，记录源码及审计哈希。

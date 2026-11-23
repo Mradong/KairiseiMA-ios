@@ -1,0 +1,234 @@
+{
+  "checkedAt": "2026-11-23T08:54:13.627Z",
+  "sourceHashes": {
+    "legacyCSV": "8b5edf2491e21a1b1492dcd7aa3e646b445b320ad53f5ecb35c0db54737db83f",
+    "legacyGlobal": "6d838bc9e438648c4e9d1b6bcd72818ab01bf0e0d9aa52010f28aa8c0649f913",
+    "legacyAIContainer": "730d28ae0511158a03282bb0765e17b617bb67f79a4b2c822517f4fb8b82e91e",
+    "rawAI": "307707a019a68a9beaff64f6ee575ff2f3d1331b5e0d52e29caf6b44ab2f4afe",
+    "deliveryAudit": "ba05000cd0108ae65500de2c33af862322ca6d98168bc4f711baa378f32c614d",
+    "loadedProjection": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
+    "script": "d32f25346ad626bf5492bf1fa3f65b5fe8f1df6cf5f58ec5ae71e7645fed2720"
+  },
+  "rows": 36,
+  "missingNumericFieldsChecked": 206,
+  "allMissingTailValuesZero": true,
+  "cases": [
+    {
+      "id": 40222001,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222003,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222009,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222011,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222013,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222014,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222101,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222103,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222109,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222111,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222113,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222114,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222201,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222203,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222209,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222211,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222213,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40222214,
+      "trigger": "HEAL_TOTAL",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252007,
+      "trigger": "DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252009,
+      "trigger": "DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252015,
+      "trigger": "MAGIC_DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252020,
+      "trigger": "PHYSIC_DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252107,
+      "trigger": "DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252109,
+      "trigger": "DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252116,
+      "trigger": "MAGIC_DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 40252121,
+      "trigger": "PHYSIC_DAMAGE",
+      "rawColumns": 32,
+      "missingNumericTail": 6
+    },
+    {
+      "id": 232901012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 232902012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 232903012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 232904012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 232905012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 232906012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 270015012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 270016012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 270017012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    },
+    {
+      "id": 270018012,
+      "trigger": "USER_DEAD",
+      "rawColumns": 33,
+      "missingNumericTail": 5
+    }
+  ],
+  "scope": "Windows x64: raw 36 unquoted delivered rows compared with prior independently generated Go-loader projection. Extracted 1.4.0 CSV numeric pop/default and Global.parseLong methods check only missing tail fields, which are numeric for these five legacy trigger branches. The first USER_DEAD selector is not checked as numeric or semantically compared. Does not compare full AI behavior, native DLL, target 6.0.2, publication, ARM64 or device; projection provenance is in order03-server-delivery-validation.json."
+}
