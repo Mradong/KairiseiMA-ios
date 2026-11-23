@@ -90,6 +90,18 @@ public static class CnProtocolTests
         Reject(delegate { CnProtocol.CreateDeckSetRequest(Session, editable, new long[] { 9223372036, 9223372036 }); }, "duplicate main card instance");
         Check(JObject.Parse(CnProtocol.CreateDeckSetRequest(Session, editable, new long[] { 0, 0 }).Substring(Session.Length))["decks"][0]["card_uniqid"].Value<JArray>().Count == 2, "empty slots may repeat");
         Check((long)JObject.Parse(CnProtocol.CreateDeckSetRequest(Session, editable, new long[] { 0, 9223372036 }).Substring(Session.Length))["decks"][0]["card_uniqid"][1] == 9223372036, "unique card draft is retained");
+        long[] attempted = { 0, 9223372036 };
+        var recovery = new CnDeckSaveRecovery(editable, attempted); attempted[1] = 0;
+        int recoveredIndex; long[] recoveredDraft;
+        Check(recovery.Reconcile(collection, out recoveredIndex, out recoveredDraft) == CnDeckRecoveryResult.RestoreDraft && recoveredIndex == 0 && recoveredDraft[1] == 9223372036, "unchanged server deck restores independent draft");
+        editable.Cards = new long[] { 0, 9223372036 };
+        Check(recovery.Reconcile(collection, out recoveredIndex, out recoveredDraft) == CnDeckRecoveryResult.Saved && recoveredDraft == null, "server already matches submitted deck");
+        editable.Cards = new long[] { 123, 0 };
+        Check(recovery.Reconcile(collection, out recoveredIndex, out recoveredDraft) == CnDeckRecoveryResult.Conflict && recoveredDraft == null, "changed server deck does not restore stale draft");
+        editable.Cards = new long[] { 9223372036, 0 }; collection.Cards.Clear();
+        Check(recovery.Reconcile(collection, out recoveredIndex, out recoveredDraft) == CnDeckRecoveryResult.Conflict && recoveredDraft == null, "missing card does not restore stale draft");
+        collection.Decks.Add(editable);
+        Check(recovery.Reconcile(collection, out recoveredIndex, out recoveredDraft) == CnDeckRecoveryResult.Conflict && recoveredDraft == null, "duplicate deck identity does not restore draft");
         Reject(delegate { CnProtocol.ParseCardShow("{\"res_code\":0}\n{\"1\":[],\"3\":[{\"0\":1,\"1\":0,\"4\":[\"1\"],\"5\":[],\"6\":[],\"7\":[],\"8\":\"a\"}]}"); }, "non-integer deck slot");
         Reject(delegate { CnProtocol.ParseCardShow(cardsResponse.Replace("\"3\":[", "\"3\":null,\"unused\":[")); }, "missing deck array");
         string questResponse = "{\"res_code\":0}\n{\"9\":[{\"0\":23,\"4\":\"Boss\",\"10\":[{\"0\":99,\"4\":\"Hard\",\"5\":5,\"10\":1,\"26\":0}]}],\"10\":[],\"11\":[],\"12\":[]}";

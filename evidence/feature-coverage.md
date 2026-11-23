@@ -1,5 +1,7 @@
 # 原工程功能和依赖覆盖（持续核实）
 
+2026-11-23 卡组失败恢复：源码在保存结果未知后要求重新读取，以返回的主卡槽和库存判断已一致、恢复内存草稿或冲突；不自动重复写入。Windows .NET 协议/回环 111 项通过，见 `evidence/ios-package-search/deck-save-recovery-tests.json`。UnityWebRequest 实际故障、并发、设备及进程重启未验证；重新登录或退出会清除内存草稿。
+
 2026-11-23 卡组增量：当前源码在保存前拒绝同一非零实例重复占据主卡组槽位，保留错误草稿；Windows .NET 协议及回环 106 项通过，见 `evidence/ios-package-search/deck-duplicate-validation-tests.json`。旧版 `DeckChecker` 的卡牌定义/家族检查和本地服务校验是参考；不同实例同家族、支援、活动规则、Unity 及设备尚未验证，不能视为完整卡组校验。
 
 ## 2026-11-23 顺序 04 增量：隔离卡组和关卡

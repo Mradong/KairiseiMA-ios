@@ -188,6 +188,51 @@ namespace Kairisei.Recovery
         public List<CnDeck> Decks { get; internal set; }
     }
 
+    public enum CnDeckRecoveryResult { Saved, RestoreDraft, Conflict }
+
+    // Only reconciles after an authoritative re-read; never sends a write.
+    public sealed class CnDeckSaveRecovery
+    {
+        private readonly long arthurType, index;
+        private readonly long[] previous, proposed;
+
+        public CnDeckSaveRecovery(CnDeck deck, long[] draft)
+        {
+            if (deck == null || deck.Cards == null || draft == null || deck.Cards.Length != draft.Length)
+                throw new ArgumentException("卡组草稿无效。");
+            arthurType = deck.ArthurType; index = deck.Index;
+            previous = (long[])deck.Cards.Clone(); proposed = (long[])draft.Clone();
+        }
+
+        private static bool Same(long[] a, long[] b)
+        {
+            if (a == null || b == null || a.Length != b.Length) return false;
+            for (int i = 0; i < a.Length; i++) if (a[i] != b[i]) return false;
+            return true;
+        }
+
+        public CnDeckRecoveryResult Reconcile(CnCardCollection collection, out int deckIndex, out long[] draft)
+        {
+            deckIndex = -1; draft = null;
+            if (collection == null || collection.Decks == null || collection.Cards == null) return CnDeckRecoveryResult.Conflict;
+            for (int i = 0; i < collection.Decks.Count; i++)
+            {
+                CnDeck deck = collection.Decks[i];
+                if (deck == null || deck.ArthurType != arthurType || deck.Index != index) continue;
+                if (deckIndex != -1) { deckIndex = -1; return CnDeckRecoveryResult.Conflict; }
+                deckIndex = i;
+            }
+            if (deckIndex < 0) return CnDeckRecoveryResult.Conflict;
+            long[] current = collection.Decks[deckIndex].Cards;
+            if (Same(current, proposed)) return CnDeckRecoveryResult.Saved;
+            if (!Same(current, previous)) return CnDeckRecoveryResult.Conflict;
+            foreach (long card in proposed)
+                if (card != 0 && !collection.Cards.ContainsKey(card)) return CnDeckRecoveryResult.Conflict;
+            draft = (long[])proposed.Clone();
+            return CnDeckRecoveryResult.RestoreDraft;
+        }
+    }
+
     public static class CnProtocol
     {
         public const string ClientVersion = "2.0.4";

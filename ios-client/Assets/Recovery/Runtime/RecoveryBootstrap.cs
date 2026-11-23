@@ -34,6 +34,7 @@ namespace Kairisei.Recovery
         private Vector2 deckScroll;
         private long[] deckDraft;
         private string deckError;
+        private CnDeckSaveRecovery pendingDeckRecovery;
         private List<long> cardChoices;
         private int editSlot;
         private int cardChoice;
@@ -264,6 +265,7 @@ namespace Kairisei.Recovery
             connectState = null;
             homeState = null;
             cardCollection = null;
+            pendingDeckRecovery = null;
             showingDeck = false;
             quests = null; showingQuests = false;
             bonusKey = null;
@@ -290,6 +292,7 @@ namespace Kairisei.Recovery
             connectState = null;
             homeState = null;
             cardCollection = null;
+            pendingDeckRecovery = null;
             showingDeck = false;
             quests = null; showingQuests = false;
             bonusKey = null;
@@ -369,6 +372,24 @@ namespace Kairisei.Recovery
                 cardCollection = CnProtocol.ParseCardShow(response);
                 deckIndex = 0; PrepareDeckDraft(); showingDeck = true;
                 status = "已读取服务器卡组；卡牌名称与插画仍在恢复。";
+                if (pendingDeckRecovery != null)
+                {
+                    int recoveredIndex; long[] recoveredDraft;
+                    CnDeckRecoveryResult result = pendingDeckRecovery.Reconcile(cardCollection, out recoveredIndex, out recoveredDraft);
+                    pendingDeckRecovery = null;
+                    if (result == CnDeckRecoveryResult.Saved)
+                    {
+                        deckIndex = recoveredIndex; PrepareDeckDraft();
+                        deckError = "已重新读取，主卡组与上次提交一致。";
+                    }
+                    else if (result == CnDeckRecoveryResult.RestoreDraft)
+                    {
+                        deckIndex = recoveredIndex; PrepareDeckDraft(); deckDraft = recoveredDraft; deckDirty = true;
+                        deckError = "服务器主卡组未变化，已恢复未保存草稿。";
+                    }
+                    else deckError = "服务器卡组或库存已变化，请重新编辑。";
+                    status = deckError;
+                }
             }));
         }
 
@@ -451,11 +472,16 @@ namespace Kairisei.Recovery
             try { request = CnProtocol.CreateDeckSetRequest(login.SessionKey, cardCollection.Decks[deckIndex], deckDraft); }
             catch (Exception error) { deckError = error.Message; status = error.Message; return; }
             CnLogin requestedLogin = login;
+            CnDeckSaveRecovery recovery = new CnDeckSaveRecovery(cardCollection.Decks[deckIndex], deckDraft);
+            pendingDeckRecovery = null;
             // After any transport result, force a fresh read before another edit.
             showingDeck = false; cardCollection = null; deckDraft = null;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardDeckSet"), request, delegate(string response) {
                 CnProtocol.ParseEnvelope(response);
                 status = "服务器已确认保存。请重新读取卡组以查看当前状态。";
+            }, delegate(Exception error) {
+                pendingDeckRecovery = recovery;
+                status = "保存结果未确认，请重新读取卡组后检查。";
             }));
         }
 
@@ -505,7 +531,7 @@ namespace Kairisei.Recovery
             }));
         }
 
-        private IEnumerator Send(string method, Uri uri, string body, Action<string> receive)
+        private IEnumerator Send(string method, Uri uri, string body, Action<string> receive, Action<Exception> failed = null)
         {
             if (busy) yield break;
             busy = true;
@@ -534,7 +560,7 @@ namespace Kairisei.Recovery
                     if (request.downloadHandler.data.Length > 4 * 1024 * 1024) throw new FormatException("验证响应超过大小限制。");
                     receive(request.downloadHandler.text);
                 }
-                catch (Exception error) { status = error.Message; }
+                catch (Exception error) { status = error.Message; if (failed != null) failed(error); }
                 finally { pending = null; busy = false; }
             }
         }
