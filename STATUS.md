@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：设备联调停在 Sideloadly 签名组件
+
+用户截图提示 Fake2 Anisette 崩溃后被禁用、iTunes Anisette 与 Remote 不可用，当前旁加载未完成；没有 iPhone 游戏运行失败证据，截图也不标明 IPA 版本。只读检查确认 iTunes/iCloud 已安装及两个 Apple 服务正在运行，但不能据此证明 Anisette 可加载。未修改 Windows 配置或账号缓存。
+
+已在 `安装到iPhone.md` 补充先在 Settings 重新启用 Fake2、重开工具重试一次的步骤；若再次崩溃，需要设置页和脱敏错误上下文定位，尚无恢复成功证据。同时将通用安装步骤中遗留的 0.0.3 文件名改为当前已核验的 0.0.6。证据 `evidence/ios-package-search/sideloadly-anisette-error.json`，完整目标仍未完成。
+
 ## 2026-11-23：0.0.6 交付复核与公网服务复验
 
 两份 0.0.6 IPA 的 SHA-256 仍为 `5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249`，对应构建 `44704875254`、源码 `692ef39`，未重新构建或替换安装包。独立服务在三天后的复验中健康、登录、重复身份、Connect、资源 HEAD/GET 和缓存重开均通过；仍提供 0.0.4 的部分 UI 内容 `55c68a...`。当前 C# 协议源码哈希与构建源码一致，复验记录 `evidence/ios-package-search/ios-live-service-test.json` 已脱敏。

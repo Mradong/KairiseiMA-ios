@@ -1,0 +1,35 @@
+{
+  "recordedAt": "2026-11-23T00:53:32.926Z",
+  "clientDate": "2026-11-23",
+  "acceptanceId": "DELIVERY-01",
+  "source": "User-supplied Windows Sideloadly Fatal Error screenshot",
+  "intendedIpaVersion": "0.0.6",
+  "screenshotIdentifiesIpaVersion": false,
+  "observed": {
+    "sideloadingFailed": true,
+    "fake2DisabledAfterCrash": true,
+    "itunesAnisetteAvailable": false,
+    "remoteAnisetteAvailable": false
+  },
+  "readOnlyChecks": {
+    "iTunesVersion": "12.13.12.3",
+    "iCloudVersion": "7.21.0.23",
+    "appleMobileDeviceSupportVersion": "20.0.1.47",
+    "appleMobileDeviceServiceRunning": true,
+    "bonjourServiceRunning": true,
+    "sideloadlyInstalled": true,
+    "sideloadlyVersion": null,
+    "applicationErrorEventQuery": "Last seven days, at most 100 event-ID-1000 records; no matching app names sideloadly/anisette. This does not rule out provider crashes."
+  },
+  "sources": [
+    "https://sideloadly.io/changelog",
+    "https://sideloadly.io/faq"
+  ],
+  "next": "User opens Sideloadly Settings and re-enables/selects Fake2 Anisette as directed by the screenshot; reopen the tool and retry once. If it crashes again, inspect settings and sanitized failure context.",
+  "systemSettingsChanged": false,
+  "credentialsReadOrStored": false,
+  "signingAttemptedByAgent": false,
+  "installationRecoveryVerified": false,
+  "deviceRuntimeVerified": false,
+  "gameplayReady": false
+}

@@ -122,13 +122,24 @@ Apple 官方确认已登记的其他邮箱也可用于登录，并给出了上�
 
 ## 六、签名并安装 IPA
 
-1. 将本目录最新的 **KairiseiMA-ios-resource-bootstrap-0.0.3-unsigned.ipa** 拖进 Sideloadly 窗口。
+1. 将本目录最新的 **KairiseiMA-ios-resource-bootstrap-0.0.6-unsigned.ipa** 拖进 Sideloadly 窗口。
 2. 在 **Apple ID** 栏填写你准备好的 Apple 登录账号。
 3. 点击 **Start**。在 Sideloadly 自己的提示框里填写 Apple 账号密码。
 4. 如果 Apple 要求双重认证，在自己的手机或短信中接收验证码，再填进 Sideloadly 的提示框。
 5. 保持 USB 连接，等待软件显示安装完成。
 
 这里使用正常的 Apple 账号登录密码。按 Sideloadly 当前 FAQ，应用专用密码只部分适用于付费开发者账号，不是本次免费签名的默认做法。密码和验证码只在本机工具或 Apple 官方页面输入，不发到聊天。[Sideloadly FAQ](https://sideloadly.io/faq)。
+
+### 签名组件不可用：`Fake2 Anisette is disabled after a crash`
+
+2026-11-23 用户截图同时报告 Fake2 在崩溃后被禁用、iTunes Anisette 不可用和 Remote 不可用；这只证明旁加载未完成，没有游戏启动失败证据。截图没有 IPA 版本号，不能将它作为某一源码的真机运行结果。
+
+1. 关闭报错框，打开 Sideloadly 的 **Settings（设置）**。
+2. 在 Anisette 相关选项中找到 **Fake2 Anisette**，按界面提供的开关或选择项重新启用并选用。具体控件名称以当前设置窗口为准；这是根据弹窗“see Settings to re-enable”采取的恢复步骤，尚未验证能解决崩溃原因。
+3. 退出并重新打开 Sideloadly，使用同一签名身份与应用标识重试 0.0.6 一次，保留手机现有应用。
+4. 如果 Fake2 再次崩溃并被禁用，记录设置页和报错前几行日志后继续排查；遮住 Apple ID 等个人信息。不修改账号缓存或凭据。
+
+只读检查确认本机 iTunes 12.13.12.3、iCloud 7.21.0.23 已安装，Apple Mobile Device Service 与 Bonjour 正在运行；这些不能证明 Anisette 可以正常加载。未修改 Sideloadly 设置、安装 Apple 组件或启动签名操作。官方说明 Windows 支持 Fake Anisette，并将相关设置放在 Settings；Remote Anisette 属于其 Patreon 功能。[Sideloadly 官方更新说明](https://sideloadly.io/changelog)。
 
 ### 登录失败：`-22411 / This action cannot be completed at this time`
 
@@ -149,7 +160,7 @@ Apple 官方确认已登记的其他邮箱也可用于登录，并给出了上�
 1. 如果提示需要开发者模式，打开 **设置 → 隐私与安全性 → 开发者模式**，打开开关，按提示重启手机。
 2. 重启解锁后，如出现确认弹窗，再点“启用”，按提示输入锁屏密码。
 3. 如果提示“不受信任的开发者”，打开 **设置 → 通用 → VPN 与设备管理**，找到刚才用于签名的 Apple 账号，按提示信任该开发者应用。
-4. 打开 **Kairisei Connection Test**，确认进入标题界面，再点击 **离线战斗内核验证**，核对是否显示通过 30 步合成战斗。
+4. 打开 **Kairisei Connection Test**，按本文顶部的 0.0.6 步骤验证本地资源、服务器连接、游客登录和实际画面，并记录本版结果。
 
 开发者模式选项可能在开始配对或部署开发应用后才出现；看不到时，先完成 USB 信任和 Sideloadly 的安装尝试，再回设置查看。[Apple 开发者模式说明](https://developer.apple.com/documentation/xcode/enabling-developer-mode-on-a-device)。
 
@@ -161,6 +172,6 @@ Apple 官方确认已登记的其他邮箱也可用于登录，并给出了上�
 
 七天到期影响的是签名与启动资格，本身不会自动清空应用数据。保持同一个 Apple 账号和应用标识进行覆盖安装，通常可以保留应用内下载的资源和本地数据，不必因续签全部重下。后续收到新版 IPA，也应沿用同一账号和标识覆盖升级。若工具提示必须先卸载，先停止操作并检查原因。
 
-当前验证版没有完整游戏资源下载功能；完整客户端将把需长期保留的下载资源写到应用持久目录，资源清单升级时校验并复用未变化的文件。此功能仍待实现和真机续签验证。更换签名账号／应用标识、删除 App、主动清理数据或游戏资源版本变更，仍可能导致需要重新下载。重要账号恢复资料和存档应另做备份。
+当前已实现部分 UI 资源的下载、校验和持久缓存；完整资源、手机重启、覆盖安装与续签后的复用仍待验收。更换签名账号／应用标识、删除 App、主动清理数据或游戏资源版本变更，仍可能导致需要重新下载。重要账号恢复资料和存档应另做备份。
 
 安装后正常使用不必一直连接电脑。七天后的续签仍需要电脑；Sideloadly 的自动刷新也需要电脑运行，并通过 USB 或同一局域网连接手机。后续再配置 Wi-Fi 自动刷新，首次使用先按 USB 流程完成。[Sideloadly FAQ](https://sideloadly.io/faq)。
