@@ -126,7 +126,7 @@ namespace Kairisei.Recovery
             GUI.color = new Color(0, 0, 0, 0.9f);
             GUI.DrawTexture(new Rect(60, 65, 1160, 590), Texture2D.whiteTexture);
             GUI.color = previousColor;
-            GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证  v" + Application.version, headingStyle);
+            GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
             GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
             GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
             address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
@@ -249,6 +249,9 @@ namespace Kairisei.Recovery
             }
             GUI.enabled = true;
             if (!showBonus && !showDeck && !showQuest && homeState == null) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
+            // Draw after modal panels so the build version stays visible while
+            // navigating and in screenshots, without duplicating build metadata.
+            GUI.Label(new Rect(1030, 660, 180, 36), "v" + Application.version, bodyStyle);
             GUI.matrix = previousMatrix;
             GUI.color = previousColor;
         }

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T01:03:59.639Z",
+  "generatedAt": "2026-11-23T01:05:30.019Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,13 +30,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 73087,
-      "sha256": "d98ad33d8bf7d3f4492095d879970981a7d8e265f0a02412db8e176a9b53da5a"
+      "bytes": 73588,
+      "sha256": "206fec6a387bd3d587b6ab8091bab42a5e37b39cf9ed0ec8e4f50ca11d0a069c"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 29434,
-      "sha256": "fb79360a15ee152487b2673f0ee688d6a1cdcc3445e4b69034f6c9a0f3d837d5"
+      "bytes": 29834,
+      "sha256": "b1587bd06310b90c99dd23a3c90e2c066f4397b2a945d8430da95bca52f2ba00"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -586,7 +586,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 1466,
-      "sha256": "cd30622c62dbc3f88e299b0d603c716d81c600a84c89a078d246aa8a30147ec3"
+      "sha256": "60e52a85d5e9f68e6e833385968528c52eff5c4a03558983308ebb3a2e8e2e82"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -730,8 +730,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 32553,
-      "sha256": "ecaa1b87c0ab8421c060f57e2a7b9a218b4811014f4b4d090769551e7ac972bd"
+      "bytes": 32781,
+      "sha256": "fd520064095a9890e9c97c50545d654e370fe8b5d8c51e12aed1c6a09d64b66f"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
@@ -1189,7 +1189,7 @@
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
     }
   ],
-  "bytes": 21626441,
+  "bytes": 21627570,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
