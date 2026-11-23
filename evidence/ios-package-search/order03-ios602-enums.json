@@ -1,0 +1,5813 @@
+{
+  "checkedAt": "2026-11-23T11:16:46.268Z",
+  "success": true,
+  "source": {
+    "ipaSha256": "d86d7609d6235ae836d4721591358de496f7f679a6ef192aea7ab054949c930b",
+    "version": "6.0.2",
+    "build": "60200",
+    "bundleIdentifier": "com.netease.glxbwysw",
+    "metadataPath": "inputs/ios/cn602/Data/Managed/Metadata/global-metadata.dat",
+    "metadataSha256": "42a6bfa9c707df4548bdac23ac3eb6ed36ba73dc616ad646e33c3c4c00feb965",
+    "metadataBytes": 8674788,
+    "plistSha256": "1a44be7a027223cbae679de5cdac7a79df4ee7e5946dfbd870f094dfbe369fcb"
+  },
+  "layoutReference": {
+    "repository": "https://github.com/Perfare/Il2CppDumper",
+    "commit": "4741d46ba9cd6159c5d853eb9d6fc48b4bfa2b1a",
+    "file": "Il2CppDumper/Il2Cpp/MetadataClass.cs",
+    "version": 21
+  },
+  "parserSha256": "b7e4f579a06a8ed78e83192dbf42b8195c5ed602de9316f5c73f8f341cd725d8",
+  "csharpReaderSha256": "983e83304c72a83a9c2012d15a592fc240b79d60d3f90f0ab297659d46089b1d",
+  "scriptSha256": "6eebb6f2547e75d451b4b64070f69c59f108f2c0995d255e7b45566fe2538733",
+  "counts": {
+    "types": 8154,
+    "fields": 40396,
+    "fieldDefaults": 10452,
+    "images": 16
+  },
+  "enumFamilies": 23,
+  "enumConstants": 670,
+  "independentCsharpAgreement": true,
+  "corruptionChecks": [
+    {
+      "case": "wrong magic",
+      "rejected": true,
+      "reason": "IL2CPP v21: unsupported magic/version"
+    },
+    {
+      "case": "unsupported version",
+      "rejected": true,
+      "reason": "IL2CPP v21: unsupported magic/version"
+    },
+    {
+      "case": "out-of-bounds section",
+      "rejected": true,
+      "reason": "IL2CPP v21: section bounds: strings"
+    },
+    {
+      "case": "overlapping section",
+      "rejected": true,
+      "reason": "IL2CPP v21: overlapping sections"
+    },
+    {
+      "case": "nonintegral type record",
+      "rejected": true,
+      "reason": "IL2CPP v21: record size: typeDefinitions"
+    },
+    {
+      "case": "bad field ownership",
+      "rejected": true,
+      "reason": "IL2CPP v21: type field range"
+    },
+    {
+      "case": "bad string index",
+      "rejected": true,
+      "reason": "IL2CPP v21: string index"
+    },
+    {
+      "case": "non-enum type",
+      "rejected": true,
+      "reason": "IL2CPP v21: not an Int32 enum: SKILL_EXTEND_EXEC_ORDER"
+    },
+    {
+      "case": "wrong constant primitive",
+      "rejected": true,
+      "reason": "IL2CPP v21: invalid Int32 constant: SKILL_EXTEND_EXEC_ORDER.NONE"
+    },
+    {
+      "case": "constant outside default data",
+      "rejected": true,
+      "reason": "IL2CPP v21: invalid Int32 constant: SKILL_EXTEND_EXEC_ORDER.NONE"
+    },
+    {
+      "case": "missing selected family",
+      "rejected": true,
+      "reason": "IL2CPP v21: missing/ambiguous family: NOT_A_REAL_ENUM"
+    }
+  ],
+  "schemaSha256": "16fe502a36c4d013aa2fd22bf0a2c7ec5bb8a0620a114d8b243ed35b305fbefc",
+  "families": [
+    {
+      "name": "SKILL_EXTEND_EXEC_ORDER",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4160,
+      "typeOffset": 6658228,
+      "values": [
+        {
+          "name": "NONE",
+          "value": 0,
+          "fieldIndex": 18072,
+          "fieldOffset": 5376672,
+          "defaultRecordOffset": 4283712,
+          "dataOffset": 4401252
+        },
+        {
+          "name": "DECK_COMBO_COUNT",
+          "value": 1,
+          "fieldIndex": 18073,
+          "fieldOffset": 5376688,
+          "defaultRecordOffset": 4283724,
+          "dataOffset": 4401256
+        },
+        {
+          "name": "TARGET_ATTR",
+          "value": 2,
+          "fieldIndex": 18074,
+          "fieldOffset": 5376704,
+          "defaultRecordOffset": 4283736,
+          "dataOffset": 4401260
+        },
+        {
+          "name": "TARGET_DEBUFF",
+          "value": 3,
+          "fieldIndex": 18075,
+          "fieldOffset": 5376720,
+          "defaultRecordOffset": 4283748,
+          "dataOffset": 4401264
+        },
+        {
+          "name": "RANDOM",
+          "value": 4,
+          "fieldIndex": 18076,
+          "fieldOffset": 5376736,
+          "defaultRecordOffset": 4283760,
+          "dataOffset": 4401268
+        },
+        {
+          "name": "SELF_OTHER_PLAY_ATTR",
+          "value": 5,
+          "fieldIndex": 18077,
+          "fieldOffset": 5376752,
+          "defaultRecordOffset": 4283772,
+          "dataOffset": 4401272
+        },
+        {
+          "name": "SELF_OTHER_PLAY_SKILL_KIND",
+          "value": 6,
+          "fieldIndex": 18078,
+          "fieldOffset": 5376768,
+          "defaultRecordOffset": 4283784,
+          "dataOffset": 4401276
+        },
+        {
+          "name": "SELF_OTHER_PLAY_RARITY",
+          "value": 7,
+          "fieldIndex": 18079,
+          "fieldOffset": 5376784,
+          "defaultRecordOffset": 4283796,
+          "dataOffset": 4401280
+        },
+        {
+          "name": "SELF_HP_PER",
+          "value": 8,
+          "fieldIndex": 18080,
+          "fieldOffset": 5376800,
+          "defaultRecordOffset": 4283808,
+          "dataOffset": 4401284
+        },
+        {
+          "name": "SELF_HP_FIXED",
+          "value": 9,
+          "fieldIndex": 18081,
+          "fieldOffset": 5376816,
+          "defaultRecordOffset": 4283820,
+          "dataOffset": 4401288
+        },
+        {
+          "name": "TURN",
+          "value": 10,
+          "fieldIndex": 18082,
+          "fieldOffset": 5376832,
+          "defaultRecordOffset": 4283832,
+          "dataOffset": 4401292
+        },
+        {
+          "name": "SELF_PLAYED_SKILL_KIND",
+          "value": 11,
+          "fieldIndex": 18083,
+          "fieldOffset": 5376848,
+          "defaultRecordOffset": 4283844,
+          "dataOffset": 4401296
+        },
+        {
+          "name": "FRIEND_PLAYED_SKILL_KIND",
+          "value": 12,
+          "fieldIndex": 18084,
+          "fieldOffset": 5376864,
+          "defaultRecordOffset": 4283856,
+          "dataOffset": 4401300
+        },
+        {
+          "name": "SELF_OTHER_PLAY_NUM",
+          "value": 13,
+          "fieldIndex": 18085,
+          "fieldOffset": 5376880,
+          "defaultRecordOffset": 4283868,
+          "dataOffset": 4401304
+        },
+        {
+          "name": "FRIEND_PLAY_NUM",
+          "value": 14,
+          "fieldIndex": 18086,
+          "fieldOffset": 5376896,
+          "defaultRecordOffset": 4283880,
+          "dataOffset": 4401308
+        },
+        {
+          "name": "TARGET_JOB_TYPE",
+          "value": 15,
+          "fieldIndex": 18087,
+          "fieldOffset": 5376912,
+          "defaultRecordOffset": 4283892,
+          "dataOffset": 4401312
+        },
+        {
+          "name": "SELF_PLAY_MOST_LOW_COST",
+          "value": 16,
+          "fieldIndex": 18088,
+          "fieldOffset": 5376928,
+          "defaultRecordOffset": 4283904,
+          "dataOffset": 4401316
+        },
+        {
+          "name": "FRIEND_PLAY_MOST_LOW_COST",
+          "value": 17,
+          "fieldIndex": 18089,
+          "fieldOffset": 5376944,
+          "defaultRecordOffset": 4283916,
+          "dataOffset": 4401320
+        },
+        {
+          "name": "SELF_PLAY_MOST_HIGH_COST",
+          "value": 18,
+          "fieldIndex": 18090,
+          "fieldOffset": 5376960,
+          "defaultRecordOffset": 4283928,
+          "dataOffset": 4401324
+        },
+        {
+          "name": "FRIEND_PLAY_MOST_HIGH_COST",
+          "value": 19,
+          "fieldIndex": 18091,
+          "fieldOffset": 5376976,
+          "defaultRecordOffset": 4283940,
+          "dataOffset": 4401328
+        },
+        {
+          "name": "SELF_PLAY_COST_TOTAL",
+          "value": 20,
+          "fieldIndex": 18092,
+          "fieldOffset": 5376992,
+          "defaultRecordOffset": 4283952,
+          "dataOffset": 4401332
+        },
+        {
+          "name": "FRIEND_PLAY_COST_TOTAL",
+          "value": 21,
+          "fieldIndex": 18093,
+          "fieldOffset": 5377008,
+          "defaultRecordOffset": 4283964,
+          "dataOffset": 4401336
+        },
+        {
+          "name": "SELF_DEBUFF",
+          "value": 22,
+          "fieldIndex": 18094,
+          "fieldOffset": 5377024,
+          "defaultRecordOffset": 4283976,
+          "dataOffset": 4401340
+        },
+        {
+          "name": "USER_SIDE_DEBUFF",
+          "value": 23,
+          "fieldIndex": 18095,
+          "fieldOffset": 5377040,
+          "defaultRecordOffset": 4283988,
+          "dataOffset": 4401344
+        },
+        {
+          "name": "ENEMY_SIDE_DEBUFF",
+          "value": 24,
+          "fieldIndex": 18096,
+          "fieldOffset": 5377056,
+          "defaultRecordOffset": 4284000,
+          "dataOffset": 4401348
+        },
+        {
+          "name": "USER_SIDE_BUFF",
+          "value": 25,
+          "fieldIndex": 18097,
+          "fieldOffset": 5377072,
+          "defaultRecordOffset": 4284012,
+          "dataOffset": 4401352
+        },
+        {
+          "name": "ENEMY_SIDE_BUFF",
+          "value": 26,
+          "fieldIndex": 18098,
+          "fieldOffset": 5377088,
+          "defaultRecordOffset": 4284024,
+          "dataOffset": 4401356
+        },
+        {
+          "name": "SELF_ENEMY_AI_FLAG",
+          "value": 27,
+          "fieldIndex": 18099,
+          "fieldOffset": 5377104,
+          "defaultRecordOffset": 4284036,
+          "dataOffset": 4401360
+        },
+        {
+          "name": "SELF_OTHER_PLAY_TAG",
+          "value": 28,
+          "fieldIndex": 18100,
+          "fieldOffset": 5377120,
+          "defaultRecordOffset": 4284048,
+          "dataOffset": 4401364
+        },
+        {
+          "name": "FRIEND_PLAY_TAG",
+          "value": 29,
+          "fieldIndex": 18101,
+          "fieldOffset": 5377136,
+          "defaultRecordOffset": 4284060,
+          "dataOffset": 4401368
+        },
+        {
+          "name": "SELF_PLAYED_TAG",
+          "value": 30,
+          "fieldIndex": 18102,
+          "fieldOffset": 5377152,
+          "defaultRecordOffset": 4284072,
+          "dataOffset": 4401372
+        },
+        {
+          "name": "FRIEND_PLAYED_TAG",
+          "value": 31,
+          "fieldIndex": 18103,
+          "fieldOffset": 5377168,
+          "defaultRecordOffset": 4284084,
+          "dataOffset": 4401376
+        },
+        {
+          "name": "SELF_MAIN_DECK_TAG",
+          "value": 32,
+          "fieldIndex": 18104,
+          "fieldOffset": 5377184,
+          "defaultRecordOffset": 4284096,
+          "dataOffset": 4401380
+        },
+        {
+          "name": "SELF_SUPPORT_DECK_TAG",
+          "value": 33,
+          "fieldIndex": 18105,
+          "fieldOffset": 5377200,
+          "defaultRecordOffset": 4284108,
+          "dataOffset": 4401384
+        },
+        {
+          "name": "SELF_ALL_DECK_TAG",
+          "value": 34,
+          "fieldIndex": 18106,
+          "fieldOffset": 5377216,
+          "defaultRecordOffset": 4284120,
+          "dataOffset": 4401388
+        },
+        {
+          "name": "SELF_MAIN_DECK_ATTR",
+          "value": 35,
+          "fieldIndex": 18107,
+          "fieldOffset": 5377232,
+          "defaultRecordOffset": 4284132,
+          "dataOffset": 4401392
+        },
+        {
+          "name": "SELF_MAIN_DECK_SKILL_KIND",
+          "value": 36,
+          "fieldIndex": 18108,
+          "fieldOffset": 5377248,
+          "defaultRecordOffset": 4284144,
+          "dataOffset": 4401396
+        },
+        {
+          "name": "SELF_BUFF",
+          "value": 37,
+          "fieldIndex": 18109,
+          "fieldOffset": 5377264,
+          "defaultRecordOffset": 4284156,
+          "dataOffset": 4401400
+        },
+        {
+          "name": "TARGET_BUFF",
+          "value": 38,
+          "fieldIndex": 18110,
+          "fieldOffset": 5377280,
+          "defaultRecordOffset": 4284168,
+          "dataOffset": 4401404
+        },
+        {
+          "name": "SELF_ENCHANT_DAMAGE",
+          "value": 39,
+          "fieldIndex": 18111,
+          "fieldOffset": 5377296,
+          "defaultRecordOffset": 4284180,
+          "dataOffset": 4401408
+        },
+        {
+          "name": "TARGET_HP_PER",
+          "value": 40,
+          "fieldIndex": 18112,
+          "fieldOffset": 5377312,
+          "defaultRecordOffset": 4284192,
+          "dataOffset": 4401412
+        },
+        {
+          "name": "TARGET_HP_FIXED",
+          "value": 41,
+          "fieldIndex": 18113,
+          "fieldOffset": 5377328,
+          "defaultRecordOffset": 4284204,
+          "dataOffset": 4401416
+        },
+        {
+          "name": "FRIEND_HP_PER",
+          "value": 42,
+          "fieldIndex": 18114,
+          "fieldOffset": 5377344,
+          "defaultRecordOffset": 4284216,
+          "dataOffset": 4401420
+        },
+        {
+          "name": "FRIEND_HP_FIXED",
+          "value": 43,
+          "fieldIndex": 18115,
+          "fieldOffset": 5377360,
+          "defaultRecordOffset": 4284228,
+          "dataOffset": 4401424
+        },
+        {
+          "name": "SELF_DAMAGE",
+          "value": 44,
+          "fieldIndex": 18116,
+          "fieldOffset": 5377376,
+          "defaultRecordOffset": 4284240,
+          "dataOffset": 4401428
+        },
+        {
+          "name": "FRIEND_DAMAGE",
+          "value": 45,
+          "fieldIndex": 18117,
+          "fieldOffset": 5377392,
+          "defaultRecordOffset": 4284252,
+          "dataOffset": 4401432
+        },
+        {
+          "name": "TARGET_BUFF_KIND_NUM",
+          "value": 46,
+          "fieldIndex": 18118,
+          "fieldOffset": 5377408,
+          "defaultRecordOffset": 4284264,
+          "dataOffset": 4401436
+        },
+        {
+          "name": "TARGET_DEBUFF_KIND_NUM",
+          "value": 47,
+          "fieldIndex": 18119,
+          "fieldOffset": 5377424,
+          "defaultRecordOffset": 4284276,
+          "dataOffset": 4401440
+        },
+        {
+          "name": "TARGET_ENEMY_CHARGE_START",
+          "value": 48,
+          "fieldIndex": 18120,
+          "fieldOffset": 5377440,
+          "defaultRecordOffset": 4284288,
+          "dataOffset": 4401444
+        },
+        {
+          "name": "SELF_TRANCE_GAUGE_STATE",
+          "value": 49,
+          "fieldIndex": 18121,
+          "fieldOffset": 5377456,
+          "defaultRecordOffset": 4284300,
+          "dataOffset": 4401448
+        },
+        {
+          "name": "ENEMY_TRANCE_GAUGE_STATE",
+          "value": 50,
+          "fieldIndex": 18122,
+          "fieldOffset": 5377472,
+          "defaultRecordOffset": 4284312,
+          "dataOffset": 4401452
+        },
+        {
+          "name": "TARGET_TRANCE_GAUGE_STATE",
+          "value": 51,
+          "fieldIndex": 18123,
+          "fieldOffset": 5377488,
+          "defaultRecordOffset": 4284324,
+          "dataOffset": 4401456
+        },
+        {
+          "name": "FRIEND_CRITICAL",
+          "value": 52,
+          "fieldIndex": 18124,
+          "fieldOffset": 5377504,
+          "defaultRecordOffset": 4284336,
+          "dataOffset": 4401460
+        },
+        {
+          "name": "SELF_CRITICAL",
+          "value": 53,
+          "fieldIndex": 18125,
+          "fieldOffset": 5377520,
+          "defaultRecordOffset": 4284348,
+          "dataOffset": 4401464
+        },
+        {
+          "name": "TARGET_CRITICAL",
+          "value": 54,
+          "fieldIndex": 18126,
+          "fieldOffset": 5377536,
+          "defaultRecordOffset": 4284360,
+          "dataOffset": 4401468
+        },
+        {
+          "name": "SELF_CURSE",
+          "value": 55,
+          "fieldIndex": 18127,
+          "fieldOffset": 5377552,
+          "defaultRecordOffset": 4284372,
+          "dataOffset": 4401472
+        },
+        {
+          "name": "TARGET_CURSE",
+          "value": 56,
+          "fieldIndex": 18128,
+          "fieldOffset": 5377568,
+          "defaultRecordOffset": 4284384,
+          "dataOffset": 4401476
+        },
+        {
+          "name": "USER_SIDE_CURSE",
+          "value": 57,
+          "fieldIndex": 18129,
+          "fieldOffset": 5377584,
+          "defaultRecordOffset": 4284396,
+          "dataOffset": 4401480
+        },
+        {
+          "name": "TARGET_EXEC_CURSE",
+          "value": 58,
+          "fieldIndex": 18130,
+          "fieldOffset": 5377600,
+          "defaultRecordOffset": 4284408,
+          "dataOffset": 4401484
+        },
+        {
+          "name": "USER_SIDE_EXEC_CURSE",
+          "value": 59,
+          "fieldIndex": 18131,
+          "fieldOffset": 5377616,
+          "defaultRecordOffset": 4284420,
+          "dataOffset": 4401488
+        },
+        {
+          "name": "SELF_BLESS",
+          "value": 60,
+          "fieldIndex": 18132,
+          "fieldOffset": 5377632,
+          "defaultRecordOffset": 4284432,
+          "dataOffset": 4401492
+        },
+        {
+          "name": "TARGET_BLESS",
+          "value": 61,
+          "fieldIndex": 18133,
+          "fieldOffset": 5377648,
+          "defaultRecordOffset": 4284444,
+          "dataOffset": 4401496
+        },
+        {
+          "name": "USER_SIDE_BLESS",
+          "value": 62,
+          "fieldIndex": 18134,
+          "fieldOffset": 5377664,
+          "defaultRecordOffset": 4284456,
+          "dataOffset": 4401500
+        },
+        {
+          "name": "TARGET_EXEC_BLESS",
+          "value": 63,
+          "fieldIndex": 18135,
+          "fieldOffset": 5377680,
+          "defaultRecordOffset": 4284468,
+          "dataOffset": 4401504
+        },
+        {
+          "name": "USER_SIDE_EXEC_BLESS",
+          "value": 64,
+          "fieldIndex": 18136,
+          "fieldOffset": 5377696,
+          "defaultRecordOffset": 4284480,
+          "dataOffset": 4401508
+        },
+        {
+          "name": "RECOVERY_ACTION",
+          "value": 65,
+          "fieldIndex": 18137,
+          "fieldOffset": 5377712,
+          "defaultRecordOffset": 4284492,
+          "dataOffset": 4401512
+        },
+        {
+          "name": "SELF_PLAY_COST_NUM",
+          "value": 66,
+          "fieldIndex": 18138,
+          "fieldOffset": 5377728,
+          "defaultRecordOffset": 4284504,
+          "dataOffset": 4401516
+        },
+        {
+          "name": "SELF_NOT_PLAY_HAND_NUM",
+          "value": 67,
+          "fieldIndex": 18139,
+          "fieldOffset": 5377744,
+          "defaultRecordOffset": 4284516,
+          "dataOffset": 4401520
+        },
+        {
+          "name": "ENEMY_DEAD_NOW_TURN",
+          "value": 68,
+          "fieldIndex": 18140,
+          "fieldOffset": 5377760,
+          "defaultRecordOffset": 4284528,
+          "dataOffset": 4401524
+        },
+        {
+          "name": "SELF_ENEMY_AI_FLAG_AND",
+          "value": 69,
+          "fieldIndex": 18141,
+          "fieldOffset": 5377776,
+          "defaultRecordOffset": 4284540,
+          "dataOffset": 4401528
+        },
+        {
+          "name": "SELF_BUFF_FROM_FRIEND",
+          "value": 70,
+          "fieldIndex": 18142,
+          "fieldOffset": 5377792,
+          "defaultRecordOffset": 4284552,
+          "dataOffset": 4401532
+        },
+        {
+          "name": "SELF_DEBUFF_FROM_ENEMY",
+          "value": 71,
+          "fieldIndex": 18143,
+          "fieldOffset": 5377808,
+          "defaultRecordOffset": 4284564,
+          "dataOffset": 4401536
+        },
+        {
+          "name": "BUFF_EXEC",
+          "value": 72,
+          "fieldIndex": 18144,
+          "fieldOffset": 5377824,
+          "defaultRecordOffset": 4284576,
+          "dataOffset": 4401540
+        },
+        {
+          "name": "DEBUFF_EXEC",
+          "value": 73,
+          "fieldIndex": 18145,
+          "fieldOffset": 5377840,
+          "defaultRecordOffset": 4284588,
+          "dataOffset": 4401544
+        },
+        {
+          "name": "USER_ATTACK",
+          "value": 74,
+          "fieldIndex": 18146,
+          "fieldOffset": 5377856,
+          "defaultRecordOffset": 4284600,
+          "dataOffset": 4401548
+        },
+        {
+          "name": "USER_PARAM",
+          "value": 75,
+          "fieldIndex": 18147,
+          "fieldOffset": 5377872,
+          "defaultRecordOffset": 4284612,
+          "dataOffset": 4401552
+        },
+        {
+          "name": "USER_REGENERATE",
+          "value": 76,
+          "fieldIndex": 18148,
+          "fieldOffset": 5377888,
+          "defaultRecordOffset": 4284624,
+          "dataOffset": 4401556
+        },
+        {
+          "name": "USER_COVERING",
+          "value": 77,
+          "fieldIndex": 18149,
+          "fieldOffset": 5377904,
+          "defaultRecordOffset": 4284636,
+          "dataOffset": 4401560
+        },
+        {
+          "name": "USER_REFLECTION",
+          "value": 78,
+          "fieldIndex": 18150,
+          "fieldOffset": 5377920,
+          "defaultRecordOffset": 4284648,
+          "dataOffset": 4401564
+        },
+        {
+          "name": "USER_ENCHANT",
+          "value": 79,
+          "fieldIndex": 18151,
+          "fieldOffset": 5377936,
+          "defaultRecordOffset": 4284660,
+          "dataOffset": 4401568
+        },
+        {
+          "name": "USER_ATTACK_NUM",
+          "value": 80,
+          "fieldIndex": 18152,
+          "fieldOffset": 5377952,
+          "defaultRecordOffset": 4284672,
+          "dataOffset": 4401572
+        },
+        {
+          "name": "SELF_HOLD_NUM",
+          "value": 81,
+          "fieldIndex": 18153,
+          "fieldOffset": 5377968,
+          "defaultRecordOffset": 4284684,
+          "dataOffset": 4401576
+        },
+        {
+          "name": "TARGET_HOLD_NUM",
+          "value": 82,
+          "fieldIndex": 18154,
+          "fieldOffset": 5377984,
+          "defaultRecordOffset": 4284696,
+          "dataOffset": 4401580
+        },
+        {
+          "name": "SELF_PARAM_UP_VALUE",
+          "value": 83,
+          "fieldIndex": 18155,
+          "fieldOffset": 5378000,
+          "defaultRecordOffset": 4284708,
+          "dataOffset": 4401584
+        },
+        {
+          "name": "TARGET_PARAM_UP_VALUE",
+          "value": 84,
+          "fieldIndex": 18156,
+          "fieldOffset": 5378016,
+          "defaultRecordOffset": 4284720,
+          "dataOffset": 4401588
+        },
+        {
+          "name": "USER_SIDE_PARAM_UP_VALUE",
+          "value": 85,
+          "fieldIndex": 18157,
+          "fieldOffset": 5378032,
+          "defaultRecordOffset": 4284732,
+          "dataOffset": 4401592
+        },
+        {
+          "name": "SELF_DEBUFF_RELEASE",
+          "value": 86,
+          "fieldIndex": 18158,
+          "fieldOffset": 5378048,
+          "defaultRecordOffset": 4284744,
+          "dataOffset": 4401596
+        },
+        {
+          "name": "TARGET_DEBUFF_RELEASE",
+          "value": 87,
+          "fieldIndex": 18159,
+          "fieldOffset": 5378064,
+          "defaultRecordOffset": 4284756,
+          "dataOffset": 4401600
+        },
+        {
+          "name": "USER_SIDE_DEBUFF_RELEASE",
+          "value": 88,
+          "fieldIndex": 18160,
+          "fieldOffset": 5378080,
+          "defaultRecordOffset": 4284768,
+          "dataOffset": 4401604
+        },
+        {
+          "name": "SELF_BUFF_RELEASE",
+          "value": 89,
+          "fieldIndex": 18161,
+          "fieldOffset": 5378096,
+          "defaultRecordOffset": 4284780,
+          "dataOffset": 4401608
+        },
+        {
+          "name": "TARGET_BUFF_RELEASE",
+          "value": 90,
+          "fieldIndex": 18162,
+          "fieldOffset": 5378112,
+          "defaultRecordOffset": 4284792,
+          "dataOffset": 4401612
+        },
+        {
+          "name": "USER_SIDE_BUFF_RELEASE",
+          "value": 91,
+          "fieldIndex": 18163,
+          "fieldOffset": 5378128,
+          "defaultRecordOffset": 4284804,
+          "dataOffset": 4401616
+        },
+        {
+          "name": "SELF_BURST_GAUGE_STATE",
+          "value": 92,
+          "fieldIndex": 18164,
+          "fieldOffset": 5378144,
+          "defaultRecordOffset": 4284816,
+          "dataOffset": 4401620
+        },
+        {
+          "name": "TARGET_BURST_GAUGE_STATE",
+          "value": 93,
+          "fieldIndex": 18165,
+          "fieldOffset": 5378160,
+          "defaultRecordOffset": 4284828,
+          "dataOffset": 4401624
+        },
+        {
+          "name": "USER_SIDE_BURST_GAUGE_STATE",
+          "value": 94,
+          "fieldIndex": 18166,
+          "fieldOffset": 5378176,
+          "defaultRecordOffset": 4284840,
+          "dataOffset": 4401628
+        },
+        {
+          "name": "SELF_BURST_GAUGE_VALUE",
+          "value": 95,
+          "fieldIndex": 18167,
+          "fieldOffset": 5378192,
+          "defaultRecordOffset": 4284852,
+          "dataOffset": 4401632
+        },
+        {
+          "name": "TARGET_BURST_GAUGE_VALUE",
+          "value": 96,
+          "fieldIndex": 18168,
+          "fieldOffset": 5378208,
+          "defaultRecordOffset": 4284864,
+          "dataOffset": 4401636
+        },
+        {
+          "name": "USER_SIDE_BURST_GAUGE_VALUE",
+          "value": 97,
+          "fieldIndex": 18169,
+          "fieldOffset": 5378224,
+          "defaultRecordOffset": 4284876,
+          "dataOffset": 4401640
+        },
+        {
+          "name": "SELF_BURST_BUFF",
+          "value": 98,
+          "fieldIndex": 18170,
+          "fieldOffset": 5378240,
+          "defaultRecordOffset": 4284888,
+          "dataOffset": 4401644
+        },
+        {
+          "name": "TARGET_BURST_BUFF",
+          "value": 99,
+          "fieldIndex": 18171,
+          "fieldOffset": 5378256,
+          "defaultRecordOffset": 4284900,
+          "dataOffset": 4401648
+        },
+        {
+          "name": "USER_SIDE_BURST_BUFF",
+          "value": 100,
+          "fieldIndex": 18172,
+          "fieldOffset": 5378272,
+          "defaultRecordOffset": 4284912,
+          "dataOffset": 4401652
+        },
+        {
+          "name": "SELF_CARD_BUFF",
+          "value": 101,
+          "fieldIndex": 18173,
+          "fieldOffset": 5378288,
+          "defaultRecordOffset": 4284924,
+          "dataOffset": 4401656
+        },
+        {
+          "name": "TARGET_CARD_BUFF",
+          "value": 102,
+          "fieldIndex": 18174,
+          "fieldOffset": 5378304,
+          "defaultRecordOffset": 4284936,
+          "dataOffset": 4401660
+        },
+        {
+          "name": "USER_SIDE_CARD_BUFF",
+          "value": 103,
+          "fieldIndex": 18175,
+          "fieldOffset": 5378320,
+          "defaultRecordOffset": 4284948,
+          "dataOffset": 4401664
+        },
+        {
+          "name": "OWNER_CARD_CARD_BUFF",
+          "value": 104,
+          "fieldIndex": 18176,
+          "fieldOffset": 5378336,
+          "defaultRecordOffset": 4284960,
+          "dataOffset": 4401668
+        },
+        {
+          "name": "TARGET_TRIBAL",
+          "value": 105,
+          "fieldIndex": 18177,
+          "fieldOffset": 5378352,
+          "defaultRecordOffset": 4284972,
+          "dataOffset": 4401672
+        },
+        {
+          "name": "ENEMY_TRIBAL",
+          "value": 106,
+          "fieldIndex": 18178,
+          "fieldOffset": 5378368,
+          "defaultRecordOffset": 4284984,
+          "dataOffset": 4401676
+        },
+        {
+          "name": "SELF_ARTHUR_TYPE",
+          "value": 107,
+          "fieldIndex": 18179,
+          "fieldOffset": 5378384,
+          "defaultRecordOffset": 4284996,
+          "dataOffset": 4401680
+        },
+        {
+          "name": "FRIEND_PLAY_ATTR_NUM",
+          "value": 108,
+          "fieldIndex": 18180,
+          "fieldOffset": 5378400,
+          "defaultRecordOffset": 4285008,
+          "dataOffset": 4401684
+        },
+        {
+          "name": "FRIEND_PLAY_SKILL_KIND_NUM",
+          "value": 109,
+          "fieldIndex": 18181,
+          "fieldOffset": 5378416,
+          "defaultRecordOffset": 4285020,
+          "dataOffset": 4401688
+        },
+        {
+          "name": "SELF_ENEMY_AI_VAR",
+          "value": 110,
+          "fieldIndex": 18182,
+          "fieldOffset": 5378432,
+          "defaultRecordOffset": 4285032,
+          "dataOffset": 4401692
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_EXTEND_EXEC_ORDER",
+          "value": 111,
+          "fieldIndex": 18183,
+          "fieldOffset": 5378448,
+          "defaultRecordOffset": 4285044,
+          "dataOffset": 4401696
+        }
+      ]
+    },
+    {
+      "name": "RARITY",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4131,
+      "typeOffset": 6654748,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17526,
+          "fieldOffset": 5367936,
+          "defaultRecordOffset": 4277508,
+          "dataOffset": 4399184
+        },
+        {
+          "name": "NORMAL",
+          "value": 1,
+          "fieldIndex": 17527,
+          "fieldOffset": 5367952,
+          "defaultRecordOffset": 4277520,
+          "dataOffset": 4399188
+        },
+        {
+          "name": "HIGHNORMAL",
+          "value": 2,
+          "fieldIndex": 17528,
+          "fieldOffset": 5367968,
+          "defaultRecordOffset": 4277532,
+          "dataOffset": 4399192
+        },
+        {
+          "name": "RARE",
+          "value": 3,
+          "fieldIndex": 17529,
+          "fieldOffset": 5367984,
+          "defaultRecordOffset": 4277544,
+          "dataOffset": 4399196
+        },
+        {
+          "name": "SUPERRARE",
+          "value": 4,
+          "fieldIndex": 17530,
+          "fieldOffset": 5368000,
+          "defaultRecordOffset": 4277556,
+          "dataOffset": 4399200
+        },
+        {
+          "name": "ULTRARARE",
+          "value": 5,
+          "fieldIndex": 17531,
+          "fieldOffset": 5368016,
+          "defaultRecordOffset": 4277568,
+          "dataOffset": 4399204
+        },
+        {
+          "name": "MILLIONRARE",
+          "value": 6,
+          "fieldIndex": 17532,
+          "fieldOffset": 5368032,
+          "defaultRecordOffset": 4277580,
+          "dataOffset": 4399208
+        },
+        {
+          "name": "EXRARE",
+          "value": 7,
+          "fieldIndex": 17533,
+          "fieldOffset": 5368048,
+          "defaultRecordOffset": 4277592,
+          "dataOffset": 4399212
+        },
+        {
+          "name": "LEGEND",
+          "value": 8,
+          "fieldIndex": 17534,
+          "fieldOffset": 5368064,
+          "defaultRecordOffset": 4277604,
+          "dataOffset": 4399216
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_RARITY",
+          "value": 9,
+          "fieldIndex": 17535,
+          "fieldOffset": 5368080,
+          "defaultRecordOffset": 4277616,
+          "dataOffset": 4399220
+        }
+      ]
+    },
+    {
+      "name": "SKILL_TYPE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4147,
+      "typeOffset": 6656668,
+      "values": [
+        {
+          "name": "NORMAL",
+          "value": 0,
+          "fieldIndex": 17664,
+          "fieldOffset": 5370144,
+          "defaultRecordOffset": 4278972,
+          "dataOffset": 4399672
+        },
+        {
+          "name": "PASSIVE",
+          "value": 1,
+          "fieldIndex": 17665,
+          "fieldOffset": 5370160,
+          "defaultRecordOffset": 4278984,
+          "dataOffset": 4399676
+        },
+        {
+          "name": "EVENT",
+          "value": 2,
+          "fieldIndex": 17666,
+          "fieldOffset": 5370176,
+          "defaultRecordOffset": 4278996,
+          "dataOffset": 4399680
+        },
+        {
+          "name": "FIELD_NORMAL",
+          "value": 3,
+          "fieldIndex": 17667,
+          "fieldOffset": 5370192,
+          "defaultRecordOffset": 4279008,
+          "dataOffset": 4399684
+        },
+        {
+          "name": "FIELD_PASSIVE",
+          "value": 4,
+          "fieldIndex": 17668,
+          "fieldOffset": 5370208,
+          "defaultRecordOffset": 4279020,
+          "dataOffset": 4399688
+        },
+        {
+          "name": "BURST_NORMAL",
+          "value": 5,
+          "fieldIndex": 17669,
+          "fieldOffset": 5370224,
+          "defaultRecordOffset": 4279032,
+          "dataOffset": 4399692
+        },
+        {
+          "name": "BURST_PASSIVE",
+          "value": 6,
+          "fieldIndex": 17670,
+          "fieldOffset": 5370240,
+          "defaultRecordOffset": 4279044,
+          "dataOffset": 4399696
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_TYPE",
+          "value": 7,
+          "fieldIndex": 17671,
+          "fieldOffset": 5370256,
+          "defaultRecordOffset": 4279056,
+          "dataOffset": 4399700
+        }
+      ]
+    },
+    {
+      "name": "SKILL_KIND",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4148,
+      "typeOffset": 6656788,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17673,
+          "fieldOffset": 5370288,
+          "defaultRecordOffset": 4279068,
+          "dataOffset": 4399704
+        },
+        {
+          "name": "ATTACK",
+          "value": 1,
+          "fieldIndex": 17674,
+          "fieldOffset": 5370304,
+          "defaultRecordOffset": 4279080,
+          "dataOffset": 4399708
+        },
+        {
+          "name": "SORCERY",
+          "value": 2,
+          "fieldIndex": 17675,
+          "fieldOffset": 5370320,
+          "defaultRecordOffset": 4279092,
+          "dataOffset": 4399712
+        },
+        {
+          "name": "RECOVERY",
+          "value": 3,
+          "fieldIndex": 17676,
+          "fieldOffset": 5370336,
+          "defaultRecordOffset": 4279104,
+          "dataOffset": 4399716
+        },
+        {
+          "name": "SUPPORT",
+          "value": 4,
+          "fieldIndex": 17677,
+          "fieldOffset": 5370352,
+          "defaultRecordOffset": 4279116,
+          "dataOffset": 4399720
+        },
+        {
+          "name": "DEFENSE",
+          "value": 5,
+          "fieldIndex": 17678,
+          "fieldOffset": 5370368,
+          "defaultRecordOffset": 4279128,
+          "dataOffset": 4399724
+        },
+        {
+          "name": "JAMMING",
+          "value": 6,
+          "fieldIndex": 17679,
+          "fieldOffset": 5370384,
+          "defaultRecordOffset": 4279140,
+          "dataOffset": 4399728
+        },
+        {
+          "name": "SPECIAL",
+          "value": 7,
+          "fieldIndex": 17680,
+          "fieldOffset": 5370400,
+          "defaultRecordOffset": 4279152,
+          "dataOffset": 4399732
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_KIND",
+          "value": 8,
+          "fieldIndex": 17681,
+          "fieldOffset": 5370416,
+          "defaultRecordOffset": 4279164,
+          "dataOffset": 4399736
+        }
+      ]
+    },
+    {
+      "name": "ATTR",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4134,
+      "typeOffset": 6655108,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17556,
+          "fieldOffset": 5368416,
+          "defaultRecordOffset": 4277832,
+          "dataOffset": 4399292
+        },
+        {
+          "name": "FIRE",
+          "value": 1,
+          "fieldIndex": 17557,
+          "fieldOffset": 5368432,
+          "defaultRecordOffset": 4277844,
+          "dataOffset": 4399296
+        },
+        {
+          "name": "ICE",
+          "value": 2,
+          "fieldIndex": 17558,
+          "fieldOffset": 5368448,
+          "defaultRecordOffset": 4277856,
+          "dataOffset": 4399300
+        },
+        {
+          "name": "WIND",
+          "value": 3,
+          "fieldIndex": 17559,
+          "fieldOffset": 5368464,
+          "defaultRecordOffset": 4277868,
+          "dataOffset": 4399304
+        },
+        {
+          "name": "LIGHT",
+          "value": 4,
+          "fieldIndex": 17560,
+          "fieldOffset": 5368480,
+          "defaultRecordOffset": 4277880,
+          "dataOffset": 4399308
+        },
+        {
+          "name": "DARK",
+          "value": 5,
+          "fieldIndex": 17561,
+          "fieldOffset": 5368496,
+          "defaultRecordOffset": 4277892,
+          "dataOffset": 4399312
+        },
+        {
+          "name": "EARTH",
+          "value": 6,
+          "fieldIndex": 17562,
+          "fieldOffset": 5368512,
+          "defaultRecordOffset": 4277904,
+          "dataOffset": 4399316
+        },
+        {
+          "name": "THUNDER",
+          "value": 7,
+          "fieldIndex": 17563,
+          "fieldOffset": 5368528,
+          "defaultRecordOffset": 4277916,
+          "dataOffset": 4399320
+        },
+        {
+          "name": "WATER",
+          "value": 8,
+          "fieldIndex": 17564,
+          "fieldOffset": 5368544,
+          "defaultRecordOffset": 4277928,
+          "dataOffset": 4399324
+        },
+        {
+          "name": "NEUTRAL",
+          "value": 9,
+          "fieldIndex": 17565,
+          "fieldOffset": 5368560,
+          "defaultRecordOffset": 4277940,
+          "dataOffset": 4399328
+        },
+        {
+          "name": "FIRE_ICE",
+          "value": 102,
+          "fieldIndex": 17566,
+          "fieldOffset": 5368576,
+          "defaultRecordOffset": 4277952,
+          "dataOffset": 4399332
+        },
+        {
+          "name": "FIRE_WIND",
+          "value": 103,
+          "fieldIndex": 17567,
+          "fieldOffset": 5368592,
+          "defaultRecordOffset": 4277964,
+          "dataOffset": 4399336
+        },
+        {
+          "name": "FIRE_LIGHT",
+          "value": 104,
+          "fieldIndex": 17568,
+          "fieldOffset": 5368608,
+          "defaultRecordOffset": 4277976,
+          "dataOffset": 4399340
+        },
+        {
+          "name": "FIRE_DARK",
+          "value": 105,
+          "fieldIndex": 17569,
+          "fieldOffset": 5368624,
+          "defaultRecordOffset": 4277988,
+          "dataOffset": 4399344
+        },
+        {
+          "name": "ICE_WIND",
+          "value": 203,
+          "fieldIndex": 17570,
+          "fieldOffset": 5368640,
+          "defaultRecordOffset": 4278000,
+          "dataOffset": 4399348
+        },
+        {
+          "name": "ICE_LIGHT",
+          "value": 204,
+          "fieldIndex": 17571,
+          "fieldOffset": 5368656,
+          "defaultRecordOffset": 4278012,
+          "dataOffset": 4399352
+        },
+        {
+          "name": "ICE_DARK",
+          "value": 205,
+          "fieldIndex": 17572,
+          "fieldOffset": 5368672,
+          "defaultRecordOffset": 4278024,
+          "dataOffset": 4399356
+        },
+        {
+          "name": "WIND_LIGHT",
+          "value": 304,
+          "fieldIndex": 17573,
+          "fieldOffset": 5368688,
+          "defaultRecordOffset": 4278036,
+          "dataOffset": 4399360
+        },
+        {
+          "name": "WIND_DARK",
+          "value": 305,
+          "fieldIndex": 17574,
+          "fieldOffset": 5368704,
+          "defaultRecordOffset": 4278048,
+          "dataOffset": 4399364
+        },
+        {
+          "name": "LIGHT_DARK",
+          "value": 405,
+          "fieldIndex": 17575,
+          "fieldOffset": 5368720,
+          "defaultRecordOffset": 4278060,
+          "dataOffset": 4399368
+        }
+      ],
+      "excludedSentinels": []
+    },
+    {
+      "name": "JOB_TYPE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4130,
+      "typeOffset": 6654628,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17519,
+          "fieldOffset": 5367824,
+          "defaultRecordOffset": 4277436,
+          "dataOffset": 4399160
+        },
+        {
+          "name": "MERCENARY",
+          "value": 1,
+          "fieldIndex": 17520,
+          "fieldOffset": 5367840,
+          "defaultRecordOffset": 4277448,
+          "dataOffset": 4399164
+        },
+        {
+          "name": "MILLIONAIRE",
+          "value": 2,
+          "fieldIndex": 17521,
+          "fieldOffset": 5367856,
+          "defaultRecordOffset": 4277460,
+          "dataOffset": 4399168
+        },
+        {
+          "name": "THIEF",
+          "value": 3,
+          "fieldIndex": 17522,
+          "fieldOffset": 5367872,
+          "defaultRecordOffset": 4277472,
+          "dataOffset": 4399172
+        },
+        {
+          "name": "SINGER",
+          "value": 4,
+          "fieldIndex": 17523,
+          "fieldOffset": 5367888,
+          "defaultRecordOffset": 4277484,
+          "dataOffset": 4399176
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_JOB_TYPE",
+          "value": 5,
+          "fieldIndex": 17524,
+          "fieldOffset": 5367904,
+          "defaultRecordOffset": 4277496,
+          "dataOffset": 4399180
+        }
+      ]
+    },
+    {
+      "name": "ARTHUR_TYPE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4129,
+      "typeOffset": 6654508,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17512,
+          "fieldOffset": 5367712,
+          "defaultRecordOffset": 4277364,
+          "dataOffset": 4399136
+        },
+        {
+          "name": "MERCENARY",
+          "value": 1,
+          "fieldIndex": 17513,
+          "fieldOffset": 5367728,
+          "defaultRecordOffset": 4277376,
+          "dataOffset": 4399140
+        },
+        {
+          "name": "MILLIONAIRE",
+          "value": 2,
+          "fieldIndex": 17514,
+          "fieldOffset": 5367744,
+          "defaultRecordOffset": 4277388,
+          "dataOffset": 4399144
+        },
+        {
+          "name": "THIEF",
+          "value": 3,
+          "fieldIndex": 17515,
+          "fieldOffset": 5367760,
+          "defaultRecordOffset": 4277400,
+          "dataOffset": 4399148
+        },
+        {
+          "name": "SINGER",
+          "value": 4,
+          "fieldIndex": 17516,
+          "fieldOffset": 5367776,
+          "defaultRecordOffset": 4277412,
+          "dataOffset": 4399152
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_ARTHUR_TYPE",
+          "value": 5,
+          "fieldIndex": 17517,
+          "fieldOffset": 5367792,
+          "defaultRecordOffset": 4277424,
+          "dataOffset": 4399156
+        }
+      ]
+    },
+    {
+      "name": "SKILL_PHYSICS_TYPE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4162,
+      "typeOffset": 6658468,
+      "values": [
+        {
+          "name": "PHYSICS",
+          "value": 0,
+          "fieldIndex": 18193,
+          "fieldOffset": 5378608,
+          "defaultRecordOffset": 4285140,
+          "dataOffset": 4401728
+        },
+        {
+          "name": "MAGIC",
+          "value": 1,
+          "fieldIndex": 18194,
+          "fieldOffset": 5378624,
+          "defaultRecordOffset": 4285152,
+          "dataOffset": 4401732
+        },
+        {
+          "name": "ALL",
+          "value": 2,
+          "fieldIndex": 18195,
+          "fieldOffset": 5378640,
+          "defaultRecordOffset": 4285164,
+          "dataOffset": 4401736
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_PHYSICS_TYPE",
+          "value": 3,
+          "fieldIndex": 18196,
+          "fieldOffset": 5378656,
+          "defaultRecordOffset": 4285176,
+          "dataOffset": 4401740
+        }
+      ]
+    },
+    {
+      "name": "SKILL_TARGET",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4150,
+      "typeOffset": 6657028,
+      "values": [
+        {
+          "name": "SELF",
+          "value": 0,
+          "fieldIndex": 17689,
+          "fieldOffset": 5370544,
+          "defaultRecordOffset": 4279236,
+          "dataOffset": 4399760
+        },
+        {
+          "name": "USER_ONE",
+          "value": 1,
+          "fieldIndex": 17690,
+          "fieldOffset": 5370560,
+          "defaultRecordOffset": 4279248,
+          "dataOffset": 4399764
+        },
+        {
+          "name": "USER_ALL",
+          "value": 2,
+          "fieldIndex": 17691,
+          "fieldOffset": 5370576,
+          "defaultRecordOffset": 4279260,
+          "dataOffset": 4399768
+        },
+        {
+          "name": "ENEMY_ONE",
+          "value": 3,
+          "fieldIndex": 17692,
+          "fieldOffset": 5370592,
+          "defaultRecordOffset": 4279272,
+          "dataOffset": 4399772
+        },
+        {
+          "name": "ENEMY_ALL",
+          "value": 4,
+          "fieldIndex": 17693,
+          "fieldOffset": 5370608,
+          "defaultRecordOffset": 4279284,
+          "dataOffset": 4399776
+        },
+        {
+          "name": "DEAD_ENEMY_ONE",
+          "value": 5,
+          "fieldIndex": 17694,
+          "fieldOffset": 5370624,
+          "defaultRecordOffset": 4279296,
+          "dataOffset": 4399780
+        },
+        {
+          "name": "DEAD_ENEMY_ALL",
+          "value": 6,
+          "fieldIndex": 17695,
+          "fieldOffset": 5370640,
+          "defaultRecordOffset": 4279308,
+          "dataOffset": 4399784
+        },
+        {
+          "name": "ALL",
+          "value": 7,
+          "fieldIndex": 17696,
+          "fieldOffset": 5370656,
+          "defaultRecordOffset": 4279320,
+          "dataOffset": 4399788
+        },
+        {
+          "name": "SELF_INVOLVE_DEAD",
+          "value": 8,
+          "fieldIndex": 17697,
+          "fieldOffset": 5370672,
+          "defaultRecordOffset": 4279332,
+          "dataOffset": 4399792
+        },
+        {
+          "name": "USER_ONE_INVOLVE_DEAD",
+          "value": 9,
+          "fieldIndex": 17698,
+          "fieldOffset": 5370688,
+          "defaultRecordOffset": 4279344,
+          "dataOffset": 4399796
+        },
+        {
+          "name": "USER_ALL_INVOLVE_DEAD",
+          "value": 10,
+          "fieldIndex": 17699,
+          "fieldOffset": 5370704,
+          "defaultRecordOffset": 4279356,
+          "dataOffset": 4399800
+        },
+        {
+          "name": "ENEMY_ONE_INVOLVE_DEAD",
+          "value": 11,
+          "fieldIndex": 17700,
+          "fieldOffset": 5370720,
+          "defaultRecordOffset": 4279368,
+          "dataOffset": 4399804
+        },
+        {
+          "name": "ENEMY_ALL_INVOLVE_DEAD",
+          "value": 12,
+          "fieldIndex": 17701,
+          "fieldOffset": 5370736,
+          "defaultRecordOffset": 4279380,
+          "dataOffset": 4399808
+        },
+        {
+          "name": "MERCENARY",
+          "value": 13,
+          "fieldIndex": 17702,
+          "fieldOffset": 5370752,
+          "defaultRecordOffset": 4279392,
+          "dataOffset": 4399812
+        },
+        {
+          "name": "MILLIONAIRE",
+          "value": 14,
+          "fieldIndex": 17703,
+          "fieldOffset": 5370768,
+          "defaultRecordOffset": 4279404,
+          "dataOffset": 4399816
+        },
+        {
+          "name": "THIEF",
+          "value": 15,
+          "fieldIndex": 17704,
+          "fieldOffset": 5370784,
+          "defaultRecordOffset": 4279416,
+          "dataOffset": 4399820
+        },
+        {
+          "name": "SINGER",
+          "value": 16,
+          "fieldIndex": 17705,
+          "fieldOffset": 5370800,
+          "defaultRecordOffset": 4279428,
+          "dataOffset": 4399824
+        },
+        {
+          "name": "HIGH_ATK_USER",
+          "value": 17,
+          "fieldIndex": 17706,
+          "fieldOffset": 5370816,
+          "defaultRecordOffset": 4279440,
+          "dataOffset": 4399828
+        },
+        {
+          "name": "HIGH_INT_USER",
+          "value": 18,
+          "fieldIndex": 17707,
+          "fieldOffset": 5370832,
+          "defaultRecordOffset": 4279452,
+          "dataOffset": 4399832
+        },
+        {
+          "name": "HIGH_DEF_USER",
+          "value": 19,
+          "fieldIndex": 17708,
+          "fieldOffset": 5370848,
+          "defaultRecordOffset": 4279464,
+          "dataOffset": 4399836
+        },
+        {
+          "name": "HIGH_MDEF_USER",
+          "value": 20,
+          "fieldIndex": 17709,
+          "fieldOffset": 5370864,
+          "defaultRecordOffset": 4279476,
+          "dataOffset": 4399840
+        },
+        {
+          "name": "PARENT",
+          "value": 21,
+          "fieldIndex": 17710,
+          "fieldOffset": 5370880,
+          "defaultRecordOffset": 4279488,
+          "dataOffset": 4399844
+        },
+        {
+          "name": "HIGH_HP_ENEMY",
+          "value": 22,
+          "fieldIndex": 17711,
+          "fieldOffset": 5370896,
+          "defaultRecordOffset": 4279500,
+          "dataOffset": 4399848
+        },
+        {
+          "name": "HIGH_DEF_ENEMY",
+          "value": 23,
+          "fieldIndex": 17712,
+          "fieldOffset": 5370912,
+          "defaultRecordOffset": 4279512,
+          "dataOffset": 4399852
+        },
+        {
+          "name": "HIGH_MDEF_ENEMY",
+          "value": 24,
+          "fieldIndex": 17713,
+          "fieldOffset": 5370928,
+          "defaultRecordOffset": 4279524,
+          "dataOffset": 4399856
+        },
+        {
+          "name": "LOW_HP_ENEMY",
+          "value": 25,
+          "fieldIndex": 17714,
+          "fieldOffset": 5370944,
+          "defaultRecordOffset": 4279536,
+          "dataOffset": 4399860
+        },
+        {
+          "name": "LOW_DEF_ENEMY",
+          "value": 26,
+          "fieldIndex": 17715,
+          "fieldOffset": 5370960,
+          "defaultRecordOffset": 4279548,
+          "dataOffset": 4399864
+        },
+        {
+          "name": "LOW_MDEF_ENEMY",
+          "value": 27,
+          "fieldIndex": 17716,
+          "fieldOffset": 5370976,
+          "defaultRecordOffset": 4279560,
+          "dataOffset": 4399868
+        },
+        {
+          "name": "HAND_SELECT",
+          "value": 28,
+          "fieldIndex": 17717,
+          "fieldOffset": 5370992,
+          "defaultRecordOffset": 4279572,
+          "dataOffset": 4399872
+        },
+        {
+          "name": "HAND_ALL",
+          "value": 29,
+          "fieldIndex": 17718,
+          "fieldOffset": 5371008,
+          "defaultRecordOffset": 4279584,
+          "dataOffset": 4399876
+        }
+      ],
+      "excludedSentinels": []
+    },
+    {
+      "name": "SKILL_EXEC_TIMING",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4166,
+      "typeOffset": 6658948,
+      "values": [
+        {
+          "name": "NORMAL",
+          "value": 0,
+          "fieldIndex": 18221,
+          "fieldOffset": 5379056,
+          "defaultRecordOffset": 4285428,
+          "dataOffset": 4401824
+        },
+        {
+          "name": "ENEMY_ACTION_END",
+          "value": 1,
+          "fieldIndex": 18222,
+          "fieldOffset": 5379072,
+          "defaultRecordOffset": 4285440,
+          "dataOffset": 4401828
+        },
+        {
+          "name": "USER_ATTACK_END",
+          "value": 2,
+          "fieldIndex": 18223,
+          "fieldOffset": 5379088,
+          "defaultRecordOffset": 4285452,
+          "dataOffset": 4401832
+        }
+      ],
+      "excludedSentinels": []
+    },
+    {
+      "name": "SKILL_ROLE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4151,
+      "typeOffset": 6657148,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17720,
+          "fieldOffset": 5371040,
+          "defaultRecordOffset": 4279596,
+          "dataOffset": 4399880
+        },
+        {
+          "name": "ATTACK_AA",
+          "value": 1,
+          "fieldIndex": 17721,
+          "fieldOffset": 5371056,
+          "defaultRecordOffset": 4279608,
+          "dataOffset": 4399884
+        },
+        {
+          "name": "ATTACK_AP",
+          "value": 2,
+          "fieldIndex": 17722,
+          "fieldOffset": 5371072,
+          "defaultRecordOffset": 4279620,
+          "dataOffset": 4399888
+        },
+        {
+          "name": "ATTACK_PA",
+          "value": 3,
+          "fieldIndex": 17723,
+          "fieldOffset": 5371088,
+          "defaultRecordOffset": 4279632,
+          "dataOffset": 4399892
+        },
+        {
+          "name": "ATTACK_PP",
+          "value": 4,
+          "fieldIndex": 17724,
+          "fieldOffset": 5371104,
+          "defaultRecordOffset": 4279644,
+          "dataOffset": 4399896
+        },
+        {
+          "name": "ATK_OP_DRAIN",
+          "value": 5,
+          "fieldIndex": 17725,
+          "fieldOffset": 5371120,
+          "defaultRecordOffset": 4279656,
+          "dataOffset": 4399900
+        },
+        {
+          "name": "ATK_OP_REVENGE",
+          "value": 6,
+          "fieldIndex": 17726,
+          "fieldOffset": 5371136,
+          "defaultRecordOffset": 4279668,
+          "dataOffset": 4399904
+        },
+        {
+          "name": "ATK_OP_PIERCING",
+          "value": 7,
+          "fieldIndex": 17727,
+          "fieldOffset": 5371152,
+          "defaultRecordOffset": 4279680,
+          "dataOffset": 4399908
+        },
+        {
+          "name": "ATK_OP_DAMAGE_INCREASE",
+          "value": 8,
+          "fieldIndex": 17728,
+          "fieldOffset": 5371168,
+          "defaultRecordOffset": 4279692,
+          "dataOffset": 4399912
+        },
+        {
+          "name": "HEAL_FIXED",
+          "value": 9,
+          "fieldIndex": 17729,
+          "fieldOffset": 5371184,
+          "defaultRecordOffset": 4279704,
+          "dataOffset": 4399916
+        },
+        {
+          "name": "HEAL_BY_TARGET_HP",
+          "value": 10,
+          "fieldIndex": 17730,
+          "fieldOffset": 5371200,
+          "defaultRecordOffset": 4279716,
+          "dataOffset": 4399920
+        },
+        {
+          "name": "HEAL_BY_TARGET_MAXHP",
+          "value": 11,
+          "fieldIndex": 17731,
+          "fieldOffset": 5371216,
+          "defaultRecordOffset": 4279728,
+          "dataOffset": 4399924
+        },
+        {
+          "name": "HEAL_BY_SELF_PARAM",
+          "value": 12,
+          "fieldIndex": 17732,
+          "fieldOffset": 5371232,
+          "defaultRecordOffset": 4279740,
+          "dataOffset": 4399928
+        },
+        {
+          "name": "REGENERATE_FIXED",
+          "value": 13,
+          "fieldIndex": 17733,
+          "fieldOffset": 5371248,
+          "defaultRecordOffset": 4279752,
+          "dataOffset": 4399932
+        },
+        {
+          "name": "REGENERATE_BY_TARGET_HP",
+          "value": 14,
+          "fieldIndex": 17734,
+          "fieldOffset": 5371264,
+          "defaultRecordOffset": 4279764,
+          "dataOffset": 4399936
+        },
+        {
+          "name": "REGENERATE_BY_TARGET_MAXHP",
+          "value": 15,
+          "fieldIndex": 17735,
+          "fieldOffset": 5371280,
+          "defaultRecordOffset": 4279776,
+          "dataOffset": 4399940
+        },
+        {
+          "name": "REGENERATE_BY_SELF_PARAM",
+          "value": 16,
+          "fieldIndex": 17736,
+          "fieldOffset": 5371296,
+          "defaultRecordOffset": 4279788,
+          "dataOffset": 4399944
+        },
+        {
+          "name": "ATK_UP_BY_SELF_PARAM",
+          "value": 17,
+          "fieldIndex": 17737,
+          "fieldOffset": 5371312,
+          "defaultRecordOffset": 4279800,
+          "dataOffset": 4399948
+        },
+        {
+          "name": "ATK_UP_BY_TARGET_PARAM",
+          "value": 18,
+          "fieldIndex": 17738,
+          "fieldOffset": 5371328,
+          "defaultRecordOffset": 4279812,
+          "dataOffset": 4399952
+        },
+        {
+          "name": "ATK_UP_FIXED",
+          "value": 19,
+          "fieldIndex": 17739,
+          "fieldOffset": 5371344,
+          "defaultRecordOffset": 4279824,
+          "dataOffset": 4399956
+        },
+        {
+          "name": "DAMAGE_UP",
+          "value": 20,
+          "fieldIndex": 17740,
+          "fieldOffset": 5371360,
+          "defaultRecordOffset": 4279836,
+          "dataOffset": 4399960
+        },
+        {
+          "name": "DEBUFF_RELEASE",
+          "value": 21,
+          "fieldIndex": 17741,
+          "fieldOffset": 5371376,
+          "defaultRecordOffset": 4279848,
+          "dataOffset": 4399964
+        },
+        {
+          "name": "DAMAGE_CUT",
+          "value": 22,
+          "fieldIndex": 17742,
+          "fieldOffset": 5371392,
+          "defaultRecordOffset": 4279860,
+          "dataOffset": 4399968
+        },
+        {
+          "name": "DEF_UP_BY_SELF_PARAM",
+          "value": 23,
+          "fieldIndex": 17743,
+          "fieldOffset": 5371408,
+          "defaultRecordOffset": 4279872,
+          "dataOffset": 4399972
+        },
+        {
+          "name": "DEF_UP_BY_TARGET_PARAM",
+          "value": 24,
+          "fieldIndex": 17744,
+          "fieldOffset": 5371424,
+          "defaultRecordOffset": 4279884,
+          "dataOffset": 4399976
+        },
+        {
+          "name": "DEF_UP_FIXED",
+          "value": 25,
+          "fieldIndex": 17745,
+          "fieldOffset": 5371440,
+          "defaultRecordOffset": 4279896,
+          "dataOffset": 4399980
+        },
+        {
+          "name": "HP_CUT",
+          "value": 26,
+          "fieldIndex": 17746,
+          "fieldOffset": 5371456,
+          "defaultRecordOffset": 4279908,
+          "dataOffset": 4399984
+        },
+        {
+          "name": "BUFF_RELEASE",
+          "value": 27,
+          "fieldIndex": 17747,
+          "fieldOffset": 5371472,
+          "defaultRecordOffset": 4279920,
+          "dataOffset": 4399988
+        },
+        {
+          "name": "ATK_BREAK_BY_SELF_PARAM",
+          "value": 28,
+          "fieldIndex": 17748,
+          "fieldOffset": 5371488,
+          "defaultRecordOffset": 4279932,
+          "dataOffset": 4399992
+        },
+        {
+          "name": "ATK_BREAK_FIXED",
+          "value": 29,
+          "fieldIndex": 17749,
+          "fieldOffset": 5371504,
+          "defaultRecordOffset": 4279944,
+          "dataOffset": 4399996
+        },
+        {
+          "name": "GUARD_BREAK_BY_SELF_PARAM",
+          "value": 30,
+          "fieldIndex": 17750,
+          "fieldOffset": 5371520,
+          "defaultRecordOffset": 4279956,
+          "dataOffset": 4400000
+        },
+        {
+          "name": "GUARD_BREAK_BY_TARGET_PARAM",
+          "value": 31,
+          "fieldIndex": 17751,
+          "fieldOffset": 5371536,
+          "defaultRecordOffset": 4279968,
+          "dataOffset": 4400004
+        },
+        {
+          "name": "GUARD_BREAK_FIXED",
+          "value": 32,
+          "fieldIndex": 17752,
+          "fieldOffset": 5371552,
+          "defaultRecordOffset": 4279980,
+          "dataOffset": 4400008
+        },
+        {
+          "name": "DAMAGE_DOWN",
+          "value": 33,
+          "fieldIndex": 17753,
+          "fieldOffset": 5371568,
+          "defaultRecordOffset": 4279992,
+          "dataOffset": 4400012
+        },
+        {
+          "name": "UNDERMINE",
+          "value": 34,
+          "fieldIndex": 17754,
+          "fieldOffset": 5371584,
+          "defaultRecordOffset": 4280004,
+          "dataOffset": 4400016
+        },
+        {
+          "name": "STAN",
+          "value": 35,
+          "fieldIndex": 17755,
+          "fieldOffset": 5371600,
+          "defaultRecordOffset": 4280016,
+          "dataOffset": 4400020
+        },
+        {
+          "name": "SILENCE",
+          "value": 36,
+          "fieldIndex": 17756,
+          "fieldOffset": 5371616,
+          "defaultRecordOffset": 4280028,
+          "dataOffset": 4400024
+        },
+        {
+          "name": "CHARM",
+          "value": 37,
+          "fieldIndex": 17757,
+          "fieldOffset": 5371632,
+          "defaultRecordOffset": 4280040,
+          "dataOffset": 4400028
+        },
+        {
+          "name": "POISON",
+          "value": 38,
+          "fieldIndex": 17758,
+          "fieldOffset": 5371648,
+          "defaultRecordOffset": 4280052,
+          "dataOffset": 4400032
+        },
+        {
+          "name": "BURN",
+          "value": 39,
+          "fieldIndex": 17759,
+          "fieldOffset": 5371664,
+          "defaultRecordOffset": 4280064,
+          "dataOffset": 4400036
+        },
+        {
+          "name": "FREEZE",
+          "value": 40,
+          "fieldIndex": 17760,
+          "fieldOffset": 5371680,
+          "defaultRecordOffset": 4280076,
+          "dataOffset": 4400040
+        },
+        {
+          "name": "BLEED",
+          "value": 41,
+          "fieldIndex": 17761,
+          "fieldOffset": 5371696,
+          "defaultRecordOffset": 4280088,
+          "dataOffset": 4400044
+        },
+        {
+          "name": "STEAL",
+          "value": 42,
+          "fieldIndex": 17762,
+          "fieldOffset": 5371712,
+          "defaultRecordOffset": 4280100,
+          "dataOffset": 4400048
+        },
+        {
+          "name": "REWRITE",
+          "value": 43,
+          "fieldIndex": 17763,
+          "fieldOffset": 5371728,
+          "defaultRecordOffset": 4280112,
+          "dataOffset": 4400052
+        },
+        {
+          "name": "DEAL_BONUS",
+          "value": 44,
+          "fieldIndex": 17764,
+          "fieldOffset": 5371744,
+          "defaultRecordOffset": 4280124,
+          "dataOffset": 4400056
+        },
+        {
+          "name": "NONE",
+          "value": 45,
+          "fieldIndex": 17765,
+          "fieldOffset": 5371760,
+          "defaultRecordOffset": 4280136,
+          "dataOffset": 4400060
+        },
+        {
+          "name": "DEBUFF_RELEASE_ONE",
+          "value": 46,
+          "fieldIndex": 17766,
+          "fieldOffset": 5371776,
+          "defaultRecordOffset": 4280148,
+          "dataOffset": 4400064
+        },
+        {
+          "name": "BUFF_RELEASE_ONE",
+          "value": 47,
+          "fieldIndex": 17767,
+          "fieldOffset": 5371792,
+          "defaultRecordOffset": 4280160,
+          "dataOffset": 4400068
+        },
+        {
+          "name": "CARD_SEAL",
+          "value": 48,
+          "fieldIndex": 17768,
+          "fieldOffset": 5371808,
+          "defaultRecordOffset": 4280172,
+          "dataOffset": 4400072
+        },
+        {
+          "name": "CARD_SEAL_REGIST",
+          "value": 49,
+          "fieldIndex": 17769,
+          "fieldOffset": 5371824,
+          "defaultRecordOffset": 4280184,
+          "dataOffset": 4400076
+        },
+        {
+          "name": "CARD_SEAL_RECOVERY",
+          "value": 50,
+          "fieldIndex": 17770,
+          "fieldOffset": 5371840,
+          "defaultRecordOffset": 4280196,
+          "dataOffset": 4400080
+        },
+        {
+          "name": "OUTPUT_TEXT",
+          "value": 51,
+          "fieldIndex": 17771,
+          "fieldOffset": 5371856,
+          "defaultRecordOffset": 4280208,
+          "dataOffset": 4400084
+        },
+        {
+          "name": "BUFF_RELEASE_RANDOM",
+          "value": 52,
+          "fieldIndex": 17772,
+          "fieldOffset": 5371872,
+          "defaultRecordOffset": 4280220,
+          "dataOffset": 4400088
+        },
+        {
+          "name": "DEBUFF_RELEASE_RANDOM",
+          "value": 53,
+          "fieldIndex": 17773,
+          "fieldOffset": 5371888,
+          "defaultRecordOffset": 4280232,
+          "dataOffset": 4400092
+        },
+        {
+          "name": "BUFF_RELEASE_OLD",
+          "value": 54,
+          "fieldIndex": 17774,
+          "fieldOffset": 5371904,
+          "defaultRecordOffset": 4280244,
+          "dataOffset": 4400096
+        },
+        {
+          "name": "DEBUFF_RELEASE_OLD",
+          "value": 55,
+          "fieldIndex": 17775,
+          "fieldOffset": 5371920,
+          "defaultRecordOffset": 4280256,
+          "dataOffset": 4400100
+        },
+        {
+          "name": "DESTRUCT",
+          "value": 56,
+          "fieldIndex": 17776,
+          "fieldOffset": 5371936,
+          "defaultRecordOffset": 4280268,
+          "dataOffset": 4400104
+        },
+        {
+          "name": "REVIVE",
+          "value": 57,
+          "fieldIndex": 17777,
+          "fieldOffset": 5371952,
+          "defaultRecordOffset": 4280280,
+          "dataOffset": 4400108
+        },
+        {
+          "name": "ATTR_RATE_DOWN_INVALID",
+          "value": 58,
+          "fieldIndex": 17778,
+          "fieldOffset": 5371968,
+          "defaultRecordOffset": 4280292,
+          "dataOffset": 4400112
+        },
+        {
+          "name": "ATTR_HIDE",
+          "value": 59,
+          "fieldIndex": 17779,
+          "fieldOffset": 5371984,
+          "defaultRecordOffset": 4280304,
+          "dataOffset": 4400116
+        },
+        {
+          "name": "ATK_OP_ATTR_RATE_DOWN_INVALID",
+          "value": 60,
+          "fieldIndex": 17780,
+          "fieldOffset": 5372000,
+          "defaultRecordOffset": 4280316,
+          "dataOffset": 4400120
+        },
+        {
+          "name": "ATTR_SEE",
+          "value": 61,
+          "fieldIndex": 17781,
+          "fieldOffset": 5372016,
+          "defaultRecordOffset": 4280328,
+          "dataOffset": 4400124
+        },
+        {
+          "name": "ENEMY_AI_TRIGGER_FLAG_SET",
+          "value": 62,
+          "fieldIndex": 17782,
+          "fieldOffset": 5372032,
+          "defaultRecordOffset": 4280340,
+          "dataOffset": 4400128
+        },
+        {
+          "name": "ATTACK_BARRIER",
+          "value": 63,
+          "fieldIndex": 17783,
+          "fieldOffset": 5372048,
+          "defaultRecordOffset": 4280352,
+          "dataOffset": 4400132
+        },
+        {
+          "name": "COVERING",
+          "value": 64,
+          "fieldIndex": 17784,
+          "fieldOffset": 5372064,
+          "defaultRecordOffset": 4280364,
+          "dataOffset": 4400136
+        },
+        {
+          "name": "ROLE_OP_COMBO",
+          "value": 65,
+          "fieldIndex": 17785,
+          "fieldOffset": 5372080,
+          "defaultRecordOffset": 4280376,
+          "dataOffset": 4400140
+        },
+        {
+          "name": "ATK_UP_FIXED_ATTR_BONUS",
+          "value": 66,
+          "fieldIndex": 17786,
+          "fieldOffset": 5372096,
+          "defaultRecordOffset": 4280388,
+          "dataOffset": 4400144
+        },
+        {
+          "name": "DEF_UP_FIXED_ATTR_BONUS",
+          "value": 67,
+          "fieldIndex": 17787,
+          "fieldOffset": 5372112,
+          "defaultRecordOffset": 4280400,
+          "dataOffset": 4400148
+        },
+        {
+          "name": "FIELD_ATTR_UP",
+          "value": 68,
+          "fieldIndex": 17788,
+          "fieldOffset": 5372128,
+          "defaultRecordOffset": 4280412,
+          "dataOffset": 4400152
+        },
+        {
+          "name": "FIELD_ATTR_DOWN",
+          "value": 69,
+          "fieldIndex": 17789,
+          "fieldOffset": 5372144,
+          "defaultRecordOffset": 4280424,
+          "dataOffset": 4400156
+        },
+        {
+          "name": "FIELD_SKILL_UP",
+          "value": 70,
+          "fieldIndex": 17790,
+          "fieldOffset": 5372160,
+          "defaultRecordOffset": 4280436,
+          "dataOffset": 4400160
+        },
+        {
+          "name": "FIELD_HEAL_UP",
+          "value": 71,
+          "fieldIndex": 17791,
+          "fieldOffset": 5372176,
+          "defaultRecordOffset": 4280448,
+          "dataOffset": 4400164
+        },
+        {
+          "name": "FIELD_HEAL_DOWN",
+          "value": 72,
+          "fieldIndex": 17792,
+          "fieldOffset": 5372192,
+          "defaultRecordOffset": 4280460,
+          "dataOffset": 4400168
+        },
+        {
+          "name": "FIELD_JAMMING_UP",
+          "value": 73,
+          "fieldIndex": 17793,
+          "fieldOffset": 5372208,
+          "defaultRecordOffset": 4280472,
+          "dataOffset": 4400172
+        },
+        {
+          "name": "FIELD_SUPPORT_DEFENCE_UP",
+          "value": 74,
+          "fieldIndex": 17794,
+          "fieldOffset": 5372224,
+          "defaultRecordOffset": 4280484,
+          "dataOffset": 4400176
+        },
+        {
+          "name": "WEAKNESS",
+          "value": 75,
+          "fieldIndex": 17795,
+          "fieldOffset": 5372240,
+          "defaultRecordOffset": 4280496,
+          "dataOffset": 4400180
+        },
+        {
+          "name": "BUFF_RELEASE_ONE_NUM",
+          "value": 76,
+          "fieldIndex": 17796,
+          "fieldOffset": 5372256,
+          "defaultRecordOffset": 4280508,
+          "dataOffset": 4400184
+        },
+        {
+          "name": "DEBUFF_RELEASE_ONE_NUM",
+          "value": 77,
+          "fieldIndex": 17797,
+          "fieldOffset": 5372272,
+          "defaultRecordOffset": 4280520,
+          "dataOffset": 4400188
+        },
+        {
+          "name": "PARAM_UP_BUFF_CONVERT",
+          "value": 78,
+          "fieldIndex": 17798,
+          "fieldOffset": 5372288,
+          "defaultRecordOffset": 4280532,
+          "dataOffset": 4400192
+        },
+        {
+          "name": "DOT_VALUE_UP",
+          "value": 79,
+          "fieldIndex": 17799,
+          "fieldOffset": 5372304,
+          "defaultRecordOffset": 4280544,
+          "dataOffset": 4400196
+        },
+        {
+          "name": "HEAL_REVERSE",
+          "value": 80,
+          "fieldIndex": 17800,
+          "fieldOffset": 5372320,
+          "defaultRecordOffset": 4280556,
+          "dataOffset": 4400200
+        },
+        {
+          "name": "ATK_UP_BY_NOW_TURN_DAMAGE",
+          "value": 81,
+          "fieldIndex": 17801,
+          "fieldOffset": 5372336,
+          "defaultRecordOffset": 4280568,
+          "dataOffset": 4400204
+        },
+        {
+          "name": "DEF_UP_BY_NOW_TURN_DAMAGE",
+          "value": 82,
+          "fieldIndex": 17802,
+          "fieldOffset": 5372352,
+          "defaultRecordOffset": 4280580,
+          "dataOffset": 4400208
+        },
+        {
+          "name": "ATK_BREAK_BY_NOW_TURN_DAMAGE",
+          "value": 83,
+          "fieldIndex": 17803,
+          "fieldOffset": 5372368,
+          "defaultRecordOffset": 4280592,
+          "dataOffset": 4400212
+        },
+        {
+          "name": "GUARD_BREAK_BY_NOW_TURN_DAMAGE",
+          "value": 84,
+          "fieldIndex": 17804,
+          "fieldOffset": 5372384,
+          "defaultRecordOffset": 4280604,
+          "dataOffset": 4400216
+        },
+        {
+          "name": "ATK_OP_NOW_TURN_REVENGE",
+          "value": 85,
+          "fieldIndex": 17805,
+          "fieldOffset": 5372400,
+          "defaultRecordOffset": 4280616,
+          "dataOffset": 4400220
+        },
+        {
+          "name": "CRITICAL_UP",
+          "value": 86,
+          "fieldIndex": 17806,
+          "fieldOffset": 5372416,
+          "defaultRecordOffset": 4280628,
+          "dataOffset": 4400224
+        },
+        {
+          "name": "DEAL_PENALTY",
+          "value": 87,
+          "fieldIndex": 17807,
+          "fieldOffset": 5372432,
+          "defaultRecordOffset": 4280640,
+          "dataOffset": 4400228
+        },
+        {
+          "name": "ELECTRIC",
+          "value": 88,
+          "fieldIndex": 17808,
+          "fieldOffset": 5372448,
+          "defaultRecordOffset": 4280652,
+          "dataOffset": 4400232
+        },
+        {
+          "name": "DARKNESS_RANDOM",
+          "value": 89,
+          "fieldIndex": 17809,
+          "fieldOffset": 5372464,
+          "defaultRecordOffset": 4280664,
+          "dataOffset": 4400236
+        },
+        {
+          "name": "DARKNESS_APPOINT",
+          "value": 90,
+          "fieldIndex": 17810,
+          "fieldOffset": 5372480,
+          "defaultRecordOffset": 4280676,
+          "dataOffset": 4400240
+        },
+        {
+          "name": "DARKNESS_REGIST",
+          "value": 91,
+          "fieldIndex": 17811,
+          "fieldOffset": 5372496,
+          "defaultRecordOffset": 4280688,
+          "dataOffset": 4400244
+        },
+        {
+          "name": "CARD_TRAP_DAMAGE",
+          "value": 92,
+          "fieldIndex": 17812,
+          "fieldOffset": 5372512,
+          "defaultRecordOffset": 4280700,
+          "dataOffset": 4400248
+        },
+        {
+          "name": "CARD_TRAP_DOT",
+          "value": 93,
+          "fieldIndex": 17813,
+          "fieldOffset": 5372528,
+          "defaultRecordOffset": 4280712,
+          "dataOffset": 4400252
+        },
+        {
+          "name": "COST_BLOCK",
+          "value": 94,
+          "fieldIndex": 17814,
+          "fieldOffset": 5372544,
+          "defaultRecordOffset": 4280724,
+          "dataOffset": 4400256
+        },
+        {
+          "name": "DEAL_PENALTY_TURN_APPOINT",
+          "value": 95,
+          "fieldIndex": 17815,
+          "fieldOffset": 5372560,
+          "defaultRecordOffset": 4280736,
+          "dataOffset": 4400260
+        },
+        {
+          "name": "CRITICAL_UP_BY_SUPPORT",
+          "value": 96,
+          "fieldIndex": 17816,
+          "fieldOffset": 5372576,
+          "defaultRecordOffset": 4280748,
+          "dataOffset": 4400264
+        },
+        {
+          "name": "ROLE_VALUE_UP_BY_ROLE_OP",
+          "value": 97,
+          "fieldIndex": 17817,
+          "fieldOffset": 5372592,
+          "defaultRecordOffset": 4280760,
+          "dataOffset": 4400268
+        },
+        {
+          "name": "DECK_COMBO_RATE_UP",
+          "value": 98,
+          "fieldIndex": 17818,
+          "fieldOffset": 5372608,
+          "defaultRecordOffset": 4280772,
+          "dataOffset": 4400272
+        },
+        {
+          "name": "DEBUFF_REGIST",
+          "value": 99,
+          "fieldIndex": 17819,
+          "fieldOffset": 5372624,
+          "defaultRecordOffset": 4280784,
+          "dataOffset": 4400276
+        },
+        {
+          "name": "DEBUFF_REGIST_CARD",
+          "value": 100,
+          "fieldIndex": 17820,
+          "fieldOffset": 5372640,
+          "defaultRecordOffset": 4280796,
+          "dataOffset": 4400280
+        },
+        {
+          "name": "NEED_COST_DOWN",
+          "value": 101,
+          "fieldIndex": 17821,
+          "fieldOffset": 5372656,
+          "defaultRecordOffset": 4280808,
+          "dataOffset": 4400284
+        },
+        {
+          "name": "ROLE_VALUE_UP_BY_PVP_RATE",
+          "value": 102,
+          "fieldIndex": 17822,
+          "fieldOffset": 5372672,
+          "defaultRecordOffset": 4280820,
+          "dataOffset": 4400288
+        },
+        {
+          "name": "ATK_UP_FIXED_PARAM_UNIQUE",
+          "value": 103,
+          "fieldIndex": 17823,
+          "fieldOffset": 5372688,
+          "defaultRecordOffset": 4280832,
+          "dataOffset": 4400292
+        },
+        {
+          "name": "DEF_UP_FIXED_PARAM_UNIQUE",
+          "value": 104,
+          "fieldIndex": 17824,
+          "fieldOffset": 5372704,
+          "defaultRecordOffset": 4280844,
+          "dataOffset": 4400296
+        },
+        {
+          "name": "ATK_UP_FIXED_SUPPORT",
+          "value": 105,
+          "fieldIndex": 17825,
+          "fieldOffset": 5372720,
+          "defaultRecordOffset": 4280856,
+          "dataOffset": 4400300
+        },
+        {
+          "name": "DEF_UP_FIXED_SUPPORT",
+          "value": 106,
+          "fieldIndex": 17826,
+          "fieldOffset": 5372736,
+          "defaultRecordOffset": 4280868,
+          "dataOffset": 4400304
+        },
+        {
+          "name": "ENCHANT",
+          "value": 107,
+          "fieldIndex": 17827,
+          "fieldOffset": 5372752,
+          "defaultRecordOffset": 4280880,
+          "dataOffset": 4400308
+        },
+        {
+          "name": "ENEMY_AWAKE_FLAG_SET",
+          "value": 108,
+          "fieldIndex": 17828,
+          "fieldOffset": 5372768,
+          "defaultRecordOffset": 4280892,
+          "dataOffset": 4400312
+        },
+        {
+          "name": "FORCE_BATTLE_END",
+          "value": 109,
+          "fieldIndex": 17829,
+          "fieldOffset": 5372784,
+          "defaultRecordOffset": 4280904,
+          "dataOffset": 4400316
+        },
+        {
+          "name": "ATTR_DEF_UP",
+          "value": 110,
+          "fieldIndex": 17830,
+          "fieldOffset": 5372800,
+          "defaultRecordOffset": 4280916,
+          "dataOffset": 4400320
+        },
+        {
+          "name": "ATTR_DEF_DOWN",
+          "value": 111,
+          "fieldIndex": 17831,
+          "fieldOffset": 5372816,
+          "defaultRecordOffset": 4280928,
+          "dataOffset": 4400324
+        },
+        {
+          "name": "ATTR_DEF_UP_SUPPORT",
+          "value": 112,
+          "fieldIndex": 17832,
+          "fieldOffset": 5372832,
+          "defaultRecordOffset": 4280940,
+          "dataOffset": 4400328
+        },
+        {
+          "name": "REFLECTION",
+          "value": 113,
+          "fieldIndex": 17833,
+          "fieldOffset": 5372848,
+          "defaultRecordOffset": 4280952,
+          "dataOffset": 4400332
+        },
+        {
+          "name": "ATK_OP_REFLECTION_INVALID",
+          "value": 114,
+          "fieldIndex": 17834,
+          "fieldOffset": 5372864,
+          "defaultRecordOffset": 4280964,
+          "dataOffset": 4400336
+        },
+        {
+          "name": "DEBUFF_REGIST_LIMIT",
+          "value": 115,
+          "fieldIndex": 17835,
+          "fieldOffset": 5372880,
+          "defaultRecordOffset": 4280976,
+          "dataOffset": 4400340
+        },
+        {
+          "name": "DEBUFF_REGIST_CARD_LIMIT",
+          "value": 116,
+          "fieldIndex": 17836,
+          "fieldOffset": 5372896,
+          "defaultRecordOffset": 4280988,
+          "dataOffset": 4400344
+        },
+        {
+          "name": "TRANCE_GAUGE_STATE_CHANGE",
+          "value": 117,
+          "fieldIndex": 17837,
+          "fieldOffset": 5372912,
+          "defaultRecordOffset": 4281000,
+          "dataOffset": 4400348
+        },
+        {
+          "name": "TRANCE_GAUGE_VALUE_UP",
+          "value": 118,
+          "fieldIndex": 17838,
+          "fieldOffset": 5372928,
+          "defaultRecordOffset": 4281012,
+          "dataOffset": 4400352
+        },
+        {
+          "name": "TRANCE_GAUGE_VALUE_DOWN",
+          "value": 119,
+          "fieldIndex": 17839,
+          "fieldOffset": 5372944,
+          "defaultRecordOffset": 4281024,
+          "dataOffset": 4400356
+        },
+        {
+          "name": "TRANCE_GAUGE_OVER_HEAT_TURN_ADD",
+          "value": 120,
+          "fieldIndex": 17840,
+          "fieldOffset": 5372960,
+          "defaultRecordOffset": 4281036,
+          "dataOffset": 4400360
+        },
+        {
+          "name": "ENDURE",
+          "value": 121,
+          "fieldIndex": 17841,
+          "fieldOffset": 5372976,
+          "defaultRecordOffset": 4281048,
+          "dataOffset": 4400364
+        },
+        {
+          "name": "CRITICAL_DOWN",
+          "value": 122,
+          "fieldIndex": 17842,
+          "fieldOffset": 5372992,
+          "defaultRecordOffset": 4281060,
+          "dataOffset": 4400368
+        },
+        {
+          "name": "DAMAGE_BOOST",
+          "value": 123,
+          "fieldIndex": 17843,
+          "fieldOffset": 5373008,
+          "defaultRecordOffset": 4281072,
+          "dataOffset": 4400372
+        },
+        {
+          "name": "ATK_UP_BOOST",
+          "value": 124,
+          "fieldIndex": 17844,
+          "fieldOffset": 5373024,
+          "defaultRecordOffset": 4281084,
+          "dataOffset": 4400376
+        },
+        {
+          "name": "DEF_UP_BOOST",
+          "value": 125,
+          "fieldIndex": 17845,
+          "fieldOffset": 5373040,
+          "defaultRecordOffset": 4281096,
+          "dataOffset": 4400380
+        },
+        {
+          "name": "ATK_BREAK_BOOST",
+          "value": 126,
+          "fieldIndex": 17846,
+          "fieldOffset": 5373056,
+          "defaultRecordOffset": 4281108,
+          "dataOffset": 4400384
+        },
+        {
+          "name": "GUARD_BREAK_BOOST",
+          "value": 127,
+          "fieldIndex": 17847,
+          "fieldOffset": 5373072,
+          "defaultRecordOffset": 4281120,
+          "dataOffset": 4400388
+        },
+        {
+          "name": "HEAL_BOOST",
+          "value": 128,
+          "fieldIndex": 17848,
+          "fieldOffset": 5373088,
+          "defaultRecordOffset": 4281132,
+          "dataOffset": 4400392
+        },
+        {
+          "name": "CRITICAL_BOOST",
+          "value": 129,
+          "fieldIndex": 17849,
+          "fieldOffset": 5373104,
+          "defaultRecordOffset": 4281144,
+          "dataOffset": 4400396
+        },
+        {
+          "name": "DAMAGE_CUT2",
+          "value": 130,
+          "fieldIndex": 17850,
+          "fieldOffset": 5373120,
+          "defaultRecordOffset": 4281156,
+          "dataOffset": 4400400
+        },
+        {
+          "name": "DAMAGE_BOOST_ORDER_TARGET_DEBUFF",
+          "value": 131,
+          "fieldIndex": 17851,
+          "fieldOffset": 5373136,
+          "defaultRecordOffset": 4281168,
+          "dataOffset": 4400404
+        },
+        {
+          "name": "DAMAGE_CUT_ORDER_TARGET_DEBUFF",
+          "value": 132,
+          "fieldIndex": 17852,
+          "fieldOffset": 5373152,
+          "defaultRecordOffset": 4281180,
+          "dataOffset": 4400408
+        },
+        {
+          "name": "ENEMY_CURSE",
+          "value": 133,
+          "fieldIndex": 17853,
+          "fieldOffset": 5373168,
+          "defaultRecordOffset": 4281192,
+          "dataOffset": 4400412
+        },
+        {
+          "name": "BLESS",
+          "value": 134,
+          "fieldIndex": 17854,
+          "fieldOffset": 5373184,
+          "defaultRecordOffset": 4281204,
+          "dataOffset": 4400416
+        },
+        {
+          "name": "CURSE_RELEASE",
+          "value": 135,
+          "fieldIndex": 17855,
+          "fieldOffset": 5373200,
+          "defaultRecordOffset": 4281216,
+          "dataOffset": 4400420
+        },
+        {
+          "name": "BLESS_RELEASE",
+          "value": 136,
+          "fieldIndex": 17856,
+          "fieldOffset": 5373216,
+          "defaultRecordOffset": 4281228,
+          "dataOffset": 4400424
+        },
+        {
+          "name": "CURSE_TURN_DOWN",
+          "value": 137,
+          "fieldIndex": 17857,
+          "fieldOffset": 5373232,
+          "defaultRecordOffset": 4281240,
+          "dataOffset": 4400428
+        },
+        {
+          "name": "BLESS_TURN_DOWN",
+          "value": 138,
+          "fieldIndex": 17858,
+          "fieldOffset": 5373248,
+          "defaultRecordOffset": 4281252,
+          "dataOffset": 4400432
+        },
+        {
+          "name": "BEGINNING_DRAW",
+          "value": 139,
+          "fieldIndex": 17859,
+          "fieldOffset": 5373264,
+          "defaultRecordOffset": 4281264,
+          "dataOffset": 4400436
+        },
+        {
+          "name": "CURSE_TURN_UP",
+          "value": 140,
+          "fieldIndex": 17860,
+          "fieldOffset": 5373280,
+          "defaultRecordOffset": 4281276,
+          "dataOffset": 4400440
+        },
+        {
+          "name": "BLESS_TURN_UP",
+          "value": 141,
+          "fieldIndex": 17861,
+          "fieldOffset": 5373296,
+          "defaultRecordOffset": 4281288,
+          "dataOffset": 4400444
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_FIXED",
+          "value": 142,
+          "fieldIndex": 17862,
+          "fieldOffset": 5373312,
+          "defaultRecordOffset": 4281300,
+          "dataOffset": 4400448
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_BY_SELF_PARAM",
+          "value": 143,
+          "fieldIndex": 17863,
+          "fieldOffset": 5373328,
+          "defaultRecordOffset": 4281312,
+          "dataOffset": 4400452
+        },
+        {
+          "name": "ATTACK_BARRIER_APPOINT_ATTR",
+          "value": 144,
+          "fieldIndex": 17864,
+          "fieldOffset": 5373344,
+          "defaultRecordOffset": 4281324,
+          "dataOffset": 4400456
+        },
+        {
+          "name": "ATK_OP_DRAIN_ALL",
+          "value": 145,
+          "fieldIndex": 17865,
+          "fieldOffset": 5373360,
+          "defaultRecordOffset": 4281336,
+          "dataOffset": 4400460
+        },
+        {
+          "name": "GUTS",
+          "value": 146,
+          "fieldIndex": 17866,
+          "fieldOffset": 5373376,
+          "defaultRecordOffset": 4281348,
+          "dataOffset": 4400464
+        },
+        {
+          "name": "ATK_BREAK_BY_TARGET_PARAM",
+          "value": 147,
+          "fieldIndex": 17867,
+          "fieldOffset": 5373392,
+          "defaultRecordOffset": 4281360,
+          "dataOffset": 4400468
+        },
+        {
+          "name": "ATK_UP_TARGET_ENEMY_PARAM",
+          "value": 148,
+          "fieldIndex": 17868,
+          "fieldOffset": 5373408,
+          "defaultRecordOffset": 4281372,
+          "dataOffset": 4400472
+        },
+        {
+          "name": "ATTR_CUT_ATTACK",
+          "value": 149,
+          "fieldIndex": 17869,
+          "fieldOffset": 5373424,
+          "defaultRecordOffset": 4281384,
+          "dataOffset": 4400476
+        },
+        {
+          "name": "ATTR_DRAIN_ATTACK",
+          "value": 150,
+          "fieldIndex": 17870,
+          "fieldOffset": 5373440,
+          "defaultRecordOffset": 4281396,
+          "dataOffset": 4400480
+        },
+        {
+          "name": "ATTR_CUT_ENCHANT",
+          "value": 151,
+          "fieldIndex": 17871,
+          "fieldOffset": 5373456,
+          "defaultRecordOffset": 4281408,
+          "dataOffset": 4400484
+        },
+        {
+          "name": "ATTR_DRAIN_ENCHANT",
+          "value": 152,
+          "fieldIndex": 17872,
+          "fieldOffset": 5373472,
+          "defaultRecordOffset": 4281420,
+          "dataOffset": 4400488
+        },
+        {
+          "name": "ATTR_CUT_DOT",
+          "value": 153,
+          "fieldIndex": 17873,
+          "fieldOffset": 5373488,
+          "defaultRecordOffset": 4281432,
+          "dataOffset": 4400492
+        },
+        {
+          "name": "ATTR_DRAIN_DOT",
+          "value": 154,
+          "fieldIndex": 17874,
+          "fieldOffset": 5373504,
+          "defaultRecordOffset": 4281444,
+          "dataOffset": 4400496
+        },
+        {
+          "name": "CRITICAL_DAMAGE_BOOST",
+          "value": 155,
+          "fieldIndex": 17875,
+          "fieldOffset": 5373520,
+          "defaultRecordOffset": 4281456,
+          "dataOffset": 4400500
+        },
+        {
+          "name": "NEED_COST_DOWN_BURST",
+          "value": 156,
+          "fieldIndex": 17876,
+          "fieldOffset": 5373536,
+          "defaultRecordOffset": 4281468,
+          "dataOffset": 4400504
+        },
+        {
+          "name": "ATTACK_MULTISTAGE",
+          "value": 157,
+          "fieldIndex": 17877,
+          "fieldOffset": 5373552,
+          "defaultRecordOffset": 4281480,
+          "dataOffset": 4400508
+        },
+        {
+          "name": "ADD_ATK_OP_PIERCING",
+          "value": 158,
+          "fieldIndex": 17878,
+          "fieldOffset": 5373568,
+          "defaultRecordOffset": 4281492,
+          "dataOffset": 4400512
+        },
+        {
+          "name": "DISCARD_DRAW",
+          "value": 159,
+          "fieldIndex": 17879,
+          "fieldOffset": 5373584,
+          "defaultRecordOffset": 4281504,
+          "dataOffset": 4400516
+        },
+        {
+          "name": "DAMAGE_BOOST_ORDER_TRIBAL",
+          "value": 160,
+          "fieldIndex": 17880,
+          "fieldOffset": 5373600,
+          "defaultRecordOffset": 4281516,
+          "dataOffset": 4400520
+        },
+        {
+          "name": "ATK_UP_BOOST_ORDER_TRIBAL",
+          "value": 161,
+          "fieldIndex": 17881,
+          "fieldOffset": 5373616,
+          "defaultRecordOffset": 4281528,
+          "dataOffset": 4400524
+        },
+        {
+          "name": "DEF_UP_BOOST_ORDER_TRIBAL",
+          "value": 162,
+          "fieldIndex": 17882,
+          "fieldOffset": 5373632,
+          "defaultRecordOffset": 4281540,
+          "dataOffset": 4400528
+        },
+        {
+          "name": "ATK_BREAK_BOOST_ORDER_TRIBAL",
+          "value": 163,
+          "fieldIndex": 17883,
+          "fieldOffset": 5373648,
+          "defaultRecordOffset": 4281552,
+          "dataOffset": 4400532
+        },
+        {
+          "name": "HEAL_BOOST_ORDER_TRIBAL",
+          "value": 164,
+          "fieldIndex": 17884,
+          "fieldOffset": 5373664,
+          "defaultRecordOffset": 4281564,
+          "dataOffset": 4400536
+        },
+        {
+          "name": "CRITICAL_BOOST_ORDER_TRIBAL",
+          "value": 165,
+          "fieldIndex": 17885,
+          "fieldOffset": 5373680,
+          "defaultRecordOffset": 4281576,
+          "dataOffset": 4400540
+        },
+        {
+          "name": "PARAM_UP_SKILL_BONUS",
+          "value": 166,
+          "fieldIndex": 17886,
+          "fieldOffset": 5373696,
+          "defaultRecordOffset": 4281588,
+          "dataOffset": 4400544
+        },
+        {
+          "name": "LIMIT_BREAK_BONUS",
+          "value": 167,
+          "fieldIndex": 17887,
+          "fieldOffset": 5373712,
+          "defaultRecordOffset": 4281600,
+          "dataOffset": 4400548
+        },
+        {
+          "name": "BURST_GAUGE_QUICK_UP",
+          "value": 168,
+          "fieldIndex": 17888,
+          "fieldOffset": 5373728,
+          "defaultRecordOffset": 4281612,
+          "dataOffset": 4400552
+        },
+        {
+          "name": "BURST_GAUGE_REGENE_UP",
+          "value": 169,
+          "fieldIndex": 17889,
+          "fieldOffset": 5373744,
+          "defaultRecordOffset": 4281624,
+          "dataOffset": 4400556
+        },
+        {
+          "name": "BURST_GAUGE_UP_BONUS",
+          "value": 170,
+          "fieldIndex": 17890,
+          "fieldOffset": 5373760,
+          "defaultRecordOffset": 4281636,
+          "dataOffset": 4400560
+        },
+        {
+          "name": "HEAL_CUT",
+          "value": 171,
+          "fieldIndex": 17891,
+          "fieldOffset": 5373776,
+          "defaultRecordOffset": 4281648,
+          "dataOffset": 4400564
+        },
+        {
+          "name": "BURST_GAUGE_QUICK_DOWN",
+          "value": 172,
+          "fieldIndex": 17892,
+          "fieldOffset": 5373792,
+          "defaultRecordOffset": 4281660,
+          "dataOffset": 4400568
+        },
+        {
+          "name": "ENEMY_AI_VAR_ADD",
+          "value": 173,
+          "fieldIndex": 17893,
+          "fieldOffset": 5373808,
+          "defaultRecordOffset": 4281672,
+          "dataOffset": 4400572
+        },
+        {
+          "name": "BURST_GAUGE_PASSIVE_UP",
+          "value": 174,
+          "fieldIndex": 17894,
+          "fieldOffset": 5373824,
+          "defaultRecordOffset": 4281684,
+          "dataOffset": 4400576
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_ROLE",
+          "value": 175,
+          "fieldIndex": 17895,
+          "fieldOffset": 5373840,
+          "defaultRecordOffset": 4281696,
+          "dataOffset": 4400580
+        }
+      ]
+    },
+    {
+      "name": "SKILL_ROLE_TARGET",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4154,
+      "typeOffset": 6657508,
+      "values": [
+        {
+          "name": "SELECT",
+          "value": 0,
+          "fieldIndex": 17919,
+          "fieldOffset": 5374224,
+          "defaultRecordOffset": 4281948,
+          "dataOffset": 4400664
+        },
+        {
+          "name": "SELF",
+          "value": 1,
+          "fieldIndex": 17920,
+          "fieldOffset": 5374240,
+          "defaultRecordOffset": 4281960,
+          "dataOffset": 4400668
+        },
+        {
+          "name": "FRIEND_ALL",
+          "value": 2,
+          "fieldIndex": 17921,
+          "fieldOffset": 5374256,
+          "defaultRecordOffset": 4281972,
+          "dataOffset": 4400672
+        },
+        {
+          "name": "ENEMY_ALL",
+          "value": 3,
+          "fieldIndex": 17922,
+          "fieldOffset": 5374272,
+          "defaultRecordOffset": 4281984,
+          "dataOffset": 4400676
+        },
+        {
+          "name": "TEAMBATTLE_FRIEND_ONE",
+          "value": 4,
+          "fieldIndex": 17923,
+          "fieldOffset": 5374288,
+          "defaultRecordOffset": 4281996,
+          "dataOffset": 4400680
+        },
+        {
+          "name": "TEAMBATTLE_FRIEND_ALL",
+          "value": 5,
+          "fieldIndex": 17924,
+          "fieldOffset": 5374304,
+          "defaultRecordOffset": 4282008,
+          "dataOffset": 4400684
+        },
+        {
+          "name": "TEAMBATTLE_ENEMY_ONE",
+          "value": 6,
+          "fieldIndex": 17925,
+          "fieldOffset": 5374320,
+          "defaultRecordOffset": 4282020,
+          "dataOffset": 4400688
+        },
+        {
+          "name": "TEAMBATTLE_ENEMY_ALL",
+          "value": 7,
+          "fieldIndex": 17926,
+          "fieldOffset": 5374336,
+          "defaultRecordOffset": 4282032,
+          "dataOffset": 4400692
+        },
+        {
+          "name": "PVP_FRIEND_ONE",
+          "value": 8,
+          "fieldIndex": 17927,
+          "fieldOffset": 5374352,
+          "defaultRecordOffset": 4282044,
+          "dataOffset": 4400696
+        },
+        {
+          "name": "PVP_FRIEND_ALL",
+          "value": 9,
+          "fieldIndex": 17928,
+          "fieldOffset": 5374368,
+          "defaultRecordOffset": 4282056,
+          "dataOffset": 4400700
+        },
+        {
+          "name": "PVP_ENEMY_ONE",
+          "value": 10,
+          "fieldIndex": 17929,
+          "fieldOffset": 5374384,
+          "defaultRecordOffset": 4282068,
+          "dataOffset": 4400704
+        },
+        {
+          "name": "PVP_ENEMY_ALL",
+          "value": 11,
+          "fieldIndex": 17930,
+          "fieldOffset": 5374400,
+          "defaultRecordOffset": 4282080,
+          "dataOffset": 4400708
+        },
+        {
+          "name": "SELF_INVOLVE_DEAD",
+          "value": 12,
+          "fieldIndex": 17931,
+          "fieldOffset": 5374416,
+          "defaultRecordOffset": 4282092,
+          "dataOffset": 4400712
+        },
+        {
+          "name": "FRIEND_ALL_INVOLVE_DEAD",
+          "value": 13,
+          "fieldIndex": 17932,
+          "fieldOffset": 5374432,
+          "defaultRecordOffset": 4282104,
+          "dataOffset": 4400716
+        },
+        {
+          "name": "ENEMY_ALL_INVOLVE_DEAD",
+          "value": 14,
+          "fieldIndex": 17933,
+          "fieldOffset": 5374448,
+          "defaultRecordOffset": 4282116,
+          "dataOffset": 4400720
+        },
+        {
+          "name": "HAND_ALL",
+          "value": 15,
+          "fieldIndex": 17934,
+          "fieldOffset": 5374464,
+          "defaultRecordOffset": 4282128,
+          "dataOffset": 4400724
+        }
+      ],
+      "excludedSentinels": []
+    },
+    {
+      "name": "SKILL_ROLE_BATTLE_PARAM",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4153,
+      "typeOffset": 6657388,
+      "values": [
+        {
+          "name": "HP",
+          "value": 0,
+          "fieldIndex": 17910,
+          "fieldOffset": 5374080,
+          "defaultRecordOffset": 4281852,
+          "dataOffset": 4400632
+        },
+        {
+          "name": "MAX_HP",
+          "value": 1,
+          "fieldIndex": 17911,
+          "fieldOffset": 5374096,
+          "defaultRecordOffset": 4281864,
+          "dataOffset": 4400636
+        },
+        {
+          "name": "ATK",
+          "value": 2,
+          "fieldIndex": 17912,
+          "fieldOffset": 5374112,
+          "defaultRecordOffset": 4281876,
+          "dataOffset": 4400640
+        },
+        {
+          "name": "INT",
+          "value": 3,
+          "fieldIndex": 17913,
+          "fieldOffset": 5374128,
+          "defaultRecordOffset": 4281888,
+          "dataOffset": 4400644
+        },
+        {
+          "name": "MND",
+          "value": 4,
+          "fieldIndex": 17914,
+          "fieldOffset": 5374144,
+          "defaultRecordOffset": 4281900,
+          "dataOffset": 4400648
+        },
+        {
+          "name": "DEF",
+          "value": 5,
+          "fieldIndex": 17915,
+          "fieldOffset": 5374160,
+          "defaultRecordOffset": 4281912,
+          "dataOffset": 4400652
+        },
+        {
+          "name": "MDEF",
+          "value": 6,
+          "fieldIndex": 17916,
+          "fieldOffset": 5374176,
+          "defaultRecordOffset": 4281924,
+          "dataOffset": 4400656
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_ROLE_BATTLE_PARAM",
+          "value": 7,
+          "fieldIndex": 17917,
+          "fieldOffset": 5374192,
+          "defaultRecordOffset": 4281936,
+          "dataOffset": 4400660
+        }
+      ]
+    },
+    {
+      "name": "SKILL_ROLE_KIND_DEBUFF",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4156,
+      "typeOffset": 6657748,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 18007,
+          "fieldOffset": 5375632,
+          "defaultRecordOffset": 4282980,
+          "dataOffset": 4401008
+        },
+        {
+          "name": "ATK_BREAK_BY_ATK",
+          "value": 1,
+          "fieldIndex": 18008,
+          "fieldOffset": 5375648,
+          "defaultRecordOffset": 4282992,
+          "dataOffset": 4401012
+        },
+        {
+          "name": "ATK_BREAK_BY_INT",
+          "value": 2,
+          "fieldIndex": 18009,
+          "fieldOffset": 5375664,
+          "defaultRecordOffset": 4283004,
+          "dataOffset": 4401016
+        },
+        {
+          "name": "ATK_BREAK_BY_MND",
+          "value": 3,
+          "fieldIndex": 18010,
+          "fieldOffset": 5375680,
+          "defaultRecordOffset": 4283016,
+          "dataOffset": 4401020
+        },
+        {
+          "name": "GUARD_BREAK_BY_DEF",
+          "value": 4,
+          "fieldIndex": 18011,
+          "fieldOffset": 5375696,
+          "defaultRecordOffset": 4283028,
+          "dataOffset": 4401024
+        },
+        {
+          "name": "GUARD_BREAK_BY_MDEF",
+          "value": 5,
+          "fieldIndex": 18012,
+          "fieldOffset": 5375712,
+          "defaultRecordOffset": 4283040,
+          "dataOffset": 4401028
+        },
+        {
+          "name": "UNDERMINE",
+          "value": 6,
+          "fieldIndex": 18013,
+          "fieldOffset": 5375728,
+          "defaultRecordOffset": 4283052,
+          "dataOffset": 4401032
+        },
+        {
+          "name": "POISON",
+          "value": 7,
+          "fieldIndex": 18014,
+          "fieldOffset": 5375744,
+          "defaultRecordOffset": 4283064,
+          "dataOffset": 4401036
+        },
+        {
+          "name": "BURN",
+          "value": 8,
+          "fieldIndex": 18015,
+          "fieldOffset": 5375760,
+          "defaultRecordOffset": 4283076,
+          "dataOffset": 4401040
+        },
+        {
+          "name": "FREEZE",
+          "value": 9,
+          "fieldIndex": 18016,
+          "fieldOffset": 5375776,
+          "defaultRecordOffset": 4283088,
+          "dataOffset": 4401044
+        },
+        {
+          "name": "BLEED",
+          "value": 10,
+          "fieldIndex": 18017,
+          "fieldOffset": 5375792,
+          "defaultRecordOffset": 4283100,
+          "dataOffset": 4401048
+        },
+        {
+          "name": "CHARM",
+          "value": 11,
+          "fieldIndex": 18018,
+          "fieldOffset": 5375808,
+          "defaultRecordOffset": 4283112,
+          "dataOffset": 4401052
+        },
+        {
+          "name": "STAN",
+          "value": 12,
+          "fieldIndex": 18019,
+          "fieldOffset": 5375824,
+          "defaultRecordOffset": 4283124,
+          "dataOffset": 4401056
+        },
+        {
+          "name": "SILENCE",
+          "value": 13,
+          "fieldIndex": 18020,
+          "fieldOffset": 5375840,
+          "defaultRecordOffset": 4283136,
+          "dataOffset": 4401060
+        },
+        {
+          "name": "DAMAGE_DOWN",
+          "value": 14,
+          "fieldIndex": 18021,
+          "fieldOffset": 5375856,
+          "defaultRecordOffset": 4283148,
+          "dataOffset": 4401064
+        },
+        {
+          "name": "CARD_SEAL",
+          "value": 15,
+          "fieldIndex": 18022,
+          "fieldOffset": 5375872,
+          "defaultRecordOffset": 4283160,
+          "dataOffset": 4401068
+        },
+        {
+          "name": "ATTR_SEE",
+          "value": 16,
+          "fieldIndex": 18023,
+          "fieldOffset": 5375888,
+          "defaultRecordOffset": 4283172,
+          "dataOffset": 4401072
+        },
+        {
+          "name": "FIELD_ATTR_DOWN",
+          "value": 17,
+          "fieldIndex": 18024,
+          "fieldOffset": 5375904,
+          "defaultRecordOffset": 4283184,
+          "dataOffset": 4401076
+        },
+        {
+          "name": "FIELD_HEAL_DOWN",
+          "value": 18,
+          "fieldIndex": 18025,
+          "fieldOffset": 5375920,
+          "defaultRecordOffset": 4283196,
+          "dataOffset": 4401080
+        },
+        {
+          "name": "WEAKNESS",
+          "value": 19,
+          "fieldIndex": 18026,
+          "fieldOffset": 5375936,
+          "defaultRecordOffset": 4283208,
+          "dataOffset": 4401084
+        },
+        {
+          "name": "HEAL_REVERSE",
+          "value": 20,
+          "fieldIndex": 18027,
+          "fieldOffset": 5375952,
+          "defaultRecordOffset": 4283220,
+          "dataOffset": 4401088
+        },
+        {
+          "name": "DEAL_PENALTY",
+          "value": 21,
+          "fieldIndex": 18028,
+          "fieldOffset": 5375968,
+          "defaultRecordOffset": 4283232,
+          "dataOffset": 4401092
+        },
+        {
+          "name": "ELECTRIC",
+          "value": 22,
+          "fieldIndex": 18029,
+          "fieldOffset": 5375984,
+          "defaultRecordOffset": 4283244,
+          "dataOffset": 4401096
+        },
+        {
+          "name": "DARKNESS",
+          "value": 23,
+          "fieldIndex": 18030,
+          "fieldOffset": 5376000,
+          "defaultRecordOffset": 4283256,
+          "dataOffset": 4401100
+        },
+        {
+          "name": "CARD_TRAP_DAMAGE",
+          "value": 24,
+          "fieldIndex": 18031,
+          "fieldOffset": 5376016,
+          "defaultRecordOffset": 4283268,
+          "dataOffset": 4401104
+        },
+        {
+          "name": "CARD_TRAP_DOT",
+          "value": 25,
+          "fieldIndex": 18032,
+          "fieldOffset": 5376032,
+          "defaultRecordOffset": 4283280,
+          "dataOffset": 4401108
+        },
+        {
+          "name": "COST_BLOCK",
+          "value": 26,
+          "fieldIndex": 18033,
+          "fieldOffset": 5376048,
+          "defaultRecordOffset": 4283292,
+          "dataOffset": 4401112
+        },
+        {
+          "name": "ATTR_DEF_DOWN",
+          "value": 27,
+          "fieldIndex": 18034,
+          "fieldOffset": 5376064,
+          "defaultRecordOffset": 4283304,
+          "dataOffset": 4401116
+        },
+        {
+          "name": "CRITICAL_DOWN",
+          "value": 28,
+          "fieldIndex": 18035,
+          "fieldOffset": 5376080,
+          "defaultRecordOffset": 4283316,
+          "dataOffset": 4401120
+        },
+        {
+          "name": "HEAL_CUT",
+          "value": 29,
+          "fieldIndex": 18036,
+          "fieldOffset": 5376096,
+          "defaultRecordOffset": 4283328,
+          "dataOffset": 4401124
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_ROLE_KIND_DEBUFF",
+          "value": 30,
+          "fieldIndex": 18037,
+          "fieldOffset": 5376112,
+          "defaultRecordOffset": 4283340,
+          "dataOffset": 4401128
+        }
+      ]
+    },
+    {
+      "name": "SKILL_ROLE_KIND_BUFF",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4155,
+      "typeOffset": 6657628,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 17936,
+          "fieldOffset": 5374496,
+          "defaultRecordOffset": 4282140,
+          "dataOffset": 4400728
+        },
+        {
+          "name": "ATK_UP_BY_ATK",
+          "value": 1,
+          "fieldIndex": 17937,
+          "fieldOffset": 5374512,
+          "defaultRecordOffset": 4282152,
+          "dataOffset": 4400732
+        },
+        {
+          "name": "ATK_UP_BY_INT",
+          "value": 2,
+          "fieldIndex": 17938,
+          "fieldOffset": 5374528,
+          "defaultRecordOffset": 4282164,
+          "dataOffset": 4400736
+        },
+        {
+          "name": "ATK_UP_BY_MND",
+          "value": 3,
+          "fieldIndex": 17939,
+          "fieldOffset": 5374544,
+          "defaultRecordOffset": 4282176,
+          "dataOffset": 4400740
+        },
+        {
+          "name": "DEF_UP_BY_DEF",
+          "value": 4,
+          "fieldIndex": 17940,
+          "fieldOffset": 5374560,
+          "defaultRecordOffset": 4282188,
+          "dataOffset": 4400744
+        },
+        {
+          "name": "DEF_UP_BY_MDEF",
+          "value": 5,
+          "fieldIndex": 17941,
+          "fieldOffset": 5374576,
+          "defaultRecordOffset": 4282200,
+          "dataOffset": 4400748
+        },
+        {
+          "name": "DAMAGE_UP",
+          "value": 6,
+          "fieldIndex": 17942,
+          "fieldOffset": 5374592,
+          "defaultRecordOffset": 4282212,
+          "dataOffset": 4400752
+        },
+        {
+          "name": "DAMAGE_CUT",
+          "value": 7,
+          "fieldIndex": 17943,
+          "fieldOffset": 5374608,
+          "defaultRecordOffset": 4282224,
+          "dataOffset": 4400756
+        },
+        {
+          "name": "HEAL",
+          "value": 8,
+          "fieldIndex": 17944,
+          "fieldOffset": 5374624,
+          "defaultRecordOffset": 4282236,
+          "dataOffset": 4400760
+        },
+        {
+          "name": "STEAL",
+          "value": 9,
+          "fieldIndex": 17945,
+          "fieldOffset": 5374640,
+          "defaultRecordOffset": 4282248,
+          "dataOffset": 4400764
+        },
+        {
+          "name": "ATTR",
+          "value": 10,
+          "fieldIndex": 17946,
+          "fieldOffset": 5374656,
+          "defaultRecordOffset": 4282260,
+          "dataOffset": 4400768
+        },
+        {
+          "name": "CARD_SEAL_REGIST",
+          "value": 11,
+          "fieldIndex": 17947,
+          "fieldOffset": 5374672,
+          "defaultRecordOffset": 4282272,
+          "dataOffset": 4400772
+        },
+        {
+          "name": "DEAL_BONUS",
+          "value": 12,
+          "fieldIndex": 17948,
+          "fieldOffset": 5374688,
+          "defaultRecordOffset": 4282284,
+          "dataOffset": 4400776
+        },
+        {
+          "name": "ATTR_RATE_DOWN_INVALID",
+          "value": 13,
+          "fieldIndex": 17949,
+          "fieldOffset": 5374704,
+          "defaultRecordOffset": 4282296,
+          "dataOffset": 4400780
+        },
+        {
+          "name": "ATTR_HIDE",
+          "value": 14,
+          "fieldIndex": 17950,
+          "fieldOffset": 5374720,
+          "defaultRecordOffset": 4282308,
+          "dataOffset": 4400784
+        },
+        {
+          "name": "ATTACK_BARRIER",
+          "value": 15,
+          "fieldIndex": 17951,
+          "fieldOffset": 5374736,
+          "defaultRecordOffset": 4282320,
+          "dataOffset": 4400788
+        },
+        {
+          "name": "COVERING",
+          "value": 16,
+          "fieldIndex": 17952,
+          "fieldOffset": 5374752,
+          "defaultRecordOffset": 4282332,
+          "dataOffset": 4400792
+        },
+        {
+          "name": "FIELD_ATTR_UP",
+          "value": 17,
+          "fieldIndex": 17953,
+          "fieldOffset": 5374768,
+          "defaultRecordOffset": 4282344,
+          "dataOffset": 4400796
+        },
+        {
+          "name": "FIELD_SKILL_UP",
+          "value": 18,
+          "fieldIndex": 17954,
+          "fieldOffset": 5374784,
+          "defaultRecordOffset": 4282356,
+          "dataOffset": 4400800
+        },
+        {
+          "name": "FIELD_HEAL_UP",
+          "value": 19,
+          "fieldIndex": 17955,
+          "fieldOffset": 5374800,
+          "defaultRecordOffset": 4282368,
+          "dataOffset": 4400804
+        },
+        {
+          "name": "FIELD_JAMMING_UP",
+          "value": 20,
+          "fieldIndex": 17956,
+          "fieldOffset": 5374816,
+          "defaultRecordOffset": 4282380,
+          "dataOffset": 4400808
+        },
+        {
+          "name": "FIELD_SUPPORT_DEFENCE_UP",
+          "value": 21,
+          "fieldIndex": 17957,
+          "fieldOffset": 5374832,
+          "defaultRecordOffset": 4282392,
+          "dataOffset": 4400812
+        },
+        {
+          "name": "PARAM_UP_BUFF_CONVERT",
+          "value": 22,
+          "fieldIndex": 17958,
+          "fieldOffset": 5374848,
+          "defaultRecordOffset": 4282404,
+          "dataOffset": 4400816
+        },
+        {
+          "name": "CRITICAL_UP",
+          "value": 23,
+          "fieldIndex": 17959,
+          "fieldOffset": 5374864,
+          "defaultRecordOffset": 4282416,
+          "dataOffset": 4400820
+        },
+        {
+          "name": "DARKNESS_REGIST",
+          "value": 24,
+          "fieldIndex": 17960,
+          "fieldOffset": 5374880,
+          "defaultRecordOffset": 4282428,
+          "dataOffset": 4400824
+        },
+        {
+          "name": "CRITICAL_UP_BY_SUPPORT",
+          "value": 25,
+          "fieldIndex": 17961,
+          "fieldOffset": 5374896,
+          "defaultRecordOffset": 4282440,
+          "dataOffset": 4400828
+        },
+        {
+          "name": "ROLE_VALUE_UP_BY_ROLE_OP",
+          "value": 26,
+          "fieldIndex": 17962,
+          "fieldOffset": 5374912,
+          "defaultRecordOffset": 4282452,
+          "dataOffset": 4400832
+        },
+        {
+          "name": "DECK_COMBO_RATE_UP",
+          "value": 27,
+          "fieldIndex": 17963,
+          "fieldOffset": 5374928,
+          "defaultRecordOffset": 4282464,
+          "dataOffset": 4400836
+        },
+        {
+          "name": "DEBUFF_REGIST",
+          "value": 28,
+          "fieldIndex": 17964,
+          "fieldOffset": 5374944,
+          "defaultRecordOffset": 4282476,
+          "dataOffset": 4400840
+        },
+        {
+          "name": "NEED_COST_DOWN",
+          "value": 29,
+          "fieldIndex": 17965,
+          "fieldOffset": 5374960,
+          "defaultRecordOffset": 4282488,
+          "dataOffset": 4400844
+        },
+        {
+          "name": "ROLE_VALUE_UP_BY_PVP_RATE",
+          "value": 30,
+          "fieldIndex": 17966,
+          "fieldOffset": 5374976,
+          "defaultRecordOffset": 4282500,
+          "dataOffset": 4400848
+        },
+        {
+          "name": "ENCHANT",
+          "value": 31,
+          "fieldIndex": 17967,
+          "fieldOffset": 5374992,
+          "defaultRecordOffset": 4282512,
+          "dataOffset": 4400852
+        },
+        {
+          "name": "ATK_UP_BY_MAX_HP",
+          "value": 32,
+          "fieldIndex": 17968,
+          "fieldOffset": 5375008,
+          "defaultRecordOffset": 4282524,
+          "dataOffset": 4400856
+        },
+        {
+          "name": "ATTR_DEF_UP",
+          "value": 33,
+          "fieldIndex": 17969,
+          "fieldOffset": 5375024,
+          "defaultRecordOffset": 4282536,
+          "dataOffset": 4400860
+        },
+        {
+          "name": "REFLECTION",
+          "value": 34,
+          "fieldIndex": 17970,
+          "fieldOffset": 5375040,
+          "defaultRecordOffset": 4282548,
+          "dataOffset": 4400864
+        },
+        {
+          "name": "DEBUFF_REGIST_LIMIT",
+          "value": 35,
+          "fieldIndex": 17971,
+          "fieldOffset": 5375056,
+          "defaultRecordOffset": 4282560,
+          "dataOffset": 4400868
+        },
+        {
+          "name": "ENDURE",
+          "value": 36,
+          "fieldIndex": 17972,
+          "fieldOffset": 5375072,
+          "defaultRecordOffset": 4282572,
+          "dataOffset": 4400872
+        },
+        {
+          "name": "DAMAGE_BOOST",
+          "value": 37,
+          "fieldIndex": 17973,
+          "fieldOffset": 5375088,
+          "defaultRecordOffset": 4282584,
+          "dataOffset": 4400876
+        },
+        {
+          "name": "ATK_UP_BOOST",
+          "value": 38,
+          "fieldIndex": 17974,
+          "fieldOffset": 5375104,
+          "defaultRecordOffset": 4282596,
+          "dataOffset": 4400880
+        },
+        {
+          "name": "DEF_UP_BOOST",
+          "value": 39,
+          "fieldIndex": 17975,
+          "fieldOffset": 5375120,
+          "defaultRecordOffset": 4282608,
+          "dataOffset": 4400884
+        },
+        {
+          "name": "ATK_BREAK_BOOST",
+          "value": 40,
+          "fieldIndex": 17976,
+          "fieldOffset": 5375136,
+          "defaultRecordOffset": 4282620,
+          "dataOffset": 4400888
+        },
+        {
+          "name": "GUARD_BREAK_BOOST",
+          "value": 41,
+          "fieldIndex": 17977,
+          "fieldOffset": 5375152,
+          "defaultRecordOffset": 4282632,
+          "dataOffset": 4400892
+        },
+        {
+          "name": "HEAL_BOOST",
+          "value": 42,
+          "fieldIndex": 17978,
+          "fieldOffset": 5375168,
+          "defaultRecordOffset": 4282644,
+          "dataOffset": 4400896
+        },
+        {
+          "name": "CRITICAL_BOOST",
+          "value": 43,
+          "fieldIndex": 17979,
+          "fieldOffset": 5375184,
+          "defaultRecordOffset": 4282656,
+          "dataOffset": 4400900
+        },
+        {
+          "name": "DAMAGE_CUT2",
+          "value": 44,
+          "fieldIndex": 17980,
+          "fieldOffset": 5375200,
+          "defaultRecordOffset": 4282668,
+          "dataOffset": 4400904
+        },
+        {
+          "name": "DAMAGE_BOOST_ORDER_TARGET_DEBUFF",
+          "value": 45,
+          "fieldIndex": 17981,
+          "fieldOffset": 5375216,
+          "defaultRecordOffset": 4282680,
+          "dataOffset": 4400908
+        },
+        {
+          "name": "DAMAGE_CUT_ORDER_TARGET_DEBUFF",
+          "value": 46,
+          "fieldIndex": 17982,
+          "fieldOffset": 5375232,
+          "defaultRecordOffset": 4282692,
+          "dataOffset": 4400912
+        },
+        {
+          "name": "BEGINNING_DRAW",
+          "value": 47,
+          "fieldIndex": 17983,
+          "fieldOffset": 5375248,
+          "defaultRecordOffset": 4282704,
+          "dataOffset": 4400916
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_BY_ATK",
+          "value": 48,
+          "fieldIndex": 17984,
+          "fieldOffset": 5375264,
+          "defaultRecordOffset": 4282716,
+          "dataOffset": 4400920
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_BY_INT",
+          "value": 49,
+          "fieldIndex": 17985,
+          "fieldOffset": 5375280,
+          "defaultRecordOffset": 4282728,
+          "dataOffset": 4400924
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_BY_MND",
+          "value": 50,
+          "fieldIndex": 17986,
+          "fieldOffset": 5375296,
+          "defaultRecordOffset": 4282740,
+          "dataOffset": 4400928
+        },
+        {
+          "name": "GUTS",
+          "value": 51,
+          "fieldIndex": 17987,
+          "fieldOffset": 5375312,
+          "defaultRecordOffset": 4282752,
+          "dataOffset": 4400932
+        },
+        {
+          "name": "ATTR_CUT_ATTACK",
+          "value": 52,
+          "fieldIndex": 17988,
+          "fieldOffset": 5375328,
+          "defaultRecordOffset": 4282764,
+          "dataOffset": 4400936
+        },
+        {
+          "name": "ATTR_DRAIN_ATTACK",
+          "value": 53,
+          "fieldIndex": 17989,
+          "fieldOffset": 5375344,
+          "defaultRecordOffset": 4282776,
+          "dataOffset": 4400940
+        },
+        {
+          "name": "ATTR_CUT_ENCHANT",
+          "value": 54,
+          "fieldIndex": 17990,
+          "fieldOffset": 5375360,
+          "defaultRecordOffset": 4282788,
+          "dataOffset": 4400944
+        },
+        {
+          "name": "ATTR_DRAIN_ENCHANT",
+          "value": 55,
+          "fieldIndex": 17991,
+          "fieldOffset": 5375376,
+          "defaultRecordOffset": 4282800,
+          "dataOffset": 4400948
+        },
+        {
+          "name": "ATTR_CUT_DOT",
+          "value": 56,
+          "fieldIndex": 17992,
+          "fieldOffset": 5375392,
+          "defaultRecordOffset": 4282812,
+          "dataOffset": 4400952
+        },
+        {
+          "name": "ATTR_DRAIN_DOT",
+          "value": 57,
+          "fieldIndex": 17993,
+          "fieldOffset": 5375408,
+          "defaultRecordOffset": 4282824,
+          "dataOffset": 4400956
+        },
+        {
+          "name": "CRITICAL_DAMAGE_BOOST",
+          "value": 58,
+          "fieldIndex": 17994,
+          "fieldOffset": 5375424,
+          "defaultRecordOffset": 4282836,
+          "dataOffset": 4400960
+        },
+        {
+          "name": "NEED_COST_DOWN_BURST",
+          "value": 59,
+          "fieldIndex": 17995,
+          "fieldOffset": 5375440,
+          "defaultRecordOffset": 4282848,
+          "dataOffset": 4400964
+        },
+        {
+          "name": "ATTACK_MULTISTAGE",
+          "value": 60,
+          "fieldIndex": 17996,
+          "fieldOffset": 5375456,
+          "defaultRecordOffset": 4282860,
+          "dataOffset": 4400968
+        },
+        {
+          "name": "ADD_ATK_OP_PIERCING",
+          "value": 61,
+          "fieldIndex": 17997,
+          "fieldOffset": 5375472,
+          "defaultRecordOffset": 4282872,
+          "dataOffset": 4400972
+        },
+        {
+          "name": "DAMAGE_BOOST_ORDER_TRIBAL",
+          "value": 62,
+          "fieldIndex": 17998,
+          "fieldOffset": 5375488,
+          "defaultRecordOffset": 4282884,
+          "dataOffset": 4400976
+        },
+        {
+          "name": "ATK_UP_BOOST_ORDER_TRIBAL",
+          "value": 63,
+          "fieldIndex": 17999,
+          "fieldOffset": 5375504,
+          "defaultRecordOffset": 4282896,
+          "dataOffset": 4400980
+        },
+        {
+          "name": "DEF_UP_BOOST_ORDER_TRIBAL",
+          "value": 64,
+          "fieldIndex": 18000,
+          "fieldOffset": 5375520,
+          "defaultRecordOffset": 4282908,
+          "dataOffset": 4400984
+        },
+        {
+          "name": "ATK_BREAK_BOOST_ORDER_TRIBAL",
+          "value": 65,
+          "fieldIndex": 18001,
+          "fieldOffset": 5375536,
+          "defaultRecordOffset": 4282920,
+          "dataOffset": 4400988
+        },
+        {
+          "name": "HEAL_BOOST_ORDER_TRIBAL",
+          "value": 66,
+          "fieldIndex": 18002,
+          "fieldOffset": 5375552,
+          "defaultRecordOffset": 4282932,
+          "dataOffset": 4400992
+        },
+        {
+          "name": "CRITICAL_BOOST_ORDER_TRIBAL",
+          "value": 67,
+          "fieldIndex": 18003,
+          "fieldOffset": 5375568,
+          "defaultRecordOffset": 4282944,
+          "dataOffset": 4400996
+        },
+        {
+          "name": "BURST_GAUGE_REGENE_UP",
+          "value": 68,
+          "fieldIndex": 18004,
+          "fieldOffset": 5375584,
+          "defaultRecordOffset": 4282956,
+          "dataOffset": 4401000
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_ROLE_KIND_BUFF",
+          "value": 69,
+          "fieldIndex": 18005,
+          "fieldOffset": 5375600,
+          "defaultRecordOffset": 4282968,
+          "dataOffset": 4401004
+        }
+      ]
+    },
+    {
+      "name": "SKILL_ROLE_DOT",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4157,
+      "typeOffset": 6657868,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 18039,
+          "fieldOffset": 5376144,
+          "defaultRecordOffset": 4283352,
+          "dataOffset": 4401132
+        },
+        {
+          "name": "POISON",
+          "value": 1,
+          "fieldIndex": 18040,
+          "fieldOffset": 5376160,
+          "defaultRecordOffset": 4283364,
+          "dataOffset": 4401136
+        },
+        {
+          "name": "BURN",
+          "value": 2,
+          "fieldIndex": 18041,
+          "fieldOffset": 5376176,
+          "defaultRecordOffset": 4283376,
+          "dataOffset": 4401140
+        },
+        {
+          "name": "FREEZE",
+          "value": 3,
+          "fieldIndex": 18042,
+          "fieldOffset": 5376192,
+          "defaultRecordOffset": 4283388,
+          "dataOffset": 4401144
+        },
+        {
+          "name": "BLEED",
+          "value": 4,
+          "fieldIndex": 18043,
+          "fieldOffset": 5376208,
+          "defaultRecordOffset": 4283400,
+          "dataOffset": 4401148
+        },
+        {
+          "name": "ELECTRIC",
+          "value": 5,
+          "fieldIndex": 18044,
+          "fieldOffset": 5376224,
+          "defaultRecordOffset": 4283412,
+          "dataOffset": 4401152
+        },
+        {
+          "name": "TRAP",
+          "value": 6,
+          "fieldIndex": 18045,
+          "fieldOffset": 5376240,
+          "defaultRecordOffset": 4283424,
+          "dataOffset": 4401156
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_SKILL_ROLE_DOT",
+          "value": 7,
+          "fieldIndex": 18046,
+          "fieldOffset": 5376256,
+          "defaultRecordOffset": 4283436,
+          "dataOffset": 4401160
+        }
+      ]
+    },
+    {
+      "name": "ENEMY_TRANCE_GAUGE_STATE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4180,
+      "typeOffset": 6660628,
+      "values": [
+        {
+          "name": "NONE",
+          "value": 0,
+          "fieldIndex": 18499,
+          "fieldOffset": 5383504,
+          "defaultRecordOffset": 4288596,
+          "dataOffset": 4402880
+        },
+        {
+          "name": "NORMAL",
+          "value": 1,
+          "fieldIndex": 18500,
+          "fieldOffset": 5383520,
+          "defaultRecordOffset": 4288608,
+          "dataOffset": 4402884
+        },
+        {
+          "name": "TRANCE",
+          "value": 2,
+          "fieldIndex": 18501,
+          "fieldOffset": 5383536,
+          "defaultRecordOffset": 4288620,
+          "dataOffset": 4402888
+        },
+        {
+          "name": "OVER_HEAT",
+          "value": 3,
+          "fieldIndex": 18502,
+          "fieldOffset": 5383552,
+          "defaultRecordOffset": 4288632,
+          "dataOffset": 4402892
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_ENEMY_TRANCE_GAUGE_STATE",
+          "value": 4,
+          "fieldIndex": 18503,
+          "fieldOffset": 5383568,
+          "defaultRecordOffset": 4288644,
+          "dataOffset": 4402896
+        }
+      ]
+    },
+    {
+      "name": "ENEMY_AI_TARGET",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4174,
+      "typeOffset": 6659908,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 18312,
+          "fieldOffset": 5380512,
+          "defaultRecordOffset": 4286424,
+          "dataOffset": 4402156
+        },
+        {
+          "name": "RANDOM",
+          "value": 1,
+          "fieldIndex": 18313,
+          "fieldOffset": 5380528,
+          "defaultRecordOffset": 4286436,
+          "dataOffset": 4402160
+        },
+        {
+          "name": "HATE1_OR_RANDOM",
+          "value": 2,
+          "fieldIndex": 18314,
+          "fieldOffset": 5380544,
+          "defaultRecordOffset": 4286448,
+          "dataOffset": 4402164
+        },
+        {
+          "name": "RANDOM_EXCEPT_HATE1",
+          "value": 3,
+          "fieldIndex": 18315,
+          "fieldOffset": 5380560,
+          "defaultRecordOffset": 4286460,
+          "dataOffset": 4402168
+        },
+        {
+          "name": "HATE1",
+          "value": 4,
+          "fieldIndex": 18316,
+          "fieldOffset": 5380576,
+          "defaultRecordOffset": 4286472,
+          "dataOffset": 4402172
+        },
+        {
+          "name": "HATE2",
+          "value": 5,
+          "fieldIndex": 18317,
+          "fieldOffset": 5380592,
+          "defaultRecordOffset": 4286484,
+          "dataOffset": 4402176
+        },
+        {
+          "name": "HATE3",
+          "value": 6,
+          "fieldIndex": 18318,
+          "fieldOffset": 5380608,
+          "defaultRecordOffset": 4286496,
+          "dataOffset": 4402180
+        },
+        {
+          "name": "HATE4",
+          "value": 7,
+          "fieldIndex": 18319,
+          "fieldOffset": 5380624,
+          "defaultRecordOffset": 4286508,
+          "dataOffset": 4402184
+        },
+        {
+          "name": "BULLY",
+          "value": 8,
+          "fieldIndex": 18320,
+          "fieldOffset": 5380640,
+          "defaultRecordOffset": 4286520,
+          "dataOffset": 4402188
+        },
+        {
+          "name": "HIGH_MAX_HP_USER",
+          "value": 9,
+          "fieldIndex": 18321,
+          "fieldOffset": 5380656,
+          "defaultRecordOffset": 4286532,
+          "dataOffset": 4402192
+        },
+        {
+          "name": "LOW_MAX_HP_USER",
+          "value": 10,
+          "fieldIndex": 18322,
+          "fieldOffset": 5380672,
+          "defaultRecordOffset": 4286544,
+          "dataOffset": 4402196
+        },
+        {
+          "name": "HIGH_HP_USER",
+          "value": 11,
+          "fieldIndex": 18323,
+          "fieldOffset": 5380688,
+          "defaultRecordOffset": 4286556,
+          "dataOffset": 4402200
+        },
+        {
+          "name": "LOW_HP_USER",
+          "value": 12,
+          "fieldIndex": 18324,
+          "fieldOffset": 5380704,
+          "defaultRecordOffset": 4286568,
+          "dataOffset": 4402204
+        },
+        {
+          "name": "HIGH_ATK_USER",
+          "value": 13,
+          "fieldIndex": 18325,
+          "fieldOffset": 5380720,
+          "defaultRecordOffset": 4286580,
+          "dataOffset": 4402208
+        },
+        {
+          "name": "LOW_ATK_USER",
+          "value": 14,
+          "fieldIndex": 18326,
+          "fieldOffset": 5380736,
+          "defaultRecordOffset": 4286592,
+          "dataOffset": 4402212
+        },
+        {
+          "name": "HIGH_INT_USER",
+          "value": 15,
+          "fieldIndex": 18327,
+          "fieldOffset": 5380752,
+          "defaultRecordOffset": 4286604,
+          "dataOffset": 4402216
+        },
+        {
+          "name": "LOW_INT_USER",
+          "value": 16,
+          "fieldIndex": 18328,
+          "fieldOffset": 5380768,
+          "defaultRecordOffset": 4286616,
+          "dataOffset": 4402220
+        },
+        {
+          "name": "HIGH_MND_USER",
+          "value": 17,
+          "fieldIndex": 18329,
+          "fieldOffset": 5380784,
+          "defaultRecordOffset": 4286628,
+          "dataOffset": 4402224
+        },
+        {
+          "name": "LOW_MND_USER",
+          "value": 18,
+          "fieldIndex": 18330,
+          "fieldOffset": 5380800,
+          "defaultRecordOffset": 4286640,
+          "dataOffset": 4402228
+        },
+        {
+          "name": "HIGH_DEF_USER",
+          "value": 19,
+          "fieldIndex": 18331,
+          "fieldOffset": 5380816,
+          "defaultRecordOffset": 4286652,
+          "dataOffset": 4402232
+        },
+        {
+          "name": "LOW_DEF_USER",
+          "value": 20,
+          "fieldIndex": 18332,
+          "fieldOffset": 5380832,
+          "defaultRecordOffset": 4286664,
+          "dataOffset": 4402236
+        },
+        {
+          "name": "HIGH_MDEF_USER",
+          "value": 21,
+          "fieldIndex": 18333,
+          "fieldOffset": 5380848,
+          "defaultRecordOffset": 4286676,
+          "dataOffset": 4402240
+        },
+        {
+          "name": "LOW_MDEF_USER",
+          "value": 22,
+          "fieldIndex": 18334,
+          "fieldOffset": 5380864,
+          "defaultRecordOffset": 4286688,
+          "dataOffset": 4402244
+        },
+        {
+          "name": "ENEMY1",
+          "value": 23,
+          "fieldIndex": 18335,
+          "fieldOffset": 5380880,
+          "defaultRecordOffset": 4286700,
+          "dataOffset": 4402248
+        },
+        {
+          "name": "ENEMY2",
+          "value": 24,
+          "fieldIndex": 18336,
+          "fieldOffset": 5380896,
+          "defaultRecordOffset": 4286712,
+          "dataOffset": 4402252
+        },
+        {
+          "name": "ENEMY3",
+          "value": 25,
+          "fieldIndex": 18337,
+          "fieldOffset": 5380912,
+          "defaultRecordOffset": 4286724,
+          "dataOffset": 4402256
+        },
+        {
+          "name": "ENEMY4",
+          "value": 26,
+          "fieldIndex": 18338,
+          "fieldOffset": 5380928,
+          "defaultRecordOffset": 4286736,
+          "dataOffset": 4402260
+        },
+        {
+          "name": "HIGH_MAX_HP_ENEMY",
+          "value": 27,
+          "fieldIndex": 18339,
+          "fieldOffset": 5380944,
+          "defaultRecordOffset": 4286748,
+          "dataOffset": 4402264
+        },
+        {
+          "name": "LOW_MAX_HP_ENEMY",
+          "value": 28,
+          "fieldIndex": 18340,
+          "fieldOffset": 5380960,
+          "defaultRecordOffset": 4286760,
+          "dataOffset": 4402268
+        },
+        {
+          "name": "HIGH_HP_ENEMY",
+          "value": 29,
+          "fieldIndex": 18341,
+          "fieldOffset": 5380976,
+          "defaultRecordOffset": 4286772,
+          "dataOffset": 4402272
+        },
+        {
+          "name": "LOW_HP_ENEMY",
+          "value": 30,
+          "fieldIndex": 18342,
+          "fieldOffset": 5380992,
+          "defaultRecordOffset": 4286784,
+          "dataOffset": 4402276
+        },
+        {
+          "name": "HIGH_ATK_ENEMY",
+          "value": 31,
+          "fieldIndex": 18343,
+          "fieldOffset": 5381008,
+          "defaultRecordOffset": 4286796,
+          "dataOffset": 4402280
+        },
+        {
+          "name": "LOW_ATK_ENEMY",
+          "value": 32,
+          "fieldIndex": 18344,
+          "fieldOffset": 5381024,
+          "defaultRecordOffset": 4286808,
+          "dataOffset": 4402284
+        },
+        {
+          "name": "HIGH_INT_ENEMY",
+          "value": 33,
+          "fieldIndex": 18345,
+          "fieldOffset": 5381040,
+          "defaultRecordOffset": 4286820,
+          "dataOffset": 4402288
+        },
+        {
+          "name": "LOW_INT_ENEMY",
+          "value": 34,
+          "fieldIndex": 18346,
+          "fieldOffset": 5381056,
+          "defaultRecordOffset": 4286832,
+          "dataOffset": 4402292
+        },
+        {
+          "name": "HIGH_MND_ENEMY",
+          "value": 35,
+          "fieldIndex": 18347,
+          "fieldOffset": 5381072,
+          "defaultRecordOffset": 4286844,
+          "dataOffset": 4402296
+        },
+        {
+          "name": "LOW_MND_ENEMY",
+          "value": 36,
+          "fieldIndex": 18348,
+          "fieldOffset": 5381088,
+          "defaultRecordOffset": 4286856,
+          "dataOffset": 4402300
+        },
+        {
+          "name": "HIGH_DEF_ENEMY",
+          "value": 37,
+          "fieldIndex": 18349,
+          "fieldOffset": 5381104,
+          "defaultRecordOffset": 4286868,
+          "dataOffset": 4402304
+        },
+        {
+          "name": "LOW_DEF_ENEMY",
+          "value": 38,
+          "fieldIndex": 18350,
+          "fieldOffset": 5381120,
+          "defaultRecordOffset": 4286880,
+          "dataOffset": 4402308
+        },
+        {
+          "name": "HIGH_MDEF_ENEMY",
+          "value": 39,
+          "fieldIndex": 18351,
+          "fieldOffset": 5381136,
+          "defaultRecordOffset": 4286892,
+          "dataOffset": 4402312
+        },
+        {
+          "name": "LOW_MDEF_ENEMY",
+          "value": 40,
+          "fieldIndex": 18352,
+          "fieldOffset": 5381152,
+          "defaultRecordOffset": 4286904,
+          "dataOffset": 4402316
+        },
+        {
+          "name": "DEAD_ENEMY_RANDOM",
+          "value": 41,
+          "fieldIndex": 18353,
+          "fieldOffset": 5381168,
+          "defaultRecordOffset": 4286916,
+          "dataOffset": 4402320
+        },
+        {
+          "name": "WEAKNESS_USER",
+          "value": 42,
+          "fieldIndex": 18354,
+          "fieldOffset": 5381184,
+          "defaultRecordOffset": 4286928,
+          "dataOffset": 4402324
+        },
+        {
+          "name": "RANDOM_EXCEPT_MERCENARY",
+          "value": 43,
+          "fieldIndex": 18355,
+          "fieldOffset": 5381200,
+          "defaultRecordOffset": 4286940,
+          "dataOffset": 4402328
+        },
+        {
+          "name": "RANDOM_EXCEPT_MILLIONAIRE",
+          "value": 44,
+          "fieldIndex": 18356,
+          "fieldOffset": 5381216,
+          "defaultRecordOffset": 4286952,
+          "dataOffset": 4402332
+        },
+        {
+          "name": "RANDOM_EXCEPT_THIEF",
+          "value": 45,
+          "fieldIndex": 18357,
+          "fieldOffset": 5381232,
+          "defaultRecordOffset": 4286964,
+          "dataOffset": 4402336
+        },
+        {
+          "name": "RANDOM_EXCEPT_SINGER",
+          "value": 46,
+          "fieldIndex": 18358,
+          "fieldOffset": 5381248,
+          "defaultRecordOffset": 4286976,
+          "dataOffset": 4402340
+        },
+        {
+          "name": "MERCENARY",
+          "value": 47,
+          "fieldIndex": 18359,
+          "fieldOffset": 5381264,
+          "defaultRecordOffset": 4286988,
+          "dataOffset": 4402344
+        },
+        {
+          "name": "MILLIONAIRE",
+          "value": 48,
+          "fieldIndex": 18360,
+          "fieldOffset": 5381280,
+          "defaultRecordOffset": 4287000,
+          "dataOffset": 4402348
+        },
+        {
+          "name": "THIEF",
+          "value": 49,
+          "fieldIndex": 18361,
+          "fieldOffset": 5381296,
+          "defaultRecordOffset": 4287012,
+          "dataOffset": 4402352
+        },
+        {
+          "name": "SINGER",
+          "value": 50,
+          "fieldIndex": 18362,
+          "fieldOffset": 5381312,
+          "defaultRecordOffset": 4287024,
+          "dataOffset": 4402356
+        },
+        {
+          "name": "WEAKNESS_USER_NOT_FOR_RANDOM",
+          "value": 51,
+          "fieldIndex": 18363,
+          "fieldOffset": 5381328,
+          "defaultRecordOffset": 4287036,
+          "dataOffset": 4402360
+        },
+        {
+          "name": "RANDOM_INVOLVE_DEAD",
+          "value": 52,
+          "fieldIndex": 18364,
+          "fieldOffset": 5381344,
+          "defaultRecordOffset": 4287048,
+          "dataOffset": 4402364
+        },
+        {
+          "name": "MERCENARY_INVOLVE_DEAD",
+          "value": 53,
+          "fieldIndex": 18365,
+          "fieldOffset": 5381360,
+          "defaultRecordOffset": 4287060,
+          "dataOffset": 4402368
+        },
+        {
+          "name": "MILLIONAIRE_INVOLVE_DEAD",
+          "value": 54,
+          "fieldIndex": 18366,
+          "fieldOffset": 5381376,
+          "defaultRecordOffset": 4287072,
+          "dataOffset": 4402372
+        },
+        {
+          "name": "THIEF_INVOLVE_DEAD",
+          "value": 55,
+          "fieldIndex": 18367,
+          "fieldOffset": 5381392,
+          "defaultRecordOffset": 4287084,
+          "dataOffset": 4402376
+        },
+        {
+          "name": "SINGER_INVOLVE_DEAD",
+          "value": 56,
+          "fieldIndex": 18368,
+          "fieldOffset": 5381408,
+          "defaultRecordOffset": 4287096,
+          "dataOffset": 4402380
+        },
+        {
+          "name": "WEAKNESS_USER_INVOLVE_DEAD_NOT_FOR_RANDOM",
+          "value": 57,
+          "fieldIndex": 18369,
+          "fieldOffset": 5381424,
+          "defaultRecordOffset": 4287108,
+          "dataOffset": 4402384
+        },
+        {
+          "name": "HIGH_CRITICAL_USER",
+          "value": 58,
+          "fieldIndex": 18370,
+          "fieldOffset": 5381440,
+          "defaultRecordOffset": 4287120,
+          "dataOffset": 4402388
+        },
+        {
+          "name": "LOW_CRITICAL_USER",
+          "value": 59,
+          "fieldIndex": 18371,
+          "fieldOffset": 5381456,
+          "defaultRecordOffset": 4287132,
+          "dataOffset": 4402392
+        },
+        {
+          "name": "TRIGGER_TARGET",
+          "value": 60,
+          "fieldIndex": 18372,
+          "fieldOffset": 5381472,
+          "defaultRecordOffset": 4287144,
+          "dataOffset": 4402396
+        },
+        {
+          "name": "USER_PARAM_BUFF",
+          "value": 61,
+          "fieldIndex": 18373,
+          "fieldOffset": 5381488,
+          "defaultRecordOffset": 4287156,
+          "dataOffset": 4402400
+        },
+        {
+          "name": "USER_PARAM_DEBUFF",
+          "value": 62,
+          "fieldIndex": 18374,
+          "fieldOffset": 5381504,
+          "defaultRecordOffset": 4287168,
+          "dataOffset": 4402404
+        },
+        {
+          "name": "USER_HP",
+          "value": 63,
+          "fieldIndex": 18375,
+          "fieldOffset": 5381520,
+          "defaultRecordOffset": 4287180,
+          "dataOffset": 4402408
+        },
+        {
+          "name": "USER_HP_RATE",
+          "value": 64,
+          "fieldIndex": 18376,
+          "fieldOffset": 5381536,
+          "defaultRecordOffset": 4287192,
+          "dataOffset": 4402412
+        },
+        {
+          "name": "USER_HAND_NUM",
+          "value": 65,
+          "fieldIndex": 18377,
+          "fieldOffset": 5381552,
+          "defaultRecordOffset": 4287204,
+          "dataOffset": 4402416
+        },
+        {
+          "name": "HIGH_CURSE_NUM_USER",
+          "value": 66,
+          "fieldIndex": 18378,
+          "fieldOffset": 5381568,
+          "defaultRecordOffset": 4287216,
+          "dataOffset": 4402420
+        },
+        {
+          "name": "LOW_CURSE_NUM_USER",
+          "value": 67,
+          "fieldIndex": 18379,
+          "fieldOffset": 5381584,
+          "defaultRecordOffset": 4287228,
+          "dataOffset": 4402424
+        },
+        {
+          "name": "HIGH_BLESS_NUM_USER",
+          "value": 68,
+          "fieldIndex": 18380,
+          "fieldOffset": 5381600,
+          "defaultRecordOffset": 4287240,
+          "dataOffset": 4402428
+        },
+        {
+          "name": "LOW_BLESS_NUM_USER",
+          "value": 69,
+          "fieldIndex": 18381,
+          "fieldOffset": 5381616,
+          "defaultRecordOffset": 4287252,
+          "dataOffset": 4402432
+        },
+        {
+          "name": "USER_DEBUFF",
+          "value": 70,
+          "fieldIndex": 18382,
+          "fieldOffset": 5381632,
+          "defaultRecordOffset": 4287264,
+          "dataOffset": 4402436
+        },
+        {
+          "name": "USER_DEBUFF_DUPLICATE_SELECT",
+          "value": 71,
+          "fieldIndex": 18383,
+          "fieldOffset": 5381648,
+          "defaultRecordOffset": 4287276,
+          "dataOffset": 4402440
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_ENEMY_AI_TARGET",
+          "value": 72,
+          "fieldIndex": 18384,
+          "fieldOffset": 5381664,
+          "defaultRecordOffset": 4287288,
+          "dataOffset": 4402444
+        }
+      ]
+    },
+    {
+      "name": "ENEMY_AI_ORDER_PARTY",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4176,
+      "typeOffset": 6660148,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 18403,
+          "fieldOffset": 5381968,
+          "defaultRecordOffset": 4287492,
+          "dataOffset": 4402512
+        },
+        {
+          "name": "PARTS_FULL",
+          "value": 1,
+          "fieldIndex": 18404,
+          "fieldOffset": 5381984,
+          "defaultRecordOffset": 4287504,
+          "dataOffset": 4402516
+        },
+        {
+          "name": "PARTS_1_BREAK",
+          "value": 2,
+          "fieldIndex": 18405,
+          "fieldOffset": 5382000,
+          "defaultRecordOffset": 4287516,
+          "dataOffset": 4402520
+        },
+        {
+          "name": "PARTS_2_BREAK",
+          "value": 3,
+          "fieldIndex": 18406,
+          "fieldOffset": 5382016,
+          "defaultRecordOffset": 4287528,
+          "dataOffset": 4402524
+        },
+        {
+          "name": "PARTS_3_BREAK",
+          "value": 4,
+          "fieldIndex": 18407,
+          "fieldOffset": 5382032,
+          "defaultRecordOffset": 4287540,
+          "dataOffset": 4402528
+        },
+        {
+          "name": "PARTS_ALL_BREAK",
+          "value": 5,
+          "fieldIndex": 18408,
+          "fieldOffset": 5382048,
+          "defaultRecordOffset": 4287552,
+          "dataOffset": 4402532
+        },
+        {
+          "name": "PARTS_1_BREAK2",
+          "value": 6,
+          "fieldIndex": 18409,
+          "fieldOffset": 5382064,
+          "defaultRecordOffset": 4287564,
+          "dataOffset": 4402536
+        },
+        {
+          "name": "PARTS_2_BREAK2",
+          "value": 7,
+          "fieldIndex": 18410,
+          "fieldOffset": 5382080,
+          "defaultRecordOffset": 4287576,
+          "dataOffset": 4402540
+        },
+        {
+          "name": "PARTS_3_BREAK2",
+          "value": 8,
+          "fieldIndex": 18411,
+          "fieldOffset": 5382096,
+          "defaultRecordOffset": 4287588,
+          "dataOffset": 4402544
+        },
+        {
+          "name": "PARTS_1_ALIVE",
+          "value": 9,
+          "fieldIndex": 18412,
+          "fieldOffset": 5382112,
+          "defaultRecordOffset": 4287600,
+          "dataOffset": 4402548
+        },
+        {
+          "name": "PARTS_2_ALIVE",
+          "value": 10,
+          "fieldIndex": 18413,
+          "fieldOffset": 5382128,
+          "defaultRecordOffset": 4287612,
+          "dataOffset": 4402552
+        },
+        {
+          "name": "PARTS_3_ALIVE",
+          "value": 11,
+          "fieldIndex": 18414,
+          "fieldOffset": 5382144,
+          "defaultRecordOffset": 4287624,
+          "dataOffset": 4402556
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_ENEMY_AI_ORDER_PARTY",
+          "value": 12,
+          "fieldIndex": 18415,
+          "fieldOffset": 5382160,
+          "defaultRecordOffset": 4287636,
+          "dataOffset": 4402560
+        }
+      ]
+    },
+    {
+      "name": "ENEMY_AI_ORDER_TRANCE_GAUGE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4179,
+      "typeOffset": 6660508,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 18490,
+          "fieldOffset": 5383360,
+          "defaultRecordOffset": 4288500,
+          "dataOffset": 4402848
+        },
+        {
+          "name": "SELF_NORMAL",
+          "value": 1,
+          "fieldIndex": 18491,
+          "fieldOffset": 5383376,
+          "defaultRecordOffset": 4288512,
+          "dataOffset": 4402852
+        },
+        {
+          "name": "SELF_TRANCE",
+          "value": 2,
+          "fieldIndex": 18492,
+          "fieldOffset": 5383392,
+          "defaultRecordOffset": 4288524,
+          "dataOffset": 4402856
+        },
+        {
+          "name": "SELF_OVER_HEAT",
+          "value": 3,
+          "fieldIndex": 18493,
+          "fieldOffset": 5383408,
+          "defaultRecordOffset": 4288536,
+          "dataOffset": 4402860
+        },
+        {
+          "name": "ENEMY_NORMAL",
+          "value": 4,
+          "fieldIndex": 18494,
+          "fieldOffset": 5383424,
+          "defaultRecordOffset": 4288548,
+          "dataOffset": 4402864
+        },
+        {
+          "name": "ENEMY_TRANCE",
+          "value": 5,
+          "fieldIndex": 18495,
+          "fieldOffset": 5383440,
+          "defaultRecordOffset": 4288560,
+          "dataOffset": 4402868
+        },
+        {
+          "name": "ENEMY_OVER_HEAT",
+          "value": 6,
+          "fieldIndex": 18496,
+          "fieldOffset": 5383456,
+          "defaultRecordOffset": 4288572,
+          "dataOffset": 4402872
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_ENEMY_AI_ORDER_TRANCE_GAUGE",
+          "value": 7,
+          "fieldIndex": 18497,
+          "fieldOffset": 5383472,
+          "defaultRecordOffset": 4288584,
+          "dataOffset": 4402876
+        }
+      ]
+    },
+    {
+      "name": "ENEMY_AI_ORDER_TRIGGER",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4177,
+      "typeOffset": 6660268,
+      "values": [
+        {
+          "name": "NULL",
+          "value": 0,
+          "fieldIndex": 18417,
+          "fieldOffset": 5382192,
+          "defaultRecordOffset": 4287648,
+          "dataOffset": 4402564
+        },
+        {
+          "name": "PHYSIC_DAMAGE",
+          "value": 1,
+          "fieldIndex": 18418,
+          "fieldOffset": 5382208,
+          "defaultRecordOffset": 4287660,
+          "dataOffset": 4402568
+        },
+        {
+          "name": "MAGIC_DAMAGE",
+          "value": 2,
+          "fieldIndex": 18419,
+          "fieldOffset": 5382224,
+          "defaultRecordOffset": 4287672,
+          "dataOffset": 4402572
+        },
+        {
+          "name": "BAD_STATUS",
+          "value": 3,
+          "fieldIndex": 18420,
+          "fieldOffset": 5382240,
+          "defaultRecordOffset": 4287684,
+          "dataOffset": 4402576
+        },
+        {
+          "name": "NOT_TARGET",
+          "value": 4,
+          "fieldIndex": 18421,
+          "fieldOffset": 5382256,
+          "defaultRecordOffset": 4287696,
+          "dataOffset": 4402580
+        },
+        {
+          "name": "DEAD_COUNT",
+          "value": 5,
+          "fieldIndex": 18422,
+          "fieldOffset": 5382272,
+          "defaultRecordOffset": 4287708,
+          "dataOffset": 4402584
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_NOW_TURN",
+          "value": 6,
+          "fieldIndex": 18423,
+          "fieldOffset": 5382288,
+          "defaultRecordOffset": 4287720,
+          "dataOffset": 4402588
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF",
+          "value": 7,
+          "fieldIndex": 18424,
+          "fieldOffset": 5382304,
+          "defaultRecordOffset": 4287732,
+          "dataOffset": 4402592
+        },
+        {
+          "name": "SKILL_ROLE_KIND_BUFF",
+          "value": 8,
+          "fieldIndex": 18425,
+          "fieldOffset": 5382320,
+          "defaultRecordOffset": 4287744,
+          "dataOffset": 4402596
+        },
+        {
+          "name": "DAMAGE",
+          "value": 9,
+          "fieldIndex": 18426,
+          "fieldOffset": 5382336,
+          "defaultRecordOffset": 4287756,
+          "dataOffset": 4402600
+        },
+        {
+          "name": "AI_FLAG",
+          "value": 10,
+          "fieldIndex": 18427,
+          "fieldOffset": 5382352,
+          "defaultRecordOffset": 4287768,
+          "dataOffset": 4402604
+        },
+        {
+          "name": "DRAIN",
+          "value": 11,
+          "fieldIndex": 18428,
+          "fieldOffset": 5382368,
+          "defaultRecordOffset": 4287780,
+          "dataOffset": 4402608
+        },
+        {
+          "name": "HEAL",
+          "value": 12,
+          "fieldIndex": 18429,
+          "fieldOffset": 5382384,
+          "defaultRecordOffset": 4287792,
+          "dataOffset": 4402612
+        },
+        {
+          "name": "HEAL_TOTAL",
+          "value": 13,
+          "fieldIndex": 18430,
+          "fieldOffset": 5382400,
+          "defaultRecordOffset": 4287804,
+          "dataOffset": 4402616
+        },
+        {
+          "name": "PHYSIC_DAMAGE_LARGE",
+          "value": 14,
+          "fieldIndex": 18431,
+          "fieldOffset": 5382416,
+          "defaultRecordOffset": 4287816,
+          "dataOffset": 4402620
+        },
+        {
+          "name": "MAGIC_DAMAGE_LARGE",
+          "value": 15,
+          "fieldIndex": 18432,
+          "fieldOffset": 5382432,
+          "defaultRecordOffset": 4287828,
+          "dataOffset": 4402624
+        },
+        {
+          "name": "SKILL_ROLE_KIND_BUFF_NOW_TURN_BY_USER",
+          "value": 16,
+          "fieldIndex": 18433,
+          "fieldOffset": 5382448,
+          "defaultRecordOffset": 4287840,
+          "dataOffset": 4402628
+        },
+        {
+          "name": "ATTR",
+          "value": 17,
+          "fieldIndex": 18434,
+          "fieldOffset": 5382464,
+          "defaultRecordOffset": 4287852,
+          "dataOffset": 4402632
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_USER",
+          "value": 18,
+          "fieldIndex": 18435,
+          "fieldOffset": 5382480,
+          "defaultRecordOffset": 4287864,
+          "dataOffset": 4402636
+        },
+        {
+          "name": "SKILL_ROLE_KIND_BUFF_BY_USER",
+          "value": 19,
+          "fieldIndex": 18436,
+          "fieldOffset": 5382496,
+          "defaultRecordOffset": 4287876,
+          "dataOffset": 4402640
+        },
+        {
+          "name": "ENEMY_DEAD",
+          "value": 20,
+          "fieldIndex": 18437,
+          "fieldOffset": 5382512,
+          "defaultRecordOffset": 4287888,
+          "dataOffset": 4402644
+        },
+        {
+          "name": "DECK_COMBO_COUNT",
+          "value": 21,
+          "fieldIndex": 18438,
+          "fieldOffset": 5382528,
+          "defaultRecordOffset": 4287900,
+          "dataOffset": 4402648
+        },
+        {
+          "name": "DAMAGE_NUM",
+          "value": 22,
+          "fieldIndex": 18439,
+          "fieldOffset": 5382544,
+          "defaultRecordOffset": 4287912,
+          "dataOffset": 4402652
+        },
+        {
+          "name": "SKILL_KIND",
+          "value": 23,
+          "fieldIndex": 18440,
+          "fieldOffset": 5382560,
+          "defaultRecordOffset": 4287924,
+          "dataOffset": 4402656
+        },
+        {
+          "name": "ENCHANT_DAMAGE",
+          "value": 24,
+          "fieldIndex": 18441,
+          "fieldOffset": 5382576,
+          "defaultRecordOffset": 4287936,
+          "dataOffset": 4402660
+        },
+        {
+          "name": "USER_CRITICAL",
+          "value": 25,
+          "fieldIndex": 18442,
+          "fieldOffset": 5382592,
+          "defaultRecordOffset": 4287948,
+          "dataOffset": 4402664
+        },
+        {
+          "name": "USER_PARAM_ONE",
+          "value": 26,
+          "fieldIndex": 18443,
+          "fieldOffset": 5382608,
+          "defaultRecordOffset": 4287960,
+          "dataOffset": 4402668
+        },
+        {
+          "name": "USER_PARAM_RANK",
+          "value": 27,
+          "fieldIndex": 18444,
+          "fieldOffset": 5382624,
+          "defaultRecordOffset": 4287972,
+          "dataOffset": 4402672
+        },
+        {
+          "name": "USER_HP_RATE_ONE",
+          "value": 28,
+          "fieldIndex": 18445,
+          "fieldOffset": 5382640,
+          "defaultRecordOffset": 4287984,
+          "dataOffset": 4402676
+        },
+        {
+          "name": "USER_HP_RATE",
+          "value": 29,
+          "fieldIndex": 18446,
+          "fieldOffset": 5382656,
+          "defaultRecordOffset": 4287996,
+          "dataOffset": 4402680
+        },
+        {
+          "name": "DEAL_NUM_ONE",
+          "value": 30,
+          "fieldIndex": 18447,
+          "fieldOffset": 5382672,
+          "defaultRecordOffset": 4288008,
+          "dataOffset": 4402684
+        },
+        {
+          "name": "DEAL_NUM_BY_HIGH_USER",
+          "value": 31,
+          "fieldIndex": 18448,
+          "fieldOffset": 5382688,
+          "defaultRecordOffset": 4288020,
+          "dataOffset": 4402688
+        },
+        {
+          "name": "DEAL_NUM_BY_LOW_USER",
+          "value": 32,
+          "fieldIndex": 18449,
+          "fieldOffset": 5382704,
+          "defaultRecordOffset": 4288032,
+          "dataOffset": 4402692
+        },
+        {
+          "name": "USER_HAND_NUM_ONE",
+          "value": 33,
+          "fieldIndex": 18450,
+          "fieldOffset": 5382720,
+          "defaultRecordOffset": 4288044,
+          "dataOffset": 4402696
+        },
+        {
+          "name": "USER_HAND_NUM",
+          "value": 34,
+          "fieldIndex": 18451,
+          "fieldOffset": 5382736,
+          "defaultRecordOffset": 4288056,
+          "dataOffset": 4402700
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_ENEMY_ONE",
+          "value": 35,
+          "fieldIndex": 18452,
+          "fieldOffset": 5382752,
+          "defaultRecordOffset": 4288068,
+          "dataOffset": 4402704
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_ENEMY",
+          "value": 36,
+          "fieldIndex": 18453,
+          "fieldOffset": 5382768,
+          "defaultRecordOffset": 4288080,
+          "dataOffset": 4402708
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_ENEMY_ONE_AND",
+          "value": 37,
+          "fieldIndex": 18454,
+          "fieldOffset": 5382784,
+          "defaultRecordOffset": 4288092,
+          "dataOffset": 4402712
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_ENEMY_AND",
+          "value": 38,
+          "fieldIndex": 18455,
+          "fieldOffset": 5382800,
+          "defaultRecordOffset": 4288104,
+          "dataOffset": 4402716
+        },
+        {
+          "name": "USER_DEAD",
+          "value": 39,
+          "fieldIndex": 18456,
+          "fieldOffset": 5382816,
+          "defaultRecordOffset": 4288116,
+          "dataOffset": 4402720
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_USER_ONE",
+          "value": 40,
+          "fieldIndex": 18457,
+          "fieldOffset": 5382832,
+          "defaultRecordOffset": 4288128,
+          "dataOffset": 4402724
+        },
+        {
+          "name": "SKILL_ROLE_KIND_BUFF_BY_USER_ONE",
+          "value": 41,
+          "fieldIndex": 18458,
+          "fieldOffset": 5382848,
+          "defaultRecordOffset": 4288140,
+          "dataOffset": 4402728
+        },
+        {
+          "name": "SKILL_ROLE_KIND_DEBUFF_BY_USER_ONE_AND",
+          "value": 42,
+          "fieldIndex": 18459,
+          "fieldOffset": 5382864,
+          "defaultRecordOffset": 4288152,
+          "dataOffset": 4402732
+        },
+        {
+          "name": "SKILL_ROLE_KIND_BUFF_BY_USER_ONE_AND",
+          "value": 43,
+          "fieldIndex": 18460,
+          "fieldOffset": 5382880,
+          "defaultRecordOffset": 4288164,
+          "dataOffset": 4402736
+        },
+        {
+          "name": "ATTACK_AND_ENCHANT_DAMAGE",
+          "value": 44,
+          "fieldIndex": 18461,
+          "fieldOffset": 5382896,
+          "defaultRecordOffset": 4288176,
+          "dataOffset": 4402740
+        },
+        {
+          "name": "ALL_DAMAGE",
+          "value": 45,
+          "fieldIndex": 18462,
+          "fieldOffset": 5382912,
+          "defaultRecordOffset": 4288188,
+          "dataOffset": 4402744
+        },
+        {
+          "name": "ATTACK_AND_ENCHANT_DAMAGE_TURN_APPOINT",
+          "value": 46,
+          "fieldIndex": 18463,
+          "fieldOffset": 5382928,
+          "defaultRecordOffset": 4288200,
+          "dataOffset": 4402748
+        },
+        {
+          "name": "ALL_DAMAGE_TURN_APPOINT",
+          "value": 47,
+          "fieldIndex": 18464,
+          "fieldOffset": 5382944,
+          "defaultRecordOffset": 4288212,
+          "dataOffset": 4402752
+        },
+        {
+          "name": "USER_CURSE",
+          "value": 48,
+          "fieldIndex": 18465,
+          "fieldOffset": 5382960,
+          "defaultRecordOffset": 4288224,
+          "dataOffset": 4402756
+        },
+        {
+          "name": "USER_EXEC_CURSE",
+          "value": 49,
+          "fieldIndex": 18466,
+          "fieldOffset": 5382976,
+          "defaultRecordOffset": 4288236,
+          "dataOffset": 4402760
+        },
+        {
+          "name": "USER_BLESS",
+          "value": 50,
+          "fieldIndex": 18467,
+          "fieldOffset": 5382992,
+          "defaultRecordOffset": 4288248,
+          "dataOffset": 4402764
+        },
+        {
+          "name": "USER_EXEC_BLESS",
+          "value": 51,
+          "fieldIndex": 18468,
+          "fieldOffset": 5383008,
+          "defaultRecordOffset": 4288260,
+          "dataOffset": 4402768
+        },
+        {
+          "name": "ENEMY_ALIVE",
+          "value": 52,
+          "fieldIndex": 18469,
+          "fieldOffset": 5383024,
+          "defaultRecordOffset": 4288272,
+          "dataOffset": 4402772
+        },
+        {
+          "name": "AI_FLAG_NONE",
+          "value": 53,
+          "fieldIndex": 18470,
+          "fieldOffset": 5383040,
+          "defaultRecordOffset": 4288284,
+          "dataOffset": 4402776
+        },
+        {
+          "name": "ENEMY_ALIVE_OR",
+          "value": 54,
+          "fieldIndex": 18471,
+          "fieldOffset": 5383056,
+          "defaultRecordOffset": 4288296,
+          "dataOffset": 4402780
+        },
+        {
+          "name": "USER_PLAY_CARD_NUM",
+          "value": 55,
+          "fieldIndex": 18472,
+          "fieldOffset": 5383072,
+          "defaultRecordOffset": 4288308,
+          "dataOffset": 4402784
+        },
+        {
+          "name": "USER_PLAY_CARD_NUM_TOTAL",
+          "value": 56,
+          "fieldIndex": 18473,
+          "fieldOffset": 5383088,
+          "defaultRecordOffset": 4288320,
+          "dataOffset": 4402788
+        },
+        {
+          "name": "TURN_SKILL_ATTACK_DAMAGE",
+          "value": 57,
+          "fieldIndex": 18474,
+          "fieldOffset": 5383104,
+          "defaultRecordOffset": 4288332,
+          "dataOffset": 4402792
+        },
+        {
+          "name": "USER_BURST_GAUGE_STATE",
+          "value": 58,
+          "fieldIndex": 18475,
+          "fieldOffset": 5383120,
+          "defaultRecordOffset": 4288344,
+          "dataOffset": 4402796
+        },
+        {
+          "name": "USER_BURST_GAUGE_VALUE",
+          "value": 59,
+          "fieldIndex": 18476,
+          "fieldOffset": 5383136,
+          "defaultRecordOffset": 4288356,
+          "dataOffset": 4402800
+        },
+        {
+          "name": "USER_BURST_BUFF",
+          "value": 60,
+          "fieldIndex": 18477,
+          "fieldOffset": 5383152,
+          "defaultRecordOffset": 4288368,
+          "dataOffset": 4402804
+        },
+        {
+          "name": "USER_BURST_BUFF_AND",
+          "value": 61,
+          "fieldIndex": 18478,
+          "fieldOffset": 5383168,
+          "defaultRecordOffset": 4288380,
+          "dataOffset": 4402808
+        },
+        {
+          "name": "USER_CARD_BUFF",
+          "value": 62,
+          "fieldIndex": 18479,
+          "fieldOffset": 5383184,
+          "defaultRecordOffset": 4288392,
+          "dataOffset": 4402812
+        },
+        {
+          "name": "AI_VAR",
+          "value": 63,
+          "fieldIndex": 18480,
+          "fieldOffset": 5383200,
+          "defaultRecordOffset": 4288404,
+          "dataOffset": 4402816
+        }
+      ],
+      "excludedSentinels": [
+        {
+          "name": "sizeof_ENEMY_AI_ORDER_TRIGGER",
+          "value": 64,
+          "fieldIndex": 18481,
+          "fieldOffset": 5383216,
+          "defaultRecordOffset": 4288416,
+          "dataOffset": 4402820
+        }
+      ]
+    },
+    {
+      "name": "SPHR_TYPE",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4246,
+      "typeOffset": 6668548,
+      "values": [
+        {
+          "name": "NONE",
+          "value": 0,
+          "fieldIndex": 19494,
+          "fieldOffset": 5399424,
+          "defaultRecordOffset": 4299744,
+          "dataOffset": 4406596
+        },
+        {
+          "name": "NORMAL",
+          "value": 1,
+          "fieldIndex": 19495,
+          "fieldOffset": 5399440,
+          "defaultRecordOffset": 4299756,
+          "dataOffset": 4406600
+        },
+        {
+          "name": "CHALICE",
+          "value": 2,
+          "fieldIndex": 19496,
+          "fieldOffset": 5399456,
+          "defaultRecordOffset": 4299768,
+          "dataOffset": 4406604
+        },
+        {
+          "name": "EVOLUTION",
+          "value": 3,
+          "fieldIndex": 19497,
+          "fieldOffset": 5399472,
+          "defaultRecordOffset": 4299780,
+          "dataOffset": 4406608
+        }
+      ],
+      "excludedSentinels": []
+    },
+    {
+      "name": "SPHR_PLAY_CONDITION",
+      "image": "Assembly-CSharp.dll",
+      "typeIndex": 4227,
+      "typeOffset": 6666268,
+      "values": [
+        {
+          "name": "NONE",
+          "value": 0,
+          "fieldIndex": 19380,
+          "fieldOffset": 5397600,
+          "defaultRecordOffset": 4298604,
+          "dataOffset": 4406216
+        },
+        {
+          "name": "TURN_AFTER",
+          "value": 1,
+          "fieldIndex": 19381,
+          "fieldOffset": 5397616,
+          "defaultRecordOffset": 4298616,
+          "dataOffset": 4406220
+        }
+      ],
+      "excludedSentinels": []
+    }
+  ],
+  "scope": "Metadata-only extraction of Int32 enum constants in the imported 6.0.2/60200 IPA. Header sections, image/type/field ownership, enum bitfields, System.Int32 default-value types, strings and constant byte offsets checked; independent C# reader agrees. No encrypted executable, invalid historical dump.cs, native type registration, code body or game execution used. Establishes these original IPA constants, not compatibility with delivered modern tables or the rebuilt client, modern parameter conversion, service deployment, Unity/ARM64/device execution. No candidate or product snapshot is replaced."
+}

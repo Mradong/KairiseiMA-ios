@@ -1,0 +1,978 @@
+{
+  "checkedAt": "2026-11-23T11:16:50.443Z",
+  "analysisCompleted": true,
+  "metadataEvidenceSha256": "db10dfc1e8aaf9efd14edab967b3a406cb665e92abbae3ff075344e30caa30e7",
+  "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+  "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
+  "rawRoleAuditSha256": "a1b35590ca287ce7a51308330290d87aeab721cf68b17d6232847076f65f0cc8",
+  "scriptSha256": "f525d53b2d60b6efec424736a9a5a9531a67bbd70f864048b607aba2a1df5ec5",
+  "directReuseOfIos602EnumsForDeliveredTables": false,
+  "missingProjectedObservations": 8769,
+  "missingRoleObservations": 0,
+  "families": [
+    {
+      "family": "SKILL_EXTEND_EXEC_ORDER",
+      "ios602Members": 111,
+      "modernCandidateMembers": 134,
+      "changed": [
+        {
+          "name": "SELF_ENEMY_AI_VAR",
+          "ios602": 110,
+          "modernCandidate": 111,
+          "observations": 555
+        }
+      ],
+      "missingObserved": [
+        {
+          "name": "SELF_TRANCE_GAUGE_VALUE",
+          "observations": 63,
+          "fields": {
+            "Skills.BranchCondition": 63
+          }
+        },
+        {
+          "name": "OWNER_CARD_FAME",
+          "observations": 11,
+          "fields": {
+            "Skills.BranchCondition": 11
+          }
+        },
+        {
+          "name": "TARGET_CARD_ONLY_SELF_PLAY",
+          "observations": 33,
+          "fields": {
+            "Skills.AppendCondition": 3,
+            "Skills.BranchCondition": 25,
+            "Skills.BranchCondition2": 5
+          }
+        },
+        {
+          "name": "SUMMONS_EVERY_TURN",
+          "observations": 202,
+          "fields": {
+            "Skills.BranchCondition": 202
+          }
+        },
+        {
+          "name": "OWNER_CARD_DECK_INDEX",
+          "observations": 134,
+          "fields": {
+            "Skills.BranchCondition": 134
+          }
+        },
+        {
+          "name": "CARD_DECK_INDEX",
+          "observations": 44,
+          "fields": {
+            "Skills.BranchCondition": 44
+          }
+        },
+        {
+          "name": "FRIEND_PLAY_COST_NUM",
+          "observations": 6,
+          "fields": {
+            "Skills.BranchCondition": 6
+          }
+        }
+      ],
+      "legacy140Sha256": "2d3baac3754fd2d4e459fcb2a885715b9e32f0b8b08a82c895970a5e4ea40d09",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "RARITY",
+      "ios602Members": 9,
+      "modernCandidateMembers": 11,
+      "changed": [],
+      "missingObserved": [
+        {
+          "name": "TOKEN_GOOD",
+          "observations": 1,
+          "fields": {
+            "Cards.Rarity": 1
+          }
+        },
+        {
+          "name": "TOKEN_BAD",
+          "observations": 1,
+          "fields": {
+            "Cards.Rarity": 1
+          }
+        }
+      ],
+      "legacy140Sha256": "137e3a6c108fb7c4478b98cbcdeda059912155cc7339b946601e26bc06deffba",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_TYPE",
+      "ios602Members": 7,
+      "modernCandidateMembers": 7,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "0db423a051aaa76c90a106d856a89a88c8d89aefdff1f0c2ec63ab8aaf7d5848",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_KIND",
+      "ios602Members": 8,
+      "modernCandidateMembers": 8,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "1312b7560a577f0f130e472bcdcd426b54f7adcc697c59119c2df3d3439b43bd",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ATTR",
+      "ios602Members": 20,
+      "modernCandidateMembers": 20,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "78f70715eb13a6cc0ef5da50355e7790228534378daab6617467f9e5afa3ba53",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "JOB_TYPE",
+      "ios602Members": 5,
+      "modernCandidateMembers": 6,
+      "changed": [],
+      "missingObserved": [
+        {
+          "name": "ALCHEMIST",
+          "observations": 1176,
+          "fields": {
+            "Skills.Job": 1176
+          }
+        }
+      ],
+      "legacy140Sha256": "ed65eaf5dfe1de3d204738f3cc6b79050f217ee3ec62c33dd7b2472ac9c5763b",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ARTHUR_TYPE",
+      "ios602Members": 5,
+      "modernCandidateMembers": 6,
+      "changed": [],
+      "missingObserved": [
+        {
+          "name": "ALCHEMIST",
+          "observations": 1176,
+          "fields": {
+            "Skills.ArthurJob": 1176
+          }
+        }
+      ],
+      "legacy140Sha256": "bd4018ccd85434b350d49a430ee69ac4173cd187098a01db0c085a640a210c47",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_PHYSICS_TYPE",
+      "ios602Members": 3,
+      "modernCandidateMembers": 3,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "eb4641aee455fe4b14ae0aaa8ca72d31a89261de5ee43d2ef4fcc01e1b81b3f6",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_TARGET",
+      "ios602Members": 30,
+      "modernCandidateMembers": 38,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "aaa90369cb3572248014ceaaf228d1b877ad3f71e88b1edd3ee896cdb17fab58",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_EXEC_TIMING",
+      "ios602Members": 3,
+      "modernCandidateMembers": 4,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "79069b94da038fdc7f2bc35948fbad4c2bcfcfc2dc0c61cc08d1a819a51d1834",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_ROLE",
+      "ios602Members": 175,
+      "modernCandidateMembers": 223,
+      "changed": [],
+      "missingObserved": [
+        {
+          "name": "NEED_COST_UP",
+          "observations": 144,
+          "fields": {
+            "SkillRoles.Function": 144
+          }
+        },
+        {
+          "name": "CARD_SEARCH",
+          "observations": 146,
+          "fields": {
+            "SkillRoles.Function": 146
+          }
+        },
+        {
+          "name": "CARD_TOKEN",
+          "observations": 164,
+          "fields": {
+            "SkillRoles.Function": 164
+          }
+        },
+        {
+          "name": "BURST_ATK_UP_FIXED",
+          "observations": 5,
+          "fields": {
+            "SkillRoles.Function": 5
+          }
+        },
+        {
+          "name": "DAMAGE_BOOST_COUNT2",
+          "observations": 128,
+          "fields": {
+            "SkillRoles.Function": 128
+          }
+        },
+        {
+          "name": "BURST_DEF_UP_FIXED",
+          "observations": 1,
+          "fields": {
+            "SkillRoles.Function": 1
+          }
+        },
+        {
+          "name": "BURST_DEF_UP_BY_SELF_PARAM",
+          "observations": 4,
+          "fields": {
+            "SkillRoles.Function": 4
+          }
+        },
+        {
+          "name": "BURST_ATK_BREAK_FIXED",
+          "observations": 1,
+          "fields": {
+            "SkillRoles.Function": 1
+          }
+        },
+        {
+          "name": "ATK_UP_FIXED_ENEMY",
+          "observations": 2411,
+          "fields": {
+            "SkillRoles.Function": 2411
+          }
+        },
+        {
+          "name": "ATK_BREAK_FIXED_ENEMY",
+          "observations": 481,
+          "fields": {
+            "SkillRoles.Function": 481
+          }
+        },
+        {
+          "name": "GUARD_BREAK_FIXED_ENEMY",
+          "observations": 463,
+          "fields": {
+            "SkillRoles.Function": 463
+          }
+        },
+        {
+          "name": "DEF_UP_FIXED_ENEMY",
+          "observations": 178,
+          "fields": {
+            "SkillRoles.Function": 178
+          }
+        },
+        {
+          "name": "ATK_BREAK_CUT",
+          "observations": 9,
+          "fields": {
+            "SkillRoles.Function": 9
+          }
+        },
+        {
+          "name": "GUARD_BREAK_CUT",
+          "observations": 14,
+          "fields": {
+            "SkillRoles.Function": 14
+          }
+        },
+        {
+          "name": "ATTR_DEF_DOWN_BOOST",
+          "observations": 13,
+          "fields": {
+            "SkillRoles.Function": 13
+          }
+        },
+        {
+          "name": "ENEMY_AI_VAR_SET",
+          "observations": 12,
+          "fields": {
+            "SkillRoles.Function": 12
+          }
+        },
+        {
+          "name": "ATK_OP_ATTR_DEF_PIERCING",
+          "observations": 892,
+          "fields": {
+            "SkillRoles.Function": 892
+          }
+        }
+      ],
+      "legacy140Sha256": "506168dcba0d4f0716defda35967f5d44764d6e4e44fb0e948919ebcd7daf4fd",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_ROLE_TARGET",
+      "ios602Members": 16,
+      "modernCandidateMembers": 26,
+      "changed": [],
+      "missingObserved": [
+        {
+          "name": "SELECT_TARGET_HAND_ALL",
+          "observations": 144,
+          "fields": {
+            "SkillRoles.Target": 144
+          }
+        },
+        {
+          "name": "ENEMY1",
+          "observations": 123,
+          "fields": {
+            "SkillRoles.Target": 123
+          }
+        },
+        {
+          "name": "USER_SIDE_MERCENARY",
+          "observations": 89,
+          "fields": {
+            "SkillRoles.Target": 89
+          }
+        },
+        {
+          "name": "USER_SIDE_THIEF",
+          "observations": 78,
+          "fields": {
+            "SkillRoles.Target": 78
+          }
+        },
+        {
+          "name": "USER_SIDE_MILLIONAIRE",
+          "observations": 83,
+          "fields": {
+            "SkillRoles.Target": 83
+          }
+        },
+        {
+          "name": "USER_SIDE_SINGER",
+          "observations": 93,
+          "fields": {
+            "SkillRoles.Target": 93
+          }
+        },
+        {
+          "name": "ENEMY2",
+          "observations": 77,
+          "fields": {
+            "SkillRoles.Target": 77
+          }
+        },
+        {
+          "name": "ENEMY4",
+          "observations": 8,
+          "fields": {
+            "SkillRoles.Target": 8
+          }
+        },
+        {
+          "name": "ENEMY3",
+          "observations": 43,
+          "fields": {
+            "SkillRoles.Target": 43
+          }
+        }
+      ],
+      "legacy140Sha256": "f625b09fda740f2efcc796efaa85bceb5301e99adaae6e937feb83cda96fe5cd",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_ROLE_BATTLE_PARAM",
+      "ios602Members": 7,
+      "modernCandidateMembers": 7,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "a4dbec97ed690d2ab88a7d9d1fdbbc829adb7c873a329175b58d1260660c9a9b",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_ROLE_KIND_DEBUFF",
+      "ios602Members": 30,
+      "modernCandidateMembers": 33,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "c7e9c09da219170adb421271ac898657374e759d4dc1c1500db82d82949031b2",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_ROLE_KIND_BUFF",
+      "ios602Members": 69,
+      "modernCandidateMembers": 84,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "530ac6f94d74df536253e2d744650ff19bf4284b27ce77b8e413d5a3aaabcb98",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SKILL_ROLE_DOT",
+      "ios602Members": 7,
+      "modernCandidateMembers": 7,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ENEMY_TRANCE_GAUGE_STATE",
+      "ios602Members": 4,
+      "modernCandidateMembers": 4,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ENEMY_AI_TARGET",
+      "ios602Members": 72,
+      "modernCandidateMembers": 104,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "3d136df6fd31cdb73a148af4ce21389b01b553edc065504f58ab60bf1183b5a2",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ENEMY_AI_ORDER_PARTY",
+      "ios602Members": 12,
+      "modernCandidateMembers": 12,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "4003ab978f91afcdc3736f18c9cac7fe9dbd60e66d3224377384c17b1910e815",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ENEMY_AI_ORDER_TRANCE_GAUGE",
+      "ios602Members": 7,
+      "modernCandidateMembers": 7,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "f8de8088c58847e7d8cdc91f32e974e979d66e0e9512a2be8f1909d4ee00c503",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "ENEMY_AI_ORDER_TRIGGER",
+      "ios602Members": 64,
+      "modernCandidateMembers": 72,
+      "changed": [],
+      "missingObserved": [
+        {
+          "name": "TRANCE_GAUGE_VALUE",
+          "observations": 58,
+          "fields": {
+            "EnemyAIOrders.29": 58
+          }
+        },
+        {
+          "name": "TRANCE_GAUGE_STATE_CHANGE",
+          "observations": 6,
+          "fields": {
+            "EnemyAIOrders.29": 6
+          }
+        },
+        {
+          "name": "TRANCE_GAUGE_STATE",
+          "observations": 54,
+          "fields": {
+            "EnemyAIOrders.29": 54
+          }
+        }
+      ],
+      "legacy140Sha256": "3a361b027d0fe6655b20e0a9edaaedda1d916ddcbb73005ce33cb17b7e312ba5",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SPHR_TYPE",
+      "ios602Members": 4,
+      "modernCandidateMembers": 4,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "84465cd2219629708766697fba2b1e293448e8348d65ac9c7eb5de776f758dc7",
+      "identicalToLegacy140": true
+    },
+    {
+      "family": "SPHR_PLAY_CONDITION",
+      "ios602Members": 2,
+      "modernCandidateMembers": 2,
+      "changed": [],
+      "missingObserved": [],
+      "legacy140Sha256": "a030fbaa034bf2b9326ee241144ac6e0c446f4d9fe4d81d97b7b6d015fa6751d",
+      "identicalToLegacy140": true
+    }
+  ],
+  "roleParameters": [
+    {
+      "rule": "SKILL_ROLE_BATTLE_PARAM",
+      "family": "SKILL_ROLE_BATTLE_PARAM",
+      "matched": [
+        {
+          "name": "ATK",
+          "observations": 27608
+        },
+        {
+          "name": "INT",
+          "observations": 32064
+        },
+        {
+          "name": "MAX_HP",
+          "observations": 1355
+        },
+        {
+          "name": "HP",
+          "observations": 4434
+        },
+        {
+          "name": "MDEF",
+          "observations": 7440
+        },
+        {
+          "name": "DEF",
+          "observations": 7348
+        },
+        {
+          "name": "MND",
+          "observations": 11128
+        }
+      ],
+      "missing": [],
+      "special": []
+    },
+    {
+      "rule": "ATTR",
+      "family": "ATTR",
+      "matched": [
+        {
+          "name": "FIRE",
+          "observations": 7897
+        },
+        {
+          "name": "ICE",
+          "observations": 7066
+        },
+        {
+          "name": "WIND",
+          "observations": 6864
+        },
+        {
+          "name": "LIGHT",
+          "observations": 6979
+        },
+        {
+          "name": "DARK",
+          "observations": 6503
+        },
+        {
+          "name": "LIGHT_DARK",
+          "observations": 645
+        },
+        {
+          "name": "ICE_LIGHT",
+          "observations": 675
+        },
+        {
+          "name": "FIRE_WIND",
+          "observations": 596
+        },
+        {
+          "name": "FIRE_DARK",
+          "observations": 647
+        },
+        {
+          "name": "WIND_LIGHT",
+          "observations": 592
+        },
+        {
+          "name": "FIRE_LIGHT",
+          "observations": 582
+        },
+        {
+          "name": "ICE_DARK",
+          "observations": 597
+        },
+        {
+          "name": "WIND_DARK",
+          "observations": 560
+        },
+        {
+          "name": "FIRE_ICE",
+          "observations": 709
+        },
+        {
+          "name": "ICE_WIND",
+          "observations": 574
+        }
+      ],
+      "missing": [],
+      "special": [
+        {
+          "name": "NULL",
+          "observations": 1364
+        }
+      ]
+    },
+    {
+      "rule": "SKILL_PHYSICS_TYPE",
+      "family": "SKILL_PHYSICS_TYPE",
+      "matched": [
+        {
+          "name": "PHYSICS",
+          "observations": 13813
+        },
+        {
+          "name": "MAGIC",
+          "observations": 15768
+        },
+        {
+          "name": "ALL",
+          "observations": 1293
+        }
+      ],
+      "missing": [],
+      "special": []
+    },
+    {
+      "rule": "SKILL_ROLE_KIND_DEBUFF",
+      "family": "SKILL_ROLE_KIND_DEBUFF",
+      "matched": [
+        {
+          "name": "CARD_SEAL",
+          "observations": 146
+        },
+        {
+          "name": "POISON",
+          "observations": 158
+        },
+        {
+          "name": "WEAKNESS",
+          "observations": 148
+        },
+        {
+          "name": "DARKNESS",
+          "observations": 117
+        },
+        {
+          "name": "CARD_TRAP_DAMAGE",
+          "observations": 166
+        },
+        {
+          "name": "COST_BLOCK",
+          "observations": 94
+        },
+        {
+          "name": "FREEZE",
+          "observations": 107
+        },
+        {
+          "name": "BLEED",
+          "observations": 102
+        },
+        {
+          "name": "BURN",
+          "observations": 149
+        },
+        {
+          "name": "GUARD_BREAK_BY_DEF",
+          "observations": 48
+        },
+        {
+          "name": "GUARD_BREAK_BY_MDEF",
+          "observations": 48
+        },
+        {
+          "name": "ATK_BREAK_BY_ATK",
+          "observations": 121
+        },
+        {
+          "name": "ATK_BREAK_BY_INT",
+          "observations": 135
+        },
+        {
+          "name": "ELECTRIC",
+          "observations": 94
+        },
+        {
+          "name": "ATK_BREAK_BY_MND",
+          "observations": 7
+        },
+        {
+          "name": "ATTR_DEF_DOWN",
+          "observations": 6
+        },
+        {
+          "name": "ATTR_SEE",
+          "observations": 6
+        },
+        {
+          "name": "HEAL_REVERSE",
+          "observations": 3
+        },
+        {
+          "name": "STAN",
+          "observations": 3
+        }
+      ],
+      "missing": [],
+      "special": [
+        {
+          "name": "NULL",
+          "observations": 557
+        }
+      ]
+    },
+    {
+      "rule": "DOT",
+      "family": "SKILL_ROLE_DOT",
+      "matched": [
+        {
+          "name": "POISON",
+          "observations": 242
+        },
+        {
+          "name": "FREEZE",
+          "observations": 111
+        },
+        {
+          "name": "ELECTRIC",
+          "observations": 92
+        },
+        {
+          "name": "BURN",
+          "observations": 155
+        },
+        {
+          "name": "BLEED",
+          "observations": 266
+        }
+      ],
+      "missing": [],
+      "special": []
+    },
+    {
+      "rule": "SKILL_ROLE_KIND_BUFF",
+      "family": "SKILL_ROLE_KIND_BUFF",
+      "matched": [
+        {
+          "name": "DEF_UP_BY_DEF",
+          "observations": 146
+        },
+        {
+          "name": "DEF_UP_BY_MDEF",
+          "observations": 143
+        },
+        {
+          "name": "ATK_UP_BY_ATK",
+          "observations": 180
+        },
+        {
+          "name": "ATK_UP_BY_INT",
+          "observations": 186
+        },
+        {
+          "name": "ATK_UP_BY_MND",
+          "observations": 46
+        },
+        {
+          "name": "COVERING",
+          "observations": 115
+        },
+        {
+          "name": "HEAL",
+          "observations": 65
+        },
+        {
+          "name": "CRITICAL_UP",
+          "observations": 47
+        },
+        {
+          "name": "ENCHANT",
+          "observations": 15
+        },
+        {
+          "name": "REFLECTION",
+          "observations": 1
+        },
+        {
+          "name": "ATTR_DEF_UP",
+          "observations": 30
+        },
+        {
+          "name": "ENDURE",
+          "observations": 19
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_BY_ATK",
+          "observations": 11
+        },
+        {
+          "name": "PARAM_LIMIT_BREAK_BY_INT",
+          "observations": 11
+        },
+        {
+          "name": "ATK_UP_BY_MAX_HP",
+          "observations": 95
+        },
+        {
+          "name": "GUTS",
+          "observations": 6
+        },
+        {
+          "name": "DAMAGE_CUT",
+          "observations": 12
+        },
+        {
+          "name": "ATTACK_BARRIER",
+          "observations": 2
+        }
+      ],
+      "missing": [],
+      "special": [
+        {
+          "name": "NULL",
+          "observations": 432
+        }
+      ]
+    },
+    {
+      "rule": "SKILL_KIND",
+      "family": "SKILL_KIND",
+      "matched": [
+        {
+          "name": "ATTACK",
+          "observations": 13
+        },
+        {
+          "name": "SORCERY",
+          "observations": 20
+        },
+        {
+          "name": "DEFENSE",
+          "observations": 4
+        },
+        {
+          "name": "RECOVERY",
+          "observations": 8
+        },
+        {
+          "name": "SUPPORT",
+          "observations": 10
+        },
+        {
+          "name": "JAMMING",
+          "observations": 10
+        }
+      ],
+      "missing": [],
+      "special": [
+        {
+          "name": "NULL",
+          "observations": 395
+        }
+      ]
+    },
+    {
+      "rule": "TRANCE_GAUGE_STATE",
+      "family": "ENEMY_TRANCE_GAUGE_STATE",
+      "matched": [
+        {
+          "name": "TRANCE",
+          "observations": 835
+        },
+        {
+          "name": "NORMAL",
+          "observations": 281
+        }
+      ],
+      "missing": [],
+      "special": []
+    },
+    {
+      "rule": "SKILL_KIND_BIT",
+      "family": "SKILL_KIND",
+      "matched": [
+        {
+          "name": "SORCERY",
+          "observations": 13
+        },
+        {
+          "name": "SUPPORT",
+          "observations": 9
+        },
+        {
+          "name": "ATTACK",
+          "observations": 7
+        },
+        {
+          "name": "RECOVERY",
+          "observations": 120
+        },
+        {
+          "name": "JAMMING",
+          "observations": 5
+        }
+      ],
+      "missing": [],
+      "special": [
+        {
+          "name": "ALL",
+          "observations": 365
+        }
+      ]
+    },
+    {
+      "rule": "ATTR_BIT",
+      "family": "ATTR",
+      "matched": [
+        {
+          "name": "FIRE",
+          "observations": 25
+        },
+        {
+          "name": "LIGHT",
+          "observations": 11
+        },
+        {
+          "name": "WIND",
+          "observations": 11
+        },
+        {
+          "name": "ICE",
+          "observations": 1
+        }
+      ],
+      "missing": [],
+      "special": [
+        {
+          "name": "ALL",
+          "observations": 471
+        }
+      ]
+    },
+    {
+      "rule": "ARTHUR_TYPE",
+      "family": "ARTHUR_TYPE",
+      "matched": [],
+      "missing": [],
+      "special": [
+        {
+          "name": "NULL",
+          "observations": 86
+        }
+      ]
+    }
+  ],
+  "scope": "Static name/value comparison of independently recovered original 6.0.2 enum constants against 23 modern candidate families and selected delivered-table Go projection fields, plus supplied raw-role token frequencies. Counts are field/variant occurrences, not unique skills or reachable executions. Empty/NULL/bitmask sentinels remain context-dependent. Missing names establish that the old enum set cannot directly represent all checked data; this does not authorize truncation, invented replacements, changed CSV values or legacy scope reduction. Runtime semantics, correct modern original version and service contracts remain unverified."
+}

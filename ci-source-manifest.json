@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T11:01:30.922Z",
+  "generatedAt": "2026-11-23T11:22:59.368Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -20,13 +20,13 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 3454,
-      "sha256": "8d2d2c9efec26f30e165e8b1fc043f3170a72be1211e3f10fb165b5f0724f786"
+      "bytes": 3684,
+      "sha256": "da42fd897721d6704e07172b9966ea6d3d70fb9411c4ad44f0e5debdd032b270"
     },
     {
       "path": "EXECUTION_PLAN.md",
-      "bytes": 9130,
-      "sha256": "9e0245665caa821e3692402c17aca23a5e9c387f7e827b329b67b0118e9f3951"
+      "bytes": 9200,
+      "sha256": "49127dd6d47348fb7d7703155c0e4334d7bddca82a66e72d7c7abd33ec9d1c7d"
     },
     {
       "path": "README.md",
@@ -35,18 +35,23 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 119539,
-      "sha256": "a2f8210a6fd1ddebdb6708e9c1f18f63e1aac2e33eeff2117e89a36b9f0e6fe2"
+      "bytes": 121611,
+      "sha256": "4d26d7c4a6a1e1c2df59873179d1d1e106e8bfb34c3a2e125ba3a5dab705a621"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 66637,
-      "sha256": "49f387efddb41d4211495b425b32a4a2ff65be60efba0b59dc8c35fd670222a5"
+      "bytes": 69587,
+      "sha256": "4b38fb7b6b18955809e87282986d10b587c77d89895ce05f81642c99a4d39ad0"
     },
     {
       "path": "evidence/feature-coverage.md",
-      "bytes": 10698,
-      "sha256": "4f1b3d6edd7f45078d08d4ae64a7f11eb213039fd18243744d8046d6938f665d"
+      "bytes": 11358,
+      "sha256": "6b17ea5ddece8aa0cc72b5479e7a6401fa8efc8242c2cf352c854811b039f1f4"
+    },
+    {
+      "path": "evidence/ios-package-search/cn602-import.json",
+      "bytes": 31430,
+      "sha256": "2ecba2b80608505789a5ae10c2565068e418aa8a586d563fc84a7d2dbd30333b"
     },
     {
       "path": "evidence/ios-package-search/content-loader-download-tests.json",
@@ -389,6 +394,11 @@
       "sha256": "7e3639bffd75f21b44d91e7975016bf2ff24875916a414edb59f53dfb11e1c09"
     },
     {
+      "path": "evidence/ios-package-search/order03-archive-recheck.json",
+      "bytes": 525,
+      "sha256": "810f64c9c58dd41283404e051a2b228ca4503075c2437099937c0c656a3a0025"
+    },
+    {
       "path": "evidence/ios-package-search/order03-candidate-enum-coverage-before-combo.json",
       "bytes": 8936,
       "sha256": "61d8afcd6cf51ca043702a8f850f95ab03c73058c89000e740aa0ad6880a9ee7"
@@ -459,6 +469,16 @@
       "sha256": "492d4491620acaa543c087a5afa3452d9a12f56cb2982b928d9f96ea899d5b23"
     },
     {
+      "path": "evidence/ios-package-search/order03-ios602-enums.json",
+      "bytes": 158956,
+      "sha256": "db10dfc1e8aaf9efd14edab967b3a406cb665e92abbae3ff075344e30caa30e7"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-ios602-table-compatibility.json",
+      "bytes": 23710,
+      "sha256": "af99a31952a2b0c74b47f753bad86fd2ad33e8de2df3c6a5ffeb57b573a5a54b"
+    },
+    {
       "path": "evidence/ios-package-search/order03-isolated-card-contract.json",
       "bytes": 2216,
       "sha256": "eed3d0f286395ebb67c5c3b72b9757b8dcd357b72e8e2da5c4c773bb223784f6"
@@ -494,6 +514,11 @@
       "sha256": "583e917f18dfcc586bcff6241e50f18dbd5e94aa25f31da16db8b3aea04e2688"
     },
     {
+      "path": "evidence/ios-package-search/order03-modern-metadata-enums.json",
+      "bytes": 189021,
+      "sha256": "cbfb9d9784ee49e8f151d1baf4d0a670bfbb80214aa972cbaeb2f4ab90a631db"
+    },
+    {
       "path": "evidence/ios-package-search/order03-native-enum-candidate.json",
       "bytes": 1272,
       "sha256": "9e4c36aa6539f3717052c4e8e7e2a0746c336fc2177f61741661a02e38cf1e86"
@@ -512,6 +537,11 @@
       "path": "evidence/ios-package-search/order03-quest-variant-gap.json",
       "bytes": 2479,
       "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-readiness.json",
+      "bytes": 4880,
+      "sha256": "e5fcc7734205cd17c1e3e528158fdaab185fc4fabc0ea54b60896094c2a33f35"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -901,7 +931,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "dc215b30ed71f9305ae643b5c56480956ca55daf8e5b7a5507d89eef236c6fb6"
+      "sha256": "5d0501f02fc8d86899c83ecb6da69592339b1b3042205d7a5111cd243d28ff88"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1334,6 +1364,21 @@
       "sha256": "5eb9eeca7462e9d0cec489190c5705b43ab550ce4781c7e161a39f0e02907370"
     },
     {
+      "path": "scripts/audit-order03-ios602-enums.mjs",
+      "bytes": 6537,
+      "sha256": "6eebb6f2547e75d451b4b64070f69c59f108f2c0995d255e7b45566fe2538733"
+    },
+    {
+      "path": "scripts/audit-order03-ios602-table-compatibility.mjs",
+      "bytes": 7690,
+      "sha256": "f525d53b2d60b6efec424736a9a5a9531a67bbd70f864048b607aba2a1df5ec5"
+    },
+    {
+      "path": "scripts/audit-order03-modern-metadata-enums.mjs",
+      "bytes": 7927,
+      "sha256": "a49239df46ee21e98639632e5b75dd266bb54ad480b2de2b5ffce1332b575a43"
+    },
+    {
       "path": "scripts/audit-order03-role-enum-tokens.mjs",
       "bytes": 2941,
       "sha256": "861b902216d8a796950d6f206b036681a29aecb5f4aa3a781468b7e2ede50954"
@@ -1349,9 +1394,19 @@
       "sha256": "a37445b37d88bb74bc7afa286a79c055e57b83df11fef94b4f832e578685f4d3"
     },
     {
+      "path": "scripts/check-order03-readiness.mjs",
+      "bytes": 4403,
+      "sha256": "3b66042c2d3d15d77f32f1b7ec27f91dff44cb0cde6a2a71dbfc05778c806b8b"
+    },
+    {
       "path": "scripts/export-unity.mjs",
       "bytes": 3715,
       "sha256": "b0a0c0dc7ad809f2c2e40dcbab667d1a5752a0690dd7ade3d80c6d363ba0fd0b"
+    },
+    {
+      "path": "scripts/il2cpp-v21-enums.mjs",
+      "bytes": 6491,
+      "sha256": "b7e4f579a06a8ed78e83192dbf42b8195c5ed602de9316f5c73f8f341cd725d8"
     },
     {
       "path": "scripts/inspect-live-ios-ui.mjs",
@@ -1624,6 +1679,11 @@
       "sha256": "73a283c343d1aaca8224186bbddde655e0b60b56d5a9675cce6c805eae1b537b"
     },
     {
+      "path": "tests/Order03MetadataEnumsProbe.cs",
+      "bytes": 5536,
+      "sha256": "983e83304c72a83a9c2012d15a592fc240b79d60d3f90f0ab297659d46089b1d"
+    },
+    {
       "path": "tests/Order03RealCatalogOpenProbe.cs",
       "bytes": 1372,
       "sha256": "cfc499785d7f935e7b6339eadf82e68fdb5a5a210e115dd880aaf57fe57d6d8f"
@@ -1740,23 +1800,23 @@
     },
     {
       "path": "战斗主表接入.md",
-      "bytes": 7461,
-      "sha256": "401b7f5f0773a47e3ca1cf89a16d764d484663c70bc59db2d76287f4a5109e3a"
+      "bytes": 8041,
+      "sha256": "8d9b8282b2f8b89cbc5c8a9c2a0cbf7f4accb209c4423c0170e8c31a4bdc9714"
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 33334,
-      "sha256": "4a5f3c8504b0d10367e7c6e26d7bc3453e8b14290c1241980e957c7d2068fb3b"
+      "bytes": 34531,
+      "sha256": "b9a768ad163cc31ae6dc6085850727594e03d16a732240e1d3560d9716c9633c"
     },
     {
       "path": "服务端协作需求.md",
-      "bytes": 11849,
-      "sha256": "f59aee38afe74462dc8cc77b10137b4e33d0945c0872ed2a3d7f6a2e17a8e5c8"
+      "bytes": 12494,
+      "sha256": "a19affc2714a0378512d55f3061b891061be155df316fd29ab202d9626c0799a"
     },
     {
       "path": "详细执行计划.md",
-      "bytes": 11562,
-      "sha256": "b5044c8156c9f4caacc1698d32e8eeda5b2a4541cc6dc17485c6b03d929618e4"
+      "bytes": 11614,
+      "sha256": "1df79d3f636bcc7665279d283ca3008d0ab69ef027befe821ba2fc5ab2de369c"
     },
     {
       "path": "资源切换设备验证.md",
@@ -1765,11 +1825,11 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 7968,
-      "sha256": "6bd4615eac7d94588f251677aaa5e49e6af14ff66b9f5ae36f3f4c30fc0256e5"
+      "bytes": 8582,
+      "sha256": "60e2da41decb020a827687789dde6288d47c28f42b2af5946e86dfd3fb47d42a"
     }
   ],
-  "bytes": 22489073,
+  "bytes": 22945249,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Local source checkpoint after Windows synthetic enemy-variable state/branch comparisons. GitHub push failed because authentication was not completed. No cloud build or device validation; isolated candidate and original binaries are excluded."
+  "execution": "Source checkpoint after independent metadata enum extraction and table compatibility analysis. Prior checkpoint 9872704 uploaded using existing GitHub CLI credentials. No new cloud build, real admission, Unity or device claim; raw metadata/archives/tools remain excluded."
 }

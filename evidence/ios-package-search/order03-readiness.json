@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-11-23T11:22:25.312Z",
+  "planItem": "03",
+  "goalStatus": "active",
+  "ready": false,
+  "gates": [
+    {
+      "id": "delivered_tables",
+      "state": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-server-delivery-validation.json"
+      ],
+      "remaining": "Recorded package verification of 29 original tables; does not assert current process memory."
+    },
+    {
+      "id": "specified_positive_id_references",
+      "state": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-server-delivery-validation.json"
+      ],
+      "remaining": "Specified positive ID references only; gameplay and symbolic semantics are separate."
+    },
+    {
+      "id": "selected_enum_number_sources",
+      "state": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-ios602-enums.json",
+        "evidence/ios-package-search/order03-modern-metadata-enums.json"
+      ],
+      "remaining": "23 families each, 670 original iOS constants and 822 original Windows rebuild constants; not a claim that the CSV cohort shares an official original version."
+    },
+    {
+      "id": "data_cohort_and_behavior_compatibility",
+      "state": "partial",
+      "evidence": [
+        "evidence/ios-package-search/order03-ios602-table-compatibility.json",
+        "evidence/ios-package-search/order03-modern-metadata-enums.json",
+        "evidence/ios-package-search/order03-value-parser-differential.json",
+        "evidence/ios-package-search/order03-short-ai-tail.json"
+      ],
+      "remaining": "Modern candidate number provenance is verified. Link the delivered CSV version/transformation to its intended client/rebuild contract; original source-client version and modern empty/default behavior remain unverified. Old schema cannot represent 40 names in the selected fields. Do not remove them."
+    },
+    {
+      "id": "actual_deployed_version_and_quest_scope",
+      "state": "awaiting_server_evidence",
+      "evidence": [
+        "evidence/ios-package-search/order03-server-delivery-validation.json",
+        "evidence/ios-package-search/order03-quest-variant-gap.json"
+      ],
+      "remaining": "Confirm running source/build and effective loaded table/quest snapshot, 1043 own-deck variants and one other quest outside the static projection. Disk paths/hashes and shape matches alone are insufficient."
+    },
+    {
+      "id": "safe_battle_contract_and_redacted_interface_evidence",
+      "state": "awaiting_server_evidence",
+      "evidence": [
+        "evidence/ios-package-search/order03-isolated-deck-contract.json",
+        "evidence/ios-package-search/order03-isolated-quest-contract.json"
+      ],
+      "remaining": "Existing reply documents source-derived start/continue/end side effects and lack of process-restart recovery; actual deployed semantics and safe isolated admission/retry/recovery/settlement examples still missing. No chargeable entry until the client can continue safely."
+    }
+  ],
+  "evidenceHashes": [
+    {
+      "file": "evidence/ios-package-search/order03-server-delivery-validation.json",
+      "sha256": "60060313a36020fbbfffe3cdacacb0b12c58c2de0ce973582289043ec033b941"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-ios602-enums.json",
+      "sha256": "db10dfc1e8aaf9efd14edab967b3a406cb665e92abbae3ff075344e30caa30e7"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-metadata-enums.json",
+      "sha256": "cbfb9d9784ee49e8f151d1baf4d0a670bfbb80214aa972cbaeb2f4ab90a631db"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-ios602-table-compatibility.json",
+      "sha256": "af99a31952a2b0c74b47f753bad86fd2ad33e8de2df3c6a5ffeb57b573a5a54b"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-value-parser-differential.json",
+      "sha256": "4b97d769a505ece99ea75fe53e3e7c57c043aa0cf6ecf2e1938c0687bf462f9f"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-short-ai-tail.json",
+      "sha256": "07f152990e661c3787840d4c66ce413ba243ac00f8e28a53839bb2c977115360"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-quest-variant-gap.json",
+      "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-isolated-deck-contract.json",
+      "sha256": "d9f477a952bfa1a12c7010d9cecb67a897c7195dbae70279a536fd2de317024b"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-isolated-quest-contract.json",
+      "sha256": "bfa3318c13714dd93b57353a6b8c862a7714d7f6d8961c39505fbe221ea51103"
+    }
+  ],
+  "scope": "Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate."
+}

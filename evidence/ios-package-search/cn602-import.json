@@ -1,0 +1,655 @@
+﻿{
+    "generatedAt":  "2026-11-18T10:47:21.7576860Z",
+    "sourceSha256":  "d86d7609d6235ae836d4721591358de496f7f679a6ef192aea7ab054949c930b",
+    "sourceBytes":  138633863,
+    "output":  "inputs/ios/cn602",
+    "scope":  "Local game Data and Info.plist import only; no executable, SDK configuration, account data or cloud upload.",
+    "files":  [
+                  {
+                      "path":  "Info.plist",
+                      "bytes":  9522,
+                      "sha256":  "1a44be7a027223cbae679de5cdac7a79df4ee7e5946dfbd870f094dfbe369fcb"
+                  },
+                  {
+                      "path":  "Data/globalgamemanagers",
+                      "bytes":  315500,
+                      "sha256":  "d65099309aad56e95e58c79c4a3569c7392841f2d9df5fbb10b45b3a03457f59"
+                  },
+                  {
+                      "path":  "Data/globalgamemanagers.assets",
+                      "bytes":  301224,
+                      "sha256":  "eaa1b308d9c0e9faa23666e61bd21f7c108abcca9b4875d4946cecd7e4ea1888"
+                  },
+                  {
+                      "path":  "Data/level0",
+                      "bytes":  5428,
+                      "sha256":  "64ba2402f405a7c76353b8d0744282b5c17d81320fe5e79df2312fa882ff0058"
+                  },
+                  {
+                      "path":  "Data/level1",
+                      "bytes":  31944,
+                      "sha256":  "55f7b43b19d3804fea7a669ec83be92c22d30e95499c29ba38d665f836590d29"
+                  },
+                  {
+                      "path":  "Data/level10",
+                      "bytes":  22176,
+                      "sha256":  "e80272072ead6ea3b3b58a3cd702629e1db4ca632f3229d90e1348ccd18cfe3a"
+                  },
+                  {
+                      "path":  "Data/level11",
+                      "bytes":  17304,
+                      "sha256":  "5f71432eea5ca8a4afedbd2909e2f15de07ddfb29291eeb1a4d4eeb8aed392ca"
+                  },
+                  {
+                      "path":  "Data/level12",
+                      "bytes":  42656,
+                      "sha256":  "3c509b8fac71e9608b660f2a2b6077ad2906b550182265877aeca5fd3fb498f7"
+                  },
+                  {
+                      "path":  "Data/level13",
+                      "bytes":  119896,
+                      "sha256":  "242bed74b4527f09f2ecddba6792ff887452e0079759a9673822fa3292c966ef"
+                  },
+                  {
+                      "path":  "Data/level14",
+                      "bytes":  32328,
+                      "sha256":  "8c6ac601390491d964ba9e3ffefb4455d6249b265722888155d3b7d6de73b83a"
+                  },
+                  {
+                      "path":  "Data/level15",
+                      "bytes":  56872,
+                      "sha256":  "794e5e4d77bed729636cd114b8702b5b8503ea4c28b37952435e46230d6b3522"
+                  },
+                  {
+                      "path":  "Data/level16",
+                      "bytes":  14048,
+                      "sha256":  "ba550aa035115f7cdc9fee086e0a9ee0266fed0f21724599f5b8403be74ba27c"
+                  },
+                  {
+                      "path":  "Data/level17",
+                      "bytes":  79408,
+                      "sha256":  "a9ddd9ae6d5c17834773dadddf93ced1b57ad6b1b987073a4815413ea09099b0"
+                  },
+                  {
+                      "path":  "Data/level18",
+                      "bytes":  22664,
+                      "sha256":  "b6664ed10f89829bb3c66278d6fb89a8920a258850a59778f2e68a8f4e6ccc8b"
+                  },
+                  {
+                      "path":  "Data/level19",
+                      "bytes":  26416,
+                      "sha256":  "43001ed9f70fa01f84ad713202fd89e72a8ca6451c56029ec3bc072695f2dbe1"
+                  },
+                  {
+                      "path":  "Data/level2",
+                      "bytes":  11568,
+                      "sha256":  "c199c66f79ad7ad044cb539853c72e452a0dc43e14363f50ffd5e24206f6906a"
+                  },
+                  {
+                      "path":  "Data/level20",
+                      "bytes":  29856,
+                      "sha256":  "85045aef820633838d5db9afea74bae09d9dc2510471c9d723a4c6d7f5c95340"
+                  },
+                  {
+                      "path":  "Data/level21",
+                      "bytes":  8024,
+                      "sha256":  "8d9e77acd01356777f88b3a3b90f37a48865ee9560a8e1a5f4cad390625bbd0d"
+                  },
+                  {
+                      "path":  "Data/level22",
+                      "bytes":  48272,
+                      "sha256":  "756ccfc8d829f15ef5477da72a6ab5d26e66f905819e74794bf68abead6e0857"
+                  },
+                  {
+                      "path":  "Data/level23",
+                      "bytes":  33184,
+                      "sha256":  "6122686408e63d196cbf5f26a623c30256917b2ab6f40cd5a2c54b7cd81cea26"
+                  },
+                  {
+                      "path":  "Data/level24",
+                      "bytes":  24384,
+                      "sha256":  "91f4b64d39b40b7307261b19541183a9c328aa7af115e3bd09207f86fa7f0fd0"
+                  },
+                  {
+                      "path":  "Data/level25",
+                      "bytes":  47536,
+                      "sha256":  "bc8ba91772ab345bfcddb77950bec4ffde4413012e96e282d30ec2b52b795355"
+                  },
+                  {
+                      "path":  "Data/level26",
+                      "bytes":  8024,
+                      "sha256":  "af0a246bb261cb02fa2dc6f5d390105916f1baeddc41a01c873e31f417391083"
+                  },
+                  {
+                      "path":  "Data/level27",
+                      "bytes":  8024,
+                      "sha256":  "683a0ece249f5a5758504470ed6d6969d49306550037a03b430c2e25b5690854"
+                  },
+                  {
+                      "path":  "Data/level28",
+                      "bytes":  8024,
+                      "sha256":  "727c17f797118d2cd16684d9e6e57f4a34c84affb2f9ee0c8d737906d5661078"
+                  },
+                  {
+                      "path":  "Data/level29",
+                      "bytes":  8024,
+                      "sha256":  "0edcc28ce7472690e83cd75e2cd7b172ffdfcbbeeb5baa0caba6ec408861dc3a"
+                  },
+                  {
+                      "path":  "Data/level3",
+                      "bytes":  26400,
+                      "sha256":  "ea0450a100ad76884217f971021dcc5409c0c277de0adca4b889dc922df88e61"
+                  },
+                  {
+                      "path":  "Data/level30",
+                      "bytes":  39984,
+                      "sha256":  "d6c840a7a43aa10923556337e5fe2f8bd3d69a3181fc269af124c558ef600d21"
+                  },
+                  {
+                      "path":  "Data/level31",
+                      "bytes":  57976,
+                      "sha256":  "a1afc475057f6448c4aa7f55c8f4d49118f28d76084605af40ee4e7725ec565e"
+                  },
+                  {
+                      "path":  "Data/level32",
+                      "bytes":  35424,
+                      "sha256":  "db14b9891a91b2181b8fa88a1b7ea88e80076229a78a8d55eb7cc563322efe6a"
+                  },
+                  {
+                      "path":  "Data/level33",
+                      "bytes":  24272,
+                      "sha256":  "d790b8682e1fbbf82318a3285998fbbdac3d53dd0f7a3f2dcf3a7019ff56703a"
+                  },
+                  {
+                      "path":  "Data/level34",
+                      "bytes":  8416,
+                      "sha256":  "b795764101af223fff0e0f693340d4d21620a85a2d557682a8e295e5da6b520b"
+                  },
+                  {
+                      "path":  "Data/level35",
+                      "bytes":  24776,
+                      "sha256":  "c8b8a3f18738bf7a94829d6ce1bb3bf51a6cc0f23809d48099e00dc26794907c"
+                  },
+                  {
+                      "path":  "Data/level36",
+                      "bytes":  28232,
+                      "sha256":  "3a778e99e1c23fec00cafb20903f9e45925c30ffcbaad825b4311006d57c0b24"
+                  },
+                  {
+                      "path":  "Data/level37",
+                      "bytes":  8432,
+                      "sha256":  "82ee7104d0505e6f5b43738e09437bb9345e0e6e3ebb5eb47334c350a7307df8"
+                  },
+                  {
+                      "path":  "Data/level38",
+                      "bytes":  55488,
+                      "sha256":  "64349e7d2f11b11e139675607ae3f02437863b17f6d5afce11d4bb555e32bc93"
+                  },
+                  {
+                      "path":  "Data/level39",
+                      "bytes":  4984,
+                      "sha256":  "61d9e35bb240d5c2e33e212615ff1402bad6ea2615523433f762eb4a0354fa44"
+                  },
+                  {
+                      "path":  "Data/level4",
+                      "bytes":  50208,
+                      "sha256":  "f3e06c52218004b15212404b1e795e056c0ac5c870dd4cd556d7f8ab03f308f6"
+                  },
+                  {
+                      "path":  "Data/level40",
+                      "bytes":  4468,
+                      "sha256":  "23bff045de72001ad49b687096d77d0fe2c2ac90264c9d1148ded9352690ef6a"
+                  },
+                  {
+                      "path":  "Data/level41",
+                      "bytes":  37296,
+                      "sha256":  "f6cc51a6522b6a99c2d6defb74fb2a82ebdfc433e48421a90768048c2e3e8212"
+                  },
+                  {
+                      "path":  "Data/level42",
+                      "bytes":  4644,
+                      "sha256":  "6027797b750333d4aa2f0e21e79353e17f17edd4adc08d796a8e31fdf2fb71f7"
+                  },
+                  {
+                      "path":  "Data/level43",
+                      "bytes":  13232,
+                      "sha256":  "0c035b59fa334dc16455459a5531f7b1fcfc75ea2e3769bafd6bd88527888529"
+                  },
+                  {
+                      "path":  "Data/level44",
+                      "bytes":  8024,
+                      "sha256":  "2a788fea00c9d5a7f2d4fda9341029308e3879185d742a04c1dc4e6d1db7561d"
+                  },
+                  {
+                      "path":  "Data/level45",
+                      "bytes":  22000,
+                      "sha256":  "4c3032c9b4a8190e74bd0f2323187544a30d9833019479ee62ad18a3ed3b155b"
+                  },
+                  {
+                      "path":  "Data/level46",
+                      "bytes":  12144,
+                      "sha256":  "1e3ab1b55a14ab2f9893dfe3aaefffab59e506f29b75f232eb1837eea452101f"
+                  },
+                  {
+                      "path":  "Data/level47",
+                      "bytes":  36848,
+                      "sha256":  "3c9abf89e03b7801d605271cb8850c735d61e38de3a5832cf03dc78b608a543d"
+                  },
+                  {
+                      "path":  "Data/level48",
+                      "bytes":  8024,
+                      "sha256":  "14de5d0e2c34182051c08f0dc84c40dc61aceafbf70e603229a92647aeed939f"
+                  },
+                  {
+                      "path":  "Data/level49",
+                      "bytes":  48480,
+                      "sha256":  "368ad55456e39ec6aa9a201d2e56133711d7593758873725f97c2e7b14e36fbe"
+                  },
+                  {
+                      "path":  "Data/level5",
+                      "bytes":  9184,
+                      "sha256":  "069d6dc72bce06509c7d5248946c0cf83980a47efabda3bf0afbba0ca24767bb"
+                  },
+                  {
+                      "path":  "Data/level50",
+                      "bytes":  93920,
+                      "sha256":  "269274379b10ea9311ab19a602cd6f7f31eb4f652afca070576cc789a83daca2"
+                  },
+                  {
+                      "path":  "Data/level51",
+                      "bytes":  46960,
+                      "sha256":  "e7705d0d633e829d2298a024175c434ff8750696dbfbba27ee6fe39c673f304c"
+                  },
+                  {
+                      "path":  "Data/level52",
+                      "bytes":  56296,
+                      "sha256":  "ec807765e7fa7f6dfc4b4e6876c1423d9e7b656a91af9548fa66ec191cffc524"
+                  },
+                  {
+                      "path":  "Data/level6",
+                      "bytes":  48480,
+                      "sha256":  "5737019d56016761c86653dd8bf1c568827ac7c2a1f96c7da54003c0f2d77705"
+                  },
+                  {
+                      "path":  "Data/level7",
+                      "bytes":  39968,
+                      "sha256":  "61f5a51fb17c59bed19affe6c84bf58c8789fb046ffbba83e1702cb73ea6505e"
+                  },
+                  {
+                      "path":  "Data/level8",
+                      "bytes":  19256,
+                      "sha256":  "af8ca10ba17729ff4d482193f3b252f2720667c73e7c05a40975a647e682cb21"
+                  },
+                  {
+                      "path":  "Data/level9",
+                      "bytes":  141464,
+                      "sha256":  "63611e4e45dac8465daac8538a787641296a0583d162f55348c65565fb242019"
+                  },
+                  {
+                      "path":  "Data/Managed/ICallSummary.txt",
+                      "bytes":  39853,
+                      "sha256":  "26b80e0ed11a24869a7658ef83aa2f229bde963d1d101837e7d250df0427cf2d"
+                  },
+                  {
+                      "path":  "Data/Managed/Metadata/global-metadata.dat",
+                      "bytes":  8674788,
+                      "sha256":  "42a6bfa9c707df4548bdac23ac3eb6ed36ba73dc616ad646e33c3c4c00feb965"
+                  },
+                  {
+                      "path":  "Data/Managed/mono/2.0/machine.config",
+                      "bytes":  27625,
+                      "sha256":  "531d0d5bc30466a8a7ea6c032639721d7f16aab57c9701ef0afab5fdb432792f"
+                  },
+                  {
+                      "path":  "Data/Managed/Resources/Live2DUnity.dll-resources.dat",
+                      "bytes":  1111,
+                      "sha256":  "ab87540d65f9eac7f31cd985d421fc567a842dfdbce60e7e27732373aa514a6a"
+                  },
+                  {
+                      "path":  "Data/Managed/Resources/mscorlib.dll-resources.dat",
+                      "bytes":  337563,
+                      "sha256":  "c5baa176a5b72cd545266340e42102d393a5e43d38c95796bc828918bb95277f"
+                  },
+                  {
+                      "path":  "Data/Managed/UnityICallRegistration.cpp",
+                      "bytes":  199096,
+                      "sha256":  "107a4e27fa17a85eee128fa228c8e23592aa2b3826e8d40526bfc5b3f6e5e2d4"
+                  },
+                  {
+                      "path":  "Data/methods_pointedto_by_uievents.xml",
+                      "bytes":  19,
+                      "sha256":  "9906a0ac6423cf69c775f2a184fdbc43ff567fc128c0e9ddb0ebf9cb681b3520"
+                  },
+                  {
+                      "path":  "Data/platform_native_link.xml",
+                      "bytes":  627,
+                      "sha256":  "16ddae32ef9e118531e450efca563c44a54b38d9dd9368d391d69f20bf37f93e"
+                  },
+                  {
+                      "path":  "Data/preserved_derived_types.xml",
+                      "bytes":  97675,
+                      "sha256":  "a905aaa821c60dd905be454afea207ef774c3d791fdc850c7c1d8420f3c5dd0e"
+                  },
+                  {
+                      "path":  "Data/Raw/CueSheet_First.cpk",
+                      "bytes":  14464,
+                      "sha256":  "5d02fda4705796748d0d3c9df9c5402071673d9e320e45722fdb05722df382ae"
+                  },
+                  {
+                      "path":  "Data/Raw/Iniesta.acf",
+                      "bytes":  3520,
+                      "sha256":  "4cb5de13047f43d9d46716a78473f11537c50659234ef493f49bfe86bf8809ae"
+                  },
+                  {
+                      "path":  "Data/Raw/Iniesta.png",
+                      "bytes":  256,
+                      "sha256":  "5b22046d3cc9fb6da61fda0449c7fa31d29b64b6895da32d6cfbd58c170b4916"
+                  },
+                  {
+                      "path":  "Data/Raw/patch.txt",
+                      "bytes":  51468,
+                      "sha256":  "80eac52c8df6fca62728f8dc91e8af51a2cc434aebe52359a250636418602f84"
+                  },
+                  {
+                      "path":  "Data/Resources/unity_builtin_extra",
+                      "bytes":  51728,
+                      "sha256":  "6080306ba497d197c24f6da320f8c42441952f7a2239259267a518899b844ac9"
+                  },
+                  {
+                      "path":  "Data/resources.assets",
+                      "bytes":  33257280,
+                      "sha256":  "8340c42da0c14c558b33d8b8f0352fcef24cf1ad5c1d0b55feccd7985937eea5"
+                  },
+                  {
+                      "path":  "Data/resources.assets.resS",
+                      "bytes":  190238076,
+                      "sha256":  "7b94edf8e0f30451d4b53db05f5ca81da2f858f22bc63fbe6012df1c9cd7ea48"
+                  },
+                  {
+                      "path":  "Data/sharedassets0.assets",
+                      "bytes":  4168,
+                      "sha256":  "0f44521fd9f30a9afe257c662030cdf3c93dc277a2ab8d936f2c3d987aedd873"
+                  },
+                  {
+                      "path":  "Data/sharedassets1.assets",
+                      "bytes":  13648,
+                      "sha256":  "956a90bd844ac8287aa67f61354d0b87aa42676b16c551444dc055394f166234"
+                  },
+                  {
+                      "path":  "Data/sharedassets10.assets",
+                      "bytes":  29548,
+                      "sha256":  "9a6e0eefb6e3f3861625b9dfb8ad326b25a0058612cc803596db86f83a09f4e7"
+                  },
+                  {
+                      "path":  "Data/sharedassets10.assets.resS",
+                      "bytes":  65536,
+                      "sha256":  "9e2949ad95d2bbe320cea1882664469e1feed733b1f886b20dd3f7ee0df33a2f"
+                  },
+                  {
+                      "path":  "Data/sharedassets11.assets",
+                      "bytes":  4360,
+                      "sha256":  "dd1261c506dae725ac27212cffaa30b55461a549cf8c39714ef112ade2a2bd96"
+                  },
+                  {
+                      "path":  "Data/sharedassets12.assets",
+                      "bytes":  9676,
+                      "sha256":  "41e71798927ad90d279c0de20daa05fb1d947d5d67c085497bb062b45a4b8f13"
+                  },
+                  {
+                      "path":  "Data/sharedassets13.assets",
+                      "bytes":  21788,
+                      "sha256":  "25d9e7eb3b288a653c9d41ec1a49c419cd89315f9b77c29c1db12f78daaf0ea6"
+                  },
+                  {
+                      "path":  "Data/sharedassets14.assets",
+                      "bytes":  47348,
+                      "sha256":  "289322e1929040663ca132891284246dcd588a02eeaa1b11568c3bf7634c6757"
+                  },
+                  {
+                      "path":  "Data/sharedassets15.assets",
+                      "bytes":  8660,
+                      "sha256":  "f0d845d2d1360437dd1bf5fe6f3aa58d27e2e79a85d68cec3bf1e125500251aa"
+                  },
+                  {
+                      "path":  "Data/sharedassets16.assets",
+                      "bytes":  4336,
+                      "sha256":  "c4437a74c85946f7f32608c5d8f6acaa6e5c0ab53b2bfe0e3794a1641458caf8"
+                  },
+                  {
+                      "path":  "Data/sharedassets17.assets",
+                      "bytes":  26984,
+                      "sha256":  "dc4c08959d99681443a416a4089d8f29fe188b053e7f489c569d60b9bf090d94"
+                  },
+                  {
+                      "path":  "Data/sharedassets18.assets",
+                      "bytes":  13128,
+                      "sha256":  "2a22dba11f085b7948ececa75de947c6efcd1a63aad8a4afde361b7af44514a6"
+                  },
+                  {
+                      "path":  "Data/sharedassets19.assets",
+                      "bytes":  4612,
+                      "sha256":  "2232e10e9bb30a6d72478df0cf35d592f067e5638c4dd9cb9a4c4f9c531e31d7"
+                  },
+                  {
+                      "path":  "Data/sharedassets2.assets",
+                      "bytes":  19376,
+                      "sha256":  "af47dfaf998d8490dee54c3248a9a4843d0b0354ae2703dacfba7f78a8301688"
+                  },
+                  {
+                      "path":  "Data/sharedassets20.assets",
+                      "bytes":  4528,
+                      "sha256":  "ee9af34f147216fcdc89d0b934950d762f33d4bc146a80031af7c5c51c8283f7"
+                  },
+                  {
+                      "path":  "Data/sharedassets21.assets",
+                      "bytes":  4192,
+                      "sha256":  "e59be0b509ef54d3db213b2de604a69df4dff494d6936d8046cee7eb4ee2c043"
+                  },
+                  {
+                      "path":  "Data/sharedassets22.assets",
+                      "bytes":  4744,
+                      "sha256":  "259cfed6bf015fc472de1c8995fbc2950fd5e9a1e9db3f238a3721da3eb03d7e"
+                  },
+                  {
+                      "path":  "Data/sharedassets23.assets",
+                      "bytes":  4600,
+                      "sha256":  "6e9c4ad9376ac286676936bb934ce628af5ede4a26429c7250a1cddc45911e08"
+                  },
+                  {
+                      "path":  "Data/sharedassets24.assets",
+                      "bytes":  4552,
+                      "sha256":  "ecca38b90395de70d2714d1892687ddea1fd98b8eb7ac3a5bfb4cd48d1c840e7"
+                  },
+                  {
+                      "path":  "Data/sharedassets25.assets",
+                      "bytes":  4732,
+                      "sha256":  "a62a56d76d16d5745fbda3bf1430350e07b67beae88264032e95dc55afc0e79e"
+                  },
+                  {
+                      "path":  "Data/sharedassets26.assets",
+                      "bytes":  4192,
+                      "sha256":  "f0b02194d6063593d9e89225407117fff17c317ec86d84f00d2445c96ea7251e"
+                  },
+                  {
+                      "path":  "Data/sharedassets27.assets",
+                      "bytes":  4192,
+                      "sha256":  "a55367049590e8a6fcafaae801e93fa1d419868f94a955ab33ce53ea1babdc54"
+                  },
+                  {
+                      "path":  "Data/sharedassets28.assets",
+                      "bytes":  4192,
+                      "sha256":  "e54542f97b47caeb538f46d72e2ce51fc7240e0c01e7dce61fb4431bdf4fb5c4"
+                  },
+                  {
+                      "path":  "Data/sharedassets29.assets",
+                      "bytes":  4192,
+                      "sha256":  "b2c1164a4233396bf373f661a7cdc2a813b1001f76c7153fbaef17113fc9015c"
+                  },
+                  {
+                      "path":  "Data/sharedassets3.assets",
+                      "bytes":  6716,
+                      "sha256":  "d4434f225deb2d7dcdbf5ee2a06f8569ba142f978fddb5acdc7702c84541df6b"
+                  },
+                  {
+                      "path":  "Data/sharedassets30.assets",
+                      "bytes":  4588,
+                      "sha256":  "27537e031841b19fe0068fac846c3972f68243dbb89d58560ca26141aa967735"
+                  },
+                  {
+                      "path":  "Data/sharedassets31.assets",
+                      "bytes":  4792,
+                      "sha256":  "46cb3d167c5fd316c12e959719078a8d08c500f272935a7ba50ad5d304c8111c"
+                  },
+                  {
+                      "path":  "Data/sharedassets32.assets",
+                      "bytes":  4600,
+                      "sha256":  "a94d5bd334dbfc6951b09a7c41e9a5e4a47166bedca08cf446316ee126b7aee3"
+                  },
+                  {
+                      "path":  "Data/sharedassets33.assets",
+                      "bytes":  11956,
+                      "sha256":  "95a10fa3a0b7bd836afaa5c5bdfb5b3116bebbe87095cc7c02855527ec2c042e"
+                  },
+                  {
+                      "path":  "Data/sharedassets34.assets",
+                      "bytes":  4228,
+                      "sha256":  "789ead7da7073b8ed617ed4eafbb22361dab1ae152c9feb61c33bbb2d3ab4994"
+                  },
+                  {
+                      "path":  "Data/sharedassets35.assets",
+                      "bytes":  9020,
+                      "sha256":  "b93d7b69aa93f7a7c91043515dbc9594ec0a5e2c2cbba51f7a9f8e0d59afa1ed"
+                  },
+                  {
+                      "path":  "Data/sharedassets36.assets",
+                      "bytes":  8844,
+                      "sha256":  "b01efc9e26e573daecd3b78e11cc3e4cfc67b14b97b3f7d1cc19693ea54809d5"
+                  },
+                  {
+                      "path":  "Data/sharedassets37.assets",
+                      "bytes":  4216,
+                      "sha256":  "9fd174a1b9e241cde17053b6e20e03e6ff31966e88fe05310e66f9d525b3e557"
+                  },
+                  {
+                      "path":  "Data/sharedassets38.assets",
+                      "bytes":  4864,
+                      "sha256":  "2a97afa943fcab619e543ed6089bd43155ba0b94c794d154977c90bae40ea2d0"
+                  },
+                  {
+                      "path":  "Data/sharedassets39.assets",
+                      "bytes":  4132,
+                      "sha256":  "15d25467bb12775b0a70389e167a551e43d4df35cafc63f6758de8918cb3324b"
+                  },
+                  {
+                      "path":  "Data/sharedassets4.assets",
+                      "bytes":  21284,
+                      "sha256":  "3e68e8200192cd3b954bb808c898ee63a198bde3b2e832b12ff6133fa6ce7ca5"
+                  },
+                  {
+                      "path":  "Data/sharedassets4.assets.resS",
+                      "bytes":  65536,
+                      "sha256":  "05554a4b4b5740b08ea3181351288c2a9da28ef567367fc11b8ed090184ebe9f"
+                  },
+                  {
+                      "path":  "Data/sharedassets40.assets",
+                      "bytes":  4120,
+                      "sha256":  "e4e9e21e60f25e2f5ced77be17b9778e42a32481236368f29ff91099e9f526c6"
+                  },
+                  {
+                      "path":  "Data/sharedassets41.assets",
+                      "bytes":  7104,
+                      "sha256":  "8b17faac7671cd8ce0f4969b421b5994846123ab8bdd39c9190d093910426ba1"
+                  },
+                  {
+                      "path":  "Data/sharedassets42.assets",
+                      "bytes":  4132,
+                      "sha256":  "f4965cfc5523ffee72697d44e97f9c4dd29d0232aaf6cf61a2e59f55b5e6a7e2"
+                  },
+                  {
+                      "path":  "Data/sharedassets43.assets",
+                      "bytes":  4348,
+                      "sha256":  "3cdf08a88f9e78e4c431181c006d065061380e34bb533ac325a610f276ccf129"
+                  },
+                  {
+                      "path":  "Data/sharedassets44.assets",
+                      "bytes":  4192,
+                      "sha256":  "34ae361164a25157f3e99a5dd4a9c49a3ea83bbfdab4d1da72022467511f4a91"
+                  },
+                  {
+                      "path":  "Data/sharedassets45.assets",
+                      "bytes":  4468,
+                      "sha256":  "31c6213f0ed48dcdf8c15e1746ac7b9da1ec8b3bd162fcc9942384f0fe055827"
+                  },
+                  {
+                      "path":  "Data/sharedassets46.assets",
+                      "bytes":  4360,
+                      "sha256":  "e52e8943e316cdc8bc2704ea07c9594df31f84ecd29586f77c406f29c8133310"
+                  },
+                  {
+                      "path":  "Data/sharedassets47.assets",
+                      "bytes":  5296,
+                      "sha256":  "47cf358cc25f28180c273327075502a31fd12ad795b8b3cc0228771fd03a78f5"
+                  },
+                  {
+                      "path":  "Data/sharedassets47.assets.resS",
+                      "bytes":  131072,
+                      "sha256":  "ea9f39af275c58e66699070e964afafecbb49d9c98cc35c857afdbdf7a174520"
+                  },
+                  {
+                      "path":  "Data/sharedassets48.assets",
+                      "bytes":  4192,
+                      "sha256":  "413bd59b47a8f41d1ca06c189204841562944b7546a25927c50891fb0ee7c0cc"
+                  },
+                  {
+                      "path":  "Data/sharedassets49.assets",
+                      "bytes":  4816,
+                      "sha256":  "c154812305d7bc496e626351c0890b133151035e16ce632150d6d2775302879f"
+                  },
+                  {
+                      "path":  "Data/sharedassets5.assets",
+                      "bytes":  24688,
+                      "sha256":  "f742cd580d54866c2a2f938a68bab5af9dd5eadd924e8da32bf6225123a8da1e"
+                  },
+                  {
+                      "path":  "Data/sharedassets50.assets",
+                      "bytes":  19768,
+                      "sha256":  "eafe4a9233a504de247091b584bbe9e026f820737cceb41b2f1ef606ff4c1580"
+                  },
+                  {
+                      "path":  "Data/sharedassets51.assets",
+                      "bytes":  4624,
+                      "sha256":  "3980985677a84f536abc27668444a584164146b10e0a1e0db225e3fd4cbb0633"
+                  },
+                  {
+                      "path":  "Data/sharedassets52.assets",
+                      "bytes":  13224,
+                      "sha256":  "e719ac8af274c1af34f3a8e8d085976836c2bb82670910d294e5302c2070e59b"
+                  },
+                  {
+                      "path":  "Data/sharedassets6.assets",
+                      "bytes":  15588,
+                      "sha256":  "5d4013d3c55a4d709332fd6d209457514519c0329b7a18ea5722f58f973c0ceb"
+                  },
+                  {
+                      "path":  "Data/sharedassets7.assets",
+                      "bytes":  17536,
+                      "sha256":  "6748aeed5ce18e4f49017b86b0fd12371a8515324d38c7a198951b132e2bcf30"
+                  },
+                  {
+                      "path":  "Data/sharedassets8.assets",
+                      "bytes":  41512,
+                      "sha256":  "53f3f1aa39f8e8ffae6ea66ebeb783d04f178aa816690b1759c2b2b58fbafe53"
+                  },
+                  {
+                      "path":  "Data/sharedassets9.assets",
+                      "bytes":  44812,
+                      "sha256":  "267db9cc764f20c082c2b8689ddafa2706030bf239e89190f2febaa35a4e44dc"
+                  },
+                  {
+                      "path":  "Data/unity default resources",
+                      "bytes":  1456364,
+                      "sha256":  "e807fc27aa135496a802bfbaf296fcc2a3515a54f8f8d701211d27a1c28644a7"
+                  }
+              ],
+    "bytes":  237631011
+}

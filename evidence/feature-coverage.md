@@ -1,5 +1,7 @@
 # 原工程功能和依赖覆盖（持续核实）
 
+2026-11-23 顺序 03 来源更新：直接读取哈希固定的国服 6.0.2/60200 与原 Windows 重建输入元数据，分别恢复 23 族/670 与 23 族/822 常量，并经独立 C# 读取器核对；见 `ios-package-search/order03-ios602-enums.json`、`order03-modern-metadata-enums.json`。变量条件分别为 110 和 111，后者 STYLE 为 110；现代候选数字全部匹配 Windows 输入。旧枚举无法表示所检查表字段中 7 族的 40 个名称、8,769 次出现，见 `order03-ios602-table-compatibility.json`。各自来源不等于方法体、数据同源、服务或设备证明；保留现代范围，不因旧映射缺项裁剪。
+
 2026-11-23 顺序 03 增量：Windows 合成注册敌人的 96 场景、各三回合，变量累加/溢出、显式边界及双条件槽的完整日志与原 DLL 一致，见 `evidence/ios-package-search/order03-enemy-variable.json`。重建桥新增 `SELF_ENEMY_AI_VAR` 名称解码；原 DLL 接受 schema 将其映射到 110、111 或测试编号 900，故这些差分不解决目标版本映射。真实 CSV 执行、现代空字段转换、完整敌人程序、服务入场和设备均待核实，仍依赖服务端版本及恢复契约。
 
 2026-11-23 回环补充：合成服务截断保存响应时，Windows HttpClient 实际执行三种提交/冲突场景并重读，恢复助手结果与预期一致，见 `evidence/ios-package-search/deck-save-recovery-transport.json`；不涵盖 UnityWebRequest、设备或真实服务竞态。
