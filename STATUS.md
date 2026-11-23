@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 原生桥枚举名称歧义防护
+
+重建桥 `validateNativeEnums` 与管理端快照校验一致，拒绝同一枚举族中重复名称，包括同名不同数字和完全重复条目；不同族之间允许同名。Go 桥测试通过旧版、现代版、混合版、重复条目和数值冲突等六个分支，见 `evidence/ios-package-search/order03-native-enum-go-tests.json`。Windows x64 重新编译的桥 SHA-256 `409be3af111251eb1121723cf7a416944dfb0690c6e408ef43326ef0df25c2d5`；C ABI 合成目录测试中旧/现代各自打开关闭成功，混合及重复名称返回状态 2，见 `order03-native-enum-schema.json`。
+
+29 张真实表加候选枚举的隔离快照在原 DLL 和新桥均可打开关闭，见 `order03-native-enum-candidate.json`；这不证明原 DLL 对无效 schema 的相同行为、目标版本、实际战斗、Unity、ARM64 或设备。候选仍不可交付，改动不在现有 IPA；继续核实目标版本与服务端契约。
+
 ## 2026-11-23：06 / 卡组保存中断的回环验证
 
 Windows .NET HttpClient 对本地合成服务分别测试保存已提交、未提交、期间出现冲突后截断响应：每次实际 `CardDeckSet` 仅一次，随后读取 `CardShow2`；实际 `CnProtocol` 与 `CnDeckSaveRecovery` 分别判断为已一致、恢复草稿、冲突。见 `evidence/ios-package-search/deck-save-recovery-transport.json`，测试 `tests/DeckSaveRecoveryTransportTests.cs`、`scripts/test-deck-save-recovery-transport.mjs`。

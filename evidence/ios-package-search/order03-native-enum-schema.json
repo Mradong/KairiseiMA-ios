@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-11-23T09:27:01.922Z",
+  "success": true,
+  "output": "legacy: 0\r\nmodern: 0\r\nmixed: 2\r\nduplicate: 2",
+  "stderr": "",
+  "dllSha256": "409be3af111251eb1121723cf7a416944dfb0690c6e408ef43326ef0df25c2d5",
+  "probeSha256": "8711ef6efbc251ffd63b5a81d835ead8dff72d0972ba009bba33e34f8eb9a8a5",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "bridgeSha256": "c170f45526bf17174c6e201af09af904c45dcb93e30e07f2797ca2dd2d195007",
+  "scope": "Windows x64 rebuilt bridge C ABI with synthetic master tables and explicitly supplied legacy/modern enum examples. Valid separate schemas open and close; duplicate-name mixed schemas are rejected. No original DLL parity claim for invalid schemas, version matching, Unity, ARM64 or device proof."
+}
