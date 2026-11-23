@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 独立角色关卡列表与静态投影对照
+
+对新建隔离测试角色调用一次 `/TeamBattleSoloShow`，HTTP 200、三段响应，四类共 3,788 条、3,788 个不同 boss 编号；与 SHA-256 `259358a74bd68d0c877e93355bfc9575a1172437878092558ec9417847c3a431` 的交付静态战斗投影对照，2,744 条编号存在，1,044 条不在该投影中。投影自身有 3,102 个不同 boss 编号。候选 `30010102` 在列表类别 `10` 出现一次，字段 `state=0`、`locked=0`、`bpCost=15`；这些数字不证明实际准入、开放或安全入场。脱敏结果 `evidence/ios-package-search/order03-isolated-quest-contract.json`，脚本 `scripts/probe-order03-isolated-quest-contract.mjs`。
+
+测试创建了可能持久化的隔离游客和角色；列表接口可能清理待处理选关状态，本次角色新建且未入场。没有调用 HomeShow、伙伴查询、Start、Continue 或 End，未记录 UUID、用户 ID、会话或角色名。1,044 个列表编号不在静态投影中，可能与模式、发布范围或导出范围有关，不能直接称为缺失主表；需要服务端说明并核对真实入场契约。没有 Unity 或设备验证，顺序 03 继续。
+
 ## 2026-11-23：03 / `DECK_COMBO_COUNT` 条件解码局部恢复
 
 将 `DECK_COMBO_COUNT` 参数按有符号 64 位数值接入已有内核。Windows x64 使用合成输入，在准备态、开始前、开始后和首回合且**没有出牌连锁上下文**时，对两个分支槽和 8 组范围共 64 组查询与原 DLL 一致，各阶段覆盖选择与不选择；修复前同 64 组原 DLL 成功而重建桥拒绝。证据 `evidence/ios-package-search/order03-combo-query-before-fix.json`、`order03-combo-query.json`。
