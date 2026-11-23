@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T01:05:30.019Z",
+  "generatedAt": "2026-11-23T01:11:21.208Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -30,18 +30,23 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 73588,
-      "sha256": "206fec6a387bd3d587b6ab8091bab42a5e37b39cf9ed0ec8e4f50ca11d0a069c"
+      "bytes": 74061,
+      "sha256": "1e738faacda1d1a3f2485e1b5db486667df424a00d982f1a42d7c208896223ea"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 29834,
-      "sha256": "b1587bd06310b90c99dd23a3c90e2c066f4397b2a945d8430da95bca52f2ba00"
+      "bytes": 30383,
+      "sha256": "72dea856e5d636f603e31c1325b2fbfa5a7cfbb861c81106ffef04ca9668fc1c"
     },
     {
       "path": "evidence/feature-coverage.md",
       "bytes": 5040,
       "sha256": "d8e652e9bb0affd51e1f114cf17ecb8c193f658a9e049de80d2ff06e365bdd83"
+    },
+    {
+      "path": "evidence/ios-package-search/device-ats-diagnosis.json",
+      "bytes": 1153,
+      "sha256": "6277255054099df3a45a3f5852ee69547a1c11e1feb796c837ec88882c38457a"
     },
     {
       "path": "evidence/ios-package-search/device-http0-report.json",
@@ -282,6 +287,11 @@
       "path": "evidence/ios-package-search/sideloadly-anisette-error.json",
       "bytes": 1397,
       "sha256": "d4d20e8ce875233c0f5fd3b175deb5d4e2566f5963867321feb34592fba15a99"
+    },
+    {
+      "path": "evidence/ios-structure-tests.json",
+      "bytes": 253,
+      "sha256": "844ad0c9500dc7d4870314c7e638541eb70ace43e7821e7e13087694dc038063"
     },
     {
       "path": "evidence/native/go-symbols-summary.json",
@@ -585,8 +595,8 @@
     },
     {
       "path": "evidence/original-input-verification.json",
-      "bytes": 1466,
-      "sha256": "60e52a85d5e9f68e6e833385968528c52eff5c4a03558983308ebb3a2e8e2e82"
+      "bytes": 2088,
+      "sha256": "27334cd384d7dda84788024e5ef5fc735aff3ea0edaf1048de869210baad99dd"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -650,13 +660,13 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/IosLocalNetwork.cs",
-      "bytes": 1934,
-      "sha256": "75175babcf089253796f8ae930da7b4ca3d20efe3bbbee432e7d8e3d22f9902f"
+      "bytes": 2227,
+      "sha256": "98457d7ef4536beb761e7c79e5fd8b742d9ee14a88406cd63a6185af7c42a0d2"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
       "bytes": 4727,
-      "sha256": "1036340ca3f6522a181ecc70f028f947d339bb510aa4dbb6c8ecacee0582806b"
+      "sha256": "02655ae285ea84c2abc798c4a5f6fc5186d8b1603ba2b2d986d38e0d4a23fb5c"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
@@ -1050,8 +1060,8 @@
     },
     {
       "path": "scripts/verify-ios-build.mjs",
-      "bytes": 9240,
-      "sha256": "a45c645e2a453aee7138ab8c8e447800f4d541c60787a6321559008ccc36a3c0"
+      "bytes": 9771,
+      "sha256": "5dd0533a88d83ca919db32529b2cde31bf30837094df994a0bb6db2c8cee5eb3"
     },
     {
       "path": "server-ios/server/internal/cnbootstrap/ios_character_flow_test.go",
@@ -1164,6 +1174,11 @@
       "sha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2"
     },
     {
+      "path": "tests/ios-build-structure.test.mjs",
+      "bytes": 6821,
+      "sha256": "6947114b6c9ffa0fe8f07e83570ce8af33d4bce4c48ab265dac055f3d9863649"
+    },
+    {
       "path": "公网联调结果.md",
       "bytes": 4719,
       "sha256": "f7d178d92c9063f84a42fbbc09276f4c7670a7fa969bb84c1778a8b400d16f11"
@@ -1189,7 +1204,7 @@
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
     }
   ],
-  "bytes": 21627570,
+  "bytes": 21638265,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

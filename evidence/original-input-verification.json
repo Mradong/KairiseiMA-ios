@@ -1,42 +1,42 @@
-{
-  "verifiedAt": "2026-11-23T01:05:09.6790727Z",
-  "allUnchanged": true,
-  "scope": "Seven original executables, native plugins, metadata and main Unity asset bundle; this does not snapshot live account/save/cache data.",
-  "files": [
-    {
-      "path": "ClientRebuild6.exe",
-      "sha256": "402943c6870d2a0aa4024946066cfd28cc98d2f24d4a4b2017628386fab42c23",
-      "unchanged": true
-    },
-    {
-      "path": "GameAssembly.dll",
-      "sha256": "ace0b9692a83dc6c1fbc0c2e6663efbc0a0e41bc682eee03c86eba1d5be7834b",
-      "unchanged": true
-    },
-    {
-      "path": "UnityPlayer.dll",
-      "sha256": "f620e49752cdc8e6ee8e90a2c686cdfae0654f1d2959d752ea19e29037e5298b",
-      "unchanged": true
-    },
-    {
-      "path": "ClientRebuild6_Data/data.unity3d",
-      "sha256": "1ce19249f3df15d32f9530ed69afd506a033a04ce0f78536db196c3288050e05",
-      "unchanged": true
-    },
-    {
-      "path": "ClientRebuild6_Data/il2cpp_data/Metadata/global-metadata.dat",
-      "sha256": "fd31c0a95cc4ef80e99643c0dff8afb2ef516625ec86b3e4863ad48a54596294",
-      "unchanged": true
-    },
-    {
-      "path": "ClientRebuild6_Data/Plugins/x86_64/kairisei_battlecore.dll",
-      "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-      "unchanged": true
-    },
-    {
-      "path": "ClientRebuild6_Data/Plugins/x86_64/kairi_webview2.dll",
-      "sha256": "cb2ee4b5668be6561162b0f92f12d08252030b9242b4aeb0fb55032a9c10897b",
-      "unchanged": true
-    }
-  ]
+﻿{
+    "verifiedAt":  "2026-11-23T01:10:09.1142208Z",
+    "allUnchanged":  true,
+    "scope":  "Seven original executables, native plugins, metadata and main Unity asset bundle; this does not snapshot live account/save/cache data.",
+    "files":  [
+                  {
+                      "path":  "ClientRebuild6.exe",
+                      "sha256":  "402943c6870d2a0aa4024946066cfd28cc98d2f24d4a4b2017628386fab42c23",
+                      "unchanged":  true
+                  },
+                  {
+                      "path":  "GameAssembly.dll",
+                      "sha256":  "ace0b9692a83dc6c1fbc0c2e6663efbc0a0e41bc682eee03c86eba1d5be7834b",
+                      "unchanged":  true
+                  },
+                  {
+                      "path":  "UnityPlayer.dll",
+                      "sha256":  "f620e49752cdc8e6ee8e90a2c686cdfae0654f1d2959d752ea19e29037e5298b",
+                      "unchanged":  true
+                  },
+                  {
+                      "path":  "ClientRebuild6_Data/data.unity3d",
+                      "sha256":  "1ce19249f3df15d32f9530ed69afd506a033a04ce0f78536db196c3288050e05",
+                      "unchanged":  true
+                  },
+                  {
+                      "path":  "ClientRebuild6_Data/il2cpp_data/Metadata/global-metadata.dat",
+                      "sha256":  "fd31c0a95cc4ef80e99643c0dff8afb2ef516625ec86b3e4863ad48a54596294",
+                      "unchanged":  true
+                  },
+                  {
+                      "path":  "ClientRebuild6_Data/Plugins/x86_64/kairisei_battlecore.dll",
+                      "sha256":  "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+                      "unchanged":  true
+                  },
+                  {
+                      "path":  "ClientRebuild6_Data/Plugins/x86_64/kairi_webview2.dll",
+                      "sha256":  "cb2ee4b5668be6561162b0f92f12d08252030b9242b4aeb0fb55032a9c10897b",
+                      "unchanged":  true
+                  }
+              ]
 }

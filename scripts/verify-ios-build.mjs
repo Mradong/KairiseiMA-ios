@@ -87,11 +87,20 @@ export function inspectMachO(buffer, { executable = true, deviceOS = '17.4.1' } 
   });
 }
 
+export function verifyHttpTransport(info) {
+  const ats = info.NSAppTransportSecurity;
+  if (!ats || typeof ats !== 'object' || Array.isArray(ats) || ats.NSAllowsArbitraryLoads !== true)
+    throw new Error('The test server requires an explicit HTTP transport exception');
+  for (const key of ['NSAllowsLocalNetworking', 'NSAllowsArbitraryLoadsForMedia', 'NSAllowsArbitraryLoadsInWebContent'])
+    if (Object.hasOwn(ats, key)) throw new Error('ATS key overrides the global HTTP exception: ' + key);
+}
+
 export function verifyApp(appDirectory, info, deviceOS = '17.4.1') {
   if (!appDirectory.endsWith('.app') || !fs.statSync(appDirectory).isDirectory()) throw new Error('Expected an application bundle');
   if (info.CFBundlePackageType !== 'APPL' || !Array.isArray(info.CFBundleSupportedPlatforms) || !info.CFBundleSupportedPlatforms.includes('iPhoneOS')) throw new Error('Info.plist does not identify a device iOS application');
   if (typeof info.CFBundleIdentifier !== 'string' || !/^[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/.test(info.CFBundleIdentifier)) throw new Error('Bundle identifier is invalid');
   if (newer(version(info.MinimumOSVersion), version(deviceOS))) throw new Error('Info.plist requires a newer system than the target phone');
+  verifyHttpTransport(info);
   const executable = info.CFBundleExecutable;
   if (typeof executable !== 'string' || !executable || /[\\/\0]/.test(executable) || executable === '.' || executable === '..') throw new Error('Unsafe executable name');
   const binaryPath = path.join(appDirectory, executable);

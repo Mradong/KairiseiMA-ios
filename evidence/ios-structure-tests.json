@@ -1,0 +1,6 @@
+{
+  "generatedAt": "2026-11-23T01:10:07.018Z",
+  "success": true,
+  "checks": 31,
+  "scope": "Synthetic Mach-O and bundle structural verifier tests only. No IPA, Xcode compilation, signature, device installation or gameplay was produced or verified."
+}

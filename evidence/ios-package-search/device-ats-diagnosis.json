@@ -1,0 +1,21 @@
+{
+  "observedAt": "2026-11-23",
+  "reportedClientVersion": "0.0.6",
+  "deviceLog": {
+    "process": "KairiseiConnectionTest",
+    "subsystem": "CFNetwork",
+    "errorDomain": "NSURLErrorDomain",
+    "errorCode": -1022,
+    "meaning": "App Transport Security refused an insecure load",
+    "requestUrl": "redacted by system"
+  },
+  "builtInfo": {
+    "source": "dist/cloud-artifacts/ios-client006-44704875254/ipa/connection-test-44704875254/application-info.json",
+    "NSAllowsArbitraryLoads": true,
+    "NSAllowsLocalNetworking": true
+  },
+  "interpretation": "On iOS 10 and later NSAllowsLocalNetworking presence overrides NSAllowsArbitraryLoads; this matches the device ATS rejection. IPA after signing has not been inspected.",
+  "source": "https://developer.apple.com/documentation/bundleresources/information-property-list/nsapptransportsecurity/nsallowsarbitraryloads",
+  "fix": "Remove all three overriding keys; verify generated app plist before packaging.",
+  "validation": "31 local verifier checks pass, and the actual 0.0.6 built Info.plist is rejected by the updated check. The new iOS build and device connection are not yet verified."
+}

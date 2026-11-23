@@ -24,7 +24,11 @@ namespace Kairisei.Recovery.Editor
                 transport = plist.root.CreateDict("NSAppTransportSecurity");
             // The existing game server advertises HTTP URLs. This private test build must be able to reach them.
             transport.SetBoolean("NSAllowsArbitraryLoads", true);
-            transport.SetBoolean("NSAllowsLocalNetworking", true);
+            // On iOS 10+, presence of any of these keys overrides the global
+            // exception to NO, even if the key itself is set to false.
+            transport.values.Remove("NSAllowsLocalNetworking");
+            transport.values.Remove("NSAllowsArbitraryLoadsForMedia");
+            transport.values.Remove("NSAllowsArbitraryLoadsInWebContent");
             plist.WriteToFile(path);
             string projectPath = PBXProject.GetPBXProjectPath(output);
             PBXProject project = new PBXProject();
