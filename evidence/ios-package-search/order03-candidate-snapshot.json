@@ -1,0 +1,274 @@
+{
+  "checkedAt": "2026-11-23T07:40:40.069Z",
+  "snapshot": "test-output/order03-candidate/DO-NOT-DEPLOY-CombatTables.json",
+  "snapshotSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+  "snapshotBytes": 57738263,
+  "tableChecksumListSha256": "d6619cd8acc8f8a3d60931e7b6404d0164198ef43684d2cdb5986160217d3661",
+  "tableCount": 29,
+  "enumFamilyCount": 23,
+  "tables": [
+    {
+      "name": "card.csv",
+      "bytes": 16226555,
+      "sha256": "0aefe9e72cd9212b69e04178f947b78265c3dc0036495b348d01e43d08050813"
+    },
+    {
+      "name": "buddy.csv",
+      "bytes": 173321,
+      "sha256": "0538f1628c4a61fc3365b86b0d96e8c6893ff64f9894ebd76fdca455ab45e8b1"
+    },
+    {
+      "name": "sphr.csv",
+      "bytes": 59454,
+      "sha256": "52d1c8633b2580a4e2f55c5dda9600470edcd86b9d7455b284b926f7b34bdd02"
+    },
+    {
+      "name": "burst_gauge.csv",
+      "bytes": 184,
+      "sha256": "5df6dfb9ec02a8b7a3f1ad60091ac84e51256c80093cd9ed7ac728d3d3f7e983"
+    },
+    {
+      "name": "burst_gauge_reaction_rate.csv",
+      "bytes": 119,
+      "sha256": "1e227b09ca0b94a25674ff1356e67db64617e19f4a3278ef84e206c07faf56fb"
+    },
+    {
+      "name": "skill_player.csv",
+      "bytes": 5177249,
+      "sha256": "d7bf4e81478ae571ce18d1060bf226d413b1f2bd8e50ab734e59afa6eb717a85"
+    },
+    {
+      "name": "skill_role_player.csv",
+      "bytes": 5926156,
+      "sha256": "2ec44156cda18b6399edfc165b2c7567545f4ed6914de7ec6a4dc65944da6cef"
+    },
+    {
+      "name": "burst_skill.csv",
+      "bytes": 197012,
+      "sha256": "8569077bb1beb81f3e80d7ed40e125c0847a3e81c9f05b2f058181ecdf371fbb"
+    },
+    {
+      "name": "burst_skill_role.csv",
+      "bytes": 174669,
+      "sha256": "25a5284b1825762fe7412b68b6507c322bcfebaae5f1ff7372100c6a6d5ca72d"
+    },
+    {
+      "name": "support_skill.csv",
+      "bytes": 1707169,
+      "sha256": "dd27f0cc8f47b430e366aefc630de734831ed9ded0727655a85448746349aecc"
+    },
+    {
+      "name": "support_skill_lvup.csv",
+      "bytes": 107,
+      "sha256": "4618f0b81b8de51b6cd6b3ad274ba142942bcc5e71a90988e33ba6240eb14b76"
+    },
+    {
+      "name": "support_skill_role.csv",
+      "bytes": 768063,
+      "sha256": "d9967895742976b218a51d61013e9041dbee23d4c5d0fdcffffc9c70811a4b3a"
+    },
+    {
+      "name": "skill_role_param_rule.csv",
+      "bytes": 15806,
+      "sha256": "2118fad5f60f40a1c62613a3ade6d0200bb9271049c30f4e339b6f9ce7f76b1a"
+    },
+    {
+      "name": "enemy_party.csv",
+      "bytes": 530898,
+      "sha256": "15837f4a7e61c1a635860bc58619e0e9943a7352d5705e16c7b95840cc399fa2"
+    },
+    {
+      "name": "enemy.csv",
+      "bytes": 1999410,
+      "sha256": "e5131cc13d36bfc14269c8ca4c23feed53343835ad2c36798c9d9d62ebf3e3a0"
+    },
+    {
+      "name": "enemy_lvup.csv",
+      "bytes": 10260444,
+      "sha256": "6041b87fb7d00ae0196f71eb7715d9493180fd8b54579a545368fe486ac78201"
+    },
+    {
+      "name": "enemy_ai_order.csv",
+      "bytes": 1928564,
+      "sha256": "307707a019a68a9beaff64f6ee575ff2f3d1331b5e0d52e29caf6b44ab2f4afe"
+    },
+    {
+      "name": "skill_enemy.csv",
+      "bytes": 4142486,
+      "sha256": "0be0e106f6ee025c21fd939eb89a4c9d374dcfe27b187e56e423d9af5bbcabf0"
+    },
+    {
+      "name": "skill_role_enemy.csv",
+      "bytes": 6048035,
+      "sha256": "67d981ed4119561ef4af116c1c05a3697e9b015d87983c0f835ccf5a2a965ec1"
+    },
+    {
+      "name": "enemy_trance_gauge_reaction.csv",
+      "bytes": 864,
+      "sha256": "2b630151ce283788b428d40581effdbaa35b2c06a9149c3d5f8dc314d86e722b"
+    },
+    {
+      "name": "skill_player_alchemist.csv",
+      "bytes": 259334,
+      "sha256": "fb10bca663567cd2a801910a172374e79d376890dd62b335cdf13a6580521b41"
+    },
+    {
+      "name": "skill_role_player_alchemist.csv",
+      "bytes": 93827,
+      "sha256": "0927545b822b2b9032a099465901283631fc7486c998f93d55c65a5c657345ad"
+    },
+    {
+      "name": "tower_skill_enemy.csv",
+      "bytes": 45400,
+      "sha256": "78de08ec141087a06dd628ecdd55aa02b6e7a4f8523ee1c8aa8a79af378267a7"
+    },
+    {
+      "name": "tower_skill_role_enemy.csv",
+      "bytes": 65703,
+      "sha256": "f94a89efcaa667fe9700b95711195b7346a98ddfb97d4725c08d63cc7191725f"
+    },
+    {
+      "name": "tower_enemy_ai_order.csv",
+      "bytes": 12787,
+      "sha256": "c738f2a809416eca1f9aff17c51ec2ddfc0444cf545447f22f7f8579752bf0a2"
+    },
+    {
+      "name": "card_alchemist.csv",
+      "bytes": 1251282,
+      "sha256": "63e7033905eedc505f52fe3f88b724d6d83994f3a7472cf0339125575ff5b31e"
+    },
+    {
+      "name": "summons.csv",
+      "bytes": 80160,
+      "sha256": "49baebd50461a24585d76c4b547f6bb97c96fde06e8279840253be75979ee54a"
+    },
+    {
+      "name": "npc_ai.csv",
+      "bytes": 46846,
+      "sha256": "4296e1e4cedbb7a0498cdd119a0d999578c3284e4acbcca3d189b6990b84698d"
+    },
+    {
+      "name": "npc_ai_situation_param_rule.csv",
+      "bytes": 757,
+      "sha256": "3f85a668560d5ec47a8d7fcee79496b331e098a16ebfea15d91d2d4ce223b351"
+    }
+  ],
+  "enumFamilies": [
+    {
+      "name": "SKILL_EXTEND_EXEC_ORDER",
+      "count": 134,
+      "sourceSha256": "10a3788f0ee5c223791971cbc38eb04dc6b41e5aa88f3653dc8d4cedb1aea8ae"
+    },
+    {
+      "name": "RARITY",
+      "count": 11,
+      "sourceSha256": "ab3185027c00e1e77cea4b6c98dc55079699dc7a9196002b15ce7b10886825a4"
+    },
+    {
+      "name": "SKILL_TYPE",
+      "count": 7,
+      "sourceSha256": "0db423a051aaa76c90a106d856a89a88c8d89aefdff1f0c2ec63ab8aaf7d5848"
+    },
+    {
+      "name": "SKILL_KIND",
+      "count": 8,
+      "sourceSha256": "1312b7560a577f0f130e472bcdcd426b54f7adcc697c59119c2df3d3439b43bd"
+    },
+    {
+      "name": "ATTR",
+      "count": 20,
+      "sourceSha256": "78f70715eb13a6cc0ef5da50355e7790228534378daab6617467f9e5afa3ba53"
+    },
+    {
+      "name": "JOB_TYPE",
+      "count": 6,
+      "sourceSha256": "c97e6a0458848af57c1769060697f39fe5b2be007b921432a27f9e88e5cad0f9"
+    },
+    {
+      "name": "ARTHUR_TYPE",
+      "count": 6,
+      "sourceSha256": "d5a35ea9eea53c4bde17a2dd93b662ec088d651e3cb9cab27b79d65b6b0a0bff"
+    },
+    {
+      "name": "SKILL_PHYSICS_TYPE",
+      "count": 3,
+      "sourceSha256": "eb4641aee455fe4b14ae0aaa8ca72d31a89261de5ee43d2ef4fcc01e1b81b3f6"
+    },
+    {
+      "name": "SKILL_TARGET",
+      "count": 38,
+      "sourceSha256": "b7f2e8c41cb0f62921cc8b092cf55e6e979e7f0269d78d88b3a0e5137c0d901d"
+    },
+    {
+      "name": "SKILL_EXEC_TIMING",
+      "count": 4,
+      "sourceSha256": "673ac89f8fd1e4dc7bb7ab9f72c8b734a7c7f527429dc3f427418c1be0e12333"
+    },
+    {
+      "name": "SKILL_ROLE",
+      "count": 223,
+      "sourceSha256": "ac1a0174894ce7a38f4ae69304f4bff7fe0719d2276feb0dc06e1401bfc1beef"
+    },
+    {
+      "name": "SKILL_ROLE_TARGET",
+      "count": 26,
+      "sourceSha256": "aa3d0af0d80f7c1a83551a4c0ddbc6535564467f2c1035a8c634f2386e3c291f"
+    },
+    {
+      "name": "SKILL_ROLE_BATTLE_PARAM",
+      "count": 7,
+      "sourceSha256": "a4dbec97ed690d2ab88a7d9d1fdbbc829adb7c873a329175b58d1260660c9a9b"
+    },
+    {
+      "name": "SKILL_ROLE_KIND_DEBUFF",
+      "count": 33,
+      "sourceSha256": "8723e10e4bbde3c834eae58c265c53c98458c2f5f852c2fe792142b0c6ec8ba3"
+    },
+    {
+      "name": "SKILL_ROLE_KIND_BUFF",
+      "count": 84,
+      "sourceSha256": "51a6b3b8a72ece90657215cc7901d57c95351f75a266c164b1daadf857c0200d"
+    },
+    {
+      "name": "SKILL_ROLE_DOT",
+      "count": 7,
+      "sourceSha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467"
+    },
+    {
+      "name": "ENEMY_TRANCE_GAUGE_STATE",
+      "count": 4,
+      "sourceSha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527"
+    },
+    {
+      "name": "ENEMY_AI_TARGET",
+      "count": 104,
+      "sourceSha256": "5690716c132bad36ab8953badf6f06723c9aac4cb2dada8f9da7fb30a6034c73"
+    },
+    {
+      "name": "ENEMY_AI_ORDER_PARTY",
+      "count": 12,
+      "sourceSha256": "4003ab978f91afcdc3736f18c9cac7fe9dbd60e66d3224377384c17b1910e815"
+    },
+    {
+      "name": "ENEMY_AI_ORDER_TRANCE_GAUGE",
+      "count": 7,
+      "sourceSha256": "f8de8088c58847e7d8cdc91f32e974e979d66e0e9512a2be8f1909d4ee00c503"
+    },
+    {
+      "name": "ENEMY_AI_ORDER_TRIGGER",
+      "count": 72,
+      "sourceSha256": "d4dbec7c939afac1a815d9e518e8dac4c2d9355d7a38452bac1d205f21ced066"
+    },
+    {
+      "name": "SPHR_TYPE",
+      "count": 4,
+      "sourceSha256": "84465cd2219629708766697fba2b1e293448e8348d65ac9c7eb5de776f758dc7"
+    },
+    {
+      "name": "SPHR_PLAY_CONDITION",
+      "count": 2,
+      "sourceSha256": "a030fbaa034bf2b9326ee241144ac6e0c446f4d9fe4d81d97b7b6d015fa6751d"
+    }
+  ],
+  "scope": "Isolated candidate containing unchanged server-delivered CSV text and selected modern exported enum declarations needed by the current partial bridge. Source client version, full ABI coverage, table-version compatibility, real registration, Unity/iOS and device are unverified. This is not a production asset; no automatic copying or upload."
+}

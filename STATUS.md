@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 隔离候选主表快照
+
+将哈希核对过的 29 张交付 CSV 原文与现代导出中当前部分桥接所需的 23 个候选枚举族组合，在 `test-output/order03-candidate/DO-NOT-DEPLOY-CombatTables.json` 生成 57,738,263 字节隔离候选，SHA-256 `f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb`。生成时验证每表哈希、UTF-8 字节往返及枚举声明解析，逐表和逐枚举源哈希见 `evidence/ios-package-search/order03-candidate-snapshot.json`。
+
+实际 Windows .NET `CombatTableSet.Validate` 通过，Windows x64 原 DLL 和重建 DLL 均成功打开及关闭目录；证据 `evidence/ios-package-search/order03-candidate-validation.json`。这比单一占位枚举更接近完整快照，但 23 族仅按当前部分桥接选取，原客户端版本、表版本、完整注册语义和真实效果未证实；候选不得复制到客户端、上传或打包。顺序 03 继续核验版本、完整枚举和真实服务业务契约；没有 Unity、ARM64 或真机结果。
+
 ## 2026-11-23：03 / 交付主表原 DLL 目录加载对照
 
 使用已核验的 29 张交付 CSV 构成的 57,706,143 字节隔离测试快照，Windows x64 原 DLL 和修复后重建 DLL 的 `battlecore_catalog_open_tables` 及关闭均返回 0。测试快照仍仅含虚构占位枚举，保存在 `test-output`，不可用于注册或交付；没有创建战斗。证据 `evidence/ios-package-search/order03-real-catalog-open.json`，脚本 `scripts/test-order03-real-catalog-open.mjs`、测试 `tests/Order03RealCatalogOpenProbe.cs`，原 DLL 哈希保持一致。

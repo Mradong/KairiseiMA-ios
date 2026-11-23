@@ -1,0 +1,21 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..'),out=path.join(root,'test-output/order03-candidate');
+const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const candidate=path.join(out,'DO-NOT-DEPLOY-CombatTables.json'),manifest=JSON.parse(fs.readFileSync(path.join(root,'evidence/ios-package-search/order03-candidate-snapshot.json'),'utf8'));
+if(sha(candidate)!==manifest.snapshotSha256)throw Error('Candidate hash mismatch');
+const original=path.join(root,'inputs/native/kairisei_battlecore.dll'),rebuilt=path.join(root,'native/build/windows-amd64/kairisei_battlecore_rebuilt.dll'),expected=JSON.parse(fs.readFileSync(path.join(root,'evidence/native/go-symbols-summary.json'),'utf8')).sha256;
+if(sha(original)!==expected)throw Error('Original DLL hash differs');
+const csc=path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe'),json=path.join(root,'tools/Newtonsoft.Json/lib/net45/Newtonsoft.Json.dll');fs.copyFileSync(json,path.join(out,'Newtonsoft.Json.dll'));
+function compile(exe,sources,refs=[]){const r=spawnSync(csc,['/nologo','/platform:x64','/out:'+exe,...refs.map(x=>'/reference:'+x),...sources],{encoding:'utf8',windowsHide:true});if(r.status!==0)throw Error('compile failed: '+r.stdout+r.stderr);}
+const validator=path.join(out,'CandidateValidation.exe'),native=path.join(out,'CandidateNative.exe');
+const managedSources=['tests/Order03CandidateValidation.cs','ios-client/Assets/Recovery/Runtime/CombatTableSet.cs'].map(x=>path.join(root,x));compile(validator,managedSources,[json]);compile(native,[path.join(root,'tests/Order03RealCatalogOpenProbe.cs')]);
+const managed=spawnSync(validator,[candidate],{encoding:'utf8',timeout:180000,windowsHide:true});
+const run=spawnSync(native,[original,rebuilt,candidate],{encoding:'utf8',timeout:180000,windowsHide:true});
+const result=run.status===0?JSON.parse(run.stdout.trim().replace(/^\uFEFF/,'')):null;
+const report={checkedAt:new Date().toISOString(),candidateSha256:sha(candidate),candidateBytes:fs.statSync(candidate).size,managedValidatorPassed:managed.status===0,managedOutput:managed.stdout.trim(),nativeExecutionCompleted:run.status===0,nativeResult:result,originalSha256:sha(original),rebuiltSha256:sha(rebuilt),originalUnchanged:sha(original)===expected,sourceHashes:managedSources.map(x=>({file:path.relative(root,x).replaceAll('\\','/'),sha256:sha(x)})),scope:'Windows .NET actual transport validator and Windows x64 original/rebuilt catalog open and close, using 29 real tables and 23 candidate modern enum families. No registered game input, effect execution, version compatibility, Unity, ARM64 or iPhone proof. Candidate remains in test-output and is not for delivery.'};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-candidate-validation.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));
+if(!report.managedValidatorPassed||!report.nativeExecutionCompleted||!report.originalUnchanged||!result||Object.values(result).some(x=>x!==0))process.exitCode=1;
