@@ -1,0 +1,24 @@
+{
+  "recordedAt": "2026-11-23T00:59:22.572Z",
+  "source": "User screenshot",
+  "deviceModelConfirmed": false,
+  "ipaVersionVisible": false,
+  "observed": {
+    "recoveryScreenVisible": true,
+    "address": "47.116.51.61:27040",
+    "status": "connection failed",
+    "httpStatus": 0,
+    "error": "Unknown Error"
+  },
+  "serverWorkstationCheck": {
+    "healthHttpStatus": 200,
+    "state": "PASS"
+  },
+  "build006Plist": {
+    "source": "dist/cloud-artifacts/ios-client006-44704875254/ipa/connection-test-44704875254/application-info.json",
+    "NSAllowsArbitraryLoads": true,
+    "NSAllowsLocalNetworking": true
+  },
+  "scope": "Screenshot establishes that a recovery interface launched and reported a connection error. Version/device attribution, root cause, Safari connectivity, gameplay and 0.0.6 device runtime remain unverified.",
+  "resolved": false
+}

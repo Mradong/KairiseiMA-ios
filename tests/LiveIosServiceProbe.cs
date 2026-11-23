@@ -83,7 +83,7 @@ class LiveIosServiceProbe
     public static void Main(string[] args)
     {
         bool success=false;string errorType=null;int? protocolCode=null;
-        object loginInfo=null,contentInfo=null,connectInfo=null;
+        object loginInfo=null,contentInfo=null,connectInfo=null,characterInfo=null;
         try
         {
             ServerEndpoint endpoint=ServerEndpoint.Parse(args[0]);
@@ -126,6 +126,30 @@ class LiveIosServiceProbe
                 CnConnectState second=CnProtocol.ParseConnect(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/Connect"),CnProtocol.CreateSessionRequest(repeat.SessionKey,new JObject()),1024*1024)));
                 if(first.UserCreated!=second.UserCreated || first.TutorialFlag!=second.TutorialFlag)throw new InvalidDataException("Read-only character state changed after login");
                 connectInfo=new {success=true,userCreated=first.UserCreated,tutorialFlag=first.TutorialFlag,repeatLoginSameIdentity=true,repeatConnectSameState=true};
+                if(args.Length>2 && args[2]=="--character")
+                {
+                    if(first.UserCreated)throw new InvalidDataException("New test guest already has a character");
+                    string characterName="ios"+Guid.NewGuid().ToString("N").Substring(0,12);
+                    stage="create_character";
+                    CnCreatedUser created=CnProtocol.ParseCreatedUser(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/UserCreate"),CnProtocol.CreateUserRequest(repeat.SessionKey,characterName,1),1024*1024)),repeat.UserId);
+                    if(created.Name!=characterName || created.ArthurType!=1)throw new InvalidDataException("Created identity differs from request");
+                    stage="created_connect";
+                    CnConnectState createdState=CnProtocol.ParseConnect(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/Connect"),CnProtocol.CreateSessionRequest(repeat.SessionKey,new JObject()),1024*1024)));
+                    if(!createdState.UserCreated)throw new InvalidDataException("Created character is not visible to Connect");
+                    stage="home";
+                    CnHomeState home=CnProtocol.ParseHome(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/HomeShow"),CnProtocol.CreateSessionRequest(repeat.SessionKey,null),1024*1024)),repeat.UserId);
+                    if(home.Name!=characterName || home.ArthurType!=1)throw new InvalidDataException("Home identity differs from created user");
+                    stage="cards";
+                    CnCardCollection cards=CnProtocol.ParseCardShow(Encoding.UTF8.GetString(Request(client,repeat.Api.Route("/CardShow2"),CnProtocol.CreateSessionRequest(repeat.SessionKey,new JObject{{"0",1}}),1024*1024)));
+                    if(cards.Cards.Count==0 || cards.Decks.Count==0)throw new InvalidDataException("New character has no starting cards or decks");
+                    stage="character_relogin";
+                    CnLogin again=CnProtocol.ParseLogin(Encoding.UTF8.GetString(Request(client,endpoint.Route("/local/client/login"),CnProtocol.CreateLogin(uuid,CnProtocol.UnityVersion),262144)),endpoint);
+                    if(again.UserId!=repeat.UserId)throw new InvalidDataException("Character identity changed after relogin");
+                    stage="character_reconnect";
+                    CnConnectState after=CnProtocol.ParseConnect(Encoding.UTF8.GetString(Request(client,again.Api.Route("/Connect"),CnProtocol.CreateSessionRequest(again.SessionKey,new JObject()),1024*1024)));
+                    if(!after.UserCreated)throw new InvalidDataException("Character creation not retained after relogin");
+                    characterInfo=new {created=true,identityRedacted=true,role=created.ArthurType,homeParsed=true,level=home.Level,cardCount=cards.Cards.Count,deckCount=cards.Decks.Count,reloginSameIdentity=true,characterRetained=true};
+                }
                 stage="complete";success=true;
             }
         }
@@ -136,8 +160,8 @@ class LiveIosServiceProbe
             errorType=error.GetType().Name;
             CnProtocolException protocol=error as CnProtocolException;if(protocol!=null)protocolCode=protocol.Code;
         }
-        Console.WriteLine(JsonConvert.SerializeObject(new {checkedAt=DateTime.UtcNow.ToString("o"),success=success,stage=stage,errorType=errorType,protocolCode=protocolCode,login=loginInfo,content=contentInfo,connect=connectInfo,requests=Steps,
-            scope="Actual runtime CnProtocol and RecoveryContent C# against the public isolated iOS service via Windows HttpClient. Public bundle bytes are size/SHA-256/CRC checked and cache reopened. UI AssetBundle loading/rendering, UnityWebRequest, iPhone execution and full gameplay are unverified. No character creation, home rewards, deck edits or battle entry performed."},Formatting.Indented));
+        Console.WriteLine(JsonConvert.SerializeObject(new {checkedAt=DateTime.UtcNow.ToString("o"),success=success,stage=stage,errorType=errorType,protocolCode=protocolCode,login=loginInfo,content=contentInfo,connect=connectInfo,character=characterInfo,requests=Steps,
+            scope="Actual runtime CnProtocol and RecoveryContent C# against the public isolated iOS service via Windows HttpClient. Optional --character creates a new isolated test character, reads HomeShow (which may claim login rewards) and cards, then relogs. No deck edits or battle entry. UI AssetBundle loading/rendering, UnityWebRequest, iPhone execution and full gameplay are unverified."},Formatting.Indented));
         if(!success)Environment.ExitCode=1;
     }
 }
