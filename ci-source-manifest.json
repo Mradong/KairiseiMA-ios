@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T01:19:57.399Z",
+  "generatedAt": "2026-11-23T01:39:34.044Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -20,13 +20,13 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 3148,
-      "sha256": "33d1709bcd8089cf44b17c5d221500339f1be6fe885e2e65800aa27665b7385f"
+      "bytes": 3454,
+      "sha256": "8d2d2c9efec26f30e165e8b1fc043f3170a72be1211e3f10fb165b5f0724f786"
     },
     {
       "path": "EXECUTION_PLAN.md",
-      "bytes": 8780,
-      "sha256": "22d6fc7c7570aef1e1944d3ebe05d2887362239dcbde0a8c54f3e4cfd1000190"
+      "bytes": 9130,
+      "sha256": "9e0245665caa821e3692402c17aca23a5e9c387f7e827b329b67b0118e9f3951"
     },
     {
       "path": "README.md",
@@ -35,18 +35,23 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 74713,
-      "sha256": "ed618b8a6d5813e46a93d601e6150d513fc716e45addfe30684af57548ce1b79"
+      "bytes": 76437,
+      "sha256": "89998727dd69ea7b63a50fc1fa2dddd7bc3a3696debd76bdbc30c3711b309970"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 30383,
-      "sha256": "72dea856e5d636f603e31c1325b2fbfa5a7cfbb861c81106ffef04ca9668fc1c"
+      "bytes": 32008,
+      "sha256": "6e68b33c6a0d0f178a1748eaf120c71c775bd2e09a40a4a6f2b2dae6225698e2"
     },
     {
       "path": "evidence/feature-coverage.md",
       "bytes": 5040,
       "sha256": "d8e652e9bb0affd51e1f114cf17ecb8c193f658a9e049de80d2ff06e365bdd83"
+    },
+    {
+      "path": "evidence/ios-package-search/content-loader-staging-tests.json",
+      "bytes": 1155,
+      "sha256": "e616cc852a004f3755f1db58ec3927cf5b057769aab86b55e7beace41d198999"
     },
     {
       "path": "evidence/ios-package-search/device-ats-diagnosis.json",
@@ -154,9 +159,19 @@
       "sha256": "8c65d6a88cc86ac7bef11c2a225db933dedb0b599ba9ea6bc185f32958ba0880"
     },
     {
+      "path": "evidence/ios-package-search/ios-client007-artifact-verification.json",
+      "bytes": 1763,
+      "sha256": "239876f44b48a7597d6f55f348ae0928ab687e46bc0671e4898144d6c03d7a14"
+    },
+    {
       "path": "evidence/ios-package-search/ios-client007-cloud-request.json",
       "bytes": 318,
       "sha256": "8c5d387972d24e1884bc354a3d5e2c5e7974699eb0fedb3eeacb57829cf926fd"
+    },
+    {
+      "path": "evidence/ios-package-search/ios-client007-cloud-status.json",
+      "bytes": 3783,
+      "sha256": "1d167dba94055837360c18284e96ff8b290a805eaeeb16f2adf98bff60a247c4"
     },
     {
       "path": "evidence/ios-package-search/ios-combat-table-tests.json",
@@ -292,6 +307,11 @@
       "path": "evidence/ios-package-search/ipa-client006-delivery.json",
       "bytes": 4243,
       "sha256": "8d6f85f76cbcc4dcad938c59bc000cc99173262b358c1ea7971b017f581faa75"
+    },
+    {
+      "path": "evidence/ios-package-search/ipa-client007-delivery.json",
+      "bytes": 8667,
+      "sha256": "85353f9c915ee0e4bf9cfd7fa5754c49ff6bdc6dde5f5d50776c4ddb9af8e45f"
     },
     {
       "path": "evidence/ios-package-search/sideloadly-anisette-error.json",
@@ -606,7 +626,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "27334cd384d7dda84788024e5ef5fc735aff3ea0edaf1048de869210baad99dd"
+      "sha256": "38bf80b6a0cc2d8f565bc877c9ca69e47dc367bb3ebd4066232a58208cb9f012"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -760,8 +780,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
-      "bytes": 9068,
-      "sha256": "415bb5181235e5c78fb8445554f5ad08cfd1250c6d6a3936021fed25bc19632d"
+      "bytes": 9413,
+      "sha256": "f7d323047031e77495c921d30a13f6a4ba993a6a939a09e9da7d329a585b2dc6"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/link.xml",
@@ -959,6 +979,11 @@
       "sha256": "f0252cd345458fa9b2515e2454cb740909ed1b7d29e5f5fe3484e39b31430a74"
     },
     {
+      "path": "scripts/Test-ContentLoaderStaging.ps1",
+      "bytes": 643,
+      "sha256": "674222f0ecf7884fc28bb75f93d3b0619c361171d5c0f267789e05057193b883"
+    },
+    {
       "path": "scripts/Test-IosClient005Download.ps1",
       "bytes": 1898,
       "sha256": "e14641c8215a106cce93521b61ef24cbf0531fa8c4cc476f15812dc125dccfa8"
@@ -1119,6 +1144,11 @@
       "sha256": "92dfae759fd9f2c1c7310f187095d800c2a5199cbec12936e73aa3247b1b749b"
     },
     {
+      "path": "tests/ContentLoaderStagingTests.cs",
+      "bytes": 5024,
+      "sha256": "16c5d82aa72c720938d5c1d275185d37be14236e54d2167bd5007dc039d9d06a"
+    },
+    {
       "path": "tests/LiveIosServiceProbe.cs",
       "bytes": 13391,
       "sha256": "419274a4583abef45248e96f5df49645598f00c5050fb7ea9a28c64805cab0f1"
@@ -1210,8 +1240,8 @@
     },
     {
       "path": "安装到iPhone.md",
-      "bytes": 20201,
-      "sha256": "f1357edbfc2e7dd86d024334d8ef01c91d4dd10da06f0eff9062465e08ac8e6b"
+      "bytes": 21828,
+      "sha256": "d1cb690b0a084e0ead6e37a2a95b82bedeaca8aec4fc365aa3635c047e6adab7"
     },
     {
       "path": "战斗主表接入.md",
@@ -1220,16 +1250,21 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 14222,
-      "sha256": "3ea65f7ac93c968841d004e3af4fc4d57d699e2f0654214ac8621c00e01b9a93"
+      "bytes": 15410,
+      "sha256": "5bacdd244819c6ecb5164f02aae81488c08a43796445dc1577f0fc7242389ce6"
     },
     {
       "path": "服务端协作需求.md",
       "bytes": 8293,
       "sha256": "1117033c9db00ac74a29e432bc3a7dfddeb69f8dd825cea1c2a526c5e1554ec0"
+    },
+    {
+      "path": "详细执行计划.md",
+      "bytes": 10737,
+      "sha256": "a262e282faa109d24f58a2829eaf4ad7497695e7925a4cfee0ed46e000b1b344"
     }
   ],
-  "bytes": 21660992,
+  "bytes": 21699929,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
