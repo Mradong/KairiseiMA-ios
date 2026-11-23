@@ -1,0 +1,55 @@
+{
+  "checkedAt": "2026-11-23T07:32:38.349Z",
+  "completed": true,
+  "allMatched": false,
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "b2bd51120e4bb970648ab93e09cfce0c02b5000cff9ede4481b2a4e6b83edddd",
+  "probeSha256": "02aeed8efc52bf913c5c35da943a4bfc772f11d5c8439b63fa5191382e9c7074",
+  "cases": [
+    {
+      "rule": "DOT",
+      "schemaName": "DOT",
+      "sourceEnumSha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "result": {
+        "originalStatus": 2,
+        "originalResult": 12345,
+        "rebuiltStatus": 0,
+        "rebuiltResult": 0
+      }
+    },
+    {
+      "rule": "DOT",
+      "schemaName": "SKILL_ROLE_DOT",
+      "sourceEnumSha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "result": {
+        "originalStatus": 0,
+        "originalResult": 0,
+        "rebuiltStatus": 2,
+        "rebuiltResult": 12345
+      }
+    },
+    {
+      "rule": "TRANCE_GAUGE_STATE",
+      "schemaName": "TRANCE_GAUGE_STATE",
+      "sourceEnumSha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "result": {
+        "originalStatus": 2,
+        "originalResult": 12345,
+        "rebuiltStatus": 0,
+        "rebuiltResult": 0
+      }
+    },
+    {
+      "rule": "TRANCE_GAUGE_STATE",
+      "schemaName": "ENEMY_TRANCE_GAUGE_STATE",
+      "sourceEnumSha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "result": {
+        "originalStatus": 0,
+        "originalResult": 0,
+        "rebuiltStatus": 2,
+        "rebuiltResult": 12345
+      }
+    }
+  ],
+  "scope": "Windows x64 original versus rebuilt DLL on synthetic single registered skill; role parameter rule and enum names are varied. Query status/index only, no actual effect execution, supplied real tables, version matching, Unity/iOS or device."
+}

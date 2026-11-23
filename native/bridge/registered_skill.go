@@ -32,6 +32,10 @@ func nativeRoleParameter(schema map[string]map[int32]string, family string, numb
 		return "", nil
 	case "VALUE":
 		return strconv.FormatInt(int64(number), 10), nil
+	case "DOT":
+		return lookupNativeEnum(schema, "SKILL_ROLE_DOT", number)
+	case "TRANCE_GAUGE_STATE":
+		return lookupNativeEnum(schema, "ENEMY_TRANCE_GAUGE_STATE", number)
 	case "ATTR", "SKILL_KIND":
 		if number == -1 {
 			return "", nil

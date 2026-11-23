@@ -1,0 +1,59 @@
+{
+  "checkedAt": "2026-11-23T07:35:37.280Z",
+  "completed": true,
+  "allMatched": true,
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "a4553408677125adadf806c0f201bbb0981d9180b6a74ae88bb9e31437b98734",
+  "probeSha256": "02aeed8efc52bf913c5c35da943a4bfc772f11d5c8439b63fa5191382e9c7074",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "schemaEvidenceSha256": "583e917f18dfcc586bcff6241e50f18dbd5e94aa25f31da16db8b3aea04e2688",
+  "bridgeSourceSha256": "0a0fb6c8406bf255a4ab7b14a3a1799873c558d836a883fffbc271587833e292",
+  "cases": [
+    {
+      "rule": "DOT",
+      "schemaName": "DOT",
+      "sourceEnumSha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "result": {
+        "originalStatus": 2,
+        "originalResult": 12345,
+        "rebuiltStatus": 2,
+        "rebuiltResult": 12345
+      }
+    },
+    {
+      "rule": "DOT",
+      "schemaName": "SKILL_ROLE_DOT",
+      "sourceEnumSha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "result": {
+        "originalStatus": 0,
+        "originalResult": 0,
+        "rebuiltStatus": 0,
+        "rebuiltResult": 0
+      }
+    },
+    {
+      "rule": "TRANCE_GAUGE_STATE",
+      "schemaName": "TRANCE_GAUGE_STATE",
+      "sourceEnumSha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "result": {
+        "originalStatus": 2,
+        "originalResult": 12345,
+        "rebuiltStatus": 2,
+        "rebuiltResult": 12345
+      }
+    },
+    {
+      "rule": "TRANCE_GAUGE_STATE",
+      "schemaName": "ENEMY_TRANCE_GAUGE_STATE",
+      "sourceEnumSha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "result": {
+        "originalStatus": 0,
+        "originalResult": 0,
+        "rebuiltStatus": 0,
+        "rebuiltResult": 0
+      }
+    }
+  ],
+  "scope": "Windows x64 original versus rebuilt DLL on synthetic single registered skill; role parameter rule and enum names are varied. Query status/index only, no actual effect execution, supplied real tables, version matching, Unity/iOS or device.",
+  "expectedOutcomes": true
+}

@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 修正效果参数枚举族映射
+
+Windows 合成注册技能对照发现：`DOT` 和 `TRANCE_GAUGE_STATE` 两种规则，原 DLL 要求 schema 使用 `SKILL_ROLE_DOT`、`ENEMY_TRANCE_GAUGE_STATE`，而重建桥错误使用规则名。修复 `native/bridge/registered_skill.go` 后重新编译 Windows x64 DLL，四个正确/错误族名查询均与原 DLL 的状态和结果一致；错误族名拒绝时输出保持不变。修复前的四处差异保留在 `evidence/ios-package-search/order03-role-alias-before-fix.json`，修复后见 `evidence/ios-package-search/order03-role-alias-differential.json`。
+
+Go 桥接测试通过，既有 155 组注册技能查询原 DLL 差分通过；当前重建 DLL SHA-256 `a4553408677125adadf806c0f201bbb0981d9180b6a74ae88bb9e31437b98734`。这些只覆盖合成查询中的参数解码与拒绝，不证明效果执行、真实主表版本、完整枚举、ARM64、Unity 或真机；该修复不在已交付 IPA。继续顺序 03 的版本与实际业务契约核验。
+
 ## 2026-11-23：03 / 独立角色卡牌契约与交付主表编号对照
 
 在已授权独立服务新建隔离游客和测试角色，未调用 HomeShow，实测 `/CardShow2` HTTP 200、三段响应：返回 10 张卡及 4 个卡组，40 个非零主卡槽均能关联返回的卡牌实例。读取前核对交付的 `card.csv` 与 `card_alchemist.csv` SHA-256，10 张卡的定义编号均能在其中找到；不输出或保存账号、卡牌实例编号、会话、名字或响应正文。非法字段请求返回 HTTP 400。可复核脱敏结果 `evidence/ios-package-search/order03-isolated-card-contract.json`，脚本 `scripts/probe-order03-isolated-card-contract.mjs`。
