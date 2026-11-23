@@ -1,6 +1,12 @@
 # 当前状态
 
-0.0.7 云构建已请求：源码 `3f42572b4861539baa1ef4f85733b11d3014f640`，运行 `45093283023`，当前进行中；构建和真机结果尚未产生。请求与状态见 `evidence/ios-package-search/ios-client007-cloud-request.json` 和 `ios-client007-cloud-status.json`。
+## 2026-11-23：0.0.7 云构建与 IPA；本地资源切换改进
+
+构建 `45093283023` / 源码 `3f42572b4861539baa1ef4f85733b11d3014f640` 成功；Unity、Xcode 和编译资源的云端服务验证通过。两份未签名 IPA 均为 26,126,010 字节，SHA-256 `07e7a667ca58f142d02be8b922d6701f9d374f8bf7859931e6a74cf059152aa8`。实际 IPA 内 plist 与云端已验证 plist 哈希相同；版本 0.0.7 / 7，ATS 为 `NSAllowsArbitraryLoads=true` 且无三个覆盖键。证据 `evidence/ios-package-search/ipa-client007-delivery.json`、`ios-client007-artifact-verification.json` 和 `ios-client007-cloud-status.json`。签名、安装、手机网络、游客登录、资源和角色状态均待用户验证；步骤见 `安装到iPhone.md`。真实战斗表未包含，完整游戏未完成。
+
+独立的后续本地 RESOURCE-01 改动将所有资源下载及缓存校验提前到替换已加载包之前；Windows 模拟 Unity 的实际加载器测试覆盖后续下载失败保留旧包及完整缓存成功切换。证据 `evidence/ios-package-search/content-loader-staging-tests.json`。Unity AssetBundle 加载阶段失败仍可能留下部分切换，尚无回滚；没有 Unity/iOS/真机验证，该改动不在 0.0.7 构建中。
+
+历史快照：0.0.7 云构建曾处于进行中；该描述已由上方成功结果更新。请求与状态见 `evidence/ios-package-search/ios-client007-cloud-request.json` 和 `ios-client007-cloud-status.json`。
 
 ## 2026-11-23：定位并修正 iOS ATS 配置冲突（源码，待构建和真机验证）
 

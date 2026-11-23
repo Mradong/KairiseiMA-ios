@@ -122,6 +122,12 @@ namespace Kairisei.Recovery
                     }
                     if (!installed) { Error = lastError; yield break; }
                 }
+            }
+            // Verify every download before replacing any currently loaded bundle.
+            // Unity may reject two revisions of the same bundle loaded at once,
+            // so loading still happens sequentially after the cache is complete.
+            foreach (ContentBundle item in manifest.DependencyOrder())
+            {
                 string previousHash;
                 if (hashes.TryGetValue(item.name,out previousHash) && previousHash == item.sha256) continue;
                 AssetBundle previous;

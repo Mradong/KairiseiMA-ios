@@ -1,0 +1,15 @@
+{
+  "date": "2026-11-23",
+  "success": true,
+  "command": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/Test-ContentLoaderStaging.ps1",
+  "checks": [
+    "Later download fails after an earlier changed bundle is cached; the previously loaded bundle and hash remain unchanged, and an error is reported.",
+    "When all bundles are cached, changed bundles are switched and the loader becomes ready."
+  ],
+  "sources": {
+    "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs": "f7d323047031e77495c921d30a13f6a4ba993a6a939a09e9da7d329a585b2dc6",
+    "tests/ContentLoaderStagingTests.cs": "16c5d82aa72c720938d5c1d275185d37be14236e54d2167bd5007dc039d9d06a",
+    "scripts/Test-ContentLoaderStaging.ps1": "674222f0ecf7884fc28bb75f93d3b0619c361171d5c0f267789e05057193b883"
+  },
+  "scope": "Windows .NET executes the actual loader with simulated Unity and network components. It does not test Unity AssetBundle loading, iOS, device persistence or gameplay. AssetBundle loading failure after switching begins can still leave a partial set; rollback is not implemented. This source is newer than and excluded from 0.0.7 build 45093283023."
+}
