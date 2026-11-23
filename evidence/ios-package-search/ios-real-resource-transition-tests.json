@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-11-23T00:55:56.964Z",
+  "success": true,
+  "stdout": "Passed 10 real iOS resource transition checks.",
+  "stderr": "",
+  "sourceCommit": "692ef3939dfeb0278f43d8bffee2871dfbdd0dd6",
+  "embeddedContentId": "e86930101893f0a77a8df57a14361c2f438675c05522f328fe669d4938b2f1f7",
+  "embeddedBundleSha256": "7a973636bb76ee2a6574c165dcf29fd3b099530b331d5b2cfa523adcd32fc367",
+  "serverContentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb",
+  "serverBundleSha256": "fc96532c32b6e19f07fc58b70a7a9a4b0e5eb0d2f2e2c9322a5cfef388d33b17",
+  "sourceHashes": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "62bebf028a31543d108eeb233fa260b75548e9b49bd1ca02fdd788309c7497e2"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "file": "tests/RealResourceTransitionTests.cs",
+      "sha256": "e2e231dee7726d3bcd7136ca4c23f9d7654b902b2a25d96fdc5b24949a7df6a4"
+    }
+  ],
+  "scope": "Windows .NET execution of the actual 0.0.6 content manifest and cache code against its actual embedded iOS bundle and the independently downloaded public-service iOS bundle. Tests preserve both versions during a truncated or corrupt staged update and after cache reopen. Does not exercise Unity AssetBundle loading, UnityWebRequest, iPhone filesystem, installed app overwrite or real gameplay."
+}

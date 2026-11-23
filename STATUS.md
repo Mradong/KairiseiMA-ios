@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：RESOURCE-01 两个实际 iOS 资源版本的缓存切换
+
+使用 0.0.6 构建 `44704875254` 的实际内置 UI 包及独立测试服务实际下载的 0.0.4 UI 包，运行本版 C# 清单和缓存代码：10 项检查通过。两份不同版本可共存；服务器包下载截断或内容损坏时，已验证的内置资源和已有服务器资源保持可用；重新创建缓存对象后两份仍通过哈希与 CRC 检查。证据 `evidence/ios-package-search/ios-real-resource-transition-tests.json`。
+
+测试为 Windows .NET 本地文件和真实资源字节，不涉及 UnityWebRequest、Unity AssetBundle 加载、iPhone 文件系统、覆盖安装或画面。本次未修改 0.0.6 源码或重新构建 IPA；真实设备验证仍待解决 Sideloadly 问题后进行。原文件和只读参考保护通过。
+
 ## 2026-11-23：设备联调停在 Sideloadly 签名组件
 
 用户截图提示 Fake2 Anisette 崩溃后被禁用、iTunes Anisette 与 Remote 不可用，当前旁加载未完成；没有 iPhone 游戏运行失败证据，截图也不标明 IPA 版本。只读检查确认 iTunes/iCloud 已安装及两个 Apple 服务正在运行，但不能据此证明 Anisette 可加载。未修改 Windows 配置或账号缓存。
