@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 枚举冲突查询差分
+
+Windows x64 合成技能查询分别提供旧版 `SELF_ENEMY_AI_VAR=110`、现代候选 `SELF_ENEMY_AI_VAR=111` 和现代候选 `SELF_STYLE=110` 三套单项 schema；每套覆盖准备态和三个早期战斗阶段、两个分支槽及八组参数。192 次原 DLL 查询均返回状态 0、结果 -1；当前重建桥均返回状态 2。证据 `evidence/ios-package-search/order03-enum-conflict-query.json`，脚本 `scripts/test-order03-enum-conflict-query.mjs`。
+
+这些是没有敌人 AI 变量或真实风格状态的玩家查询，结果 -1 不代表原 DLL 正确支持条件或选择了对应分支；重建桥目前明确拒绝这两个名称。旧版源码中 AI 变量上下界存在空值特殊默认，不能把它们直接当作普通数字条件放行。目标版本、敌方状态下的真实语义及 STYLE 仍未验证；没有修改产品或发送业务请求。下一步应为敌人变量有状态场景建立可观察的原 DLL 对照，再决定实现。
+
 ## 2026-11-23：03 / 隔离初始卡牌技能引用链
 
 新隔离角色一次 CardShow2 返回 10 张卡牌实例、4 组卡组，40 个非零卡槽均引用返回的自有实例；10 个不同卡牌定义全部存在于交付表的独立 Go 投影。对这些定义的普通、职业、CALL、被动、职业被动与四个支援技能字段逐级核对：20 个非零引用对应 20 个技能变体、23 条效果行，技能、效果组及参数规则缺失均为 0；另有 70 个零技能字段，没有召唤引用。见 `evidence/ios-package-search/order03-starter-card-closure.json`，脚本 `scripts/probe-order03-starter-card-closure.mjs`。

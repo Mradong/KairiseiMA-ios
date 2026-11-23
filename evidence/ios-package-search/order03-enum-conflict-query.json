@@ -1,0 +1,1958 @@
+{
+  "checkedAt": "2026-11-23T09:03:19.075Z",
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "61cd9636fb7ef5370afec6c6998d304d8220f6ef59d48872a105cfa8eb229f14",
+  "legacyEnumSha256": "2d3baac3754fd2d4e459fcb2a885715b9e32f0b8b08a82c895970a5e4ea40d09",
+  "modernEnumSha256": "10a3788f0ee5c223791971cbc38eb04dc6b41e5aa88f3653dc8d4cedb1aea8ae",
+  "baseProbeSha256": "fdf7beb5070ff67865ecb321e6160c3196d44fb47a1ecb4d2813f17a599e5605",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
+  "bridgeSourceSha256": "1ef5012b91b7ae2b7071746a47ca911a137abba5fd330ed346099d16c6de0c1f",
+  "results": [
+    {
+      "version": "legacy",
+      "name": "SELF_ENEMY_AI_VAR",
+      "value": 110,
+      "generatedProbeSha256": "293194496a1890695ee63ebbe9da6e1121f3497e9379b236d2f58031c42aa049",
+      "cases": [
+        {
+          "phase": "prepared",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        }
+      ]
+    },
+    {
+      "version": "modern",
+      "name": "SELF_ENEMY_AI_VAR",
+      "value": 111,
+      "generatedProbeSha256": "1762b9c195f92c74a84e3469d3c2bcc08d06080ed9635b91d3a71895065e879b",
+      "cases": [
+        {
+          "phase": "prepared",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        }
+      ]
+    },
+    {
+      "version": "modern",
+      "name": "SELF_STYLE",
+      "value": 110,
+      "generatedProbeSha256": "aaf808a2e25ffacda58c3d9b179bf9a1ee5e9bdf64d83b9c3ecd8a9c3cf4bbc4",
+      "cases": [
+        {
+          "phase": "prepared",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "prepared",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "before_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "after_start",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 0,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 0,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 3,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 3,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 1,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 1,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2,
+          "upper": 1,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": 2147483648,
+          "upper": 0,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 0,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        },
+        {
+          "phase": "turn_phase",
+          "lower": -2147483649,
+          "upper": 2147483648,
+          "slot": 1,
+          "originalStatus": 0,
+          "originalResult": -1,
+          "rebuiltStatus": 2,
+          "rebuiltResult": 12345
+        }
+      ]
+    }
+  ],
+  "scope": "Windows x64 synthetic prepared and early standalone battle query only; numeric condition and explicitly supplied test schema are varied. This tests observed query status/result, not the table provenance, correct target version, actual enemy AI variables/style, live gameplay, original ABI compatibility, ARM64 or device. Agreement on rejection is not support."
+}
