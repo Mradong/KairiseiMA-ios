@@ -74,7 +74,7 @@ namespace Kairisei.Recovery
                 if (!content.Ready) throw new InvalidOperationException(content.Error ?? "资源初始化未完成。");
                 title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
                 LoadPartyAtlas();
-                status = "本地资源已就绪。输入服务器地址后检查连接。完整游戏仍在恢复中。";
+                status = "本地资源已就绪。新安装 " + content.Installed + "，缓存复用 " + content.Reused + "。输入服务器地址后检查连接。";
             }
             catch (Exception error) { status = "资源加载失败：" + error.Message; }
             finally { busy = false; }
@@ -329,7 +329,7 @@ namespace Kairisei.Recovery
                 }
                 catch (Exception error) { serverContentReady = false; uiError = error.Message; }
             }
-            status = serverContentReady ? "测试游客与服务器资源已就绪，角色编号：" + login.UserId + "。可以检查角色状态。" : "服务器资源加载失败：" + (uiError ?? content.Error);
+            status = serverContentReady ? "测试游客与服务器资源已就绪。新安装 " + content.Installed + "，缓存复用 " + content.Reused + "。可以检查角色状态。" : "服务器资源加载失败：" + (uiError ?? content.Error);
             busy = false;
         }
 
