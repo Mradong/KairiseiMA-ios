@@ -1,0 +1,27 @@
+{
+  "checkedAt": "2026-11-23T09:00:41.789Z",
+  "target": "http://47.116.51.61:27040",
+  "success": true,
+  "stage": "complete",
+  "identity": "fresh isolated guest and character; identity, card instances and deck contents omitted",
+  "scope": "Fresh isolated guest/character and CardShow2 only; newly created identity may persist. Aggregate closure of returned card definitions to skill variants, role groups and role rules in independently generated Go projection. Positive IDs only, optional zeros counted separately. No battle, actual role execution, target enum/version match, Unity or device proof.",
+  "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
+  "cardShowHttpStatus": 200,
+  "closure": {
+    "cardInstances": 10,
+    "deckCount": 4,
+    "deckSlots": 40,
+    "unownedDeckSlots": 0,
+    "distinctCardDefinitions": 10,
+    "missingCardDefinitions": 0,
+    "skillReferences": 20,
+    "zeroSkillReferences": 70,
+    "missingSkills": 0,
+    "skillVariants": 20,
+    "missingRoleGroups": 0,
+    "roleRows": 23,
+    "missingRoleRules": 0,
+    "summonReferences": 0,
+    "missingSummons": 0
+  }
+}

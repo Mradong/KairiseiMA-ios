@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 隔离初始卡牌技能引用链
+
+新隔离角色一次 CardShow2 返回 10 张卡牌实例、4 组卡组，40 个非零卡槽均引用返回的自有实例；10 个不同卡牌定义全部存在于交付表的独立 Go 投影。对这些定义的普通、职业、CALL、被动、职业被动与四个支援技能字段逐级核对：20 个非零引用对应 20 个技能变体、23 条效果行，技能、效果组及参数规则缺失均为 0；另有 70 个零技能字段，没有召唤引用。见 `evidence/ios-package-search/order03-starter-card-closure.json`，脚本 `scripts/probe-order03-starter-card-closure.mjs`。
+
+只检查这个新角色在此次响应中的静态正 ID 引用，计数以卡定义及字段为单位；不证明其他卡组、效果执行、版本/枚举、入场或设备玩法。没有读取伙伴、主页、战斗或写卡组；新隔离身份和角色可能持久化。继续核实目标客户端枚举及服务入场/恢复契约。
+
 ## 2026-11-23：03 / 客户端枚举版本冲突
 
 将隔离候选快照的 23 个现代枚举族与可读 1.4.0 枚举声明逐名比较：共同名称中有一个数值变化，`SKILL_EXTEND_EXEC_ORDER.SELF_ENEMY_AI_VAR` 旧版为 110、现代候选为 111；现代候选的 110 是 `SELF_STYLE`。交付表 Go 投影中被检查的技能条件字段有 555 次 `SELF_ENEMY_AI_VAR`，另有 7 个仅现代枚举存在的条件名称共出现 493 次。按字段/变体计次，非不同技能数或实际可达性。其他被检查字段也发现旧版缺少的名称；逐族记录 `evidence/ios-package-search/order03-enum-version-differences.json`，脚本 `scripts/audit-order03-enum-version-differences.mjs`。
