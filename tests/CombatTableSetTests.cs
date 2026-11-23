@@ -67,6 +67,10 @@ class CombatTableSetTests
         Reject(delegate { CombatTableSet.Validate(Bytes(copy)); });
         copy = (JObject)valid.DeepClone(); ((JArray)copy["enums"][0]["values"]).Add(new JObject { { "name", "AMBIGUOUS" }, { "value", 0 } });
         Reject(delegate { CombatTableSet.Validate(Bytes(copy)); });
+        copy = (JObject)valid.DeepClone(); ((JArray)copy["enums"][0]["values"]).Add(new JObject { { "name", "NORMAL" }, { "value", 1 } });
+        Reject(delegate { CombatTableSet.Validate(Bytes(copy)); });
+        copy = (JObject)valid.DeepClone(); ((JArray)copy["enums"][0]["values"]).Add(copy["enums"][0]["values"][0].DeepClone());
+        Reject(delegate { CombatTableSet.Validate(Bytes(copy)); });
         copy = (JObject)valid.DeepClone(); ((JArray)copy["enums"]).Add(copy["enums"][0].DeepClone());
         Reject(delegate { CombatTableSet.Validate(Bytes(copy)); });
         copy = (JObject)valid.DeepClone(); copy["unexpected"] = true;

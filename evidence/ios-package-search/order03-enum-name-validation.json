@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-11-23T09:11:45.848Z",
+  "success": true,
+  "counts": {
+    "checks": 43
+  },
+  "stderr": "",
+  "sources": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CombatTableSet.cs",
+      "sha256": "c6d83ed0f892cc76abfc0578c95c177fb2f1270b483ce6a3ed6b6d22a8ccf2dd"
+    },
+    {
+      "file": "tests/CombatTableSetTests.cs",
+      "sha256": "94d177e351dd81e9b091e218f57d65651b2d6775956a98e66b8529a9e34609c7"
+    }
+  ],
+  "actualCombatSnapshotPresent": false,
+  "scope": "Windows .NET execution of the actual runtime combat-resource transport validator using synthetic catalog tables. Missing masters, schema, duplicate/path names, partial optional groups, invalid JSON/UTF-8 and byte bounds are rejected. Native CSV semantics are separately exercised by registered-battle original-DLL tests. Unity resource compilation, loading, actual master data and device execution remain unverified."
+}

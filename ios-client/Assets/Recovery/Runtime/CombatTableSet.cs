@@ -75,6 +75,7 @@ namespace Kairisei.Recovery
                 if (name.Length == 0 || !names.Add(name) || values == null || values.Count == 0 || values.Count > 1024)
                     throw new InvalidDataException("Native enum family is invalid or duplicated: " + name);
                 Dictionary<int, string> numbers = new Dictionary<int, string>();
+                HashSet<string> labels = new HashSet<string>(StringComparer.Ordinal);
                 foreach (JToken entry in values)
                 {
                     JObject value = entry as JObject;
@@ -86,6 +87,8 @@ namespace Kairisei.Recovery
                     if (label.Length == 0 || label.StartsWith("sizeof_", StringComparison.Ordinal) || number == null ||
                         number.Type != JTokenType.Integer || !Int32.TryParse(number.ToString(Formatting.None), out id))
                         throw new InvalidDataException("Native enum value is invalid: " + name);
+                    if (!labels.Add(label))
+                        throw new InvalidDataException("Native enum name is duplicated: " + name + "." + label);
                     string previous;
                     if (numbers.TryGetValue(id, out previous) && previous != label)
                         throw new InvalidDataException("Native enum value is ambiguous: " + name);

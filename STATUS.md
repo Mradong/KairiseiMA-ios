@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 枚举名称歧义防护
+
+`CombatTableSet.Validate` 现在拒绝同一枚举族中重复名称，包括相同名称绑定不同数字或完全重复的条目；原有同数字不同名称检查保留。这阻止将旧、现代同名不同值误拼成一个表，但不判断任一值是否对应目标版本。Windows .NET 结构检查 43 项通过，见 `evidence/ios-package-search/order03-enum-name-validation.json`。
+
+隔离候选 29 表/23 族仍通过新的管理端结构检查，原 DLL 和当前重建 DLL 的 Windows 目录打开、关闭均成功，见 `evidence/ios-package-search/order03-candidate-name-validation.json`。候选版本、完整映射和效果执行未证明，仍不可交付；未编译 Unity 或在设备运行，现有 IPA 不含此更改。下一步继续获取目标版本和服务端安全恢复证据。
+
 ## 2026-11-23：06 / 卡组重复实例校验
 
 `CnProtocol.CreateDeckSetRequest` 在保存前拒绝同一非零卡牌实例重复占据主卡槽，允许多个空槽；`RecoveryBootstrap` 在本地请求构造失败时保留编辑界面和草稿，并显示错误以便修正。这只覆盖实例完全重复，不推断不同实例的卡牌家族或完整活动规则，服务端仍作最终校验。旧版 `DeckChecker` 与本地服务卡组家族校验提供行为依据。
