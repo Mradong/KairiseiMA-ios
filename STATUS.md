@@ -1,5 +1,13 @@
 # 当前状态
 
+## 2026-11-23：03 / `DECK_COMBO_COUNT` 条件解码局部恢复
+
+将 `DECK_COMBO_COUNT` 参数按有符号 64 位数值接入已有内核。Windows x64 使用合成输入，在准备态、开始前、开始后和首回合且**没有出牌连锁上下文**时，对两个分支槽和 8 组范围共 64 组查询与原 DLL 一致，各阶段覆盖选择与不选择；修复前同 64 组原 DLL 成功而重建桥拒绝。证据 `evidence/ios-package-search/order03-combo-query-before-fix.json`、`order03-combo-query.json`。
+
+Go 桥接测试、64 组 `TURN` 查询、450 组既有查询及合成注册战斗回归通过；Windows DLL SHA-256 `61cd9636fb7ef5370afec6c6998d304d8220f6ef59d48872a105cfa8eb229f14`。重新统计真实表投影中不在解码标签列表的非空出现次数为追加 473、第一分支 8,261、第二分支 1,117；仅为变体字段出现次数，非不同技能数量或实际可达性。前一统计保留 `order03-candidate-enum-coverage-before-combo.json`。
+
+本次没有对照实际出牌后的连锁条件或效果执行，也未验证真实卡牌、版本匹配、ARM64、Unity 与设备；修复不在现有 IPA，顺序 03 继续。
+
 ## 2026-11-23：03 / `TURN` 条件解码与原 DLL 差分
 
 真实表 Go 投影的技能条件中 `TURN` 有大量出现；原 DLL 在准备态和战斗初期查询时支持它，重建桥此前因解码器缺项拒绝。现将 `TURN` 的 5 个参数按有符号 64 位数值传入已有内核。Windows x64 对照覆盖准备态、开始前、开始后和首回合，两个分支槽及 8 组范围（含超出 Int32），共 64 组原 DLL 与重建 DLL 状态及结果一致，各阶段均覆盖选择和不选择；修复前 48 组原 DLL 成功、重建桥拒绝。证据 `evidence/ios-package-search/order03-turn-query-before-fix.json`、`order03-turn-query.json`。

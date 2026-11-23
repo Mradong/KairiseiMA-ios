@@ -8,7 +8,7 @@ const enums=new Map(JSON.parse(fs.readFileSync(candidate,'utf8')).enums.map(e=>[
 const d=JSON.parse(fs.readFileSync(projection,'utf8')),metrics={};
 // Explicitly mirror only the condition labels accepted by decodeSkillCondition.
 // This is a source-level coverage estimate, not a claim of executed behavior.
-const decodedConditions=new Set(['NONE','NULL','TARGET_ATTR','SELF_MAIN_DECK_ATTR','SELF_MAIN_DECK_SKILL_KIND','RANDOM','TURN','SELF_HP_PER','SELF_OTHER_PLAY_NUM','SELF_PLAY_MOST_LOW_COST','SELF_PLAY_COST_TOTAL','ENEMY_TRIBAL','SELF_MAIN_DECK_TAG','SELF_SUPPORT_DECK_TAG','SELF_ALL_DECK_TAG']);
+const decodedConditions=new Set(['NONE','NULL','TARGET_ATTR','SELF_MAIN_DECK_ATTR','SELF_MAIN_DECK_SKILL_KIND','RANDOM','TURN','DECK_COMBO_COUNT','SELF_HP_PER','SELF_OTHER_PLAY_NUM','SELF_PLAY_MOST_LOW_COST','SELF_PLAY_COST_TOTAL','ENEMY_TRIBAL','SELF_MAIN_DECK_TAG','SELF_SUPPORT_DECK_TAG','SELF_ALL_DECK_TAG']);
 const conditionCoverage={};
 function condition(field,value){let s=conditionCoverage[field];if(!s)s=conditionCoverage[field]={blank:0,declaredDecoder:0,other:0,otherNames:{}};const token=value.trim();if(!token){s.blank++;return;}if(decodedConditions.has(token))s.declaredDecoder++;else{s.other++;s.otherNames[token]=(s.otherNames[token]||0)+1;}}
 function examine(label,family,value){

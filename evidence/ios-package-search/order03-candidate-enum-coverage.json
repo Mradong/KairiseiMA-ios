@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-23T08:18:48.144Z",
+  "checkedAt": "2026-11-23T08:37:16.189Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "d5cefef306f7a5db44fd5c2c06a7d3d408e499298d0d8c9f9659b2c8a76dae05",
+  "bridgeConditionSourceSha256": "1ef5012b91b7ae2b7071746a47ca911a137abba5fd330ed346099d16c6de0c1f",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -206,8 +206,8 @@
   "conditionDecoderCoverage": {
     "AppendCondition": {
       "blank": 66113,
-      "declaredDecoder": 382,
-      "other": 660,
+      "declaredDecoder": 569,
+      "other": 473,
       "otherNames": {
         "SELF_OTHER_PLAY_SKILL_KIND": 137,
         "SELF_OTHER_PLAY_TAG": 5,
@@ -218,7 +218,6 @@
         "ENEMY_SIDE_DEBUFF": 1,
         "USER_SIDE_DEBUFF": 13,
         "SELF_BUFF": 8,
-        "DECK_COMBO_COUNT": 187,
         "SELF_OTHER_PLAY_RARITY": 27,
         "BUFF_EXEC": 38,
         "SELF_NOT_PLAY_HAND_NUM": 2,
@@ -227,12 +226,11 @@
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 7457,
-      "other": 10992,
+      "declaredDecoder": 10188,
+      "other": 8261,
       "otherNames": {
         "SELF_ENEMY_AI_FLAG": 1482,
         "SELF_TRANCE_GAUGE_VALUE": 63,
-        "DECK_COMBO_COUNT": 2731,
         "SELF_OTHER_PLAY_RARITY": 745,
         "FRIEND_PLAY_TAG": 193,
         "SELF_BUFF": 115,
@@ -282,15 +280,14 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 575,
-      "other": 1265,
+      "declaredDecoder": 723,
+      "other": 1117,
       "otherNames": {
         "FRIEND_PLAY_ATTR_NUM": 95,
         "SELF_OTHER_PLAY_ATTR": 205,
         "ENEMY_SIDE_DEBUFF": 46,
         "SELF_BUFF": 15,
         "SELF_OTHER_PLAY_RARITY": 61,
-        "DECK_COMBO_COUNT": 148,
         "SELF_BURST_GAUGE_STATE": 17,
         "SELF_OTHER_PLAY_TAG": 36,
         "ENEMY_TRANCE_GAUGE_STATE": 46,
