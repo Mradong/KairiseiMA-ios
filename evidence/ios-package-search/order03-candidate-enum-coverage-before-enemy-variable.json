@@ -1,0 +1,315 @@
+{
+  "checkedAt": "2026-11-23T08:37:16.189Z",
+  "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+  "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
+  "bridgeConditionSourceSha256": "1ef5012b91b7ae2b7071746a47ca911a137abba5fd330ed346099d16c6de0c1f",
+  "fields": [
+    {
+      "field": "Cards.Rarity",
+      "enumFamily": "RARITY",
+      "observations": 11083,
+      "blank": 0,
+      "matched": 11083,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.Type",
+      "enumFamily": "SKILL_TYPE",
+      "observations": 67155,
+      "blank": 58262,
+      "matched": 8893,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.Kind",
+      "enumFamily": "SKILL_KIND",
+      "observations": 67155,
+      "blank": 287,
+      "matched": 66868,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.Attribute",
+      "enumFamily": "ATTR",
+      "observations": 67155,
+      "blank": 1039,
+      "matched": 66116,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.Job",
+      "enumFamily": "JOB_TYPE",
+      "observations": 67155,
+      "blank": 37406,
+      "matched": 29749,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.ArthurJob",
+      "enumFamily": "ARTHUR_TYPE",
+      "observations": 67155,
+      "blank": 37406,
+      "matched": 29749,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.DamageKind",
+      "enumFamily": "SKILL_PHYSICS_TYPE",
+      "observations": 67155,
+      "blank": 0,
+      "matched": 67155,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.Target",
+      "enumFamily": "SKILL_TARGET",
+      "observations": 67155,
+      "blank": 0,
+      "matched": 67155,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.HandAttribute",
+      "enumFamily": "ATTR",
+      "observations": 67155,
+      "blank": 67118,
+      "matched": 37,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.HandKind",
+      "enumFamily": "SKILL_KIND",
+      "observations": 67155,
+      "blank": 67108,
+      "matched": 47,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.AppendTrigger",
+      "enumFamily": "SKILL_EXEC_TIMING",
+      "observations": 67155,
+      "blank": 66326,
+      "matched": 829,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.AppendCondition",
+      "enumFamily": "SKILL_EXTEND_EXEC_ORDER",
+      "observations": 67155,
+      "blank": 66113,
+      "matched": 1042,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.BranchCondition",
+      "enumFamily": "SKILL_EXTEND_EXEC_ORDER",
+      "observations": 67155,
+      "blank": 48706,
+      "matched": 18449,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Skills.BranchCondition2",
+      "enumFamily": "SKILL_EXTEND_EXEC_ORDER",
+      "observations": 67155,
+      "blank": 65315,
+      "matched": 1840,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "SkillRoles.Function",
+      "enumFamily": "SKILL_ROLE",
+      "observations": 123905,
+      "blank": 0,
+      "matched": 123905,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "SkillRoles.Target",
+      "enumFamily": "SKILL_ROLE_TARGET",
+      "observations": 123905,
+      "blank": 0,
+      "matched": 123905,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Enemies.Attribute",
+      "enumFamily": "ATTR",
+      "observations": 16936,
+      "blank": 0,
+      "matched": 16936,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Spheres.Type",
+      "enumFamily": "SPHR_TYPE",
+      "observations": 468,
+      "blank": 0,
+      "matched": 468,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "Spheres.PlayCondition",
+      "enumFamily": "SPHR_PLAY_CONDITION",
+      "observations": 468,
+      "blank": 0,
+      "matched": 468,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "EnemyAIOrders.Party",
+      "enumFamily": "ENEMY_AI_ORDER_PARTY",
+      "observations": 24339,
+      "blank": 2403,
+      "matched": 21936,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "EnemyAIOrders.TranceGauge",
+      "enumFamily": "ENEMY_AI_ORDER_TRANCE_GAUGE",
+      "observations": 24339,
+      "blank": 24018,
+      "matched": 321,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    },
+    {
+      "field": "EnemyAIOrders.Trigger",
+      "enumFamily": "ENEMY_AI_ORDER_TRIGGER",
+      "observations": 24339,
+      "blank": 1134,
+      "matched": 23205,
+      "unmatched": 0,
+      "unmatchedTokens": {}
+    }
+  ],
+  "conditionDecoderCoverage": {
+    "AppendCondition": {
+      "blank": 66113,
+      "declaredDecoder": 569,
+      "other": 473,
+      "otherNames": {
+        "SELF_OTHER_PLAY_SKILL_KIND": 137,
+        "SELF_OTHER_PLAY_TAG": 5,
+        "ENEMY_TRANCE_GAUGE_STATE": 1,
+        "SELF_OTHER_PLAY_ATTR": 101,
+        "TARGET_CARD_ONLY_SELF_PLAY": 3,
+        "SELF_BLESS": 2,
+        "ENEMY_SIDE_DEBUFF": 1,
+        "USER_SIDE_DEBUFF": 13,
+        "SELF_BUFF": 8,
+        "SELF_OTHER_PLAY_RARITY": 27,
+        "BUFF_EXEC": 38,
+        "SELF_NOT_PLAY_HAND_NUM": 2,
+        "SELF_PLAY_COST_NUM": 135
+      }
+    },
+    "BranchCondition": {
+      "blank": 48706,
+      "declaredDecoder": 10188,
+      "other": 8261,
+      "otherNames": {
+        "SELF_ENEMY_AI_FLAG": 1482,
+        "SELF_TRANCE_GAUGE_VALUE": 63,
+        "SELF_OTHER_PLAY_RARITY": 745,
+        "FRIEND_PLAY_TAG": 193,
+        "SELF_BUFF": 115,
+        "SELF_OTHER_PLAY_ATTR": 1046,
+        "TARGET_JOB_TYPE": 256,
+        "FRIEND_PLAY_ATTR_NUM": 92,
+        "OWNER_CARD_FAME": 11,
+        "SELF_OTHER_PLAY_TAG": 142,
+        "SELF_OTHER_PLAY_SKILL_KIND": 696,
+        "TARGET_DEBUFF": 244,
+        "ENEMY_SIDE_DEBUFF": 309,
+        "SELF_BLESS": 29,
+        "SELF_BURST_GAUGE_STATE": 30,
+        "ENEMY_TRANCE_GAUGE_STATE": 62,
+        "FRIEND_PLAY_COST_TOTAL": 7,
+        "TARGET_CARD_ONLY_SELF_PLAY": 25,
+        "SELF_ARTHUR_TYPE": 70,
+        "FRIEND_PLAY_NUM": 468,
+        "FRIEND_PLAY_SKILL_KIND_NUM": 35,
+        "TARGET_BUFF": 226,
+        "SELF_PLAY_COST_NUM": 2,
+        "FRIEND_PLAY_MOST_LOW_COST": 1,
+        "USER_SIDE_DEBUFF": 101,
+        "FRIEND_HP_PER": 26,
+        "SUMMONS_EVERY_TURN": 202,
+        "SELF_DEBUFF": 149,
+        "SELF_HP_FIXED": 3,
+        "SELF_ENEMY_AI_VAR": 492,
+        "SELF_ENEMY_AI_FLAG_AND": 74,
+        "USER_SIDE_BUFF": 73,
+        "SELF_DAMAGE": 46,
+        "TARGET_DEBUFF_KIND_NUM": 91,
+        "USER_SIDE_BLESS": 29,
+        "TARGET_HP_PER": 148,
+        "ENEMY_DEAD_NOW_TURN": 2,
+        "OWNER_CARD_DECK_INDEX": 134,
+        "CARD_DECK_INDEX": 44,
+        "TARGET_HP_FIXED": 14,
+        "USER_PARAM": 170,
+        "USER_SIDE_BURST_GAUGE_VALUE": 20,
+        "USER_ATTACK_NUM": 16,
+        "SELF_TRANCE_GAUGE_STATE": 64,
+        "FRIEND_PLAY_COST_NUM": 6,
+        "USER_SIDE_BURST_GAUGE_STATE": 3,
+        "ENEMY_SIDE_BUFF": 5
+      }
+    },
+    "BranchCondition2": {
+      "blank": 65315,
+      "declaredDecoder": 723,
+      "other": 1117,
+      "otherNames": {
+        "FRIEND_PLAY_ATTR_NUM": 95,
+        "SELF_OTHER_PLAY_ATTR": 205,
+        "ENEMY_SIDE_DEBUFF": 46,
+        "SELF_BUFF": 15,
+        "SELF_OTHER_PLAY_RARITY": 61,
+        "SELF_BURST_GAUGE_STATE": 17,
+        "SELF_OTHER_PLAY_TAG": 36,
+        "ENEMY_TRANCE_GAUGE_STATE": 46,
+        "FRIEND_PLAY_COST_TOTAL": 2,
+        "TARGET_JOB_TYPE": 15,
+        "SELF_OTHER_PLAY_SKILL_KIND": 69,
+        "SELF_ARTHUR_TYPE": 203,
+        "TARGET_CARD_ONLY_SELF_PLAY": 5,
+        "FRIEND_PLAY_SKILL_KIND_NUM": 39,
+        "FRIEND_PLAY_NUM": 2,
+        "FRIEND_PLAY_TAG": 40,
+        "USER_SIDE_BUFF": 12,
+        "SELF_ENEMY_AI_FLAG": 31,
+        "SELF_ENEMY_AI_VAR": 63,
+        "SELF_DEBUFF": 6,
+        "USER_SIDE_DEBUFF": 20,
+        "SELF_DAMAGE": 5,
+        "USER_PARAM": 7,
+        "USER_SIDE_BURST_GAUGE_STATE": 75,
+        "USER_ATTACK_NUM": 2
+      }
+    }
+  },
+  "scope": "Static name-only comparison of selected projected fields against 23 candidate enums. Projection is the server audit Go loader output, which normalizes NULL/empty and applies compatibility defaults; blanks are counted separately, never declared valid. Condition coverage is a manually transcribed decodeSkillCondition label list, not a guarantee the full skill executes. Missing names may reflect version/schema differences or source normalization. No original-client semantic, packed ABI, real combat, Unity or device validation."
+}

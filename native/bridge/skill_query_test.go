@@ -34,3 +34,38 @@ func TestQueryBranchesNumericAndUnsupported(t *testing.T) {
 		t.Fatal("empty slot should not decode conditions", err)
 	}
 }
+
+func TestEnemyVariableConditionUsesSchemaAndPreservesPackedBounds(t *testing.T) {
+	for _, ordinal := range []int32{110, 111, 900} {
+		for slot := 0; slot < 2; slot++ {
+			schema := map[string]map[int32]string{"SKILL_EXTEND_EXEC_ORDER": {0: "NONE", ordinal: "SELF_ENEMY_AI_VAR"}}
+			var raw rawSkill
+			raw.Extends[1].RoleID = 889
+			raw.Extends[1].Conditions[slot] = rawSkillCondition{Order: ordinal, Parameters: [5]int64{4, math.MinInt64, math.MaxInt64, 0, 0}}
+			got, err := queryBranches(schema, raw)
+			if err != nil {
+				t.Fatal(err)
+			}
+			name, params := got[1].BranchCondition, got[1].BranchParameters
+			if slot == 1 {
+				name, params = got[1].BranchCondition2, got[1].BranchParameters2
+			}
+			if name != "SELF_ENEMY_AI_VAR" || params != [5]string{"4", "-9223372036854775808", "9223372036854775807", "0", "0"} {
+				t.Fatalf("ordinal %d slot %d: %s %v", ordinal, slot, name, params)
+			}
+			// Same ordinal with a different label must retain its own support boundary.
+			schema["SKILL_EXTEND_EXEC_ORDER"][ordinal] = "SELF_STYLE"
+			if _, err = queryBranches(schema, raw); err == nil {
+				t.Fatal("unsupported STYLE accepted as an AI variable")
+			}
+			delete(schema["SKILL_EXTEND_EXEC_ORDER"], ordinal)
+			if _, err = queryBranches(schema, raw); err == nil {
+				t.Fatal("missing mapping accepted")
+			}
+		}
+	}
+	_, params, err := decodeSkillCondition(map[string]map[int32]string{"SKILL_EXTEND_EXEC_ORDER": {1: "SELF_ENEMY_AI_VAR"}}, rawSkillCondition{Order: 1})
+	if err != nil || params != [5]string{"0", "0", "0", "0", "0"} {
+		t.Fatalf("packed explicit zeros changed: %v %v", params, err)
+	}
+}

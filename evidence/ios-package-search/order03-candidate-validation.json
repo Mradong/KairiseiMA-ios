@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-23T07:40:44.892Z",
+  "checkedAt": "2026-11-23T10:56:37.032Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "candidateBytes": 57738263,
   "managedValidatorPassed": true,
@@ -12,7 +12,7 @@
     "rebuiltClose": 0
   },
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-  "rebuiltSha256": "a4553408677125adadf806c0f201bbb0981d9180b6a74ae88bb9e31437b98734",
+  "rebuiltSha256": "dbcc078a6c7a875281f9e9a160c7033d47fbd21a0a96e762579d197197594762",
   "originalUnchanged": true,
   "sourceHashes": [
     {
@@ -21,7 +21,7 @@
     },
     {
       "file": "ios-client/Assets/Recovery/Runtime/CombatTableSet.cs",
-      "sha256": "4ae6ebfc085286eebc84a3b63824d173f5aa1122012a3f8098a113afe84c5409"
+      "sha256": "c6d83ed0f892cc76abfc0578c95c177fb2f1270b483ce6a3ed6b6d22a8ccf2dd"
     }
   ],
   "scope": "Windows .NET actual transport validator and Windows x64 original/rebuilt catalog open and close, using 29 real tables and 23 candidate modern enum families. No registered game input, effect execution, version compatibility, Unity, ARM64 or iPhone proof. Candidate remains in test-output and is not for delivery."

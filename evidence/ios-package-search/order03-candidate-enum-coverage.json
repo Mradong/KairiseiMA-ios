@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-23T08:37:16.189Z",
+  "checkedAt": "2026-11-23T10:56:18.332Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "1ef5012b91b7ae2b7071746a47ca911a137abba5fd330ed346099d16c6de0c1f",
+  "bridgeConditionSourceSha256": "06741348c226c113d1817e44539305334b6a2e136e8db32de4bd214aa834da5a",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -226,8 +226,8 @@
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 10188,
-      "other": 8261,
+      "declaredDecoder": 10680,
+      "other": 7769,
       "otherNames": {
         "SELF_ENEMY_AI_FLAG": 1482,
         "SELF_TRANCE_GAUGE_VALUE": 63,
@@ -258,7 +258,6 @@
         "SUMMONS_EVERY_TURN": 202,
         "SELF_DEBUFF": 149,
         "SELF_HP_FIXED": 3,
-        "SELF_ENEMY_AI_VAR": 492,
         "SELF_ENEMY_AI_FLAG_AND": 74,
         "USER_SIDE_BUFF": 73,
         "SELF_DAMAGE": 46,
@@ -280,8 +279,8 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 723,
-      "other": 1117,
+      "declaredDecoder": 786,
+      "other": 1054,
       "otherNames": {
         "FRIEND_PLAY_ATTR_NUM": 95,
         "SELF_OTHER_PLAY_ATTR": 205,
@@ -301,7 +300,6 @@
         "FRIEND_PLAY_TAG": 40,
         "USER_SIDE_BUFF": 12,
         "SELF_ENEMY_AI_FLAG": 31,
-        "SELF_ENEMY_AI_VAR": 63,
         "SELF_DEBUFF": 6,
         "USER_SIDE_DEBUFF": 20,
         "SELF_DAMAGE": 5,

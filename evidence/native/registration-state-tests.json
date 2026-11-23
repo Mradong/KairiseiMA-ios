@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-20T08:40:23.027Z",
+  "checkedAt": "2026-11-23T10:55:52.651Z",
   "success": true,
   "exitCode": 0,
   "passed": [
@@ -7,8 +7,16 @@
     "TestInitializationRecordsPreserveWireSemantics",
     "TestEnemyGaugeCapacityAndReplacement",
     "TestStoryHelpCopiesWithoutExtraValidation",
+    "TestNativeEnumNameAmbiguity/legacy_version",
+    "TestNativeEnumNameAmbiguity/modern_version",
+    "TestNativeEnumNameAmbiguity/mixed_versions",
+    "TestNativeEnumNameAmbiguity/duplicate_entry",
+    "TestNativeEnumNameAmbiguity/same_number_different_names",
+    "TestNativeEnumNameAmbiguity/separate_families",
+    "TestNativeEnumNameAmbiguity",
     "TestRegisteredBuddyGuardsAndMasterOwnership",
     "TestDecodePreparedEnemyFieldsAndGuards",
+    "TestPreparedEnemyInertMasterGaugeIsQueryOnly",
     "TestSimpleEnemyActionRejectsUnsupportedInput",
     "TestRegistrationOwnsCallerBuffers/card",
     "TestRegistrationOwnsCallerBuffers/extra",
@@ -22,6 +30,7 @@
     "TestSettingsDefaultsAndIndependentMembers",
     "TestStandaloneSyntheticCatalogAndBattle",
     "TestQueryBranchesNumericAndUnsupported",
+    "TestEnemyVariableConditionUsesSchemaAndPreservesPackedBounds",
     "TestDecodeRawSkill"
   ],
   "stderr": "",
