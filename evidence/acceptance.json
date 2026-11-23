@@ -26,7 +26,7 @@
         "evidence/feature-coverage.md",
         "evidence/ios-package-search/ios602-scene-audit.json"
       ],
-      "scope": "Static 6.0.2 exported YAML analysis maps six scenes, script and resource GUIDs; Home component names and 1.4.0 same-path references identified, no custom component fields recovered and one null Result script found. This does not establish runtime compatibility, asset completeness or gameplay."
+      "scope": "Static 6.0.2 exported YAML analysis maps six scenes, script and resource GUIDs; Home component names and 1.4.0 same-path references identified, no custom component fields recovered and one null Result script found. This does not establish runtime compatibility, asset completeness or gameplay. 2026-11-23 coverage baseline updated with isolated deck save/relogin, initial card reference closure, quest projection differences and cross-version enum conflict. These remain Windows/isolated evidence; target version, device behavior, full feature inventory and battle admission are unverified."
     },
     {
       "id": "BATTLE-01",
