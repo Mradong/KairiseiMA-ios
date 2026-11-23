@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-23T11:22:25.312Z",
+  "checkedAt": "2026-11-23T11:36:38.480Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -35,10 +35,11 @@
       "evidence": [
         "evidence/ios-package-search/order03-ios602-table-compatibility.json",
         "evidence/ios-package-search/order03-modern-metadata-enums.json",
+        "evidence/ios-package-search/order03-modern-defaults.json",
         "evidence/ios-package-search/order03-value-parser-differential.json",
         "evidence/ios-package-search/order03-short-ai-tail.json"
       ],
-      "remaining": "Modern candidate number provenance is verified. Link the delivered CSV version/transformation to its intended client/rebuild contract; original source-client version and modern empty/default behavior remain unverified. Old schema cannot represent 40 names in the selected fields. Do not remove them."
+      "remaining": "Modern candidate numbers and original Windows numeric-default paths have metadata/binary evidence. These are static Windows observations, not 25-value/36-row IL2CPP execution, full CSV/AI or original iOS semantics. Link the delivered CSV version/transformation to its intended client/rebuild contract; original source-client version remains unverified. Old schema cannot represent 40 checked names; retain the modern scope."
     },
     {
       "id": "actual_deployed_version_and_quest_scope",
@@ -75,6 +76,10 @@
     {
       "file": "evidence/ios-package-search/order03-ios602-table-compatibility.json",
       "sha256": "af99a31952a2b0c74b47f753bad86fd2ad33e8de2df3c6a5ffeb57b573a5a54b"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-defaults.json",
+      "sha256": "be989ba0b84ff29bfb5ca6fd67139bd82f6bc67cd7a5ba47d0186a9bc5ec753f"
     },
     {
       "file": "evidence/ios-package-search/order03-value-parser-differential.json",

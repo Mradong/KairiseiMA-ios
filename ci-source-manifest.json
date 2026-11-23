@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T11:22:59.368Z",
+  "generatedAt": "2026-11-23T11:37:55.436Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,18 +35,18 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 121611,
-      "sha256": "4d26d7c4a6a1e1c2df59873179d1d1e106e8bfb34c3a2e125ba3a5dab705a621"
+      "bytes": 122476,
+      "sha256": "1ea579476c4c3c9d6f49743588d9a22aa1f3d7e74cc07ce2d9a9eefa33222ade"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 69587,
-      "sha256": "4b38fb7b6b18955809e87282986d10b587c77d89895ce05f81642c99a4d39ad0"
+      "bytes": 71397,
+      "sha256": "d0ca631575ecfec34eff5b4b02e1fbffb86acef81403f915181afcc8708fa4ec"
     },
     {
       "path": "evidence/feature-coverage.md",
-      "bytes": 11358,
-      "sha256": "6b17ea5ddece8aa0cc72b5479e7a6401fa8efc8242c2cf352c854811b039f1f4"
+      "bytes": 11783,
+      "sha256": "7050bebbee97b12da6a6b20a5ec26e94d8f6e9ad43330dceb1ec344558aa7e19"
     },
     {
       "path": "evidence/ios-package-search/cn602-import.json",
@@ -509,6 +509,11 @@
       "sha256": "fe913d8dabf52c42e4d1acad1126fffa0e8a29ff562b43efbce43f90b4fa49bd"
     },
     {
+      "path": "evidence/ios-package-search/order03-modern-defaults.json",
+      "bytes": 9765,
+      "sha256": "be989ba0b84ff29bfb5ca6fd67139bd82f6bc67cd7a5ba47d0186a9bc5ec753f"
+    },
+    {
       "path": "evidence/ios-package-search/order03-modern-enum-differential.json",
       "bytes": 3628,
       "sha256": "583e917f18dfcc586bcff6241e50f18dbd5e94aa25f31da16db8b3aea04e2688"
@@ -540,8 +545,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 4880,
-      "sha256": "e5fcc7734205cd17c1e3e528158fdaab185fc4fabc0ea54b60896094c2a33f35"
+      "bytes": 5242,
+      "sha256": "62687788a1a843b84f13e8a2346d37818beb8ca1f66f4c0ba1e71df6546537ef"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -931,7 +936,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "5d0501f02fc8d86899c83ecb6da69592339b1b3042205d7a5111cd243d28ff88"
+      "sha256": "90d179c905ecca673215b0463512c25205cbbad6918f32919b35db0fff288a3c"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1374,6 +1379,11 @@
       "sha256": "f525d53b2d60b6efec424736a9a5a9531a67bbd70f864048b607aba2a1df5ec5"
     },
     {
+      "path": "scripts/audit-order03-modern-defaults.mjs",
+      "bytes": 13655,
+      "sha256": "12310a33ddbb95d743107dd95bf6dd1d54bb9b0eae93e6584b480e62a886e0c0"
+    },
+    {
       "path": "scripts/audit-order03-modern-metadata-enums.mjs",
       "bytes": 7927,
       "sha256": "a49239df46ee21e98639632e5b75dd266bb54ad480b2de2b5ffce1332b575a43"
@@ -1395,8 +1405,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 4403,
-      "sha256": "3b66042c2d3d15d77f32f1b7ec27f91dff44cb0cde6a2a71dbfc05778c806b8b"
+      "bytes": 4897,
+      "sha256": "d04b79b88e60ae45814f9db83da968cfad0cd7321da6390cf267d67fd01fdfab"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1800,18 +1810,18 @@
     },
     {
       "path": "战斗主表接入.md",
-      "bytes": 8041,
-      "sha256": "8d9b8282b2f8b89cbc5c8a9c2a0cbf7f4accb209c4423c0170e8c31a4bdc9714"
+      "bytes": 8390,
+      "sha256": "654467f435ace13e81f7a01b50919c5e2c741798d987f6f9657bb45577ad190b"
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 34531,
-      "sha256": "b9a768ad163cc31ae6dc6085850727594e03d16a732240e1d3560d9716c9633c"
+      "bytes": 35123,
+      "sha256": "dc05ada81f6e7534a5048dabb3aca44e7b6be92045bc8f25b544eaf774b8d8e6"
     },
     {
       "path": "服务端协作需求.md",
-      "bytes": 12494,
-      "sha256": "a19affc2714a0378512d55f3061b891061be155df316fd29ab202d9626c0799a"
+      "bytes": 13018,
+      "sha256": "0e1c5845519dd35840ab72dd413dd03dae44626991ef603cd0868013b15b95f8"
     },
     {
       "path": "详细执行计划.md",
@@ -1825,11 +1835,11 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 8582,
-      "sha256": "60e2da41decb020a827687789dde6288d47c28f42b2af5946e86dfd3fb47d42a"
+      "bytes": 8907,
+      "sha256": "8316494fe79ef7af2f56fb5849cc2353aed96537253b1d071ccd546e0386d2b7"
     }
   ],
-  "bytes": 22945249,
+  "bytes": 22974415,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Source checkpoint after independent metadata enum extraction and table compatibility analysis. Prior checkpoint 9872704 uploaded using existing GitHub CLI credentials. No new cloud build, real admission, Unity or device claim; raw metadata/archives/tools remain excluded."
+  "execution": "Source checkpoint after static Windows numeric-default analysis; no IL2CPP input execution, cloud build, real battle admission or iOS/device claim. Original binaries, metadata, CSV inputs and local tools excluded."
 }

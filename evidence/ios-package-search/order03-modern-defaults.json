@@ -1,0 +1,351 @@
+{
+  "checkedAt": "2026-11-23T11:36:38.293Z",
+  "staticChecksPassed": true,
+  "runtimeExecuted": false,
+  "source": {
+    "binary": "GameAssembly.dll",
+    "binarySha256": "ace0b9692a83dc6c1fbc0c2e6663efbc0a0e41bc682eee03c86eba1d5be7834b",
+    "metadata": "ClientRebuild6_Data/il2cpp_data/Metadata/global-metadata.dat",
+    "metadataSha256": "fd31c0a95cc4ef80e99643c0dff8afb2ef516625ec86b3e4863ad48a54596294",
+    "platform": "Windows amd64",
+    "unity": "6000.3.26f1"
+  },
+  "scriptSha256": "12310a33ddbb95d743107dd95bf6dd1d54bb9b0eae93e6584b480e62a886e0c0",
+  "independentEnumReaderSha256": "983e83304c72a83a9c2012d15a592fc240b79d60d3f90f0ab297659d46089b1d",
+  "tooling": [
+    {
+      "file": "tools/rea/node_modules/rea-agents/dist/il2cpp/Il2cppMetadataFile.js",
+      "sha256": "e8d4ed0298625f9d44e3acc658f6c695bb41153064c6597089014ee8dda74479"
+    },
+    {
+      "file": "tools/rea/node_modules/rea-agents/dist/il2cpp/Il2cppBinaryFile.js",
+      "sha256": "b9a16f79a14c4f50210c5c2b62971d2d6d9038fb239ed89defd0faf40c0165eb"
+    }
+  ],
+  "auditSourceHashes": {
+    "rawRoleObservations": "a1b35590ca287ce7a51308330290d87aeab721cf68b17d6232847076f65f0cc8",
+    "shortAiObservations": "ba05000cd0108ae65500de2c33af862322ca6d98168bc4f711baa378f32c614d"
+  },
+  "methods": [
+    {
+      "type": "SkillDataContainer",
+      "name": "getRoleParam",
+      "methodIndex": 5908,
+      "token": "0x6001715",
+      "state": "code",
+      "address": "0x180380370",
+      "rva": "0x380370"
+    },
+    {
+      "type": "Global",
+      "name": "parseInt",
+      "methodIndex": 12787,
+      "token": "0x60031f4",
+      "state": "code",
+      "address": "0x180550080",
+      "rva": "0x550080"
+    },
+    {
+      "type": "Global",
+      "name": "parseLong",
+      "methodIndex": 12791,
+      "token": "0x60031f8",
+      "state": "code",
+      "address": "0x1805500f0",
+      "rva": "0x5500f0"
+    },
+    {
+      "type": "System.Int32",
+      "name": "TryParse",
+      "methodIndex": 37386,
+      "token": "0x60007e9",
+      "state": "code",
+      "address": "0x181890fb0",
+      "rva": "0x1890fb0"
+    },
+    {
+      "type": "System.Int64",
+      "name": "TryParse",
+      "methodIndex": 37419,
+      "token": "0x600080a",
+      "state": "code",
+      "address": "0x181891d70",
+      "rva": "0x1891d70"
+    },
+    {
+      "type": "System.String",
+      "name": "op_Equality",
+      "methodIndex": 35971,
+      "token": "0x6000262",
+      "state": "code",
+      "address": "0x1816e1cc0",
+      "rva": "0x16e1cc0"
+    },
+    {
+      "type": "System.String",
+      "name": "IsNullOrEmpty",
+      "methodIndex": 36001,
+      "token": "0x6000280",
+      "state": "code",
+      "address": "0x1816e4260",
+      "rva": "0x16e4260"
+    },
+    {
+      "type": "CSV",
+      "name": "getParamCount",
+      "methodIndex": 10535,
+      "token": "0x6002928",
+      "state": "code",
+      "address": "0x1804cd960",
+      "rva": "0x4cd960"
+    },
+    {
+      "type": "CSV",
+      "name": "isParamEmpty",
+      "methodIndex": 10536,
+      "token": "0x6002929",
+      "state": "code",
+      "address": "0x1804cdee0",
+      "rva": "0x4cdee0"
+    },
+    {
+      "type": "CSV",
+      "name": "getLong",
+      "methodIndex": 10542,
+      "token": "0x600292f",
+      "state": "code",
+      "address": "0x1804cd8d0",
+      "rva": "0x4cd8d0"
+    },
+    {
+      "type": "CSV",
+      "name": "popLong",
+      "methodIndex": 10550,
+      "token": "0x6002937",
+      "state": "code",
+      "address": "0x1804ceaa0",
+      "rva": "0x4ceaa0"
+    },
+    {
+      "type": "EnemyAIOrderDataContainer",
+      "name": "ParseTrigger",
+      "methodIndex": 507,
+      "token": "0x60001fc",
+      "state": "code",
+      "address": "0x1802f9e70",
+      "rva": "0x2f9e70"
+    }
+  ],
+  "instructionChecks": [
+    {
+      "label": "role-rule dispatch upper bound",
+      "rva": "0x380444",
+      "bytes": "83fa0c772c"
+    },
+    {
+      "label": "role-rule dispatch table",
+      "rva": "0x380453",
+      "bytes": "8b8c82b80738004803caffe1"
+    },
+    {
+      "label": "VALUE string equality",
+      "rva": "0x38046c",
+      "targetRva": "0x16e1cc0"
+    },
+    {
+      "label": "VALUE null/empty check",
+      "rva": "0x38048f",
+      "targetRva": "0x16e4260"
+    },
+    {
+      "label": "special literal returns minus one",
+      "rva": "0x380471",
+      "bytes": "84c07415b8ffffffff"
+    },
+    {
+      "label": "VALUE passes explicit default zero",
+      "rva": "0x3804b1",
+      "bytes": "4533c033d2488bcb"
+    },
+    {
+      "label": "VALUE calls Global.parseInt",
+      "rva": "0x3804c8",
+      "targetRva": "0x550080"
+    },
+    {
+      "label": "parseInt saves caller default",
+      "rva": "0x550091",
+      "bytes": "8bda488bf9"
+    },
+    {
+      "label": "parseInt calls Int32.TryParse",
+      "rva": "0x5500d3",
+      "targetRva": "0x1890fb0"
+    },
+    {
+      "label": "parseInt chooses parsed value or saved default",
+      "rva": "0x5500d8",
+      "bytes": "84c08bc374048b442438"
+    },
+    {
+      "label": "parseLong calls Int64.TryParse",
+      "rva": "0x550145",
+      "targetRva": "0x1891d70"
+    },
+    {
+      "label": "parseLong chooses parsed value or saved default",
+      "rva": "0x55014a",
+      "bytes": "84c0488bc37405488b442430"
+    },
+    {
+      "label": "missing CSV column enters empty branch",
+      "rva": "0x4cdf1e",
+      "bytes": "3bd8488b5c24307d37"
+    },
+    {
+      "label": "empty-column predicate returns true",
+      "rva": "0x4cdf5e",
+      "bytes": "b0014883c4205fc3"
+    },
+    {
+      "label": "getLong checks empty column",
+      "rva": "0x4cd901",
+      "targetRva": "0x4cdee0"
+    },
+    {
+      "label": "getLong branches to caller default when empty",
+      "rva": "0x4cd906",
+      "bytes": "84c07542"
+    },
+    {
+      "label": "getLong returns saved default",
+      "rva": "0x4cd94c",
+      "bytes": "488b5c2430488bc74883c4205fc3"
+    },
+    {
+      "label": "nonempty getLong calls parseLong",
+      "rva": "0x4cd947",
+      "targetRva": "0x5500f0"
+    },
+    {
+      "label": "popLong saves caller default",
+      "rva": "0x4ceab1",
+      "bytes": "488bf2488bf9"
+    },
+    {
+      "label": "popLong checks empty column",
+      "rva": "0x4cead6",
+      "targetRva": "0x4cdee0"
+    },
+    {
+      "label": "empty popLong skips parsing",
+      "rva": "0x4ceadb",
+      "bytes": "84c0753b"
+    },
+    {
+      "label": "popLong keeps return value and does not advance beyond row end",
+      "rva": "0x4ceb2e",
+      "bytes": "3bd8488bc67d16"
+    },
+    {
+      "label": "nonempty popLong calls parseLong",
+      "rva": "0x4ceb12",
+      "targetRva": "0x5500f0"
+    },
+    {
+      "label": "trigger dispatch subtracts three and checks unsigned range",
+      "rva": "0x2f9faf",
+      "bytes": "83c3fd83fb44"
+    },
+    {
+      "label": "trigger two-level dispatch tables",
+      "rva": "0x2f9fc5",
+      "bytes": "410fb6840758b02f00418b8c87f0af2f004903cfffe1"
+    },
+    {
+      "label": "generic numeric trigger passes default zero",
+      "rva": "0x2faf33",
+      "bytes": "4533c033d2488bcd"
+    },
+    {
+      "label": "generic numeric trigger calls popLong",
+      "rva": "0x2faf3e",
+      "targetRva": "0x4ceaa0"
+    },
+    {
+      "label": "USER_DEAD handles its first selector separately",
+      "rva": "0x2fab5c",
+      "bytes": "85db7420"
+    },
+    {
+      "label": "USER_DEAD numeric tail passes default zero",
+      "rva": "0x2fab60",
+      "bytes": "4533c033d2"
+    },
+    {
+      "label": "USER_DEAD numeric tail calls popLong",
+      "rva": "0x2fab65",
+      "targetRva": "0x4ceaa0"
+    }
+  ],
+  "valueRule": {
+    "ordinal": 1,
+    "targetRva": "0x38045f",
+    "sentinel": "ALL",
+    "sentinelResult": -1,
+    "literalIndex": 1938,
+    "normalPath": "Int32.TryParse with explicit default 0"
+  },
+  "rawValueLocationsAndRulesChecked": 25,
+  "rawValueCategories": {
+    "INT": 5,
+    "MND": 14,
+    "DARK": 2,
+    "5000000000": 4
+  },
+  "shortAiRowsChecked": 36,
+  "missingNumericTailFields": 206,
+  "triggerCases": [
+    {
+      "name": "HEAL_TOTAL",
+      "ordinal": 13,
+      "selectorGroup": 1,
+      "targetRva": "0x2faf18",
+      "firstParameterSpecial": false
+    },
+    {
+      "name": "DAMAGE",
+      "ordinal": 9,
+      "selectorGroup": 1,
+      "targetRva": "0x2faf18",
+      "firstParameterSpecial": false
+    },
+    {
+      "name": "MAGIC_DAMAGE",
+      "ordinal": 2,
+      "selectorGroup": null,
+      "targetRva": "0x2faf18",
+      "firstParameterSpecial": false
+    },
+    {
+      "name": "PHYSIC_DAMAGE",
+      "ordinal": 1,
+      "selectorGroup": null,
+      "targetRva": "0x2faf18",
+      "firstParameterSpecial": false
+    },
+    {
+      "name": "USER_DEAD",
+      "ordinal": 39,
+      "selectorGroup": 12,
+      "targetRva": "0x2fab37",
+      "firstParameterSpecial": true
+    }
+  ],
+  "sourceHashes": {
+    "skill_role_enemy.csv": "67d981ed4119561ef4af116c1c05a3697e9b015d87983c0f835ccf5a2a965ec1",
+    "skill_role_param_rule.csv": "2118fad5f60f40a1c62613a3ade6d0200bb9271049c30f4e339b6f9ce7f76b1a",
+    "enemy_ai_order.csv": "307707a019a68a9beaff64f6ee575ff2f3d1331b5e0d52e29caf6b44ab2f4afe"
+  },
+  "scope": "Static original Windows rebuild analysis only. Metadata tokens, module method pointers and binary instruction bytes cross-check helper calls, VALUE dispatch and ALL literal, invalid Int32 fallback, out-of-row CSV defaults and numeric trigger-tail paths. Original raw locations and VALUE rules rechecked. This is not execution of these 25 values/36 rows through IL2CPP, original 6.0.2 behavior, raw CSV-to-string-array parser equivalence, runtime trigger-array length, USER_DEAD selector semantics, full AI/effects, shared server/client original version, live service, Unity/iOS/ARM64/device proof. Static behavior applies when valid CSV state requests these numeric slots; the raw tables and candidate are not modified."
+}
