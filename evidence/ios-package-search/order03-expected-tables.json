@@ -1,0 +1,153 @@
+{
+  "schemaVersion": 1,
+  "sourceArchiveSha256": "a44390313bb4a0d13897b70f35c313bafd380282189b44689e8a48340c6621ce",
+  "sourceHashListSha256": "d6619cd8acc8f8a3d60931e7b6404d0164198ef43684d2cdb5986160217d3661",
+  "tables": [
+    {
+      "name": "card.csv",
+      "bytes": 16226555,
+      "sha256": "0aefe9e72cd9212b69e04178f947b78265c3dc0036495b348d01e43d08050813"
+    },
+    {
+      "name": "buddy.csv",
+      "bytes": 173321,
+      "sha256": "0538f1628c4a61fc3365b86b0d96e8c6893ff64f9894ebd76fdca455ab45e8b1"
+    },
+    {
+      "name": "sphr.csv",
+      "bytes": 59454,
+      "sha256": "52d1c8633b2580a4e2f55c5dda9600470edcd86b9d7455b284b926f7b34bdd02"
+    },
+    {
+      "name": "burst_gauge.csv",
+      "bytes": 184,
+      "sha256": "5df6dfb9ec02a8b7a3f1ad60091ac84e51256c80093cd9ed7ac728d3d3f7e983"
+    },
+    {
+      "name": "burst_gauge_reaction_rate.csv",
+      "bytes": 119,
+      "sha256": "1e227b09ca0b94a25674ff1356e67db64617e19f4a3278ef84e206c07faf56fb"
+    },
+    {
+      "name": "skill_player.csv",
+      "bytes": 5177249,
+      "sha256": "d7bf4e81478ae571ce18d1060bf226d413b1f2bd8e50ab734e59afa6eb717a85"
+    },
+    {
+      "name": "skill_role_player.csv",
+      "bytes": 5926156,
+      "sha256": "2ec44156cda18b6399edfc165b2c7567545f4ed6914de7ec6a4dc65944da6cef"
+    },
+    {
+      "name": "burst_skill.csv",
+      "bytes": 197012,
+      "sha256": "8569077bb1beb81f3e80d7ed40e125c0847a3e81c9f05b2f058181ecdf371fbb"
+    },
+    {
+      "name": "burst_skill_role.csv",
+      "bytes": 174669,
+      "sha256": "25a5284b1825762fe7412b68b6507c322bcfebaae5f1ff7372100c6a6d5ca72d"
+    },
+    {
+      "name": "support_skill.csv",
+      "bytes": 1707169,
+      "sha256": "dd27f0cc8f47b430e366aefc630de734831ed9ded0727655a85448746349aecc"
+    },
+    {
+      "name": "support_skill_lvup.csv",
+      "bytes": 107,
+      "sha256": "4618f0b81b8de51b6cd6b3ad274ba142942bcc5e71a90988e33ba6240eb14b76"
+    },
+    {
+      "name": "support_skill_role.csv",
+      "bytes": 768063,
+      "sha256": "d9967895742976b218a51d61013e9041dbee23d4c5d0fdcffffc9c70811a4b3a"
+    },
+    {
+      "name": "skill_role_param_rule.csv",
+      "bytes": 15806,
+      "sha256": "2118fad5f60f40a1c62613a3ade6d0200bb9271049c30f4e339b6f9ce7f76b1a"
+    },
+    {
+      "name": "enemy_party.csv",
+      "bytes": 530898,
+      "sha256": "15837f4a7e61c1a635860bc58619e0e9943a7352d5705e16c7b95840cc399fa2"
+    },
+    {
+      "name": "enemy.csv",
+      "bytes": 1999410,
+      "sha256": "e5131cc13d36bfc14269c8ca4c23feed53343835ad2c36798c9d9d62ebf3e3a0"
+    },
+    {
+      "name": "enemy_lvup.csv",
+      "bytes": 10260444,
+      "sha256": "6041b87fb7d00ae0196f71eb7715d9493180fd8b54579a545368fe486ac78201"
+    },
+    {
+      "name": "enemy_ai_order.csv",
+      "bytes": 1928564,
+      "sha256": "307707a019a68a9beaff64f6ee575ff2f3d1331b5e0d52e29caf6b44ab2f4afe"
+    },
+    {
+      "name": "skill_enemy.csv",
+      "bytes": 4142486,
+      "sha256": "0be0e106f6ee025c21fd939eb89a4c9d374dcfe27b187e56e423d9af5bbcabf0"
+    },
+    {
+      "name": "skill_role_enemy.csv",
+      "bytes": 6048035,
+      "sha256": "67d981ed4119561ef4af116c1c05a3697e9b015d87983c0f835ccf5a2a965ec1"
+    },
+    {
+      "name": "enemy_trance_gauge_reaction.csv",
+      "bytes": 864,
+      "sha256": "2b630151ce283788b428d40581effdbaa35b2c06a9149c3d5f8dc314d86e722b"
+    },
+    {
+      "name": "skill_player_alchemist.csv",
+      "bytes": 259334,
+      "sha256": "fb10bca663567cd2a801910a172374e79d376890dd62b335cdf13a6580521b41"
+    },
+    {
+      "name": "skill_role_player_alchemist.csv",
+      "bytes": 93827,
+      "sha256": "0927545b822b2b9032a099465901283631fc7486c998f93d55c65a5c657345ad"
+    },
+    {
+      "name": "tower_skill_enemy.csv",
+      "bytes": 45400,
+      "sha256": "78de08ec141087a06dd628ecdd55aa02b6e7a4f8523ee1c8aa8a79af378267a7"
+    },
+    {
+      "name": "tower_skill_role_enemy.csv",
+      "bytes": 65703,
+      "sha256": "f94a89efcaa667fe9700b95711195b7346a98ddfb97d4725c08d63cc7191725f"
+    },
+    {
+      "name": "tower_enemy_ai_order.csv",
+      "bytes": 12787,
+      "sha256": "c738f2a809416eca1f9aff17c51ec2ddfc0444cf545447f22f7f8579752bf0a2"
+    },
+    {
+      "name": "card_alchemist.csv",
+      "bytes": 1251282,
+      "sha256": "63e7033905eedc505f52fe3f88b724d6d83994f3a7472cf0339125575ff5b31e"
+    },
+    {
+      "name": "summons.csv",
+      "bytes": 80160,
+      "sha256": "49baebd50461a24585d76c4b547f6bb97c96fde06e8279840253be75979ee54a"
+    },
+    {
+      "name": "npc_ai.csv",
+      "bytes": 46846,
+      "sha256": "4296e1e4cedbb7a0498cdd119a0d999578c3284e4acbcca3d189b6990b84698d"
+    },
+    {
+      "name": "npc_ai_situation_param_rule.csv",
+      "bytes": 757,
+      "sha256": "3f85a668560d5ec47a8d7fcee79496b331e098a16ebfea15d91d2d4ce223b351"
+    }
+  ],
+  "scope": "Known delivered disk-file identities only; does not prove current server loading or original source-client version."
+}

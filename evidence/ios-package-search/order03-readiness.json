@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-23T11:36:38.480Z",
+  "checkedAt": "2026-11-23T11:53:39.823Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -46,9 +46,12 @@
       "state": "awaiting_server_evidence",
       "evidence": [
         "evidence/ios-package-search/order03-server-delivery-validation.json",
-        "evidence/ios-package-search/order03-quest-variant-gap.json"
+        "evidence/ios-package-search/order03-quest-variant-gap.json",
+        "evidence/ios-package-search/order03-public-version-evidence.json",
+        "evidence/ios-package-search/order03-server-supplement.json",
+        "evidence/ios-package-search/order03-runtime-collector-tests.json"
       ],
-      "remaining": "Confirm running source/build and effective loaded table/quest snapshot, 1043 own-deck variants and one other quest outside the static projection. Disk paths/hashes and shape matches alone are insufficient."
+      "remaining": "Public health has no version/snapshot fields. A tested read-only collector and supplemental handoff are prepared, but not executed on the server. Confirm running source/build and effective loaded table/quest snapshot, 1043 own-deck variants and one other quest outside the static projection. Disk paths/hashes and shape matches alone are insufficient."
     },
     {
       "id": "safe_battle_contract_and_redacted_interface_evidence",
@@ -92,6 +95,18 @@
     {
       "file": "evidence/ios-package-search/order03-quest-variant-gap.json",
       "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-public-version-evidence.json",
+      "sha256": "19970feb495a1b1f16518c95102c00e378bdf4fd3083f849f34cf0371f09c4f6"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-server-supplement.json",
+      "sha256": "c22d8b3678c1c0345d662da72e55a25c9b9f5ae290697ffce1b9b231a23be4e0"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-collector-tests.json",
+      "sha256": "d93329d9f6f120c368b2f45fe695020deae7d9fc71fbc210e333d792b8bb8e6c"
     },
     {
       "file": "evidence/ios-package-search/order03-isolated-deck-contract.json",

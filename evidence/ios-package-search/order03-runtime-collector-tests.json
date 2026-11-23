@@ -1,0 +1,46 @@
+{
+  "checkedAt": "2026-11-23T11:53:03.611Z",
+  "success": true,
+  "cases": [
+    {
+      "case": "complete_synthetic_tables",
+      "matched": 29,
+      "loadedContentRemainsUnknown": true
+    },
+    {
+      "case": "selected_powershell_process",
+      "matched": 29,
+      "loadedContentRemainsUnknown": true
+    },
+    {
+      "case": "existing_evidence_not_overwritten",
+      "rejected": true
+    },
+    {
+      "case": "split_card_and_battle_directories",
+      "matched": 29,
+      "loadedContentRemainsUnknown": true
+    },
+    {
+      "case": "changed_table_detected",
+      "matched": 28,
+      "loadedContentRemainsUnknown": true
+    },
+    {
+      "case": "missing_table_detected",
+      "matched": 27,
+      "loadedContentRemainsUnknown": true
+    },
+    {
+      "case": "non_allowlisted_path_rejected",
+      "rejected": true
+    },
+    {
+      "case": "output_outside_handoff_rejected",
+      "rejected": true
+    }
+  ],
+  "collectorSha256": "57881413c4367d3a7ed5bde0d65115ec6ef1b8e091da0540fcee98cc3417792c",
+  "scriptSha256": "955c1fcde564afcf5321404b13ec94e8eac68cef46e07a1b9d1bc5f495d6c8d7",
+  "scope": "Local Windows PowerShell with 29 explicitly synthetic CSV files, changed/missing file detection, path allowlist, output boundary and overwrite rejection. One case observes only its own PowerShell process and disk image, not a game server. No production data, network or account operation. Collector validation only; not deployed-server evidence."
+}

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T11:37:55.436Z",
+  "generatedAt": "2026-11-23T11:53:40.076Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 122476,
-      "sha256": "1ea579476c4c3c9d6f49743588d9a22aa1f3d7e74cc07ce2d9a9eefa33222ade"
+      "bytes": 124481,
+      "sha256": "9244d81d6de853e2741c1d5d06e5bf45a1890790c3f3a6394673c0bc244dab62"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 71397,
-      "sha256": "d0ca631575ecfec34eff5b4b02e1fbffb86acef81403f915181afcc8708fa4ec"
+      "bytes": 73195,
+      "sha256": "90e0f6a499af18c71e52d0c68c3ca237a730790987512d878585bc82106c51e1"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -469,6 +469,11 @@
       "sha256": "492d4491620acaa543c087a5afa3452d9a12f56cb2982b928d9f96ea899d5b23"
     },
     {
+      "path": "evidence/ios-package-search/order03-expected-tables.json",
+      "bytes": 4869,
+      "sha256": "8bdca44e94cb97639ba52057ecbfe6ac0de37174bf06a6f2b1adbf7928fc7750"
+    },
+    {
       "path": "evidence/ios-package-search/order03-ios602-enums.json",
       "bytes": 158956,
       "sha256": "db10dfc1e8aaf9efd14edab967b3a406cb665e92abbae3ff075344e30caa30e7"
@@ -539,14 +544,19 @@
       "sha256": "0ad6fbe6399750c560c1603b02e036213d5217c8904a1dd13f9b03f7735044ab"
     },
     {
+      "path": "evidence/ios-package-search/order03-public-version-evidence.json",
+      "bytes": 821,
+      "sha256": "19970feb495a1b1f16518c95102c00e378bdf4fd3083f849f34cf0371f09c4f6"
+    },
+    {
       "path": "evidence/ios-package-search/order03-quest-variant-gap.json",
       "bytes": 2479,
       "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 5242,
-      "sha256": "62687788a1a843b84f13e8a2346d37818beb8ca1f66f4c0ba1e71df6546537ef"
+      "bytes": 6138,
+      "sha256": "2283bf490300a900be9f1d4f6ad14ec8f1fe65f24093d32458dda57b339518c8"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -584,9 +594,19 @@
       "sha256": "9da9ecdf1f0003ac6b4e5252ec82a9c33ac0dda6f392afdd839bbe7712583e5f"
     },
     {
+      "path": "evidence/ios-package-search/order03-runtime-collector-tests.json",
+      "bytes": 1471,
+      "sha256": "d93329d9f6f120c368b2f45fe695020deae7d9fc71fbc210e333d792b8bb8e6c"
+    },
+    {
       "path": "evidence/ios-package-search/order03-server-delivery-validation.json",
       "bytes": 3590,
       "sha256": "60060313a36020fbbfffe3cdacacb0b12c58c2de0ce973582289043ec033b941"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-server-supplement.json",
+      "bytes": 2606,
+      "sha256": "c22d8b3678c1c0345d662da72e55a25c9b9f5ae290697ffce1b9b231a23be4e0"
     },
     {
       "path": "evidence/ios-package-search/order03-short-ai-tail.json",
@@ -936,7 +956,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "90d179c905ecca673215b0463512c25205cbbad6918f32919b35db0fff288a3c"
+      "sha256": "65a4c067c7bb1596f199d1de0b870bd30ec82954d3680eebc9c3c9c98bfced0c"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1264,6 +1284,11 @@
       "sha256": "fdbe83508abe950f82ab10d163b40ca93d14d0b99edd008999d37d5417018430"
     },
     {
+      "path": "scripts/Collect-Order03RuntimeEvidence.ps1",
+      "bytes": 9842,
+      "sha256": "57881413c4367d3a7ed5bde0d65115ec6ef1b8e091da0540fcee98cc3417792c"
+    },
+    {
       "path": "scripts/Get-IosClient004CloudBuild.ps1",
       "bytes": 4280,
       "sha256": "d9b523b64229f86c7d7461c9b4f482a7940bf5872ac5ffa128f2c909561af961"
@@ -1405,8 +1430,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 4897,
-      "sha256": "d04b79b88e60ae45814f9db83da968cfad0cd7321da6390cf267d67fd01fdfab"
+      "bytes": 5411,
+      "sha256": "ce3b9c0b32dcd3952467ce2eb5cb705aaf6976a49cbfa51de82cc90ef7bb36c7"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1434,6 +1459,11 @@
       "sha256": "78519bd27fa22a65364f7648867bcbb8b2e65e6d8acf5479edf4b506c7e65d1a"
     },
     {
+      "path": "scripts/prepare-order03-server-handoff.mjs",
+      "bytes": 5352,
+      "sha256": "1dda15dc456520f0d613219ceea0dee127cc1314b88b71cb73a6ea8e8bc9c476"
+    },
+    {
       "path": "scripts/prepare-registered-wave-checkpoint.mjs",
       "bytes": 4060,
       "sha256": "2d7834faba539ff7fe694f6e95ac198b0a272db8844ac2d99a48a86076bab8f8"
@@ -1457,6 +1487,11 @@
       "path": "scripts/probe-order03-isolated-quest-contract.mjs",
       "bytes": 4616,
       "sha256": "15ad363aa6ed14b984abe35de1a1fbabba5b75cf09ff1c59703272552bc5d2ef"
+    },
+    {
+      "path": "scripts/probe-order03-public-version-evidence.mjs",
+      "bytes": 2595,
+      "sha256": "4bb2acedcb5afab6f34be58e47ea4b095f0bf1ee4805fbe06cbf784bbe172753"
     },
     {
       "path": "scripts/probe-order03-quest-variant-gap.mjs",
@@ -1562,6 +1597,11 @@
       "path": "scripts/test-order03-role-alias-differential.mjs",
       "bytes": 4067,
       "sha256": "8a551b9ddcad123e1434479d76b577023356ab5e1373087382a206a5d8ec1297"
+    },
+    {
+      "path": "scripts/test-order03-runtime-evidence.mjs",
+      "bytes": 4914,
+      "sha256": "955c1fcde564afcf5321404b13ec94e8eac68cef46e07a1b9d1bc5f495d6c8d7"
     },
     {
       "path": "scripts/test-order03-turn-query.mjs",
@@ -1815,8 +1855,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 35123,
-      "sha256": "dc05ada81f6e7534a5048dabb3aca44e7b6be92045bc8f25b544eaf774b8d8e6"
+      "bytes": 36036,
+      "sha256": "636cd3e0f2da014b81bc174bc7ae131e3897dd2f19b717a669da5adb311f8820"
     },
     {
       "path": "服务端协作需求.md",
@@ -1835,11 +1875,16 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 8907,
-      "sha256": "8316494fe79ef7af2f56fb5849cc2353aed96537253b1d071ccd546e0386d2b7"
+      "bytes": 9251,
+      "sha256": "21e43b5dfdb99e12368ab761dcb74b3b9d01a5639e96477e657387287e95a67b"
+    },
+    {
+      "path": "顺序03补充取证说明.md",
+      "bytes": 4121,
+      "sha256": "c13cb807afc2d9d3a0fdb59a96808bd03560266a35f766447d862d7e86f2d1f0"
     }
   ],
-  "bytes": 22974415,
+  "bytes": 23017476,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Source checkpoint after static Windows numeric-default analysis; no IL2CPP input execution, cloud build, real battle admission or iOS/device claim. Original binaries, metadata, CSV inputs and local tools excluded."
+  "execution": "Source checkpoint after public health/version evidence and read-only server supplement preparation. Collector not run on the server; no new cloud build, account or battle operation. Raw CSVs, originals, tools and archives excluded."
 }

@@ -1,0 +1,20 @@
+{
+  "checkedAt": "2026-11-23T11:49:19.843Z",
+  "origin": "http://47.116.51.61:27040",
+  "method": "GET",
+  "path": "/healthz",
+  "healthPass": true,
+  "runtimeVersionEstablished": false,
+  "effectiveTableSnapshotEstablished": false,
+  "scope": "Only the documented public health route; no session, guest/character creation, account/business API, admission or configuration access. Health is not proof of build version or effective loaded tables.",
+  "httpStatus": 200,
+  "fieldsPresent": [
+    "state",
+    "battle_port",
+    "battle_rooms"
+  ],
+  "versionFieldPresent": false,
+  "otherFieldCount": 0,
+  "reason": "Health response exposes no selected version/build/commit/resource-snapshot fields. Server-side evidence is required.",
+  "scriptSha256": "4bb2acedcb5afab6f34be58e47ea4b095f0bf1ee4805fbe06cbf784bbe172753"
+}
