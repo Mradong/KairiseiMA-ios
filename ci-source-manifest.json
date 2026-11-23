@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-23T10:58:42.333Z",
+  "generatedAt": "2026-11-23T11:01:30.922Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,8 +35,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 119286,
-      "sha256": "0fbb0fde90f0bfe1313441291cca2db62f4c9961eee76a83f469f927e7620f11"
+      "bytes": 119539,
+      "sha256": "a2f8210a6fd1ddebdb6708e9c1f18f63e1aac2e33eeff2117e89a36b9f0e6fe2"
     },
     {
       "path": "evidence/acceptance.json",
@@ -1745,8 +1745,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 33127,
-      "sha256": "245c123a8ac757cfdf645510b8f6142d450dec75a3ceee0d5c568040b6b7ed2f"
+      "bytes": 33334,
+      "sha256": "4a5f3c8504b0d10367e7c6e26d7bc3453e8b14290c1241980e957c7d2068fb3b"
     },
     {
       "path": "服务端协作需求.md",
@@ -1769,7 +1769,7 @@
       "sha256": "6bd4615eac7d94588f251677aaa5e49e6af14ff66b9f5ae36f3f4c30fc0256e5"
     }
   ],
-  "bytes": 22488613,
+  "bytes": 22489073,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Source checkpoint after Windows synthetic enemy-variable state/branch comparisons. Not an iOS build or device validation; isolated candidate and original binaries are excluded."
+  "execution": "Local source checkpoint after Windows synthetic enemy-variable state/branch comparisons. GitHub push failed because authentication was not completed. No cloud build or device validation; isolated candidate and original binaries are excluded."
 }
