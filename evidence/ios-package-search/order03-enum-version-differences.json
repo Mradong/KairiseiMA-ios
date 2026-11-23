@@ -1,0 +1,489 @@
+{
+  "checkedAt": "2026-11-23T08:57:50.640Z",
+  "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+  "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
+  "scriptSha256": "5eb9eeca7462e9d0cec489190c5705b43ab550ce4781c7e161a39f0e02907370",
+  "families": [
+    {
+      "family": "SKILL_EXTEND_EXEC_ORDER",
+      "legacySha256": "2d3baac3754fd2d4e459fcb2a885715b9e32f0b8b08a82c895970a5e4ea40d09",
+      "legacyMembers": 111,
+      "candidateMembers": 134,
+      "changed": [
+        {
+          "name": "SELF_ENEMY_AI_VAR",
+          "legacy": 110,
+          "candidate": 111,
+          "observations": 555
+        }
+      ],
+      "addedCount": 23,
+      "removedCount": 0,
+      "observedChanged": [
+        {
+          "name": "SELF_ENEMY_AI_VAR",
+          "legacy": 110,
+          "candidate": 111,
+          "observations": 555
+        }
+      ],
+      "observedModernOnly": [
+        {
+          "name": "SELF_TRANCE_GAUGE_VALUE",
+          "observations": 63
+        },
+        {
+          "name": "OWNER_CARD_FAME",
+          "observations": 11
+        },
+        {
+          "name": "TARGET_CARD_ONLY_SELF_PLAY",
+          "observations": 33
+        },
+        {
+          "name": "SUMMONS_EVERY_TURN",
+          "observations": 202
+        },
+        {
+          "name": "OWNER_CARD_DECK_INDEX",
+          "observations": 134
+        },
+        {
+          "name": "CARD_DECK_INDEX",
+          "observations": 44
+        },
+        {
+          "name": "FRIEND_PLAY_COST_NUM",
+          "observations": 6
+        }
+      ],
+      "observedNames": 61,
+      "observations": 21331
+    },
+    {
+      "family": "RARITY",
+      "legacySha256": "137e3a6c108fb7c4478b98cbcdeda059912155cc7339b946601e26bc06deffba",
+      "legacyMembers": 9,
+      "candidateMembers": 11,
+      "changed": [],
+      "addedCount": 2,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [
+        {
+          "name": "TOKEN_GOOD",
+          "observations": 1
+        },
+        {
+          "name": "TOKEN_BAD",
+          "observations": 1
+        }
+      ],
+      "observedNames": 10,
+      "observations": 11083
+    },
+    {
+      "family": "SKILL_TYPE",
+      "legacySha256": "0db423a051aaa76c90a106d856a89a88c8d89aefdff1f0c2ec63ab8aaf7d5848",
+      "legacyMembers": 7,
+      "candidateMembers": 7,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 3,
+      "observations": 8893
+    },
+    {
+      "family": "SKILL_KIND",
+      "legacySha256": "1312b7560a577f0f130e472bcdcd426b54f7adcc697c59119c2df3d3439b43bd",
+      "legacyMembers": 8,
+      "candidateMembers": 8,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 7,
+      "observations": 66915
+    },
+    {
+      "family": "ATTR",
+      "legacySha256": "78f70715eb13a6cc0ef5da50355e7790228534378daab6617467f9e5afa3ba53",
+      "legacyMembers": 20,
+      "candidateMembers": 20,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 16,
+      "observations": 83089
+    },
+    {
+      "family": "JOB_TYPE",
+      "legacySha256": "ed65eaf5dfe1de3d204738f3cc6b79050f217ee3ec62c33dd7b2472ac9c5763b",
+      "legacyMembers": 5,
+      "candidateMembers": 6,
+      "changed": [],
+      "addedCount": 1,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [
+        {
+          "name": "ALCHEMIST",
+          "observations": 1176
+        }
+      ],
+      "observedNames": 5,
+      "observations": 29749
+    },
+    {
+      "family": "ARTHUR_TYPE",
+      "legacySha256": "bd4018ccd85434b350d49a430ee69ac4173cd187098a01db0c085a640a210c47",
+      "legacyMembers": 5,
+      "candidateMembers": 6,
+      "changed": [],
+      "addedCount": 1,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [
+        {
+          "name": "ALCHEMIST",
+          "observations": 1176
+        }
+      ],
+      "observedNames": 5,
+      "observations": 29749
+    },
+    {
+      "family": "SKILL_PHYSICS_TYPE",
+      "legacySha256": "eb4641aee455fe4b14ae0aaa8ca72d31a89261de5ee43d2ef4fcc01e1b81b3f6",
+      "legacyMembers": 3,
+      "candidateMembers": 3,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 3,
+      "observations": 67155
+    },
+    {
+      "family": "SKILL_TARGET",
+      "legacySha256": "aaa90369cb3572248014ceaaf228d1b877ad3f71e88b1edd3ee896cdb17fab58",
+      "legacyMembers": 30,
+      "candidateMembers": 38,
+      "changed": [],
+      "addedCount": 8,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 13,
+      "observations": 67155
+    },
+    {
+      "family": "SKILL_EXEC_TIMING",
+      "legacySha256": "79069b94da038fdc7f2bc35948fbad4c2bcfcfc2dc0c61cc08d1a819a51d1834",
+      "legacyMembers": 3,
+      "candidateMembers": 4,
+      "changed": [],
+      "addedCount": 1,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 2,
+      "observations": 829
+    },
+    {
+      "family": "SKILL_ROLE",
+      "legacySha256": "506168dcba0d4f0716defda35967f5d44764d6e4e44fb0e948919ebcd7daf4fd",
+      "legacyMembers": 175,
+      "candidateMembers": 223,
+      "changed": [],
+      "addedCount": 48,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [
+        {
+          "name": "NEED_COST_UP",
+          "observations": 144
+        },
+        {
+          "name": "CARD_SEARCH",
+          "observations": 146
+        },
+        {
+          "name": "CARD_TOKEN",
+          "observations": 164
+        },
+        {
+          "name": "BURST_ATK_UP_FIXED",
+          "observations": 5
+        },
+        {
+          "name": "DAMAGE_BOOST_COUNT2",
+          "observations": 128
+        },
+        {
+          "name": "BURST_DEF_UP_FIXED",
+          "observations": 1
+        },
+        {
+          "name": "BURST_DEF_UP_BY_SELF_PARAM",
+          "observations": 4
+        },
+        {
+          "name": "BURST_ATK_BREAK_FIXED",
+          "observations": 1
+        },
+        {
+          "name": "ATK_UP_FIXED_ENEMY",
+          "observations": 2411
+        },
+        {
+          "name": "ATK_BREAK_FIXED_ENEMY",
+          "observations": 481
+        },
+        {
+          "name": "GUARD_BREAK_FIXED_ENEMY",
+          "observations": 463
+        },
+        {
+          "name": "DEF_UP_FIXED_ENEMY",
+          "observations": 178
+        },
+        {
+          "name": "ATK_BREAK_CUT",
+          "observations": 9
+        },
+        {
+          "name": "GUARD_BREAK_CUT",
+          "observations": 14
+        },
+        {
+          "name": "ATTR_DEF_DOWN_BOOST",
+          "observations": 13
+        },
+        {
+          "name": "ENEMY_AI_VAR_SET",
+          "observations": 12
+        },
+        {
+          "name": "ATK_OP_ATTR_DEF_PIERCING",
+          "observations": 892
+        }
+      ],
+      "observedNames": 132,
+      "observations": 123905
+    },
+    {
+      "family": "SKILL_ROLE_TARGET",
+      "legacySha256": "f625b09fda740f2efcc796efaa85bceb5301e99adaae6e937feb83cda96fe5cd",
+      "legacyMembers": 16,
+      "candidateMembers": 26,
+      "changed": [],
+      "addedCount": 10,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [
+        {
+          "name": "SELECT_TARGET_HAND_ALL",
+          "observations": 144
+        },
+        {
+          "name": "ENEMY1",
+          "observations": 123
+        },
+        {
+          "name": "USER_SIDE_MERCENARY",
+          "observations": 89
+        },
+        {
+          "name": "USER_SIDE_THIEF",
+          "observations": 78
+        },
+        {
+          "name": "USER_SIDE_MILLIONAIRE",
+          "observations": 83
+        },
+        {
+          "name": "USER_SIDE_SINGER",
+          "observations": 93
+        },
+        {
+          "name": "ENEMY2",
+          "observations": 77
+        },
+        {
+          "name": "ENEMY4",
+          "observations": 8
+        },
+        {
+          "name": "ENEMY3",
+          "observations": 43
+        }
+      ],
+      "observedNames": 13,
+      "observations": 123905
+    },
+    {
+      "family": "SKILL_ROLE_BATTLE_PARAM",
+      "legacySha256": "a4dbec97ed690d2ab88a7d9d1fdbbc829adb7c873a329175b58d1260660c9a9b",
+      "legacyMembers": 7,
+      "candidateMembers": 7,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 0,
+      "observations": 0
+    },
+    {
+      "family": "SKILL_ROLE_KIND_DEBUFF",
+      "legacySha256": "c7e9c09da219170adb421271ac898657374e759d4dc1c1500db82d82949031b2",
+      "legacyMembers": 30,
+      "candidateMembers": 33,
+      "changed": [],
+      "addedCount": 3,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 0,
+      "observations": 0
+    },
+    {
+      "family": "SKILL_ROLE_KIND_BUFF",
+      "legacySha256": "530ac6f94d74df536253e2d744650ff19bf4284b27ce77b8e413d5a3aaabcb98",
+      "legacyMembers": 69,
+      "candidateMembers": 84,
+      "changed": [],
+      "addedCount": 15,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 0,
+      "observations": 0
+    },
+    {
+      "family": "SKILL_ROLE_DOT",
+      "legacySha256": "2cc76791c44e99e4235a3b5c1da5823887c1d0869f0ed00a2f1c04123dca5467",
+      "legacyMembers": 7,
+      "candidateMembers": 7,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 0,
+      "observations": 0
+    },
+    {
+      "family": "ENEMY_TRANCE_GAUGE_STATE",
+      "legacySha256": "77066bcf18f7cbeaf2303f5486c8ff4351d0154bae5cc1732638fe415af73527",
+      "legacyMembers": 4,
+      "candidateMembers": 4,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 0,
+      "observations": 0
+    },
+    {
+      "family": "ENEMY_AI_TARGET",
+      "legacySha256": "3d136df6fd31cdb73a148af4ce21389b01b553edc065504f58ab60bf1183b5a2",
+      "legacyMembers": 72,
+      "candidateMembers": 104,
+      "changed": [],
+      "addedCount": 32,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 0,
+      "observations": 0
+    },
+    {
+      "family": "ENEMY_AI_ORDER_PARTY",
+      "legacySha256": "4003ab978f91afcdc3736f18c9cac7fe9dbd60e66d3224377384c17b1910e815",
+      "legacyMembers": 12,
+      "candidateMembers": 12,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 11,
+      "observations": 21936
+    },
+    {
+      "family": "ENEMY_AI_ORDER_TRANCE_GAUGE",
+      "legacySha256": "f8de8088c58847e7d8cdc91f32e974e979d66e0e9512a2be8f1909d4ee00c503",
+      "legacyMembers": 7,
+      "candidateMembers": 7,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 6,
+      "observations": 321
+    },
+    {
+      "family": "ENEMY_AI_ORDER_TRIGGER",
+      "legacySha256": "3a361b027d0fe6655b20e0a9edaaedda1d916ddcbb73005ce33cb17b7e312ba5",
+      "legacyMembers": 64,
+      "candidateMembers": 72,
+      "changed": [],
+      "addedCount": 8,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [
+        {
+          "name": "TRANCE_GAUGE_VALUE",
+          "observations": 58
+        },
+        {
+          "name": "TRANCE_GAUGE_STATE_CHANGE",
+          "observations": 6
+        },
+        {
+          "name": "TRANCE_GAUGE_STATE",
+          "observations": 54
+        }
+      ],
+      "observedNames": 43,
+      "observations": 23205
+    },
+    {
+      "family": "SPHR_TYPE",
+      "legacySha256": "84465cd2219629708766697fba2b1e293448e8348d65ac9c7eb5de776f758dc7",
+      "legacyMembers": 4,
+      "candidateMembers": 4,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 2,
+      "observations": 468
+    },
+    {
+      "family": "SPHR_PLAY_CONDITION",
+      "legacySha256": "a030fbaa034bf2b9326ee241144ac6e0c446f4d9fe4d81d97b7b6d015fa6751d",
+      "legacyMembers": 2,
+      "candidateMembers": 2,
+      "changed": [],
+      "addedCount": 0,
+      "removedCount": 0,
+      "observedChanged": [],
+      "observedModernOnly": [],
+      "observedNames": 2,
+      "observations": 468
+    }
+  ],
+  "scope": "Static comparison of the isolated 23-family modern candidate against readable 1.4.0 enum declarations, with occurrence counts for selected Go-projected table fields only. Occurrences count fields/variants rather than unique skills or reachability; normalized empty values excluded. Missing names and numeric differences do not prove the delivered table or original DLL matches either version. No packed ABI, runtime gameplay, Unity or device validation."
+}

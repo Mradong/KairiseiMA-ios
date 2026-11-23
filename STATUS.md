@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-23：03 / 客户端枚举版本冲突
+
+将隔离候选快照的 23 个现代枚举族与可读 1.4.0 枚举声明逐名比较：共同名称中有一个数值变化，`SKILL_EXTEND_EXEC_ORDER.SELF_ENEMY_AI_VAR` 旧版为 110、现代候选为 111；现代候选的 110 是 `SELF_STYLE`。交付表 Go 投影中被检查的技能条件字段有 555 次 `SELF_ENEMY_AI_VAR`，另有 7 个仅现代枚举存在的条件名称共出现 493 次。按字段/变体计次，非不同技能数或实际可达性。其他被检查字段也发现旧版缺少的名称；逐族记录 `evidence/ios-package-search/order03-enum-version-differences.json`，脚本 `scripts/audit-order03-enum-version-differences.mjs`。
+
+这是静态跨版本差异，不能推断交付表、原 DLL 或目标 6.0.2 究竟属于哪套枚举；候选不得用于生产。请求服务端提供带来源的目标版本声明和映射，尤其 110/111；继续核实原生注册及真实服务契约。
+
 ## 2026-11-23：03 / 短 AI 行尾部默认值对照
 
 交付审计的 36 条短 AI 行涉及 HEAL_TOTAL、DAMAGE、MAGIC_DAMAGE、PHYSIC_DAMAGE、USER_DEAD。逐条核对原始 CSV 与此前独立 Go 加载投影，原有字段一致、补齐字段为空；以提取的 1.4.0 `CSV` 数值读取及 `Global.parseLong` 方法比较原行与补空行，缺失的 206 个尾部数值位置均得到 0。证据 `evidence/ios-package-search/order03-short-ai-tail.json`，脚本 `scripts/audit-order03-short-ai-tail.mjs`；脚本依赖此前独立审计生成的 `test-output/order03-independent-audit/projected-definitions.json`。
