@@ -1,0 +1,1699 @@
+{
+  "checkedAt": "2026-11-24T03:22:53.448Z",
+  "success": true,
+  "cases": 40,
+  "turns": 120,
+  "selected": 40,
+  "fallback": 80,
+  "fullTraceAndJournalMatches": 40,
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "47d1d77fecc3da523a8cb75aa994e1eba2f0548033e31135d797a6101ff30c73",
+  "probeSha256": "a56d48f97dc448d70b7e474f31d8a9c9aa3c05bd50a89cb4c5f5323287f25299",
+  "scriptSha256": "b72039ef628c498335b379d79492cebf8d83b8d9c9aaff1c595043358904fc88",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "bridgeSourceSha256": "fd70e21b2d835243fb913864c8823c34156868191f190b320627389769540d19",
+  "rawResultsSha256": "9385e248fd62de8c5888d7f0e932406c56d1b624b01834db4bb5ec25e046560a",
+  "results": [
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 0,
+      "setFlag": 1,
+      "first": 0,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 31,
+      "setFlag": 1,
+      "first": 31,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 32,
+      "setFlag": 1,
+      "first": 32,
+      "second": 32,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 0,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 2,
+      "first": 0,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": -1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 2,
+      "second": 3,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 0,
+      "setFlag": 1,
+      "first": 0,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 31,
+      "setFlag": 1,
+      "first": 31,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 32,
+      "setFlag": 1,
+      "first": 32,
+      "second": 32,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 0,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 2,
+      "first": 0,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": -1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG",
+      "ordinal": 27,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 2,
+      "second": 3,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 0,
+      "setFlag": 1,
+      "first": 0,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 31,
+      "setFlag": 1,
+      "first": 31,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 32,
+      "setFlag": 1,
+      "first": 32,
+      "second": 32,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 0,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 2,
+      "first": 0,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": -1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 0,
+      "index": 1,
+      "setFlag": 1,
+      "first": 2,
+      "second": 3,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 0,
+      "setFlag": 1,
+      "first": 0,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 31,
+      "setFlag": 1,
+      "first": 31,
+      "second": 0,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 32,
+      "setFlag": 1,
+      "first": 32,
+      "second": 32,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 0,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 2,
+      "first": 0,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": -1,
+      "first": 1,
+      "second": 1,
+      "secondFlag": -1,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 1,
+      "second": 2,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-13,9980,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "dfbb1d761602f8cb725c4c3bc9ca2f7e5559bc2217fba5a94f63f297635ab932",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    },
+    {
+      "label": "SELF_ENEMY_AI_FLAG_AND",
+      "ordinal": 69,
+      "slot": 1,
+      "index": 1,
+      "setFlag": 1,
+      "first": 2,
+      "second": 3,
+      "secondFlag": 2,
+      "original": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      },
+      "rebuilt": {
+        "createStatus": 0,
+        "turns": [
+          [
+            "60,5,1,-7,10000,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9993,0,1,100,0,0,5"
+          ],
+          [
+            "60,5,1,-7,9986,0,1,100,0,0,5"
+          ]
+        ],
+        "traceSha256": "3d2eeee3c6640bd216f994bd011a33fc7e72683e61340ca354e011351c0c43f9",
+        "journalSha256": "84b05f032a72795669820561cb78aee0633532b29c7f05f2d8cb5a07f6c7679c"
+      }
+    }
+  ],
+  "scope": "Windows x64 synthetic registered enemy action over three turns. OR/AND flag conditions, two slots, bit 0/31/out-of-range, set and initially clear states and distinct simultaneously set flags; full result traces and journals compared. No set-then-clear transition, real tables or live service, complete enemy rules, Unity, ARM64 or device proof."
+}

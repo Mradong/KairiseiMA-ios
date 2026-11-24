@@ -84,3 +84,15 @@ func TestArthurTypeConditionUsesSchemaAndRejectsInvalidValues(t *testing.T) {
 		}
 	}
 }
+
+func TestEnemyFlagConditionsPreserveNumericParameters(t *testing.T) {
+	for _, name := range []string{"SELF_ENEMY_AI_FLAG", "SELF_ENEMY_AI_FLAG_AND"} {
+		for _, ordinal := range []int32{27, 69, 900} {
+			schema := map[string]map[int32]string{"SKILL_EXTEND_EXEC_ORDER": {ordinal: name}}
+			got, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: ordinal, Parameters: [5]int64{0, 31, -1, math.MinInt64, math.MaxInt64}})
+			if err != nil || got != name || params != [5]string{"0", "31", "-1", "-9223372036854775808", "9223372036854775807"} {
+				t.Fatalf("%s ordinal %d: %s %v %v", name, ordinal, got, params, err)
+			}
+		}
+	}
+}

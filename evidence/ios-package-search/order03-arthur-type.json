@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T01:55:50.108Z",
+  "checkedAt": "2026-11-24T03:21:16.050Z",
   "completed": true,
   "allMatched": true,
   "expectedOutcomes": true,
@@ -726,8 +726,8 @@
     }
   ],
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-  "rebuiltSha256": "5d8427cc20c7c82000ea9d1c85feee060b68d08cfd7550025a9d6cc90851b6ce",
+  "rebuiltSha256": "47d1d77fecc3da523a8cb75aa994e1eba2f0548033e31135d797a6101ff30c73",
   "probeSha256": "52faed486f8db078a9be7ae84ef0f2e2afe11d4cc418cf2c7bbca21fedc7aad8",
-  "bridgeSourceSha256": "929952eb29620cdb7ba4b3093e7183c942fe868c6a41434dc334b4161bae752e",
+  "bridgeSourceSha256": "fd70e21b2d835243fb913864c8823c34156868191f190b320627389769540d19",
   "scope": "Windows x64 synthetic standalone battle query for SELF_ARTHUR_TYPE. Five actor types, eight requested values including invalid/out-of-range, and two branch slots; no real service battle, Unity, ARM64 or device proof."
 }

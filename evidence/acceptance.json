@@ -634,8 +634,10 @@
       "evidence/ios-package-search/order03-runtime-supplement-tests.json",
       "evidence/ios-package-search/order03-live-battle-contract.json",
       "evidence/ios-package-search/order03-source-link-reproduction.json",
-      "evidence/ios-package-search/order03-arthur-type.json"
+      "evidence/ios-package-search/order03-arthur-type.json",
+      "evidence/ios-package-search/order03-enemy-flag.json"
     ],
+    "enemyFlagConditions": "Windows x64 synthetic registered enemy battle: 40 three-turn OR/AND flag scenarios, including two distinct flags set together, match original full traces and journals. Flag removal after being set, real skills, deployed service, Unity, ARM64 and device remain unverified.",
     "arthurTypeCondition": "Windows x64 synthetic standalone battle: 80 original/rebuilt query comparisons across five actor types, two slots and valid/invalid parameters match. This is not real card execution, Unity, ARM64, device or version compatibility proof.",
     "remaining": "A dedicated live isolated account now verifies candidate 30010102 admission, exactly one 15-BP debit, Start retry, relog recovery, rejected no-charge Continue, non-clear End/abandon and End retry without rewards. Remaining: effective loaded configuration/bytes, exact deployed source/patch, original CSV provenance/transform, exact historical list membership, successful Continue, real engine-produced victory/defeat logs, clear settlement/reward idempotency and actual process-restart recovery.",
     "previousBlockedState": {
