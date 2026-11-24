@@ -1,0 +1,32 @@
+{
+  "preparedAt": "2026-11-24T09:08:45.216Z",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-runtime-selection-20261124-090844861Z.zip",
+  "archiveBytes": 8181,
+  "archiveSha256": "3f2b10eeb3a054c8fe0a6bdb37b007226442614be1308194c8c6309500787f4b",
+  "files": [
+    {
+      "name": "Collect-Order03-Selection.cmd",
+      "bytes": 145,
+      "sha256": "3abc297873780cbb6be3246208dce2743c7000976a82aa15e38fd5f8c90b8f33"
+    },
+    {
+      "name": "Collect-Order03RuntimeSelection.ps1",
+      "bytes": 12847,
+      "sha256": "956a4b9472b1cfd9d6f0a68b7a1ce9cc2ccde3d69bb310d3a54e475f0f14ab0c"
+    },
+    {
+      "name": "order03-expected-tables.json",
+      "bytes": 5022,
+      "sha256": "d0a114135bd82414aa9b70827751f5aa643a4d37c75b33810faab7bb28cef913"
+    },
+    {
+      "name": "先读说明.md",
+      "bytes": 1347,
+      "sha256": "ea10622b0b4578d3027759fa9794223f33cfcc986226b26044d021cae158177e"
+    }
+  ],
+  "sourceScriptSha256": "ec89528f1cb239b3121ac39ec8b2507af6c0c45d2f4e3498bba4ee309c781e4a",
+  "serverExecuted": false,
+  "scope": "Prepared targeted process/resource-selection collector. Local synthetic fixture validation only.",
+  "packagedScriptFixtureRunPassed": true
+}
