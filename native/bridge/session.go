@@ -92,15 +92,15 @@ func validateNativeEnums(input []nativeEnum) (map[string]map[int32]string, error
 			return nil, errors.New("duplicate native enum family")
 		}
 		values := make(map[int32]string, len(family.Values))
-		labels := make(map[string]struct{}, len(family.Values))
+		labels := make(map[string]int32, len(family.Values))
 		for _, value := range family.Values {
 			if value.Name == "" || strings.HasPrefix(value.Name, "sizeof_") {
 				return nil, errors.New("invalid native enum name")
 			}
-			if _, exists := labels[value.Name]; exists {
+			if old, exists := labels[value.Name]; exists && old != value.Value {
 				return nil, errors.New("duplicate native enum name")
 			}
-			labels[value.Name] = struct{}{}
+			labels[value.Name] = value.Value
 			if old, exists := values[value.Value]; exists && old != value.Name {
 				return nil, errors.New("ambiguous native enum")
 			}

@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-24T06:46:33.093Z",
+  "success": true,
+  "counts": {
+    "success": true,
+    "checks": 15497,
+    "queries": 8434,
+    "successfulQueries": 5352,
+    "rejectedQueries": 3082,
+    "comparedSlots": 2106500,
+    "userCases": 4888
+  },
+  "exitCode": 0,
+  "stderr": "",
+  "original": {
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "sha256": "36a596e094686dbc5caebd0296bef41cda0003b2b5aadf42bdda6c98bb3327c5"
+  },
+  "scope": "Windows x64 synthetic preparation open/close, 64-handle capacity, invalid handles, buffer precedence, user parameter CSV projections, and read-only skill queries in all eight modes. No game server, account, save, catalog or battle session; not an iOS/device test."
+}

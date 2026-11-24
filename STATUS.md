@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-24：03 / 目标职业条件的真实选卡、指定队友与注册技能差分
+
+重建桥此前无法从 packed 注册技能解码 `TARGET_JOB_TYPE`。现按旧客户端转换规则，将其五个参数都通过候选 `JOB_TYPE` schema 解码；缺失枚举及超出 Int32 的值继续拒绝。Windows x64 合成注册战斗中，成员 1 实际收牌并选择 cost=1 支援卡，明确以职业为 `MILLIONAIRE` 的成员 2 为目标，再执行玩家行动；匹配放在第一/第二选择器、双匹配、NULL/错配及两个条件槽共 12 组。修复前原 DLL 12/12 创建并按预期选择 FunctionID（6 次 889、6 次 888），重建 DLL 12/12 在创建时拒绝；修复后完整阶段输出、FunctionID、分支索引和累计输入日志 12/12 与原 DLL 一致。证据为 `evidence/ios-package-search/order03-target-job-before-fix.json` 和 `order03-target-job.json`。
+
+Go 桥单测、73,089 项基础差分、748 项会话差分和 3,633 项注册战斗回归通过。刷新会话差分时还确认原 DLL 接受同名同值的重复枚举项；桥现仅放行完全相同的重复项，继续拒绝同名异值或同值异名。原 DLL SHA-256 仍为 `d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6`；Windows 重建 DLL SHA-256 为 `36a596e094686dbc5caebd0296bef41cda0003b2b5aadf42bdda6c98bb3327c5`。交付表静态投影中 `TARGET_JOB_TYPE` 出现于第一分支 256 次、第二分支 15 次；桥解码列表之外的非空条件出现次数由追加 66、第一分支 2,717、第二分支 271 降为 66、2,461、256。计数按字段/变体，不代表独立技能数、可达性或完整效果执行。本轮仍使用合成注册卡/战斗，不证明真实服务技能、主表版本来源、Unity、ARM64 或设备行为；候选隔离，03 保持 active。
+
 ## 2026-11-24：03 / 队伍选牌属性、技能种类与费用总和条件差分
 
 重建桥此前拒绝 `FRIEND_PLAY_ATTR_NUM`、`FRIEND_PLAY_SKILL_KIND_NUM`、`FRIEND_PLAY_COST_TOTAL`。按旧客户端转换规则，前两项首参数分别由候选 `ATTR`、`SKILL_KIND` 解码，其余参数及费用总和条件保留为有符号数值。Windows x64 合成独立战斗实际选择两张 cost=1、FIRE/ATTACK 卡，覆盖匹配/不匹配枚举、数量阈值 0..3、费用总和区间和两个条件槽。修复前原 DLL 40/40 符合预期、重建 DLL 40/40 拒绝；修复后 40/40 状态和结果与原 DLL 一致。证据为 `evidence/ios-package-search/order03-friend-selected-before-fix.json` 和 `order03-friend-selected.json`。

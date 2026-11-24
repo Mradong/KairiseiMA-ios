@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-24T06:46:33.412Z",
+  "success": true,
+  "counts": {
+    "success": true,
+    "checks": 35504,
+    "successes": 9390,
+    "rejections": 26114,
+    "settings": 4224,
+    "cards": 7156,
+    "extraSkills": 1220,
+    "spheres": 576,
+    "buddies": 184,
+    "summons": 1040,
+    "npcs": 848,
+    "enemies": 10240,
+    "initializations": 9200,
+    "storyHelpers": 64
+  },
+  "exitCode": 0,
+  "stderr": "",
+  "original": {
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "sha256": "36a596e094686dbc5caebd0296bef41cda0003b2b5aadf42bdda6c98bb3327c5"
+  },
+  "scope": "Windows x64 synthetic preparation settings; card/extra-skill/sphere/buddy/summon/NPC/enemy registration; enemy skill kinds/slots; initialization, trance, burst, story helper and end records; prerequisites, wire layouts, mode/member/slot limits, NPC/gauge capacity, and error precedence. No battle, live account, server or save. Status comparisons do not by themselves prove stored record contents; separate Go state tests cover ownership/transaction behavior. Not an iOS test."
+}

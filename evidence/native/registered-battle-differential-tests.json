@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T06:28:44.791Z",
+  "checkedAt": "2026-11-24T06:46:18.695Z",
   "success": true,
   "counts": {
     "checks": 3633,
@@ -24,7 +24,7 @@
     "unchangedAfterTest": true
   },
   "rebuilt": {
-    "sha256": "5a458681f204c4c07ce1fc270b6051d95d32e237d608c7152577829593a4b6c1"
+    "sha256": "36a596e094686dbc5caebd0296bef41cda0003b2b5aadf42bdda6c98bb3327c5"
   },
   "scope": "Windows x64 synthetic registered mode-1 party: original-DLL status, full result CSV and cumulative journal comparisons. All 35 zero-ID enemy skill slots are tested. One nonzero normal action with null conditions selects ENEMY1 (itself) at rates 100 and 0; RANDOM and four profession selectors damage the expected living neutral player at rate 100. Skill slots 1 through 14 separately target the mercenary and cause observed damage. Slot 1 is tested with normal slot 0 also registered, but both actions executing is not proven. Dead-member fallback, special and death slots, other skill targets and nonempty triggers are unverified or rejected. Twelve cases cover player effects and two waves. Actual C# NativeRegisteredBattle adapter is compiled/executed against the rebuilt DLL with original result/journal comparisons, configuring continue, end turn 20 and initial burst 40; end turn is asserted in output. One scenario consumes end_turn=0 and projects three partner user records from an isolated service response through CnProtocol and the managed adapter; its fourth member, cards and enemies are synthetic. A nonzero call-skill record is registered for each member via the managed adapter and original DLL; call-skill execution is not established. Three service card-instance records are temporarily registered with explicitly synthetic skill/master metadata, then replaced by synthetic cards before combat; registration success does not prove real-card gameplay. Continue behavior remains unverified beyond matching results. Six additional managed registered-buddy cases compare full results and journals: nonzero buddies in slots 1 through 5; three leader active skills with distinct packed execution levels deal 13/14/15 damage and preserve gauge costs and cooldown outputs; one leader passive deals 3 self-damage at level 7 upon entering burst. Both leader cases win through actual damage and compare the following wave and victory. Call-skill activation, nonleader passives, real buddy definitions and broader conditions/effects remain unverified. Five additional managed sphere cases match complete original results and journals: three NORMAL equipment positions deal 11 damage at packed level 3; TURN_AFTER transitions from unavailable to available on the next turn; one CHALICE reservation executes 11 self-damage. Uses decrease 2 to 1 at the next input boundary and reset to 2 on ordinary next wave. All cases win both waves with real computed damage. Call/support-skill activation, EVOLUTION type and broader sphere rules remain unverified or rejected. No real resources, Unity engine, ARM64 or iPhone execution was tested."
 }

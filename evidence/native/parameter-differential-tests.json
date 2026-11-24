@@ -1,0 +1,31 @@
+{
+  "generatedAt": "2026-11-24T06:46:32.918Z",
+  "success": true,
+  "counts": {
+    "success": true,
+    "checks": 21340,
+    "leaderCases": 1035,
+    "supportCases": 6002,
+    "supportSkillCases": 827,
+    "cardCases": 6002,
+    "summonsCases": 4146,
+    "skillInfoCases": 3323,
+    "skillInfoSuccesses": 933,
+    "skillInfoFailures": 2390,
+    "skillInfoComparedSlots": 830500
+  },
+  "exitCode": 0,
+  "stdout": "{\"success\":true,\"checks\":21340,\"leaderCases\":1035,\"supportCases\":6002,\"supportSkillCases\":827,\"cardCases\":6002,\"summonsCases\":4146,\"skillInfoCases\":3323,\"skillInfoSuccesses\":933,\"skillInfoFailures\":2390,\"skillInfoComparedSlots\":830500}",
+  "stderr": "",
+  "original": {
+    "path": "inputs/native/kairisei_battlecore.dll",
+    "sha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+    "unchangedAfterTest": true
+  },
+  "rebuilt": {
+    "path": "native/build/windows-amd64/kairisei_battlecore_rebuilt.dll",
+    "sha256": "36a596e094686dbc5caebd0296bef41cda0003b2b5aadf42bdda6c98bb3327c5",
+    "capabilities": "CardParameters | DeckParameters | SummonParameters only"
+  },
+  "scope": "Synthetic Windows x64 C ABI differential tests for five read-only parameter functions, standalone PvE packed skill queries and ABI metadata. Every skill query compares its status and all 250 output slots. No game server, account, save, battle session, iOS binary, IPA or device was used. Additional preparation lifetime/query exports have a separate differential suite; Preparation/SkillInfo capabilities remain disabled for game integration while the full preparation path is incomplete."
+}

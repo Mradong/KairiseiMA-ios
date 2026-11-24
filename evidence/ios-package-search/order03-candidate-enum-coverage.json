@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T06:28:49.805Z",
+  "checkedAt": "2026-11-24T06:43:38.110Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "759bb412ec38343ab003b75188b7c09b203679e69c88193bf87ffd94c59705a8",
+  "bridgeConditionSourceSha256": "6ccac0b5bc4d3d4d2214cd5c07d79adaac7e071430855d2802ff5d2b23cf6b90",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -220,12 +220,11 @@
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 15732,
-      "other": 2717,
+      "declaredDecoder": 15988,
+      "other": 2461,
       "otherNames": {
         "SELF_TRANCE_GAUGE_VALUE": 63,
         "SELF_BUFF": 115,
-        "TARGET_JOB_TYPE": 256,
         "OWNER_CARD_FAME": 11,
         "TARGET_DEBUFF": 244,
         "ENEMY_SIDE_DEBUFF": 309,
@@ -260,14 +259,13 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 1569,
-      "other": 271,
+      "declaredDecoder": 1584,
+      "other": 256,
       "otherNames": {
         "ENEMY_SIDE_DEBUFF": 46,
         "SELF_BUFF": 15,
         "SELF_BURST_GAUGE_STATE": 17,
         "ENEMY_TRANCE_GAUGE_STATE": 46,
-        "TARGET_JOB_TYPE": 15,
         "TARGET_CARD_ONLY_SELF_PLAY": 5,
         "USER_SIDE_BUFF": 12,
         "SELF_DEBUFF": 6,

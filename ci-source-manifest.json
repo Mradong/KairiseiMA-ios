@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T06:29:44.346Z",
+  "generatedAt": "2026-11-24T06:49:23.309Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 140855,
-      "sha256": "94d2271e89cf7485262facbc6fb00953e8fad25c4a335408810524b7a7d8ed51"
+      "bytes": 142677,
+      "sha256": "64dcb3741dc95a62058dba65794f3512e5aa362638e07e113a4905bb015d1ffd"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 90206,
-      "sha256": "34e0ea17426d4b33bdd88efd5a206b2702833dde628779534be8ab4779ec58cb"
+      "bytes": 90809,
+      "sha256": "1abdf260c7fd8f72a1f1794573ff0ab1b9215ef466b496ca160aab22e56421ea"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -425,8 +425,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-candidate-enum-coverage.json",
-      "bytes": 7675,
-      "sha256": "f31bd1ba15fb48324205ba28d30def1342051742e4e5292a35797647ae0d6041"
+      "bytes": 7612,
+      "sha256": "52ba2703b84f82f48122d0571a9d74d63de95d36bacfb73aca811e4b48738af8"
     },
     {
       "path": "evidence/ios-package-search/order03-candidate-name-validation.json",
@@ -601,7 +601,7 @@
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
       "bytes": 8367,
-      "sha256": "ff18a05addba26c871b64f1f575a21c7c4f54315b4030eee9d850a4fab713aed"
+      "sha256": "48f307d0168a2d7e0c8fbe37efaf28032da5bee233f4a191745e9233cb0bfced"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -704,6 +704,16 @@
       "sha256": "f5882d47b18dcbc98c779b64efee151ac9666fbd353e34547259af9fcd319740"
     },
     {
+      "path": "evidence/ios-package-search/order03-target-job-before-fix.json",
+      "bytes": 104163,
+      "sha256": "a75483064a039c7b011ba4f688a2b92d54c5625a817358ac03cc2b03a5ee86e0"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-target-job.json",
+      "bytes": 204037,
+      "sha256": "7fa43875e3a5a10a4beb575b912df705d5b0a2fc400910cc8efa8fb107a9a5f6"
+    },
+    {
       "path": "evidence/ios-package-search/order03-turn-query-before-fix.json",
       "bytes": 10728,
       "sha256": "c4aebe8d1f2ece2e168035df10f9da29ed4a79216472e8a082cc91a9e2f881f0"
@@ -745,8 +755,18 @@
     },
     {
       "path": "evidence/native/implementation-status.json",
-      "bytes": 2914,
-      "sha256": "634d0fd3ba577766479d1a8f9a74b3d1ca7bc536491c8bb5920603ecc6caf194"
+      "bytes": 2762,
+      "sha256": "f690535765ff95802e15474c2a3c9fdbc8d96ab1e6d5f8dec51ee4bb6b6f0161"
+    },
+    {
+      "path": "evidence/native/parameter-differential-tests.json",
+      "bytes": 1635,
+      "sha256": "656ce2c2e951ee55dee16598384c19ade48ae9efa3cec1a76bec1e84ce119173"
+    },
+    {
+      "path": "evidence/native/preparation-differential-tests.json",
+      "bytes": 805,
+      "sha256": "221a194f40459dbd58d61104fc9da6f6ee8abbf323ead111f46fee46f8ca67ea"
     },
     {
       "path": "evidence/native/prepared-card-query-differential-tests.json",
@@ -766,7 +786,7 @@
     {
       "path": "evidence/native/registered-battle-differential-tests.json",
       "bytes": 3410,
-      "sha256": "f9dc85cb92bfbe5633888e92ec86d0a9c3f0087f500c2a03137d1186ef4d6c6c"
+      "sha256": "3dfa72e31d7a9104ddcc3d50e1eb5f7b4345b5987a05ed670b11e88c0a301496"
     },
     {
       "path": "evidence/native/registered-buddy-bursts.txt",
@@ -1024,6 +1044,11 @@
       "sha256": "176be4e1109aca3b3e9d659f8f0d3ffd6fa864517c46809d4ae4fd8d92744a9e"
     },
     {
+      "path": "evidence/native/registration-differential-tests.json",
+      "bytes": 1151,
+      "sha256": "c7e573899bdf0c58be03aea8c9c9ce4416de786cebea4ed7234716a9aaa5f92b"
+    },
+    {
       "path": "evidence/native/registration-state-tests.json",
       "bytes": 1732,
       "sha256": "fc74083fd7fc512544ff2b0608f8aac7cc89adddcd799ba06d174c603f02f2c3"
@@ -1031,7 +1056,7 @@
     {
       "path": "evidence/native/session-differential-tests.json",
       "bytes": 903,
-      "sha256": "43a6b9bbe7b73165be4b621bac0f91edde37a11423104686fa7ee9590d2655a3"
+      "sha256": "1835574db1f827e22f7f5e3b260ab762d581b589f32a047ba1e539f4982182f1"
     },
     {
       "path": "evidence/native/skill-query-differential-tests.json",
@@ -1040,8 +1065,8 @@
     },
     {
       "path": "evidence/original-input-verification.json",
-      "bytes": 2088,
-      "sha256": "f6f82affe956ff96c75334f9f8a424befd8f30f4c68a93ba4df2cc891ead6842"
+      "bytes": 1466,
+      "sha256": "dca7f48eb4589dab7aa0fef9fc2fac11f60cb89a4b4f372d37f4012124e92992"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1230,8 +1255,8 @@
     },
     {
       "path": "native/bridge/enum_schema_test.go",
-      "bytes": 1322,
-      "sha256": "c454d9f3ceba13236b063e3ce72e4fa8e4b331f681334f1621c37f52be19c081"
+      "bytes": 1323,
+      "sha256": "d8ffcac51580603b1023d8c472323cdadcb679f890d1b9b70bacbbea8b74d2b1"
     },
     {
       "path": "native/bridge/go.mod",
@@ -1310,8 +1335,8 @@
     },
     {
       "path": "native/bridge/session.go",
-      "bytes": 17724,
-      "sha256": "c170f45526bf17174c6e201af09af904c45dcb93e30e07f2797ca2dd2d195007"
+      "bytes": 17746,
+      "sha256": "d00ab24c3d76a54765f138c56fcd534bd1c0dc4de1408543132f6a7b9c79e886"
     },
     {
       "path": "native/bridge/session_test.go",
@@ -1325,13 +1350,13 @@
     },
     {
       "path": "native/bridge/skill_query.go",
-      "bytes": 12701,
-      "sha256": "759bb412ec38343ab003b75188b7c09b203679e69c88193bf87ffd94c59705a8"
+      "bytes": 12790,
+      "sha256": "6ccac0b5bc4d3d4d2214cd5c07d79adaac7e071430855d2802ff5d2b23cf6b90"
     },
     {
       "path": "native/bridge/skill_query_test.go",
-      "bytes": 7448,
-      "sha256": "dfead09a9f4f87d02b8885854277e6c37b79279136dd5aa55de46493c0a7dc50"
+      "bytes": 8252,
+      "sha256": "898a10f53398863c5a19d34bbae1fea1ed642a6a2e1e1bda8a3980b1e2ecbc11"
     },
     {
       "path": "native/bridge/skill_wire.go",
@@ -1475,8 +1500,8 @@
     },
     {
       "path": "scripts/audit-order03-candidate-enum-coverage.mjs",
-      "bytes": 5348,
-      "sha256": "e80dee015fb9b3c5f57b5f50651b282cb59492eae3e81e383badf088bc9cc904"
+      "bytes": 5366,
+      "sha256": "88f257276c0f6a81c15cde6c455bb102a230698e1407f24137cb3bcc9fbdc075"
     },
     {
       "path": "scripts/audit-order03-enum-version-differences.mjs",
@@ -1744,6 +1769,11 @@
       "sha256": "2ee854a84040c2a76db59a90b98528a20ddb89fdf2fe28a33daa37487668c8b8"
     },
     {
+      "path": "scripts/test-order03-target-job.mjs",
+      "bytes": 3635,
+      "sha256": "d2950d4255b4b9d9bfdd725af12f51dc3aab2c72b31c08461fd44546d2688362"
+    },
+    {
       "path": "scripts/test-order03-turn-query.mjs",
       "bytes": 3164,
       "sha256": "b523782d005c3b00cf80e8a9bfd8d995c2841df958c13ec84e68a77e51eb503f"
@@ -1919,6 +1949,11 @@
       "sha256": "5409aee50ad596f95770c59da8b0f57773d2dd7d4c06f2547e66916df0eb431f"
     },
     {
+      "path": "tests/Order03TargetJobProbe.cs",
+      "bytes": 11719,
+      "sha256": "7180a815e7534ec7c8a5c503523693b8b160c73b9586f7e221977808e4851503"
+    },
+    {
       "path": "tests/Order03TurnQueryProbe.cs",
       "bytes": 4453,
       "sha256": "fdf7beb5070ff67865ecb321e6160c3196d44fb47a1ecb4d2813f17a599e5605"
@@ -2035,8 +2070,8 @@
     },
     {
       "path": "详细执行计划.md",
-      "bytes": 12214,
-      "sha256": "d9e67c21a26bcbcc0ff0242def593e38c20c1550d34637fe2af4c1337abafed7"
+      "bytes": 12686,
+      "sha256": "6c6dae3fb71a2a14caf349abd342c57d8792643228f12a48942e18c171783230"
     },
     {
       "path": "资源切换设备验证.md",
@@ -2054,7 +2089,7 @@
       "sha256": "6c6edf38492f725a3138c681ee67ba2ab2c9892823e443772ea79b10f6ea6538"
     }
   ],
-  "bytes": 23374429,
+  "bytes": 23704568,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

@@ -26,7 +26,7 @@ func decodeSkillCondition(schema map[string]map[int32]string, c rawSkillConditio
 	case "NONE", "NULL":
 		name = ""
 	case "TARGET_ATTR", "SELF_MAIN_DECK_ATTR", "SELF_MAIN_DECK_SKILL_KIND", "SELF_ARTHUR_TYPE",
-		"SELF_OTHER_PLAY_ATTR", "SELF_OTHER_PLAY_SKILL_KIND", "SELF_OTHER_PLAY_RARITY", "FRIEND_PLAY_ATTR_NUM", "FRIEND_PLAY_SKILL_KIND_NUM":
+		"SELF_OTHER_PLAY_ATTR", "SELF_OTHER_PLAY_SKILL_KIND", "SELF_OTHER_PLAY_RARITY", "FRIEND_PLAY_ATTR_NUM", "FRIEND_PLAY_SKILL_KIND_NUM", "TARGET_JOB_TYPE":
 		family, slots := "ATTR", 1
 		if name == "SELF_ARTHUR_TYPE" {
 			family = "ARTHUR_TYPE"
@@ -42,6 +42,9 @@ func decodeSkillCondition(schema map[string]map[int32]string, c rawSkillConditio
 		}
 		if name == "SELF_OTHER_PLAY_RARITY" {
 			family = "RARITY"
+		}
+		if name == "TARGET_JOB_TYPE" {
+			family, slots = "JOB_TYPE", 5
 		}
 		for k, value := range c.Parameters {
 			if k >= slots {

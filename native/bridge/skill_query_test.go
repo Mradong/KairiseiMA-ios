@@ -160,3 +160,19 @@ func TestFriendSelectedEnumConditionsUseSchema(t *testing.T) {
 		}
 	}
 }
+
+func TestTargetJobTypeConditionUsesSchemaForEverySelector(t *testing.T) {
+	schema := map[string]map[int32]string{
+		"SKILL_EXTEND_EXEC_ORDER": {15: "TARGET_JOB_TYPE"},
+		"JOB_TYPE":                {0: "NULL", 1: "MERCENARY", 2: "MILLIONAIRE", 3: "THIEF", 4: "SINGER"},
+	}
+	_, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: 15, Parameters: [5]int64{0, 1, 2, 3, 4}})
+	if err != nil || params != [5]string{"NULL", "MERCENARY", "MILLIONAIRE", "THIEF", "SINGER"} {
+		t.Fatalf("target job selectors: %v %v", params, err)
+	}
+	for _, invalid := range []int64{5, math.MinInt64, math.MaxInt64} {
+		if _, _, err := decodeSkillCondition(schema, rawSkillCondition{Order: 15, Parameters: [5]int64{invalid}}); err == nil {
+			t.Fatalf("accepted invalid target job selector %d", invalid)
+		}
+	}
+}

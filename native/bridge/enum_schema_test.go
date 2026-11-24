@@ -11,7 +11,7 @@ func TestNativeEnumNameAmbiguity(t *testing.T) {
 		{"legacy version", []nativeEnum{{Name: "ORDER", Values: []nativeEnumValue{{Name: "SELF_ENEMY_AI_VAR", Value: 110}}}}, false},
 		{"modern version", []nativeEnum{{Name: "ORDER", Values: []nativeEnumValue{{Name: "SELF_STYLE", Value: 110}, {Name: "SELF_ENEMY_AI_VAR", Value: 111}}}}, false},
 		{"mixed versions", []nativeEnum{{Name: "ORDER", Values: []nativeEnumValue{{Name: "SELF_ENEMY_AI_VAR", Value: 110}, {Name: "SELF_ENEMY_AI_VAR", Value: 111}}}}, true},
-		{"duplicate entry", []nativeEnum{{Name: "ORDER", Values: []nativeEnumValue{{Name: "X", Value: 1}, {Name: "X", Value: 1}}}}, true},
+		{"duplicate entry", []nativeEnum{{Name: "ORDER", Values: []nativeEnumValue{{Name: "X", Value: 1}, {Name: "X", Value: 1}}}}, false},
 		{"same number different names", []nativeEnum{{Name: "ORDER", Values: []nativeEnumValue{{Name: "X", Value: 1}, {Name: "Y", Value: 1}}}}, true},
 		{"separate families", []nativeEnum{{Name: "ONE", Values: []nativeEnumValue{{Name: "X", Value: 1}}}, {Name: "TWO", Values: []nativeEnumValue{{Name: "X", Value: 2}}}}, false},
 	}
