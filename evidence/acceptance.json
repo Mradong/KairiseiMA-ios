@@ -709,7 +709,10 @@
       "powerShell51SyntheticTestsPassed": true,
       "packagedScriptSmokePassed": true,
       "serverExecuted": false,
-      "purpose": "User requested a server-runnable collector based on shared deployment conversation. Existing source/build/static JSON and startup evidence are captured when available. Provenance/runtime linkage and unexecuted contracts remain UNKNOWN/NOT_TESTED."
+      "purpose": "User requested a server-runnable collector based on shared deployment conversation. Existing source/build/static JSON and startup evidence are captured when available. Provenance/runtime linkage and unexecuted contracts remain UNKNOWN/NOT_TESTED.",
+      "localSourceCommit": "f787c8f",
+      "sourcePushed": false,
+      "pushRemaining": "Automatic permission approval review timed out twice before command execution. Local ZIP is ready for user execution."
     }
   }
 }
