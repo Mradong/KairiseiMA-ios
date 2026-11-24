@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T08:24:33.386Z",
+  "generatedAt": "2026-11-24T08:30:25.004Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,8 +35,8 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 152617,
-      "sha256": "3c2d442ca50f809360ca6ea831b717700e27a9a2e1a4ec70771692dba1d97509"
+      "bytes": 153113,
+      "sha256": "daf2ec262fa5a19e0a147f470a2f30d2f90aa2f61a2b41915730d361c389e629"
     },
     {
       "path": "evidence/acceptance.json",
@@ -2170,8 +2170,8 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 18299,
-      "sha256": "9e0392c69872d442d24420dcd1bdfd7e8a24545a2f1bc4eb846ae3c37a3b92ad"
+      "bytes": 19417,
+      "sha256": "60dfe79ebc81a036b12937ef5727cd6a380786fe8b374d296e76c725ecef80ce"
     },
     {
       "path": "顺序03补充取证说明.md",
@@ -2179,7 +2179,7 @@
       "sha256": "3e8596ccf838652196fda9e38baba222493f1ee7740c8444f61f7cfb5c6964d6"
     }
   ],
-  "bytes": 30572765,
+  "bytes": 30574379,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
