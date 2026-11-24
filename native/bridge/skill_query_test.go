@@ -133,3 +133,13 @@ func TestSelectedCountConditionsPreserveNumericParameters(t *testing.T) {
 		}
 	}
 }
+
+func TestSelectedTagConditionsPreserveNumericParameters(t *testing.T) {
+	for ordinal, name := range map[int32]string{28: "SELF_OTHER_PLAY_TAG", 29: "FRIEND_PLAY_TAG"} {
+		schema := map[string]map[int32]string{"SKILL_EXTEND_EXEC_ORDER": {ordinal: name}}
+		_, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: ordinal, Parameters: [5]int64{30020003, 0, math.MaxInt32, -1, math.MaxInt64}})
+		if err != nil || params != [5]string{"30020003", "0", "2147483647", "-1", "9223372036854775807"} {
+			t.Fatalf("%s: %v %v", name, params, err)
+		}
+	}
+}

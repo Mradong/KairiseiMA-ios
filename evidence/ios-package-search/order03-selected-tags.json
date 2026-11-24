@@ -1,0 +1,462 @@
+{
+  "checkedAt": "2026-11-24T06:24:45.661Z",
+  "success": true,
+  "cases": [
+    {
+      "name": "first-selector",
+      "ordinal": 28,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "first-selector",
+      "ordinal": 28,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "second-selector",
+      "ordinal": 28,
+      "parameters": [
+        0,
+        30020003,
+        0,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "second-selector",
+      "ordinal": 28,
+      "parameters": [
+        0,
+        30020003,
+        0,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "third-selector",
+      "ordinal": 28,
+      "parameters": [
+        0,
+        0,
+        30020003,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "third-selector",
+      "ordinal": 28,
+      "parameters": [
+        0,
+        0,
+        30020003,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "match-zero",
+      "ordinal": 28,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "match-zero",
+      "ordinal": 28,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "match-above",
+      "ordinal": 28,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "match-above",
+      "ordinal": 28,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "miss-zero",
+      "ordinal": 28,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "miss-zero",
+      "ordinal": 28,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "miss-positive",
+      "ordinal": 28,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "miss-positive",
+      "ordinal": 28,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "first-selector",
+      "ordinal": 29,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "first-selector",
+      "ordinal": 29,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "second-selector",
+      "ordinal": 29,
+      "parameters": [
+        0,
+        30020003,
+        0,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "second-selector",
+      "ordinal": 29,
+      "parameters": [
+        0,
+        30020003,
+        0,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "third-selector",
+      "ordinal": 29,
+      "parameters": [
+        0,
+        0,
+        30020003,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "third-selector",
+      "ordinal": 29,
+      "parameters": [
+        0,
+        0,
+        30020003,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "match-zero",
+      "ordinal": 29,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "match-zero",
+      "ordinal": 29,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "match-above",
+      "ordinal": 29,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "match-above",
+      "ordinal": 29,
+      "parameters": [
+        30020003,
+        0,
+        0,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "miss-zero",
+      "ordinal": 29,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "miss-zero",
+      "ordinal": 29,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "miss-positive",
+      "ordinal": 29,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "miss-positive",
+      "ordinal": 29,
+      "parameters": [
+        30020004,
+        0,
+        0,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    }
+  ],
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "7037b8d97ba22c6fdf09a9d58f770d5d3d802664bb6f29b2d1c014bc92e22cad",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
+  "probeSha256": "5409aee50ad596f95770c59da8b0f57773d2dd7d4c06f2547e66916df0eb431f",
+  "scriptSha256": "2ee854a84040c2a76db59a90b98528a20ddb89fdf2fe28a33daa37487668c8b8",
+  "bridgeSourceSha256": "d27a7b021d89b596c006fbb8564cc7569fe245759613a96ecb8ac9a72e33bb83",
+  "scope": "Windows x64 standalone battle after actually selecting two member-1 cards whose card.csv profile tag is 30020003. SELF_OTHER_PLAY_TAG and FRIEND_PLAY_TAG use each of three selectors, match/miss thresholds and both condition slots. Synthetic tables/battle only; no real service, complete skill execution, Unity, ARM64 or device proof."
+}

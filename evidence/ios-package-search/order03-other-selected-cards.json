@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T06:19:48.876Z",
+  "checkedAt": "2026-11-24T06:24:47.095Z",
   "success": true,
   "cases": [
     {
@@ -484,11 +484,11 @@
     }
   ],
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-  "rebuiltSha256": "27187145f258d29cb5c1908ac67ce44486dc47f405c68d4aa13ad5e7e730de6e",
+  "rebuiltSha256": "7037b8d97ba22c6fdf09a9d58f770d5d3d802664bb6f29b2d1c014bc92e22cad",
   "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
   "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
   "probeSha256": "4184153307fc50c01db831a1520e52489ed814966b81aa8960da01dcef0fc808",
   "scriptSha256": "7ca8a0e06402175b83b3024a97450059a0551ef765da9436dc88f3991d6374d2",
-  "bridgeSourceSha256": "308cd478c891e3a30cc40e14a277dc341650a5692832f210dd8271b5fd979db1",
+  "bridgeSourceSha256": "d27a7b021d89b596c006fbb8564cc7569fe245759613a96ecb8ac9a72e33bb83",
   "scope": "Windows x64 standalone battle with two actually selected member-1 cards. SELF_OTHER_PLAY_ATTR, SELF_OTHER_PLAY_SKILL_KIND and SELF_OTHER_PLAY_RARITY query matching/nonmatching selectors, thresholds 0..3 and both condition slots. Synthetic tables/battle only; no real service, Unity, ARM64 or device proof."
 }

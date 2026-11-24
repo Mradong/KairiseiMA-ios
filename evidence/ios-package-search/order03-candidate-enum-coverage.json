@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T06:19:53.039Z",
+  "checkedAt": "2026-11-24T06:24:52.151Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "308cd478c891e3a30cc40e14a277dc341650a5692832f210dd8271b5fd979db1",
+  "bridgeConditionSourceSha256": "d27a7b021d89b596c006fbb8564cc7569fe245759613a96ecb8ac9a72e33bb83",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -206,10 +206,9 @@
   "conditionDecoderCoverage": {
     "AppendCondition": {
       "blank": 66113,
-      "declaredDecoder": 971,
-      "other": 71,
+      "declaredDecoder": 976,
+      "other": 66,
       "otherNames": {
-        "SELF_OTHER_PLAY_TAG": 5,
         "ENEMY_TRANCE_GAUGE_STATE": 1,
         "TARGET_CARD_ONLY_SELF_PLAY": 3,
         "SELF_BLESS": 2,
@@ -221,16 +220,14 @@
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 15263,
-      "other": 3186,
+      "declaredDecoder": 15598,
+      "other": 2851,
       "otherNames": {
         "SELF_TRANCE_GAUGE_VALUE": 63,
-        "FRIEND_PLAY_TAG": 193,
         "SELF_BUFF": 115,
         "TARGET_JOB_TYPE": 256,
         "FRIEND_PLAY_ATTR_NUM": 92,
         "OWNER_CARD_FAME": 11,
-        "SELF_OTHER_PLAY_TAG": 142,
         "TARGET_DEBUFF": 244,
         "ENEMY_SIDE_DEBUFF": 309,
         "SELF_BLESS": 29,
@@ -266,20 +263,18 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 1357,
-      "other": 483,
+      "declaredDecoder": 1433,
+      "other": 407,
       "otherNames": {
         "FRIEND_PLAY_ATTR_NUM": 95,
         "ENEMY_SIDE_DEBUFF": 46,
         "SELF_BUFF": 15,
         "SELF_BURST_GAUGE_STATE": 17,
-        "SELF_OTHER_PLAY_TAG": 36,
         "ENEMY_TRANCE_GAUGE_STATE": 46,
         "FRIEND_PLAY_COST_TOTAL": 2,
         "TARGET_JOB_TYPE": 15,
         "TARGET_CARD_ONLY_SELF_PLAY": 5,
         "FRIEND_PLAY_SKILL_KIND_NUM": 39,
-        "FRIEND_PLAY_TAG": 40,
         "USER_SIDE_BUFF": 12,
         "SELF_DEBUFF": 6,
         "USER_SIDE_DEBUFF": 20,
