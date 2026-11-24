@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-24：03 / 出牌数量、费用数量与未出手牌条件差分
+
+重建桥此前拒绝 `FRIEND_PLAY_NUM`、`SELF_PLAY_COST_NUM`、`SELF_NOT_PLAY_HAND_NUM`；现按 schema 名称保留其五个有符号数值参数。Windows x64 合成独立战斗实际选择成员 1 的两张 cost=1 卡，原 DLL 实测总出牌数 2、匹配费用卡数 2、未出手牌数 3，并覆盖命中区间、上下边界、费用不匹配计数为 0 以及两个条件槽。修复前原 DLL 26/26 符合预期、重建 DLL 26/26 拒绝；修复后 26/26 状态和结果与原 DLL 一致。证据为 `evidence/ios-package-search/order03-selected-counts-before-fix.json` 和 `order03-selected-counts.json`。
+
+Go 桥单测、上一组实际选牌条件 48 组、敌方标记 40 个三回合场景及 3,633 项注册战斗回归通过。交付表静态投影中，这三类标签共出现 609 次；桥解码列表之外的非空条件出现次数由追加 208、第一分支 3,656、第二分支 485 降为 71、3,186、483。计数按字段/变体，不代表独立技能数、可达性或完整效果执行。Windows 重建 DLL SHA-256 `27187145f258d29cb5c1908ac67ce44486dc47f405c68d4aa13ad5e7e730de6e`。本轮仍为合成卡/战斗查询，未证明真实主表版本/来源、服务端真实技能、Unity/ARM64/设备或其余服务契约；候选继续隔离，03 保持 active。
+
 ## 2026-11-24：03 / 实际选牌属性、技能种类、稀有度条件差分
 
 重建桥此前拒绝 `SELF_OTHER_PLAY_ATTR`、`SELF_OTHER_PLAY_SKILL_KIND` 和 `SELF_OTHER_PLAY_RARITY`。现按候选 schema 分别将首参数解码为 `ATTR`、`SKILL_KIND`、`RARITY` 名称，其余参数继续作为有符号整数；不存在或超出 Int32 的枚举仍拒绝。Windows x64 合成独立战斗实际选择成员 1 的两张卡，分别测试匹配/不匹配选择值、阈值 0..3 和两个条件槽：修复前原 DLL 48/48 正常、重建 DLL 48/48 拒绝；修复后 48/48 状态和结果与原 DLL 一致，选择计数边界也符合预期。证据为 `evidence/ios-package-search/order03-other-selected-cards-before-fix.json` 和 `order03-other-selected-cards.json`。

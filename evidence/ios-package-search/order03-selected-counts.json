@@ -1,0 +1,398 @@
+{
+  "checkedAt": "2026-11-24T06:19:48.912Z",
+  "success": true,
+  "cases": [
+    {
+      "name": "friend-below",
+      "ordinal": 14,
+      "parameters": [
+        0,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "friend-below",
+      "ordinal": 14,
+      "parameters": [
+        0,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "friend-exact",
+      "ordinal": 14,
+      "parameters": [
+        2,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "friend-exact",
+      "ordinal": 14,
+      "parameters": [
+        2,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "friend-above",
+      "ordinal": 14,
+      "parameters": [
+        3,
+        4
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "friend-above",
+      "ordinal": 14,
+      "parameters": [
+        3,
+        4
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "friend-wide",
+      "ordinal": 14,
+      "parameters": [
+        0,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "friend-wide",
+      "ordinal": 14,
+      "parameters": [
+        0,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-count-below",
+      "ordinal": 66,
+      "parameters": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-count-below",
+      "ordinal": 66,
+      "parameters": [
+        1,
+        1,
+        0,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-count-exact",
+      "ordinal": 66,
+      "parameters": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-count-exact",
+      "ordinal": 66,
+      "parameters": [
+        1,
+        1,
+        2,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-count-above",
+      "ordinal": 66,
+      "parameters": [
+        1,
+        1,
+        3,
+        4
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-count-above",
+      "ordinal": 66,
+      "parameters": [
+        1,
+        1,
+        3,
+        4
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-miss-zero",
+      "ordinal": 66,
+      "parameters": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-miss-zero",
+      "ordinal": 66,
+      "parameters": [
+        2,
+        2,
+        0,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-miss-nonzero",
+      "ordinal": 66,
+      "parameters": [
+        2,
+        2,
+        1,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-miss-nonzero",
+      "ordinal": 66,
+      "parameters": [
+        2,
+        2,
+        1,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "hand-below",
+      "ordinal": 67,
+      "parameters": [
+        0,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "hand-below",
+      "ordinal": 67,
+      "parameters": [
+        0,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "hand-exact",
+      "ordinal": 67,
+      "parameters": [
+        3,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "hand-exact",
+      "ordinal": 67,
+      "parameters": [
+        3,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "hand-above",
+      "ordinal": 67,
+      "parameters": [
+        4,
+        5
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "hand-above",
+      "ordinal": 67,
+      "parameters": [
+        4,
+        5
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "hand-wide",
+      "ordinal": 67,
+      "parameters": [
+        0,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "hand-wide",
+      "ordinal": 67,
+      "parameters": [
+        0,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    }
+  ],
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "27187145f258d29cb5c1908ac67ce44486dc47f405c68d4aa13ad5e7e730de6e",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
+  "probeSha256": "e6c7267de5801b64ecd72d3160f2143f867f0bb1287e1bfbdd82cbb3319daa19",
+  "scriptSha256": "0f21ea077080cbe40ab6891ab6a84a363902a58bf7bf3f793fae0cced0093e77",
+  "bridgeSourceSha256": "308cd478c891e3a30cc40e14a277dc341650a5692832f210dd8271b5fd979db1",
+  "scope": "Windows x64 standalone battle after actually selecting two cost-1 member-1 cards. FRIEND_PLAY_NUM, SELF_PLAY_COST_NUM and SELF_NOT_PLAY_HAND_NUM range boundaries and both condition slots. Synthetic tables/battle only; no real service, complete skill execution, Unity, ARM64 or device proof."
+}

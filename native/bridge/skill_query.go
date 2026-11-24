@@ -61,6 +61,7 @@ func decodeSkillCondition(schema map[string]map[int32]string, c rawSkillConditio
 	// client converts empty CSV bounds before packing; do not turn zero into
 	// an empty bound here. Resolve the condition by schema label, not ordinal.
 	case "RANDOM", "TURN", "DECK_COMBO_COUNT", "SELF_ENEMY_AI_VAR", "SELF_ENEMY_AI_FLAG", "SELF_ENEMY_AI_FLAG_AND", "SELF_HP_PER", "SELF_OTHER_PLAY_NUM", "SELF_PLAY_MOST_LOW_COST", "SELF_PLAY_COST_TOTAL", "ENEMY_TRIBAL",
+		"FRIEND_PLAY_NUM", "SELF_PLAY_COST_NUM", "SELF_NOT_PLAY_HAND_NUM",
 		"SELF_MAIN_DECK_TAG", "SELF_SUPPORT_DECK_TAG", "SELF_ALL_DECK_TAG":
 		for k, value := range c.Parameters {
 			params[k] = strconv.FormatInt(value, 10)

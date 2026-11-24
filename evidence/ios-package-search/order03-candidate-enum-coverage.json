@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T06:14:41.501Z",
+  "checkedAt": "2026-11-24T06:19:53.039Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "be1c450217f60f90fe05fb83b8aadc9ae5659e0bf541f87da0da81debc8f4dbb",
+  "bridgeConditionSourceSha256": "308cd478c891e3a30cc40e14a277dc341650a5692832f210dd8271b5fd979db1",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -206,8 +206,8 @@
   "conditionDecoderCoverage": {
     "AppendCondition": {
       "blank": 66113,
-      "declaredDecoder": 834,
-      "other": 208,
+      "declaredDecoder": 971,
+      "other": 71,
       "otherNames": {
         "SELF_OTHER_PLAY_TAG": 5,
         "ENEMY_TRANCE_GAUGE_STATE": 1,
@@ -216,15 +216,13 @@
         "ENEMY_SIDE_DEBUFF": 1,
         "USER_SIDE_DEBUFF": 13,
         "SELF_BUFF": 8,
-        "BUFF_EXEC": 38,
-        "SELF_NOT_PLAY_HAND_NUM": 2,
-        "SELF_PLAY_COST_NUM": 135
+        "BUFF_EXEC": 38
       }
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 14793,
-      "other": 3656,
+      "declaredDecoder": 15263,
+      "other": 3186,
       "otherNames": {
         "SELF_TRANCE_GAUGE_VALUE": 63,
         "FRIEND_PLAY_TAG": 193,
@@ -240,10 +238,8 @@
         "ENEMY_TRANCE_GAUGE_STATE": 62,
         "FRIEND_PLAY_COST_TOTAL": 7,
         "TARGET_CARD_ONLY_SELF_PLAY": 25,
-        "FRIEND_PLAY_NUM": 468,
         "FRIEND_PLAY_SKILL_KIND_NUM": 35,
         "TARGET_BUFF": 226,
-        "SELF_PLAY_COST_NUM": 2,
         "FRIEND_PLAY_MOST_LOW_COST": 1,
         "USER_SIDE_DEBUFF": 101,
         "FRIEND_HP_PER": 26,
@@ -270,8 +266,8 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 1355,
-      "other": 485,
+      "declaredDecoder": 1357,
+      "other": 483,
       "otherNames": {
         "FRIEND_PLAY_ATTR_NUM": 95,
         "ENEMY_SIDE_DEBUFF": 46,
@@ -283,7 +279,6 @@
         "TARGET_JOB_TYPE": 15,
         "TARGET_CARD_ONLY_SELF_PLAY": 5,
         "FRIEND_PLAY_SKILL_KIND_NUM": 39,
-        "FRIEND_PLAY_NUM": 2,
         "FRIEND_PLAY_TAG": 40,
         "USER_SIDE_BUFF": 12,
         "SELF_DEBUFF": 6,

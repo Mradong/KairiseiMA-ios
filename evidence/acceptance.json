@@ -637,8 +637,11 @@
       "evidence/ios-package-search/order03-arthur-type.json",
       "evidence/ios-package-search/order03-enemy-flag.json",
       "evidence/ios-package-search/order03-other-selected-cards-before-fix.json",
-      "evidence/ios-package-search/order03-other-selected-cards.json"
+      "evidence/ios-package-search/order03-other-selected-cards.json",
+      "evidence/ios-package-search/order03-selected-counts-before-fix.json",
+      "evidence/ios-package-search/order03-selected-counts.json"
     ],
+    "selectedCountConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 member-1 cards, 26 FRIEND_PLAY_NUM/SELF_PLAY_COST_NUM/SELF_NOT_PLAY_HAND_NUM range queries across both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "otherSelectedCardConditions": "Windows x64 synthetic standalone battle: after actually selecting two member-1 cards, 48 ATTR/SKILL_KIND/RARITY queries across matching/nonmatching selectors, thresholds 0..3 and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "enemyFlagConditions": "Windows x64 synthetic registered enemy battle: 40 three-turn OR/AND flag scenarios, including two distinct flags set together, match original full traces and journals. Flag removal after being set, real skills, deployed service, Unity, ARM64 and device remain unverified.",
     "arthurTypeCondition": "Windows x64 synthetic standalone battle: 80 original/rebuilt query comparisons across five actor types, two slots and valid/invalid parameters match. This is not real card execution, Unity, ARM64, device or version compatibility proof.",

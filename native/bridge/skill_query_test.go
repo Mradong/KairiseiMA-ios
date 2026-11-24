@@ -123,3 +123,13 @@ func TestEnemyFlagConditionsPreserveNumericParameters(t *testing.T) {
 		}
 	}
 }
+
+func TestSelectedCountConditionsPreserveNumericParameters(t *testing.T) {
+	for ordinal, name := range map[int32]string{14: "FRIEND_PLAY_NUM", 66: "SELF_PLAY_COST_NUM", 67: "SELF_NOT_PLAY_HAND_NUM"} {
+		schema := map[string]map[int32]string{"SKILL_EXTEND_EXEC_ORDER": {ordinal: name}}
+		_, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: ordinal, Parameters: [5]int64{math.MinInt64, math.MaxInt64, -1, 0, 1}})
+		if err != nil || params != [5]string{"-9223372036854775808", "9223372036854775807", "-1", "0", "1"} {
+			t.Fatalf("%s: %v %v", name, params, err)
+		}
+	}
+}
