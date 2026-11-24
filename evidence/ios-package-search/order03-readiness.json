@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T07:55:16.598Z",
+  "checkedAt": "2026-11-24T08:24:30.779Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -57,7 +57,8 @@
       "evidence": [
         "evidence/ios-package-search/order03-runtime-supplement-validation.json",
         "evidence/ios-package-search/order03-runtime-supplement-tests.json",
-        "evidence/ios-package-search/order03-remaining-validation.json"
+        "evidence/ios-package-search/order03-remaining-validation.json",
+        "evidence/ios-package-search/order03-raw-static-loader.json"
       ],
       "remaining": "Latest original static JSON reproduces all previously retained battle and normal-quest projection fields. Exact historical list membership, complete extra raw-field semantics and live behavior remain unverified."
     },
@@ -135,6 +136,10 @@
     {
       "file": "evidence/ios-package-search/order03-runtime-supplement-tests.json",
       "sha256": "07d8e6c49ceba199ab4ec5022b673c95242ef949b8d3c757e3cf32c5f4b03c02"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-raw-static-loader.json",
+      "sha256": "4c33b64717e12d0ff2f9e0cca95d303e06fa9935ecfbf66f40ae4f2c5cfa0649"
     },
     {
       "file": "evidence/ios-package-search/order03-source-link-reproduction.json",

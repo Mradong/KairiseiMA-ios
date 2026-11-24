@@ -19,6 +19,12 @@ const sourceLink = load(p + 'order03-source-link-reproduction.json');
 const acceptance = load('evidence/acceptance.json');
 const remainingCapturePath = p + 'order03-remaining-validation.json';
 const remainingCapture = fs.existsSync(path.join(root, remainingCapturePath)) ? load(remainingCapturePath) : null;
+const rawLoaderPath = p + 'order03-raw-static-loader.json';
+const rawLoader = fs.existsSync(path.join(root, rawLoaderPath)) ? load(rawLoaderPath) : null;
+if (rawLoader) {
+  if (!rawLoader.success || !rawLoader.allLoadedOwnDeckMappingsIndependentlyReproduced || rawLoader.probeSha256 !== sha('tests/Order03RawStaticProbe.go') || rawLoader.scriptSha256 !== sha('scripts/test-order03-raw-static-loader.mjs')) throw Error('Raw static loader evidence missing or stale');
+  for (const source of rawLoader.loaderSources) if (source.sha256 !== sha(source.file)) throw Error('Raw static loader source changed');
+}
 if (remainingCapture) {
   if (!remainingCapture.success || !remainingCapture.rawStaticProjection.reproduced || remainingCapture.auditSourceSha256 !== sha('scripts/audit-order03-remaining.mjs')) throw Error('Latest server capture validation missing or stale');
   for (const input of remainingCapture.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Latest server capture input changed');
@@ -49,6 +55,7 @@ if (remainingCapture) {
   gates.find(g => g.id === 'received_static_quest_mapping').remaining = 'Latest original static JSON reproduces all previously retained battle and normal-quest projection fields. Exact historical list membership, complete extra raw-field semantics and live behavior remain unverified.';
   gates.find(g => g.id === 'received_disk_and_listener_observation').remaining = 'Latest received capture reports the same executable/config/manifest/table hashes and a new process start time. Actual process invocation, effective loaded content and deployment source remain UNKNOWN; process restart alone does not prove battle recovery.';
 }
+if (rawLoader) gates.find(g => g.id === 'received_static_quest_mapping').evidence.push(rawLoaderPath);
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),
   scope: 'Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate.'};

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T08:01:18.336Z",
+  "generatedAt": "2026-11-24T08:24:33.386Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 150941,
-      "sha256": "9220e9b8bab33df15ec5aeb231db332ba9125de9a4b2f2e71e43ad1678a9e989"
+      "bytes": 152617,
+      "sha256": "3c2d442ca50f809360ca6ea831b717700e27a9a2e1a4ec70771692dba1d97509"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 97924,
-      "sha256": "a500e14caf3cf5aa7278a92bae02f9e24c1529f0e7d84602fa77014bae79cded"
+      "bytes": 100247,
+      "sha256": "be72c3c9031ed70dac7fc6c270642ce80e083c72f9101b4de9a7b960bc6feece"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -609,9 +609,14 @@
       "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
     },
     {
+      "path": "evidence/ios-package-search/order03-raw-static-loader.json",
+      "bytes": 298351,
+      "sha256": "4c33b64717e12d0ff2f9e0cca95d303e06fa9935ecfbf66f40ae4f2c5cfa0649"
+    },
+    {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 8563,
-      "sha256": "75284cff27a2596594ae1c95fabbf877cbb5627e548f5165d603aaa4ce11823e"
+      "bytes": 8805,
+      "sha256": "f7af16619d3ac564b9bc75c48f2ab671c0317fe285afe2a3186fa8c40ebffe45"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -1101,7 +1106,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2046,
-      "sha256": "281110b1d41b9b8e204f93170880d5b5378533cbcfc549a24eb3dfdc14168f76"
+      "sha256": "e3ec7c83147be5f5bf66714a42e341c3c482c246a2f860f32ec458200f14d59d"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1600,8 +1605,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 9798,
-      "sha256": "8a6b8a0c1b345c2f0ed46a3d9348d44e6ab1ce3b4b04cb96d953f222f6090468"
+      "bytes": 10506,
+      "sha256": "1936b36727bcfe98a47114ae0d5e3e49c72884656c322a3b47066fdc12df54be"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1792,6 +1797,11 @@
       "path": "scripts/test-order03-other-selected-cards.mjs",
       "bytes": 2845,
       "sha256": "7ca8a0e06402175b83b3024a97450059a0551ef765da9436dc88f3991d6374d2"
+    },
+    {
+      "path": "scripts/test-order03-raw-static-loader.mjs",
+      "bytes": 5325,
+      "sha256": "f96c8df0e20ca72461eda87a550503047a58d2423e084d451274793ee4de1c17"
     },
     {
       "path": "scripts/test-order03-real-catalog-open.mjs",
@@ -1994,6 +2004,11 @@
       "sha256": "4184153307fc50c01db831a1520e52489ed814966b81aa8960da01dcef0fc808"
     },
     {
+      "path": "tests/Order03RawStaticProbe.go",
+      "bytes": 2950,
+      "sha256": "6e37b89dbb2af54432709d4b8b60573b654583da2a4d268b744a3c9be8a86d87"
+    },
+    {
       "path": "tests/Order03RealCatalogOpenProbe.cs",
       "bytes": 1372,
       "sha256": "cfc499785d7f935e7b6339eadf82e68fdb5a5a210e115dd880aaf57fe57d6d8f"
@@ -2135,8 +2150,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 51505,
-      "sha256": "0e5d6c48d7a6486eb457205b543787c85da17d5ffdc81e5d2a5a4c585c4da3ed"
+      "bytes": 52168,
+      "sha256": "6000c3a43957e7e4a84280bd54c46d157aba8e190e9a0c35329b9e3bbd15dc56"
     },
     {
       "path": "服务端协作需求.md",
@@ -2155,8 +2170,8 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 17867,
-      "sha256": "2dbef840fead9ad700ce778bbb4e9b0724ea34b20fd2b4bafb1dd3e2dcf7fe33"
+      "bytes": 18299,
+      "sha256": "9e0392c69872d442d24420dcd1bdfd7e8a24545a2f1bc4eb846ae3c37a3b92ad"
     },
     {
       "path": "顺序03补充取证说明.md",
@@ -2164,7 +2179,7 @@
       "sha256": "3e8596ccf838652196fda9e38baba222493f1ee7740c8444f61f7cfb5c6964d6"
     }
   ],
-  "bytes": 30260095,
+  "bytes": 30572765,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
