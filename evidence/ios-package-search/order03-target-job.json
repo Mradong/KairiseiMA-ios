@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T06:46:16.900Z",
+  "checkedAt": "2026-11-24T07:10:08.177Z",
   "success": true,
   "cases": [
     {
@@ -1067,10 +1067,10 @@
     "fallbackCount": 6
   },
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-  "rebuiltSha256": "36a596e094686dbc5caebd0296bef41cda0003b2b5aadf42bdda6c98bb3327c5",
+  "rebuiltSha256": "319d97c878011326e7ca612b70af5620641d70e0815b730188b7077678aa3f93",
   "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
   "probeSha256": "7180a815e7534ec7c8a5c503523693b8b160c73b9586f7e221977808e4851503",
   "scriptSha256": "d2950d4255b4b9d9bfdd725af12f51dc3aab2c72b31c08461fd44546d2688362",
-  "bridgeSourceSha256": "6ccac0b5bc4d3d4d2214cd5c07d79adaac7e071430855d2802ff5d2b23cf6b90",
+  "bridgeSourceSha256": "7f9054194738ecb1d4938dac5f0b7dcf4178a31c11a3ee6d41a2edde51b8ba68",
   "scope": "Windows x64 registered synthetic battle: member 1 actually receives and selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. TARGET_JOB_TYPE covers match in either selector, mismatch/null selectors, and both condition slots; FunctionID/branch index, complete step traces, and journals are compared. No real service/account, Unity, ARM64, or device proof."
 }

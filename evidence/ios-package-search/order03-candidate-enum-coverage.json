@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T06:43:38.110Z",
+  "checkedAt": "2026-11-24T07:10:13.577Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "6ccac0b5bc4d3d4d2214cd5c07d79adaac7e071430855d2802ff5d2b23cf6b90",
+  "bridgeConditionSourceSha256": "7f9054194738ecb1d4938dac5f0b7dcf4178a31c11a3ee6d41a2edde51b8ba68",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -206,40 +206,30 @@
   "conditionDecoderCoverage": {
     "AppendCondition": {
       "blank": 66113,
-      "declaredDecoder": 976,
-      "other": 66,
+      "declaredDecoder": 998,
+      "other": 44,
       "otherNames": {
         "ENEMY_TRANCE_GAUGE_STATE": 1,
         "TARGET_CARD_ONLY_SELF_PLAY": 3,
         "SELF_BLESS": 2,
-        "ENEMY_SIDE_DEBUFF": 1,
-        "USER_SIDE_DEBUFF": 13,
-        "SELF_BUFF": 8,
         "BUFF_EXEC": 38
       }
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 15988,
-      "other": 2461,
+      "declaredDecoder": 17210,
+      "other": 1239,
       "otherNames": {
         "SELF_TRANCE_GAUGE_VALUE": 63,
-        "SELF_BUFF": 115,
         "OWNER_CARD_FAME": 11,
-        "TARGET_DEBUFF": 244,
-        "ENEMY_SIDE_DEBUFF": 309,
         "SELF_BLESS": 29,
         "SELF_BURST_GAUGE_STATE": 30,
         "ENEMY_TRANCE_GAUGE_STATE": 62,
         "TARGET_CARD_ONLY_SELF_PLAY": 25,
-        "TARGET_BUFF": 226,
         "FRIEND_PLAY_MOST_LOW_COST": 1,
-        "USER_SIDE_DEBUFF": 101,
         "FRIEND_HP_PER": 26,
         "SUMMONS_EVERY_TURN": 202,
-        "SELF_DEBUFF": 149,
         "SELF_HP_FIXED": 3,
-        "USER_SIDE_BUFF": 73,
         "SELF_DAMAGE": 46,
         "TARGET_DEBUFF_KIND_NUM": 91,
         "USER_SIDE_BLESS": 29,
@@ -253,23 +243,17 @@
         "USER_ATTACK_NUM": 16,
         "SELF_TRANCE_GAUGE_STATE": 64,
         "FRIEND_PLAY_COST_NUM": 6,
-        "USER_SIDE_BURST_GAUGE_STATE": 3,
-        "ENEMY_SIDE_BUFF": 5
+        "USER_SIDE_BURST_GAUGE_STATE": 3
       }
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 1584,
-      "other": 256,
+      "declaredDecoder": 1683,
+      "other": 157,
       "otherNames": {
-        "ENEMY_SIDE_DEBUFF": 46,
-        "SELF_BUFF": 15,
         "SELF_BURST_GAUGE_STATE": 17,
         "ENEMY_TRANCE_GAUGE_STATE": 46,
         "TARGET_CARD_ONLY_SELF_PLAY": 5,
-        "USER_SIDE_BUFF": 12,
-        "SELF_DEBUFF": 6,
-        "USER_SIDE_DEBUFF": 20,
         "SELF_DAMAGE": 5,
         "USER_PARAM": 7,
         "USER_SIDE_BURST_GAUGE_STATE": 75,

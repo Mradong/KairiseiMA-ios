@@ -219,6 +219,23 @@
         "noRealAccountOperations": true,
         "candidateRelease": false,
         "order03Complete": false
+      },
+      "order03StatusConditions": {
+        "checkedOn": "2026-11-24",
+        "rebuiltWindowsSha256": "319d97c878011326e7ca612b70af5620641d70e0815b730188b7077678aa3f93",
+        "cases": 192,
+        "selected": 32,
+        "fallback": 160,
+        "evidence": [
+          "evidence/ios-package-search/order03-status-before-fix.json",
+          "evidence/ios-package-search/order03-status.json"
+        ],
+        "scope": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation.",
+        "unimplementedNonblankConditionOccurrences": {
+          "append": 44,
+          "firstBranch": 1239,
+          "secondBranch": 157
+        }
       }
     },
     {
@@ -466,6 +483,23 @@
         "noRealAccountOperations": true,
         "candidateRelease": false,
         "order03Complete": false
+      },
+      "order03StatusConditions": {
+        "checkedOn": "2026-11-24",
+        "rebuiltWindowsSha256": "319d97c878011326e7ca612b70af5620641d70e0815b730188b7077678aa3f93",
+        "cases": 192,
+        "selected": 32,
+        "fallback": 160,
+        "evidence": [
+          "evidence/ios-package-search/order03-status-before-fix.json",
+          "evidence/ios-package-search/order03-status.json"
+        ],
+        "scope": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation.",
+        "unimplementedNonblankConditionOccurrences": {
+          "append": 44,
+          "firstBranch": 1239,
+          "secondBranch": 157
+        }
       }
     },
     {
@@ -645,7 +679,9 @@
       "evidence/ios-package-search/order03-friend-selected-before-fix.json",
       "evidence/ios-package-search/order03-friend-selected.json",
       "evidence/ios-package-search/order03-target-job-before-fix.json",
-      "evidence/ios-package-search/order03-target-job.json"
+      "evidence/ios-package-search/order03-target-job.json",
+      "evidence/ios-package-search/order03-status-before-fix.json",
+      "evidence/ios-package-search/order03-status.json"
     ],
     "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
@@ -662,6 +698,7 @@
       "supersededByNewUserEvidenceOn": "2026-11-24"
     },
     "resumedOn": "2026-11-24",
-    "latestAuthorization": "User resumed order 03 and explicitly allowed creating a dedicated real test account when it accelerates the work. Existing user accounts, credentials and sessions remain out of scope; all side effects must be recorded."
+    "latestAuthorization": "2026-11-24 user explicitly requested reading STATUS.md and the detailed execution plan and restarting plan item 03. Prior dedicated-test-account authorization remains scoped to the isolated service.",
+    "statusConditions": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation."
   }
 }

@@ -176,3 +176,33 @@ func TestTargetJobTypeConditionUsesSchemaForEverySelector(t *testing.T) {
 		}
 	}
 }
+
+func TestStatusConditionsDecodeTwoKindsAndPreserveNumericTail(t *testing.T) {
+	for _, name := range []string{"SELF_BUFF", "TARGET_BUFF", "USER_SIDE_BUFF", "ENEMY_SIDE_BUFF", "SELF_DEBUFF", "TARGET_DEBUFF", "USER_SIDE_DEBUFF", "ENEMY_SIDE_DEBUFF"} {
+		family := "SKILL_ROLE_KIND_BUFF"
+		if name == "SELF_DEBUFF" || name == "TARGET_DEBUFF" || name == "USER_SIDE_DEBUFF" || name == "ENEMY_SIDE_DEBUFF" {
+			family = "SKILL_ROLE_KIND_DEBUFF"
+		}
+		schema := map[string]map[int32]string{
+			"SKILL_EXTEND_EXEC_ORDER": {900: name},
+			family:                    {0: "NULL", 1: "SELECTED_KIND"},
+		}
+		got, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: 900, Parameters: [5]int64{1, 0, math.MinInt64, math.MaxInt64, -1}})
+		if err != nil || got != name || params != [5]string{"SELECTED_KIND", "NULL", "-9223372036854775808", "9223372036854775807", "-1"} {
+			t.Fatalf("%s: %s %v %v", name, got, params, err)
+		}
+		for _, invalid := range []int64{2, math.MinInt64, math.MaxInt64} {
+			for slot := 0; slot < 2; slot++ {
+				condition := rawSkillCondition{Order: 900}
+				condition.Parameters[slot] = invalid
+				if _, _, err = decodeSkillCondition(schema, condition); err == nil {
+					t.Fatalf("%s slot %d accepted invalid selector %d", name, slot, invalid)
+				}
+			}
+		}
+		delete(schema, family)
+		if _, _, err = decodeSkillCondition(schema, rawSkillCondition{Order: 900}); err == nil {
+			t.Fatalf("%s accepted absent kind family", name)
+		}
+	}
+}
