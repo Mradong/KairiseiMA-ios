@@ -21,6 +21,12 @@ const remainingCapturePath = p + 'order03-remaining-validation.json';
 const remainingCapture = fs.existsSync(path.join(root, remainingCapturePath)) ? load(remainingCapturePath) : null;
 const rawLoaderPath = p + 'order03-raw-static-loader.json';
 const rawLoader = fs.existsSync(path.join(root, rawLoaderPath)) ? load(rawLoaderPath) : null;
+const reviewedPatchPath = p + 'order03-reviewed-patch-reproduction.json';
+const reviewedPatch = fs.existsSync(path.join(root, reviewedPatchPath)) ? load(reviewedPatchPath) : null;
+if (reviewedPatch) {
+  if (!reviewedPatch.analysisCompleted || !reviewedPatch.allBaseAndPatchedGitBlobIdentitiesMatched || !reviewedPatch.build.exactObservedBinaryReproduction || reviewedPatch.scriptSha256 !== sha('scripts/reproduce-order03-reviewed-patch.mjs') || reviewedPatch.inputPatch.sha256 !== sha(reviewedPatch.inputPatch.file)) throw Error('Reviewed patch reproduction evidence missing or stale');
+  if (reviewedPatch.build.sha256 !== sha(reviewedPatch.build.executable)) throw Error('Reproduced executable changed');
+}
 if (rawLoader) {
   if (!rawLoader.success || !rawLoader.allLoadedOwnDeckMappingsIndependentlyReproduced || rawLoader.probeSha256 !== sha('tests/Order03RawStaticProbe.go') || rawLoader.scriptSha256 !== sha('scripts/test-order03-raw-static-loader.mjs')) throw Error('Raw static loader evidence missing or stale');
   for (const source of rawLoader.loaderSources) if (source.sha256 !== sha(source.file)) throw Error('Raw static loader source changed');
@@ -56,6 +62,12 @@ if (remainingCapture) {
   gates.find(g => g.id === 'received_disk_and_listener_observation').remaining = 'Latest received capture reports the same executable/config/manifest/table hashes and a new process start time. Actual process invocation, effective loaded content and deployment source remain UNKNOWN; process restart alone does not prove battle recovery.';
 }
 if (rawLoader) gates.find(g => g.id === 'received_static_quest_mapping').evidence.push(rawLoaderPath);
+if (reviewedPatch) {
+  const sourceGate = gates.find(g => g.id === 'reviewed_source_and_observed_binary_link');
+  sourceGate.state = 'verified';
+  sourceGate.evidence.push(reviewedPatchPath);
+  sourceGate.remaining = 'The received reviewed patch plus pinned base d1a202eb, Go 1.25.1 and recorded flags reproduces the reported server disk executable SHA-256 exactly. Actual configuration/table selection and original CSV extraction remain separate evidence gaps.';
+}
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),
   scope: 'Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate.'};

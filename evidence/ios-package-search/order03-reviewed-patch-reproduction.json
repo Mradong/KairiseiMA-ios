@@ -1,0 +1,80 @@
+{
+  "checkedAt": "2026-11-24T08:39:45.153Z",
+  "analysisCompleted": true,
+  "inputPatch": {
+    "file": "inputs/server-order03/source-patch-20261124/ios-server-reviewed.patch",
+    "bytes": 23212,
+    "sha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c"
+  },
+  "applicationPatch": {
+    "lineEndings": "LF",
+    "sha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c",
+    "scope": "Normalized patch-text line endings in the isolated copy; resulting source bytes are checked against every received Git blob identity."
+  },
+  "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+  "allBaseAndPatchedGitBlobIdentitiesMatched": true,
+  "appliedSourceFiles": [
+    {
+      "path": "server/internal/cnbootstrap/cdn_export.go",
+      "beforeBlob": "ef9d23bd75f502eb46857e41c109b1e90e782b9c",
+      "afterBlob": "fc064563bcaf5a8d84980c8a4c56ef8c9c6d15f3",
+      "sha256": "b286ddbb443c6e1e99b35ec37341b28a35cf447ed60a2b578b916d3435c4dd98"
+    },
+    {
+      "path": "server/internal/cnbootstrap/platform_apple_test.go",
+      "beforeBlob": "0000000000000000000000000000000000000000",
+      "afterBlob": "e3251f168979c33fb4d90510e30c309ddb4097b1",
+      "sha256": "aac7adc267c4bccc1c8d622cd02da9b8142cadc1f65c6d55d97e3621f1f2bbef"
+    },
+    {
+      "path": "server/internal/cnbootstrap/platform_content_http.go",
+      "beforeBlob": "05e655032ae023c333dc9921d78d5135b5bea3b7",
+      "afterBlob": "b6625b19ddb9e8849ea4ddafa94230081e696a8f",
+      "sha256": "9477cee14f4b119fcdc833b812829e85bb7ff1fa35ba8b0ae972236c5a470acc"
+    },
+    {
+      "path": "server/internal/cnbootstrap/platform_delivery.go",
+      "beforeBlob": "8df6491e18db8f5d1820425320d7a65be28f0369",
+      "afterBlob": "6057ec37858ace1d9d52e5d80a7c314a23b31500",
+      "sha256": "1db2f0886c104d3f550d1328c55342aad9eb08700e69cda320316e199a72c6de"
+    },
+    {
+      "path": "server/internal/cnbootstrap/platform_manifest.go",
+      "beforeBlob": "0000000000000000000000000000000000000000",
+      "afterBlob": "26b135115a0b002c0410f544d785de9be9d580b4",
+      "sha256": "41e8bc00479499592f3d4fdd751cb66ab99eb0652fdfa5ecd69e40a8d43c2d33"
+    },
+    {
+      "path": "server/internal/cnbootstrap/platform_manifest_contract_test.go",
+      "beforeBlob": "0000000000000000000000000000000000000000",
+      "afterBlob": "a862cd502c2ea7d8f189f8232ebfabd466092f21",
+      "sha256": "088258c13249b29b99c45c1900cefeb559e36fb0c498e8d12675d84ea31a6a0d"
+    }
+  ],
+  "build": {
+    "executable": "test-output/order03-reviewed-source-bfNSYN/kairi-server-stripped.exe",
+    "toolchain": "go1.25.1",
+    "target": "windows/amd64",
+    "cgoEnabled": false,
+    "flags": [
+      "-mod=mod",
+      "-buildvcs=false",
+      "-trimpath",
+      "-ldflags=-s -w"
+    ],
+    "bytes": 29736448,
+    "sha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+    "observedServerSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+    "exactObservedBinaryReproduction": true
+  },
+  "targetedIOSTests": {
+    "passed": true,
+    "output": "=== RUN   TestIOSCompiledProfile\n    platform_apple_test.go:25: set IOS_COMPILED_PROFILE to a Unity-built iOS delivery profile\n--- SKIP: TestIOSCompiledProfile (0.00s)\n=== RUN   TestIOSPublicManifestValidationAndDelivery\n=== RUN   TestIOSPublicManifestValidationAndDelivery/valid\n=== RUN   TestIOSPublicManifestValidationAndDelivery/wrong-platform\n=== RUN   TestIOSPublicManifestValidationAndDelivery/wrong-version\n=== RUN   TestIOSPublicManifestValidationAndDelivery/wrong-revision\n=== RUN   TestIOSPublicManifestValidationAndDelivery/wrong-bundle-hash\n=== RUN   TestIOSPublicManifestValidationAndDelivery/wrong-size\n=== RUN   TestIOSPublicManifestValidationAndDelivery/duplicate\n--- PASS: TestIOSPublicManifestValidationAndDelivery (0.06s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/valid (0.01s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/wrong-platform (0.01s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/wrong-version (0.01s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/wrong-revision (0.01s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/wrong-bundle-hash (0.01s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/wrong-size (0.01s)\n    --- PASS: TestIOSPublicManifestValidationAndDelivery/duplicate (0.01s)\n=== RUN   TestIOSDeliveryLoginAndIsolation\n=== RUN   TestIOSDeliveryLoginAndIsolation/iOS_delivery\n=== RUN   TestIOSDeliveryLoginAndIsolation/StandaloneWindows64_delivery\n=== RUN   TestIOSDeliveryLoginAndIsolation/Android_delivery\n=== RUN   TestIOSDeliveryLoginAndIsolation/iOS_delivery#01\n--- PASS: TestIOSDeliveryLoginAndIsolation (0.30s)\n    --- PASS: TestIOSDeliveryLoginAndIsolation/iOS_delivery (0.00s)\n    --- PASS: TestIOSDeliveryLoginAndIsolation/StandaloneWindows64_delivery (0.00s)\n    --- PASS: TestIOSDeliveryLoginAndIsolation/Android_delivery (0.00s)\n    --- PASS: TestIOSDeliveryLoginAndIsolation/iOS_delivery#01 (0.00s)\n=== RUN   TestIOSManifestClientContract\n=== RUN   TestIOSManifestClientContract/valid\n=== RUN   TestIOSManifestClientContract/wrong-content-id\n=== RUN   TestIOSManifestClientContract/duplicate-dependency\n=== RUN   TestIOSManifestClientContract/cycle\n=== RUN   TestIOSManifestClientContract/invalid-name\n=== RUN   TestIOSManifestClientContract/oversized-bundle\n--- PASS: TestIOSManifestClientContract (0.02s)\n    --- PASS: TestIOSManifestClientContract/valid (0.00s)\n    --- PASS: TestIOSManifestClientContract/wrong-content-id (0.00s)\n    --- PASS: TestIOSManifestClientContract/duplicate-dependency (0.00s)\n    --- PASS: TestIOSManifestClientContract/cycle (0.00s)\n    --- PASS: TestIOSManifestClientContract/invalid-name (0.00s)\n    --- PASS: TestIOSManifestClientContract/oversized-bundle (0.00s)\nPASS\nok  \tkairisei.local/server/internal/cnbootstrap\t2.200s\n",
+    "unityProfileGateRequested": false
+  },
+  "logs": {
+    "directory": "test-output/order03-reviewed-source-bfNSYN"
+  },
+  "scriptSha256": "0fdedd678451b5ed4f55fca3f7a766aee9ca42b9341934a95e77f1303dbc2e9a",
+  "scope": "Received reviewed patch applied to an isolated copy of the pinned full server module. Binary comparison and synthetic iOS protocol/manifest tests. Actual loaded configuration/table bytes, original CSV extraction, real battle contracts and device acceptance remain separate."
+}

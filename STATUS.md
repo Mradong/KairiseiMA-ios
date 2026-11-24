@@ -1,5 +1,15 @@
 # 当前状态
 
+## 2026-11-24 source-patch 已复现服务器程序，源码对应关系验证通过
+
+收到 `source-patch.zip`，ZIP SHA-256 为 `c68058a4c2a9948c1c1ce608415369d9cea82a62cf9dbf1ef3236e398608fd82`。其中 `ios-server-reviewed.patch` 为 23,212 字节，SHA-256 `b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c`，已隔离保存，并保存受审查副本 `patches/ios-server-reviewed.patch`。该补丁涉及四份生产文件和两份测试文件，包含此前本地补丁缺少的公共 iOS 清单客户端契约检查及 Windows 规范路径处理。
+
+补丁的全部原始 Git blob 与固定基础提交 `d1a202eb539b99511e8a33f3975fac409ab545bf` 一致。在独立源码副本应用补丁后，六份结果文件也全部与补丁完整 Git blob 一致。使用 Go 1.25.1、windows/amd64、CGO=0、`-buildvcs=false -trimpath -ldflags='-s -w'` 重建，得到 29,736,448 字节，SHA-256 `7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918`，与服务器两次采集的程序完全相同。首次应用受本机 Git 自动换行影响，已在该复现命令关闭自动换行转换；原始补丁字节保持不变。复现证据为 `evidence/ios-package-search/order03-reviewed-patch-reproduction.json`，脚本为 `scripts/reproduce-order03-reviewed-patch.mjs`。
+
+对应源码副本的 iOS 清单/交付/登录隔离测试通过，真实 Unity profile 的 opt-in 测试本轮跳过。入场扣费、Start/重载、丢失/放弃结果、账号/服务重载和无效缓存结果等 7 个定向测试在 3 个包通过，证据为 `order03-reviewed-source-contract-tests.json`。这些都是本地隔离夹具，成功续关、真实胜负/结算及现部署进程重启恢复仍需实际证据。原先 `order03-source-link-reproduction.json` 的失败属于旧本地补丁版本，其证据保留。
+
+顺序 03 的服务器程序与源码对应关系现已验证，`ready=false`，正式目标仍 active / 未完成。当前主要缺口为运行进程实际采用的配置/资源选择、CSV 原始来源与转换，以及成功 Continue、真实胜负结算和进程重启恢复。下一项按已确认的源代码收窄加载/契约取证。本轮未修改运行服务或固定参考，也未生成新 IPA。
+
 ## 2026-11-24 原始关卡生产加载器验证与默认关闭变体
 
 本轮验证已保存为本地代码提交 `162f26e`。私有仓库推送在沙箱内连接失败，提升权限重试又因自动审批超时被拒绝，命令未执行。用户表示不理解“源码”含义，已明确解释为制作独立服务成品程序时使用的 Go 文件和 iOS 修改，并在 `顺序03服务端交付请求.md` 顶部准备了可转发给制作方的取回请求。共享对话可读取正文只有成品链接/说明，没有完整编译源码或构建命令。

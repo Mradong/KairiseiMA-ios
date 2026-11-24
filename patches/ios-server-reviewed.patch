@@ -1,0 +1,526 @@
+diff --git a/server/internal/cnbootstrap/cdn_export.go b/server/internal/cnbootstrap/cdn_export.go
+index ef9d23bd75f502eb46857e41c109b1e90e782b9c..fc064563bcaf5a8d84980c8a4c56ef8c9c6d15f3 100644
+--- a/server/internal/cnbootstrap/cdn_export.go
++++ b/server/internal/cnbootstrap/cdn_export.go
+@@ -289,6 +289,12 @@ func cdnSourcePath(root, relative string) (string, error) {
+ 	if relative == "" || relative == "." || !filepath.IsLocal(relative) || path.Clean(relative) != relative || strings.ContainsAny(relative, "\\:\r\n") {
+ 		return "", fmt.Errorf("unsafe resource path %q", relative)
+ 	}
++	// Compare canonical paths on both sides. Windows temp directories may use
++	// an 8.3 alias while EvalSymlinks returns the expanded directory name.
++	root, err := filepath.EvalSymlinks(root)
++	if err != nil {
++		return "", err
++	}
+ 	resolved, err := filepath.EvalSymlinks(filepath.Join(root, filepath.FromSlash(relative)))
+ 	if err != nil {
+ 		return "", err
+diff --git a/server/internal/cnbootstrap/platform_apple_test.go b/server/internal/cnbootstrap/platform_apple_test.go
+new file mode 100644
+index 0000000000000000000000000000000000000000..e3251f168979c33fb4d90510e30c309ddb4097b1
+--- /dev/null
++++ b/server/internal/cnbootstrap/platform_apple_test.go
+@@ -0,0 +1,214 @@
++package cnbootstrap
++
++import (
++	"bytes"
++	"crypto/sha256"
++	"encoding/json"
++	"fmt"
++	"net/http"
++	"net/http/httptest"
++	"os"
++	"path/filepath"
++	"strings"
++	"testing"
++
++	"github.com/go-chi/chi/v5"
++	"kairisei.local/server/internal/accountstore"
++	"kairisei.local/server/internal/testfixture"
++)
++
++// This gate uses the real Unity-built iOS profile in cloud builds. Local byte
++// fixtures above establish protocol behavior, not valid AssetBundle content.
++func TestIOSCompiledProfile(t *testing.T) {
++	profile := os.Getenv("IOS_COMPILED_PROFILE")
++	if profile == "" {
++		t.Skip("set IOS_COMPILED_PROFILE to a Unity-built iOS delivery profile")
++	}
++	delivery, err := loadPlatformDelivery(profile)
++	if err != nil {
++		t.Fatal(err)
++	}
++	if delivery.platform != "iOS" || delivery.unityVersion != "6000.3.26f1" {
++		t.Fatal("wrong build target")
++	}
++	router := chi.NewRouter()
++	registerPlatformContent(router, platformDeliveries{platformKey(delivery.platform, delivery.unityVersion): delivery}, nil, nil)
++	for name, file := range delivery.bundles {
++		payload, err := os.ReadFile(file.path)
++		if err != nil {
++			t.Fatal(err)
++		}
++		if !bytes.HasPrefix(payload, []byte("UnityFS\x00")) || fmt.Sprintf("%x", sha256.Sum256(payload)) != file.sha {
++			t.Fatal("compiled bundle format/hash differs")
++		}
++		url := "/local/content/iOS/6000.3.26f1/" + delivery.contentID + "/patch/" + name + ".v" + file.crc
++		w := httptest.NewRecorder()
++		router.ServeHTTP(w, httptest.NewRequest(http.MethodGet, url, nil))
++		if w.Code != http.StatusOK || !bytes.Equal(w.Body.Bytes(), payload) {
++			t.Fatal("server did not deliver exact compiled iOS bytes")
++		}
++	}
++	if _, err := os.Stat(filepath.Join(filepath.Dir(profile), "resource-build.json")); err != nil {
++		t.Fatal("missing resource build evidence")
++	}
++}
++
++func TestIOSPublicManifestValidationAndDelivery(t *testing.T) {
++	for _, scenario := range []string{"valid", "wrong-platform", "wrong-version", "wrong-revision", "wrong-bundle-hash", "wrong-size", "duplicate"} {
++		t.Run(scenario, func(t *testing.T) {
++			profilePath := writePlatformFixture(t, t.TempDir(), "iOS", []byte("ios-only"))
++			encoded, err := os.ReadFile(profilePath)
++			if err != nil {
++				t.Fatal(err)
++			}
++			var profile platformDeliveryProfile
++			if err := json.Unmarshal(encoded, &profile); err != nil {
++				t.Fatal(err)
++			}
++			file := profile.Bundles[0]
++			wire := platformClientManifest{Format: 1, Platform: "iOS", UnityVersion: profile.UnityVersion, ContentID: profile.ContentID, Bundles: []platformClientBundle{{Name: file.Name, File: file.SHA256 + ".bundle", Bytes: file.Bytes, SHA256: file.SHA256, CRC32: file.CRC32, Dependencies: []string{}}}}
++			wire.ContentID = iosClientManifestID(wire)
++			profile.ContentID = wire.ContentID
++			switch scenario {
++			case "wrong-platform":
++				wire.Platform = "Android"
++			case "wrong-version":
++				wire.UnityVersion = "5.3.5p1"
++			case "wrong-revision":
++				wire.ContentID = strings.Repeat("0", 64)
++			case "wrong-bundle-hash":
++				wire.Bundles[0].SHA256 = strings.Repeat("0", 64)
++			case "wrong-size":
++				wire.Bundles[0].Bytes++
++			case "duplicate":
++				wire.Bundles = append(wire.Bundles, wire.Bundles[0])
++			}
++			raw, err := json.Marshal(wire)
++			if err != nil {
++				t.Fatal(err)
++			}
++			digest := sha256.Sum256(raw)
++			profile.ClientManifest = &platformDeliveryCatalog{File: "client-manifest.json", Bytes: int64(len(raw)), SHA256: fmt.Sprintf("%x", digest)}
++			if err := os.WriteFile(filepath.Join(filepath.Dir(profilePath), "client-manifest.json"), raw, 0o600); err != nil {
++				t.Fatal(err)
++			}
++			encoded, err = json.Marshal(profile)
++			if err != nil {
++				t.Fatal(err)
++			}
++			if err := os.WriteFile(profilePath, encoded, 0o600); err != nil {
++				t.Fatal(err)
++			}
++			delivery, err := loadPlatformDelivery(profilePath)
++			if scenario != "valid" {
++				if err == nil {
++					t.Fatal("inconsistent public manifest accepted")
++				}
++				return
++			}
++			if err != nil {
++				t.Fatal(err)
++			}
++			router := chi.NewRouter()
++			registerPlatformContent(router, platformDeliveries{platformKey("iOS", profile.UnityVersion): delivery}, nil, nil)
++			url := "/local/content/iOS/" + profile.UnityVersion + "/" + profile.ContentID + "/client-manifest.json"
++			w := httptest.NewRecorder()
++			router.ServeHTTP(w, httptest.NewRequest(http.MethodGet, url, nil))
++			if w.Code != http.StatusOK || !bytes.Equal(w.Body.Bytes(), raw) || w.Header().Get("Content-Type") != "application/json" {
++				t.Fatal("public manifest response differs")
++			}
++			w = httptest.NewRecorder()
++			router.ServeHTTP(w, httptest.NewRequest(http.MethodHead, url, nil))
++			if w.Code != http.StatusOK || w.Body.Len() != 0 {
++				t.Fatal("public manifest HEAD differs")
++			}
++		})
++	}
++}
++
++func TestIOSDeliveryLoginAndIsolation(t *testing.T) {
++	root := t.TempDir()
++	set, err := loadPlatformDeliveries([]string{
++		writePlatformFixture(t, root, "StandaloneWindows64", []byte("windows-only")),
++		writePlatformFixture(t, root, "Android", []byte("android-only")),
++		writePlatformFixture(t, root, "iOS", []byte("ios-only")),
++	})
++	if err != nil {
++		t.Fatal(err)
++	}
++	accounts := testfixture.NewFriendCapacityTestAccounts(t)
++	if err := accounts.AttachCreationPolicy(func() accountstore.CreationPolicy { return accountstore.CreationPolicy{DailyLimit: 10} }); err != nil {
++		t.Fatal(err)
++	}
++	router := chi.NewRouter()
++	router.Post("/local/client/login", platformClientLogin(accounts, "127.0.0.1", 26040, CDNConfig{}, "images", set))
++	registerPlatformContent(router, set, nil, nil)
++	var userID any
++	expected := map[string]string{"iOS": "ios-only", "StandaloneWindows64": "windows-only", "Android": "android-only"}
++	for _, platform := range []string{"iOS", "StandaloneWindows64", "Android", "iOS"} {
++		body, _ := json.Marshal(localLoginPayload{UUID: "a5750000-0000-4000-8000-000000000001", ClientVersion: cnMinimumClientVersion, ResourcePlatform: platform, UnityVersion: "6000.3.26f1"})
++		response := httptest.NewRecorder()
++		router.ServeHTTP(response, httptest.NewRequest(http.MethodPost, "/local/client/login", bytes.NewReader(body)))
++		var result map[string]any
++		if err := json.Unmarshal(response.Body.Bytes(), &result); err != nil || response.Code != http.StatusOK || result["res_code"] != float64(0) {
++			t.Fatal("target login failed", response.Code, err)
++		}
++		if userID != nil && userID != result["userid"] {
++			t.Fatal("changing platform created a second identity")
++		}
++		userID = result["userid"]
++		delivery := set[platformKey(platform, "6000.3.26f1")]
++		prefix := "/local/content/" + platform + "/6000.3.26f1/" + delivery.contentID
++		if result["version_url"] != "http://127.0.0.1:26040"+prefix+"/" {
++			t.Fatal("login selected wrong platform content")
++		}
++		file := delivery.bundles["main_c/menu.dat"]
++		url := prefix + "/patch/main_c/menu.dat.v" + file.crc
++		t.Run(platform+" delivery", func(t *testing.T) {
++			for _, method := range []string{http.MethodGet, http.MethodHead} {
++				w := httptest.NewRecorder()
++				router.ServeHTTP(w, httptest.NewRequest(method, url, nil))
++				if w.Code != http.StatusOK || w.Header().Get("ETag") != `"`+file.sha+`"` || w.Header().Get("Cache-Control") != "public, max-age=31536000, immutable" {
++					t.Fatal("incorrect immutable response", w.Code)
++				}
++				if method == http.MethodGet && w.Body.String() != expected[platform] {
++					t.Fatal("different platform bytes delivered")
++				}
++				if method == http.MethodHead && w.Body.Len() != 0 {
++					t.Fatal("HEAD had a body")
++				}
++			}
++			conditional := httptest.NewRequest(http.MethodGet, url, nil)
++			conditional.Header.Set("If-None-Match", `"`+file.sha+`"`)
++			w := httptest.NewRecorder()
++			router.ServeHTTP(w, conditional)
++			if w.Code != http.StatusNotModified {
++				t.Fatal("ETag not honored")
++			}
++			ranged := httptest.NewRequest(http.MethodGet, url, nil)
++			ranged.Header.Set("Range", "bytes=0-2")
++			w = httptest.NewRecorder()
++			router.ServeHTTP(w, ranged)
++			if w.Code != http.StatusPartialContent || w.Body.Len() != 3 {
++				t.Fatal("range failed")
++			}
++			for _, invalid := range []string{strings.Replace(url, "/6000.3.26f1/", "/5.3.5p1/", 1), strings.Replace(url, delivery.contentID, strings.Repeat("0", 64), 1), prefix + "/patch/undeclared.dat.v00000000"} {
++				w = httptest.NewRecorder()
++				router.ServeHTTP(w, httptest.NewRequest(http.MethodGet, invalid, nil))
++				if w.Code != http.StatusNotFound {
++					t.Fatal("undeclared content served", invalid, w.Code)
++				}
++			}
++		})
++	}
++	// No account store: missing iOS version must be rejected before account creation.
++	login := platformClientLogin(nil, "127.0.0.1", 26040, CDNConfig{}, "images", set)
++	for _, target := range []struct{ platform, unity string }{{"iOS", "5.3.5p1"}, {"ios", "6000.3.26f1"}, {"iOS", ""}} {
++		payload := fmt.Sprintf(`{"uuid":"a5750000-0000-4000-8000-000000000099","clver":"%s","resource_platform":"%s","unity_version":"%s"}`, cnMinimumClientVersion, target.platform, target.unity)
++		w := httptest.NewRecorder()
++		login(w, httptest.NewRequest(http.MethodPost, "/local/client/login", strings.NewReader(payload)))
++		if w.Code != http.StatusBadRequest {
++			t.Fatal("invalid target reached accounts")
++		}
++	}
++}
+diff --git a/server/internal/cnbootstrap/platform_content_http.go b/server/internal/cnbootstrap/platform_content_http.go
+index 05e655032ae023c333dc9921d78d5135b5bea3b7..b6625b19ddb9e8849ea4ddafa94230081e696a8f 100644
+--- a/server/internal/cnbootstrap/platform_content_http.go
++++ b/server/internal/cnbootstrap/platform_content_http.go
+@@ -46,6 +46,8 @@ func registerPlatformContent(router chi.Router, set platformDeliveries, cpkList,
+ 			})
+ 		})
+ 		catalog := func(w http.ResponseWriter, r *http.Request) { set.serveContent(w, r, "patch/catalog.dat") }
++		r.Get("/client-manifest.json", func(w http.ResponseWriter, r *http.Request) { set.serveContent(w, r, "client-manifest.json") })
++		r.Head("/client-manifest.json", func(w http.ResponseWriter, r *http.Request) { set.serveContent(w, r, "client-manifest.json") })
+ 		r.Get("/patch/catalog.dat", catalog)
+ 		r.Head("/patch/catalog.dat", catalog)
+ 		r.Get("/patch/*", set.serveBundle)
+diff --git a/server/internal/cnbootstrap/platform_delivery.go b/server/internal/cnbootstrap/platform_delivery.go
+index 8df6491e18db8f5d1820425320d7a65be28f0369..6057ec37858ace1d9d52e5d80a7c314a23b31500 100644
+--- a/server/internal/cnbootstrap/platform_delivery.go
++++ b/server/internal/cnbootstrap/platform_delivery.go
+@@ -22,14 +22,15 @@ import (
+ // Platform profiles are operator-owned build outputs. Their private filesystem
+ // paths are never sent to the player; requests select only declared bundles.
+ type platformDeliveryProfile struct {
+-	Platform     string                   `json:"platform"`
+-	UnityVersion string                   `json:"unity_version"`
+-	ContentID    string                   `json:"content_id"`
+-	ArtifactRoot string                   `json:"artifact_root"`
+-	Catalog      platformDeliveryCatalog  `json:"catalog"`
+-	Bundles      []platformDeliveryBundle `json:"bundles"`
+-	Packs        []platformDeliveryPack   `json:"packs,omitempty"`
+-	Movies       *platformDeliveryCatalog `json:"movies,omitempty"`
++	Platform       string                   `json:"platform"`
++	UnityVersion   string                   `json:"unity_version"`
++	ContentID      string                   `json:"content_id"`
++	ArtifactRoot   string                   `json:"artifact_root"`
++	Catalog        platformDeliveryCatalog  `json:"catalog"`
++	ClientManifest *platformDeliveryCatalog `json:"client_manifest,omitempty"`
++	Bundles        []platformDeliveryBundle `json:"bundles"`
++	Packs          []platformDeliveryPack   `json:"packs,omitempty"`
++	Movies         *platformDeliveryCatalog `json:"movies,omitempty"`
+ }
+ 
+ type platformDeliveryPack struct {
+@@ -109,7 +110,7 @@ func loadPlatformDelivery(profilePath string) (*platformDelivery, error) {
+ 	if err := json.Unmarshal(raw, &profile); err != nil {
+ 		return nil, err
+ 	}
+-	if (profile.Platform != "StandaloneWindows64" && profile.Platform != "Android") ||
++	if (profile.Platform != "StandaloneWindows64" && profile.Platform != "Android" && profile.Platform != "iOS") ||
+ 		profile.UnityVersion == "" || strings.ContainsAny(profile.UnityVersion, "/\\:\x00\r\n") ||
+ 		!contentHashValid(profile.ContentID) || profile.ArtifactRoot == "" || len(profile.Bundles) == 0 || len(profile.Bundles) > 16384 {
+ 		return nil, errors.New("invalid platform delivery identity")
+@@ -249,6 +250,11 @@ func loadPlatformDelivery(profilePath string) (*platformDelivery, error) {
+ 		delivery.registerMovies(movies)
+ 	}
+ 	delivery.bundles = realFiles
++	if profile.ClientManifest != nil {
++		if err := delivery.registerClientManifest(directory, profile); err != nil {
++			return nil, err
++		}
++	}
+ 	return delivery, nil
+ }
+ 
+diff --git a/server/internal/cnbootstrap/platform_manifest.go b/server/internal/cnbootstrap/platform_manifest.go
+new file mode 100644
+index 0000000000000000000000000000000000000000..26b135115a0b002c0410f544d785de9be9d580b4
+--- /dev/null
++++ b/server/internal/cnbootstrap/platform_manifest.go
+@@ -0,0 +1,146 @@
++package cnbootstrap
++
++import (
++	"crypto/sha256"
++	"encoding/hex"
++	"encoding/json"
++	"errors"
++	"fmt"
++	"os"
++	"regexp"
++	"slices"
++	"strings"
++)
++
++type platformClientManifest struct {
++	Format       int                    `json:"format"`
++	Platform     string                 `json:"platform"`
++	UnityVersion string                 `json:"unityVersion"`
++	ContentID    string                 `json:"contentId"`
++	Bundles      []platformClientBundle `json:"bundles"`
++}
++
++type platformClientBundle struct {
++	Name         string   `json:"name"`
++	File         string   `json:"file"`
++	Bytes        int64    `json:"bytes"`
++	SHA256       string   `json:"sha256"`
++	CRC32        string   `json:"crc32"`
++	Dependencies []string `json:"dependencies"`
++}
++
++// The public manifest has no operator paths. It binds downloads to the exact
++// target, content revision and byte identities already registered by the server.
++func (delivery *platformDelivery) registerClientManifest(directory string, profile platformDeliveryProfile) error {
++	meta := profile.ClientManifest
++	if meta.Bytes <= 0 || meta.Bytes > 1<<20 || !contentHashValid(meta.SHA256) {
++		return errors.New("invalid public client manifest identity")
++	}
++	filename, err := platformRelativeFile(directory, meta.File)
++	if err != nil {
++		return err
++	}
++	info, err := os.Stat(filename)
++	if err != nil || !info.Mode().IsRegular() || info.Size() != meta.Bytes {
++		return errors.New("public client manifest size differs")
++	}
++	raw, err := os.ReadFile(filename)
++	if err != nil {
++		return err
++	}
++	digest := sha256.Sum256(raw)
++	if hex.EncodeToString(digest[:]) != meta.SHA256 {
++		return errors.New("public client manifest hash differs")
++	}
++	var wire platformClientManifest
++	if err := json.Unmarshal(raw, &wire); err != nil {
++		return err
++	}
++	if wire.Format != 1 || wire.Platform != delivery.platform || wire.UnityVersion != delivery.unityVersion || wire.ContentID != delivery.contentID || len(wire.Bundles) != len(delivery.bundles) {
++		return errors.New("public client manifest target or inventory differs")
++	}
++	seen := make(map[string]bool)
++	for _, row := range wire.Bundles {
++		file, exists := delivery.bundles[row.Name]
++		if !exists || seen[row.Name] || file.size != row.Bytes || file.sha != row.SHA256 || file.crc != row.CRC32 || row.File != row.SHA256+".bundle" {
++			return errors.New("public client manifest bundle differs")
++		}
++		seen[row.Name] = true
++		for _, dependency := range row.Dependencies {
++			if _, exists := delivery.bundles[dependency]; !exists || dependency == row.Name {
++				return errors.New("public client manifest dependency differs")
++			}
++		}
++	}
++	if wire.Platform == "iOS" {
++		if err := validateIOSClientManifest(wire); err != nil {
++			return err
++		}
++	}
++	delivery.objects["client-manifest.json"] = platformContentObject{
++		file:       platformDeliveryFile{path: filename, size: meta.Bytes, sha: meta.SHA256},
++		sourceRoot: "delivery", root: directory, contentType: "application/json", data: raw,
++	}
++	return nil
++}
++
++var iosClientBundleName = regexp.MustCompile(`^[a-z0-9_-]+(?:/[a-z0-9_.-]+)*$`)
++
++// Match the uploaded RecoveryContent.cs ContentManifest.Parse contract, including
++// its dependency graph and canonical content ID. A profile and manifest that
++// agree with each other can still be rejected by that client.
++func validateIOSClientManifest(wire platformClientManifest) error {
++	byName := make(map[string]platformClientBundle, len(wire.Bundles))
++	for _, row := range wire.Bundles {
++		if !iosClientBundleName.MatchString(row.Name) || strings.Contains(row.Name, "..") || row.Bytes > 512<<20 {
++			return errors.New("public iOS manifest exceeds client bundle contract")
++		}
++		byName[row.Name] = row
++	}
++	states := make(map[string]uint8, len(byName))
++	var visit func(string) error
++	visit = func(name string) error {
++		if states[name] == 1 {
++			return errors.New("public iOS manifest dependency cycle")
++		}
++		if states[name] == 2 {
++			return nil
++		}
++		states[name] = 1
++		seen := make(map[string]bool)
++		for _, dependency := range byName[name].Dependencies {
++			if _, exists := byName[dependency]; !exists || seen[dependency] {
++				return errors.New("public iOS manifest unknown or duplicate dependency")
++			}
++			seen[dependency] = true
++			if err := visit(dependency); err != nil {
++				return err
++			}
++		}
++		states[name] = 2
++		return nil
++	}
++	for name := range byName {
++		if err := visit(name); err != nil {
++			return err
++		}
++	}
++	if iosClientManifestID(wire) != wire.ContentID {
++		return errors.New("public iOS manifest canonical content ID differs")
++	}
++	return nil
++}
++
++func iosClientManifestID(wire platformClientManifest) string {
++	rows := slices.Clone(wire.Bundles)
++	slices.SortFunc(rows, func(a, b platformClientBundle) int { return strings.Compare(a.Name, b.Name) })
++	var canonical strings.Builder
++	fmt.Fprintf(&canonical, "%s\n%s\n", wire.Platform, wire.UnityVersion)
++	for _, row := range rows {
++		dependencies := slices.Clone(row.Dependencies)
++		slices.Sort(dependencies)
++		fmt.Fprintf(&canonical, "%s\n%s\n%d\n%s\n%s\n", row.Name, row.SHA256, row.Bytes, row.CRC32, strings.Join(dependencies, ","))
++	}
++	digest := sha256.Sum256([]byte(canonical.String()))
++	return hex.EncodeToString(digest[:])
++}
+diff --git a/server/internal/cnbootstrap/platform_manifest_contract_test.go b/server/internal/cnbootstrap/platform_manifest_contract_test.go
+new file mode 100644
+index 0000000000000000000000000000000000000000..a862cd502c2ea7d8f189f8232ebfabd466092f21
+--- /dev/null
++++ b/server/internal/cnbootstrap/platform_manifest_contract_test.go
+@@ -0,0 +1,69 @@
++package cnbootstrap
++
++import (
++	"crypto/sha256"
++	"encoding/json"
++	"fmt"
++	"os"
++	"path/filepath"
++	"strings"
++	"testing"
++)
++
++// Text-only fixtures exercise the C# ContentManifest.Parse contract. They are
++// not Unity AssetBundles and establish no device/resource completeness claim.
++func TestIOSManifestClientContract(t *testing.T) {
++	for _, scenario := range []string{"valid", "wrong-content-id", "duplicate-dependency", "cycle", "invalid-name", "oversized-bundle"} {
++		t.Run(scenario, func(t *testing.T) {
++			wire := platformClientManifest{Format: 1, Platform: "iOS", UnityVersion: "6000.3.26f1", Bundles: []platformClientBundle{
++				{Name: "recovery/ui.dat", File: strings.Repeat("b", 64) + ".bundle", Bytes: 34, SHA256: strings.Repeat("b", 64), CRC32: "ABCDEF01", Dependencies: []string{"recovery/base.dat"}},
++				{Name: "recovery/base.dat", File: strings.Repeat("a", 64) + ".bundle", Bytes: 12, SHA256: strings.Repeat("a", 64), CRC32: "12345678", Dependencies: []string{}},
++			}}
++			switch scenario {
++			case "duplicate-dependency":
++				wire.Bundles[0].Dependencies = []string{"recovery/base.dat", "recovery/base.dat"}
++			case "cycle":
++				wire.Bundles[1].Dependencies = []string{"recovery/ui.dat"}
++			case "invalid-name":
++				wire.Bundles[0].Name = "Recovery/UI.dat"
++			case "oversized-bundle":
++				wire.Bundles[0].Bytes = 512<<20 + 1
++			}
++			// Independent serialization of the client's canonical input. In the
++			// valid fixture base.dat sorts before ui.dat regardless of wire order.
++			canonical := "iOS\n6000.3.26f1\n"
++			for _, i := range []int{1, 0} {
++				row := wire.Bundles[i]
++				canonical += fmt.Sprintf("%s\n%s\n%d\n%s\n%s\n", row.Name, row.SHA256, row.Bytes, row.CRC32, strings.Join(row.Dependencies, ","))
++			}
++			wire.ContentID = fmt.Sprintf("%x", sha256.Sum256([]byte(canonical)))
++			if scenario == "valid" && wire.ContentID != "329d26e138c8e50067713899a4c6ae40baf0b953dfc203453f8171cd29389e2d" {
++				t.Fatal("canonical fixture vector differs")
++			}
++			if scenario == "wrong-content-id" {
++				wire.ContentID = strings.Repeat("0", 64)
++			}
++			delivery := &platformDelivery{platform: wire.Platform, unityVersion: wire.UnityVersion, contentID: wire.ContentID, bundles: make(map[string]platformDeliveryFile), objects: make(map[string]platformContentObject)}
++			for _, row := range wire.Bundles {
++				delivery.bundles[row.Name] = platformDeliveryFile{size: row.Bytes, sha: row.SHA256, crc: row.CRC32}
++			}
++			raw, err := json.Marshal(wire)
++			if err != nil {
++				t.Fatal(err)
++			}
++			directory := t.TempDir()
++			if err := os.WriteFile(filepath.Join(directory, "client-manifest.json"), raw, 0o600); err != nil {
++				t.Fatal(err)
++			}
++			profile := platformDeliveryProfile{ClientManifest: &platformDeliveryCatalog{File: "client-manifest.json", Bytes: int64(len(raw)), SHA256: fmt.Sprintf("%x", sha256.Sum256(raw))}}
++			err = delivery.registerClientManifest(directory, profile)
++			if scenario == "valid" {
++				if err != nil {
++					t.Fatal(err)
++				}
++			} else if err == nil {
++				t.Fatal("server accepted an iOS manifest rejected by ContentManifest.Parse")
++			}
++		})
++	}
++}

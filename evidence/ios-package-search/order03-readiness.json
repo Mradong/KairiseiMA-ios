@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T08:24:30.779Z",
+  "checkedAt": "2026-11-24T08:45:36.787Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -64,11 +64,12 @@
     },
     {
       "id": "reviewed_source_and_observed_binary_link",
-      "state": "partial",
+      "state": "verified",
       "evidence": [
-        "evidence/ios-package-search/order03-source-link-reproduction.json"
+        "evidence/ios-package-search/order03-source-link-reproduction.json",
+        "evidence/ios-package-search/order03-reviewed-patch-reproduction.json"
       ],
-      "remaining": "All 164 received reviewed battle-source hashes match local files and targeted local recovery/result tests pass. Rebuilding base d1a202eb plus the reviewed iOS patch with Go 1.25.1 under ordinary and stripped variants did not reproduce server executable 7704963e; deployed source/patch relation and effective loaded configuration remain UNKNOWN."
+      "remaining": "The received reviewed patch plus pinned base d1a202eb, Go 1.25.1 and recorded flags reproduces the reported server disk executable SHA-256 exactly. Actual configuration/table selection and original CSV extraction remain separate evidence gaps."
     },
     {
       "id": "actual_deployed_version_and_quest_scope",
@@ -144,6 +145,10 @@
     {
       "file": "evidence/ios-package-search/order03-source-link-reproduction.json",
       "sha256": "dccc8dcd6fbe5e4e2aa98f99e8447287f2bb0c3205c2b9d48412cb0047240d71"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+      "sha256": "33eec013ea9fcb8bffc4e799faca1bed710bb3faf7620c72bff73d542fc5a747"
     },
     {
       "file": "evidence/ios-package-search/order03-quest-variant-gap.json",

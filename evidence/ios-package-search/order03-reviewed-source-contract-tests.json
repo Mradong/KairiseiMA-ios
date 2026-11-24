@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-24T08:45:32.763Z",
+  "success": true,
+  "sourceReceipt": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+  "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+  "patchSha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c",
+  "observedExecutableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+  "packages": [
+    "internal/game",
+    "internal/httpapi",
+    "internal/cnbootstrap"
+  ],
+  "tests": [
+    "TestSoloEntryFreezesContinueRuleWithDebit",
+    "TestModernSoloStartRetainsIdentityAcrossReloadAndStartsAfterAbandon",
+    "TestLostSoloBattleReportReturnsClientResult",
+    "TestSoloRetreatBeforeBattleEndAllowsRetainedReport",
+    "TestSoloVictoryDoesNotRequireEnemyBodyDeath",
+    "TestBattleProgressSurvivesAccountAndServerReload",
+    "TestInvalidCachedBattleReportReachesDiscardCallback"
+  ],
+  "topLevelTestsPassed": 7,
+  "scope": "Observed local Go test execution on the isolated source copy that reproduces the server disk executable. Entry/debit, Start/reload, lost/retired result, abandon and reload/discard paths use isolated fixtures. Actual deployed Continue, real victory/defeat logs and live process-restart recovery remain unverified."
+}

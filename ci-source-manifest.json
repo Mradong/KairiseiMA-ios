@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T08:30:25.004Z",
+  "generatedAt": "2026-11-24T08:48:47.213Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 153113,
-      "sha256": "daf2ec262fa5a19e0a147f470a2f30d2f90aa2f61a2b41915730d361c389e629"
+      "bytes": 155367,
+      "sha256": "4c921df9e067efdfb47e6da797109bd6f01b92daf30a5063650195ecec52e0d5"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 100247,
-      "sha256": "be72c3c9031ed70dac7fc6c270642ce80e083c72f9101b4de9a7b960bc6feece"
+      "bytes": 102587,
+      "sha256": "59cd9458e43bbaad53d97fb7df6939e87254c64c4bd821ae33bf4ff227523e9e"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -615,8 +615,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 8805,
-      "sha256": "f7af16619d3ac564b9bc75c48f2ab671c0317fe285afe2a3186fa8c40ebffe45"
+      "bytes": 8967,
+      "sha256": "5cd8e04042049818d739a4d86ac24700e33a41f49118eb8e7b83debe551aa455"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -652,6 +652,16 @@
       "path": "evidence/ios-package-search/order03-remaining-validation.json",
       "bytes": 8087,
       "sha256": "98efaaffd9a3581070e06f5344fe8f9062f8b3eb1fe637b36511eaddf622f66d"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+      "bytes": 6392,
+      "sha256": "33eec013ea9fcb8bffc4e799faca1bed710bb3faf7620c72bff73d542fc5a747"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-reviewed-source-contract-tests.json",
+      "bytes": 1263,
+      "sha256": "28e4c01fad478fda9e2cd565d3d5faef055783cb6abcf926ef18afbdcd637ac0"
     },
     {
       "path": "evidence/ios-package-search/order03-role-alias-before-fix.json",
@@ -1106,7 +1116,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2046,
-      "sha256": "e3ec7c83147be5f5bf66714a42e341c3c482c246a2f860f32ec458200f14d59d"
+      "sha256": "dfb72295d871533812562f372b603bbf4268af0913eb2ddb0343cf3dc8aabb3a"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1409,6 +1419,11 @@
       "sha256": "318bd1ffc1448db008dee8b852ff35f5aac933a7785dbebbba066c40ded58036"
     },
     {
+      "path": "patches/ios-server-reviewed.patch",
+      "bytes": 23212,
+      "sha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c"
+    },
+    {
       "path": "patches/ios-server.patch",
       "bytes": 16845,
       "sha256": "7b8d1228e727970c63408843890a58022299b02122578de269bba94c697d7718"
@@ -1605,8 +1620,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 10506,
-      "sha256": "1936b36727bcfe98a47114ae0d5e3e49c72884656c322a3b47066fdc12df54be"
+      "bytes": 11681,
+      "sha256": "44cbe28eae625e088b5655047e40b6d020ef7f5b88c7628da9e765fd556b1fe9"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1692,6 +1707,11 @@
       "path": "scripts/probe-order03-starter-card-closure.mjs",
       "bytes": 5059,
       "sha256": "2d8749d2e7a653edbb3b53706a7c0c20680cf56dfda2d613df41221e07e865be"
+    },
+    {
+      "path": "scripts/reproduce-order03-reviewed-patch.mjs",
+      "bytes": 6475,
+      "sha256": "0fdedd678451b5ed4f55fca3f7a766aee9ca42b9341934a95e77f1303dbc2e9a"
     },
     {
       "path": "scripts/resource-failure-fixture.mjs",
@@ -2150,8 +2170,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 52168,
-      "sha256": "6000c3a43957e7e4a84280bd54c46d157aba8e190e9a0c35329b9e3bbd15dc56"
+      "bytes": 53228,
+      "sha256": "ba455ab8ea8ec7396e021f7e2d8eaef4e6e56c5e8424ab3707b7fa851d5a82b2"
     },
     {
       "path": "服务端协作需求.md",
@@ -2170,8 +2190,8 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 19417,
-      "sha256": "60dfe79ebc81a036b12937ef5727cd6a380786fe8b374d296e76c725ecef80ce"
+      "bytes": 20207,
+      "sha256": "e5829f670694885d5f70e427af4dd97166b04235bf1510f43531c05a277921e7"
     },
     {
       "path": "顺序03补充取证说明.md",
@@ -2179,7 +2199,7 @@
       "sha256": "3e8596ccf838652196fda9e38baba222493f1ee7740c8444f61f7cfb5c6964d6"
     }
   ],
-  "bytes": 30574379,
+  "bytes": 30619502,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
