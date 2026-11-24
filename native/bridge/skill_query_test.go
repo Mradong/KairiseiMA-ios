@@ -143,3 +143,20 @@ func TestSelectedTagConditionsPreserveNumericParameters(t *testing.T) {
 		}
 	}
 }
+
+func TestFriendSelectedEnumConditionsUseSchema(t *testing.T) {
+	schema := map[string]map[int32]string{
+		"SKILL_EXTEND_EXEC_ORDER": {108: "FRIEND_PLAY_ATTR_NUM", 109: "FRIEND_PLAY_SKILL_KIND_NUM"},
+		"ATTR":                    {1: "FIRE"},
+		"SKILL_KIND":              {1: "ATTACK"},
+	}
+	for ordinal, want := range map[int32]string{108: "FIRE", 109: "ATTACK"} {
+		_, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: ordinal, Parameters: [5]int64{1, 2, -3, 0, 4}})
+		if err != nil || params != [5]string{want, "2", "-3", "0", "4"} {
+			t.Fatalf("ordinal %d: %v %v", ordinal, params, err)
+		}
+		if _, _, err := decodeSkillCondition(schema, rawSkillCondition{Order: ordinal, Parameters: [5]int64{math.MaxInt64}}); err == nil {
+			t.Fatalf("ordinal %d accepted invalid selector", ordinal)
+		}
+	}
+}

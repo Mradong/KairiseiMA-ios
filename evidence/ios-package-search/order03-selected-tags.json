@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T06:24:45.661Z",
+  "checkedAt": "2026-11-24T06:28:42.350Z",
   "success": true,
   "cases": [
     {
@@ -452,11 +452,11 @@
     }
   ],
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-  "rebuiltSha256": "7037b8d97ba22c6fdf09a9d58f770d5d3d802664bb6f29b2d1c014bc92e22cad",
+  "rebuiltSha256": "5a458681f204c4c07ce1fc270b6051d95d32e237d608c7152577829593a4b6c1",
   "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
   "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
   "probeSha256": "5409aee50ad596f95770c59da8b0f57773d2dd7d4c06f2547e66916df0eb431f",
   "scriptSha256": "2ee854a84040c2a76db59a90b98528a20ddb89fdf2fe28a33daa37487668c8b8",
-  "bridgeSourceSha256": "d27a7b021d89b596c006fbb8564cc7569fe245759613a96ecb8ac9a72e33bb83",
+  "bridgeSourceSha256": "759bb412ec38343ab003b75188b7c09b203679e69c88193bf87ffd94c59705a8",
   "scope": "Windows x64 standalone battle after actually selecting two member-1 cards whose card.csv profile tag is 30020003. SELF_OTHER_PLAY_TAG and FRIEND_PLAY_TAG use each of three selectors, match/miss thresholds and both condition slots. Synthetic tables/battle only; no real service, complete skill execution, Unity, ARM64 or device proof."
 }

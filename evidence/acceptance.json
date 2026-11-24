@@ -641,8 +641,11 @@
       "evidence/ios-package-search/order03-selected-counts-before-fix.json",
       "evidence/ios-package-search/order03-selected-counts.json",
       "evidence/ios-package-search/order03-selected-tags-before-fix.json",
-      "evidence/ios-package-search/order03-selected-tags.json"
+      "evidence/ios-package-search/order03-selected-tags.json",
+      "evidence/ios-package-search/order03-friend-selected-before-fix.json",
+      "evidence/ios-package-search/order03-friend-selected.json"
     ],
+    "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "selectedTagConditions": "Windows x64 synthetic standalone battle: after setting card.csv profile tag 30020003 and actually selecting two member-1 cards, 28 SELF_OTHER_PLAY_TAG/FRIEND_PLAY_TAG queries across all three selector positions, match/miss thresholds and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "selectedCountConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 member-1 cards, 26 FRIEND_PLAY_NUM/SELF_PLAY_COST_NUM/SELF_NOT_PLAY_HAND_NUM range queries across both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "otherSelectedCardConditions": "Windows x64 synthetic standalone battle: after actually selecting two member-1 cards, 48 ATTR/SKILL_KIND/RARITY queries across matching/nonmatching selectors, thresholds 0..3 and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",

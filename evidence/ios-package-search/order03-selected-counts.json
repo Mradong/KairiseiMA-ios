@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T06:24:45.581Z",
+  "checkedAt": "2026-11-24T06:28:44.040Z",
   "success": true,
   "cases": [
     {
@@ -388,11 +388,11 @@
     }
   ],
   "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
-  "rebuiltSha256": "7037b8d97ba22c6fdf09a9d58f770d5d3d802664bb6f29b2d1c014bc92e22cad",
+  "rebuiltSha256": "5a458681f204c4c07ce1fc270b6051d95d32e237d608c7152577829593a4b6c1",
   "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
   "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
   "probeSha256": "e6c7267de5801b64ecd72d3160f2143f867f0bb1287e1bfbdd82cbb3319daa19",
   "scriptSha256": "0f21ea077080cbe40ab6891ab6a84a363902a58bf7bf3f793fae0cced0093e77",
-  "bridgeSourceSha256": "d27a7b021d89b596c006fbb8564cc7569fe245759613a96ecb8ac9a72e33bb83",
+  "bridgeSourceSha256": "759bb412ec38343ab003b75188b7c09b203679e69c88193bf87ffd94c59705a8",
   "scope": "Windows x64 standalone battle after actually selecting two cost-1 member-1 cards. FRIEND_PLAY_NUM, SELF_PLAY_COST_NUM and SELF_NOT_PLAY_HAND_NUM range boundaries and both condition slots. Synthetic tables/battle only; no real service, complete skill execution, Unity, ARM64 or device proof."
 }

@@ -1,0 +1,574 @@
+{
+  "checkedAt": "2026-11-24T06:28:42.439Z",
+  "success": true,
+  "cases": [
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        1,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 108,
+      "parameters": [
+        2,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        1,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        0
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        0
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "selected-enum-count",
+      "ordinal": 109,
+      "parameters": [
+        5,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-below",
+      "ordinal": 21,
+      "parameters": [
+        0,
+        1
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-below",
+      "ordinal": 21,
+      "parameters": [
+        0,
+        1
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-exact",
+      "ordinal": 21,
+      "parameters": [
+        2,
+        2
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-exact",
+      "ordinal": 21,
+      "parameters": [
+        2,
+        2
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-above",
+      "ordinal": 21,
+      "parameters": [
+        3,
+        4
+      ],
+      "conditionSlot": 0,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-above",
+      "ordinal": 21,
+      "parameters": [
+        3,
+        4
+      ],
+      "conditionSlot": 1,
+      "expected": 0,
+      "originalStatus": 0,
+      "originalResult": 0,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 0
+    },
+    {
+      "name": "cost-wide",
+      "ordinal": 21,
+      "parameters": [
+        0,
+        3
+      ],
+      "conditionSlot": 0,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    },
+    {
+      "name": "cost-wide",
+      "ordinal": 21,
+      "parameters": [
+        0,
+        3
+      ],
+      "conditionSlot": 1,
+      "expected": 1,
+      "originalStatus": 0,
+      "originalResult": 1,
+      "rebuiltStatus": 0,
+      "rebuiltResult": 1
+    }
+  ],
+  "originalSha256": "d4188f75ef8c7e6625b5489e63de5191c4882085c93681cdc9cc0c1914c426d6",
+  "rebuiltSha256": "5a458681f204c4c07ce1fc270b6051d95d32e237d608c7152577829593a4b6c1",
+  "fixtureSha256": "d7d0444203438e6da22f52f6147bdeec967bd08bd618990078bcdd83eae35fc2",
+  "battleSha256": "99b48730aa41eab0453cf81e58ecac7fac66dc3ad511fa5669a4cb60fcc596be",
+  "probeSha256": "0a5243d6ce18585101c3dc1837574cb33e2d60b9048c182c228d2ec263fd0612",
+  "scriptSha256": "589a7b1de2625b2f00bc371da3b46248831e17d7995d7640c921b69a566a244b",
+  "bridgeSourceSha256": "759bb412ec38343ab003b75188b7c09b203679e69c88193bf87ffd94c59705a8",
+  "scope": "Windows x64 standalone battle after actually selecting two cost-1 FIRE/ATTACK member-1 cards. FRIEND_PLAY_ATTR_NUM, FRIEND_PLAY_SKILL_KIND_NUM and FRIEND_PLAY_COST_TOTAL use matching/nonmatching or range boundaries and both condition slots. Synthetic tables/battle only; no real service, complete skill execution, Unity, ARM64 or device proof."
+}

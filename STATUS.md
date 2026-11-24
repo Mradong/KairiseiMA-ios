@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-24：03 / 队伍选牌属性、技能种类与费用总和条件差分
+
+重建桥此前拒绝 `FRIEND_PLAY_ATTR_NUM`、`FRIEND_PLAY_SKILL_KIND_NUM`、`FRIEND_PLAY_COST_TOTAL`。按旧客户端转换规则，前两项首参数分别由候选 `ATTR`、`SKILL_KIND` 解码，其余参数及费用总和条件保留为有符号数值。Windows x64 合成独立战斗实际选择两张 cost=1、FIRE/ATTACK 卡，覆盖匹配/不匹配枚举、数量阈值 0..3、费用总和区间和两个条件槽。修复前原 DLL 40/40 符合预期、重建 DLL 40/40 拒绝；修复后 40/40 状态和结果与原 DLL 一致。证据为 `evidence/ios-package-search/order03-friend-selected-before-fix.json` 和 `order03-friend-selected.json`。
+
+Go 桥单测、标签条件 28 组、数量/费用条件 26 组及 3,633 项注册战斗回归通过。交付表静态投影中，这三类标签共出现 270 次；桥解码列表之外的非空条件出现次数由追加 66、第一分支 2,851、第二分支 407 降为 66、2,717、271。计数按字段/变体，不代表独立技能数、可达性或完整效果执行。Windows 重建 DLL SHA-256 `5a458681f204c4c07ce1fc270b6051d95d32e237d608c7152577829593a4b6c1`。本轮仍为合成查询；真实主表版本/来源、真实服务技能、Unity/ARM64/设备及其余服务契约未完成，候选隔离，03 active。
+
 ## 2026-11-24：03 / 已选卡牌标签条件差分
 
 重建桥此前拒绝 `SELF_OTHER_PLAY_TAG` 和 `FRIEND_PLAY_TAG`；旧客户端转换规则确认其前三参数为数值 profile-tag 选择器、第四参数为数量阈值，现按 schema 名称保留全部有符号数值。Windows x64 合成卡表在 `card.csv` 的 profile-tag 列写入 `30020003`，实际选择成员 1 的两张卡，覆盖三个选择器位置、匹配/不匹配、阈值 0/1/2/3 和两个条件槽。修复前原 DLL 28/28 符合预期、重建 DLL 28/28 拒绝；修复后 28/28 状态和结果与原 DLL 一致。证据为 `evidence/ios-package-search/order03-selected-tags-before-fix.json` 和 `order03-selected-tags.json`。
