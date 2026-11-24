@@ -2,6 +2,8 @@
 
 ## 2026-11-24 source-patch 已复现服务器程序，源码对应关系验证通过
 
+复现代码与证据已保存为本地提交 `4864376`。私有仓库推送因自动权限审批超时被拒绝，未实际执行；本地补丁、源码副本、程序和证据保留。后续审批可用时接续推送。
+
 收到 `source-patch.zip`，ZIP SHA-256 为 `c68058a4c2a9948c1c1ce608415369d9cea82a62cf9dbf1ef3236e398608fd82`。其中 `ios-server-reviewed.patch` 为 23,212 字节，SHA-256 `b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c`，已隔离保存，并保存受审查副本 `patches/ios-server-reviewed.patch`。该补丁涉及四份生产文件和两份测试文件，包含此前本地补丁缺少的公共 iOS 清单客户端契约检查及 Windows 规范路径处理。
 
 补丁的全部原始 Git blob 与固定基础提交 `d1a202eb539b99511e8a33f3975fac409ab545bf` 一致。在独立源码副本应用补丁后，六份结果文件也全部与补丁完整 Git blob 一致。使用 Go 1.25.1、windows/amd64、CGO=0、`-buildvcs=false -trimpath -ldflags='-s -w'` 重建，得到 29,736,448 字节，SHA-256 `7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918`，与服务器两次采集的程序完全相同。首次应用受本机 Git 自动换行影响，已在该复现命令关闭自动换行转换；原始补丁字节保持不变。复现证据为 `evidence/ios-package-search/order03-reviewed-patch-reproduction.json`，脚本为 `scripts/reproduce-order03-reviewed-patch.mjs`。
