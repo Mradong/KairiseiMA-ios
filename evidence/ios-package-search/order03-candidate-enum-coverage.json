@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-23T10:56:18.332Z",
+  "checkedAt": "2026-11-24T01:55:55.282Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "06741348c226c113d1817e44539305334b6a2e136e8db32de4bd214aa834da5a",
+  "bridgeConditionSourceSha256": "929952eb29620cdb7ba4b3093e7183c942fe868c6a41434dc334b4161bae752e",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -226,8 +226,8 @@
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 10680,
-      "other": 7769,
+      "declaredDecoder": 10750,
+      "other": 7699,
       "otherNames": {
         "SELF_ENEMY_AI_FLAG": 1482,
         "SELF_TRANCE_GAUGE_VALUE": 63,
@@ -247,7 +247,6 @@
         "ENEMY_TRANCE_GAUGE_STATE": 62,
         "FRIEND_PLAY_COST_TOTAL": 7,
         "TARGET_CARD_ONLY_SELF_PLAY": 25,
-        "SELF_ARTHUR_TYPE": 70,
         "FRIEND_PLAY_NUM": 468,
         "FRIEND_PLAY_SKILL_KIND_NUM": 35,
         "TARGET_BUFF": 226,
@@ -279,8 +278,8 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 786,
-      "other": 1054,
+      "declaredDecoder": 989,
+      "other": 851,
       "otherNames": {
         "FRIEND_PLAY_ATTR_NUM": 95,
         "SELF_OTHER_PLAY_ATTR": 205,
@@ -293,7 +292,6 @@
         "FRIEND_PLAY_COST_TOTAL": 2,
         "TARGET_JOB_TYPE": 15,
         "SELF_OTHER_PLAY_SKILL_KIND": 69,
-        "SELF_ARTHUR_TYPE": 203,
         "TARGET_CARD_ONLY_SELF_PLAY": 5,
         "FRIEND_PLAY_SKILL_KIND_NUM": 39,
         "FRIEND_PLAY_NUM": 2,

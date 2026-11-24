@@ -69,3 +69,18 @@ func TestEnemyVariableConditionUsesSchemaAndPreservesPackedBounds(t *testing.T) 
 		t.Fatalf("packed explicit zeros changed: %v %v", params, err)
 	}
 }
+
+func TestArthurTypeConditionUsesSchemaAndRejectsInvalidValues(t *testing.T) {
+	schema := map[string]map[int32]string{"SKILL_EXTEND_EXEC_ORDER": {107: "SELF_ARTHUR_TYPE"}, "ARTHUR_TYPE": {0: "NULL", 1: "MERCENARY", 5: "ALCHEMIST"}}
+	for _, value := range []int64{0, 1, 5} {
+		_, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: 107, Parameters: [5]int64{value, -9, 0, 0, 0}})
+		if err != nil || params[0] != schema["ARTHUR_TYPE"][int32(value)] || params[1] != "-9" {
+			t.Fatalf("value %d: %v %v", value, params, err)
+		}
+	}
+	for _, value := range []int64{6, math.MaxInt64} {
+		if _, _, err := decodeSkillCondition(schema, rawSkillCondition{Order: 107, Parameters: [5]int64{value}}); err == nil {
+			t.Fatalf("accepted invalid type %d", value)
+		}
+	}
+}

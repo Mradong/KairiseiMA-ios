@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-24T01:45:21.678Z",
+  "generatedAt": "2026-11-24T01:57:06.652Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 132753,
-      "sha256": "7119849a7872479d647a9ba15f72a9cf8fbd65c89fd930e83bffed1c1849f9c3"
+      "bytes": 133959,
+      "sha256": "a941c879dc38c6278020d475b93afc5357ec474797941c3b55659d76fab1cbef"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 87311,
-      "sha256": "62c2dfa0c01edb8b6387b5f07feed686615a80378286fe3a6ad1f78a970e5908"
+      "bytes": 87639,
+      "sha256": "8b4e81d89d54348b85fe6f69853068ce78aeaf2eef893ac51258c73961e2f2a4"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -399,6 +399,11 @@
       "sha256": "810f64c9c58dd41283404e051a2b228ca4503075c2437099937c0c656a3a0025"
     },
     {
+      "path": "evidence/ios-package-search/order03-arthur-type.json",
+      "bytes": 14827,
+      "sha256": "7b1341f455e966345765f6586ea9345b72a34bac76625dec1cd02de0f22835f7"
+    },
+    {
       "path": "evidence/ios-package-search/order03-blocked-audit.json",
       "bytes": 5416,
       "sha256": "2b7d7903d67b7ef2dcd77a500f54752505ce752a1b40c4d2b6bcb3f8b7009f47"
@@ -420,8 +425,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-candidate-enum-coverage.json",
-      "bytes": 8769,
-      "sha256": "4d0f9b0167a4b206870c53b3c041a478c1926de7d996a635966bc2c6f5673f2d"
+      "bytes": 8703,
+      "sha256": "cb75f57849027f802c6dcbfccb1ea713b0a288f8f3bf763797db8ad5a83cac2d"
     },
     {
       "path": "evidence/ios-package-search/order03-candidate-name-validation.json",
@@ -566,7 +571,7 @@
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
       "bytes": 8367,
-      "sha256": "242c1c81872aadb43e8deb74aedbc1a19e1402e480f8d19546b763b185876ded"
+      "sha256": "ef750497644a70afebfeb2733f185ac0932314b0662b89372d64c754734403f7"
     },
     {
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
@@ -656,7 +661,7 @@
     {
       "path": "evidence/ios-package-search/order03-turn-query.json",
       "bytes": 14133,
-      "sha256": "5e14046f550c9bf871f8628e24446b370d2d1686c61e1da00042ed6ff779e830"
+      "sha256": "4c47879274f416db4375edf22f224451153bd0929db6ea2827d88e3f47c4da97"
     },
     {
       "path": "evidence/ios-package-search/order03-value-parser-differential.json",
@@ -711,7 +716,7 @@
     {
       "path": "evidence/native/registered-battle-differential-tests.json",
       "bytes": 3410,
-      "sha256": "1fbbe375aa278b37eadde7eeb60c2358f4f103544ea4783ede655d578d83c602"
+      "sha256": "b5c3a59fb4841095e7870de6c061d74b6123205eda80af12e7d067f0cb453497"
     },
     {
       "path": "evidence/native/registered-buddy-bursts.txt",
@@ -986,7 +991,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "8a91de6ffb1fec5bdc13437532633f551fed325e19e39d8d747859ffbedeecc0"
+      "sha256": "8190a37b0a369f38c47cdf2bde256bb1779e7289b7ba3eec05dd1c9d13bb6544"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1270,13 +1275,13 @@
     },
     {
       "path": "native/bridge/skill_query.go",
-      "bytes": 12118,
-      "sha256": "06741348c226c113d1817e44539305334b6a2e136e8db32de4bd214aa834da5a"
+      "bytes": 12202,
+      "sha256": "929952eb29620cdb7ba4b3093e7183c942fe868c6a41434dc334b4161bae752e"
     },
     {
       "path": "native/bridge/skill_query_test.go",
-      "bytes": 2976,
-      "sha256": "f51995fcf990157f2099cc27e09d4a94bedfebcc921d2b3d1c6c783712a62360"
+      "bytes": 3749,
+      "sha256": "51ca3c258c9c4e93413a03c5469c1f0437cd93d4d952ded174f974f2ea8b1601"
     },
     {
       "path": "native/bridge/skill_wire.go",
@@ -1420,8 +1425,8 @@
     },
     {
       "path": "scripts/audit-order03-candidate-enum-coverage.mjs",
-      "bytes": 5025,
-      "sha256": "16c4d6f82a9bdc9c262a687fd3ff08d1c20d5e0a66aa6a12900a7a0b5d8f646e"
+      "bytes": 5044,
+      "sha256": "d7a47942a557d57e643fd0ad3adac0f26d6309d39235a96eb3d953c5895ed9ae"
     },
     {
       "path": "scripts/audit-order03-enum-version-differences.mjs",
@@ -1609,6 +1614,11 @@
       "sha256": "2f40ccf8d7b1fcaefec89bd52abd8e9701dabb023d0a95851d46e77a7e750a7e"
     },
     {
+      "path": "scripts/test-order03-arthur-type.mjs",
+      "bytes": 2724,
+      "sha256": "c832a08800a00b6755c517c901a95dc4e143119df76745ac4ad156e82706376a"
+    },
+    {
       "path": "scripts/test-order03-candidate-snapshot.mjs",
       "bytes": 3240,
       "sha256": "a9027d8b8f8f6a0cfa0eb3a249a690fe47157fee0ec1a0489681c77a66b7d75f"
@@ -1769,6 +1779,11 @@
       "sha256": "8711ef6efbc251ffd63b5a81d835ead8dff72d0972ba009bba33e34f8eb9a8a5"
     },
     {
+      "path": "tests/Order03ArthurTypeProbe.cs",
+      "bytes": 3258,
+      "sha256": "52faed486f8db078a9be7ae84ef0f2e2afe11d4cc418cf2c7bbca21fedc7aad8"
+    },
+    {
       "path": "tests/Order03CandidateValidation.cs",
       "bytes": 336,
       "sha256": "23bdc6f5efb727c33f1e92711d2e91a304ee76172ae064f864cf6e593883d178"
@@ -1905,13 +1920,13 @@
     },
     {
       "path": "战斗主表接入.md",
-      "bytes": 8841,
-      "sha256": "99ddfc2cd2b7d819c1e132d30aea813a3b967177dcf9b32fff3d6534cf02dc21"
+      "bytes": 9077,
+      "sha256": "4e5fbc1fafad6bd00aaa667a3dd25d03e12a0432d1c8b8efa7bf3921de2d545c"
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 41108,
-      "sha256": "c254fcde5ee366b55b65c9ec8261ecfb2a5012e2a57a637e64ca40e7f7692e4a"
+      "bytes": 41575,
+      "sha256": "619b95a9872b70b631f66971cb809585bed3f9003460bc07573d4ec933b7c8ed"
     },
     {
       "path": "服务端协作需求.md",
@@ -1939,7 +1954,7 @@
       "sha256": "6c6edf38492f725a3138c681ee67ba2ab2c9892823e443772ea79b10f6ea6538"
     }
   ],
-  "bytes": 23127060,
+  "bytes": 23150916,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

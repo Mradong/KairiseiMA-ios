@@ -1,0 +1,17 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=path.join(root,'test-output/order03-arthur-type');fs.mkdirSync(out,{recursive:true});
+const sha=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const original=path.join(root,'inputs/native/kairisei_battlecore.dll'),rebuilt=path.join(root,'native/build/windows-amd64/kairisei_battlecore_rebuilt.dll'),fixture=path.join(root,'tests/fixtures/native-session/tables.json'),battle=path.join(root,'tests/fixtures/native-session/battle.json'),source=path.join(root,'tests/Order03ArthurTypeProbe.cs');
+const expected=JSON.parse(fs.readFileSync(path.join(root,'evidence/native/go-symbols-summary.json'),'utf8')).sha256;
+if(sha(original)!==expected)throw Error('Original DLL hash differs');
+const csc=path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe'),json=path.join(root,'tools/Newtonsoft.Json/lib/net45/Newtonsoft.Json.dll'),exe=path.join(out,'probe.exe');fs.copyFileSync(json,path.join(out,'Newtonsoft.Json.dll'));
+const compile=spawnSync(csc,['/nologo','/platform:x64','/out:'+exe,'/reference:'+json,source],{encoding:'utf8',windowsHide:true});if(compile.status!==0)throw Error(compile.stdout+compile.stderr);
+const run=spawnSync(exe,[original,rebuilt,fixture,battle],{encoding:'utf8',windowsHide:true,timeout:120000});if(run.status!==0)throw Error(run.stderr);
+const cases=JSON.parse(run.stdout.trim().replace(/^\uFEFF/,''));
+const report={checkedAt:new Date().toISOString(),completed:cases.length===80,allMatched:cases.every(x=>x.originalStatus===x.rebuiltStatus&&x.originalResult===x.rebuiltResult),expectedOutcomes:cases.every(x=>x.wanted>5 ? x.originalStatus===2&&x.originalResult===12345 : x.originalStatus===0&&x.originalResult===(x.wanted===x.actor?x.slot:-1)),cases,originalSha256:sha(original),rebuiltSha256:sha(rebuilt),probeSha256:sha(source),bridgeSourceSha256:sha(path.join(root,'native/bridge/skill_query.go')),scope:'Windows x64 synthetic standalone battle query for SELF_ARTHUR_TYPE. Five actor types, eight requested values including invalid/out-of-range, and two branch slots; no real service battle, Unity, ARM64 or device proof.'};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-arthur-type.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({completed:report.completed,allMatched:report.allMatched,expectedOutcomes:report.expectedOutcomes,cases:cases.length},null,2));if(!report.completed||!report.allMatched||!report.expectedOutcomes)process.exitCode=1;
