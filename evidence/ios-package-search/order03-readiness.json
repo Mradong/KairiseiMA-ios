@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T07:13:34.252Z",
+  "checkedAt": "2026-11-24T07:55:16.598Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -46,18 +46,20 @@
       "state": "verified",
       "evidence": [
         "evidence/ios-package-search/order03-runtime-supplement-import.json",
-        "evidence/ios-package-search/order03-runtime-supplement-validation.json"
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-remaining-validation.json"
       ],
-      "remaining": "Verified scope: received server report of 29 unchanged disk tables, executable/config/manifest identity and same reported process start/image-path/listener association before/after. Client did not inspect the server; loaded configuration/bytes and source commit remain UNKNOWN."
+      "remaining": "Latest received capture reports the same executable/config/manifest/table hashes and a new process start time. Actual process invocation, effective loaded content and deployment source remain UNKNOWN; process restart alone does not prove battle recovery."
     },
     {
       "id": "received_static_quest_mapping",
       "state": "verified",
       "evidence": [
         "evidence/ios-package-search/order03-runtime-supplement-validation.json",
-        "evidence/ios-package-search/order03-runtime-supplement-tests.json"
+        "evidence/ios-package-search/order03-runtime-supplement-tests.json",
+        "evidence/ios-package-search/order03-remaining-validation.json"
       ],
-      "remaining": "Verified scope: 3102 battle replays equal prior projection; 2744 base entries and 1043 explicit own-deck mappings; 50 normal quests/228 waves with specified ID references present. Historical 3788 aggregate count agrees, but exact historical normal/variant membership and live publication/admission remain UNKNOWN."
+      "remaining": "Latest original static JSON reproduces all previously retained battle and normal-quest projection fields. Exact historical list membership, complete extra raw-field semantics and live behavior remain unverified."
     },
     {
       "id": "reviewed_source_and_observed_binary_link",
@@ -125,6 +127,10 @@
     {
       "file": "evidence/ios-package-search/order03-runtime-supplement-validation.json",
       "sha256": "e46aeae4dce919a507033c4c6dd9fed9321dd8077a7a918b8c65214baec28b10"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-remaining-validation.json",
+      "sha256": "98efaaffd9a3581070e06f5344fe8f9062f8b3eb1fe637b36511eaddf622f66d"
     },
     {
       "file": "evidence/ios-package-search/order03-runtime-supplement-tests.json",

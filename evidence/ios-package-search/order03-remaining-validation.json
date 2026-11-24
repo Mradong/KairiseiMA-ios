@@ -1,0 +1,251 @@
+{
+  "checkedAt": "2026-11-24T07:51:40.744Z",
+  "success": true,
+  "planItem": "03",
+  "archive": {
+    "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff.zip",
+    "sha256": "17ca50a8d3aad9efa8224ead51b52d08e7e881e5acedf81beda4a9d77e5263ed",
+    "bytes": 379944,
+    "entries": 10,
+    "checksumEntriesVerified": 9
+  },
+  "collectorIdentityMatchesDeliveredPackage": true,
+  "observation": {
+    "tablesMatched": 29,
+    "receivedDiskIdentitiesMatchEarlier": true,
+    "observedProcessStartUtc": "2026-11-24T07:43:45.6599012Z",
+    "earlierObservedProcessStartUtc": "2026-11-20T08:27:11.2385690Z",
+    "processStartChangedSinceEarlierObservation": true,
+    "sameObservedProcessDuringCapture": true,
+    "goVersion": "go1.25.1",
+    "embeddedModules": [
+      {
+        "kind": "path",
+        "path": "kairisei.local/server/cmd/kairi-server",
+        "version": null
+      },
+      {
+        "kind": "mod",
+        "path": "kairisei.local/server",
+        "version": "(devel)"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2",
+        "version": "v1.46.0"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/aws/protocol/eventstream",
+        "version": "v1.7.20"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/internal/configsources",
+        "version": "v1.5.2"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/internal/endpoints/v2",
+        "version": "v2.8.2"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/internal/v4a",
+        "version": "v1.5.2"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/service/internal/accept-encoding",
+        "version": "v1.13.19"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/service/internal/checksum",
+        "version": "v1.11.2"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/service/internal/presigned-url",
+        "version": "v1.14.2"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/service/internal/s3shared",
+        "version": "v1.20.2"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/aws-sdk-go-v2/service/s3",
+        "version": "v1.112.0"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/aws/smithy-go",
+        "version": "v1.28.1"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/dustin/go-humanize",
+        "version": "v1.0.1"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/go-chi/chi/v5",
+        "version": "v5.3.1"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/mattn/go-isatty",
+        "version": "v0.0.20"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/ncruces/go-strftime",
+        "version": "v1.0.0"
+      },
+      {
+        "kind": "dep",
+        "path": "github.com/remyoudompheng/bigfft",
+        "version": "v0.0.0-20230129092748-24d4a6f8daec"
+      },
+      {
+        "kind": "dep",
+        "path": "golang.org/x/sys",
+        "version": "v0.46.0"
+      },
+      {
+        "kind": "dep",
+        "path": "modernc.org/libc",
+        "version": "v1.74.1"
+      },
+      {
+        "kind": "dep",
+        "path": "modernc.org/mathutil",
+        "version": "v1.7.1"
+      },
+      {
+        "kind": "dep",
+        "path": "modernc.org/memory",
+        "version": "v1.11.0"
+      },
+      {
+        "kind": "dep",
+        "path": "modernc.org/sqlite",
+        "version": "v1.54.0"
+      }
+    ],
+    "buildSettings": {
+      "-buildmode": "exe",
+      "-compiler": "gc",
+      "-trimpath": "true",
+      "CGO_ENABLED": "0",
+      "GOARCH": "amd64",
+      "GOOS": "windows",
+      "GOAMD64": "v1"
+    },
+    "effectiveLoadedContent": "UNKNOWN",
+    "deployedSourceCommit": "UNKNOWN"
+  },
+  "rawStaticProjection": {
+    "reproduced": true,
+    "originalStaticHashesMatchEarlierClaims": true,
+    "battleRows": 3102,
+    "normalQuestRows": 50,
+    "battleProjectedFields": [
+      "groups",
+      "replays",
+      "rewards",
+      "own_deck_variants",
+      "deduplicated_families"
+    ],
+    "normalProjectedFields": [
+      "entry_groups",
+      "replays",
+      "rewards"
+    ],
+    "omittedOptionalRewardFieldsDefaultedToZero": {
+      "tower_id": 2844,
+      "tower_floor": 2844
+    },
+    "stats": {
+      "unchangedBattleReplays": 3102,
+      "battleEntryGroups": 854,
+      "battleEntryBossIds": 2744,
+      "ownDeckVariants": 1043,
+      "expandedBattleEntryBossIds": 3787,
+      "expandedBattleReplays": 4145,
+      "normalEntryGroups": 18,
+      "normalEntryBossIds": 50,
+      "normalReplays": 50,
+      "normalRewardContexts": 100,
+      "normalRewardBossIds": 50,
+      "deduplicatedFamilies": 48,
+      "deduplicatedBossAliases": 138
+    },
+    "scope": "Newly received original static JSON reproduces every previously retained projection field. Extra raw fields including seed, rewards, recommendations, schedule and tower profiles were not executed or fully validated. CSV export provenance and actual process loading remain separate unknowns."
+  },
+  "startupScript": {
+    "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/deployment-scripts/Start-IOS-Test.ps1",
+    "sha256": "9aef0e3c2ed167d476b4fc9b6135a3ae26229a574ba19ab8d82440ebd48ce6a6",
+    "resourceSetAndPortSelectionReviewedStatically": true,
+    "actualProcessInvocationVerified": false
+  },
+  "missing": {
+    "sourceFiles": true,
+    "startupLogs": true,
+    "providedContractEvidence": true,
+    "csvOriginalVersionAndConversion": true,
+    "successfulContinueAndRealSettlement": true,
+    "processRestartRecovery": true
+  },
+  "inputFiles": [
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/capture.json",
+      "sha256": "52109c64c43a12c6d839cf3a5eebf7344fe53caa2e740879f25c292c2c7500b8",
+      "bytes": 2928
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/provided-evidence.json",
+      "sha256": "74a5ee560c11b7ce90e5dabdc01252a044793f7b9ccc3de7e1b399353d3a1b18",
+      "bytes": 7
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/remaining.json",
+      "sha256": "e0c14be69e12d0329a0882601e20e68ba89c00fc50814cf91218f6c5d8cd288d",
+      "bytes": 1461
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/runtime.json",
+      "sha256": "5a0e17fd2530804a5dd31e41f399333010a3ef3967a8a3190c1cf9e911ba1dbd",
+      "bytes": 29116
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/source.json",
+      "sha256": "f0cb0f54c1cc6db1f56cb3165aefba7a62ffa74f2ab2f245cfc510f56e9150ef",
+      "bytes": 182
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/startup-observations.json",
+      "sha256": "74a5ee560c11b7ce90e5dabdc01252a044793f7b9ccc3de7e1b399353d3a1b18",
+      "bytes": 7
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/deployment-scripts/Start-IOS-Test.ps1",
+      "sha256": "9aef0e3c2ed167d476b4fc9b6135a3ae26229a574ba19ab8d82440ebd48ce6a6",
+      "bytes": 13747
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/static/battle.json",
+      "sha256": "faeac09193b14619b4d4bef4145648dde38c9643f4b9ad663c98fcd39ecf80eb",
+      "bytes": 16172227
+    },
+    {
+      "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/static/normal_quest.json",
+      "sha256": "689df69e44ff14936b5def018ab46172a719e1f421a72ff9e86b365d97e90286",
+      "bytes": 736871
+    }
+  ],
+  "auditSourceSha256": "cf1f49e2a7364e0808164c65c3dc6ae9a8c052bc9561e952682fc2c4b05881d1",
+  "scope": "Offline validation of user-supplied server capture. No received code execution, service request, account access, deployment or source-table writes. Order 03 remains incomplete."
+}

@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T07:10:13.577Z",
+  "checkedAt": "2026-11-24T07:44:49.338Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "7f9054194738ecb1d4938dac5f0b7dcf4178a31c11a3ee6d41a2edde51b8ba68",
+  "bridgeConditionSourceSha256": "ba3f1ad6539b33ae959ef8554c46d5de4dae396a0002f8f6c183b138ac1df4ec",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -206,13 +206,12 @@
   "conditionDecoderCoverage": {
     "AppendCondition": {
       "blank": 66113,
-      "declaredDecoder": 998,
-      "other": 44,
+      "declaredDecoder": 1036,
+      "other": 6,
       "otherNames": {
         "ENEMY_TRANCE_GAUGE_STATE": 1,
         "TARGET_CARD_ONLY_SELF_PLAY": 3,
-        "SELF_BLESS": 2,
-        "BUFF_EXEC": 38
+        "SELF_BLESS": 2
       }
     },
     "BranchCondition": {

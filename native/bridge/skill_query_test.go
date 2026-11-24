@@ -206,3 +206,27 @@ func TestStatusConditionsDecodeTwoKindsAndPreserveNumericTail(t *testing.T) {
 		}
 	}
 }
+
+func TestBuffExecutionConditionDecodesAllFiveKinds(t *testing.T) {
+	schema := map[string]map[int32]string{
+		"SKILL_EXTEND_EXEC_ORDER": {900: "BUFF_EXEC"},
+		"SKILL_ROLE_KIND_BUFF":    {0: "NULL", 1: "ATK_UP_BY_ATK", 2: "ATK_UP_BY_INT"},
+	}
+	name, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: 900, Parameters: [5]int64{1, 0, 2, 1, 2}})
+	if err != nil || name != "BUFF_EXEC" || params != [5]string{"ATK_UP_BY_ATK", "NULL", "ATK_UP_BY_INT", "ATK_UP_BY_ATK", "ATK_UP_BY_INT"} {
+		t.Fatalf("buff execution selectors: %s %v %v", name, params, err)
+	}
+	for slot := 0; slot < 5; slot++ {
+		for _, invalid := range []int64{3, math.MinInt64, math.MaxInt64} {
+			condition := rawSkillCondition{Order: 900}
+			condition.Parameters[slot] = invalid
+			if _, _, err = decodeSkillCondition(schema, condition); err == nil {
+				t.Fatalf("slot %d accepted invalid kind %d", slot, invalid)
+			}
+		}
+	}
+	delete(schema, "SKILL_ROLE_KIND_BUFF")
+	if _, _, err = decodeSkillCondition(schema, rawSkillCondition{Order: 900}); err == nil {
+		t.Fatal("missing buff kind family accepted")
+	}
+}

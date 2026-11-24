@@ -114,7 +114,7 @@ class Order03StatusProbe {
         trace.Add(new JObject { { "operation", operation }, { "result", text } });
         return text;
     }
-    static JObject Run(Lib lib, byte[] tables, byte[] producer, byte[] conditional, bool apply, int target) {
+    static JObject Run(Lib lib, byte[] tables, byte[] producer, byte[] conditional, bool apply, int target, bool sameActor) {
         ulong catalog = 0, prep = 0, battle = 0;
         try {
             Require(lib.open(tables, tables.Length, ref catalog), "catalog");
@@ -128,8 +128,9 @@ class Order03StatusProbe {
                 for (int slot = 1; slot <= 20; slot++) {
                     var card = new byte[4960];
                     if (slot <= 10) {
-                        Put(card, 0, member == 2 ? slot + 10 : slot); Put(card, 8, 1); Put(card, 20, 0);
-                        byte[] skill = member == 2 ? conditional : producer;
+                        bool queryCard = member == 2 || sameActor && member == 1 && slot > 5;
+                        Put(card, 0, queryCard ? slot + 10 : slot); Put(card, 8, 1); Put(card, 20, 0);
+                        byte[] skill = queryCard ? conditional : producer;
                         Buffer.BlockCopy(skill, 0, card, 28, skill.Length);
                     }
                     Require(lib.card(prep, member, slot, card, card.Length), "card");
@@ -148,18 +149,35 @@ class Order03StatusProbe {
             string dealt = Advance(lib, battle, 3, null, trace); int selected = 0, producerCard = 0;
             foreach (string line in dealt.Split('\n')) {
                 string[] fields = line.TrimEnd('\r').Split(',');
-                if (fields.Length >= 4 && fields[0] == "20" && fields[1] == "2" && selected == 0) selected = Int32.Parse(fields[2]);
-                if (fields.Length >= 4 && fields[0] == "20" && fields[1] == "1" && producerCard == 0) producerCard = Int32.Parse(fields[2]);
+                if (fields.Length < 4 || fields[0] != "20") continue;
+                int cardType = Int32.Parse(fields[2]);
+                if (sameActor) {
+                    if (fields[1] != "1") continue;
+                    if (cardType > 5 && selected == 0) selected = cardType;
+                    if (cardType <= 5 && producerCard == 0) producerCard = cardType;
+                } else {
+                    if (fields[1] == "2" && selected == 0) selected = cardType;
+                    if (fields[1] == "1" && producerCard == 0) producerCard = cardType;
+                }
             }
-            if (selected == 0) throw new Exception("member 2 received no card");
+            if (selected == 0 || producerCard == 0) throw new Exception("required cards were not received");
             for (int member = 1; member <= 4; member++) {
-                int card = member == 2 ? selected : member == 1 && apply ? producerCard : 0;
-                Advance(lib, battle, 4, "{\"member_type\":" + member + ",\"card_types\":[" + card + ",0,0,0,0],\"targets\":[" + target + ",0,0,0,0]}", trace);
+                int first = member == 2 ? selected : member == 1 && apply ? producerCard : 0;
+                int second = 0;
+                if (sameActor) {
+                    first = 0;
+                    if (member == 1) {
+                        first = selected;
+                        if (apply) { first = producerCard; second = selected; }
+                    }
+                }
+                int secondTarget = second == 0 ? 0 : target;
+                Advance(lib, battle, 4, "{\"member_type\":" + member + ",\"card_types\":[" + first + "," + second + ",0,0,0],\"targets\":[" + target + "," + secondTarget + ",0,0,0]}", trace);
             }
             string action = Advance(lib, battle, 5, null, trace); int functionID = -1, branchIndex = -1;
             foreach (string line in action.Split('\n')) {
                 string[] fields = line.TrimEnd('\r').Split(',');
-                if (fields.Length > 10 && fields[0] == "51" && fields[1] == "2" && fields[3] == "1002") {
+                if (fields.Length > 10 && fields[0] == "51" && fields[1] == (sameActor ? "1" : "2") && fields[3] == "1002") {
                     functionID = Int32.Parse(fields[9]); branchIndex = Int32.Parse(fields[10]); break;
                 }
             }
@@ -177,22 +195,31 @@ class Order03StatusProbe {
     static int Main(string[] args) {
         try {
             var original = new Lib(args[0]); var rebuilt = new Lib(args[1]);
+            bool executionCounter = args.Length > 4 && args[4] == "buff-exec";
             long[][] selectors = { new long[] { 1, 0 }, new long[] { 0, 1 }, new long[] { 2, 0 },
                 new long[] { 0, 0 }, new long[] { 2, 3 }, new long[] { 0, 0, 1 } };
+            if (executionCounter) selectors = new long[][] {
+                new long[] { 1, 0, 0, 0, 0 }, new long[] { 0, 1, 0, 0, 0 }, new long[] { 0, 0, 1, 0, 0 },
+                new long[] { 0, 0, 0, 1, 0 }, new long[] { 0, 0, 0, 0, 1 }, new long[] { 1, 1, 1, 1, 1 },
+                new long[] { 0, 0, 0, 0, 0 }, new long[] { 2, 2, 2, 2, 2 }
+            };
             var cases = new JArray();
-            foreach (string label in new string[] { "SELF_BUFF", "TARGET_BUFF", "USER_SIDE_BUFF", "ENEMY_SIDE_BUFF", "SELF_DEBUFF", "TARGET_DEBUFF", "USER_SIDE_DEBUFF", "ENEMY_SIDE_DEBUFF" }) {
+            string[] labels = executionCounter ? new string[] { "BUFF_EXEC" } : new string[] { "SELF_BUFF", "TARGET_BUFF", "USER_SIDE_BUFF", "ENEMY_SIDE_BUFF", "SELF_DEBUFF", "TARGET_DEBUFF", "USER_SIDE_DEBUFF", "ENEMY_SIDE_DEBUFF" };
+            foreach (string label in labels) {
                 bool debuff = label.Contains("DEBUFF");
                 bool enemyTarget = label.StartsWith("ENEMY_SIDE");
                 byte[] tables = Tables(args[2], label);
-                foreach (bool apply in new bool[] { false, true }) foreach (int slot in new int[] { 0, 1 }) foreach (long[] selector in selectors) {
+                bool[] actorModes = executionCounter ? new bool[] { false, true } : new bool[] { false };
+                foreach (bool sameActor in actorModes) foreach (bool apply in new bool[] { false, true }) foreach (int slot in new int[] { 0, 1 }) foreach (long[] selector in selectors) {
                     byte[] producer = Skill(true, debuff, enemyTarget, selector, slot);
                     byte[] conditional = Skill(false, debuff, enemyTarget, selector, slot);
                     int target = enemyTarget ? 5 : 2;
                     bool matched = apply && (selector[0] == 1 || selector[1] == 1);
+                    if (executionCounter) matched = sameActor && apply && Array.IndexOf(selector, 1L) >= 0;
                     cases.Add(new JObject { { "label", label }, { "applied", apply }, { "target", target },
-                        { "conditionSlot", slot }, { "selectors", new JArray(selector) }, { "expectedFunctionID", matched ? 889 : 888 },
-                        { "original", Run(original, tables, producer, conditional, apply, target) },
-                        { "rebuilt", Run(rebuilt, tables, producer, conditional, apply, target) } });
+                        { "queryActor", sameActor ? 1 : 2 }, { "conditionSlot", slot }, { "selectors", new JArray(selector) }, { "expectedFunctionID", matched ? 889 : 888 },
+                        { "original", Run(original, tables, producer, conditional, apply, target, sameActor) },
+                        { "rebuilt", Run(rebuilt, tables, producer, conditional, apply, target, sameActor) } });
                 }
             }
             File.WriteAllText(args[3], cases.ToString(Newtonsoft.Json.Formatting.None), new UTF8Encoding(false));

@@ -17,6 +17,12 @@ const runtimeTests = load(p + 'order03-runtime-supplement-tests.json');
 const liveBattle = load(p + 'order03-live-battle-contract.json');
 const sourceLink = load(p + 'order03-source-link-reproduction.json');
 const acceptance = load('evidence/acceptance.json');
+const remainingCapturePath = p + 'order03-remaining-validation.json';
+const remainingCapture = fs.existsSync(path.join(root, remainingCapturePath)) ? load(remainingCapturePath) : null;
+if (remainingCapture) {
+  if (!remainingCapture.success || !remainingCapture.rawStaticProjection.reproduced || remainingCapture.auditSourceSha256 !== sha('scripts/audit-order03-remaining.mjs')) throw Error('Latest server capture validation missing or stale');
+  for (const input of remainingCapture.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Latest server capture input changed');
+}
 if (!ios.success || !modern.success || !ios.independentCsharpAgreement || !modern.independentCsharpAgreement || !modern.candidateEnumAgreement) throw Error('Metadata verification failed');
 if (compatibility.metadataEvidenceSha256 !== sha(p + 'order03-ios602-enums.json')) throw Error('Compatibility report is stale');
 if (ios.csharpReaderSha256 !== sha('tests/Order03MetadataEnumsProbe.cs') || modern.independentReaderSha256 !== sha('tests/Order03MetadataEnumsProbe.cs')) throw Error('Independent reader changed');
@@ -38,6 +44,11 @@ const gates = [
   gate('actual_deployed_version_and_quest_scope', 'partial', [p + 'order03-server-delivery-validation.json', p + 'order03-quest-variant-gap.json', p + 'order03-runtime-supplement-validation.json', p + 'order03-live-battle-contract.json'], 'Live account evidence now establishes publication/admission for candidate 30010102 at the observed service, including one real Start. Effective loaded snapshot/configuration, deployed source/patch relation, original CSV transformation and exact historical list membership remain UNKNOWN. Do not infer them from disk/path/count matches.'),
   gate('safe_battle_contract_and_redacted_interface_evidence', 'partial', [p + 'order03-isolated-deck-contract.json', p + 'order03-isolated-quest-contract.json', p + 'order03-live-battle-contract.json'], 'A dedicated live isolated account verified candidate admission, one 15-BP debit, identical Start retry, relog recovery, rejected no-charge Continue, non-clear End/abandon and identical End retry without clear reward. Successful paid/free Continue, real engine-produced victory/defeat logs, clear settlement/reward idempotency and actual process-restart recovery remain unverified; do not fabricate a victory to fill them.')
 ];
+if (remainingCapture) {
+  for (const id of ['received_disk_and_listener_observation', 'received_static_quest_mapping']) gates.find(g => g.id === id).evidence.push(remainingCapturePath);
+  gates.find(g => g.id === 'received_static_quest_mapping').remaining = 'Latest original static JSON reproduces all previously retained battle and normal-quest projection fields. Exact historical list membership, complete extra raw-field semantics and live behavior remain unverified.';
+  gates.find(g => g.id === 'received_disk_and_listener_observation').remaining = 'Latest received capture reports the same executable/config/manifest/table hashes and a new process start time. Actual process invocation, effective loaded content and deployment source remain UNKNOWN; process restart alone does not prove battle recovery.';
+}
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),
   scope: 'Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate.'};

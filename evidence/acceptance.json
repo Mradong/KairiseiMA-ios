@@ -236,6 +236,21 @@
           "firstBranch": 1239,
           "secondBranch": 157
         }
+      },
+      "order03RemainingCapture": {
+        "receivedOn": "2026-11-24",
+        "rawStaticProjectionReproduced": true,
+        "evidence": "evidence/ios-package-search/order03-remaining-validation.json",
+        "sourcePresent": false,
+        "loadedContent": "UNKNOWN",
+        "contractTests": "NOT_TESTED"
+      },
+      "order03BuffExecution": {
+        "cases": 64,
+        "selected": 12,
+        "fallback": 52,
+        "rebuiltWindowsSha256": "14423048a5a19c3b3349e6d59327eda64878645624fd7f9fb26b2a0976856d81",
+        "scope": "Windows x64 synthetic registered battles. Member 1 executes ATK_UP_FIXED targeting member 2 at priority 1. A conditional card at priority 2 is executed by either member 1 or member 2, proving caster attribution and beneficiary rejection. BUFF_EXEC covers five enum selectors, both condition slots, absent execution, mismatching/NULL selectors and repeated matches. Complete outputs and journals are compared with the original DLL. Actual service skills, provenance/version linkage, Unity, ARM64 and device remain unverified."
       }
     },
     {
@@ -500,6 +515,21 @@
           "firstBranch": 1239,
           "secondBranch": 157
         }
+      },
+      "order03RemainingCapture": {
+        "receivedOn": "2026-11-24",
+        "rawStaticProjectionReproduced": true,
+        "evidence": "evidence/ios-package-search/order03-remaining-validation.json",
+        "sourcePresent": false,
+        "loadedContent": "UNKNOWN",
+        "contractTests": "NOT_TESTED"
+      },
+      "order03BuffExecution": {
+        "cases": 64,
+        "selected": 12,
+        "fallback": 52,
+        "rebuiltWindowsSha256": "14423048a5a19c3b3349e6d59327eda64878645624fd7f9fb26b2a0976856d81",
+        "scope": "Windows x64 synthetic registered battles. Member 1 executes ATK_UP_FIXED targeting member 2 at priority 1. A conditional card at priority 2 is executed by either member 1 or member 2, proving caster attribution and beneficiary rejection. BUFF_EXEC covers five enum selectors, both condition slots, absent execution, mismatching/NULL selectors and repeated matches. Complete outputs and journals are compared with the original DLL. Actual service skills, provenance/version linkage, Unity, ARM64 and device remain unverified."
       }
     },
     {
@@ -683,7 +713,10 @@
       "evidence/ios-package-search/order03-status-before-fix.json",
       "evidence/ios-package-search/order03-status.json",
       "evidence/ios-package-search/order03-remaining-collector-tests.json",
-      "evidence/ios-package-search/order03-remaining-collector-package.json"
+      "evidence/ios-package-search/order03-remaining-collector-package.json",
+      "evidence/ios-package-search/order03-remaining-validation.json",
+      "evidence/ios-package-search/order03-buff-exec.json",
+      "evidence/ios-package-search/order03-buff-exec-before-fix.json"
     ],
     "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
@@ -708,11 +741,36 @@
       "sha256": "17e5abefdac40ab4b2fc844e668c39db7d12c576ce6127840dea86b647f28e04",
       "powerShell51SyntheticTestsPassed": true,
       "packagedScriptSmokePassed": true,
-      "serverExecuted": false,
+      "serverExecuted": true,
       "purpose": "User requested a server-runnable collector based on shared deployment conversation. Existing source/build/static JSON and startup evidence are captured when available. Provenance/runtime linkage and unexecuted contracts remain UNKNOWN/NOT_TESTED.",
       "localSourceCommit": "f787c8f",
       "sourcePushed": false,
-      "pushRemaining": "Automatic permission approval review timed out twice before command execution. Local ZIP is ready for user execution."
+      "pushRemaining": "Automatic permission approval review timed out twice before command execution. Local ZIP is ready for user execution.",
+      "receivedArchive": {
+        "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff.zip",
+        "sha256": "17ca50a8d3aad9efa8224ead51b52d08e7e881e5acedf81beda4a9d77e5263ed",
+        "bytes": 379944,
+        "entries": 10,
+        "checksumEntriesVerified": 9
+      },
+      "receivedOn": "2026-11-24",
+      "validationEvidence": "evidence/ios-package-search/order03-remaining-validation.json",
+      "rawStaticProjectionReproduced": true,
+      "remaining": {
+        "sourceFiles": true,
+        "startupLogs": true,
+        "providedContractEvidence": true,
+        "csvOriginalVersionAndConversion": true,
+        "successfulContinueAndRealSettlement": true,
+        "processRestartRecovery": true
+      }
+    },
+    "buffExecutionCondition": {
+      "cases": 64,
+      "selected": 12,
+      "fallback": 52,
+      "rebuiltWindowsSha256": "14423048a5a19c3b3349e6d59327eda64878645624fd7f9fb26b2a0976856d81",
+      "scope": "Windows x64 synthetic registered battles. Member 1 executes ATK_UP_FIXED targeting member 2 at priority 1. A conditional card at priority 2 is executed by either member 1 or member 2, proving caster attribution and beneficiary rejection. BUFF_EXEC covers five enum selectors, both condition slots, absent execution, mismatching/NULL selectors and repeated matches. Complete outputs and journals are compared with the original DLL. Actual service skills, provenance/version linkage, Unity, ARM64 and device remain unverified."
     }
   }
 }
