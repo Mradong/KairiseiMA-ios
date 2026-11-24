@@ -85,6 +85,33 @@ func TestArthurTypeConditionUsesSchemaAndRejectsInvalidValues(t *testing.T) {
 	}
 }
 
+func TestOtherSelectedCardConditionsUseSchemaAndRejectInvalidValues(t *testing.T) {
+	schema := map[string]map[int32]string{
+		"SKILL_EXTEND_EXEC_ORDER": {5: "SELF_OTHER_PLAY_ATTR", 6: "SELF_OTHER_PLAY_SKILL_KIND", 7: "SELF_OTHER_PLAY_RARITY"},
+		"ATTR":                    {1: "FIRE"},
+		"SKILL_KIND":              {1: "ATTACK"},
+		"RARITY":                  {1: "NORMAL"},
+	}
+	for _, test := range []struct {
+		ordinal int32
+		want    string
+	}{
+		{ordinal: 5, want: "FIRE"},
+		{ordinal: 6, want: "ATTACK"},
+		{ordinal: 7, want: "NORMAL"},
+	} {
+		_, params, err := decodeSkillCondition(schema, rawSkillCondition{Order: test.ordinal, Parameters: [5]int64{1, 2, -3, 0, 4}})
+		if err != nil || params != [5]string{test.want, "2", "-3", "0", "4"} {
+			t.Fatalf("ordinal %d: %v %v", test.ordinal, params, err)
+		}
+		for _, invalid := range []int64{2, math.MaxInt64} {
+			if _, _, err := decodeSkillCondition(schema, rawSkillCondition{Order: test.ordinal, Parameters: [5]int64{invalid}}); err == nil {
+				t.Fatalf("ordinal %d accepted invalid selector %d", test.ordinal, invalid)
+			}
+		}
+	}
+}
+
 func TestEnemyFlagConditionsPreserveNumericParameters(t *testing.T) {
 	for _, name := range []string{"SELF_ENEMY_AI_FLAG", "SELF_ENEMY_AI_FLAG_AND"} {
 		for _, ordinal := range []int32{27, 69, 900} {

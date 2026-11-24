@@ -1,8 +1,8 @@
 {
-  "checkedAt": "2026-11-24T03:21:21.986Z",
+  "checkedAt": "2026-11-24T06:14:41.501Z",
   "candidateSha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
   "projectionSha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113",
-  "bridgeConditionSourceSha256": "fd70e21b2d835243fb913864c8823c34156868191f190b320627389769540d19",
+  "bridgeConditionSourceSha256": "be1c450217f60f90fe05fb83b8aadc9ae5659e0bf541f87da0da81debc8f4dbb",
   "fields": [
     {
       "field": "Cards.Rarity",
@@ -206,19 +206,16 @@
   "conditionDecoderCoverage": {
     "AppendCondition": {
       "blank": 66113,
-      "declaredDecoder": 569,
-      "other": 473,
+      "declaredDecoder": 834,
+      "other": 208,
       "otherNames": {
-        "SELF_OTHER_PLAY_SKILL_KIND": 137,
         "SELF_OTHER_PLAY_TAG": 5,
         "ENEMY_TRANCE_GAUGE_STATE": 1,
-        "SELF_OTHER_PLAY_ATTR": 101,
         "TARGET_CARD_ONLY_SELF_PLAY": 3,
         "SELF_BLESS": 2,
         "ENEMY_SIDE_DEBUFF": 1,
         "USER_SIDE_DEBUFF": 13,
         "SELF_BUFF": 8,
-        "SELF_OTHER_PLAY_RARITY": 27,
         "BUFF_EXEC": 38,
         "SELF_NOT_PLAY_HAND_NUM": 2,
         "SELF_PLAY_COST_NUM": 135
@@ -226,19 +223,16 @@
     },
     "BranchCondition": {
       "blank": 48706,
-      "declaredDecoder": 12306,
-      "other": 6143,
+      "declaredDecoder": 14793,
+      "other": 3656,
       "otherNames": {
         "SELF_TRANCE_GAUGE_VALUE": 63,
-        "SELF_OTHER_PLAY_RARITY": 745,
         "FRIEND_PLAY_TAG": 193,
         "SELF_BUFF": 115,
-        "SELF_OTHER_PLAY_ATTR": 1046,
         "TARGET_JOB_TYPE": 256,
         "FRIEND_PLAY_ATTR_NUM": 92,
         "OWNER_CARD_FAME": 11,
         "SELF_OTHER_PLAY_TAG": 142,
-        "SELF_OTHER_PLAY_SKILL_KIND": 696,
         "TARGET_DEBUFF": 244,
         "ENEMY_SIDE_DEBUFF": 309,
         "SELF_BLESS": 29,
@@ -276,20 +270,17 @@
     },
     "BranchCondition2": {
       "blank": 65315,
-      "declaredDecoder": 1020,
-      "other": 820,
+      "declaredDecoder": 1355,
+      "other": 485,
       "otherNames": {
         "FRIEND_PLAY_ATTR_NUM": 95,
-        "SELF_OTHER_PLAY_ATTR": 205,
         "ENEMY_SIDE_DEBUFF": 46,
         "SELF_BUFF": 15,
-        "SELF_OTHER_PLAY_RARITY": 61,
         "SELF_BURST_GAUGE_STATE": 17,
         "SELF_OTHER_PLAY_TAG": 36,
         "ENEMY_TRANCE_GAUGE_STATE": 46,
         "FRIEND_PLAY_COST_TOTAL": 2,
         "TARGET_JOB_TYPE": 15,
-        "SELF_OTHER_PLAY_SKILL_KIND": 69,
         "TARGET_CARD_ONLY_SELF_PLAY": 5,
         "FRIEND_PLAY_SKILL_KIND_NUM": 39,
         "FRIEND_PLAY_NUM": 2,

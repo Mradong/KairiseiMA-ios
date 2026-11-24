@@ -1,5 +1,11 @@
 # 当前状态
 
+## 2026-11-24：03 / 实际选牌属性、技能种类、稀有度条件差分
+
+重建桥此前拒绝 `SELF_OTHER_PLAY_ATTR`、`SELF_OTHER_PLAY_SKILL_KIND` 和 `SELF_OTHER_PLAY_RARITY`。现按候选 schema 分别将首参数解码为 `ATTR`、`SKILL_KIND`、`RARITY` 名称，其余参数继续作为有符号整数；不存在或超出 Int32 的枚举仍拒绝。Windows x64 合成独立战斗实际选择成员 1 的两张卡，分别测试匹配/不匹配选择值、阈值 0..3 和两个条件槽：修复前原 DLL 48/48 正常、重建 DLL 48/48 拒绝；修复后 48/48 状态和结果与原 DLL 一致，选择计数边界也符合预期。证据为 `evidence/ios-package-search/order03-other-selected-cards-before-fix.json` 和 `order03-other-selected-cards.json`。
+
+Go 桥单测、职业条件 80 组、敌方标记 40 个三回合场景及 3,633 项注册战斗回归通过。交付表静态投影中，这三类标签共出现 3,087 次；桥解码列表之外的非空条件出现次数由追加 473、第一分支 6,143、第二分支 820 降为 208、3,656、485。计数按字段/变体，不代表独立技能数、实际可达性或完整效果执行。Windows 重建 DLL SHA-256 `6503f38a61eec0f1dc0df074c6dc11ee89f06d34c40826ae2b4d3986b84fcfa0`。本轮仅使用合成卡和战斗；真实主表版本/来源、真实服务技能、Unity/ARM64/设备及其余服务契约仍未完成，候选继续隔离，03 保持 active。
+
 ## 2026-11-24：03 / 敌方 AI 标记条件解码与多回合对照
 
 `SELF_ENEMY_AI_FLAG` 和 `SELF_ENEMY_AI_FLAG_AND` 在注册桥中此前导致战斗创建失败；现按 schema 名称将五个参数作为有符号整数解码，交由现有战斗内核判断。Windows x64 合成注册敌人战斗以设置标记和保持初始未设置为状态，覆盖 OR/AND、两个分支槽、标记 0/31/越界、设置值及两枚不同标记同时成立，40 个场景各执行 3 回合；120 次分支中 40 次选择、80 次回退，完整输出及输入日志均与原 DLL 一致。测试没有覆盖标记已设置后再清除，亦未使用真实技能或服务战斗。见 `evidence/ios-package-search/order03-enemy-flag.json` 与修复前记录。
