@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-23T11:56:45.634Z",
+  "checkedAt": "2026-11-24T01:45:21.443Z",
   "planItem": "03",
-  "goalStatus": "blocked",
+  "goalStatus": "active",
   "ready": false,
   "gates": [
     {
@@ -42,25 +42,51 @@
       "remaining": "Modern candidate numbers and original Windows numeric-default paths have metadata/binary evidence. These are static Windows observations, not 25-value/36-row IL2CPP execution, full CSV/AI or original iOS semantics. Link the delivered CSV version/transformation to its intended client/rebuild contract; original source-client version remains unverified. Old schema cannot represent 40 checked names; retain the modern scope."
     },
     {
+      "id": "received_disk_and_listener_observation",
+      "state": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-runtime-supplement-import.json",
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json"
+      ],
+      "remaining": "Verified scope: received server report of 29 unchanged disk tables, executable/config/manifest identity and same reported process start/image-path/listener association before/after. Client did not inspect the server; loaded configuration/bytes and source commit remain UNKNOWN."
+    },
+    {
+      "id": "received_static_quest_mapping",
+      "state": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-runtime-supplement-tests.json"
+      ],
+      "remaining": "Verified scope: 3102 battle replays equal prior projection; 2744 base entries and 1043 explicit own-deck mappings; 50 normal quests/228 waves with specified ID references present. Historical 3788 aggregate count agrees, but exact historical normal/variant membership and live publication/admission remain UNKNOWN."
+    },
+    {
+      "id": "reviewed_source_and_observed_binary_link",
+      "state": "partial",
+      "evidence": [
+        "evidence/ios-package-search/order03-source-link-reproduction.json"
+      ],
+      "remaining": "All 164 received reviewed battle-source hashes match local files and targeted local recovery/result tests pass. Rebuilding base d1a202eb plus the reviewed iOS patch with Go 1.25.1 under ordinary and stripped variants did not reproduce server executable 7704963e; deployed source/patch relation and effective loaded configuration remain UNKNOWN."
+    },
+    {
       "id": "actual_deployed_version_and_quest_scope",
-      "state": "awaiting_server_evidence",
+      "state": "partial",
       "evidence": [
         "evidence/ios-package-search/order03-server-delivery-validation.json",
         "evidence/ios-package-search/order03-quest-variant-gap.json",
-        "evidence/ios-package-search/order03-public-version-evidence.json",
-        "evidence/ios-package-search/order03-server-supplement.json",
-        "evidence/ios-package-search/order03-runtime-collector-tests.json"
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-live-battle-contract.json"
       ],
-      "remaining": "Public health has no version/snapshot fields. A tested read-only collector and supplemental handoff are prepared, but not executed on the server. Confirm running source/build and effective loaded table/quest snapshot, 1043 own-deck variants and one other quest outside the static projection. Disk paths/hashes and shape matches alone are insufficient."
+      "remaining": "Live account evidence now establishes publication/admission for candidate 30010102 at the observed service, including one real Start. Effective loaded snapshot/configuration, deployed source/patch relation, original CSV transformation and exact historical list membership remain UNKNOWN. Do not infer them from disk/path/count matches."
     },
     {
       "id": "safe_battle_contract_and_redacted_interface_evidence",
-      "state": "awaiting_server_evidence",
+      "state": "partial",
       "evidence": [
         "evidence/ios-package-search/order03-isolated-deck-contract.json",
-        "evidence/ios-package-search/order03-isolated-quest-contract.json"
+        "evidence/ios-package-search/order03-isolated-quest-contract.json",
+        "evidence/ios-package-search/order03-live-battle-contract.json"
       ],
-      "remaining": "Existing reply documents source-derived start/continue/end side effects and lack of process-restart recovery; actual deployed semantics and safe isolated admission/retry/recovery/settlement examples still missing. No chargeable entry until the client can continue safely."
+      "remaining": "A dedicated live isolated account verified candidate admission, one 15-BP debit, identical Start retry, relog recovery, rejected no-charge Continue, non-clear End/abandon and identical End retry without clear reward. Successful paid/free Continue, real engine-produced victory/defeat logs, clear settlement/reward idempotency and actual process-restart recovery remain unverified; do not fabricate a victory to fill them."
     }
   ],
   "evidenceHashes": [
@@ -93,20 +119,28 @@
       "sha256": "07f152990e661c3787840d4c66ce413ba243ac00f8e28a53839bb2c977115360"
     },
     {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-import.json",
+      "sha256": "79f59dd15208ec30098ea29f8c7ea3f0b4f33af651f21e0bfc2ca0884b2502e8"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+      "sha256": "e46aeae4dce919a507033c4c6dd9fed9321dd8077a7a918b8c65214baec28b10"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-tests.json",
+      "sha256": "07d8e6c49ceba199ab4ec5022b673c95242ef949b8d3c757e3cf32c5f4b03c02"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-source-link-reproduction.json",
+      "sha256": "dccc8dcd6fbe5e4e2aa98f99e8447287f2bb0c3205c2b9d48412cb0047240d71"
+    },
+    {
       "file": "evidence/ios-package-search/order03-quest-variant-gap.json",
       "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
     },
     {
-      "file": "evidence/ios-package-search/order03-public-version-evidence.json",
-      "sha256": "19970feb495a1b1f16518c95102c00e378bdf4fd3083f849f34cf0371f09c4f6"
-    },
-    {
-      "file": "evidence/ios-package-search/order03-server-supplement.json",
-      "sha256": "c22d8b3678c1c0345d662da72e55a25c9b9f5ae290697ffce1b9b231a23be4e0"
-    },
-    {
-      "file": "evidence/ios-package-search/order03-runtime-collector-tests.json",
-      "sha256": "d93329d9f6f120c368b2f45fe695020deae7d9fc71fbc210e333d792b8bb8e6c"
+      "file": "evidence/ios-package-search/order03-live-battle-contract.json",
+      "sha256": "ee16d4746dc65981899b7c7b69009b9e5580ce104cdfa2852fad4a28c57229a3"
     },
     {
       "file": "evidence/ios-package-search/order03-isolated-deck-contract.json",

@@ -1,4 +1,5 @@
 source-review/
+test-output/
 native/build/
 ios-client/Assets/Plugins/iOS/*.a
 ios-client/Assets/Plugins/iOS/*.h

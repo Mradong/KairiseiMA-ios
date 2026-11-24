@@ -1,5 +1,7 @@
 # 原工程功能和依赖覆盖（持续核实）
 
+2026-11-24 静态关卡及来源增量：收到服务器本机运行观察与静态投影，核对 29 表/磁盘程序/资源身份，明确 1,043 条自带卡组映射和 50 个普通关卡/228 波；3,102 战斗波次与旧投影一致，所检查敌队/敌人/等级/技能/AI/效果规则正 ID 无缺失，见 `ios-package-search/order03-runtime-supplement-validation.json`。报告的进程/监听关联不是实际加载证明；历史普通单条编号、发布/准入与安全恢复仍 UNKNOWN。旧版资源、现代行为、设备及完整范围分开验收，不因静态链闭合裁剪功能或宣称可玩。
+
 现代数值路径新增原 Windows 重建机器码证据：VALUE 的 ALL/-1、Int32.TryParse/默认 0，以及 CSV 缺列和相关触发器数值尾部的默认调用，见 `ios-package-search/order03-modern-defaults.json`。25 原始 VALUE 位置/规则及 36 短 AI 行重核；这是静态路径检查，不是 IL2CPP 实际运行、完整 CSV/AI、原 6.0.2 或设备证据，数据版本与服务契约依赖仍在。
 
 2026-11-23 顺序 03 来源更新：直接读取哈希固定的国服 6.0.2/60200 与原 Windows 重建输入元数据，分别恢复 23 族/670 与 23 族/822 常量，并经独立 C# 读取器核对；见 `ios-package-search/order03-ios602-enums.json`、`order03-modern-metadata-enums.json`。变量条件分别为 110 和 111，后者 STYLE 为 110；现代候选数字全部匹配 Windows 输入。旧枚举无法表示所检查表字段中 7 族的 40 个名称、8,769 次出现，见 `order03-ios602-table-compatibility.json`。各自来源不等于方法体、数据同源、服务或设备证明；保留现代范围，不因旧映射缺项裁剪。

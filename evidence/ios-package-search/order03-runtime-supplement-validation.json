@@ -1,0 +1,197 @@
+{
+  "checkedAt": "2026-11-24T01:12:19.897Z",
+  "planItem": "03",
+  "analysisCompleted": true,
+  "order03Complete": false,
+  "archive": {
+    "name": "Order03-Runtime-Supplement-20261124T010145.658885200Z.zip",
+    "bytes": 72483,
+    "sha256": "cf68822b1837e8f61845236c3c170eb535996a1e73cd419a233dc46b0bc3b964",
+    "entriesVerified": 3
+  },
+  "collectedUtc": "2026-11-24T01:01:52.0248385Z",
+  "collector": "order03-runtime-observation-20261124-1",
+  "evidenceClass": "Server-supplied typed observations and reduced static projections, independently compared offline with earlier received bytes. No client-side server-process access or network/business request.",
+  "receivedFiles": [
+    {
+      "file": "inputs/server-order03/Order03-Runtime-Supplement-20261124T010145.658885200Z/runtime-observation.json",
+      "bytes": 10516,
+      "sha256": "5ac62cd7bef6d4201f06854f0465786071e301ae5ae030d5da435e57fca8844a"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Runtime-Supplement-20261124T010145.658885200Z/battle-static-projection.json",
+      "bytes": 1873914,
+      "sha256": "769fd4f3dab89f72788796a186d3065eb5f9e1274c3815f3a04fd8ba02fc7ddd"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Runtime-Supplement-20261124T010145.658885200Z/normal_quest-static-projection.json",
+      "bytes": 53180,
+      "sha256": "57e6cc43f61205f4af62f5877771195dae0ca31a05d1142d6efeef245f4ac756"
+    }
+  ],
+  "observation": {
+    "tablesCompared": 29,
+    "beforeAfterProcessReportsAgree": true,
+    "reportedProcessStartUtc": "2026-11-20T08:27:11.2385690Z",
+    "selectedListenerPort": 27040,
+    "observedDiskIdentitiesMatchPriorDelivery": true,
+    "effectiveLoadedBytes": "UNKNOWN",
+    "deployedSourceVersion": "UNKNOWN",
+    "sourceClientAndConversion": "UNKNOWN",
+    "publicationAndAdmission": "UNKNOWN",
+    "configSha256": "47cce744832bfa7d4906e34e21f9dabb5c578576d9503e25e84596c49df4e24f",
+    "serverDiskSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+    "resourceManifestSha256": "1e499a8fa29efc6616f4de6cfc28b36f032ef97d05cccf0060b9dc1fe316a1ad",
+    "stability": "Server reports files stable on recheck; this package does not provide per-file recheck timestamps, process IDs or memory observations.",
+    "linkage": "Selected disk executable matches the reported listener process image path before/after. This supports process/path/listener association as reported, not loaded file-byte/configuration identity or deployed source commit."
+  },
+  "staticSourceClaims": [
+    {
+      "role": "battle",
+      "rawSourceBytes": 16172227,
+      "rawSourceSha256": "faeac09193b14619b4d4bef4145648dde38c9643f4b9ad663c98fcd39ecf80eb",
+      "replayCount": 3102,
+      "projectionDerivation": "UNKNOWN: raw runtime JSON and collector/projection source are not included; local hashes pin received projection bytes, not the claimed derivation."
+    },
+    {
+      "role": "normal_quest",
+      "rawSourceBytes": 736871,
+      "rawSourceSha256": "689df69e44ff14936b5def018ab46172a719e1f421a72ff9e86b365d97e90286",
+      "replayCount": 50,
+      "projectionDerivation": "UNKNOWN: raw runtime JSON and collector/projection source are not included; local hashes pin received projection bytes, not the claimed derivation."
+    }
+  ],
+  "statics": {
+    "unchangedBattleReplays": 3102,
+    "battleEntryGroups": 854,
+    "battleEntryBossIds": 2744,
+    "ownDeckVariants": 1043,
+    "expandedBattleEntryBossIds": 3787,
+    "expandedBattleReplays": 4145,
+    "normalEntryGroups": 18,
+    "normalEntryBossIds": 50,
+    "normalReplays": 50,
+    "normalRewardContexts": 100,
+    "normalRewardBossIds": 50,
+    "deduplicatedFamilies": 48,
+    "deduplicatedBossAliases": 138,
+    "variantRuleCheck": "1043 distinct one-to-one sources; exact +100000000 offset; eligible source entry/reward fields and no replay/alias/normal ID collisions. Applying the reviewed local rule yields is_only_my_deck=1/start_rule=1.",
+    "sourceHash": {
+      "file": "server-ios/server/internal/masterdata/battle_own_deck.go",
+      "sha256": "65e2f950e96f314a5cb648b6294c2e61ed4d3050fb7c030c7a69043a52fd3781"
+    },
+    "normalRewardContextCheck": "50 boss IDs each have two distinct contexts: standalone zeros and stage context matching area group/boss. The 100 rows are not treated as 100 boss IDs or duplicate reward grants."
+  },
+  "referenceChecks": {
+    "battle": {
+      "replays": 3102,
+      "waves": 3257,
+      "distinctParties": 3029,
+      "positiveEnemySlotsInDistinctParties": 8972,
+      "distinctEnemyAndLevelIds": 8742,
+      "skillReferencesFromDistinctLevels": 40724,
+      "distinctSkills": 24351,
+      "aiReferencesFromDistinctLevels": 39741,
+      "distinctAiIds": 19983,
+      "distinctRoleGroups": 29100,
+      "distinctRoleFunctions": 92,
+      "missingReferences": [],
+      "scope": "Specified positive IDs in received replay waves, projected party enemy slots, common-key enemy/level, level passive/call/action/gauge skill IDs and action AI IDs, skill FunctionID groups and role-rule functions only. Counts are distinct definitions or field occurrences as labelled. No complete source JSON, all gameplay/parameters, gauges/reactions, presentation resources, account inputs, publication, or runtime execution claim."
+    },
+    "normalQuest": {
+      "replays": 50,
+      "waves": 228,
+      "distinctParties": 228,
+      "positiveEnemySlotsInDistinctParties": 498,
+      "distinctEnemyAndLevelIds": 156,
+      "skillReferencesFromDistinctLevels": 240,
+      "distinctSkills": 78,
+      "aiReferencesFromDistinctLevels": 240,
+      "distinctAiIds": 9,
+      "distinctRoleGroups": 78,
+      "distinctRoleFunctions": 4,
+      "missingReferences": [],
+      "scope": "Specified positive IDs in received replay waves, projected party enemy slots, common-key enemy/level, level passive/call/action/gauge skill IDs and action AI IDs, skill FunctionID groups and role-rule functions only. Counts are distinct definitions or field occurrences as labelled. No complete source JSON, all gameplay/parameters, gauges/reactions, presentation resources, account inputs, publication, or runtime execution claim."
+    }
+  },
+  "historicalQuestComparison": {
+    "evidence": {
+      "file": "evidence/ios-package-search/order03-quest-variant-gap.json",
+      "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
+    },
+    "observedOnUtc": "2026-11-23T08:45:30.922Z",
+    "aggregateCountsAgree": true,
+    "arithmetic": {
+      "battleEntryIds": 2744,
+      "ownDeckVariants": 1043,
+      "historicalNormalCategoryEntries": 1,
+      "total": 3788
+    },
+    "historicalVariantMembership": "UNKNOWN: prior redacted evidence records aggregate counts and shape checks, not the full returned boss-ID set; exact 1043-ID historical set equality cannot be reconstructed.",
+    "historicalNormalBossIdentity": "UNKNOWN: earlier evidence saved one category-9 entry count, not its boss ID. New normal projection supplies 50 possible static entries; none is asserted to be that historical entry.",
+    "admissionAndPublication": "UNKNOWN: received projection omits mutable publication and account context; static shape/count agreement is not live availability."
+  },
+  "candidate30010102": {
+    "entryPresent": true,
+    "onlyMyDeck": 0,
+    "bpCost": 15,
+    "continueFlag": 1,
+    "startRule": 0,
+    "waves": [
+      {
+        "enemy_party_id": 30010102,
+        "enemy_type": 1
+      }
+    ],
+    "allowedSafeAdmission": "UNKNOWN",
+    "scope": "Static fields only; continue flag does not prove recovery, charging or implemented continuation behavior."
+  },
+  "unknowns": {
+    "effectiveLoadedBytes": "UNKNOWN",
+    "actualLoadedConfiguration": "UNKNOWN",
+    "deployedSourceCommit": "UNKNOWN",
+    "originalClientRegionVersionAndConversion": "UNKNOWN",
+    "projectionDerivationFromClaimedRawSource": "UNKNOWN",
+    "historicalNormalBossIdentity": "UNKNOWN",
+    "livePublicationAndAdmission": "UNKNOWN",
+    "safeStartRecoveryContinueSettlementContract": "UNKNOWN: no versioned battle request/response/error evidence in this three-file package; previous source-derived limits remain scoped as historical reference."
+  },
+  "safety": {
+    "clientBusinessRequests": 0,
+    "serverChanges": false,
+    "realAccountsAccessed": false,
+    "productSnapshotCreatedOrPublished": false,
+    "sourceTablesModified": false
+  },
+  "sourceHashes": [
+    {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-import.json",
+      "sha256": "79f59dd15208ec30098ea29f8c7ea3f0b4f33af651f21e0bfc2ca0884b2502e8"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-expected-tables.json",
+      "sha256": "8bdca44e94cb97639ba52057ecbfe6ac0de37174bf06a6f2b1adbf7928fc7750"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Combat-Verified-20261123/collection-manifest.json",
+      "sha256": "be16cf21cc79b30cce80240323ea41af7d01a2a17e49199f1a0270f857a1f7f3"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Combat-Verified-20261123/runtime-static-replays.json",
+      "sha256": "259358a74bd68d0c877e93355bfc9575a1172437878092558ec9417847c3a431"
+    },
+    {
+      "file": "test-output/order03-independent-audit/projected-definitions.json",
+      "sha256": "44f379a757c5be0e21f119ea314fc23b98ec0685b20964ef74cadcbcb2c8d113"
+    },
+    {
+      "file": "scripts/order03-runtime-supplement-validation.mjs",
+      "sha256": "f08ea1cb328439d660e1028f701893444ae0655203ef3bb2c76a6fd7922704cc"
+    },
+    {
+      "file": "scripts/audit-order03-runtime-supplement.mjs",
+      "sha256": "3262a1507b9738bce07acacd7ed2f2a87cf04ac6df4b8d3da6914a0c360573cb"
+    }
+  ],
+  "scope": "This closes explicit static mapping and normal-quest projection gaps within the received fields. It strengthens reported server disk/process/listener observations and reaffirms unchanged delivered tables. It does not establish in-memory loading, actual source deployment, complete runtime-source projection, source-client version/transformation, exact historical list membership, publication, safe entry/recovery/settlement, real gameplay, Unity/ARM64 or device behavior. UNKNOWN values remain literal; candidate stays isolated."
+}

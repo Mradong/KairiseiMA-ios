@@ -102,7 +102,10 @@
         "evidence/ios-package-search/order03-public-version-evidence.json",
         "evidence/ios-package-search/order03-expected-tables.json",
         "evidence/ios-package-search/order03-server-supplement.json",
-        "evidence/ios-package-search/order03-blocked-audit.json"
+        "evidence/ios-package-search/order03-blocked-audit.json",
+        "evidence/ios-package-search/order03-runtime-supplement-import.json",
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-runtime-supplement-tests.json"
       ],
       "scope": "Partial mode-1 registered creation, journals and next wave verified with Windows synthetic inputs. Fixed zero-based packed role indices. Twelve two-wave cases: 2087 status comparisons, 204 Advance helper calls, 234 journal snapshots. Actual Unity runtime C# NativeRegisteredBattle adapter compiled/executed on Windows in 3 two-wave scenarios with 108 original-DLL result/journal comparisons. No Unity engine, new ARM64 or device validation; run 44293950030 lacks this newer source. Other modes, awakening, NPCs, spheres and full buddy behavior, enemy programs/gauges, full conditions/effects and real game content remain incomplete. Local 2026-11-19 change ignores zero-ID enemy skill slots; original-DLL comparison covers all 35 slots through enemy turn, and managed adapter registration. Nonzero enemy AI is still unsupported; no ARM64/device validation for this source. Local nonzero enemy normal slot 0 with ENEMY1 self-target and null conditions compared against original at rates 100 and 0; no player damage or broader AI verification. ARM64 for the earlier 0434575 wave source was compiled in 0.0.4 commit 090f190; no device runtime and does not cover later enemy changes. A later Windows synthetic original-DLL comparison also verifies slot-0 RANDOM target with neutral player damage and matching journal; broader enemies, real resources and device remain unverified. Later Windows synthetic original-DLL comparisons cover four profession selectors with all players alive; dead-member fallback and broader enemy AI remain unverified. Later Windows synthetic original-DLL comparison registers normal slot 0 and skill slot 1 and observes skill 2002 dealing 11 damage to the mercenary with matching status, results and journals; execution of both actions is not established. Other slot-1 targets and nonempty AI conditions remain unsupported; no ARM64 or device test for this change. Windows synthetic original-DLL comparisons now separately cover unconditional skill slots 1 through 14 targeting the living mercenary, with observed damage and matching results and journals. Other skill targets, special and death slots, and nonempty AI conditions are not established. No current-source ARM64 or device test. Windows synthetic original-DLL comparison exercises actual C# adapter configuration for continue, end-turn 20 and initial burst 40; start output asserts turn limit and results/journals match. Specific continue and burst effects were not separately validated. No real admission integration or Unity/device test. Isolated service response end_turn=0 is parsed and applied by the actual managed adapter; Windows original-DLL comparison uses synthetic combat data and matching results/journals. Full service data pipeline and device remain unverified. Managed C# adapter can register additional packed skills; a nonzero kind-1 record for each player was registered against original DLL and rebuilt bridge in synthetic two-wave battles. Actual skill activation and real content remain unverified. Three partner user records from isolated service start are projected using 1.4.0 partner mapping and modern 18-field layout, then registered via actual C# adapter with original-DLL matching user outputs and subsequent synthetic battles. Fourth member, cards and enemies are synthetic; modern semantic parity, real resources and device are not established. Local C# builder combines service partner main-card instance fields with explicitly supplied packed skills and full 15-field profile into 4960-byte records. 120 protocol/fixture checks; original/rebuilt registration accepts three service IDs with synthetic skill/master metadata, which are restored to synthetic cards before combat. No actual matching master-data loading or real-card gameplay is established; no Unity/device test. Local 2026-11-20 optional combat snapshot transport checks and resource-to-NativeRegisteredBattle factory implemented. 41 Windows C# contract checks and existing original-DLL registered tests pass; malformed card CSV is rejected by original catalog and actual managed adapter. Optional Unity bundle build includes supplied snapshot in manifest/catalog/profile; successful resource-set replacement removes obsolete loaded bundles. Actual matching snapshot is absent. Optional build branch, Unity bundle loading and replacement, real skills/card/enemy integration and device remain unverified; not present in 0.0.5. Local 2026-11-20 registered buddy decoding projects all five positions, three active/call skill pairs, passive, gauge/recharge/unlock settings and per-skill execution levels into isolated catalog copies and executable members. Six additional Windows synthetic actual-managed-adapter cases match original full outputs/journals. Leader active slots deal 13/14/15 damage at levels 2/3/4 and report costs 20/30/40 plus cooldowns 3/4/5; a level-7 passive deals 3 self-damage upon burst entry. Both leader cases win first wave and compare following wave and victory. Managed result/journal comparisons now total 216. Missing masters, conflicting definitions/levels and negative burst configuration are rejected. Call activation, nonleader passives, real definitions and broader conditions/effects remain unverified; no current-source Unity/ARM64/device proof. Local registered sphere projection now consumes three skill records, type/count/play condition and execution levels. Five synthetic actual-managed-adapter cases match original: NORMAL slots 1..3, TURN_AFTER availability, CHALICE reservation, 11 damage at skill level 3, count decrement and ordinary next-wave reset, two-wave victories and journals. Total managed comparisons 518. Call/support activation, EVOLUTION and full rules remain incomplete; no true-resource or device proof. Build 44704875254 from immutable source 692ef3939dfeb0278f43d8bffee2871dfbdd0dd6 succeeded as 0.0.6/build 6. ARM64, Unity/Xcode, iOS resource build and 28 cloud server tests/subtests passed. IPA is 26126147 bytes, SHA256 5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249; two local delivery copies match. Source includes UUID normalization, server UI reload and prior native buddy/sphere increments. Embedded content differs from public 0.0.4 delivery and has no combat tables. Compilation/package checks do not prove actual UnityWebRequest/AssetBundle runtime, iPhone installation/rendering, persistence or gameplay. Signed, installed and device-tested flags remain false; no old IPA device evidence applies. 2026-11-23 plan item 03: local matching CombatTables.json absent; the 20 same-named test-output masters are explicitly synthetic. Known public iOS manifest has only UI bundle; service health PASS does not identify deployed masters. Real source, versions, hashes, reference integrity, native enum mapping and server response remain pending; see order03-master-inventory.json. 2026-11-23 server delivery: 29 actual runtime-input tables verified against hashes; reproduced scoped 446725 positive references with zero missing and observed 25 numeric and 36 AI-shape compatibility cases. Actual managed validator and rebuilt Windows catalog/preparation accepted full-size input with synthetic placeholder enum only; no verified native enum, original-client behavior, live battle contract, Unity/iOS or device proof. See order03-server-delivery-validation.json. 2026-11-23: 1.4.0 source plus Windows execution of exported CSV class supports zero fallback for 25 reported VALUE inputs and equivalent empty-tail reads for 36 short AI rows; not a modern-client, full AI behavior or live battle proof. 2026-11-23: selected modern-export enum candidates were used in 144 synthetic Windows prepared-card comparisons; original and rebuilt matched 12 selected, 60 not selected, and 72 rejected queries. Full schema and compatibility with supplied masters remain unverified. Later enum test included missing SKILL_KIND.SORCERY=2: all 144 synthetic prepared-card comparisons succeeded and matched (20 selected, 124 not selected). This corrects the earlier 72 rejected comparisons; full client schema and actual table version linkage remain unverified. 2026-11-23: isolated fresh guest login and Connect were observed with redacted field types and status; invalid UUID and extra Connect field returned HTTP 400. No character creation, HomeShow, quest or battle; deck/combat contracts remain unverified. 2026-11-23: observed symbolic role parameter names statically compared against modern exported enums with 1.4.0 alias guidance; all non-special names located, with empty/NULL and mask ALL handled separately. Version matching, numeric ABI and dynamic behavior remain unverified. 2026-11-23: a freshly created isolated character returned ten cards and four decks; all 40 nonzero main card slots reference returned card instances and all ten card definition IDs exist in the hash-verified delivered card tables. This is ID membership only, not version, semantics, gameplay or device proof; no HomeShow, deck write, quest or battle request. 2026-11-23: original-DLL synthetic query exposed DOT and TRANCE_GAUGE_STATE schema family mismatches; bridge now maps to SKILL_ROLE_DOT and ENEMY_TRANCE_GAUGE_STATE. Four positive/negative family cases, Go tests, and 155 prior registered-skill differential queries passed on Windows x64 DLL a4553408677125adadf806c0f201bbb0981d9180b6a74ae88bb9e31437b98734. No real effect execution, ARM64, Unity or device evidence. 2026-11-23: Windows x64 original and rebuilt DLLs both opened and closed a 57,706,143-byte test snapshot containing 29 delivered real tables and a synthetic placeholder enum. No verified registration schema, battle, version match, Unity, ARM64 or device proof. 2026-11-23: isolated non-deployable candidate combines 29 hash-verified tables and 23 modern-export candidate enum families; actual Windows managed transport validator and original/rebuilt DLL catalog open/close passed. Client/table version matching, full ABI/schema, registered inputs, effects, Unity, ARM64 and device remain unverified. 2026-11-23: two delivered static-candidate enemy base records exposed over-rejection of empty master gauge during prepared-state query. The bridge now permits strictly inert gauge only in prepared queries; battle projection and nonempty gauges still reject. Four original-DLL query comparisons, Go guards, 1856 existing enemy query comparisons and synthetic registered-battle regression passed on Windows DLL e62fa374bd0a94b825dc154517a366747d28695babab1c7ca872d2e944007d8b. No real enemy skills/AI, full battle, version match, ARM64 or device proof. 2026-11-23: static comparison of selected server-Go projected fields found all nonblank symbolic names in candidate enum families, while 798 append, 15051 first-branch and 1426 second-branch nonblank occurrences are outside the current bridge condition decoder label list. Counts are per projected skill variant and field, not distinct skills or dynamic reachability; null/default semantics and version compatibility remain unverified. 2026-11-23: TURN numeric condition decoding added; 64 synthetic prepared/early-battle query comparisons match original across two slots and eight signed ranges including outside Int32; 450 prior queries, real-enemy-base queries, Go and registered-battle synthetic regression pass on Windows DLL 1e2f0d8510677d7a0899d31990d6c9d933fe7db0ec8428e0d21783f7f83acf05. Unimplemented nonblank condition occurrences in delivered-table projection now append 660, first branch 10992, second branch 1265; counts are not distinct skills or dynamic reachability. Real effect execution, later turns, version match and device unverified. 2026-11-23: DECK_COMBO_COUNT numeric condition decoding added; 64 synthetic queries without selected-card chain context matched original across prepared and early-battle phases, two slots and eight signed ranges. TURN, 450 prior queries, Go and registered-battle synthetic regression passed on Windows DLL 61cd9636fb7ef5370afec6c6998d304d8220f6ef59d48872a105cfa8eb229f14. Unimplemented nonblank condition occurrences in delivered-table projection now append 473, first branch 8261, second branch 1117; counts are not distinct skills or dynamic reachability. Actual combo execution, version match and device unverified. On Windows, 25 delivered anomalous VALUE strings returned zero both in the extracted readable 1.4.0 client VALUE/Global.parseInt branch and the actual Go binder; six controls matched. This does not verify CSV-to-rule association, 6.0.2 behavior, skill effects, original DLL, ARM64 or device. For 36 delivered short AI rows, 206 missing numeric tail positions return zero for both original rows and independently generated Go padded projections using extracted 1.4.0 CSV numeric reading methods on Windows. USER_DEAD selector, complete AI execution, original DLL, 6.0.2, ARM64 and device remain unverified. Static comparison of 23 candidate enum families with readable 1.4.0 declarations found SELF_ENEMY_AI_VAR numbered 110 versus candidate 111; candidate 110 means SELF_STYLE. The affected name occurs 555 times in selected projected skill fields, not unique skills or proven reachable executions. Correct 6.0.2 and native DLL mapping remains unverified. Fresh isolated CardShow2: ten distinct card definitions and 40 owned deck-slot references; 20 nonzero card skill references resolved to 20 variants and 23 role rows with no missing checked skill, role group or rule in the delivered Go projection. This is static reference closure, not execution, version or admission proof. Synthetic Windows player query: original DLL returned status 0/result -1 in 64 cases each for SELF_ENEMY_AI_VAR with legacy 110 and modern 111, and SELF_STYLE with modern 110; rebuilt bridge rejected all with status 2. No real enemy variable/style state or target-version semantics tested. Local combat snapshot validator now rejects duplicate enum labels, including one name with different numbers; 43 Windows transport checks passed and isolated candidate passed validator and original/rebuilt catalog open/close. These structural checks do not establish matching version, enum semantics, Unity or device execution. Rebuilt Windows bridge rejects duplicate labels within an enum family; Go and synthetic C ABI tests pass, and the isolated candidate opens/closes in both original and rebuilt DLLs. Invalid-schema original parity, target version, gameplay, ARM64 and device remain unverified.",
       "order03EnemyVariable": {
@@ -152,6 +155,70 @@
         "collectorLocalCases": 8,
         "publicHealthVersionFields": false,
         "scope": "Read-only disk/process collector and supplemental handoff prepared. Local synthetic tests and public health do not establish effective loaded content, deployed source, quest publication or safe battle contract. Awaiting server evidence."
+      },
+      "order03RuntimeSupplement": {
+        "receivedOn": "2026-11-24",
+        "archiveSha256": "cf68822b1837e8f61845236c3c170eb535996a1e73cd419a233dc46b0bc3b964",
+        "collectedUtc": "2026-11-24T01:01:52.0248385Z",
+        "evidenceClass": "Server-supplied observation and reduced static projections, locally compared offline; not direct client observation of server memory/configuration.",
+        "tablesAndDiskIdentity": {
+          "tablesCompared": 29,
+          "beforeAfterProcessReportsAgree": true,
+          "reportedProcessStartUtc": "2026-11-20T08:27:11.2385690Z",
+          "selectedListenerPort": 27040,
+          "observedDiskIdentitiesMatchPriorDelivery": true,
+          "effectiveLoadedBytes": "UNKNOWN",
+          "deployedSourceVersion": "UNKNOWN",
+          "sourceClientAndConversion": "UNKNOWN",
+          "publicationAndAdmission": "UNKNOWN",
+          "configSha256": "47cce744832bfa7d4906e34e21f9dabb5c578576d9503e25e84596c49df4e24f",
+          "serverDiskSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+          "resourceManifestSha256": "1e499a8fa29efc6616f4de6cfc28b36f032ef97d05cccf0060b9dc1fe316a1ad",
+          "stability": "Server reports files stable on recheck; this package does not provide per-file recheck timestamps, process IDs or memory observations.",
+          "linkage": "Selected disk executable matches the reported listener process image path before/after. This supports process/path/listener association as reported, not loaded file-byte/configuration identity or deployed source commit."
+        },
+        "staticQuestCounts": {
+          "unchangedBattleReplays": 3102,
+          "battleEntryGroups": 854,
+          "battleEntryBossIds": 2744,
+          "ownDeckVariants": 1043,
+          "expandedBattleEntryBossIds": 3787,
+          "expandedBattleReplays": 4145,
+          "normalEntryGroups": 18,
+          "normalEntryBossIds": 50,
+          "normalReplays": 50,
+          "normalRewardContexts": 100,
+          "normalRewardBossIds": 50,
+          "deduplicatedFamilies": 48,
+          "deduplicatedBossAliases": 138,
+          "variantRuleCheck": "1043 distinct one-to-one sources; exact +100000000 offset; eligible source entry/reward fields and no replay/alias/normal ID collisions. Applying the reviewed local rule yields is_only_my_deck=1/start_rule=1.",
+          "sourceHash": {
+            "file": "server-ios/server/internal/masterdata/battle_own_deck.go",
+            "sha256": "65e2f950e96f314a5cb648b6294c2e61ed4d3050fb7c030c7a69043a52fd3781"
+          },
+          "normalRewardContextCheck": "50 boss IDs each have two distinct contexts: standalone zeros and stage context matching area group/boss. The 100 rows are not treated as 100 boss IDs or duplicate reward grants."
+        },
+        "normalQuestReferences": {
+          "waves": 228,
+          "parties": 228,
+          "enemyAndLevelIds": 156,
+          "missing": 0
+        },
+        "historicalList": "Counts agree at 2744 base + 1043 own-deck + one historical normal entry. Exact historical ID-set equality and normal entry identity remain UNKNOWN because prior full IDs were not saved.",
+        "unknowns": {
+          "effectiveLoadedBytes": "UNKNOWN",
+          "actualLoadedConfiguration": "UNKNOWN",
+          "deployedSourceCommit": "UNKNOWN",
+          "originalClientRegionVersionAndConversion": "UNKNOWN",
+          "projectionDerivationFromClaimedRawSource": "UNKNOWN",
+          "historicalNormalBossIdentity": "UNKNOWN",
+          "livePublicationAndAdmission": "UNKNOWN",
+          "safeStartRecoveryContinueSettlementContract": "UNKNOWN: no versioned battle request/response/error evidence in this three-file package; previous source-derived limits remain scoped as historical reference."
+        },
+        "noServerChanges": true,
+        "noRealAccountOperations": true,
+        "candidateRelease": false,
+        "order03Complete": false
       }
     },
     {
@@ -282,7 +349,10 @@
         "evidence/ios-package-search/order03-public-version-evidence.json",
         "evidence/ios-package-search/order03-expected-tables.json",
         "evidence/ios-package-search/order03-server-supplement.json",
-        "evidence/ios-package-search/order03-blocked-audit.json"
+        "evidence/ios-package-search/order03-blocked-audit.json",
+        "evidence/ios-package-search/order03-runtime-supplement-import.json",
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-runtime-supplement-tests.json"
       ],
       "scope": "32f0ece / 44293950030 iOS resource bundle (713900 bytes), manifest/SHA/CRC and embedded IPA copy verified; compiled-profile HTTP delivery passed with 27 cloud tests/subtests. C# cache passes 29 checks. User screenshot after 0.0.3 delivery shows launch/background and synthetic replay, but no resource-ready status/cache counters. Full assets, real service deployment, phone downloads/restart/update persistence remain incomplete. Excludes newer 0434575 source. Local client reads recovered Party TexturePacker frames and attempts to draw four job icons from the atlas; 10 Windows .NET source-image dimension, UV and rejection checks. No Unity import/render, iOS build or device verification for this change. Local 2026-11-20 optional combat snapshot transport checks and resource-to-NativeRegisteredBattle factory implemented. 41 Windows C# contract checks and existing original-DLL registered tests pass; malformed card CSV is rejected by original catalog and actual managed adapter. Optional Unity bundle build includes supplied snapshot in manifest/catalog/profile; successful resource-set replacement removes obsolete loaded bundles. Actual matching snapshot is absent. Optional build branch, Unity bundle loading and replacement, real skills/card/enemy integration and device remain unverified; not present in 0.0.5. Public isolated service 47.116.51.61:27040 tested on 2026-11-20 via actual runtime C# protocol/cache classes and Windows HttpClient. Compact UUID caused HTTP 400; canonical D-format fix preserves GUID and passes login, repeat identity and two Connect calls (uncreated character). Manifest and UI bundle HEAD/GET, size/SHA256/CRC and reopened cache pass. Public bundle matches reviewed 0.0.4, statically decoded into six PNG/four atlas JSON, actual atlas checks pass. Server-update title reload fixed in source. 127 protocol checks pass. No UnityWebRequest/AssetBundle runtime, iPhone, role creation, rewards/deck/battle operations tested. New 0.0.6 build prepared; no IPA/device result yet. Build 44704875254 from immutable source 692ef3939dfeb0278f43d8bffee2871dfbdd0dd6 succeeded as 0.0.6/build 6. ARM64, Unity/Xcode, iOS resource build and 28 cloud server tests/subtests passed. IPA is 26126147 bytes, SHA256 5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249; two local delivery copies match. Source includes UUID normalization, server UI reload and prior native buddy/sphere increments. Embedded content differs from public 0.0.4 delivery and has no combat tables. Compilation/package checks do not prove actual UnityWebRequest/AssetBundle runtime, iPhone installation/rendering, persistence or gameplay. Signed, installed and device-tested flags remain false; no old IPA device evidence applies. Rechecked on 2026-11-23: both delivered 0.0.6 IPA hashes remain identical. Public isolated-service login, repeated identity/Connect, manifest, bundle HEAD/GET, SHA/CRC and reopened cache pass with unchanged built protocol source; no new iPhone or persistence evidence. Windows .NET 10 checks against the actual 0.0.6 embedded bundle and the actual public 0.0.4 UI bundle verify both revisions coexist, survive cache reopening and remain intact when a staged server bundle is truncated or corrupt. This does not exercise UnityWebRequest, AssetBundle loading, device filesystem, overwrite or rendering. Cloud run 45093283023 from 3f42572b4861539baa1ef4f85733b11d3014f640 succeeded; 0.0.7/build 7 IPA and actual plist verified, SHA-256 07e7a667ca58f142d02be8b922d6701f9d374f8bf7859931e6a74cf059152aa8. No 0.0.7 signing, installation, device networking, resource, character or gameplay evidence. Later local loader change stages all bundle downloads before replacing loaded bundles; two simulated Unity tests pass. AssetBundle loading failure rollback remains incomplete; no Unity or device evidence, and this change is not in 0.0.7. User reported all 0.0.7 phone connectivity item steps passed: connection, guest login, server resource update and character status. This aggregate report is associated with delivered run 45093283023; exact messages, signed IPA, signing identity, overwrite method, visible version and device/OS were not independently documented. No restart/overwrite persistence or actual gameplay established. Later local loader change attempts verified previous-set rollback after bundle loading failure and clears partial state if rollback fails; six Windows simulated Unity cases pass. Actual Unity AssetBundle unload/reload, iOS device behavior and persistence remain unverified. This change is not in 0.0.7. 0.0.8/build 8 was prepared in commit 66a63fbf1f52f45d8eeefb16502ac7c133da961f with displayed install/reuse counts. Automated approval rejected pushing reviewed source and dispatching cloud build before execution; no new IPA or Unity/device result. Local Windows tests execute actual loader, cache and manifest logic using two verified iOS resource revisions; simulated AssetBundle failure rollback, corrupt prior cache and subsequent retry pass. Unity and network are simulated; no new device evidence. Local isolated HTTP failure fixture supplies a manifest and integrity-valid non-AssetBundle payload; actual C# parser/cache and HTTP routes pass local tests. Real Unity rejection, device access, rollback and persistence remain pending. Cloud build 45097069398 from 66a63fbf1f52f45d8eeefb16502ac7c133da961f succeeded; verified 0.0.8/build 8 IPA SHA-256 0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800, with 28 server tests/subtests. Device installation, actual runtime resource rollback, cache persistence and gameplay remain unverified. User reported visible 0.0.8, resource displays all newly installed 0 and reused 1, and original test character status normal after closing/reopening and relogin. This is aggregate device feedback; signing identity and overwrite method were not separately described. Actual failure-injection and rollback on device remain unverified. Actual loader/cache with simulated network and Unity passes missing/truncated/corrupt downloads, retry and rollback scenarios against two verified iOS revisions. User confirmed same-identity 0.0.8 overwrite, reuse, restart, injected invalid bundle error without rollback-failed suffix, and return to isolated service with normal character after restart. Device server content ID and independent device logs remain pending; broad RESOURCE-01 remains incomplete. Plan item 02 verified at the recorded evidence level: 0.0.8 same-identity overwrite and resource cache reuse, user-confirmed load-failure recovery and restart, and user-provided resource-ready log IDs for embedded 2d60141ec1a984788232a415fe6a1df63a9dfebadb574c3ed871f70420337495 and server 55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb. Rollback completion is inferred from user-confirmed full error text and the built source; the reloaded bundle was not directly inspected. Broad RESOURCE-01 remains incomplete. 2026-11-23 plan item 03: local matching CombatTables.json absent; the 20 same-named test-output masters are explicitly synthetic. Known public iOS manifest has only UI bundle; service health PASS does not identify deployed masters. Real source, versions, hashes, reference integrity, native enum mapping and server response remain pending; see order03-master-inventory.json. 2026-11-23 server delivery: 29 actual runtime-input tables verified against hashes; reproduced scoped 446725 positive references with zero missing and observed 25 numeric and 36 AI-shape compatibility cases. Actual managed validator and rebuilt Windows catalog/preparation accepted full-size input with synthetic placeholder enum only; no verified native enum, original-client behavior, live battle contract, Unity/iOS or device proof. See order03-server-delivery-validation.json. 2026-11-23: 1.4.0 source plus Windows execution of exported CSV class supports zero fallback for 25 reported VALUE inputs and equivalent empty-tail reads for 36 short AI rows; not a modern-client, full AI behavior or live battle proof. 2026-11-23: selected modern-export enum candidates were used in 144 synthetic Windows prepared-card comparisons; original and rebuilt matched 12 selected, 60 not selected, and 72 rejected queries. Full schema and compatibility with supplied masters remain unverified. Later enum test included missing SKILL_KIND.SORCERY=2: all 144 synthetic prepared-card comparisons succeeded and matched (20 selected, 124 not selected). This corrects the earlier 72 rejected comparisons; full client schema and actual table version linkage remain unverified. 2026-11-23: isolated fresh guest login and Connect were observed with redacted field types and status; invalid UUID and extra Connect field returned HTTP 400. No character creation, HomeShow, quest or battle; deck/combat contracts remain unverified. 2026-11-23: observed symbolic role parameter names statically compared against modern exported enums with 1.4.0 alias guidance; all non-special names located, with empty/NULL and mask ALL handled separately. Version matching, numeric ABI and dynamic behavior remain unverified. 2026-11-23: a freshly created isolated character returned ten cards and four decks; all 40 nonzero main card slots reference returned card instances and all ten card definition IDs exist in the hash-verified delivered card tables. This is ID membership only, not version, semantics, gameplay or device proof; no HomeShow, deck write, quest or battle request. 2026-11-23: original-DLL synthetic query exposed DOT and TRANCE_GAUGE_STATE schema family mismatches; bridge now maps to SKILL_ROLE_DOT and ENEMY_TRANCE_GAUGE_STATE. Four positive/negative family cases, Go tests, and 155 prior registered-skill differential queries passed on Windows x64 DLL a4553408677125adadf806c0f201bbb0981d9180b6a74ae88bb9e31437b98734. No real effect execution, ARM64, Unity or device evidence. 2026-11-23: Windows x64 original and rebuilt DLLs both opened and closed a 57,706,143-byte test snapshot containing 29 delivered real tables and a synthetic placeholder enum. No verified registration schema, battle, version match, Unity, ARM64 or device proof. 2026-11-23: isolated non-deployable candidate combines 29 hash-verified tables and 23 modern-export candidate enum families; actual Windows managed transport validator and original/rebuilt DLL catalog open/close passed. Client/table version matching, full ABI/schema, registered inputs, effects, Unity, ARM64 and device remain unverified. 2026-11-23: two delivered static-candidate enemy base records exposed over-rejection of empty master gauge during prepared-state query. The bridge now permits strictly inert gauge only in prepared queries; battle projection and nonempty gauges still reject. Four original-DLL query comparisons, Go guards, 1856 existing enemy query comparisons and synthetic registered-battle regression passed on Windows DLL e62fa374bd0a94b825dc154517a366747d28695babab1c7ca872d2e944007d8b. No real enemy skills/AI, full battle, version match, ARM64 or device proof. 2026-11-23: static comparison of selected server-Go projected fields found all nonblank symbolic names in candidate enum families, while 798 append, 15051 first-branch and 1426 second-branch nonblank occurrences are outside the current bridge condition decoder label list. Counts are per projected skill variant and field, not distinct skills or dynamic reachability; null/default semantics and version compatibility remain unverified. 2026-11-23: TURN numeric condition decoding added; 64 synthetic prepared/early-battle query comparisons match original across two slots and eight signed ranges including outside Int32; 450 prior queries, real-enemy-base queries, Go and registered-battle synthetic regression pass on Windows DLL 1e2f0d8510677d7a0899d31990d6c9d933fe7db0ec8428e0d21783f7f83acf05. Unimplemented nonblank condition occurrences in delivered-table projection now append 660, first branch 10992, second branch 1265; counts are not distinct skills or dynamic reachability. Real effect execution, later turns, version match and device unverified. 2026-11-23: DECK_COMBO_COUNT numeric condition decoding added; 64 synthetic queries without selected-card chain context matched original across prepared and early-battle phases, two slots and eight signed ranges. TURN, 450 prior queries, Go and registered-battle synthetic regression passed on Windows DLL 61cd9636fb7ef5370afec6c6998d304d8220f6ef59d48872a105cfa8eb229f14. Unimplemented nonblank condition occurrences in delivered-table projection now append 473, first branch 8261, second branch 1117; counts are not distinct skills or dynamic reachability. Actual combo execution, version match and device unverified. 2026-11-23 fresh isolated character quest list: 3788 unique boss IDs, 2744 match the delivered 3102-ID static projection and 1044 are absent from that projection; scope/version differences require server clarification. Candidate 30010102 appears but list fields do not prove admission or safe battle. No entry, battle, Unity or device validation. A second fresh isolated quest list found 1043 of 1044 absent IDs match a static ID plus 100000000 and have fields 1=1 and 24=1, consistent with local own-deck variant code; the remaining one is in normal quest category 9. Actual deployed source, mapping, availability and admission remain unverified. On Windows, 25 delivered anomalous VALUE strings returned zero both in the extracted readable 1.4.0 client VALUE/Global.parseInt branch and the actual Go binder; six controls matched. This does not verify CSV-to-rule association, 6.0.2 behavior, skill effects, original DLL, ARM64 or device. For 36 delivered short AI rows, 206 missing numeric tail positions return zero for both original rows and independently generated Go padded projections using extracted 1.4.0 CSV numeric reading methods on Windows. USER_DEAD selector, complete AI execution, original DLL, 6.0.2, ARM64 and device remain unverified. Static comparison of 23 candidate enum families with readable 1.4.0 declarations found SELF_ENEMY_AI_VAR numbered 110 versus candidate 111; candidate 110 means SELF_STYLE. The affected name occurs 555 times in selected projected skill fields, not unique skills or proven reachable executions. Correct 6.0.2 and native DLL mapping remains unverified. Fresh isolated CardShow2: ten distinct card definitions and 40 owned deck-slot references; 20 nonzero card skill references resolved to 20 variants and 23 role rows with no missing checked skill, role group or rule in the delivered Go projection. This is static reference closure, not execution, version or admission proof. Local combat snapshot validator now rejects duplicate enum labels, including one name with different numbers; 43 Windows transport checks passed and isolated candidate passed validator and original/rebuilt catalog open/close. These structural checks do not establish matching version, enum semantics, Unity or device execution. Rebuilt Windows bridge rejects duplicate labels within an enum family; Go and synthetic C ABI tests pass, and the isolated candidate opens/closes in both original and rebuilt DLLs. Invalid-schema original parity, target version, gameplay, ARM64 and device remain unverified.",
       "order03EnemyVariable": {
@@ -332,6 +402,70 @@
         "collectorLocalCases": 8,
         "publicHealthVersionFields": false,
         "scope": "Read-only disk/process collector and supplemental handoff prepared. Local synthetic tests and public health do not establish effective loaded content, deployed source, quest publication or safe battle contract. Awaiting server evidence."
+      },
+      "order03RuntimeSupplement": {
+        "receivedOn": "2026-11-24",
+        "archiveSha256": "cf68822b1837e8f61845236c3c170eb535996a1e73cd419a233dc46b0bc3b964",
+        "collectedUtc": "2026-11-24T01:01:52.0248385Z",
+        "evidenceClass": "Server-supplied observation and reduced static projections, locally compared offline; not direct client observation of server memory/configuration.",
+        "tablesAndDiskIdentity": {
+          "tablesCompared": 29,
+          "beforeAfterProcessReportsAgree": true,
+          "reportedProcessStartUtc": "2026-11-20T08:27:11.2385690Z",
+          "selectedListenerPort": 27040,
+          "observedDiskIdentitiesMatchPriorDelivery": true,
+          "effectiveLoadedBytes": "UNKNOWN",
+          "deployedSourceVersion": "UNKNOWN",
+          "sourceClientAndConversion": "UNKNOWN",
+          "publicationAndAdmission": "UNKNOWN",
+          "configSha256": "47cce744832bfa7d4906e34e21f9dabb5c578576d9503e25e84596c49df4e24f",
+          "serverDiskSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+          "resourceManifestSha256": "1e499a8fa29efc6616f4de6cfc28b36f032ef97d05cccf0060b9dc1fe316a1ad",
+          "stability": "Server reports files stable on recheck; this package does not provide per-file recheck timestamps, process IDs or memory observations.",
+          "linkage": "Selected disk executable matches the reported listener process image path before/after. This supports process/path/listener association as reported, not loaded file-byte/configuration identity or deployed source commit."
+        },
+        "staticQuestCounts": {
+          "unchangedBattleReplays": 3102,
+          "battleEntryGroups": 854,
+          "battleEntryBossIds": 2744,
+          "ownDeckVariants": 1043,
+          "expandedBattleEntryBossIds": 3787,
+          "expandedBattleReplays": 4145,
+          "normalEntryGroups": 18,
+          "normalEntryBossIds": 50,
+          "normalReplays": 50,
+          "normalRewardContexts": 100,
+          "normalRewardBossIds": 50,
+          "deduplicatedFamilies": 48,
+          "deduplicatedBossAliases": 138,
+          "variantRuleCheck": "1043 distinct one-to-one sources; exact +100000000 offset; eligible source entry/reward fields and no replay/alias/normal ID collisions. Applying the reviewed local rule yields is_only_my_deck=1/start_rule=1.",
+          "sourceHash": {
+            "file": "server-ios/server/internal/masterdata/battle_own_deck.go",
+            "sha256": "65e2f950e96f314a5cb648b6294c2e61ed4d3050fb7c030c7a69043a52fd3781"
+          },
+          "normalRewardContextCheck": "50 boss IDs each have two distinct contexts: standalone zeros and stage context matching area group/boss. The 100 rows are not treated as 100 boss IDs or duplicate reward grants."
+        },
+        "normalQuestReferences": {
+          "waves": 228,
+          "parties": 228,
+          "enemyAndLevelIds": 156,
+          "missing": 0
+        },
+        "historicalList": "Counts agree at 2744 base + 1043 own-deck + one historical normal entry. Exact historical ID-set equality and normal entry identity remain UNKNOWN because prior full IDs were not saved.",
+        "unknowns": {
+          "effectiveLoadedBytes": "UNKNOWN",
+          "actualLoadedConfiguration": "UNKNOWN",
+          "deployedSourceCommit": "UNKNOWN",
+          "originalClientRegionVersionAndConversion": "UNKNOWN",
+          "projectionDerivationFromClaimedRawSource": "UNKNOWN",
+          "historicalNormalBossIdentity": "UNKNOWN",
+          "livePublicationAndAdmission": "UNKNOWN",
+          "safeStartRecoveryContinueSettlementContract": "UNKNOWN: no versioned battle request/response/error evidence in this three-file package; previous source-derived limits remain scoped as historical reference."
+        },
+        "noServerChanges": true,
+        "noRealAccountOperations": true,
+        "candidateRelease": false,
+        "order03Complete": false
       }
     },
     {
@@ -356,9 +490,76 @@
         "evidence/ios-package-search/order03-starter-card-closure.json",
         "evidence/ios-package-search/deck-duplicate-validation-tests.json",
         "evidence/ios-package-search/deck-save-recovery-tests.json",
-        "evidence/ios-package-search/deck-save-recovery-transport.json"
+        "evidence/ios-package-search/deck-save-recovery-transport.json",
+        "evidence/ios-package-search/order03-runtime-supplement-import.json",
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-runtime-supplement-tests.json"
       ],
-      "scope": "Local solo quest list parses normal, special, key and event categories from isolated service; 84 client protocol checks. Battle start, alchemist towers, original scene, actual resources, Unity and device remain incomplete. This source is newer than 0.0.4 cloud build. Local C# start request and response projection compared to isolated service business-handler start and retry fixture, including battle segments and partner loadouts. No client UI or battle adapter consumes it yet; no Unity/iOS or device validation. Local quest view adds quest selection and partner lookup; isolated service business response parsed over loopback in C# protocol tests. Partner choice and starting battle remain unimplemented. Unity dummy-symbol compile failed due to unreadable metadata; no Unity engine or device validation. Local quest UI and C# draft support choosing up to three unique external candidates and constructing partner selections from actual isolated-service rental indices; 102 protocol checks. No battle request is sent; own deck selection, entry rules, full gameplay and Unity/device execution remain incomplete. This source is later than cloud commit ec71223. Local solo quest view reads and switches own decks; C# draft combines chosen role/index and partners into a start request, checked against isolated starter deck fixture. 110 protocol checks; actual admission is not sent, no Unity/device execution. Source postdates cloud build ec71223. Public isolated fresh test character on Windows C# parsed 3788 quest entries and 5 first-quest partner candidates; no battle was started. Initial probe 1 MiB response cap failed, client-aligned 4 MiB cap succeeded; not a phone test. 2026-11-23: isolated test character reordered two owned nonleader cards; CardDeckSet returned 200 and CardShow2 matched all main slots before and after relogin. An unowned instance returned HTTP 400 and the slots remained unchanged. Same running service only; no service restart, concurrency, gameplay or device proof. 2026-11-23 fresh isolated character quest list: 3788 unique boss IDs, 2744 match the delivered 3102-ID static projection and 1044 are absent from that projection; scope/version differences require server clarification. Candidate 30010102 appears but list fields do not prove admission or safe battle. No entry, battle, Unity or device validation. A second fresh isolated quest list found 1043 of 1044 absent IDs match a static ID plus 100000000 and have fields 1=1 and 24=1, consistent with local own-deck variant code; the remaining one is in normal quest category 9. Actual deployed source, mapping, availability and admission remain unverified. Fresh isolated CardShow2: ten distinct card definitions and 40 owned deck-slot references; 20 nonzero card skill references resolved to 20 variants and 23 role rows with no missing checked skill, role group or rule in the delivered Go projection. This is static reference closure, not execution, version or admission proof. Local source rejects repeated nonzero main-deck card instances before save and retains the draft on local validation failure; Windows .NET protocol and loopback checks passed. Other family and server validation, Unity UI and device remain unverified. Local card deck save recovery compares a fresh read with the pre-save and proposed main slots, restores an in-memory draft only when the old slots and inventory still match, and never automatically retries; 111 Windows protocol/loopback checks passed. Actual Unity network failures, concurrent changes, device and restart are not tested. Windows HttpClient against a local synthetic server tested truncated save responses after commit, no commit and conflicting change; a subsequent read and actual recovery helper produced the expected three outcomes without a second save. UnityWebRequest, UI, real service and device remain unverified."
+      "scope": "Local solo quest list parses normal, special, key and event categories from isolated service; 84 client protocol checks. Battle start, alchemist towers, original scene, actual resources, Unity and device remain incomplete. This source is newer than 0.0.4 cloud build. Local C# start request and response projection compared to isolated service business-handler start and retry fixture, including battle segments and partner loadouts. No client UI or battle adapter consumes it yet; no Unity/iOS or device validation. Local quest view adds quest selection and partner lookup; isolated service business response parsed over loopback in C# protocol tests. Partner choice and starting battle remain unimplemented. Unity dummy-symbol compile failed due to unreadable metadata; no Unity engine or device validation. Local quest UI and C# draft support choosing up to three unique external candidates and constructing partner selections from actual isolated-service rental indices; 102 protocol checks. No battle request is sent; own deck selection, entry rules, full gameplay and Unity/device execution remain incomplete. This source is later than cloud commit ec71223. Local solo quest view reads and switches own decks; C# draft combines chosen role/index and partners into a start request, checked against isolated starter deck fixture. 110 protocol checks; actual admission is not sent, no Unity/device execution. Source postdates cloud build ec71223. Public isolated fresh test character on Windows C# parsed 3788 quest entries and 5 first-quest partner candidates; no battle was started. Initial probe 1 MiB response cap failed, client-aligned 4 MiB cap succeeded; not a phone test. 2026-11-23: isolated test character reordered two owned nonleader cards; CardDeckSet returned 200 and CardShow2 matched all main slots before and after relogin. An unowned instance returned HTTP 400 and the slots remained unchanged. Same running service only; no service restart, concurrency, gameplay or device proof. 2026-11-23 fresh isolated character quest list: 3788 unique boss IDs, 2744 match the delivered 3102-ID static projection and 1044 are absent from that projection; scope/version differences require server clarification. Candidate 30010102 appears but list fields do not prove admission or safe battle. No entry, battle, Unity or device validation. A second fresh isolated quest list found 1043 of 1044 absent IDs match a static ID plus 100000000 and have fields 1=1 and 24=1, consistent with local own-deck variant code; the remaining one is in normal quest category 9. Actual deployed source, mapping, availability and admission remain unverified. Fresh isolated CardShow2: ten distinct card definitions and 40 owned deck-slot references; 20 nonzero card skill references resolved to 20 variants and 23 role rows with no missing checked skill, role group or rule in the delivered Go projection. This is static reference closure, not execution, version or admission proof. Local source rejects repeated nonzero main-deck card instances before save and retains the draft on local validation failure; Windows .NET protocol and loopback checks passed. Other family and server validation, Unity UI and device remain unverified. Local card deck save recovery compares a fresh read with the pre-save and proposed main slots, restores an in-memory draft only when the old slots and inventory still match, and never automatically retries; 111 Windows protocol/loopback checks passed. Actual Unity network failures, concurrent changes, device and restart are not tested. Windows HttpClient against a local synthetic server tested truncated save responses after commit, no commit and conflicting change; a subsequent read and actual recovery helper produced the expected three outcomes without a second save. UnityWebRequest, UI, real service and device remain unverified.",
+      "order03RuntimeSupplement": {
+        "receivedOn": "2026-11-24",
+        "archiveSha256": "cf68822b1837e8f61845236c3c170eb535996a1e73cd419a233dc46b0bc3b964",
+        "collectedUtc": "2026-11-24T01:01:52.0248385Z",
+        "evidenceClass": "Server-supplied observation and reduced static projections, locally compared offline; not direct client observation of server memory/configuration.",
+        "tablesAndDiskIdentity": {
+          "tablesCompared": 29,
+          "beforeAfterProcessReportsAgree": true,
+          "reportedProcessStartUtc": "2026-11-20T08:27:11.2385690Z",
+          "selectedListenerPort": 27040,
+          "observedDiskIdentitiesMatchPriorDelivery": true,
+          "effectiveLoadedBytes": "UNKNOWN",
+          "deployedSourceVersion": "UNKNOWN",
+          "sourceClientAndConversion": "UNKNOWN",
+          "publicationAndAdmission": "UNKNOWN",
+          "configSha256": "47cce744832bfa7d4906e34e21f9dabb5c578576d9503e25e84596c49df4e24f",
+          "serverDiskSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+          "resourceManifestSha256": "1e499a8fa29efc6616f4de6cfc28b36f032ef97d05cccf0060b9dc1fe316a1ad",
+          "stability": "Server reports files stable on recheck; this package does not provide per-file recheck timestamps, process IDs or memory observations.",
+          "linkage": "Selected disk executable matches the reported listener process image path before/after. This supports process/path/listener association as reported, not loaded file-byte/configuration identity or deployed source commit."
+        },
+        "staticQuestCounts": {
+          "unchangedBattleReplays": 3102,
+          "battleEntryGroups": 854,
+          "battleEntryBossIds": 2744,
+          "ownDeckVariants": 1043,
+          "expandedBattleEntryBossIds": 3787,
+          "expandedBattleReplays": 4145,
+          "normalEntryGroups": 18,
+          "normalEntryBossIds": 50,
+          "normalReplays": 50,
+          "normalRewardContexts": 100,
+          "normalRewardBossIds": 50,
+          "deduplicatedFamilies": 48,
+          "deduplicatedBossAliases": 138,
+          "variantRuleCheck": "1043 distinct one-to-one sources; exact +100000000 offset; eligible source entry/reward fields and no replay/alias/normal ID collisions. Applying the reviewed local rule yields is_only_my_deck=1/start_rule=1.",
+          "sourceHash": {
+            "file": "server-ios/server/internal/masterdata/battle_own_deck.go",
+            "sha256": "65e2f950e96f314a5cb648b6294c2e61ed4d3050fb7c030c7a69043a52fd3781"
+          },
+          "normalRewardContextCheck": "50 boss IDs each have two distinct contexts: standalone zeros and stage context matching area group/boss. The 100 rows are not treated as 100 boss IDs or duplicate reward grants."
+        },
+        "normalQuestReferences": {
+          "waves": 228,
+          "parties": 228,
+          "enemyAndLevelIds": 156,
+          "missing": 0
+        },
+        "historicalList": "Counts agree at 2744 base + 1043 own-deck + one historical normal entry. Exact historical ID-set equality and normal entry identity remain UNKNOWN because prior full IDs were not saved.",
+        "unknowns": {
+          "effectiveLoadedBytes": "UNKNOWN",
+          "actualLoadedConfiguration": "UNKNOWN",
+          "deployedSourceCommit": "UNKNOWN",
+          "originalClientRegionVersionAndConversion": "UNKNOWN",
+          "projectionDerivationFromClaimedRawSource": "UNKNOWN",
+          "historicalNormalBossIdentity": "UNKNOWN",
+          "livePublicationAndAdmission": "UNKNOWN",
+          "safeStartRecoveryContinueSettlementContract": "UNKNOWN: no versioned battle request/response/error evidence in this three-file package; previous source-derived limits remain scoped as historical reference."
+        },
+        "noServerChanges": true,
+        "noRealAccountOperations": true,
+        "candidateRelease": false,
+        "order03Complete": false
+      }
     },
     {
       "id": "PLATFORM-01",
@@ -413,7 +614,7 @@
   "executionPriority": "2026-11-19: investigate reusable 6.0.2 scene components, resources and verified behavior first; evaluate protocol compatibility and direct adaptation versus hybrid recovery as specified in EXECUTION_PLAN.md. Completion scope and evidence requirements are unchanged.",
   "focusedGoal": {
     "planItem": "03",
-    "status": "blocked",
+    "status": "active",
     "authorizedOn": "2026-11-23",
     "instruction": "把03设置为目标，完成为止",
     "evidence": [
@@ -427,10 +628,21 @@
       "evidence/ios-package-search/order03-public-version-evidence.json",
       "evidence/ios-package-search/order03-expected-tables.json",
       "evidence/ios-package-search/order03-server-supplement.json",
-      "evidence/ios-package-search/order03-blocked-audit.json"
+      "evidence/ios-package-search/order03-blocked-audit.json",
+      "evidence/ios-package-search/order03-runtime-supplement-import.json",
+      "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+      "evidence/ios-package-search/order03-runtime-supplement-tests.json",
+      "evidence/ios-package-search/order03-live-battle-contract.json",
+      "evidence/ios-package-search/order03-source-link-reproduction.json"
     ],
-    "remaining": "CSV/client version and transformation relation, actual deployed effective snapshot/quest scope and safe isolated battle contract evidence remain missing. Static Windows default paths do not certify complete CSV/AI or original iOS behavior.",
-    "blockedReason": "Missing server-controlled deployed-source/effective-snapshot/data-cohort and safe battle contract evidence. Local client has no authorized process access or deployed-source artifacts that can establish these facts; public health and further synthetic/static work cannot substitute.",
-    "blockedAudit": "evidence/ios-package-search/order03-blocked-audit.json"
+    "remaining": "A dedicated live isolated account now verifies candidate 30010102 admission, exactly one 15-BP debit, Start retry, relog recovery, rejected no-charge Continue, non-clear End/abandon and End retry without rewards. Remaining: effective loaded configuration/bytes, exact deployed source/patch, original CSV provenance/transform, exact historical list membership, successful Continue, real engine-produced victory/defeat logs, clear settlement/reward idempotency and actual process-restart recovery.",
+    "previousBlockedState": {
+      "status": "blocked",
+      "audit": "evidence/ios-package-search/order03-blocked-audit.json",
+      "reason": "Missing server-controlled deployed-source/effective-snapshot/data-cohort and safe battle contract evidence. Local client has no authorized process access or deployed-source artifacts that can establish these facts; public health and further synthetic/static work cannot substitute.",
+      "supersededByNewUserEvidenceOn": "2026-11-24"
+    },
+    "resumedOn": "2026-11-24",
+    "latestAuthorization": "User resumed order 03 and explicitly allowed creating a dedicated real test account when it accelerates the work. Existing user accounts, credentials and sessions remain out of scope; all side effects must be recorded."
   }
 }

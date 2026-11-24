@@ -1,0 +1,65 @@
+{
+  "checkedAt": "2026-11-24T01:43:27.277Z",
+  "success": true,
+  "cases": [
+    {
+      "case": "received_three_file_structures",
+      "passed": true
+    },
+    {
+      "case": "same_table_name_repeated",
+      "rejected": true
+    },
+    {
+      "case": "declared_match_with_wrong_hash",
+      "rejected": true
+    },
+    {
+      "case": "nonzero_business_requests",
+      "rejected": true
+    },
+    {
+      "case": "listener_not_owned",
+      "rejected": true
+    },
+    {
+      "case": "different_process_start",
+      "rejected": true
+    },
+    {
+      "case": "unsubstantiated_loaded_bytes_pass",
+      "rejected": true
+    },
+    {
+      "case": "replay_opening_changed",
+      "rejected": true
+    },
+    {
+      "case": "wrong_variant_offset",
+      "rejected": true
+    },
+    {
+      "case": "variant_source_missing",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_variant",
+      "rejected": true
+    },
+    {
+      "case": "entry_without_replay",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_normal_reward_context",
+      "rejected": true
+    },
+    {
+      "case": "unknown_projection_field",
+      "rejected": true
+    }
+  ],
+  "validatorSha256": "f08ea1cb328439d660e1028f701893444ae0655203ef3bb2c76a6fd7922704cc",
+  "scriptSha256": "128dac294d39d5cad60d9ce18fc857996818edd9279b428f7aa370896e88fe05",
+  "scope": "Offline verifier checks using received static data and explicitly mutated in-memory copies. Valid receipt structures accepted, tampered identities/mappings/contexts and stronger unsupported loaded-byte claims rejected. Tests validate audit guards, not independent server observation or runtime compatibility; original inputs are not modified."
+}

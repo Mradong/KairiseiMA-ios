@@ -1,0 +1,119 @@
+{
+  "checkedAt": "2026-11-24T01:33:06.718Z",
+  "target": "http://47.116.51.61:27040",
+  "success": true,
+  "stage": "complete",
+  "authorization": "User explicitly allowed creating a real dedicated account when it accelerates order 03 on 2026-11-24.",
+  "identity": "Fresh dedicated isolated-service account and character. UUID, user ID, session, name, partner IDs, card instance IDs, seed and start time are never recorded.",
+  "sideEffects": {
+    "accountMayPersist": true,
+    "characterMayPersist": true,
+    "bossId": 30010102,
+    "expectedEntryBPCost": 15,
+    "clearRewardRequested": false
+  },
+  "steps": [
+    {
+      "phase": "identity",
+      "paths": [
+        "/local/client/login",
+        "/Connect",
+        "/UserCreate"
+      ],
+      "freshDedicatedAccount": true,
+      "characterCreated": true,
+      "identifiersRedacted": true
+    },
+    {
+      "phase": "admission",
+      "paths": [
+        "/HomeShow",
+        "/CardShow2",
+        "/TeamBattleSoloShow",
+        "/TeamBattleSoloPartnerShow"
+      ],
+      "initialBP": 20,
+      "candidate": {
+        "bossId": 30010102,
+        "state": 0,
+        "locked": 0,
+        "bpCost": 15
+      },
+      "ownDeck": {
+        "arthurType": 1,
+        "index": 0
+      },
+      "partnerRoles": [
+        2,
+        3,
+        4
+      ],
+      "partnerIdentifiersRedacted": true
+    },
+    {
+      "phase": "start_and_recovery",
+      "path": "/TeamBattleSoloStart",
+      "requestFields": [
+        "bossid",
+        "deck_arthur_type",
+        "deck_arthur_type_idx",
+        "partner_deck_selects"
+      ],
+      "first": {
+        "segments": 1,
+        "enemyPartyIds": [
+          30010102
+        ],
+        "enemyTypes": [
+          1
+        ],
+        "partnerDecks": 3,
+        "costInitial": 3,
+        "burstGaugeInitial": 0,
+        "holdMax": 6,
+        "endTurn": 0
+      },
+      "identicalRetrySameSnapshot": true,
+      "reloginSameIdentity": true,
+      "reloginRetrySameSnapshot": true,
+      "entryChargedAtMostOnce": true
+    },
+    {
+      "phase": "continue_rejection",
+      "path": "/TeamBattleSoloContinue",
+      "requestFields": [
+        "pay_type",
+        "progress",
+        "input_cmd",
+        "enemy_dead_bit"
+      ],
+      "payType": 0,
+      "accepted": false,
+      "httpStatus": "non-success",
+      "resCode": 400,
+      "responseBody": "omitted",
+      "expectedSideEffect": "none"
+    },
+    {
+      "phase": "abandon_and_receipt",
+      "path": "/TeamBattleSoloEnd",
+      "requestFields": [
+        "progress",
+        "is_clear",
+        "input_cmd",
+        "enemy_dead_bit",
+        "bossid"
+      ],
+      "isClear": 0,
+      "clearRewardRequested": false,
+      "identicalRetrySamePayload": true,
+      "finalHomeBP": 5,
+      "bpDelta": 15,
+      "expectedBPCost": 15,
+      "chargedExactlyOnce": true,
+      "candidateStateAfter": 0,
+      "candidateLockedAfter": 0
+    }
+  ],
+  "scope": "Live isolated service account-level contract probe: create, Home/Card/Quest/Partner read, one solo Start, identical retry, relog retry, rejected no-charge Continue, non-clear End/abandon, identical End retry and final Home/Quest read. No existing account, clear claim, reward, fabricated victory, server restart or configuration change."
+}

@@ -1,0 +1,104 @@
+{
+  "checkedAt": "2026-11-24T09:38:25.6949524+08:00",
+  "success": true,
+  "purpose": "Attempt to link the observed server executable to the reviewed local source without changing the running service.",
+  "receivedSourceManifest": {
+    "file": "inputs/server-order03/Order03-Combat-Verified-20261123/reproduce/reviewed-server-source-SHA256SUMS.txt",
+    "sha256": "0244d716bae852d09339d0f1f338e318d9768c952bb1446fb9f104df1e5d0578",
+    "entries": 164,
+    "matchedLocalFiles": 164,
+    "mismatches": 0,
+    "missing": 0,
+    "localRoot": "server-ios",
+    "scope": "The manifest covers the reviewed battlecontent, battlecore, battlemodel and battlecodec/cnformat production files used by the offline table audit. It does not cover every command, HTTP, account, persistence or deployment source file."
+  },
+  "reproducibleSource": {
+    "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+    "patchFile": "patches/ios-server.patch",
+    "patchSha256": "7b8d1228e727970c63408843890a58022299b02122578de269bba94c697d7718",
+    "toolchain": "go1.25.1 windows/amd64",
+    "environment": {
+      "CGO_ENABLED": "0",
+      "GOOS": "windows",
+      "GOARCH": "amd64"
+    },
+    "ordinaryBuild": {
+      "flags": [
+        "-buildvcs=false",
+        "-trimpath"
+      ],
+      "bytes": 40521216,
+      "sha256": "943d938d3a266be1e9b079630b99aeef204946d593b6d995f9dc8eae0e609c06",
+      "matchesObservedServer": false,
+      "matchesPreviouslyRecordedLocalBuild": true
+    },
+    "strippedBuild": {
+      "flags": [
+        "-buildvcs=false",
+        "-trimpath",
+        "-ldflags=-s -w"
+      ],
+      "bytes": 29707776,
+      "sha256": "6a53e3438d9b5945cc8332889fd17176f72ce440a3690ee93e6de0d384576a43",
+      "matchesObservedServer": false
+    },
+    "otherStrippingVariants": [
+      {
+        "ldflags": "-s",
+        "bytes": 29707776,
+        "sha256": "f1fb6085b766ddb1f0a4ff5f1b37fd27ec0e4dbd1fac2bb3b4dbfae2b94b37db"
+      },
+      {
+        "ldflags": "-w",
+        "bytes": 31880192,
+        "sha256": "82d39b6fc858397588250a6fd41d17b01423d82b9d2f044a33a2f45d71de8468"
+      },
+      {
+        "ldflags": "-s -w -buildid=",
+        "bytes": 29707264,
+        "sha256": "9b3c6fda7b70cddcf9732cad796f905b4d88159cbe2f8450c120b9dd65165df0"
+      },
+      {
+        "ldflags": "-s -w -buildid=none",
+        "bytes": 29707264,
+        "sha256": "f294f9141dd249ee6bf315580d36dad8ed516b69c5f848849cac5c2ecb91b13c"
+      }
+    ]
+  },
+  "observedServer": {
+    "bytes": 29736448,
+    "sha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+    "reportedGoVersion": "go1.25.1",
+    "reportedSettings": {
+      "CGO_ENABLED": "0",
+      "GOOS": "windows",
+      "GOARCH": "amd64"
+    }
+  },
+  "targetedReviewedSourceTests": {
+    "packages": [
+      "kairisei.local/server/internal/game",
+      "kairisei.local/server/internal/httpapi",
+      "kairisei.local/server/internal/cnbootstrap"
+    ],
+    "tests": [
+      "TestSoloEntryFreezesContinueRuleWithDebit",
+      "TestModernSoloStartRetainsIdentityAcrossReloadAndStartsAfterAbandon",
+      "TestLostSoloBattleReportReturnsClientResult",
+      "TestSoloRetreatBeforeBattleEndAllowsRetainedReport",
+      "TestSoloVictoryDoesNotRequireEnemyBodyDeath",
+      "TestBattleProgressSurvivesAccountAndServerReload",
+      "TestInvalidCachedBattleReportReachesDiscardCallback"
+    ],
+    "passed": true,
+    "scope": "Local reviewed source only. These tests cover durable entry/continue rules, account/server reload projections, lost/retired reports and result paths; they do not prove that the observed process was built from these exact HTTP/account/deployment files."
+  },
+  "conclusion": {
+    "reviewedBattleSourceIdentity": "VERIFIED_WITHIN_164_FILE_MANIFEST",
+    "observedExecutableExactReproduction": false,
+    "deployedSourceCommit": "UNKNOWN",
+    "effectiveLoadedConfiguration": "UNKNOWN",
+    "reason": "The received manifest ties the offline loader/core audit to the reviewed battle source subset, but all tested reproducible builds differ from the observed executable. File-size proximity after stripping is not source identity."
+  },
+  "sideEffects": "No server request, account operation, process inspection, deployment, configuration change or original-input write. Build products remain under ignored test-output."
+}
