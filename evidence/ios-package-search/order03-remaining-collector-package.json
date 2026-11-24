@@ -1,0 +1,34 @@
+{
+  "preparedAt": "2026-11-24T07:30:16.439Z",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-server-collector-20261124-073016075Z.zip",
+  "archiveBytes": 12546,
+  "archiveSha256": "17e5abefdac40ab4b2fc844e668c39db7d12c576ce6127840dea86b647f28e04",
+  "files": [
+    {
+      "name": "Collect-Order03-Remaining.cmd",
+      "bytes": 332,
+      "sha256": "a0e235320d837e607edae3eb980162920c0abd0e0ae2dca1a4fca48e4d120d30"
+    },
+    {
+      "name": "Collect-Order03RemainingEvidence.ps1",
+      "bytes": 27847,
+      "sha256": "95070469ee659c1bbb4d2c0e9ca4d2ef4e2509283855cfe84216b8614cf7cf45"
+    },
+    {
+      "name": "order03-expected-tables.json",
+      "bytes": 5022,
+      "sha256": "d0a114135bd82414aa9b70827751f5aa643a4d37c75b33810faab7bb28cef913"
+    },
+    {
+      "name": "先读说明.md",
+      "bytes": 2340,
+      "sha256": "18e0587784f3c43a3c139273ddf85cbafb841491a22a3374cf754673adc8c783"
+    }
+  ],
+  "collectorSourceSha256": "abde3a6924f54a9878420957603b2cda2d983f8e04a9e781fc8bc233d4d976ae",
+  "testedWith": "Windows PowerShell 5.1, synthetic deployment only",
+  "serverExecuted": false,
+  "sharedConversation": "https://chatgpt.com/share/6b053936-fbc4-83ec-9054-585a966e7ea0",
+  "scope": "Existing deployment/source/static evidence capture. Missing original provenance and unexecuted service contracts remain UNKNOWN/NOT_TESTED.",
+  "packagedScriptSmokePassed": true
+}

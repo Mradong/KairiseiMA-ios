@@ -681,7 +681,9 @@
       "evidence/ios-package-search/order03-target-job-before-fix.json",
       "evidence/ios-package-search/order03-target-job.json",
       "evidence/ios-package-search/order03-status-before-fix.json",
-      "evidence/ios-package-search/order03-status.json"
+      "evidence/ios-package-search/order03-status.json",
+      "evidence/ios-package-search/order03-remaining-collector-tests.json",
+      "evidence/ios-package-search/order03-remaining-collector-package.json"
     ],
     "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
@@ -699,6 +701,15 @@
     },
     "resumedOn": "2026-11-24",
     "latestAuthorization": "2026-11-24 user explicitly requested reading STATUS.md and the detailed execution plan and restarting plan item 03. Prior dedicated-test-account authorization remains scoped to the isolated service.",
-    "statusConditions": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation."
+    "statusConditions": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation.",
+    "serverCollector": {
+      "preparedOn": "2026-11-24",
+      "archive": "dist/order03-server-collector-20261124-073016075Z.zip",
+      "sha256": "17e5abefdac40ab4b2fc844e668c39db7d12c576ce6127840dea86b647f28e04",
+      "powerShell51SyntheticTestsPassed": true,
+      "packagedScriptSmokePassed": true,
+      "serverExecuted": false,
+      "purpose": "User requested a server-runnable collector based on shared deployment conversation. Existing source/build/static JSON and startup evidence are captured when available. Provenance/runtime linkage and unexecuted contracts remain UNKNOWN/NOT_TESTED."
+    }
   }
 }
