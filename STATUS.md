@@ -1,5 +1,17 @@
 # 当前状态
 
+## 2026-11-25 顺序 03 按计划范围验收完成
+
+安装 JSON、启动 pin JSON 和 `Order03-Restart-20261125T073103506Z-lyd.zip` 已全部收到、隔离归档并核验。ZIP 为 1,186 字节，SHA-256 `29c497e042a62f1d44201392e93e712ea7041a11ddc14dacff07876e17bed862`；内部 restart JSON 校验和为 `dc9457c1...`。安装前 `7704963e...`、安装后及两个真实服务进程均为已编译修复程序 `1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1`。实际验证脚本哈希 `c1113db6...` 与交付版本相同；启动器仍为已审阅 `9aef0e3c...`，配置仅同步程序 pin。回执见 `order03-final-receipts-validation-lyd.json`。
+
+现场服务进程从 07:30:31.0476297Z 重启为 07:32:12.7605427Z；前后健康检查通过，同一身份、seed、start_time 和完整开场保持一致。最终非通关放弃成功，BP 从 20 到 5，仅扣一次 15 BP，无通关奖励请求。本轮最多新增一个专用账号/角色、一次入场，身份可能保留；凭据/名称/实例标识未采集。旧失败记录保留，新成功不改变历史证据版本。
+
+主代理按《详细执行计划.md》03 行逐项复核了现有真实快照、公开恢复项目 2.0.4 的来源/版本/哈希、指定 446,725 正 ID 引用（零缺失）、源码与程序对应、服务端交付/答复及脱敏契约证据。独立完成审计为 `order03-completion-audit-lyd.json`，readiness=true。接受的数据快照归档到 `inputs/server-order03/Order03-Accepted-Snapshot-2.0.4-lyd/CombatTables-lyd.json`，57,738,263 字节，SHA-256 `f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb`，29 表、23族/822枚举。原候选文件保留作历史来源，没有自动复制成生产 iOS 资产。
+
+03 完成仅指该数据/服务契约验收范围。官方原始客户端的提取输入、区域/版本、工具/日期与转换仍 UNKNOWN；完整发布 ZIP 哈希未核验；引用完整性只覆盖明确映射字段。真实胜负/付费 Continue 证据与修复后重启证据分别保留各自版本。完整技能/AI、手机当前回合和血量、ARM64、iOS资源交付及整机游戏验收继续属于后续任务，RESOURCE-01/BATTLE-01 和整个项目不据此完成。下一项按顺序 04 增量维护原行为与范围基线。
+
+用户要求只保留本地，继续不推送。服务器可清理已复制完成的原 ZIP/独立解压临时目录和不再需要的安装载荷；运行中的 `bin/kairi-server.exe`、启动/配置、资源和 `_local/data` 必须保留。回滚旧程序及脚本建议保留，实际执行回执已经在本项目归档。
+
 ## 2026-11-25 原启动校验未同步已修复，03 剩现场最终验收
 
 用户安装后反馈 `Not ready: File SHA-256 differs: ...\bin\kairi-server.exe`。已在之前收到并校验的 `deployment-scripts/Start-IOS-Test.ps1`（SHA-256 `9aef0e3c...`）定位到 `isolated-config.json.expected_test_binary_sha256`；前包替换了程序但漏了同步这项。服务尚未因此启动，安装截图不能证明启动/恢复通过。

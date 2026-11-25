@@ -1,0 +1,204 @@
+{
+  "checkedAt": "2026-11-25T07:50:36.343Z",
+  "planItem": "03",
+  "completionProven": true,
+  "reviewer": "root",
+  "planRequirement": "| 03 | **真实主表与服务契约** `RESOURCE-01` / `BATTLE-01` | 盘点现有资源及独立服务，逐项定位匹配版本的 card.csv、技能/效果表、敌人表及其关联字段；核实 `CombatTables.json` 来源、版本、引用与完整性。向服务端 Codex 提供可执行的字段、版本、哈希、交付格式和接口需求；不索取真实账号、密钥或存档。 | 可追溯来源的真实主表快照，关联完整性、版本和哈希验证，以及明确缺失项；服务端答复和脱敏接口证据。无真实数据时保持阻塞并做其他已具备依赖的项。 |",
+  "requirements": [
+    {
+      "id": "inventory_and_real_snapshot",
+      "result": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-server-delivery-validation.json",
+        "evidence/ios-package-search/order03-published-client-snapshot-lyd.json"
+      ],
+      "observations": "20 required plus 9 extensions; exact received CSV text and 23/822 enum values; physical snapshot byte identities checked."
+    },
+    {
+      "id": "traceable_source_version_hash",
+      "result": "verified_with_scope",
+      "evidence": [
+        "evidence/ios-package-search/order03-publication-provenance-lyd.json",
+        "evidence/ios-package-search/order03-published-client-snapshot-lyd.json"
+      ],
+      "observations": "Public reconstruction 2.0.4 release/tag/base commit, server table manifest, exact public client metadata, runtime resource manifest and byte hashes match. Official original extraction is explicitly unknown."
+    },
+    {
+      "id": "reference_integrity_and_missing_items",
+      "result": "verified_with_scope",
+      "evidence": [
+        "evidence/ios-package-search/order03-server-delivery-validation.json",
+        "inputs/server-order03/Order03-Combat-Verified-20261123/audit/reference-summary.json",
+        "evidence/ios-package-search/order03-modern-defaults.json"
+      ],
+      "observations": "23 mapped reference groups, 446725 positive edges, zero missing; 25 VALUE and 36 AI shape observations are retained with stated scope. This is not an assertion about every symbolic/gameplay parameter."
+    },
+    {
+      "id": "executable_and_runtime_link",
+      "result": "verified_with_scope",
+      "evidence": [
+        "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+        "evidence/ios-package-search/order03-runtime-selection-validation.json",
+        "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
+        "evidence/ios-package-search/order03-final-receipts-validation-lyd.json"
+      ],
+      "observations": "Pinned base plus reviewed iOS patch reproduces old observed binary; reviewed three-file solo/maintenance patch compiles new binary. Received install and live process identities match the new build."
+    },
+    {
+      "id": "server_request_reply_and_redacted_contract",
+      "result": "verified_with_scope",
+      "evidence": [
+        "顺序03服务端交付请求.md",
+        "evidence/ios-package-search/order03-live-battle-contract.json",
+        "evidence/ios-package-search/order03-real-battle-validation.json",
+        "evidence/ios-package-search/order03-final-receipts-validation-lyd.json"
+      ],
+      "observations": "Versioned requirements and server-provided tables/source/receipts retained. Real isolated-service battle and continuation evidence plus actual new-process opening recovery and one 15-BP debit verified in recorded scopes."
+    }
+  ],
+  "acceptedSnapshot": {
+    "file": "inputs/server-order03/Order03-Accepted-Snapshot-2.0.4-lyd/CombatTables-lyd.json",
+    "bytes": 57738263,
+    "sha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+    "projectVersion": "2.0.4",
+    "tables": 29,
+    "enums": 23,
+    "enumConstants": 822,
+    "productionClientAssetDeployed": false
+  },
+  "retainedMissingOrUnverified": [
+    "Official original-client extraction input, region/version, tool/date and transformations are UNKNOWN; project publication is proved, official extraction is not.",
+    "Full release ZIP digests were not checked; downloaded ZIP manifest/metadata members and received table hashes were checked.",
+    "Reference completeness covers the explicitly mapped positive-ID fields. Full skill/AI semantics and all original behaviors remain for later plan rows.",
+    "Battle victory/paid continuation evidence predates the durable-solo patch; source change scope and targeted persistence/maintenance checks are recorded, not a claim of repeated full gameplay on every version.",
+    "This is source/data and desktop/isolated-service acceptance. iOS AssetBundle delivery, ARM64, phone mid-battle state and whole-game/device acceptance remain separate."
+  ],
+  "scope": "Completes the exact plan item 03 data/provenance/contract acceptance with explicit missing items. Does not complete RESOURCE-01/BATTLE-01 as whole-game items or certify the full iOS client.",
+  "sourceFiles": [
+    {
+      "file": "evidence/ios-package-search/order03-readiness.json",
+      "sha256": "afd9a8681bccc113a6976d131b35c1feb1af1c05e4102d8913732fc29b6efb9f"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-server-delivery-validation.json",
+      "sha256": "60060313a36020fbbfffe3cdacacb0b12c58c2de0ce973582289043ec033b941"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-ios602-enums.json",
+      "sha256": "db10dfc1e8aaf9efd14edab967b3a406cb665e92abbae3ff075344e30caa30e7"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-metadata-enums.json",
+      "sha256": "cbfb9d9784ee49e8f151d1baf4d0a670bfbb80214aa972cbaeb2f4ab90a631db"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-ios602-table-compatibility.json",
+      "sha256": "af99a31952a2b0c74b47f753bad86fd2ad33e8de2df3c6a5ffeb57b573a5a54b"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-defaults.json",
+      "sha256": "be989ba0b84ff29bfb5ca6fd67139bd82f6bc67cd7a5ba47d0186a9bc5ec753f"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-value-parser-differential.json",
+      "sha256": "4b97d769a505ece99ea75fe53e3e7c57c043aa0cf6ecf2e1938c0687bf462f9f"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-short-ai-tail.json",
+      "sha256": "07f152990e661c3787840d4c66ce413ba243ac00f8e28a53839bb2c977115360"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-publication-provenance-lyd.json",
+      "sha256": "a3744d1c8fa0a3c04a27b8b9fb4f97689b45a86288ef81eac607d1b67e957e66"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
+      "sha256": "592d0a4dc34df397e61a43bff73349f378e6c19e9410b9baf3223962118c888d"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-import.json",
+      "sha256": "79f59dd15208ec30098ea29f8c7ea3f0b4f33af651f21e0bfc2ca0884b2502e8"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+      "sha256": "e46aeae4dce919a507033c4c6dd9fed9321dd8077a7a918b8c65214baec28b10"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-remaining-validation.json",
+      "sha256": "16edeb34ffcb768cbfa3991a85276ac4b0a6815c8aedc02973cb8d07ccc1a4d5"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-supplement-tests.json",
+      "sha256": "07d8e6c49ceba199ab4ec5022b673c95242ef949b8d3c757e3cf32c5f4b03c02"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-raw-static-loader.json",
+      "sha256": "4c33b64717e12d0ff2f9e0cca95d303e06fa9935ecfbf66f40ae4f2c5cfa0649"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-source-link-reproduction.json",
+      "sha256": "dccc8dcd6fbe5e4e2aa98f99e8447287f2bb0c3205c2b9d48412cb0047240d71"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+      "sha256": "33eec013ea9fcb8bffc4e799faca1bed710bb3faf7620c72bff73d542fc5a747"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-quest-variant-gap.json",
+      "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-live-battle-contract.json",
+      "sha256": "ee16d4746dc65981899b7c7b69009b9e5580ce104cdfa2852fad4a28c57229a3"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-selection-validation.json",
+      "sha256": "a83c59cb215f810d5b597139243ad4965c7574ae0827f1b4eac0f0c37d4965d1"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-isolated-deck-contract.json",
+      "sha256": "d9f477a952bfa1a12c7010d9cecb67a897c7195dbae70279a536fd2de317024b"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-isolated-quest-contract.json",
+      "sha256": "bfa3318c13714dd93b57353a6b8c862a7714d7f6d8961c39505fbe221ea51103"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-real-battle-validation.json",
+      "sha256": "a7ae6b175eb57f5c643ff7aadedb7c797745994a23a5844707ea2bf7446a2940"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
+      "sha256": "adfb41d5517b3cf8482e3623bb45b304121e1b03d620755acc4a214b3757c6d4"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-restart-result-20261125T031514670Z-validation-lyd.json",
+      "sha256": "066ba8a668838ca4a1228739d2489babab2fd2dc083a04a9d6ab8f9ef5ab9ed8"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json",
+      "sha256": "1678cbb35b9a6b9798df638e7315548c3edcd1f72536c0db6265c9eb286f6e49"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-startup-pin-tests-lyd.json",
+      "sha256": "bd6cc545fc984a6f565a14f754fcccbdb4e0917b8a22a920785e2114c7698cb1"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-startup-pin-package-lyd.json",
+      "sha256": "d3126e1ce82a4521b0255ffb19d3069ad72a855f729bfc1b6624bbe0fece162c"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-final-receipts-validation-lyd.json",
+      "sha256": "3267634be5fca5c150c5c82b211daea3214d20ae652a9cb014cb9eb2ced6d275"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Combat-Verified-20261123/audit/reference-summary.json",
+      "sha256": "0957e48b629535d070a87694b9f69af67ae3988b8832e0b25f8e482ee45944af"
+    },
+    {
+      "file": "顺序03服务端交付请求.md",
+      "sha256": "99d937bee8119ef61d3c346acd9859f1530092c9d7a55a64e1607c7849f701fa"
+    }
+  ],
+  "scriptSha256": "99c1857a315e7b1cf001a069a29d139930607a3f1772acb0de03e18c79befabd"
+}

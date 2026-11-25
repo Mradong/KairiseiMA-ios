@@ -1,0 +1,35 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+import {validateFinalReceipts} from './order03-final-receipt-validation.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const args=process.argv.slice(2);const parameters=new Map();
+for(let i=0;i<args.length;i+=2){assert(['--install','--pin','--restart'].includes(args[i]));assert(args[i+1]);assert(!parameters.has(args[i]));parameters.set(args[i],args[i+1]);}
+for(const name of ['--install','--pin','--restart'])assert(parameters.has(name),'Supply --install, --pin and --restart imported receipt paths');
+const filename=value=>{
+  const file=path.resolve(root,value),allowed=path.join(root,'inputs/server-order03')+path.sep;
+  assert(file.startsWith(allowed),'Use imported server receipt files only');
+  const stat=fs.lstatSync(file);assert(stat.isFile()&&!stat.isSymbolicLink()&&stat.size<=1048576);
+  for(let parent=path.dirname(file);parent.startsWith(path.join(root,'inputs/server-order03'));parent=path.dirname(parent))assert(!fs.lstatSync(parent).isSymbolicLink(),'Imported receipt path uses a junction');
+  return file;
+};
+const inputFiles=[...parameters.values()].map(filename);
+const hash=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+const load=file=>JSON.parse(fs.readFileSync(file,'utf8').replace(/^\uFEFF/,''));
+const restartFile=filename(parameters.get('--restart'));
+const checksumFile=filename(path.relative(root,path.join(path.dirname(restartFile),'SHA256SUMS-lyd.txt')));
+const checksum=/^([a-f0-9]{64})  restart-lyd\.json\s*$/.exec(fs.readFileSync(checksumFile,'utf8'));
+assert(checksum);assert.equal(checksum[1],hash(restartFile));inputFiles.push(checksumFile);
+const archiveFile=filename(path.relative(root,path.dirname(restartFile)+'.zip'));inputFiles.push(archiveFile);
+const buildFile=path.join(root,'evidence/ios-package-search/order03-durable-solo-build-lyd.json');
+const packageFile=path.join(root,'evidence/ios-package-search/order03-solo-fix-package-lyd.json');
+const build=load(buildFile),pkg=load(packageFile);
+assert(build.success);assert.equal(hash(path.join(root,build.build.executable)),build.build.sha256);
+const probe=pkg.files.find(file=>file.name==='Verify-Order03Restart-lyd.ps1');assert(probe);
+assert.equal(hash(path.join(pkg.directory,probe.name)),probe.sha256);
+const result=validateFinalReceipts({install:load(filename(parameters.get('--install'))),pin:load(filename(parameters.get('--pin'))),restart:load(filename(parameters.get('--restart'))),expectedExecutableSha256:build.build.sha256,expectedExecutableBytes:build.build.bytes,expectedProbeSha256:probe.sha256,expectedStartupSha256:'9aef0e3c2ed167d476b4fc9b6135a3ae26229a574ba19ab8d82440ebd48ce6a6'});
+const report={checkedAt:new Date().toISOString(),analysisCompleted:true,...result,receivedRestartChecksumVerified:true,validatorSha256:hash(path.join(root,'scripts/order03-final-receipt-validation.mjs')),auditorSha256:hash(path.join(root,'scripts/audit-order03-final-receipts.mjs')),inputFiles:inputFiles.map(file=>({file:path.relative(root,file).replaceAll('\\','/'),bytes:fs.statSync(file).size,sha256:hash(file)})),sourceEvidence:[buildFile,packageFile].map(file=>({file:path.relative(root,file).replaceAll('\\','/'),sha256:hash(file)}))};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-final-receipts-validation-lyd.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify({analysisCompleted:true,reportedRestartRecoveryVerified:true,scope:report.scope},null,2));

@@ -39,6 +39,12 @@ const startupPinTestsPath = p + 'order03-startup-pin-tests-lyd.json';
 const startupPinPackagePath = p + 'order03-startup-pin-package-lyd.json';
 const startupPinTests = fs.existsSync(path.join(root,startupPinTestsPath)) ? load(startupPinTestsPath) : null;
 const startupPinPackage = fs.existsSync(path.join(root,startupPinPackagePath)) ? load(startupPinPackagePath) : null;
+const finalReceiptsPath = p + 'order03-final-receipts-validation-lyd.json';
+const finalReceipts = fs.existsSync(path.join(root,finalReceiptsPath)) ? load(finalReceiptsPath) : null;
+if (finalReceipts) {
+  if (!finalReceipts.analysisCompleted || !finalReceipts.receivedRestartChecksumVerified || !finalReceipts.installationReceiptVerified || !finalReceipts.startupPinReceiptVerified || !finalReceipts.reportedProcessRestartVerified || !finalReceipts.reportedSameOpeningVerified || !finalReceipts.singleEntryBPDeltaVerified || !finalReceipts.nonClearAbandonVerified || finalReceipts.validatorSha256 !== sha('scripts/order03-final-receipt-validation.mjs') || finalReceipts.auditorSha256 !== sha('scripts/audit-order03-final-receipts.mjs')) throw Error('Final server receipt validation incomplete or stale');
+  for (const input of [...finalReceipts.inputFiles,...finalReceipts.sourceEvidence]) if (input.sha256 !== sha(input.file)) throw Error('Final receipt source/input changed');
+}
 if (startupPinTests && (!startupPinTests.success || startupPinTests.scriptSha256 !== sha('scripts/Sync-Order03StartupPin.ps1') || startupPinTests.startupSource.sha256 !== sha(startupPinTests.startupSource.file))) throw Error('Startup pin tests missing or stale');
 if (startupPinPackage && startupPinPackage.archiveSha256 !== crypto.createHash('sha256').update(fs.readFileSync(startupPinPackage.archive)).digest('hex')) throw Error('Startup pin package changed');
 if (publishedSnapshot) {
@@ -152,7 +158,13 @@ if (startupPinTests && startupPinPackage) {
   contractGate.evidence.push(startupPinTestsPath,startupPinPackagePath);
   contractGate.remaining += ' Installed binary was blocked by the retained old expected_test_binary_sha256. A reviewed one-field sync preserves original preflight checks and passes real-checker fixtures; actual sync/startup/restart receipts are pending.';
 }
-const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
+if (finalReceipts) {
+  const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
+  contractGate.evidence.push(finalReceiptsPath);
+  contractGate.state = 'verified';
+  contractGate.remaining = 'Received installer/pin/restart receipts identify the compiled program and delivered probe; new process starts inside the probe interval, identity/seed/time/full opening match, BP moves 20 to 5 with one 15-BP debit and non-clear abandon succeeds. Existing real victory, paid Continue and frozen-result retry evidence remains scoped to its recorded version. This is desktop/service evidence; device and whole-game acceptance remain separate.';
+}
+const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused','complete'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),
   scope: 'Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate.'};
 fs.writeFileSync(path.join(root, p + 'order03-readiness.json'), JSON.stringify(report, null, 2) + '\n');

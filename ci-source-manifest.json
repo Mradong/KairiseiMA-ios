@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T07:27:36.609Z",
+  "generatedAt": "2026-11-25T07:51:41.922Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 175725,
-      "sha256": "6a85ea832cd4c67275718e4991878c9e5ab5efeedfcb400cf3f1d3f83ec1246d"
+      "bytes": 178357,
+      "sha256": "6cb20a47c754d6f65faa73e80798670dfd91e27989677ee8cf66a11f20e967c4"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 118123,
-      "sha256": "f08663d793398f24108427e1cb0aae7bc9732fd7c61584b4c886d92bd7be95c5"
+      "bytes": 119101,
+      "sha256": "7dbbcd591bba554e243166cd8c520b1c30b281e08d68e029f005efde9074f995"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -464,6 +464,11 @@
       "sha256": "4930096751be1d9fdbb69263a7fc90221cdaad9e04a0ea23972c6484fcc8d19a"
     },
     {
+      "path": "evidence/ios-package-search/order03-completion-audit-lyd.json",
+      "bytes": 10732,
+      "sha256": "5dad4dacd76fcf5ba140008e101ce0b0dc5a2f2aa17d97e1cf33c9cf753fd4ae"
+    },
+    {
       "path": "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
       "bytes": 2385,
       "sha256": "1b9dcc7e588509dce6f161cd974201964434aac77414c919e0f4192faf6b6b04"
@@ -517,6 +522,16 @@
       "path": "evidence/ios-package-search/order03-expected-tables.json",
       "bytes": 4869,
       "sha256": "8bdca44e94cb97639ba52057ecbfe6ac0de37174bf06a6f2b1adbf7928fc7750"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-final-receipt-validator-tests-lyd.json",
+      "bytes": 1224,
+      "sha256": "2fd362c4e05e6109a4d86924ff819d1cbe87fd67eb71ef682f798a195dcd4887"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-final-receipts-validation-lyd.json",
+      "bytes": 2186,
+      "sha256": "3267634be5fca5c150c5c82b211daea3214d20ae652a9cb014cb9eb2ced6d275"
     },
     {
       "path": "evidence/ios-package-search/order03-friend-selected-before-fix.json",
@@ -640,8 +655,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 12585,
-      "sha256": "63576c691a4b357964ad4e0067ae2891a8a1e868cfca4e2ca13f3acd3607fc30"
+      "bytes": 12632,
+      "sha256": "afd9a8681bccc113a6976d131b35c1feb1af1c05e4102d8913732fc29b6efb9f"
     },
     {
       "path": "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
@@ -1341,7 +1356,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "17c15b612e6cc5ad088d3a2cc8644d33653bfce18468bf001ccd34537ff3be3c"
+      "sha256": "2605783681229624fc4a5be057a238c0cd3a80316b7cef7f831162a6af78d8cb"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1829,9 +1844,19 @@
       "sha256": "b5bf9db9bc07255b025e95b95493a69242df6a3baa463492ed3db2aa58fa21c7"
     },
     {
+      "path": "scripts/audit-order03-completion.mjs",
+      "bytes": 8830,
+      "sha256": "99c1857a315e7b1cf001a069a29d139930607a3f1772acb0de03e18c79befabd"
+    },
+    {
       "path": "scripts/audit-order03-enum-version-differences.mjs",
       "bytes": 4874,
       "sha256": "5eb9eeca7462e9d0cec489190c5705b43ab550ce4781c7e161a39f0e02907370"
+    },
+    {
+      "path": "scripts/audit-order03-final-receipts.mjs",
+      "bytes": 3643,
+      "sha256": "fa95009a3ebde1d0f9c0cc783b699680565f2365842be8facfbf6c7f72aed48e"
     },
     {
       "path": "scripts/audit-order03-ios602-enums.mjs",
@@ -1915,8 +1940,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 21119,
-      "sha256": "61a0e0b4f70636bd8466c7226ac0a92acb9fa29262d33a1f0b6696cd032ee0b2"
+      "bytes": 22792,
+      "sha256": "57ef83e3c4427bc47ad6571a93e2ab14546175cfa58044542bfafa988ead6f2b"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1942,6 +1967,11 @@
       "path": "scripts/order03-engine-client.mjs",
       "bytes": 1789,
       "sha256": "df2e79ce2c093c5fe14753248eff17c0e5c07d35df75abd713c604236fb2f6f9"
+    },
+    {
+      "path": "scripts/order03-final-receipt-validation.mjs",
+      "bytes": 4747,
+      "sha256": "a18a9d1ea33550d4200dfa62419fa87a28826a903f18cf67e1ed00f41ffff763"
     },
     {
       "path": "scripts/order03-play-rounds.mjs",
@@ -2152,6 +2182,11 @@
       "path": "scripts/test-order03-enum-conflict-query.mjs",
       "bytes": 3933,
       "sha256": "6fdf2815238c2c4a8a22fb53990c60f55b134180e3e1312247467e203232f81c"
+    },
+    {
+      "path": "scripts/test-order03-final-receipts.mjs",
+      "bytes": 4528,
+      "sha256": "6edbba45f749044834f910f370ad0c632214afaed38fff6fbcb8fbf3aedfb29b"
     },
     {
       "path": "scripts/test-order03-friend-selected.mjs",
@@ -2570,8 +2605,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 62626,
-      "sha256": "9d932a75d0305af086e693fcb9dc1b878f484bcd6e99139f4d62e78a2edc55ec"
+      "bytes": 63812,
+      "sha256": "5d0efecd13be86a1f7ce9d219a817d062e04181d440f2db2520d10565e7b2047"
     },
     {
       "path": "服务端协作需求.md",
@@ -2580,8 +2615,8 @@
     },
     {
       "path": "详细执行计划.md",
-      "bytes": 13069,
-      "sha256": "eba099e599117304d041281a35b0639d8dc8e86b7cddbca46af0fda449f84960"
+      "bytes": 13655,
+      "sha256": "e9e0779ed34b629fd3606afc4a50326a0e4b1c0eafc510e9922b664604a30709"
     },
     {
       "path": "资源切换设备验证.md",
@@ -2590,8 +2625,8 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 21233,
-      "sha256": "941db48c614d6a6ea24a061ef35216cc8d1b315202e8d5d66b224a7c5af1689f"
+      "bytes": 22039,
+      "sha256": "99d937bee8119ef61d3c346acd9859f1530092c9d7a55a64e1607c7849f701fa"
     },
     {
       "path": "顺序03补充取证说明.md",
@@ -2599,7 +2634,7 @@
       "sha256": "79842a51cab9bf4a3b997b4a0c605ad67c563af3659edb0edee8972fab2c41de"
     }
   ],
-  "bytes": 32069157,
+  "bytes": 32112955,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

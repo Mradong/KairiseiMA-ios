@@ -1,0 +1,51 @@
+{
+  "checkedAt": "2026-11-25T07:42:25.225Z",
+  "analysisCompleted": true,
+  "installationReceiptVerified": true,
+  "startupPinReceiptVerified": true,
+  "reportedProcessRestartVerified": true,
+  "reportedSameOpeningVerified": true,
+  "singleEntryBPDeltaVerified": true,
+  "nonClearAbandonVerified": true,
+  "scope": "Validation of user-supplied sanitized observations and delivered script identities. No direct client inspection of server memory, credentials, account database, device state or full gameplay.",
+  "receivedRestartChecksumVerified": true,
+  "validatorSha256": "a18a9d1ea33550d4200dfa62419fa87a28826a903f18cf67e1ed00f41ffff763",
+  "auditorSha256": "fa95009a3ebde1d0f9c0cc783b699680565f2365842be8facfbf6c7f72aed48e",
+  "inputFiles": [
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T073103506Z-lyd/install-lyd.json",
+      "bytes": 1082,
+      "sha256": "3760d7d5d221ec1aa663126d6bfd2709ea2e5fae6a881ca812a522eb15ce504c"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T073103506Z-lyd/startup-pin-lyd.json",
+      "bytes": 1456,
+      "sha256": "b3565107754cf32d2be0ba1f436f0a224efcf25ef63b37c357fc5e4fe2a0d985"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T073103506Z-lyd/restart-lyd.json",
+      "bytes": 3785,
+      "sha256": "dc9457c184633a2cf6e2d9233ba2398e5d793f8b66a826687da3bf32bcb05852"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T073103506Z-lyd/SHA256SUMS-lyd.txt",
+      "bytes": 83,
+      "sha256": "7dc9c7416aa42da7c060cdae42209128eeec437660068cb410b0fe1d5a2ac49c"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T073103506Z-lyd.zip",
+      "bytes": 1186,
+      "sha256": "29c497e042a62f1d44201392e93e712ea7041a11ddc14dacff07876e17bed862"
+    }
+  ],
+  "sourceEvidence": [
+    {
+      "file": "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
+      "sha256": "1b9dcc7e588509dce6f161cd974201964434aac77414c919e0f4192faf6b6b04"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-solo-fix-package-lyd.json",
+      "sha256": "504eb019e779256edda8009f3672268ff5e71416a1a059918b1a7234924fe96e"
+    }
+  ]
+}

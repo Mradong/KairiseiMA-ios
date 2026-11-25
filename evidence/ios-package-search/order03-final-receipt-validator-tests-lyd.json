@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-25T07:33:42.930Z",
+  "success": true,
+  "validatorSha256": "a18a9d1ea33550d4200dfa62419fa87a28826a903f18cf67e1ed00f41ffff763",
+  "syntheticValidStructureAccepted": true,
+  "initialServiceStartsAfterReadinessWaitAccepted": true,
+  "rejected": [
+    {
+      "case": "installation_only",
+      "rejected": true
+    },
+    {
+      "case": "rollback_not_installation",
+      "rejected": true
+    },
+    {
+      "case": "wrong_program",
+      "rejected": true
+    },
+    {
+      "case": "unmatched_probe",
+      "rejected": true
+    },
+    {
+      "case": "unchanged_process",
+      "rejected": true
+    },
+    {
+      "case": "process_from_before_probe",
+      "rejected": true
+    },
+    {
+      "case": "changed_opening",
+      "rejected": true
+    },
+    {
+      "case": "duplicate_debit",
+      "rejected": true
+    },
+    {
+      "case": "clear_claim",
+      "rejected": true
+    },
+    {
+      "case": "unrelated_config_changed",
+      "rejected": true
+    },
+    {
+      "case": "failure_in_success",
+      "rejected": true
+    }
+  ],
+  "scope": "Synthetic receipt structure/invariant tests only. No server execution, no current acceptance pass, no goal completion or fabricated real receipt."
+}
