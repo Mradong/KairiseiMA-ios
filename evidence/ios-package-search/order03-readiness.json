@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-25T01:38:10.656Z",
+  "checkedAt": "2026-11-25T02:44:21.609Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -134,7 +134,7 @@
     },
     {
       "file": "evidence/ios-package-search/order03-remaining-validation.json",
-      "sha256": "98efaaffd9a3581070e06f5344fe8f9062f8b3eb1fe637b36511eaddf622f66d"
+      "sha256": "16edeb34ffcb768cbfa3991a85276ac4b0a6815c8aedc02973cb8d07ccc1a4d5"
     },
     {
       "file": "evidence/ios-package-search/order03-runtime-supplement-tests.json",

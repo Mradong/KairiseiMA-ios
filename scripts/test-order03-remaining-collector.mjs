@@ -4,10 +4,11 @@ import assert from 'node:assert/strict';
 import crypto from 'node:crypto';
 import { spawnSync } from 'node:child_process';
 import { fileURLToPath } from 'node:url';
+import {lydFilename} from './server-verification-names.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const base = fs.mkdtempSync(path.join(root, 'test-output/order03-remaining-collector-'));
-const script = path.join(root, 'scripts/Collect-Order03RemainingEvidence.ps1');
+const script = process.env.ORDER03_TEST_SCRIPT || path.join(root, 'scripts/Collect-Order03RemainingEvidence.ps1');
 const expectedPath = path.join(root, 'evidence/ios-package-search/order03-expected-tables.json');
 const sha = file => crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
 const write = (name, data) => {
@@ -64,7 +65,7 @@ const run = spawnSync('powershell.exe', ['-NoProfile','-ExecutionPolicy','Bypass
   '-TestRoot',base,'-Port','65533','-ExpectedTables',expectedPath], { encoding: 'utf8', windowsHide: true, timeout: 120000 });
 assert.equal(run.status, 0, run.stdout + run.stderr);
 const output = path.join(base, fs.readdirSync(base).find(name => name.startsWith('Order03-Remaining-') && !name.endsWith('.zip')));
-const load = name => JSON.parse(fs.readFileSync(path.join(output, name), 'utf8'));
+const load = name => JSON.parse(fs.readFileSync(path.join(output, lydFilename(name)), 'utf8'));
 const runtime = load('runtime.json');
 assert.equal(runtime.goBuildInfo.goVersion, 'go1.25.1');
 assert.equal(runtime.goBuildInfo.settings['vcs.revision'], '1'.repeat(40));
@@ -76,9 +77,9 @@ assert.equal(runtime.tables.filter(table => table.matchesReceived).length, 0);
 assert.ok(runtime.effectiveLoadedBytes.startsWith('UNKNOWN'));
 assert.equal(load('source.json').files.length, 2);
 assert.equal(load('source.json').commit, 'UNKNOWN');
-assert.ok(fs.existsSync(path.join(output, 'static/battle.json')));
-assert.ok(fs.existsSync(path.join(output, 'static/normal_quest.json')));
-assert.ok(fs.existsSync(path.join(output, 'provided/contracts.json')));
+assert.ok(fs.existsSync(path.join(output, 'static/battle-lyd.json')));
+assert.ok(fs.existsSync(path.join(output, 'static/normal_quest-lyd.json')));
+assert.ok(fs.existsSync(path.join(output, 'provided/contracts-lyd.json')));
 assert.equal(fs.existsSync(path.join(output, 'provided/private.json')), false);
 assert.equal(fs.existsSync(path.join(output, 'source/_local/data/private.go')), false);
 for (const [name, hash] of originals) assert.equal(sha(path.join(base, name)), hash);
@@ -97,5 +98,5 @@ const report = { checkedAt: new Date().toISOString(), success: true, platform: '
     'ldflags value kept private', 'input hashes unchanged', 'unique directory and ZIP generated',
     'loaded-content and unexecuted contracts remain UNKNOWN/NOT_TESTED'
   ], output, scope: 'Synthetic Windows desktop validation only. Actual server execution and actual deployment/source link remain unverified.' };
-fs.writeFileSync(path.join(root, 'evidence/ios-package-search/order03-remaining-collector-tests.json'), JSON.stringify(report, null, 2) + '\n');
+fs.writeFileSync(path.join(root, 'evidence/ios-package-search/order03-remaining-collector-tests-lyd.json'), JSON.stringify(report, null, 2) + '\n');
 console.log(JSON.stringify(report, null, 2));

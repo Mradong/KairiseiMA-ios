@@ -3,6 +3,7 @@ import path from 'node:path';
 import crypto from 'node:crypto';
 import {spawnSync} from 'node:child_process';
 import {fileURLToPath} from 'node:url';
+import {labelVerificationFiles,lydFilename} from './server-verification-names.mjs';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const read = p => fs.readFileSync(path.join(root, p));
 const json = p => JSON.parse(read(p).toString('utf8').replace(/^\uFEFF/, ''));
@@ -23,27 +24,32 @@ fs.writeFileSync(path.join(root, expectedPath), JSON.stringify({schemaVersion: 1
 const selected = ['顺序03补充取证说明.md', '顺序03服务端交付请求.md', collector, expectedPath,
   ...['order03-runtime-collector-tests.json','order03-public-version-evidence.json','order03-ios602-enums.json','order03-modern-metadata-enums.json','order03-ios602-table-compatibility.json','order03-modern-defaults.json'].map(x => 'evidence/ios-package-search/' + x)];
 const suffix = new Date().toISOString().replace(/[-:.TZ]/g, '');
-const relative = 'dist/order03-server-supplement-' + suffix, stage = path.join(root, relative), archive = stage + '.zip';
+const relative = 'dist/order03-server-supplement-' + suffix + '-lyd', stage = path.join(root, relative), archive = stage + '.zip';
 fs.mkdirSync(stage, {recursive: false});
-const files = selected.map(p => {
+selected.forEach(p => {
   if (/(?:^|\/)(inputs|tools|test-output|source-review|\.git)\//.test(p) || /\.(exe|dll|ipa|ulf|alf|p12)$/i.test(p)) throw Error('Forbidden handoff path');
   const b = read(p), target = path.join(stage, p); fs.mkdirSync(path.dirname(target), {recursive: true}); fs.writeFileSync(target, b);
-  return {path: p, bytes: b.length, sha256: sha(b)};
 });
-fs.writeFileSync(path.join(stage, 'SHA256SUMS.txt'), files.map(x => x.sha256 + '  ' + x.path).join('\n') + '\n');
+labelVerificationFiles(stage);
+const files = selected.map(p => {
+  const relative = path.posix.join(path.posix.dirname(p),lydFilename(path.posix.basename(p)));
+  const data = fs.readFileSync(path.join(stage,relative));
+  return {path:relative,bytes:data.length,sha256:sha(data)};
+});
+fs.writeFileSync(path.join(stage, 'SHA256SUMS-lyd.txt'), files.map(x => x.sha256 + '  ' + x.path).join('\n') + '\n');
 // Pass only single-quoted literals to the PowerShell code, never shell substitutions.
 const q = s => "'" + s.replaceAll("'", "''") + "'";
 const code = "$ErrorActionPreference='Stop'; Add-Type -AssemblyName System.IO.Compression.FileSystem; " +
   '[IO.Compression.ZipFile]::CreateFromDirectory(' + q(stage) + ',' + q(archive) + '); ' +
   '$zip=[IO.Compression.ZipFile]::OpenRead(' + q(archive) + '); try { ' +
-  '$verified=0; foreach($entry in $zip.Entries) { if($entry.FullName -eq "SHA256SUMS.txt"){continue}; ' +
+  '$verified=0; foreach($entry in $zip.Entries) { if($entry.FullName -eq "SHA256SUMS-lyd.txt"){continue}; ' +
   '$stream=$entry.Open(); try {$h=([BitConverter]::ToString([Security.Cryptography.SHA256]::Create().ComputeHash($stream))).Replace("-","").ToLowerInvariant()}finally{$stream.Dispose()}; ' +
-  '$line=$h+"  "+$entry.FullName.Replace([char]92,[char]47); if(!(Get-Content -LiteralPath ' + q(path.join(stage, 'SHA256SUMS.txt')) + ' -Encoding UTF8).Contains($line)){throw "ZIP entry differs"};$verified++ }; ' +
+  '$line=$h+"  "+$entry.FullName.Replace([char]92,[char]47); if(!(Get-Content -LiteralPath ' + q(path.join(stage, 'SHA256SUMS-lyd.txt')) + ' -Encoding UTF8).Contains($line)){throw "ZIP entry differs"};$verified++ }; ' +
   'if($verified -ne ' + selected.length + ' -or $zip.Entries.Count -ne ' + (selected.length + 1) + '){throw "ZIP entry count differs"}; Write-Output $verified } finally {$zip.Dispose()}';
 const packed = spawnSync('powershell.exe', ['-NoProfile', '-Command', code], {encoding: 'utf8', windowsHide: true, timeout: 60000});
 if (packed.status !== 0) throw Error('Archive creation/check failed: ' + packed.stdout + packed.stderr);
 const receipt = {createdAt: new Date().toISOString(), archive: relative + '.zip', bytes: fs.statSync(archive).size, sha256: sha(fs.readFileSync(archive)), verifiedArchiveFiles: files.length, files,
   scriptSha256: sha(read(path.relative(root, fileURLToPath(import.meta.url)))), sentToServer: false, serverExecuted: false,
   scope: 'Prepared and locally verified supplemental handoff only. Contains a read-only collector, expected hashes, narrowed request and client evidence; no raw CSVs, original binaries/metadata, accounts, credentials, tools or live server changes. Server-side process/loading, quest and safe battle evidence remain required.'};
-fs.writeFileSync(path.join(root, 'evidence/ios-package-search/order03-server-supplement.json'), JSON.stringify(receipt, null, 2) + '\n');
+fs.writeFileSync(path.join(root, 'evidence/ios-package-search/order03-server-supplement-lyd.json'), JSON.stringify(receipt, null, 2) + '\n');
 console.log(JSON.stringify({...receipt, files: undefined}, null, 2));

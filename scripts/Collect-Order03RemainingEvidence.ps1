@@ -14,6 +14,7 @@ $collectionStarted = [DateTime]::UtcNow
 $testDirectory = (Get-Item -LiteralPath $TestRoot -Force).FullName
 if (!(Test-Path -LiteralPath $testDirectory -PathType Container)) { throw 'TestRoot must be a directory.' }
 $runName = 'Order03-Remaining-' + $collectionStarted.ToString('yyyyMMddTHHmmssfffZ') + '-' + [Guid]::NewGuid().ToString('N').Substring(0, 6)
+$runName += '-lyd'
 $outputDirectory = Join-Path $testDirectory $runName
 $zipPath = $outputDirectory + '.zip'
 $null = New-Item -ItemType Directory -Path $outputDirectory
@@ -21,7 +22,16 @@ $issues = New-Object 'System.Collections.Generic.List[object]'
 $fileRecords = New-Object 'System.Collections.Generic.List[object]'
 $anchors = New-Object 'System.Collections.Generic.List[string]'
 
+function Get-LydOutputName([string]$Relative) {
+    $extension = [IO.Path]::GetExtension($Relative)
+    $stem = [IO.Path]::GetFileNameWithoutExtension($Relative)
+    $name = if ($stem.EndsWith('-lyd')) { $stem + $extension } else { $stem + '-lyd' + $extension }
+    $parent = [IO.Path]::GetDirectoryName($Relative)
+    if ($parent) { return Join-Path $parent $name }
+    return $name
+}
 function Write-Json([string]$Relative, $Value) {
+    $Relative = Get-LydOutputName $Relative
     $target = Join-Path $outputDirectory $Relative
     $null = New-Item -ItemType Directory -Path (Split-Path -Parent $target) -Force
     [IO.File]::WriteAllText($target, (ConvertTo-Json -InputObject $Value -Depth 30) + "`n", [Text.UTF8Encoding]::new($false))
@@ -64,6 +74,8 @@ function Has-SensitiveLiteral([string]$Text, [bool]$JsonDocument = $false) {
     return $false
 }
 function Copy-Evidence([string]$Filename, [string]$Relative, [bool]$JsonDocument = $false) {
+    $originalRelative = $Relative
+    $Relative = Get-LydOutputName $Relative
     $file = Get-PlainFile $Filename
     $identity = Get-Identity $Filename
     if ($file.Length -gt 33554432 -or !$identity.stable) {
@@ -86,7 +98,7 @@ function Copy-Evidence([string]$Filename, [string]$Relative, [bool]$JsonDocument
         Add-Issue $Relative 'Input changed during capture; captured file removed.'
         return $false
     }
-    $fileRecords.Add([ordered]@{ role=$Relative; state='copied_original_bytes'; identity=$identity })
+    $fileRecords.Add([ordered]@{ role=$Relative; originalRole=$originalRelative; state='copied_original_bytes'; identity=$identity })
     return $true
 }
 
@@ -408,7 +420,7 @@ foreach ($file in Get-ChildItem -LiteralPath $outputDirectory -Recurse -File) {
     $relative = $file.FullName.Substring($outputDirectory.Length + 1).Replace('\','/')
     $hashes += ((Get-FileHash -LiteralPath $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant() + '  ' + $relative)
 }
-[IO.File]::WriteAllText((Join-Path $outputDirectory 'SHA256SUMS.txt'), ($hashes -join "`n") + "`n", [Text.UTF8Encoding]::new($false))
+[IO.File]::WriteAllText((Join-Path $outputDirectory 'SHA256SUMS-lyd.txt'), ($hashes -join "`n") + "`n", [Text.UTF8Encoding]::new($false))
 [IO.Compression.ZipFile]::CreateFromDirectory($outputDirectory, $zipPath, [IO.Compression.CompressionLevel]::Optimal, $false)
 Write-Host ('Saved: ' + $zipPath)
 Write-Host ('SHA256: ' + (Get-FileHash -LiteralPath $zipPath -Algorithm SHA256).Hash.ToLowerInvariant())

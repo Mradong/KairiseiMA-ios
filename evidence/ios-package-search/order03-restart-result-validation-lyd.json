@@ -1,0 +1,16 @@
+{
+  "checkedAt": "2026-11-25T02:39:24.942Z",
+  "archive": "inputs/server-order03/Order03-Restart-20261125T021755780Z.zip",
+  "archiveSha256": "5a7686c08ed2a4b091b42864873b75bb5399a49be44a6c50e99c4eb5f770330e",
+  "checksumVerified": true,
+  "actualProcessRestartObserved": true,
+  "executableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+  "processStartBefore": "2026-11-24T07:43:45.6599012Z",
+  "processStartAfter": "2026-11-25T02:19:19.1456618Z",
+  "recoveryPassed": false,
+  "failureStage": "relogin_and_restore",
+  "failureClass": "MethodInvocationException",
+  "diagnosticLimit": "Original collector did not retain request route, HTTP status or network status.",
+  "failureAbandonAccepted": true,
+  "scope": "User-supplied actual test-service restart observation. Same-account/battle recovery was not verified; no conclusion of unsupported recovery."
+}

@@ -3,21 +3,50 @@ $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'Collect-Order03RuntimeSelection.ps1') -TestRoot $TestRoot -Port $Port
 
 function Invoke-Order03Request([string]$Route,[string]$Body) {
+    if($report){
+        $report.lastRequestRoute=$Route
+        foreach($key in @('lastNetworkFailureClass','lastNetworkStatus','lastHttpStatus')){$report.Remove($key)}
+    }
     $request=[Net.HttpWebRequest]::Create('http://127.0.0.1:'+$Port+$Route)
     $request.Method='POST';$request.ContentType='application/json';$request.Timeout=20000;$request.ReadWriteTimeout=20000
     $data=[Text.Encoding]::UTF8.GetBytes($Body);$request.ContentLength=$data.Length
     $stream=$request.GetRequestStream()
     try{$stream.Write($data,0,$data.Length)}finally{$stream.Dispose()}
-    $response=$request.GetResponse()
+    try{$response=$request.GetResponse()}catch{
+        $networkError=$_.Exception
+        while($networkError){
+            if($report){
+                $report.lastNetworkFailureClass=$networkError.GetType().Name
+                if($networkError -is [Net.WebException]){
+                    $report.lastNetworkStatus=[string]$networkError.Status
+                    if($networkError.Response){$report.lastHttpStatus=[int]$networkError.Response.StatusCode;$networkError.Response.Close()}
+                }
+            }
+            $networkError=$networkError.InnerException
+        }
+        throw
+    }
     try {
         $reader=[IO.StreamReader]::new($response.GetResponseStream(),[Text.Encoding]::UTF8)
         try{$text=$reader.ReadToEnd()}finally{$reader.Dispose()}
         return $text
     } finally {$response.Dispose()}
 }
+function Invoke-Order03RecoveryRequest([string]$Route,[string]$Body) {
+    for($retry=0;$retry -lt 3;$retry++){
+        try{return Invoke-Order03Request $Route $Body}catch{
+            $retryable=$report.lastNetworkStatus -in @('ConnectFailure','ConnectionClosed','ReceiveFailure','SendFailure','Timeout') -or $report.lastHttpStatus -ge 500
+            if(!$retryable -or $retry -eq 2){throw}
+            $report.recoveryFailureSamples=@($report.recoveryFailureSamples)+@{route=$Route;httpStatus=$report.lastHttpStatus;networkStatus=$report.lastNetworkStatus}
+            $report.recoveryRequestRetries=$retry+1
+            Start-Sleep -Seconds 1
+        }
+    }
+}
 function Read-Order03Envelope([string]$Text) {
     $parts=@($Text.Trim().Split([char]10) | Where-Object {$_.Trim()})
     $common=$parts[0] | ConvertFrom-Json
+    if($report){$report.lastBusinessCode=$common.res_code}
     if($common.res_code -ne 0 -or $parts.Count -lt 2){throw 'Business request failed.'}
     return $parts[1] | ConvertFrom-Json
 }
@@ -37,10 +66,11 @@ function Get-Order03ObjectHash($Value) {
 }
 if($MyInvocation.InvocationName -eq '.'){return}
 $output=Join-Path (Get-Item -LiteralPath $TestRoot).FullName ('Order03-Restart-'+[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ'))
+$output += '-lyd'
 New-Item -ItemType Directory -Path $output | Out-Null
-$report=[ordered]@{schemaVersion=1;collector='order03-restart-20261125-1';startedUtc=[DateTime]::UtcNow.ToString('o');success=$false;stage='before_identity';sideEffects=@{newDedicatedAccountsMaximum=1;newCharactersMaximum=1;entryMaximum=1;expectedEntryBP=15;clearRewardRequested=$false;restartPerformedByUser=$true};steps=@()}
+$report=[ordered]@{schemaVersion=1;collector='order03-restart-20261125-1';startedUtc=[DateTime]::UtcNow.ToString('o');success=$false;stage='before_identity';sideEffects=@{newDedicatedAccountsMaximum=1;newCharactersMaximum=1;entryMaximum=1;expectedEntryBP=15;clearRewardRequested=$false;restartPerformedByUser=$true};steps=@();recoveryFailureSamples=@()}
 function Save-Order03RestartReport {
-    [IO.File]::WriteAllText((Join-Path $output 'restart.json'),(ConvertTo-Json -InputObject $report -Depth 20)+"`n",[Text.UTF8Encoding]::new($false))
+    [IO.File]::WriteAllText((Join-Path $output 'restart-lyd.json'),(ConvertTo-Json -InputObject $report -Depth 20)+"`n",[Text.UTF8Encoding]::new($false))
 }
 Save-Order03RestartReport
 $session=$null;$start=$null;$active=$false
@@ -81,11 +111,12 @@ try {
         try{$candidate=Get-Order03TestProcess;if($candidate.startUtc -ne $beforeProcess.startUtc){$afterProcess=$candidate;break}}catch{}
     }
     if(!$afterProcess){throw 'Changed test process was not observed within the wait limit.'}
-    $report.processAfter=$afterProcess;$report.stage='relogin_and_restore';Save-Order03RestartReport
-    $login=Invoke-Order03Request '/local/client/login' $loginBody | ConvertFrom-Json
+    $report.processAfter=$afterProcess;$report.stage='relogin';Save-Order03RestartReport
+    $login=Invoke-Order03RecoveryRequest '/local/client/login' $loginBody | ConvertFrom-Json
     if($login.userid -ne $userNumber -or !$login.sess_key){throw 'Identity changed after restart.'}
     $session=[string]$login.sess_key
-    $restored=Read-Order03Envelope (Invoke-Order03Request '/TeamBattleSoloStart' ($session+$startBody))
+    $report.stage='restore_start';Save-Order03RestartReport
+    $restored=Read-Order03Envelope (Invoke-Order03RecoveryRequest '/TeamBattleSoloStart' ($session+$startBody))
     $sameSeed=$start.seed -eq $restored.seed;$sameTime=$start.start_time -eq $restored.start_time
     $sameOpening=$openingHash -eq (Get-Order03ObjectHash $restored)
     $report.steps+=@{phase='restore';sameIdentity=$true;sameSeed=$sameSeed;sameStartTime=$sameTime;sameOpeningPayload=$sameOpening}
@@ -108,8 +139,8 @@ try {
     }
 } finally {
     $report.finishedUtc=[DateTime]::UtcNow.ToString('o');Save-Order03RestartReport
-    $hash=(Get-FileHash -LiteralPath (Join-Path $output 'restart.json') -Algorithm SHA256).Hash.ToLowerInvariant()
-    [IO.File]::WriteAllText((Join-Path $output 'SHA256SUMS.txt'),$hash+'  restart.json'+"`n",[Text.UTF8Encoding]::new($false))
+    $hash=(Get-FileHash -LiteralPath (Join-Path $output 'restart-lyd.json') -Algorithm SHA256).Hash.ToLowerInvariant()
+    [IO.File]::WriteAllText((Join-Path $output 'SHA256SUMS-lyd.txt'),$hash+'  restart-lyd.json'+"`n",[Text.UTF8Encoding]::new($false))
     [IO.Compression.ZipFile]::CreateFromDirectory($output,$output+'.zip')
     Write-Host ('Saved: '+$output+'.zip')
     Write-Host ('State: '+$report.stage)

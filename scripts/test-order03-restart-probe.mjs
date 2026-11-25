@@ -9,12 +9,16 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const output=fs.mkdtempSync(path.join(root,'test-output/order03-restart-probe-'));
 const script=process.env.ORDER03_TEST_SCRIPT||path.join(root,'scripts/Verify-Order03Restart.ps1');
 const reproduction=JSON.parse(fs.readFileSync(path.join(root,'evidence/ios-package-search/order03-reviewed-patch-reproduction.json')));
-let homeReads=0,startReads=0;
+let homeReads=0,startReads=0,loginReads=0;
 const opening={seed:123,start_time:456,battles:[{enemy_partyid:30010102,enemy_type:1}],cost_initial:3,hold_max:6,partner_deck:[]};
 const server=http.createServer((req,res)=>{
   let text='';req.on('data',chunk=>text+=chunk);req.on('end',()=>{
     let payload;
-    if(req.url==='/local/client/login'){res.end(JSON.stringify({userid:42,sess_key:'SYNTHETIC-SESSION'}));return;}
+    if(req.url==='/local/client/login'){
+      loginReads++;
+      if(loginReads===2){res.statusCode=503;res.end('fixture startup transient');return;}
+      res.end(JSON.stringify({userid:42,sess_key:'SYNTHETIC-SESSION'}));return;
+    }
     if(req.url==='/Connect')payload={is_user:0};
     else if(req.url==='/UserCreate')payload={user:{userid:42}};
     else if(req.url==='/HomeShow')payload={user:{bp:homeReads++===0?20:5}};
@@ -48,14 +52,17 @@ try{
   const code=await new Promise(resolve=>child.on('close',resolve));
   assert.equal(code,0,stdout+stderr);
   const directory=fs.readdirSync(output).find(name=>name.startsWith('Order03-Restart-')&&!name.endsWith('.zip'));
-  const report=JSON.parse(fs.readFileSync(path.join(output,directory,'restart.json'),'utf8'));
+  const report=JSON.parse(fs.readFileSync(path.join(output,directory,'restart-lyd.json'),'utf8'));
   assert.equal(report.success,true);
   assert.equal(startReads,2);
+  assert.equal(loginReads,3);
+  assert.equal(report.recoveryRequestRetries,1);
+  assert.equal(report.recoveryFailureSamples[0].httpStatus,503);
   assert.equal(report.steps.find(step=>step.phase==='restore').sameOpeningPayload,true);
   assert.equal(report.steps.find(step=>step.phase==='abandon').bpDelta,15);
   assert.equal(JSON.stringify(report).includes('SYNTHETIC-SESSION'),false);
   assert.ok(fs.existsSync(path.join(output,directory+'.zip')));
   const validation={checkedAt:new Date().toISOString(),success:true,scriptSha256:crypto.createHash('sha256').update(fs.readFileSync(script)).digest('hex'),helpersSha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,'scripts/Collect-Order03RuntimeSelection.ps1'))).digest('hex'),scope:'Local synthetic HTTP/process-change fixtures through the normal script entry point. Actual service restart remains untested.'};
-  fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-restart-probe-tests.json'),JSON.stringify(validation,null,2)+'\n');
+  fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-restart-probe-tests-lyd.json'),JSON.stringify(validation,null,2)+'\n');
   console.log(JSON.stringify(validation,null,2));
 }finally{server.close();}

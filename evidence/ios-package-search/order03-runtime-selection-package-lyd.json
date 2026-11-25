@@ -1,0 +1,31 @@
+{
+  "preparedAt": "2026-11-25T02:29:53.818Z",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-runtime-selection-20261125-022953382Z-lyd.zip",
+  "archiveBytes": 8252,
+  "archiveSha256": "afcfb5a4d206ae06eb1ea1fa3838acd30b8a18ebcfe1cd8d10a092b00ef24d75",
+  "files": [
+    {
+      "name": "Collect-Order03-Selection-lyd.cmd",
+      "bytes": 149,
+      "sha256": "c6de95c19457e53a6174920b05b4ea1bffe385730f5796043179c385e9087191"
+    },
+    {
+      "name": "Collect-Order03RuntimeSelection-lyd.ps1",
+      "bytes": 12888,
+      "sha256": "b5d108c48fca377b6e098dedafcf6987d297ba165776d6ebc61f97c7f6a408da"
+    },
+    {
+      "name": "order03-expected-tables-lyd.json",
+      "bytes": 5022,
+      "sha256": "d0a114135bd82414aa9b70827751f5aa643a4d37c75b33810faab7bb28cef913"
+    },
+    {
+      "name": "先读说明-lyd.md",
+      "bytes": 1359,
+      "sha256": "068b80f0510f7cd04e6688e8ef4935b506b7790d83de95b942f6838daacdd2d5"
+    }
+  ],
+  "sourceScriptSha256": "3c99d07bd5cd368cd673a33a5ddb4042b2344bda3dcdfe3e9954e1286e150631",
+  "serverExecuted": false,
+  "scope": "Prepared targeted process/resource-selection collector. Local synthetic fixture validation only."
+}

@@ -922,7 +922,24 @@
       "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-013329110Z.zip",
       "archiveSha256": "03a4670b936bc50e3fa070d293a16bcf02b6cb84666b9f1d70664024845d5161",
       "localFixturePassed": true,
-      "serverExecuted": false
+      "serverExecuted": false,
+      "latestResult": {
+        "evidence": "evidence/ios-package-search/order03-restart-result-validation-lyd.json",
+        "actualProcessRestartObserved": true,
+        "recoveryPassed": false,
+        "failureStage": "relogin_and_restore",
+        "failureAbandonAccepted": true
+      },
+      "latestPackage": {
+        "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-023927564Z-lyd.zip",
+        "sha256": "fbb31d2bbc6aa5c8b47d7a09379dc87419b0087d160fbe43fddc1d77c39cad49",
+        "serverExecuted": false
+      }
     }
+  },
+  "serverVerificationNaming": {
+    "requiredSuffix": "-lyd",
+    "appliesTo": "archive, extracted package directory, packaged scripts/readme/manifests and exported verification files",
+    "authorizedOn": "2026-11-25"
   }
 }

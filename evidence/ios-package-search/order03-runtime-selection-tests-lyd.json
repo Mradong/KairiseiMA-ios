@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-11-25T02:29:53.220Z",
+  "success": true,
+  "platform": "Windows PowerShell 5.1",
+  "scriptSha256": "3c99d07bd5cd368cd673a33a5ddb4042b2344bda3dcdfe3e9954e1286e150631",
+  "checks": [
+    "Windows quoted argument parser",
+    "last-value resource flag selection",
+    "profile flag handling",
+    "ignored private save-path arguments",
+    "streamed locator-only JSON deserialization",
+    "29 separated table files",
+    "static runtime file identities",
+    "traversal rejection",
+    "sensitive unrelated config fields excluded",
+    "normal collector entry point with synthetic process observations",
+    "CIM timestamp precision tolerance",
+    "unverified executable rejected before reading process arguments",
+    "ZIP generated"
+  ],
+  "serverExecuted": false,
+  "scope": "Synthetic local fixtures and parser/read helpers. Actual server invocation still requires the user to execute the collector."
+}

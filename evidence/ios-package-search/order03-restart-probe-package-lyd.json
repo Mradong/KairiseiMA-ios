@@ -1,0 +1,31 @@
+{
+  "preparedAt": "2026-11-25T02:39:28.371Z",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-023927564Z-lyd.zip",
+  "archiveBytes": 9686,
+  "archiveSha256": "fbb31d2bbc6aa5c8b47d7a09379dc87419b0087d160fbe43fddc1d77c39cad49",
+  "files": [
+    {
+      "name": "Collect-Order03RuntimeSelection-lyd.ps1",
+      "bytes": 12880,
+      "sha256": "d796761595c8cd8d0b7f21b565b12b7a65b11d6508cca7dd15e3fe8b7327b6a9"
+    },
+    {
+      "name": "Verify-Order03-Restart-lyd.cmd",
+      "bytes": 139,
+      "sha256": "c431314442f4c8583f18146924e5361a08f3f37583b5ae2de086d90ed6502011"
+    },
+    {
+      "name": "Verify-Order03Restart-lyd.ps1",
+      "bytes": 10139,
+      "sha256": "cb70f8b23547d12dca74390098063a4853825ca60f83a059b07b52759c81106d"
+    },
+    {
+      "name": "先读说明-lyd.md",
+      "bytes": 1257,
+      "sha256": "0d11e6034ee99ebae103e3fb5ab3702e19a3388a32bc5df9618966934101a6a8"
+    }
+  ],
+  "serverExecuted": false,
+  "scope": "Prepared one-entry dedicated-account manual iOS-service restart recovery probe. Actual server execution pending.",
+  "packagedScriptFixturePassed": true
+}

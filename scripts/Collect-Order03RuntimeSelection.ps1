@@ -120,6 +120,7 @@ function Read-SelectedResourceFiles([string]$Manifest) {
 if ($MyInvocation.InvocationName -eq '.') { return }
 $directory = (Get-Item -LiteralPath $TestRoot).FullName
 $name = 'Order03-Selection-' + [DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ') + '-' + [Guid]::NewGuid().ToString('N').Substring(0,6)
+$name += '-lyd'
 $output = Join-Path $directory $name
 New-Item -ItemType Directory -Path $output | Out-Null
 $report = [ordered]@{
@@ -182,9 +183,9 @@ try {
     $report.failureReason = 'Selection could not be completed. Resource selection state is incomplete.'
 }
 # Export only selected file identities and typed public profile fields.
-[IO.File]::WriteAllText((Join-Path $output 'selection.json'),(ConvertTo-Json -InputObject $report -Depth 15)+"`n",[Text.UTF8Encoding]::new($false))
-$digest = (Get-FileHash -LiteralPath (Join-Path $output 'selection.json') -Algorithm SHA256).Hash.ToLowerInvariant()
-[IO.File]::WriteAllText((Join-Path $output 'SHA256SUMS.txt'),$digest+'  selection.json'+"`n",[Text.UTF8Encoding]::new($false))
+[IO.File]::WriteAllText((Join-Path $output 'selection-lyd.json'),(ConvertTo-Json -InputObject $report -Depth 15)+"`n",[Text.UTF8Encoding]::new($false))
+$digest = (Get-FileHash -LiteralPath (Join-Path $output 'selection-lyd.json') -Algorithm SHA256).Hash.ToLowerInvariant()
+[IO.File]::WriteAllText((Join-Path $output 'SHA256SUMS-lyd.txt'),$digest+'  selection-lyd.json'+"`n",[Text.UTF8Encoding]::new($false))
 [IO.Compression.ZipFile]::CreateFromDirectory($output,$output+'.zip',[IO.Compression.CompressionLevel]::Optimal,$false)
 Write-Host ('Saved: '+$output+'.zip')
 Write-Host ('State: '+$report.state)

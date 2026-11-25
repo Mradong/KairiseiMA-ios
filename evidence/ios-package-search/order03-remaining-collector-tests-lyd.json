@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-11-25T02:29:54.017Z",
+  "success": true,
+  "platform": "Windows PowerShell 5.1",
+  "syntheticFixture": true,
+  "scriptSha256": "db7bc97e6eb33825fcbccbc1c676760ebcb5fafe4ca366c75a6dd8c727d30257",
+  "checks": [
+    "embedded Go build metadata without executing binary or installing Go",
+    "29 separate-root table identities",
+    "resource-set relative entrypoints",
+    "byte-exact raw static JSON capture",
+    "source discovery without Git metadata",
+    "private config and account directories excluded",
+    "session-bearing supplied JSON omitted",
+    "ldflags value kept private",
+    "input hashes unchanged",
+    "unique directory and ZIP generated",
+    "loaded-content and unexecuted contracts remain UNKNOWN/NOT_TESTED"
+  ],
+  "output": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\test-output\\order03-remaining-collector-Gb1IpS\\Order03-Remaining-20261125T022951760Z-557d2c-lyd",
+  "scope": "Synthetic Windows desktop validation only. Actual server execution and actual deployment/source link remain unverified."
+}

@@ -7,7 +7,7 @@ import { fileURLToPath } from 'node:url';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const output = fs.mkdtempSync(path.join(root, 'test-output/order03-selection-tests-'));
-const source = path.join(root, 'scripts/Collect-Order03RuntimeSelection.ps1');
+const source = process.env.ORDER03_TEST_SCRIPT || path.join(root, 'scripts/Collect-Order03RuntimeSelection.ps1');
 const fixture = JSON.parse(fs.readFileSync(path.join(root, 'evidence/ios-package-search/order03-expected-tables.json'), 'utf8'));
 for (const table of fixture.tables) {
   const directory = path.join(output, ['card.csv','buddy.csv','card_alchemist.csv'].includes(table.name) ? 'cards' : 'combat');
@@ -62,7 +62,7 @@ assert.equal(JSON.stringify(result).includes('PRIVATE-SEED-LOCATOR'), false);
 assert.equal(JSON.stringify(result).includes('private\\save'), false);
 const fullOutputs = fs.readdirSync(output).filter(name => name.startsWith('Order03-Selection-') && !name.endsWith('.zip'));
 assert.equal(fullOutputs.length, 2);
-const reports = fullOutputs.map(name => ({ name, report:JSON.parse(fs.readFileSync(path.join(output, name, 'selection.json'), 'utf8')) }));
+const reports = fullOutputs.map(name => ({ name, report:JSON.parse(fs.readFileSync(path.join(output, name, 'selection-lyd.json'), 'utf8')) }));
 const successful = reports.find(entry => entry.report.state === 'selected_paths_hashed');
 assert.ok(successful);
 const fullOutput = successful.name;
@@ -81,5 +81,5 @@ const report = {
   checks:['Windows quoted argument parser','last-value resource flag selection','profile flag handling','ignored private save-path arguments','streamed locator-only JSON deserialization','29 separated table files','static runtime file identities','traversal rejection','sensitive unrelated config fields excluded','normal collector entry point with synthetic process observations','CIM timestamp precision tolerance','unverified executable rejected before reading process arguments','ZIP generated'],
   serverExecuted:false, scope:'Synthetic local fixtures and parser/read helpers. Actual server invocation still requires the user to execute the collector.'
 };
-fs.writeFileSync(path.join(root, 'evidence/ios-package-search/order03-runtime-selection-tests.json'),JSON.stringify(report,null,2)+'\n');
+fs.writeFileSync(path.join(root, 'evidence/ios-package-search/order03-runtime-selection-tests-lyd.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));
