@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-11-25T08:05:09.237Z",
+  "planItem": "04",
+  "checkMode": true,
+  "completionProven": true,
+  "requirement": "Every recorded feature has source/version, dependencies, state and next step; modern unknowns are retained; priority flows are anchored in method bodies; existing exports are reused.",
+  "counts": {
+    "features": 40,
+    "exportedScenes": 53,
+    "assignedScenes": 53,
+    "registeredRoutes": 158,
+    "distinctEndpoints": 142,
+    "cnAdapterRegistrations": 146,
+    "modernCallPathObservations": 7,
+    "unclassifiedEndpoints": 0,
+    "sourceFiles": 241,
+    "priorityMethodAnchors": 17
+  },
+  "checks": {
+    "allScenesAssigned": true,
+    "allRoutesAssignedOrExplicitUnknown": true,
+    "allFeatureFieldsPresent": true,
+    "allEvidencePathsAndHashesVerified": true,
+    "priorityMethodBodiesPresent": true,
+    "detailedSceneAuditReusedAndHashesMatch": true,
+    "historicalEntriesPreserved": true,
+    "pinnedReferenceUnmodified": true,
+    "modernUnverifiedBehaviorRetained": true,
+    "baselineAndMarkdownMatch": true
+  },
+  "sourceFiles": [
+    {
+      "path": "evidence/ios-package-search/order04-feature-baseline.json",
+      "bytes": 919186,
+      "sha256": "534a4959f88965e3c983515a2dc36f5d0d4a26a570c8f557cdfc6295c6b11f82",
+      "version": "04 baseline",
+      "kind": "generated_report"
+    },
+    {
+      "path": "evidence/feature-coverage.md",
+      "bytes": 55821,
+      "sha256": "be1cbd5d63a41f1ebf87259b54b57aa4f5dcd540fea33311e4530a1e62a78ec9",
+      "version": "04 current and historical coverage",
+      "kind": "coverage_document"
+    }
+  ],
+  "scriptSha256": "0a576611502593a5ed3ce0b0c934854adb63b04ce69432eb034314dca2026d38",
+  "noNewGameSideEffects": true,
+  "noNewBuildOrDeviceValidation": true,
+  "wholeScopeAcceptance": false,
+  "wholeGameAcceptance": false,
+  "nextPlanItem": "05"
+}

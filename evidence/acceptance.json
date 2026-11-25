@@ -24,9 +24,13 @@
       "status": "in_progress",
       "evidence": [
         "evidence/feature-coverage.md",
-        "evidence/ios-package-search/ios602-scene-audit.json"
+        "evidence/ios-package-search/ios602-scene-audit.json",
+        "evidence/ios-package-search/order04-feature-baseline.json",
+        "evidence/ios-package-search/order04-baseline-validation.json",
+        "evidence/ios-package-search/order04-completion-audit.json"
       ],
-      "scope": "Static 6.0.2 exported YAML analysis maps six scenes, script and resource GUIDs; Home component names and 1.4.0 same-path references identified, no custom component fields recovered and one null Result script found. This does not establish runtime compatibility, asset completeness or gameplay. 2026-11-23 coverage baseline updated with isolated deck save/relogin, initial card reference closure, quest projection differences and cross-version enum conflict. These remain Windows/isolated evidence; target version, device behavior, full feature inventory and battle admission are unverified."
+      "scope": "2026-11-25 plan item 04 baseline completed: 40 feature/platform families, all 53 existing 6.0.2 scenes, 142 pinned modern account endpoints and 146 CN adapter registrations mapped; 241 source hashes, 17 priority legacy method bodies and 7 modern call paths verified. Existing export/scene audits and historical entries reused. Modern unknowns preserved. HomeShow reward/abandon/persistence side effects and multiplayer versus solo recovery explicitly documented. Full SCOPE-01 runtime implementation/acceptance, original extraction, complete hidden scope, iOS UI/resources/native behavior and device gameplay remain in progress.",
+      "baselinePlanItem04": "passed_with_scope"
     },
     {
       "id": "BATTLE-01",
@@ -809,323 +813,22 @@
       "scope": "0.0.3 resource-bootstrap IPA delivered from 32f0ece / 44293950030; local checksum/ARM64/embedded resources verified. User phone screenshot confirms launch, visible Chinese and 30-step synthetic victory only. Complete gameplay and persistence lack evidence, so final delivery remains incomplete. 0.0.4 source prepared for a separate cloud build; no build or device result yet. 0.0.4 commit 090f190 was pushed and run 44434628647 started; build and device outcomes pending. Run 44434628647 succeeded and unsigned 0.0.4 IPA was verified; no phone installation, full gameplay, persistence or later source validation. Local 0.0.5 artifact downloader now isolates failed downloads and retries into a fresh staging directory; tested with a mock, not a cloud artifact download. Active cloud build source is ec71223 and has not completed. Cloud run 44662701250 for ec71223 succeeded; 0.0.5 unsigned IPA and resource artifact locally verified, 28 cloud service tests/subtests passed. No signing, phone install, device gameplay or later-source validation. Build 44704875254 from immutable source 692ef3939dfeb0278f43d8bffee2871dfbdd0dd6 succeeded as 0.0.6/build 6. ARM64, Unity/Xcode, iOS resource build and 28 cloud server tests/subtests passed. IPA is 26126147 bytes, SHA256 5c5b51dbe12842cf33d223a6f8de073066aeb6d469bbce320db3b021f8058249; two local delivery copies match. Source includes UUID normalization, server UI reload and prior native buddy/sphere increments. Embedded content differs from public 0.0.4 delivery and has no combat tables. Compilation/package checks do not prove actual UnityWebRequest/AssetBundle runtime, iPhone installation/rendering, persistence or gameplay. Signed, installed and device-tested flags remain false; no old IPA device evidence applies. Rechecked on 2026-11-23: both delivered 0.0.6 IPA hashes remain identical. Public isolated-service login, repeated identity/Connect, manifest, bundle HEAD/GET, SHA/CRC and reopened cache pass with unchanged built protocol source; no new iPhone or persistence evidence. On 2026-11-23 user screenshot reports Sideloadly signing-provider unavailability (Fake2 disabled after crash, iTunes/Remote unavailable). Screenshot does not identify the IPA version or show any iPhone runtime failure. Read-only installed-component/service checks and Settings recovery guidance recorded; no settings change, signing or recovery success verified. User screenshot shows recovery UI and HTTP 0 / Unknown Error when connecting to the isolated server. Screenshot does not establish version or device model. Workstation health is PASS and 0.0.6 build plist permits HTTP, neither proves phone connectivity. Safari test and version confirmation pending. User confirms shown error is 0.0.6, immediate, same phone Safari health PASS, app WLAN/cellular allowed. App request root cause remains undetermined. Later local source adds Application.version to main UI title, without Unity build/device validation. Later local UI source positions Application.version after modal panels so the build version remains visible across the current recovery views; no Unity build or device rendering test for this layout. Cloud run 45093283023 from 3f42572b4861539baa1ef4f85733b11d3014f640 succeeded; 0.0.7/build 7 IPA and actual plist verified, SHA-256 07e7a667ca58f142d02be8b922d6701f9d374f8bf7859931e6a74cf059152aa8. No 0.0.7 signing, installation, device networking, resource, character or gameplay evidence. User reported all 0.0.7 phone connectivity item steps passed: connection, guest login, server resource update and character status. This aggregate report is associated with delivered run 45093283023; exact messages, signed IPA, signing identity, overwrite method, visible version and device/OS were not independently documented. No restart/overwrite persistence or actual gameplay established. Cloud build 45097069398 from 66a63fbf1f52f45d8eeefb16502ac7c133da961f succeeded; verified 0.0.8/build 8 IPA SHA-256 0d3fa2a20df7c9e8f58400179348d6aea609cd6c7fd71e796b660ce41eade800, with 28 server tests/subtests. Device installation, actual runtime resource rollback, cache persistence and gameplay remain unverified."
     }
   ],
-  "executionPriority": "2026-11-19: investigate reusable 6.0.2 scene components, resources and verified behavior first; evaluate protocol compatibility and direct adaptation versus hybrid recovery as specified in EXECUTION_PLAN.md. Completion scope and evidence requirements are unchanged.",
+  "executionPriority": "2026-11-25 user explicitly selected detailed-plan item 04 after scoped completion of item 03. Establish feature/source/version/dependency/status/next-step baseline; preserve modern unknowns and local-only source delivery.",
   "focusedGoal": {
-    "planItem": "03",
+    "planItem": "04",
     "status": "complete",
-    "authorizedOn": "2026-11-23",
-    "instruction": "把03设置为目标，完成为止",
+    "authorizedOn": "2026-11-25",
+    "instruction": "按详细执行计划.md，把04设置为执行目标。开始实现",
     "evidence": [
-      "evidence/ios-package-search/order03-archive-recheck.json",
-      "evidence/ios-package-search/order03-ios602-enums.json",
-      "evidence/ios-package-search/order03-modern-metadata-enums.json",
-      "evidence/ios-package-search/order03-ios602-table-compatibility.json",
-      "evidence/ios-package-search/order03-readiness.json",
-      "evidence/ios-package-search/order03-modern-defaults.json",
-      "evidence/ios-package-search/order03-runtime-collector-tests.json",
-      "evidence/ios-package-search/order03-public-version-evidence.json",
-      "evidence/ios-package-search/order03-expected-tables.json",
-      "evidence/ios-package-search/order03-server-supplement.json",
-      "evidence/ios-package-search/order03-blocked-audit.json",
-      "evidence/ios-package-search/order03-runtime-supplement-import.json",
-      "evidence/ios-package-search/order03-runtime-supplement-validation.json",
-      "evidence/ios-package-search/order03-runtime-supplement-tests.json",
-      "evidence/ios-package-search/order03-live-battle-contract.json",
-      "evidence/ios-package-search/order03-source-link-reproduction.json",
-      "evidence/ios-package-search/order03-arthur-type.json",
-      "evidence/ios-package-search/order03-enemy-flag.json",
-      "evidence/ios-package-search/order03-other-selected-cards-before-fix.json",
-      "evidence/ios-package-search/order03-other-selected-cards.json",
-      "evidence/ios-package-search/order03-selected-counts-before-fix.json",
-      "evidence/ios-package-search/order03-selected-counts.json",
-      "evidence/ios-package-search/order03-selected-tags-before-fix.json",
-      "evidence/ios-package-search/order03-selected-tags.json",
-      "evidence/ios-package-search/order03-friend-selected-before-fix.json",
-      "evidence/ios-package-search/order03-friend-selected.json",
-      "evidence/ios-package-search/order03-target-job-before-fix.json",
-      "evidence/ios-package-search/order03-target-job.json",
-      "evidence/ios-package-search/order03-status-before-fix.json",
-      "evidence/ios-package-search/order03-status.json",
-      "evidence/ios-package-search/order03-remaining-collector-tests.json",
-      "evidence/ios-package-search/order03-remaining-collector-package.json",
-      "evidence/ios-package-search/order03-remaining-validation.json",
-      "evidence/ios-package-search/order03-buff-exec.json",
-      "evidence/ios-package-search/order03-buff-exec-before-fix.json",
-      "evidence/ios-package-search/order03-raw-static-loader.json",
-      "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
-      "evidence/ios-package-search/order03-reviewed-source-contract-tests.json",
-      "evidence/ios-package-search/order03-runtime-selection-tests.json",
-      "evidence/ios-package-search/order03-runtime-selection-package.json",
-      "evidence/ios-package-search/order03-runtime-selection-validation.json",
-      "evidence/ios-package-search/order03-real-battle.json",
-      "evidence/ios-package-search/order03-real-battle-continue.json",
-      "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
-      "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
-      "evidence/ios-package-search/order03-publication-provenance-lyd.json",
-      "evidence/ios-package-search/order03-restart-probe-tests-lyd.json",
-      "evidence/ios-package-search/order03-restart-probe-packaged-tests-lyd.json",
-      "evidence/ios-package-search/order03-restart-probe-package-lyd.json",
-      "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
-      "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json",
-      "evidence/ios-package-search/order03-restart-result-20261125T031514670Z-validation-lyd.json",
-      "evidence/ios-package-search/order03-durable-solo-source-lyd.json",
-      "evidence/ios-package-search/order03-durable-solo-tests-lyd.json",
-      "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
-      "evidence/ios-package-search/order03-solo-fix-installer-tests-lyd.json",
-      "evidence/ios-package-search/order03-solo-fix-installer-packaged-tests-lyd.json",
-      "evidence/ios-package-search/order03-solo-fix-package-lyd.json",
-      "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json",
-      "evidence/ios-package-search/order03-startup-pin-tests-lyd.json",
-      "evidence/ios-package-search/order03-startup-pin-packaged-tests-lyd.json",
-      "evidence/ios-package-search/order03-startup-pin-package-lyd.json",
-      "evidence/ios-package-search/order03-startup-blocked-screenshot-lyd.json",
-      "evidence/ios-package-search/order03-final-receipts-validation-lyd.json",
-      "evidence/ios-package-search/order03-final-receipt-validator-tests-lyd.json",
-      "evidence/ios-package-search/order03-completion-audit-lyd.json"
+      "evidence/feature-coverage.md",
+      "evidence/ios-package-search/order04-feature-baseline.json",
+      "evidence/ios-package-search/order04-baseline-validation.json",
+      "evidence/ios-package-search/order04-completion-audit.json"
     ],
-    "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
-    "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
-    "selectedTagConditions": "Windows x64 synthetic standalone battle: after setting card.csv profile tag 30020003 and actually selecting two member-1 cards, 28 SELF_OTHER_PLAY_TAG/FRIEND_PLAY_TAG queries across all three selector positions, match/miss thresholds and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
-    "selectedCountConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 member-1 cards, 26 FRIEND_PLAY_NUM/SELF_PLAY_COST_NUM/SELF_NOT_PLAY_HAND_NUM range queries across both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
-    "otherSelectedCardConditions": "Windows x64 synthetic standalone battle: after actually selecting two member-1 cards, 48 ATTR/SKILL_KIND/RARITY queries across matching/nonmatching selectors, thresholds 0..3 and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
-    "enemyFlagConditions": "Windows x64 synthetic registered enemy battle: 40 three-turn OR/AND flag scenarios, including two distinct flags set together, match original full traces and journals. Flag removal after being set, real skills, deployed service, Unity, ARM64 and device remain unverified.",
-    "arthurTypeCondition": "Windows x64 synthetic standalone battle: 80 original/rebuilt query comparisons across five actor types, two slots and valid/invalid parameters match. This is not real card execution, Unity, ARM64, device or version compatibility proof.",
-    "remaining": "No remaining required work for plan item 03 within the recorded reconstruction-data and isolated-service contract scope. Official original-client extraction and whole-game/platform/device unknowns are explicitly retained in the completion audit; next plan item is 04.",
-    "previousBlockedState": {
-      "status": "blocked",
-      "audit": "evidence/ios-package-search/order03-blocked-audit.json",
-      "reason": "Missing server-controlled deployed-source/effective-snapshot/data-cohort and safe battle contract evidence. Local client has no authorized process access or deployed-source artifacts that can establish these facts; public health and further synthetic/static work cannot substitute.",
-      "supersededByNewUserEvidenceOn": "2026-11-24"
-    },
-    "resumedOn": "2026-11-24",
-    "latestAuthorization": "2026-11-24 user explicitly requested reading STATUS.md and the detailed execution plan and restarting plan item 03. Prior dedicated-test-account authorization remains scoped to the isolated service.",
-    "statusConditions": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation.",
-    "serverCollector": {
-      "preparedOn": "2026-11-24",
-      "archive": "dist/order03-server-collector-20261124-073016075Z.zip",
-      "sha256": "17e5abefdac40ab4b2fc844e668c39db7d12c576ce6127840dea86b647f28e04",
-      "powerShell51SyntheticTestsPassed": true,
-      "packagedScriptSmokePassed": true,
-      "serverExecuted": true,
-      "purpose": "User requested a server-runnable collector based on shared deployment conversation. Existing source/build/static JSON and startup evidence are captured when available. Provenance/runtime linkage and unexecuted contracts remain UNKNOWN/NOT_TESTED.",
-      "localSourceCommit": "f787c8f",
-      "sourcePushed": true,
-      "pushRemaining": "Resolved by verified remote main 303f576 on 2026-11-24.",
-      "receivedArchive": {
-        "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff.zip",
-        "sha256": "17ca50a8d3aad9efa8224ead51b52d08e7e881e5acedf81beda4a9d77e5263ed",
-        "bytes": 379944,
-        "entries": 10,
-        "checksumEntriesVerified": 9
-      },
-      "receivedOn": "2026-11-24",
-      "validationEvidence": "evidence/ios-package-search/order03-remaining-validation.json",
-      "rawStaticProjectionReproduced": true,
-      "remaining": {
-        "sourceFiles": false,
-        "startupLogs": true,
-        "providedContractEvidence": false,
-        "csvOriginalVersionAndConversion": true,
-        "successfulContinueAndRealSettlement": false,
-        "processRestartRecovery": false
-      }
-    },
-    "buffExecutionCondition": {
-      "cases": 64,
-      "selected": 12,
-      "fallback": 52,
-      "rebuiltWindowsSha256": "14423048a5a19c3b3349e6d59327eda64878645624fd7f9fb26b2a0976856d81",
-      "scope": "Windows x64 synthetic registered battles. Member 1 executes ATK_UP_FIXED targeting member 2 at priority 1. A conditional card at priority 2 is executed by either member 1 or member 2, proving caster attribution and beneficiary rejection. BUFF_EXEC covers five enum selectors, both condition slots, absent execution, mismatching/NULL selectors and repeated matches. Complete outputs and journals are compared with the original DLL. Actual service skills, provenance/version linkage, Unity, ARM64 and device remain unverified."
-    },
-    "rawStaticLoader": {
-      "checkedOn": "2026-11-24",
-      "evidence": "evidence/ios-package-search/order03-raw-static-loader.json",
-      "referenceCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
-      "rawStaticProductionLoadersPassed": true,
-      "inputDeclaredOwnDeckVariants": 1043,
-      "derivedOptionalOwnDeckVariants": 1697,
-      "totalLoadedOwnDeckVariants": 2740,
-      "allMappingsIndependentlyReproduced": true,
-      "allDerivedMappingsDisabledInFreshMemoryCatalog": true,
-      "scope": "Received raw static JSON validated by pinned local production loaders, with battle catalog projection into a fresh in-memory state. Deployment/runtime, real-account and gameplay verification remains pending."
-    },
-    "reviewedSourceReproduction": {
-      "checkedOn": "2026-11-24",
-      "evidence": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
-      "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
-      "patchSha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c",
-      "exactObservedBinaryReproduction": true,
-      "observedBinarySha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
-      "scope": "Received reviewed patch applied to an isolated copy of the pinned full server module. Binary comparison and synthetic iOS protocol/manifest tests. Actual loaded configuration/table bytes, original CSV extraction, real battle contracts and device acceptance remain separate."
-    },
-    "runtimeSelectionCollector": {
-      "preparedOn": "2026-11-24",
-      "archive": "dist/order03-runtime-selection-20261124-090844861Z.zip",
-      "archiveSha256": "3f2b10eeb3a054c8fe0a6bdb37b007226442614be1308194c8c6309500787f4b",
-      "sourceScriptSha256": "ec89528f1cb239b3121ac39ec8b2507af6c0c45d2f4e3498bba4ee309c781e4a",
-      "expectedServerSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
-      "localFixtureTestsPassed": true,
-      "serverExecuted": true,
-      "scope": "Prepared targeted process/resource-selection collector. Local synthetic fixture validation only.",
-      "sourcePushed": true,
-      "remoteSourceCommit": "303f5769f86d50d8fef1e21d8a35e848db944655",
-      "selectedRuntimeInputsVerified": true,
-      "validationEvidence": "evidence/ios-package-search/order03-runtime-selection-validation.json"
-    },
-    "realBattleContract": {
-      "checkedOn": "2026-11-25",
-      "computedVictoryAccepted": true,
-      "victoryRetryMatched": true,
-      "paidContinueDebitedOnce50": true,
-      "realDefeatAccepted": true,
-      "defeatFrozenResultRetry": "VERIFIED",
-      "evidence": [
-        "evidence/ios-package-search/order03-real-battle.json",
-        "evidence/ios-package-search/order03-real-battle-continue.json",
-        "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
-        "evidence/ios-package-search/order03-real-defeat-retry.json",
-        "evidence/ios-package-search/order03-real-battle-validation.json"
-      ],
-      "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified.",
-      "changedLiveUserFields": [
-        "bp_next_sec"
-      ]
-    },
-    "restartProbe": {
-      "preparedOn": "2026-11-25",
-      "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-013329110Z.zip",
-      "archiveSha256": "03a4670b936bc50e3fa070d293a16bcf02b6cb84666b9f1d70664024845d5161",
-      "localFixturePassed": true,
-      "serverExecuted": true,
-      "latestResult": {
-        "evidence": "evidence/ios-package-search/order03-final-receipts-validation-lyd.json",
-        "actualProcessRestartObserved": true,
-        "recoveryPassed": true,
-        "processBeforeUtc": "2026-11-25T07:30:31.0476297Z",
-        "processAfterUtc": "2026-11-25T07:32:12.7605427Z",
-        "sameIdentitySeedTimeOpening": true,
-        "bpBefore": 20,
-        "bpAfter": 5,
-        "bpDebitOnce": 15,
-        "nonClearAbandonPassed": true
-      },
-      "latestPackage": {
-        "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-030443075Z-lyd.zip",
-        "sha256": "24ef4e2572ccf4b5dbe8b9674d6fb0ddfb70c82946b46efed20bad0ee9e781f5",
-        "serverExecuted": true,
-        "serviceReadinessGate": true,
-        "loopbackProxyDisabled": true,
-        "localSourceAndPackagedFixturesPassed": true
-      },
-      "resultHistory": [
-        {
-          "evidence": "evidence/ios-package-search/order03-restart-result-validation-lyd.json",
-          "actualProcessRestartObserved": true,
-          "recoveryPassed": false,
-          "failureStage": "relogin_and_restore",
-          "failureAbandonAccepted": true
-        },
-        {
-          "evidence": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
-          "actualProcessRestartObserved": false,
-          "recoveryPassed": false,
-          "failureStage": "identity_creation",
-          "networkStatus": "Timeout",
-          "battleEntryRequested": false,
-          "dedicatedAccountPersistence": "UNKNOWN after timeout"
-        }
-      ],
-      "packageHistory": [
-        {
-          "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-023927564Z-lyd.zip",
-          "sha256": "fbb31d2bbc6aa5c8b47d7a09379dc87419b0087d160fbe43fddc1d77c39cad49",
-          "serverExecuted": true,
-          "resultEvidence": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json"
-        }
-      ]
-    },
-    "publishedTableProvenance": {
-      "checkedOn": "2026-11-25",
-      "evidence": "evidence/ios-package-search/order03-publication-provenance-lyd.json",
-      "publishedProjectVersion": "2.0.4",
-      "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
-      "all29TableIdentitiesMatch": true,
-      "selectedResourceManifestMatches": true,
-      "wholeArchiveDigestVerified": false,
-      "originalOfficialExtractionProvenance": "UNKNOWN",
-      "publishedClientMetadataEvidence": "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
-      "clientMetadataMatchesPinnedInput": true
-    },
-    "verifiedSnapshot": {
-      "file": "inputs/server-order03/Order03-Accepted-Snapshot-2.0.4-lyd/CombatTables-lyd.json",
-      "bytes": 57738263,
-      "sha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
-      "projectVersion": "2.0.4",
-      "tables": 29,
-      "enums": 23,
-      "enumConstants": 822,
-      "productionClientAssetDeployed": false,
-      "status": "accepted_data_snapshot",
-      "notProductionClientAsset": true
-    },
-    "durableSoloFix": {
-      "preparedOn": "2026-11-25",
-      "patchFile": "patches/order03-durable-solo-lyd.patch",
-      "patchSha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4",
-      "executableSha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1",
-      "executableBytes": 29750272,
-      "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-072324897Z-lyd.zip",
-      "archiveSha256": "8596f60aedd6142b4071f424615be28d34c76ec9d5f6bed2c573a5d778ea92b6",
-      "localSQLiteHttpTestsPassed": true,
-      "localSourceAndPackagedInstallerTestsPassed": true,
-      "packagedRestartFixturePassed": true,
-      "serverDeployed": true,
-      "originalStartupScriptCompatibility": "PENDING server execution",
-      "testSideEffectsWhenExecuted": {
-        "newDedicatedAccountsMaximum": 1,
-        "newCharactersMaximum": 1,
-        "entryMaximum": 1,
-        "configuredEntryBP": 15,
-        "clearRewardRequested": false
-      },
-      "sourceCheckpoint": {
-        "commit": "ebe7fb20f08fe7af3c7106fdd54c8f829034f397",
-        "localCommitSaved": true,
-        "userExplicitPushApproved": false,
-        "executionPermissionApproved": true,
-        "pushed": false,
-        "remaining": "Latest user instruction is local-only. Both previous network attempts are terminal; do not retry without a new explicit upload request."
-      },
-      "installerScreenshot": {
-        "evidence": "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json",
-        "reportedState": "installed",
-        "receiptContentsReceived": true,
-        "installedHashVerified": true,
-        "serverStartupVerified": true,
-        "recoveryVerified": true
-      },
-      "packageHistory": [
-        {
-          "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd.zip",
-          "sha256": "002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98",
-          "scope": "Earlier package lacked startup pin synchronization; binary unchanged."
-        }
-      ],
-      "startupPinRepair": {
-        "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-startup-pin-repair-20261125-072032751Z-lyd.zip",
-        "archiveSha256": "3188ffa1c315e797ff21d0334e3144ff7b74ea274f0beef87e1f10b8ddfac5e8",
-        "localOriginalCheckerTestsPassed": true,
-        "packagedTestsPassed": true,
-        "serverExecuted": true,
-        "changedField": "expected_test_binary_sha256",
-        "otherConfigBytesPreserved": true
-      },
-      "serverStartupVerified": true,
-      "processRestartRecoveryVerified": true,
-      "acceptedServiceBinarySha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1"
-    },
+    "scope": "Incremental original-behavior and feature baseline; full SCOPE-01/gameplay/device acceptance remain separate.",
+    "remaining": "No remaining required baseline work for plan item 04. Modern runtime rules, original extraction, full UI/resources/native behavior and device acceptance stay with later plan items.",
     "completedOn": "2026-11-25",
-    "completionEvidence": "evidence/ios-package-search/order03-completion-audit-lyd.json"
+    "completionEvidence": "evidence/ios-package-search/order04-completion-audit.json"
   },
   "serverVerificationNaming": {
     "requiredSuffix": "-lyd",
@@ -1145,6 +848,332 @@
       "completionEvidence": "evidence/ios-package-search/order03-completion-audit-lyd.json",
       "next": "04",
       "wholeGameAcceptance": false
+    },
+    "04": {
+      "status": "passed_with_scope",
+      "completionEvidence": "evidence/ios-package-search/order04-completion-audit.json",
+      "next": "05",
+      "wholeScopeAcceptance": false,
+      "wholeGameAcceptance": false
+    }
+  },
+  "completedFocusedGoals": {
+    "03": {
+      "planItem": "03",
+      "status": "complete",
+      "authorizedOn": "2026-11-23",
+      "instruction": "把03设置为目标，完成为止",
+      "evidence": [
+        "evidence/ios-package-search/order03-archive-recheck.json",
+        "evidence/ios-package-search/order03-ios602-enums.json",
+        "evidence/ios-package-search/order03-modern-metadata-enums.json",
+        "evidence/ios-package-search/order03-ios602-table-compatibility.json",
+        "evidence/ios-package-search/order03-readiness.json",
+        "evidence/ios-package-search/order03-modern-defaults.json",
+        "evidence/ios-package-search/order03-runtime-collector-tests.json",
+        "evidence/ios-package-search/order03-public-version-evidence.json",
+        "evidence/ios-package-search/order03-expected-tables.json",
+        "evidence/ios-package-search/order03-server-supplement.json",
+        "evidence/ios-package-search/order03-blocked-audit.json",
+        "evidence/ios-package-search/order03-runtime-supplement-import.json",
+        "evidence/ios-package-search/order03-runtime-supplement-validation.json",
+        "evidence/ios-package-search/order03-runtime-supplement-tests.json",
+        "evidence/ios-package-search/order03-live-battle-contract.json",
+        "evidence/ios-package-search/order03-source-link-reproduction.json",
+        "evidence/ios-package-search/order03-arthur-type.json",
+        "evidence/ios-package-search/order03-enemy-flag.json",
+        "evidence/ios-package-search/order03-other-selected-cards-before-fix.json",
+        "evidence/ios-package-search/order03-other-selected-cards.json",
+        "evidence/ios-package-search/order03-selected-counts-before-fix.json",
+        "evidence/ios-package-search/order03-selected-counts.json",
+        "evidence/ios-package-search/order03-selected-tags-before-fix.json",
+        "evidence/ios-package-search/order03-selected-tags.json",
+        "evidence/ios-package-search/order03-friend-selected-before-fix.json",
+        "evidence/ios-package-search/order03-friend-selected.json",
+        "evidence/ios-package-search/order03-target-job-before-fix.json",
+        "evidence/ios-package-search/order03-target-job.json",
+        "evidence/ios-package-search/order03-status-before-fix.json",
+        "evidence/ios-package-search/order03-status.json",
+        "evidence/ios-package-search/order03-remaining-collector-tests.json",
+        "evidence/ios-package-search/order03-remaining-collector-package.json",
+        "evidence/ios-package-search/order03-remaining-validation.json",
+        "evidence/ios-package-search/order03-buff-exec.json",
+        "evidence/ios-package-search/order03-buff-exec-before-fix.json",
+        "evidence/ios-package-search/order03-raw-static-loader.json",
+        "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+        "evidence/ios-package-search/order03-reviewed-source-contract-tests.json",
+        "evidence/ios-package-search/order03-runtime-selection-tests.json",
+        "evidence/ios-package-search/order03-runtime-selection-package.json",
+        "evidence/ios-package-search/order03-runtime-selection-validation.json",
+        "evidence/ios-package-search/order03-real-battle.json",
+        "evidence/ios-package-search/order03-real-battle-continue.json",
+        "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
+        "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
+        "evidence/ios-package-search/order03-publication-provenance-lyd.json",
+        "evidence/ios-package-search/order03-restart-probe-tests-lyd.json",
+        "evidence/ios-package-search/order03-restart-probe-packaged-tests-lyd.json",
+        "evidence/ios-package-search/order03-restart-probe-package-lyd.json",
+        "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
+        "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json",
+        "evidence/ios-package-search/order03-restart-result-20261125T031514670Z-validation-lyd.json",
+        "evidence/ios-package-search/order03-durable-solo-source-lyd.json",
+        "evidence/ios-package-search/order03-durable-solo-tests-lyd.json",
+        "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
+        "evidence/ios-package-search/order03-solo-fix-installer-tests-lyd.json",
+        "evidence/ios-package-search/order03-solo-fix-installer-packaged-tests-lyd.json",
+        "evidence/ios-package-search/order03-solo-fix-package-lyd.json",
+        "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json",
+        "evidence/ios-package-search/order03-startup-pin-tests-lyd.json",
+        "evidence/ios-package-search/order03-startup-pin-packaged-tests-lyd.json",
+        "evidence/ios-package-search/order03-startup-pin-package-lyd.json",
+        "evidence/ios-package-search/order03-startup-blocked-screenshot-lyd.json",
+        "evidence/ios-package-search/order03-final-receipts-validation-lyd.json",
+        "evidence/ios-package-search/order03-final-receipt-validator-tests-lyd.json",
+        "evidence/ios-package-search/order03-completion-audit-lyd.json"
+      ],
+      "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
+      "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
+      "selectedTagConditions": "Windows x64 synthetic standalone battle: after setting card.csv profile tag 30020003 and actually selecting two member-1 cards, 28 SELF_OTHER_PLAY_TAG/FRIEND_PLAY_TAG queries across all three selector positions, match/miss thresholds and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
+      "selectedCountConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 member-1 cards, 26 FRIEND_PLAY_NUM/SELF_PLAY_COST_NUM/SELF_NOT_PLAY_HAND_NUM range queries across both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
+      "otherSelectedCardConditions": "Windows x64 synthetic standalone battle: after actually selecting two member-1 cards, 48 ATTR/SKILL_KIND/RARITY queries across matching/nonmatching selectors, thresholds 0..3 and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
+      "enemyFlagConditions": "Windows x64 synthetic registered enemy battle: 40 three-turn OR/AND flag scenarios, including two distinct flags set together, match original full traces and journals. Flag removal after being set, real skills, deployed service, Unity, ARM64 and device remain unverified.",
+      "arthurTypeCondition": "Windows x64 synthetic standalone battle: 80 original/rebuilt query comparisons across five actor types, two slots and valid/invalid parameters match. This is not real card execution, Unity, ARM64, device or version compatibility proof.",
+      "remaining": "No remaining required work for plan item 03 within the recorded reconstruction-data and isolated-service contract scope. Official original-client extraction and whole-game/platform/device unknowns are explicitly retained in the completion audit; next plan item is 04.",
+      "previousBlockedState": {
+        "status": "blocked",
+        "audit": "evidence/ios-package-search/order03-blocked-audit.json",
+        "reason": "Missing server-controlled deployed-source/effective-snapshot/data-cohort and safe battle contract evidence. Local client has no authorized process access or deployed-source artifacts that can establish these facts; public health and further synthetic/static work cannot substitute.",
+        "supersededByNewUserEvidenceOn": "2026-11-24"
+      },
+      "resumedOn": "2026-11-24",
+      "latestAuthorization": "2026-11-24 user explicitly requested reading STATUS.md and the detailed execution plan and restarting plan item 03. Prior dedicated-test-account authorization remains scoped to the isolated service.",
+      "statusConditions": "Windows x64 synthetic registered battle: eight SELF/TARGET/USER_SIDE/ENEMY_SIDE buff/debuff conditions, actual preceding status application, 192 full-trace/function/branch/journal comparisons all match original (32 selected,160 fallback). No real service skill, table provenance/version compatibility, Unity, ARM64 or device validation.",
+      "serverCollector": {
+        "preparedOn": "2026-11-24",
+        "archive": "dist/order03-server-collector-20261124-073016075Z.zip",
+        "sha256": "17e5abefdac40ab4b2fc844e668c39db7d12c576ce6127840dea86b647f28e04",
+        "powerShell51SyntheticTestsPassed": true,
+        "packagedScriptSmokePassed": true,
+        "serverExecuted": true,
+        "purpose": "User requested a server-runnable collector based on shared deployment conversation. Existing source/build/static JSON and startup evidence are captured when available. Provenance/runtime linkage and unexecuted contracts remain UNKNOWN/NOT_TESTED.",
+        "localSourceCommit": "f787c8f",
+        "sourcePushed": true,
+        "pushRemaining": "Resolved by verified remote main 303f576 on 2026-11-24.",
+        "receivedArchive": {
+          "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff.zip",
+          "sha256": "17ca50a8d3aad9efa8224ead51b52d08e7e881e5acedf81beda4a9d77e5263ed",
+          "bytes": 379944,
+          "entries": 10,
+          "checksumEntriesVerified": 9
+        },
+        "receivedOn": "2026-11-24",
+        "validationEvidence": "evidence/ios-package-search/order03-remaining-validation.json",
+        "rawStaticProjectionReproduced": true,
+        "remaining": {
+          "sourceFiles": false,
+          "startupLogs": true,
+          "providedContractEvidence": false,
+          "csvOriginalVersionAndConversion": true,
+          "successfulContinueAndRealSettlement": false,
+          "processRestartRecovery": false
+        }
+      },
+      "buffExecutionCondition": {
+        "cases": 64,
+        "selected": 12,
+        "fallback": 52,
+        "rebuiltWindowsSha256": "14423048a5a19c3b3349e6d59327eda64878645624fd7f9fb26b2a0976856d81",
+        "scope": "Windows x64 synthetic registered battles. Member 1 executes ATK_UP_FIXED targeting member 2 at priority 1. A conditional card at priority 2 is executed by either member 1 or member 2, proving caster attribution and beneficiary rejection. BUFF_EXEC covers five enum selectors, both condition slots, absent execution, mismatching/NULL selectors and repeated matches. Complete outputs and journals are compared with the original DLL. Actual service skills, provenance/version linkage, Unity, ARM64 and device remain unverified."
+      },
+      "rawStaticLoader": {
+        "checkedOn": "2026-11-24",
+        "evidence": "evidence/ios-package-search/order03-raw-static-loader.json",
+        "referenceCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+        "rawStaticProductionLoadersPassed": true,
+        "inputDeclaredOwnDeckVariants": 1043,
+        "derivedOptionalOwnDeckVariants": 1697,
+        "totalLoadedOwnDeckVariants": 2740,
+        "allMappingsIndependentlyReproduced": true,
+        "allDerivedMappingsDisabledInFreshMemoryCatalog": true,
+        "scope": "Received raw static JSON validated by pinned local production loaders, with battle catalog projection into a fresh in-memory state. Deployment/runtime, real-account and gameplay verification remains pending."
+      },
+      "reviewedSourceReproduction": {
+        "checkedOn": "2026-11-24",
+        "evidence": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+        "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+        "patchSha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c",
+        "exactObservedBinaryReproduction": true,
+        "observedBinarySha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+        "scope": "Received reviewed patch applied to an isolated copy of the pinned full server module. Binary comparison and synthetic iOS protocol/manifest tests. Actual loaded configuration/table bytes, original CSV extraction, real battle contracts and device acceptance remain separate."
+      },
+      "runtimeSelectionCollector": {
+        "preparedOn": "2026-11-24",
+        "archive": "dist/order03-runtime-selection-20261124-090844861Z.zip",
+        "archiveSha256": "3f2b10eeb3a054c8fe0a6bdb37b007226442614be1308194c8c6309500787f4b",
+        "sourceScriptSha256": "ec89528f1cb239b3121ac39ec8b2507af6c0c45d2f4e3498bba4ee309c781e4a",
+        "expectedServerSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+        "localFixtureTestsPassed": true,
+        "serverExecuted": true,
+        "scope": "Prepared targeted process/resource-selection collector. Local synthetic fixture validation only.",
+        "sourcePushed": true,
+        "remoteSourceCommit": "303f5769f86d50d8fef1e21d8a35e848db944655",
+        "selectedRuntimeInputsVerified": true,
+        "validationEvidence": "evidence/ios-package-search/order03-runtime-selection-validation.json"
+      },
+      "realBattleContract": {
+        "checkedOn": "2026-11-25",
+        "computedVictoryAccepted": true,
+        "victoryRetryMatched": true,
+        "paidContinueDebitedOnce50": true,
+        "realDefeatAccepted": true,
+        "defeatFrozenResultRetry": "VERIFIED",
+        "evidence": [
+          "evidence/ios-package-search/order03-real-battle.json",
+          "evidence/ios-package-search/order03-real-battle-continue.json",
+          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
+          "evidence/ios-package-search/order03-real-defeat-retry.json",
+          "evidence/ios-package-search/order03-real-battle-validation.json"
+        ],
+        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified.",
+        "changedLiveUserFields": [
+          "bp_next_sec"
+        ]
+      },
+      "restartProbe": {
+        "preparedOn": "2026-11-25",
+        "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-013329110Z.zip",
+        "archiveSha256": "03a4670b936bc50e3fa070d293a16bcf02b6cb84666b9f1d70664024845d5161",
+        "localFixturePassed": true,
+        "serverExecuted": true,
+        "latestResult": {
+          "evidence": "evidence/ios-package-search/order03-final-receipts-validation-lyd.json",
+          "actualProcessRestartObserved": true,
+          "recoveryPassed": true,
+          "processBeforeUtc": "2026-11-25T07:30:31.0476297Z",
+          "processAfterUtc": "2026-11-25T07:32:12.7605427Z",
+          "sameIdentitySeedTimeOpening": true,
+          "bpBefore": 20,
+          "bpAfter": 5,
+          "bpDebitOnce": 15,
+          "nonClearAbandonPassed": true
+        },
+        "latestPackage": {
+          "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-030443075Z-lyd.zip",
+          "sha256": "24ef4e2572ccf4b5dbe8b9674d6fb0ddfb70c82946b46efed20bad0ee9e781f5",
+          "serverExecuted": true,
+          "serviceReadinessGate": true,
+          "loopbackProxyDisabled": true,
+          "localSourceAndPackagedFixturesPassed": true
+        },
+        "resultHistory": [
+          {
+            "evidence": "evidence/ios-package-search/order03-restart-result-validation-lyd.json",
+            "actualProcessRestartObserved": true,
+            "recoveryPassed": false,
+            "failureStage": "relogin_and_restore",
+            "failureAbandonAccepted": true
+          },
+          {
+            "evidence": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
+            "actualProcessRestartObserved": false,
+            "recoveryPassed": false,
+            "failureStage": "identity_creation",
+            "networkStatus": "Timeout",
+            "battleEntryRequested": false,
+            "dedicatedAccountPersistence": "UNKNOWN after timeout"
+          }
+        ],
+        "packageHistory": [
+          {
+            "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-023927564Z-lyd.zip",
+            "sha256": "fbb31d2bbc6aa5c8b47d7a09379dc87419b0087d160fbe43fddc1d77c39cad49",
+            "serverExecuted": true,
+            "resultEvidence": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json"
+          }
+        ]
+      },
+      "publishedTableProvenance": {
+        "checkedOn": "2026-11-25",
+        "evidence": "evidence/ios-package-search/order03-publication-provenance-lyd.json",
+        "publishedProjectVersion": "2.0.4",
+        "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+        "all29TableIdentitiesMatch": true,
+        "selectedResourceManifestMatches": true,
+        "wholeArchiveDigestVerified": false,
+        "originalOfficialExtractionProvenance": "UNKNOWN",
+        "publishedClientMetadataEvidence": "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
+        "clientMetadataMatchesPinnedInput": true
+      },
+      "verifiedSnapshot": {
+        "file": "inputs/server-order03/Order03-Accepted-Snapshot-2.0.4-lyd/CombatTables-lyd.json",
+        "bytes": 57738263,
+        "sha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+        "projectVersion": "2.0.4",
+        "tables": 29,
+        "enums": 23,
+        "enumConstants": 822,
+        "productionClientAssetDeployed": false,
+        "status": "accepted_data_snapshot",
+        "notProductionClientAsset": true
+      },
+      "durableSoloFix": {
+        "preparedOn": "2026-11-25",
+        "patchFile": "patches/order03-durable-solo-lyd.patch",
+        "patchSha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4",
+        "executableSha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1",
+        "executableBytes": 29750272,
+        "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-072324897Z-lyd.zip",
+        "archiveSha256": "8596f60aedd6142b4071f424615be28d34c76ec9d5f6bed2c573a5d778ea92b6",
+        "localSQLiteHttpTestsPassed": true,
+        "localSourceAndPackagedInstallerTestsPassed": true,
+        "packagedRestartFixturePassed": true,
+        "serverDeployed": true,
+        "originalStartupScriptCompatibility": "PENDING server execution",
+        "testSideEffectsWhenExecuted": {
+          "newDedicatedAccountsMaximum": 1,
+          "newCharactersMaximum": 1,
+          "entryMaximum": 1,
+          "configuredEntryBP": 15,
+          "clearRewardRequested": false
+        },
+        "sourceCheckpoint": {
+          "commit": "ebe7fb20f08fe7af3c7106fdd54c8f829034f397",
+          "localCommitSaved": true,
+          "userExplicitPushApproved": false,
+          "executionPermissionApproved": true,
+          "pushed": false,
+          "remaining": "Latest user instruction is local-only. Both previous network attempts are terminal; do not retry without a new explicit upload request."
+        },
+        "installerScreenshot": {
+          "evidence": "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json",
+          "reportedState": "installed",
+          "receiptContentsReceived": true,
+          "installedHashVerified": true,
+          "serverStartupVerified": true,
+          "recoveryVerified": true
+        },
+        "packageHistory": [
+          {
+            "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd.zip",
+            "sha256": "002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98",
+            "scope": "Earlier package lacked startup pin synchronization; binary unchanged."
+          }
+        ],
+        "startupPinRepair": {
+          "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-startup-pin-repair-20261125-072032751Z-lyd.zip",
+          "archiveSha256": "3188ffa1c315e797ff21d0334e3144ff7b74ea274f0beef87e1f10b8ddfac5e8",
+          "localOriginalCheckerTestsPassed": true,
+          "packagedTestsPassed": true,
+          "serverExecuted": true,
+          "changedField": "expected_test_binary_sha256",
+          "otherConfigBytesPreserved": true
+        },
+        "serverStartupVerified": true,
+        "processRestartRecoveryVerified": true,
+        "acceptedServiceBinarySha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1"
+      },
+      "completedOn": "2026-11-25",
+      "completionEvidence": "evidence/ios-package-search/order03-completion-audit-lyd.json"
     }
   }
 }

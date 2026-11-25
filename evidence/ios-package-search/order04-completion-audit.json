@@ -1,0 +1,145 @@
+{
+  "checkedAt": "2026-11-25T08:07:07.070Z",
+  "planItem": "04",
+  "completionProven": true,
+  "reviewer": "root",
+  "requirement": "Incremental feature-coverage baseline: each feature has source/version, dependency, support/unknown/missing/incompatibility status and next step; priority home/deck/quest/battle/result flows use existing 6.0.2 resources, 1.4.0 method bodies and fixed modern reference.",
+  "requirements": [
+    {
+      "id": "source_version_and_dependency_state_next_step",
+      "verified": true,
+      "evidence": "evidence/feature-coverage.md",
+      "features": [
+        "startup",
+        "resources",
+        "identity",
+        "home",
+        "deck",
+        "quests",
+        "battle",
+        "results",
+        "persistence",
+        "cards",
+        "card-training",
+        "card-sell",
+        "warehouse",
+        "spheres",
+        "buddies",
+        "shops",
+        "gacha",
+        "social",
+        "multiplayer",
+        "chat",
+        "pvp",
+        "team-race",
+        "event-quests",
+        "tower",
+        "story",
+        "explore",
+        "events",
+        "missions",
+        "presents",
+        "items",
+        "avatar",
+        "navi",
+        "honors",
+        "tutorial-options",
+        "petit-raid",
+        "diagnostics",
+        "live2d",
+        "audio",
+        "rendering",
+        "web-platform"
+      ]
+    },
+    {
+      "id": "priority_original_behavior_anchors",
+      "verified": true,
+      "evidence": "evidence/ios-package-search/order04-feature-baseline.json",
+      "legacyMethodAnchors": 17,
+      "modernCallPaths": 7
+    },
+    {
+      "id": "existing_exports_and_static_audits_reused",
+      "verified": true,
+      "sceneInventory": 53,
+      "existingDetailedScenes": 6,
+      "newExportExecuted": false
+    },
+    {
+      "id": "modern_unknown_scope_retained",
+      "verified": true,
+      "accountEndpoints": 142,
+      "cnAdapterRegistrations": 146,
+      "allCompleteRuntimeAcceptance": "NOT_PASSED"
+    },
+    {
+      "id": "verification_and_original_reference_protection",
+      "verified": true,
+      "evidence": "evidence/ios-package-search/order04-baseline-validation.json",
+      "originalInputsUnchanged": 7,
+      "pinnedReferenceUnmodified": true
+    }
+  ],
+  "sourceFiles": [
+    {
+      "path": "evidence/feature-coverage.md",
+      "sha256": "be1cbd5d63a41f1ebf87259b54b57aa4f5dcd540fea33311e4530a1e62a78ec9",
+      "bytes": 55821
+    },
+    {
+      "path": "evidence/ios-package-search/order04-feature-baseline.json",
+      "sha256": "534a4959f88965e3c983515a2dc36f5d0d4a26a570c8f557cdfc6295c6b11f82",
+      "bytes": 919186
+    },
+    {
+      "path": "evidence/ios-package-search/order04-baseline-validation.json",
+      "sha256": "e9e4eafccff53b7515da070d7290eeceb68153768e34fbedda552f2076e8afcf",
+      "bytes": 1849
+    },
+    {
+      "path": "evidence/original-input-verification.json",
+      "sha256": "6dc3b7a2e8a60d473366b7b0b912aba73b9a1f04854e4c7df8b0eac7d2e39c24",
+      "bytes": 2046
+    },
+    {
+      "path": "scripts/order04-feature-specs.json",
+      "sha256": "1d0d67d8711a550a9c18eabcd6ee7b01367a6a6fc4c22bdecbde4ba1cf4a8375",
+      "bytes": 31765
+    },
+    {
+      "path": "scripts/audit-order04-feature-baseline.mjs",
+      "sha256": "0a576611502593a5ed3ce0b0c934854adb63b04ce69432eb034314dca2026d38",
+      "bytes": 24657
+    }
+  ],
+  "counts": {
+    "features": 40,
+    "exportedScenes": 53,
+    "assignedScenes": 53,
+    "registeredRoutes": 158,
+    "distinctEndpoints": 142,
+    "cnAdapterRegistrations": 146,
+    "modernCallPathObservations": 7,
+    "unclassifiedEndpoints": 0,
+    "sourceFiles": 241,
+    "priorityMethodAnchors": 17
+  },
+  "retainedUnknowns": [
+    "All features remain NOT_PASSED for complete runtime acceptance. Item 04 establishes the baseline only.",
+    "Same-name scenes/classes do not prove matching behavior, recovered fields or compatibility.",
+    "Modern route handler bodies may contain fixed/empty compatibility responses; registration is not implementation acceptance.",
+    "Account HTTP route coverage does not exhaust multiplayer protocols, configuration-driven features, SDKs or unavailable original code.",
+    "No new Unity/iOS build, ARM64 or device evidence. Current-turn/HP recovery remains unverified."
+  ],
+  "sourceDelivery": "LOCAL_ONLY; no push or cloud build",
+  "newAccounts": 0,
+  "newGameRequests": 0,
+  "newServiceMutations": 0,
+  "newBuilds": 0,
+  "newDeviceValidation": false,
+  "scope": "Plan item 04 baseline only. Full SCOPE-01 and overall game remain in progress; later implementation/device requirements are retained.",
+  "wholeScopeAcceptance": false,
+  "wholeGameAcceptance": false,
+  "nextPlanItem": "05"
+}

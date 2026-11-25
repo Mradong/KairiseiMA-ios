@@ -1,0 +1,218 @@
+{
+  "schemaVersion": 1,
+  "auditedOn": "2026-11-25",
+  "planItem": "04",
+  "referenceCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+  "cnOnlyRoutes": {
+    "/Ping": "startup", "/Connect": "identity", "/TutorialProgress": "tutorial-options", "/TutorialFlag": "tutorial-options",
+    "/ClickLog": "diagnostics", "/ClickNewVersionInfo": "diagnostics", "/GetMobileServiceToken": "web-platform"
+  },
+  "modernObservations": [
+    { "feature": "home", "handler": "homeShow", "tokens": ["InitializeAlchemist", "AbandonSoloBattle", "ClearStoryBattleSession", "ClaimFriendPointRentalEvents", "ClaimLoginBonuses", "persistOrError"], "observation": "固定现代参考的HomeShow会初始化炼金状态、放弃残留单人开场、清除剧情战斗上下文、领取租借好友点/登录奖励并持久化；这不是只读请求。静态调用顺序已定位，实际发布策略与重试副作用仍待核实。" },
+    { "feature": "deck", "handler": "cardDeckSet", "tokens": ["decodeExact", "SetDecks", "persistOrError", "wireDeckSet"], "observation": "固定现代参考CardDeckSet严格解码decks，调用SetDecks并持久化后返回库存/卡组；完整校验规则依赖game实现，不能由端点名称推断。" },
+    { "feature": "quests", "handler": "teamBattleSoloStart", "tokens": ["decodeSoloBattleStart", "TowerQuestBossAdmission", "EntryRules", "ValidateSoloParty", "BattleLoadout"], "observation": "固定现代参考Start校验职业/伙伴数量、塔开放、普通发布准入、单人权限、队伍规则和真实装备；列表展示不能代替入场可用性。" },
+    { "feature": "results", "handler": "teamBattleSoloContinue", "tokens": ["decodeExact", "ContinueTeamBattle"], "observation": "固定现代参考Continue提交pay_type/progress/input_cmd/enemy_dead_bit到ContinueTeamBattle；消费及幂等依赖业务实现和此前实际独立服务证据。" },
+    { "feature": "results", "handler": "teamBattleSoloEnd", "tokens": ["decodeExact", "canonicalRequest", "requestDigest", "TeamBattleSoloResultReceipt", "validateNativeTeamBattleReport", "CompleteTeamBattle"], "observation": "固定现代参考End校验逐波输入/死亡位，以规范化请求摘要查结算回执，再验证日志并完成战斗；动态账号倒计时须与冻结结算结果区分。" },
+    { "feature": "persistence", "handler": "battleRecoveryShow", "tokens": ["AbandonedRoomIDs", "AbandonRecoveryFor", "RecoveryFor", "multiplayerRoomBossGroupWire"], "observation": "固定现代参考BattleRecoveryShow处理多人离场/重入；单人开场恢复在Start/账号持久化补丁，不能用此多人接口证明手机当前回合/血量恢复。" },
+    { "feature": "shops", "handler": "localShopBonus", "tokens": ["writeProtocol", "activities"], "observation": "固定现代参考PurchaseBonusActivityShow的localShopBonus返回空activities，这是已定位的兼容响应，不能标记原购买奖励功能可用。其他本地购买处理器须逐项核实。" }
+  ],
+  "features": [
+    {
+      "id": "startup", "name": "启动、标题与初始化", "scenes": ["AppInit", "Title"], "legacy": ["AppInit", "Title"], "routes": [], "order": "05",
+      "behavior": "旧版 AppInit.Start 与 Title.PreStart/PostStart 提供初始化、标题和连接顺序的行为线索。",
+      "state": "局部支持：0.0.7 连接与角色状态、0.0.8 启动有设备反馈；完整游戏入口待核实。",
+      "dependencies": "Unity 6000.3.26f1 的 iOS 工程、初始化依赖、身份与资源状态。",
+      "next": "在现有客户端接通正式入口和首个失败环节的错误/重试；沿用同标识覆盖安装。",
+      "evidence": ["device-client007-connectivity.json", "resource-switch-acceptance-008.json"]
+    },
+    {
+      "id": "resources", "name": "资源检查、下载与回退", "scenes": ["Download"], "legacy": ["DownloadMgr", "BundleDownloader", "AssetBundleDef"], "routes": [], "order": "05/10",
+      "behavior": "旧版下载管理、Bundle 清单与 Title 的恢复请求是资源检查/下载线索；实际恢复客户端已有事务式切换。",
+      "state": "局部支持：02 的 0.0.8 设备复用/重启按范围通过；完整资源链缺失。",
+      "dependencies": "真正 iOS Bundle、清单/哈希、全部场景与战斗资源；03 快照尚未部署为生产客户端资产。",
+      "next": "随主流程补足资源，验证实际 AssetBundle 回退和完整资源更新；不重复导出。",
+      "evidence": ["resource-switch-acceptance-008.json", "order03-completion-audit-lyd.json"]
+    },
+    {
+      "id": "identity", "name": "登录、角色创建与选择", "scenes": ["Intro", "IntroSlPl"], "legacy": ["Title", "Intro", "IntroSlPl"], "routes": ["/__domain/Connect", "/UserCreate", "/UserSetName", "/UserSetComment"], "order": "05",
+      "behavior": "Title 的登录/连接方法与 IntroSlPl.OnUserCreate 是旧版线索；现代账号路由存在。",
+      "state": "局部支持：独立身份协议及设备游客登录已有证据；角色选择、重复登录、超时恢复待核实。",
+      "dependencies": "隔离身份、会话生命周期、已有角色/创建分流、服务副作用边界。",
+      "next": "核对首次/重复登录与创建/选择，保留脱敏状态；在同一设备版本完成登录到主页。",
+      "evidence": ["device-client007-connectivity.json", "order03-final-receipts-validation-lyd.json"]
+    },
+    {
+      "id": "home", "name": "主页数据、导航与登录奖励", "scenes": ["Home"], "legacy": ["Home"], "routes": ["/HomeShow", "/PopupExec"], "order": "05",
+      "behavior": "1.4.0 Home.PostStart 请求 HomeShow；OnHomeShowReceive 接入用户、导航、横幅/活动、教程和登录奖励；销毁时解绑并释放。现代HomeShow会放弃单人开场、清剧情上下文、领取登录/租借奖励并持久化。",
+      "state": "局部支持：Windows 独立服务主页读取；设备完整主页交互待核实。6.0.2 Home 的 27 个组件无业务字段。",
+      "dependencies": "主页真实数据、背景/图集/Live2D、登录奖励和未完成战斗恢复的副作用。",
+      "next": "先处理未完成战斗/待提交结算，再进入有副作用的HomeShow；核对首次/重登领奖和超时恢复，再验证设备。",
+      "evidence": ["ios-live-quest-flow.json", "order03-completion-audit-lyd.json"]
+    },
+    {
+      "id": "deck", "name": "卡组展示、编辑、校验与保存", "scenes": ["Deck", "DeckRec"], "legacy": ["Deck", "DeckChecker", "CardMgr", "DeckRecommendation"], "routes": ["/CardShow2", "/CardCategoryGet", "/CardDeckSet", "/DeckLimitShow", "/SupportCardSlotUnlock", "/TeamBattleRecommendDeckShow", "/TeamBattleClearDeckShow"], "order": "06",
+      "behavior": "旧版 Deck 收集修改卡组并调用 CardDeckSetSend；DeckChecker 检查卡牌/家族、租借、球兼容和伙伴队长，不能仅做实例去重。",
+      "state": "局部支持：Windows 隔离角色重排保存、重登重读及非法实例拒绝；保存结果未知的回环恢复通过。6.0.2 Deck 48 个组件无业务字段。",
+      "dependencies": "真实库存/实例、主/支援卡组、球/伙伴、职业与租借规则、并发版本和设备编辑UI。",
+      "next": "06核对全部校验和持久化；覆盖同家族不同实例、支援/租借规则、并发及设备保存重读。",
+      "evidence": ["order03-isolated-deck-contract.json", "deck-save-recovery-tests.json", "deck-save-recovery-transport.json"]
+    },
+    {
+      "id": "quests", "name": "关卡列表、队友与准入", "scenes": ["StageSt", "TeamStOne"], "legacy": ["StageSt", "TeamStOne"], "routes": ["/MainQuestShow", "/TeamBattleSoloShow", "/TeamBattleSoloPartnerShow", "/TeamBattleSoloPartnerRentalDeck", "/TeamBattleSoloStart", "/TeamBattleSkip"], "order": "06/08",
+      "behavior": "旧版 StageSt/TeamStOne 选择职业、卡组和伙伴后调用 TeamBattleSoloStartSend，响应后进入战斗；列表和入场须分别验收。",
+      "state": "局部支持：3788关卡/首关5伙伴的协议解析、1043静态变体映射、真实15 BP入场/开场恢复；设备选择和开放规则待核实。",
+      "dependencies": "发布配置、开放权限/体力、卡组与伙伴、真实敌人波次、具备继续战斗和安全恢复能力。",
+      "next": "先完成关卡/队友选择并核对列表副作用和错误恢复；08具备完整战斗后才从设备入场。",
+      "evidence": ["ios-live-quest-flow.json", "order03-runtime-supplement-validation.json", "order03-final-receipts-validation-lyd.json"]
+    },
+    {
+      "id": "battle", "name": "注册战斗、选卡、回合与波次", "scenes": ["Battle"], "legacy": ["Battle", "battle/BattleSoloFunction", "battle/BattlePluginMgr", "BattleDllImport"], "routes": [], "order": "07/08",
+      "behavior": "旧版 BattleSoloFunction 从开场响应设置战斗内核，并保存逐波输入日志/敌人死亡位；BattlePluginMgr 与 DLL 边界、演出须分别实现。",
+      "state": "局部支持：Windows 注册合成差分与真实服务参数/主表的本地Go引擎胜负轨迹；0.0.2设备仅合成。6.0.2 Battle 17 个组件无业务字段。",
+      "dependencies": "03真实快照和现代822枚举、06真实输入、完整技能/AI/球/伙伴/模式、ARM64、画面与操作。",
+      "next": "07按真实注册输入补全内核并记录原DLL差分无法对照项；08接入资源/交互并验证设备回合。",
+      "evidence": ["order03-real-battle-validation.json", "order03-completion-audit-lyd.json", "order03-buff-exec.json"]
+    },
+    {
+      "id": "results", "name": "胜负、续关、结算与返回", "scenes": ["Result"], "legacy": ["Result", "battle/BattleResultCmdSoloFunction", "TeamBattleResultFunction"], "routes": ["/TeamBattleSoloContinue", "/TeamBattleSoloEnd", "/TeamBattleResult"], "order": "09",
+      "behavior": "旧版 Result.PreStart 按探索/单人/多人/剧情/PVP/TeamRace/PetitRaid分派结果；PostStart 重读库存；回合演出完成与提交结算分开。",
+      "state": "局部支持：真实独立服务胜/败、50水晶续关及延时幂等契约；设备结算/返回待核实。6.0.2 Result 331个组件无业务字段且1个空脚本。",
+      "dependencies": "真实胜负/输入日志、奖励/体力/进度、幂等请求、结果场景字段重建和返回主页数据刷新。",
+      "next": "09逐模式接通结果与重试，确认动态bp_next_sec不误判重复奖励；设备完成真实闭环。",
+      "evidence": ["order03-real-battle-validation.json", "order03-real-defeat-retry.json"]
+    },
+    {
+      "id": "persistence", "name": "中断、重启与覆盖安装", "scenes": [], "legacy": ["SaveDataMgr", "GameMgr"], "routes": ["/BattleRecoveryShow"], "order": "10",
+      "behavior": "旧版持久化/恢复路径仅作参考；现代BattleRecoveryShow处理多人重入，单人Start/持久化补丁恢复完整开场，不能保存手机当前回合/血量。",
+      "state": "局部支持：0.0.8资源覆盖/重启反馈；03修复服务同身份/seed/start_time/完整开场恢复且只扣一次15 BP。客户端途中进度缺失。",
+      "dependencies": "身份、角色、卡组、资源、战斗日志、签名标识和服务开场到期规则分别保存。",
+      "next": "10覆盖退出/中断/后台/网络切换/覆盖续签；在明确版本和同一隔离身份记录前后状态。",
+      "evidence": ["resource-switch-acceptance-008.json", "order03-final-receipts-validation-lyd.json"]
+    },
+    {
+      "id": "cards", "name": "卡牌图鉴、详情与收藏", "scenes": ["CardCl"], "legacy": ["CardCl"], "routes": ["/CardCollectionShow", "/HowToGetCardShow", "/CardLock", "/CardUnlock", "/CardLoveUp"], "order": "11",
+      "behavior": "旧版 CardCl 的展示/分页/评论请求是行为线索；现代详情、锁定、获得途径及亲密度路由存在。",
+      "state": "缺失：恢复客户端未实现完整管理UI；现代具体规则待核实。", "dependencies": "卡牌主表、图像、收藏/亲密度与账号库存。", "next": "11恢复详情与收藏，验证锁定及亲密度副作用，现代评论能力单独核实。", "evidence": []
+    },
+    {
+      "id": "card-training", "name": "强化、进化、分解与名声训练", "scenes": ["Fusion", "FusionEv", "FusionRe", "CardDev"], "legacy": ["ExpFusion", "EvoFusion", "CardDev"], "routes": ["/CardFusion2", "/CardEvolution", "/CardDecompose", "/CardFameTrainInfo", "/CardFameStartTrain", "/CardFameCancelTrain", "/CardFameTrainFinish"], "order": "11",
+      "behavior": "旧版强化/进化组件及CardDev的开始、结束、取消名声训练回调有方法体。", "state": "缺失：真实客户端流程未恢复；现代成本、素材和时间规则待核实。", "dependencies": "素材/货币、锁定、上限、训练计时与幂等持久化。", "next": "11先核对配方/训练契约，再用隔离素材验证消耗、失败回滚及结果展示。", "evidence": []
+    },
+    {
+      "id": "card-sell", "name": "出售与批量选择", "scenes": ["CardSell"], "legacy": ["CardSell"], "routes": ["/CardSell"], "order": "11",
+      "behavior": "旧版CardSell.CheckUniqids和批量选择提供选择合法性线索。", "state": "缺失：客户端出售及错误恢复未恢复。", "dependencies": "自有实例、锁定/在队状态、价值和库存事务。", "next": "11用隔离实例验证单/批出售、非法实例、失败保持和刷新。", "evidence": []
+    },
+    {
+      "id": "warehouse", "name": "仓库移动、锁定与出售", "scenes": [], "legacy": ["CardMgr"], "routes": ["/CardContainerShow", "/CardMove", "/CardContainerLock", "/CardContainerUnlock", "/CardContainerSell"], "order": "11",
+      "behavior": "现代仓库路由存在；旧CardMgr只能作为库存线索，不证明仓库规则相同。", "state": "待核实：现代扩展保留；对应6.0.2场景绑定未知，客户端未实现。", "dependencies": "仓库容量/权限、卡组占用、锁定、转移事务和实例一致性。", "next": "11阅读处理器与实际发布策略，再在隔离环境核对移动/出售限制；不因旧场景缺项删除。", "evidence": []
+    },
+    {
+      "id": "spheres", "name": "球的管理与养成", "scenes": [], "legacy": ["SphrInfoScene", "DeckChecker"], "routes": ["/SphrShow", "/SphrFusion2", "/SphrEvolution", "/SphrSell", "/SphrLock", "/SphrUnlock"], "order": "06/11",
+      "behavior": "旧版球详情与DeckChecker.IsSphereDeckCompatible有方法体；现代球养成路由存在。", "state": "缺失：完整球UI/养成及战斗执行待恢复；不能只恢复主卡组。", "dependencies": "球主表/实例、兼容限制、素材/消耗和技能执行。", "next": "06保留球槽和校验；11验证养成，07验证实际战斗效果。", "evidence": []
+    },
+    {
+      "id": "buddies", "name": "伙伴详情、编队与养成", "scenes": ["BuddyInfo"], "legacy": ["BuddyInfoScene", "DeckChecker"], "routes": ["/BuddyShow", "/BuddyFusion", "/BuddyEvolution", "/BuddySell", "/BuddyLock", "/BuddyUnlock"], "order": "06/11",
+      "behavior": "旧版伙伴详情和队长/租借校验有方法体；现代养成路由存在。", "state": "缺失：伙伴界面/养成和完整战斗行为未恢复。", "dependencies": "伙伴定义/实例、租借/队长、素材及技能。", "next": "06核对编队；11隔离验证养成；07补实际技能。", "evidence": []
+    },
+    {
+      "id": "shops", "name": "商店、兑换与本地购买兼容", "scenes": ["Shop", "CardExchange"], "legacy": ["Shop", "CardExchange"], "routes": ["/ItemShopShow", "/ItemShopBuy", "/EventShopShow", "/EventShopBuy", "/TradeShopShow2", "/TradeShopLineupShow", "/TradeShopBuy2", "/CoinUse", "/PurchaseBonusActivityShow", "/QueryOrder", "/QueryCardCoin", "/GetCardCoin"], "order": "11",
+      "behavior": "旧版商品、兑换与货币UI有方法体；现代本地购买兼容含固定/空响应，不等于真实购买能力。", "state": "缺失/待核实：商店客户端未恢复；支付SDK和实际支付不兼容项须单列。", "dependencies": "发布商品/价格、库存/货币事务、免费与付费货币、平台SDK。", "next": "11核实本地兼容处理器边界，先隔离测试已确认兑换；原支付功能保留未知，不自动真实支付。", "evidence": []
+    },
+    {
+      "id": "gacha", "name": "抽卡、概率、选池与结果", "scenes": ["Gacha", "GachaRe"], "legacy": ["Gacha", "GachaResult"], "routes": ["/GachaShow", "/GachaPlay2", "/GachaItemPlay", "/GachaLineupShow2", "/GachaSelectLineupShow", "/GachaSelectedListShow", "/GachaOddsShow"], "order": "11",
+      "behavior": "旧版抽卡选择/执行与结果展示有方法体；现代概率、选池和道具抽卡路由存在。", "state": "缺失：客户端及原行为/概率规则未验收。", "dependencies": "卡池发布/哈希、概率、货币/道具、重复卡与库存、幂等。", "next": "11核对卡池与消耗契约，隔离资源验证抽卡/错误/结果；记录副作用。", "evidence": []
+    },
+    {
+      "id": "social", "name": "好友、关注与个人资料", "scenes": ["Friend", "ProfileBG"], "legacy": ["Friend"], "routes": ["/FriendSearch", "/FollowoFollowShow", "/FollowFollowerShow", "/FollowAdd", "/FollowUnFollow", "/UserProfileShow"], "order": "11",
+      "behavior": "旧版好友列表/标签和现代关注/资料路由存在；双方关系与公开资料边界待核实。", "state": "缺失：客户端社交未恢复。", "dependencies": "独立双方身份、关系持久化、公开信息和错误规则。", "next": "11只用专用测试身份核对搜索/关注/取消及资料；不读取私人账号。", "evidence": []
+    },
+    {
+      "id": "multiplayer", "name": "多人房间、搜索、加入与同步", "scenes": ["TeamRm", "TeamStMake", "TeamStSearch"], "legacy": ["TeamRoom", "TeamStMake", "TeamStSearch"], "routes": ["/TeamBattleMultiShow", "/TeamBattleMultiRoomSearch", "/TeamBattleMultiRoomCreate", "/TeamBattleAIRoomCreate", "/TeamBattleMultiRoomReserve", "/TeamBattleMultiRoomReserveCancel", "/TeamBattleMultiRoomEnter"], "order": "11",
+      "behavior": "旧版建房/加入/重入与TeamRoom有方法体；现代多人和AI房路由存在，同步走独立多人服务。", "state": "缺失：真实多人客户端和生命周期未恢复；单人通过不能替代。", "dependencies": "多人服务、队伍同步、房主/成员、超时/断开/重入、多人战斗与结算。", "next": "11以隔离多人身份核对房间及同步协议，补设备交互和断线恢复。", "evidence": []
+    },
+    {
+      "id": "chat", "name": "聊天、表情与编辑", "scenes": ["ChatEdit"], "legacy": ["ChatEdit"], "routes": ["/StampShow", "/StampDeckSet"], "order": "11",
+      "behavior": "旧版ChatEdit.notifyEditEnd和现代表情卡组路由存在；聊天传输不是账号HTTP路由清单可完整证明。", "state": "待核实：聊天/多人传输及输入流程未恢复。", "dependencies": "多人传输、Unicode/IME、字数/内容限制、表情资源。", "next": "11核实多人聊天消息和表情数据，在隔离房间验证输入、发送与重连。", "evidence": []
+    },
+    {
+      "id": "pvp", "name": "竞技NPC、匹配与结算", "scenes": ["PvPStNPC", "PvPUI"], "legacy": ["PvPStNPC", "PvPUI"], "routes": ["/PvpShow", "/PvpStart2", "/PvpEnd"], "order": "11",
+      "behavior": "旧版NPC伙伴选择/PvP入口与现代PVP路由存在。", "state": "缺失：竞技规则、匹配、客户端战斗和排名未验收。", "dependencies": "PVP发布/段位、匹配或NPC、专用战斗模式与奖励。", "next": "11核实NPC和真实匹配分别支持哪些行为，隔离验证全链和失败恢复。", "evidence": []
+    },
+    {
+      "id": "team-race", "name": "TeamRace报名与匹配", "scenes": ["TeamRaceEntry", "TeamRaceMatching"], "legacy": ["TeamRaceEntry", "TeamRaceMatching"], "routes": [], "order": "11",
+      "behavior": "旧版报名、匹配、成员和倒计时有方法体；账号路由中无同名端点不能视为不支持，可能在多人服务。", "state": "待核实：现代传输/玩法映射未知，客户端未恢复。", "dependencies": "对应多人模式、匹配服务、倒计时、战斗和专属结算。", "next": "11沿多人服务与原符号核实，缺失服务写恢复路径，保留原范围。", "evidence": []
+    },
+    {
+      "id": "event-quests", "name": "联合、往期Boss、挑战与排行", "scenes": ["TeamStUnion", "TeamStPastBoss"], "legacy": ["TeamStUnion", "TeamStPastBoss"], "routes": ["/TeamBattlePastBossShow", "/TeamBattleScoreRewardLineup", "/BossScoreRankingShow", "/DailyClearRankShow", "/ChallengeShow", "/TeamBattleScheduleShow", "/TeamBattleScheduleUpdate", "/UserBuffExec"], "order": "11",
+      "behavior": "旧版联合/往期Boss选择与现代挑战、日程、增益、奖励排行路由存在；彼此对应关系待核实。", "state": "待核实：活动发布/排名及额外模式未恢复。", "dependencies": "活动日程/开放、Boss定义、增益消耗、分数/奖励和排行持久化。", "next": "11分别核实联合/历史Boss/挑战映射及副作用，不用普通关卡替代。", "evidence": []
+    },
+    {
+      "id": "tower", "name": "爬塔与排行榜", "scenes": [], "legacy": ["Home"], "routes": ["/TowerQuestShow", "/TowerRankingShow"], "order": "11",
+      "behavior": "1.4.0 Home.OnHomeShowReceive 接入appear_towerid；现代爬塔/排行路由存在。", "state": "待核实：无独立场景不等于无功能；层数、开放和奖励规则未知。", "dependencies": "塔发布/层级进度、关卡/战斗、奖励与排行榜。", "next": "11核实入口与层级规则，再隔离验证进度及排行。", "evidence": []
+    },
+    {
+      "id": "story", "name": "主线、支线、活动剧情及战斗", "scenes": ["Story", "StoryMenu", "StMainSl", "StSubSl", "StMainSlCN"], "legacy": ["Story", "StoryMenu", "StMainSl", "StSubSl"], "routes": ["/StoryMainShow", "/StoryMainStart", "/StoryMainEnd", "/StorySubShow", "/StorySubStart", "/StorySubEnd", "/StoryEventShow", "/StoryEventUnlock", "/StoryStart", "/StoryTeamBattleStart", "/StoryTeamBattleEnd"], "order": "11",
+      "behavior": "旧版剧情菜单/章选择/播放方法体与现代主/支/活动剧情及剧情战斗路由存在。", "state": "缺失：剧情脚本、资源、解锁和奖励未恢复；StMainSlCN业务组件映射待核实。", "dependencies": "剧情脚本/本地化/音频、章节解锁、进度与剧情战斗模式。", "next": "11分别核实播放、跳过、解锁、奖励/重试和剧情战斗，保留国服入口差异。", "evidence": []
+    },
+    {
+      "id": "explore", "name": "探索与探索结果", "scenes": ["Explore"], "legacy": ["ExploreMgr", "ExploreResultFunction"], "routes": ["/ExploreStart", "/ExploreEnd"], "order": "11",
+      "behavior": "旧版探索管理与独立结果函数有方法体；现代探索开始/结束路由存在。", "state": "缺失：探索玩法、资源和结果未恢复。", "dependencies": "地图/敌人、探索模式、次数/体力、计时/奖励和恢复。", "next": "11核实独立玩法与消耗/结果，不以普通战斗替代探索。", "evidence": []
+    },
+    {
+      "id": "events", "name": "活动页面、回归与公告", "scenes": ["EventPage", "Comeback", "Advertise"], "legacy": ["EventPage", "Home"], "routes": ["/EventShow", "/GiftCodeAd"], "order": "11",
+      "behavior": "旧版活动页、Home回归检查与现代活动/兑换码路由提供线索；Advertise用途须核实。", "state": "待核实：活动内容、回归奖励、公告网页及广告/统计SDK映射未知。", "dependencies": "运营发布/URL、WebView、活动/回归资格和奖励幂等。", "next": "11逐项核实活动/回归/公告，区分广告统计与游戏行为并保留缺口。", "evidence": []
+    },
+    {
+      "id": "missions", "name": "任务、奖励与URL任务", "scenes": ["Mission"], "legacy": ["Mission"], "routes": ["/MissionShow", "/MissionReward", "/MissionURLOpen"], "order": "11",
+      "behavior": "旧版Mission含单/批奖励与URL检查回调；现代任务路由存在。", "state": "缺失：任务UI及奖励/完成判定未恢复。", "dependencies": "任务发布/进度、奖励事务、网页完成规则和幂等。", "next": "11隔离验证真实完成条件、单/批领取与重复/失败恢复。", "evidence": []
+    },
+    {
+      "id": "presents", "name": "礼物箱与单/批领取", "scenes": ["Present"], "legacy": ["Present"], "routes": ["/PresentBoxShow", "/PresentBoxRecv", "/PresentBoxMultiRecv2", "/PresentBoxDelete"], "order": "11",
+      "behavior": "旧版礼物场景与现代显示、领取、批领、删除路由存在。", "state": "缺失：客户端未恢复；过期/容量/重复请求行为待核实。", "dependencies": "礼物/库存容量、过期、领奖持久化和幂等。", "next": "11使用隔离礼物测试单/批/非法领取、删除和失败恢复。", "evidence": []
+    },
+    {
+      "id": "items", "name": "物品库存、使用与兑换", "scenes": ["ItemInve"], "legacy": ["ItemInventory"], "routes": ["/ItemShow", "/ItemUse", "/ItemExchange", "/ItemLackTips"], "order": "11",
+      "behavior": "旧版ItemInventory与现代物品读/用/换路由存在。", "state": "缺失：库存及使用效果UI未恢复。", "dependencies": "物品主表/数量、使用效果/上限、兑换与幂等事务。", "next": "11核实每种已支持物品效果，隔离验证消耗与失败保持。", "evidence": []
+    },
+    {
+      "id": "avatar", "name": "角色装扮、外观商店与结果", "scenes": ["Avatar", "AvatarShop", "AvatarResult"], "legacy": ["Avatar", "AvatarShop", "AvatarResult"], "routes": ["/CostumeShow", "/CostumeSet", "/AvatarPartsShow", "/AvatarPartsDeckSet", "/AvatarShopShow", "/AvatarShopBuy"], "order": "11",
+      "behavior": "旧版装扮选择/商店/结果与现代外观、部件路由存在。", "state": "缺失：客户端装扮和现代部件规则未恢复。", "dependencies": "职业/外观部件、模型/纹理、所有权、货币与保存。", "next": "11核实更换/购买/部件组合，隔离验证外观与重读。", "evidence": []
+    },
+    {
+      "id": "navi", "name": "导航角色与背景", "scenes": ["Navi"], "legacy": ["Navi", "Home"], "routes": ["/GetNaviShow", "/NaviSelect", "/BuyNavi"], "order": "11",
+      "behavior": "旧版Navi选择与Home角色/背景加载有方法体；现代购买/选择路由存在。", "state": "缺失：完整导航角色、动作/语音和背景未恢复。", "dependencies": "Live2D/动作/语音、角色/背景资源、所有权/货币。", "next": "11核实下载、切换与购买；验证音画和保存。", "evidence": []
+    },
+    {
+      "id": "honors", "name": "称号展示与配置", "scenes": [], "legacy": ["Home"], "routes": ["/HonorShow", "/HonorDeckShow", "/HonorDeckSet"], "order": "11",
+      "behavior": "现代称号路由存在；旧Home只作入口线索，不证明称号业务相同。", "state": "待核实：现代扩展保留，原组件/获得规则未知。", "dependencies": "称号定义/获得条件、展示/保存与资料页。", "next": "11核实获得与配置契约，再隔离验证保存与展示。", "evidence": []
+    },
+    {
+      "id": "tutorial-options", "name": "教程、游戏设置与推送设置", "scenes": [], "legacy": ["GameMgr", "UISavedOption"], "routes": ["/SetTutorialFlag", "/UpdGameOption", "/UpdPushOption"], "order": "05/11",
+      "behavior": "旧版教程/选项保存与现代设置路由存在；推送SDK、权限和服务设置须分别核实。", "state": "待核实：当前恢复UI未提供全部设置；原推送平台依赖未知。", "dependencies": "教程进度、本地/服务设置、音量/显示、通知权限及SDK。", "next": "05保留教程/状态；11恢复设置并分别测试保存和设备权限。", "evidence": []
+    },
+    {
+      "id": "petit-raid", "name": "PetitRaid与专属结果", "scenes": [], "legacy": ["Result", "PetitRaidResultFunction"], "routes": [], "order": "11",
+      "behavior": "旧Result.PreStart明确分派PETIT_RAID到PetitRaidResultFunction；没有独立同名场景不能排除。", "state": "待核实：现代模式、服务和入口映射未知；客户端未恢复。", "dependencies": "原模式定义/多人传输、奖励/分数和结果资源。", "next": "11从结果种类和多人符号追入口/契约，记录服务缺口与恢复路径。", "evidence": []
+    },
+    {
+      "id": "diagnostics", "name": "调试登录与空过渡场景", "scenes": ["DebugLogin", "Empty"], "legacy": [], "routes": [], "order": "11",
+      "behavior": "6.0.2导出含DebugLogin/Empty；仅场景名称无法确定用户功能或发布入口。", "state": "待核实：保留调查项，未计为已支持玩法，也不默默排除。", "dependencies": "原初始化/场景跳转与发布开关。", "next": "核实实际入口与用途；若为开发工具，记录证据再限定验收范围。", "evidence": []
+    },
+    {
+      "id": "live2d", "name": "Live2D模型与主页动画", "scenes": [], "legacy": ["LAppModel", "Home"], "routes": [], "order": "05/11",
+      "behavior": "旧LAppModel/Home包含模型初始化、播放/停止/释放；6.0.2 Home已有直接模型/动画引用审计。", "state": "待核实/不兼容风险：旧Live2DUnity插件不能假定兼容Unity6/iOS ARM64，当前完整模型未恢复。", "dependencies": "SDK版本/ABI、模型/纹理/动作、Unity6和iOS授权范围内可用库。", "next": "核实插件与模型版本，在工作副本适配真实iOS库并验证主页生命周期。", "evidence": ["ios602-home-resource-audit.json"]
+    },
+    {
+      "id": "audio", "name": "CRI音频、语音与音量", "scenes": [], "legacy": ["SoundMgr", "Sound"], "routes": [], "order": "11",
+      "behavior": "旧声音管理有方法体；原Android CRI库及导入声明是依赖线索，不是iOS兼容证明。", "state": "缺失/待核实：真实BGM/语音/音效和CRI iOS版本未验收。", "dependencies": "音频bank/cue、原生库ABI、音量、后台/中断。", "next": "核实可用音频和SDK，适配真实iOS播放并验证音量/中断。", "evidence": []
+    },
+    {
+      "id": "rendering", "name": "图集、字体、Shader与输入", "scenes": [], "legacy": ["UIInput", "UILabel"], "routes": [], "order": "05/08/11",
+      "behavior": "旧NGUI输入/文本有方法体；6.0.2图集/字体/Shader已导出，部分真正iOS资源已重编译。", "state": "局部支持/待核实：0.0.3简体字反馈改善；完整UI字体、材质/Shader、触摸/IME尚未验收。", "dependencies": "图集映射、中文字符覆盖、Unity6材质/渲染和触摸/键盘布局。", "next": "随实际主页/战斗版本修复必需字体/材质/输入；设备逐场景核验。", "evidence": ["cn602-resource-analysis.json"]
+    },
+    {
+      "id": "web-platform", "name": "网页、平台身份与SDK", "scenes": [], "legacy": ["WebMgr", "Title"], "routes": ["/__domain/MobileServiceInfo"], "order": "05/11",
+      "behavior": "旧WebMgr/Title和现代MobileService兼容路由是网页/平台入口线索；本地兼容接口不等于原SDK完整实现。", "state": "待核实/不兼容风险：旧账号/支付/广告/推送SDK、WebView与iOS17运行未知。", "dependencies": "真实iOS WebView/平台适配、URL/导航、身份、ATS和生命周期。", "next": "05恢复隔离身份；11核实各SDK/网页实际使用功能与替代路径，避免用存根宣称通过。", "evidence": []
+    }
+  ]
+}
