@@ -1,6 +1,7 @@
 param([string]$TestRoot=$PSScriptRoot,[string]$ExpectedPayloadSha256,[switch]$Rollback)
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'Collect-Order03RuntimeSelection.ps1') -TestRoot $TestRoot -Port 27040
+. (Join-Path $PSScriptRoot 'Sync-Order03StartupPin.ps1') -TestRoot $TestRoot
 $oldHash='7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918'
 $directory=(Get-Item -LiteralPath $TestRoot -ErrorAction Stop).FullName
 $bin=Join-Path $directory 'bin'
@@ -16,6 +17,8 @@ try {
     $report.state='service_stop_check'
     $listeners=@(Get-NetTCPConnection -LocalPort @(27040,27041) -State Listen -ErrorAction SilentlyContinue)
     if($listeners.Count -gt 0){throw 'Stop the iOS service window first. Test port is still listening.'}
+    $report.state='startup_pin_before'
+    $report.startupPinBefore=Sync-Order03StartupPin $directory
     if($Rollback) {
         if($before.sha256 -eq $oldHash){$report.success=$true;$report.state='already_original'}
         else {
@@ -52,8 +55,30 @@ try {
         $report.binaryAfter=$after;$report.backupFile=[IO.Path]::GetFileName($backup)
         $report.success=$true;$report.state='installed'
     }
+    $completedState=$report.state
+    $report.state='startup_pin_after'
+    $report.startupPinAfter=Sync-Order03StartupPin $directory
+    $report.state=$completedState
 } catch {
+    $report.success=$false
     $report.failureStage=$report.state;$report.failureClass=$_.Exception.GetType().Name
+    try {
+        if(!$Rollback -and $before.sha256 -eq $oldHash -and $backup -and (Test-Path -LiteralPath $backup) -and (Get-SelectionIdentity $live).sha256 -eq $ExpectedPayloadSha256) {
+            $saved=Get-SelectionIdentity $backup
+            if($saved.sha256 -ne $oldHash){throw 'Backup identity differs during recovery.'}
+            $failed=Join-Path $bin ('kairi-server-failed-solo-fix-'+$stamp+'-lyd.exe')
+            [IO.File]::Replace($backup,$live,$failed,$true)
+            $report.startupPinRecovered=Sync-Order03StartupPin $directory
+            $report.programRecoveredToBefore=$true
+        } elseif($Rollback -and $before.sha256 -eq $ExpectedPayloadSha256 -and $retired -and (Test-Path -LiteralPath $retired) -and (Get-SelectionIdentity $live).sha256 -eq $oldHash) {
+            $saved=Get-SelectionIdentity $retired
+            if($saved.sha256 -ne $ExpectedPayloadSha256){throw 'Retired program identity differs during rollback recovery.'}
+            $recovered=Join-Path $bin ('kairi-server-rollback-recovery-'+$stamp+'-lyd.exe')
+            [IO.File]::Replace($retired,$live,$recovered,$true)
+            $report.startupPinRecovered=Sync-Order03StartupPin $directory
+            $report.programRecoveredToBefore=$true
+        }
+    } catch {$report.recoveryFailureClass=$_.Exception.GetType().Name}
     Write-Host 'Install/rollback stopped. Check that the iOS test service is stopped and all package files are in IOS-Isolated-Test.'
 } finally {
     $report.finishedUtc=[DateTime]::UtcNow.ToString('o')

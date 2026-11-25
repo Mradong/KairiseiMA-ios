@@ -11,13 +11,15 @@ const load=file=>JSON.parse(fs.readFileSync(path.join(root,file)));
 const build=load('evidence/ios-package-search/order03-durable-solo-build-lyd.json');
 const installer=load('evidence/ios-package-search/order03-solo-fix-installer-tests-lyd.json');
 const probe=load('evidence/ios-package-search/order03-restart-probe-tests-lyd.json');
-assert(build.success&&installer.success&&probe.success);
+const startup=load('evidence/ios-package-search/order03-startup-pin-tests-lyd.json');
+assert(build.success&&installer.success&&probe.success&&startup.success);
 assert.equal(sha(path.join(root,build.build.executable)),build.build.sha256);
 assert.equal(installer.scriptSha256,sha(path.join(root,'scripts/Install-Order03SoloFix.ps1')));
 assert.equal(probe.scriptSha256,sha(path.join(root,'scripts/Verify-Order03Restart.ps1')));
+assert.equal(startup.scriptSha256,sha(path.join(root,'scripts/Sync-Order03StartupPin.ps1')));
 const stamp=new Date().toISOString().replace(/[-:.]/g,'').replace('T','-');
 const directory=path.join(root,'dist/order03-solo-restart-fix-'+stamp+'-lyd');fs.mkdirSync(directory);
-for(const name of ['Install-Order03SoloFix.ps1','Verify-Order03Restart.ps1','Collect-Order03RuntimeSelection.ps1'])fs.writeFileSync(path.join(directory,name),fs.readFileSync(path.join(root,'scripts',name),'utf8').replace(/\r?\n/g,'\r\n'));
+for(const name of ['Install-Order03SoloFix.ps1','Verify-Order03Restart.ps1','Collect-Order03RuntimeSelection.ps1','Sync-Order03StartupPin.ps1'])fs.writeFileSync(path.join(directory,name),fs.readFileSync(path.join(root,'scripts',name),'utf8').replace(/\r?\n/g,'\r\n'));
 fs.copyFileSync(path.join(root,build.build.executable),path.join(directory,'kairi-server-durable-solo-lyd.exe'));
 fs.copyFileSync(path.join(root,build.patch.file),path.join(directory,'order03-durable-solo-lyd.patch'));
 fs.copyFileSync(path.join(root,'source-review/kairisei-ma-ch/LICENSE'),path.join(directory,'LICENSE-lyd.txt'));
@@ -26,13 +28,15 @@ const command=(script,args)=>'@echo off\r\npowershell.exe -NoLogo -NoProfile -Ex
 fs.writeFileSync(path.join(directory,'Install-Order03-Solo-Fix.cmd'),command('Install-Order03SoloFix.ps1','-ExpectedPayloadSha256 '+build.build.sha256));
 fs.writeFileSync(path.join(directory,'Rollback-Order03-Solo-Fix.cmd'),command('Install-Order03SoloFix.ps1','-ExpectedPayloadSha256 '+build.build.sha256+' -Rollback'));
 fs.writeFileSync(path.join(directory,'Verify-Order03-Restart.cmd'),command('Verify-Order03Restart.ps1','-ExpectedExecutableSha256 '+build.build.sha256));
+fs.writeFileSync(path.join(directory,'Repair-Order03-Startup-Pin.cmd'),command('Sync-Order03StartupPin.ps1',''));
 const readme=`# 顺序 03：单人战斗重启恢复修复与验证
 
-旧服务程序把单人开场保存在进程内存，重启后丢失，但已扣 BP 仍保存。本包给独立 iOS 测试服务保存已接受的单人开场，保留一小时有效期；放弃和后台主动中断会清除保存的开场。后台中断的保存失败会返回错误并回滚。角色、资源清单和现有启动配置沿用原目录。安装程序仅核验/替换 bin/kairi-server.exe，保存旧程序备份；不读取或复制账号数据库、存档或资源文件。
+旧服务程序把单人开场保存在进程内存，重启后丢失，但已扣 BP 仍保存。本包给独立 iOS 测试服务保存已接受的单人开场，保留一小时有效期；放弃和后台主动中断会清除保存的开场。后台中断的保存失败会返回错误并回滚。安装/回滚会核验并同步 isolated-config.json 中的一项 expected_test_binary_sha256，原启动脚本及资源/原版服务校验保持执行。程序备份与已验证版本的程序替换均在原 bin 中完成，不读取账号数据库或存档。
 
 1. 解压后，把包内所有文件复制到现有 IOS-Isolated-Test，与 Start-Phone-Test.cmd 同层，替换同名验证脚本。
 2. 在原 iOS 服务窗口按 Ctrl+C 停止服务。不要停止其他服务。
 3. 双击 Install-Order03-Solo-Fix.cmd。必须显示 State: installed 或 already_installed；失败时不要继续，返回 Order03-Solo-Fix-Install-…-lyd.json。
+   若已经安装过本修复程序但原启动器显示 File SHA-256 differs，可直接运行 Repair-Order03-Startup-Pin.cmd，同步已验证的程序哈希后再启动，无需重装。
 4. 双击原有 Start-Phone-Test.cmd，保留服务窗口。再双击 Verify-Order03-Restart.cmd，保留验证窗口。
 5. 验证窗口出现 Now restart ONLY 提示后，在服务窗口按 Ctrl+C，再运行 Start-Phone-Test.cmd。验证窗口保持打开。
 6. 返回新生成的 Order03-Restart-…-lyd.zip 和本次 Order03-Solo-Fix-Install-…-lyd.json。若原启动脚本没有启动成功，也返回它生成的预检结果；不要反复创建新测试身份。

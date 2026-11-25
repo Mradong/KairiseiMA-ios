@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-25T06:40:57.134Z",
+  "checkedAt": "2026-11-25T07:24:11.865Z",
   "success": true,
-  "scriptSha256": "2050a00ac0284c205cb27a84ab6f8402d1139e3497bed5f8137f5db9960fda9c",
+  "scriptSha256": "d095315c4b31df7137503991d2dc20a1fd7b4938f36f5c1ae17129f647a20aef",
   "cases": [
     {
       "scenario": "install_and_rollback",
@@ -17,8 +17,13 @@
       "scenario": "wrong_original",
       "passed": true,
       "unrelatedMarkerUnchanged": true
+    },
+    {
+      "scenario": "locked_configuration",
+      "passed": true,
+      "unrelatedMarkerUnchanged": true
     }
   ],
   "buildReceiptSha256": "1b9dcc7e588509dce6f161cd974201964434aac77414c919e0f4192faf6b6b04",
-  "scope": "Local file fixtures, ordinary PowerShell entry and mocked test-listener query. Install, already-installed, backup/rollback, running-service refusal and wrong-binary refusal verified. No actual service/account/production files accessed."
+  "scope": "Local binary/config fixtures: install and rollback synchronize the reviewed startup pin; already-installed is idempotent; running/wrong-binary refusals and locked-config failure restore the prior program and pin. No actual service/account/production files accessed."
 }

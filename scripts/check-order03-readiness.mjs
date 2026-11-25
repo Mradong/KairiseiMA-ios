@@ -35,6 +35,12 @@ const publishedSnapshotPath = p + 'order03-published-client-snapshot-lyd.json';
 const publishedSnapshot = fs.existsSync(path.join(root, publishedSnapshotPath)) ? load(publishedSnapshotPath) : null;
 const latestRestartPath = p + 'order03-restart-result-20261125T031514670Z-validation-lyd.json';
 const latestRestart = fs.existsSync(path.join(root, latestRestartPath)) ? load(latestRestartPath) : null;
+const startupPinTestsPath = p + 'order03-startup-pin-tests-lyd.json';
+const startupPinPackagePath = p + 'order03-startup-pin-package-lyd.json';
+const startupPinTests = fs.existsSync(path.join(root,startupPinTestsPath)) ? load(startupPinTestsPath) : null;
+const startupPinPackage = fs.existsSync(path.join(root,startupPinPackagePath)) ? load(startupPinPackagePath) : null;
+if (startupPinTests && (!startupPinTests.success || startupPinTests.scriptSha256 !== sha('scripts/Sync-Order03StartupPin.ps1') || startupPinTests.startupSource.sha256 !== sha(startupPinTests.startupSource.file))) throw Error('Startup pin tests missing or stale');
+if (startupPinPackage && startupPinPackage.archiveSha256 !== crypto.createHash('sha256').update(fs.readFileSync(startupPinPackage.archive)).digest('hex')) throw Error('Startup pin package changed');
 if (publishedSnapshot) {
   if (!publishedSnapshot.success || publishedSnapshot.scriptSha256 !== sha('scripts/audit-order03-published-client-snapshot.mjs') || publishedSnapshot.snapshot.sha256 !== sha(publishedSnapshot.snapshot.file)) throw Error('Published client/snapshot evidence missing or stale');
   for (const input of publishedSnapshot.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Published client/snapshot input changed');
@@ -140,6 +146,11 @@ if (latestRestart) {
   const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
   contractGate.evidence.push(latestRestartPath, latestRestart.sourceBoundary.evidence);
   contractGate.remaining = 'Actual process restart and identity-checked relogin passed, but Start restoration failed. Reviewed deployed source and local SQLite/HTTP fixtures show that solo openings were memory-only while BP persisted. The failed restore HTTP status was overwritten by cleanup and remains NOT_CAPTURED. A separately compiled durable-solo fix has local tests; actual installation/startup/restart recovery must be verified on the independent service.';
+}
+if (startupPinTests && startupPinPackage) {
+  const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
+  contractGate.evidence.push(startupPinTestsPath,startupPinPackagePath);
+  contractGate.remaining += ' Installed binary was blocked by the retained old expected_test_binary_sha256. A reviewed one-field sync preserves original preflight checks and passes real-checker fixtures; actual sync/startup/restart receipts are pending.';
 }
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),

@@ -1,0 +1,13 @@
+{
+  "source": "User screenshot and verbatim error on 2026-11-25",
+  "message": "Not ready: File SHA-256 differs",
+  "targetRelativeFile": "bin/kairi-server.exe",
+  "serviceStartupVerified": false,
+  "observedBinaryHashCaptured": false,
+  "reviewedChecker": {
+    "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/deployment-scripts/Start-IOS-Test.ps1",
+    "sha256": "9aef0e3c2ed167d476b4fc9b6135a3ae26229a574ba19ab8d82440ebd48ce6a6",
+    "configurationField": "expected_test_binary_sha256"
+  },
+  "scope": "The startup checker reports a failed program hash comparison. The screenshot does not show the installed or expected hash. Received checker source and separate local file/preflight fixtures identify the missed pin synchronization; actual server repair remains pending. Private full server path is omitted."
+}

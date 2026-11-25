@@ -1,7 +1,7 @@
 {
-  "checkedAt": "2026-11-25T06:40:15.833Z",
+  "checkedAt": "2026-11-25T07:22:13.330Z",
   "success": true,
-  "scriptSha256": "ea127979d5e1fd4755275b9d7ed31edfd79cfa7660365ab9f3cf80969a64ff87",
+  "scriptSha256": "05a5045781ef5d23073f3506fc3c43f3b41cdafedb96ec7cc7fdc8b84139736c",
   "cases": [
     {
       "scenario": "install_and_rollback",
@@ -15,6 +15,11 @@
     },
     {
       "scenario": "wrong_original",
+      "passed": true,
+      "unrelatedMarkerUnchanged": true
+    },
+    {
+      "scenario": "locked_configuration",
       "passed": true,
       "unrelatedMarkerUnchanged": true
     }

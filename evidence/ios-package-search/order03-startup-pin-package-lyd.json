@@ -1,0 +1,31 @@
+{
+  "preparedAt": "2026-11-25T07:20:33.273Z",
+  "directory": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-startup-pin-repair-20261125-072032751Z-lyd",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-startup-pin-repair-20261125-072032751Z-lyd.zip",
+  "archiveBytes": 8753,
+  "archiveSha256": "3188ffa1c315e797ff21d0334e3144ff7b74ea274f0beef87e1f10b8ddfac5e8",
+  "files": [
+    {
+      "name": "Collect-Order03RuntimeSelection-lyd.ps1",
+      "bytes": 12880,
+      "sha256": "d796761595c8cd8d0b7f21b565b12b7a65b11d6508cca7dd15e3fe8b7327b6a9"
+    },
+    {
+      "name": "Repair-Order03-Startup-Pin-lyd.cmd",
+      "bytes": 140,
+      "sha256": "0b5b6f8ffa7b09548cd1820db3dd8132a1dbcd5018338ea91105b2669d65943a"
+    },
+    {
+      "name": "Sync-Order03StartupPin-lyd.ps1",
+      "bytes": 5716,
+      "sha256": "9e621e18ba057d382c49f7427203cd02cdf64115b5edc36eb57a34eb67601095"
+    },
+    {
+      "name": "先读说明-lyd.md",
+      "bytes": 1647,
+      "sha256": "b61e01bce7d2613be18509d80436b1596498f5efa478489f553b548b11acf7b2"
+    }
+  ],
+  "serverExecuted": false,
+  "scope": "Targeted startup pin repair for the already installed reviewed binary; original startup/resource/production checks retained. No binary/account/state replacement."
+}

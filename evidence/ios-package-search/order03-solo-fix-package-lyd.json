@@ -1,9 +1,9 @@
 {
-  "preparedAt": "2026-11-25T06:42:08.252Z",
-  "directory": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd",
-  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd.zip",
-  "archiveBytes": 10708354,
-  "archiveSha256": "002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98",
+  "preparedAt": "2026-11-25T07:23:27.087Z",
+  "directory": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-072324897Z-lyd",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-072324897Z-lyd.zip",
+  "archiveBytes": 10711533,
+  "archiveSha256": "8596f60aedd6142b4071f424615be28d34c76ec9d5f6bed2c573a5d778ea92b6",
   "expectedExecutableSha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1",
   "files": [
     {
@@ -18,8 +18,8 @@
     },
     {
       "name": "Install-Order03SoloFix-lyd.ps1",
-      "bytes": 4714,
-      "sha256": "2050a00ac0284c205cb27a84ab6f8402d1139e3497bed5f8137f5db9960fda9c"
+      "bytes": 6441,
+      "sha256": "d095315c4b31df7137503991d2dc20a1fd7b4938f36f5c1ae17129f647a20aef"
     },
     {
       "name": "kairi-server-durable-solo-lyd.exe",
@@ -42,6 +42,11 @@
       "sha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4"
     },
     {
+      "name": "Repair-Order03-Startup-Pin-lyd.cmd",
+      "bytes": 141,
+      "sha256": "554835f225f5c33ac945343561c5827b34eb01c847609ef96cedb46e5c319a60"
+    },
+    {
       "name": "Rollback-Order03-Solo-Fix-lyd.cmd",
       "bytes": 238,
       "sha256": "e78c548b9ecc926bf7aa1cc6a09b53dd69dcbfc644fb38954758959f488429b8"
@@ -50,6 +55,11 @@
       "name": "source-receipt-lyd.json",
       "bytes": 1157,
       "sha256": "1480fbeecaa8a1d52d681c512b1190da39b75cb0170459aff37c31928e6699c7"
+    },
+    {
+      "name": "Sync-Order03StartupPin-lyd.ps1",
+      "bytes": 5716,
+      "sha256": "9e621e18ba057d382c49f7427203cd02cdf64115b5edc36eb57a34eb67601095"
     },
     {
       "name": "Verify-Order03-Restart-lyd.cmd",
@@ -63,8 +73,8 @@
     },
     {
       "name": "先读说明-lyd.md",
-      "bytes": 2340,
-      "sha256": "ca8b392763a77f9c50a678f7c1d7c4059d4bf3608f489974b49e35f2a7c29a34"
+      "bytes": 2601,
+      "sha256": "e0403a6a5ab49c296954710285365bd938c48a50c910c2d2247a5303cf878fe2"
     }
   ],
   "serverExecuted": false,

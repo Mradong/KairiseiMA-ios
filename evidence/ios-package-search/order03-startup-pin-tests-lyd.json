@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-25T07:15:28.879Z",
+  "success": true,
+  "scriptSha256": "10459040f1ed9cdfe4321550a5fb6226e0fae35c967dab4174b717a225294868",
+  "startupSource": {
+    "file": "inputs/server-order03/Order03-Remaining-20261124T074548237Z-2260ff/deployment-scripts/Start-IOS-Test.ps1",
+    "sha256": "9aef0e3c2ed167d476b4fc9b6135a3ae26229a574ba19ab8d82440ebd48ce6a6"
+  },
+  "cases": [
+    {
+      "scenario": "new_program_pin_and_original_preflight",
+      "passed": true
+    },
+    {
+      "scenario": "wrong_program",
+      "passed": true
+    },
+    {
+      "scenario": "changed_checker",
+      "passed": true
+    },
+    {
+      "scenario": "unreviewed_pin",
+      "passed": true
+    },
+    {
+      "scenario": "restore_original_pin",
+      "passed": true
+    }
+  ],
+  "scope": "Local config/file fixtures and received real Start-IOS-Test.ps1 -CheckOnly. Original startup rejects the old pin with the new binary, then passes that pin after sync and still refuses missing iOS resources. No actual service/database startup. BOM, CRLF, other pins, refusals and original-program rollback pin are checked."
+}

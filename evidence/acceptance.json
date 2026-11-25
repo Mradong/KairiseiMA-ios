@@ -866,7 +866,11 @@
       "evidence/ios-package-search/order03-solo-fix-installer-tests-lyd.json",
       "evidence/ios-package-search/order03-solo-fix-installer-packaged-tests-lyd.json",
       "evidence/ios-package-search/order03-solo-fix-package-lyd.json",
-      "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json"
+      "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json",
+      "evidence/ios-package-search/order03-startup-pin-tests-lyd.json",
+      "evidence/ios-package-search/order03-startup-pin-packaged-tests-lyd.json",
+      "evidence/ios-package-search/order03-startup-pin-package-lyd.json",
+      "evidence/ios-package-search/order03-startup-blocked-screenshot-lyd.json"
     ],
     "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
@@ -875,7 +879,7 @@
     "otherSelectedCardConditions": "Windows x64 synthetic standalone battle: after actually selecting two member-1 cards, 48 ATTR/SKILL_KIND/RARITY queries across matching/nonmatching selectors, thresholds 0..3 and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "enemyFlagConditions": "Windows x64 synthetic registered enemy battle: 40 three-turn OR/AND flag scenarios, including two distinct flags set together, match original full traces and journals. Flag removal after being set, real skills, deployed service, Unity, ARM64 and device remain unverified.",
     "arthurTypeCondition": "Windows x64 synthetic standalone battle: 80 original/rebuilt query comparisons across five actor types, two slots and valid/invalid parameters match. This is not real card execution, Unity, ARM64, device or version compatibility proof.",
-    "remaining": "Recovered-project 2.0.4 binds published server CSV identities and exact public Windows metadata to the isolated 29-table/23-family/822-value CombatTables snapshot. Required tables and specified positive-reference completeness are verified with stated scopes; official original-client extraction/transform is explicitly UNKNOWN. Actual server restart and relogin passed but old source loses the opening while preserving BP. Durable-solo source/binary/package passed local SQLite/HTTP and install/rollback checks; actual server install/startup/restart recovery remains required.",
+    "remaining": "Current required service evidence: actual reviewed-program startup, identity-checked process-restart restoration of the same seed/time/opening without another 15-BP debit, safe abandon and complete redacted receipts. Old startup pin blocked the installed program; targeted patch and integrated install/rollback pin synchronization pass local real-checker/file tests, server execution pending. Published reconstructed 2.0.4 snapshot/cohort and specified references are verified with stated scope; official original-client extraction/transform is explicitly UNKNOWN.",
     "previousBlockedState": {
       "status": "blocked",
       "audit": "evidence/ios-package-search/order03-blocked-audit.json",
@@ -1056,8 +1060,8 @@
       "patchSha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4",
       "executableSha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1",
       "executableBytes": 29750272,
-      "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd.zip",
-      "archiveSha256": "002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98",
+      "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-072324897Z-lyd.zip",
+      "archiveSha256": "8596f60aedd6142b4071f424615be28d34c76ec9d5f6bed2c573a5d778ea92b6",
       "localSQLiteHttpTestsPassed": true,
       "localSourceAndPackagedInstallerTestsPassed": true,
       "packagedRestartFixturePassed": true,
@@ -1085,7 +1089,24 @@
         "installedHashVerified": false,
         "serverStartupVerified": false,
         "recoveryVerified": false
-      }
+      },
+      "packageHistory": [
+        {
+          "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd.zip",
+          "sha256": "002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98",
+          "scope": "Earlier package lacked startup pin synchronization; binary unchanged."
+        }
+      ],
+      "startupPinRepair": {
+        "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-startup-pin-repair-20261125-072032751Z-lyd.zip",
+        "archiveSha256": "3188ffa1c315e797ff21d0334e3144ff7b74ea274f0beef87e1f10b8ddfac5e8",
+        "localOriginalCheckerTestsPassed": true,
+        "packagedTestsPassed": true,
+        "serverExecuted": false,
+        "changedField": "expected_test_binary_sha256",
+        "otherConfigBytesPreserved": true
+      },
+      "serverStartupVerified": false
     }
   },
   "serverVerificationNaming": {

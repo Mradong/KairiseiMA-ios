@@ -1,5 +1,17 @@
 # 当前状态
 
+## 2026-11-25 原启动校验未同步已修复，03 剩现场最终验收
+
+用户安装后反馈 `Not ready: File SHA-256 differs: ...\bin\kairi-server.exe`。已在之前收到并校验的 `deployment-scripts/Start-IOS-Test.ps1`（SHA-256 `9aef0e3c...`）定位到 `isolated-config.json.expected_test_binary_sha256`；前包替换了程序但漏了同步这项。服务尚未因此启动，安装截图不能证明启动/恢复通过。
+
+新增同步脚本先核对原/修复程序的固定哈希、原启动脚本哈希、测试端口和独立目录，再只改这一项期望哈希。其他配置原文、UTF-8 BOM/换行及原启动脚本保持原样，原版服务、资源、iOS平台和内存校验仍执行。本地对收到的真实启动脚本运行 CheckOnly：旧 pin 拒绝新程序；同步后程序校验通过，缺失及不匹配 iOS 资源仍被拒绝。错误程序/变化的启动脚本/未知 pin 均拒绝修改，原程序回滚 pin 及重复执行也验证。新增/实际打包脚本均通过，证据 `order03-startup-pin-tests-lyd.json` / `order03-startup-pin-packaged-tests-lyd.json`。
+
+已安装的服务器只需补包 `dist/order03-startup-pin-repair-20261125-072032751Z-lyd.zip`（8,753 字节，SHA-256 `3188ffa1c315e797ff21d0334e3144ff7b74ea274f0beef87e1f10b8ddfac5e8`），全部文件复制到原 IOS-Isolated-Test，运行 Repair-Order03-Startup-Pin-lyd.cmd，确认 pin_synchronized / already_synchronized；再原 Start-Phone-Test.cmd 和已有 Verify-Order03-Restart-lyd.cmd。补包不含程序，不重装，不访问账号/存档或游戏接口。返回同步 JSON、原安装 JSON 和新重启 ZIP；未返回前仍不算现场通过。
+
+完整版安装/回滚也接入同一同步；配置写入失败会恢复操作前的程序和 pin，本地含锁定配置的恢复检查通过。给后续新安装的完整包是 `dist/order03-solo-restart-fix-20261125-072324897Z-lyd.zip`，程序仍为已构建的 `1c148855...`，没有重编译服务器或生成新 IPA。当前用户不必再次下载大包或重新安装。历史包保留但不再作为新安装入口。
+
+03 active / 未完成。主表 29 张（20 必需+9扩展）、恢复项目 2.0.4 公开版本/哈希/23族822枚举、指定 446,725 正 ID 引用、源码到程序及此前真实胜负/续关/幂等证据已在各自范围核验。当前剩：实际新程序启动、重启同身份/同开场/同 seed/start_time、不重复扣 15 BP、放弃成功，并核验完整回执。官方原始客户端提取输入/工具/转换仍 UNKNOWN，明确保留缺失，不能宣称来自已验证的官方 6.0.2；手机当前回合/血量、完整内核、ARM64与设备玩法属于后续计划。源码/证据继续仅保留本地，不推送。
+
 ## 2026-11-25 现场开场恢复失败已定位，独立服务修复包已准备
 
 最新用户指令：推不上去就停止推送，源码/证据保留本地。已停止后续 GitHub 重试，旧上传授权及命令审批不再作为自动推送依据。本地代码检查点及状态记录保留。用户截图显示安装脚本报告 `State: installed`，安装回执文件名 `Order03-Solo-Fix-Install-20261125T070312725Z-1a1034-lyd.json`；截图未显示程序哈希和完整回执，不能代替新程序启动及重启恢复验收。下一项启动原 Start-Phone-Test.cmd，运行 Verify-Order03-Restart-lyd.cmd，并核验用户返回的安装 JSON 和新重启 ZIP。03 继续 active。
