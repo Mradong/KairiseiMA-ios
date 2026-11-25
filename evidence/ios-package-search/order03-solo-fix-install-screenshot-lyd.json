@@ -1,0 +1,10 @@
+{
+  "source": "User-supplied installer console screenshot on 2026-11-25",
+  "installerReportedState": "installed",
+  "visibleReceiptFilename": "Order03-Solo-Fix-Install-20261125T070312725Z-1a1034-lyd.json",
+  "receiptContentsReceived": false,
+  "installedExecutableHashVisible": false,
+  "serviceStartupVerified": false,
+  "processRestartRecoveryVerified": false,
+  "scope": "Screenshot shows installer success text and next-step instruction. It does not independently establish the binary hash, startup or battle recovery. Private full server path is omitted."
+}

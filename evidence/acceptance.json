@@ -865,7 +865,8 @@
       "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
       "evidence/ios-package-search/order03-solo-fix-installer-tests-lyd.json",
       "evidence/ios-package-search/order03-solo-fix-installer-packaged-tests-lyd.json",
-      "evidence/ios-package-search/order03-solo-fix-package-lyd.json"
+      "evidence/ios-package-search/order03-solo-fix-package-lyd.json",
+      "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json"
     ],
     "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
@@ -1072,10 +1073,18 @@
       "sourceCheckpoint": {
         "commit": "ebe7fb20f08fe7af3c7106fdd54c8f829034f397",
         "localCommitSaved": true,
-        "userExplicitPushApproved": true,
+        "userExplicitPushApproved": false,
         "executionPermissionApproved": true,
         "pushed": false,
-        "remaining": "Actual GitHub connections reset and timed out after 300 seconds; both push attempts terminal. Retry when network is available without requesting repository authorization again."
+        "remaining": "Latest user instruction is local-only. Both previous network attempts are terminal; do not retry without a new explicit upload request."
+      },
+      "installerScreenshot": {
+        "evidence": "evidence/ios-package-search/order03-solo-fix-install-screenshot-lyd.json",
+        "reportedState": "installed",
+        "receiptContentsReceived": false,
+        "installedHashVerified": false,
+        "serverStartupVerified": false,
+        "recoveryVerified": false
       }
     }
   },
@@ -1083,5 +1092,12 @@
     "requiredSuffix": "-lyd",
     "appliesTo": "archive, extracted package directory, packaged scripts/readme/manifests and exported verification files",
     "authorizedOn": "2026-11-25"
+  },
+  "sourceDeliveryPolicy": {
+    "mode": "local_only",
+    "latestUserInstructionOn": "2026-11-25",
+    "instruction": "推不上去不要推了，保留在本地就行",
+    "automaticPushDisabled": true,
+    "requiresNewExplicitUploadRequest": true
   }
 }
