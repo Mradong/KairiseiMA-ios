@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-11-25T06:07:31.408Z",
+  "analysisCompleted": true,
+  "scriptSha256": "9e0f681531655b3b2f016012bb7217049603b04d00fee6f8bf26115b20909b20",
+  "inputFiles": [
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T031514670Z-lyd.zip",
+      "sha256": "a76e368f7c1ffd57574e3b3740ce429e017ee060b97dd3c504b0bff5ace29605",
+      "bytes": 1067
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T031514670Z-lyd/restart-lyd.json",
+      "sha256": "816bc603cfa23d25889b799900dcb1b3dabd3b9b757fdafb2ea68677e5bab7fd",
+      "bytes": 3083
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T031514670Z-lyd/SHA256SUMS-lyd.txt",
+      "sha256": "0b41c0c59ec7f68ca9d2af89fe39187bfd9de6cab944679f94a7570edd8a9237",
+      "bytes": 83
+    }
+  ],
+  "checksumVerified": true,
+  "actualProcessRestartObserved": true,
+  "processStartBefore": "2026-11-25T03:14:56.1529356Z",
+  "processStartAfter": "2026-11-25T03:16:30.3454154Z",
+  "executableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+  "startupAndPostRestartReadinessPassed": true,
+  "reloginReachedIdentityCheckedRestoreStage": true,
+  "recoveryPassed": false,
+  "failureStage": "restore_start",
+  "failureClass": "MethodInvocationException",
+  "failureAbandonAccepted": true,
+  "diagnosticLimit": "Failure cleanup replaced lastRequestRoute/lastBusinessCode and cleared HTTP/network fields. The actual failed restore request HTTP status is NOT_CAPTURED; successful End cleanup is not the failed request diagnostic.",
+  "sourceBoundary": {
+    "evidence": "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json",
+    "sha256": "1678cbb35b9a6b9798df638e7315548c3edcd1f72536c0db6265c9eb286f6e49",
+    "sameProcessOpeningRecovered": true,
+    "freshRepositoryOpeningAbsent": true,
+    "paidBalancePersists": true,
+    "localFreshEntryHTTP": 400,
+    "observedSourceProcessRestartRecovery": "NOT_SUPPORTED by serving-lifetime solo cache"
+  },
+  "sideEffects": {
+    "newDedicatedAccountAndCharacter": 1,
+    "acceptedEntries": 1,
+    "configuredEntryBP": 15,
+    "clearRewardRequested": false,
+    "abandonAccepted": true,
+    "finalBP": "NOT_CAPTURED; no refund or second-charge claim"
+  },
+  "conclusion": "The received run proves a real process restart and failure to restore Start after successful identity-checked relogin. Reviewed source and separate SQLite/HTTP fixtures explain the absent durable opening. The precise现场 HTTP error remains uncaptured.",
+  "scope": "Actual received server observation and explicitly separate local source/SQLite fixture evidence. No existing account/database/credential access."
+}

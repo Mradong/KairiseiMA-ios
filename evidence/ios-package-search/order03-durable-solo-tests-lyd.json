@@ -1,0 +1,61 @@
+{
+  "checkedAt": "2026-11-25T06:38:42.393Z",
+  "success": true,
+  "scriptSha256": "8988e5ba2cc18c99119569cd80527e2353dc25b073060b4cc7bfda4a4a31eb86",
+  "testSha256": "7a2f72fb112116fa81529d6e1960e21dd68187f92aad62219530879dcc8b3851",
+  "sourceFiles": [
+    {
+      "file": "test-output/order03-durable-solo-source-lyd/server/internal/accountstore/accounts.go",
+      "sha256": "3372189c0a12fdf2d9442ade77a88c3192b6bdf19b07d80b3e429315a6ce8b76"
+    },
+    {
+      "file": "test-output/order03-durable-solo-source-lyd/server/internal/accountstore/account_snapshot.go",
+      "sha256": "b7dc487362ee1dd0b23cf4f6c779ed499e888801708d186561f5f19eb91ec31e"
+    },
+    {
+      "file": "test-output/order03-durable-solo-source-lyd/server/internal/admin/admin_maintenance.go",
+      "sha256": "87c2bf384faab98766f46ece1364751b2ff8c0a588540a4be8b3fdea1f776b0c"
+    }
+  ],
+  "passed": [
+    "TestSoloEntryFreezesContinueRuleWithDebit",
+    "TestOrder03DurableSoloOpening/primary",
+    "TestOrder03DurableSoloOpening/named",
+    "TestOrder03DurableSoloOpening",
+    "TestMaintenanceConfigurationDeletionRequiresIdleAdmission",
+    "TestModernSoloStartRetainsIdentityAcrossReloadAndStartsAfterAbandon",
+    "TestMaintenanceAdmissionPersistenceAndCleanup",
+    "TestLostSoloBattleReportReturnsClientResult",
+    "TestSoloRetreatBeforeBattleEndAllowsRetainedReport",
+    "TestMaintenanceInterruptionDrainsHTTPAndDiscardsSoloSessions",
+    "TestSoloVictoryDoesNotRequireEnemyBodyDeath",
+    "TestBattleProgressSurvivesAccountAndServerReload/9",
+    "TestBattleProgressSurvivesAccountAndServerReload/10",
+    "TestBattleProgressSurvivesAccountAndServerReload/11",
+    "TestBattleProgressSurvivesAccountAndServerReload/12",
+    "TestBattleProgressSurvivesAccountAndServerReload",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleSoloEnd/",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleSoloEnd/{}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleSoloEnd/[",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleSoloEnd/{\"bossid\":\"broken\"}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleSoloEnd/{\"progress\":1,\"is_clear\":1,\"input_cmd\":[\"broken\"],\"enemy_dead_bit\":[1],\"bossid\":30010102}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleResult/",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleResult/{}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleResult/[",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleResult/{\"roomid\":\"broken\"}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleResult/{\"roomid\":-1}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/TeamBattleResult/{\"roomid\":123}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/{}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/[",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/{\"btluid\":\"broken\"}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/{\"btluid\":123,\"is_win\":1,\"is_retire\":0,\"input_cmd\":[\"broken\"]}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/{\"btluid\":123,\"is_win\":0,\"is_retire\":1,\"input_cmd\":[\"\"]}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback/PvpEnd/{\"btluid\":1,\"is_win\":0,\"is_retire\":1,\"input_cmd\":[\"\"]}",
+    "TestInvalidCachedBattleReportReachesDiscardCallback"
+  ],
+  "failures": [],
+  "logFile": "test-output/order03-durable-solo-tests-lyd/test-lyd.jsonl",
+  "logSha256": "cc11f6102c9f8604ac417e8139053612f0657c96a5e9c90c0c8f4ad6a8be8df6",
+  "scope": "Local synthetic SQLite/HTTP primary/named account tests: identical durable opening and no extra BP, atomic write/interruption failure, abandon, expiry, legacy metadata and durable-only interruption. Seven battle and three Admin maintenance checks are included. No server deployment/device claim."
+}

@@ -1,0 +1,44 @@
+{
+  "checkedAt": "2026-11-25T03:26:48.202Z",
+  "success": true,
+  "scriptSha256": "545aa19eec6de07a969767cc02a095070a462d6784f0878022a1a01b36142e12",
+  "testSha256": "03c2a34c2176923bd5b1b62650b0361b810d17d4fca06a14a0b25b4cd6371b2e",
+  "reviewedSourceReceipt": {
+    "file": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+    "sha256": "33eec013ea9fcb8bffc4e799faca1bed710bb3faf7620c72bff73d542fc5a747",
+    "observedExecutableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918"
+  },
+  "sourceFiles": [
+    {
+      "file": "source-review/kairisei-ma-ch/server/internal/accountstore/accounts.go",
+      "sha256": "7eb676e2ed90ee6b688c7c5c45c6015d98551757cff1ee36aeff607e288ea6a5"
+    },
+    {
+      "file": "source-review/kairisei-ma-ch/server/internal/accountstore/account_snapshot.go",
+      "sha256": "59c2964031158db2ef529148170067eed316cc2f4a1e384914dbe8ef989ce1b3"
+    },
+    {
+      "file": "source-review/kairisei-ma-ch/server/internal/game/solo_battle_start.go",
+      "sha256": "a8278752f9d67622a79ff14565be219051c5f24acb6f305190446162098c62cb"
+    },
+    {
+      "file": "source-review/kairisei-ma-ch/server/internal/httpapi/solo_battle_start.go",
+      "sha256": "b383d24d78a022a9265b870a3f69c811a0f997f3a4330d263654c2a69fb99fa5"
+    },
+    {
+      "file": "source-review/kairisei-ma-ch/server/internal/httpapi/solo_battle_start_test.go",
+      "sha256": "3c10dd85d7a37239a84fb5ee79ec1a7d2422a382e3cede21882efeadc02b0130"
+    }
+  ],
+  "logFile": "test-output/order03-solo-boundary-lyd/test-lyd.jsonl",
+  "logSha256": "ff78e9064ec750b7eac1a706e1831c88818792728f799f44072e24574be1bfd9",
+  "assertions": {
+    "sameRepositoryRecoveredOpening": true,
+    "sameRepositoryRetryWithoutExtraDebit": true,
+    "freshRepositoryOpeningAbsent": true,
+    "paidBPBalanceSurvives": true,
+    "freshRepositoryStartHTTP": 400,
+    "additionalBPDebit": false
+  },
+  "scope": "Local synthetic SQLite account and real reviewed Go HTTP Start handler. Fresh repository simulates loss of the process memory cache. No live account or actual process restart; actual server observation is a separate input."
+}

@@ -1,0 +1,228 @@
+diff --git a/server/internal/accountstore/accounts.go b/server/internal/accountstore/accounts.go
+index c55bfd8..7617d81 100644
+--- a/server/internal/accountstore/accounts.go
++++ b/server/internal/accountstore/accounts.go
+@@ -6,6 +6,7 @@ import (
+ 	"crypto/sha256"
+ 	"database/sql"
+ 	"encoding/hex"
++	"encoding/json"
+ 	"errors"
+ 	"fmt"
+ 	"strings"
+@@ -63,9 +64,9 @@ func (accounts *Accounts) InvalidateSessions() error {
+ 	return nil
+ }
+ 
+-// A solo battle needs only a small runtime context, not a retained account
+-// handler or a durable participation lock. Abandoned sessions expire after a
+-// hour without a successful account mutation; process exit drops them all.
++// Solo openings are retained in account metadata as well as this serving
++// cache. Both retain one hour after the last successful account mutation.
++// Multiplayer participation remains in the separate room lifecycle.
+ const accountBattleLifetime = time.Hour
+ 
+ type accountBattleSession struct {
+@@ -111,6 +112,109 @@ func (accounts *Accounts) DiscardUnsettledBattles() int {
+ 	return count
+ }
+ 
++// Call after account writers are drained. Commit the durable interruption
++// before evicting serving caches, so a failed write cannot resurrect or
++// silently discard a paid run. Inventory, balances and settled receipts keep
++// their existing owners.
++func (accounts *Accounts) DiscardUnsettledBattlesDurably() (int, error) {
++	accounts.battleMu.Lock()
++	defer accounts.battleMu.Unlock()
++	database, err := accounts.storage.Open()
++	if err != nil {
++		return 0, err
++	}
++	transaction, err := database.BeginTx(context.Background(), nil)
++	if err != nil {
++		return 0, err
++	}
++	defer transaction.Rollback()
++	type pending struct {
++		userID  int
++		table   string
++		content []byte
++	}
++	rows, err := transaction.Query(`SELECT ?, 'cn_save_snapshot', payload_json FROM cn_save_snapshot
++		WHERE singleton=1 AND json_type(CAST(payload_json AS TEXT),'$.active_solo_battle') IS NOT NULL
++		UNION ALL SELECT user_id, 'cn_account_snapshot', payload_json FROM cn_account_snapshot
++		WHERE json_type(CAST(payload_json AS TEXT),'$.active_solo_battle') IS NOT NULL`, PrimaryUserID)
++	if err != nil {
++		return 0, err
++	}
++	var saved []pending
++	for rows.Next() {
++		var row pending
++		if err := rows.Scan(&row.userID, &row.table, &row.content); err != nil {
++			rows.Close()
++			return 0, err
++		}
++		saved = append(saved, row)
++	}
++	err = rows.Err()
++	rows.Close()
++	if err != nil {
++		return 0, err
++	}
++	removed := make(map[int]bool, len(accounts.battles)+len(saved))
++	for userID := range accounts.battles {
++		removed[userID] = true
++	}
++	updated := time.Now().UTC().Format(time.RFC3339Nano)
++	for _, row := range saved {
++		var fields map[string]json.RawMessage
++		if err := json.Unmarshal(row.content, &fields); err != nil {
++			return 0, err
++		}
++		delete(fields, "active_solo_battle")
++		delete(fields, "active_solo_battle_expires_unix")
++		content, err := json.Marshal(fields)
++		if err != nil {
++			return 0, err
++		}
++		digest := sha256.Sum256(content)
++		query, key := `UPDATE cn_account_snapshot SET payload_json=?,payload_sha256=?,revision=revision+1,updated_utc=? WHERE user_id=?`, row.userID
++		if row.table == "cn_save_snapshot" {
++			query, key = `UPDATE cn_save_snapshot SET payload_json=?,payload_sha256=?,revision=revision+1,updated_utc=? WHERE singleton=?`, 1
++		}
++		result, err := transaction.Exec(query, content, hex.EncodeToString(digest[:]), updated, key)
++		if err != nil {
++			return 0, err
++		}
++		if affected, err := result.RowsAffected(); err != nil || affected != 1 {
++			return 0, errors.New("durable solo interruption did not update one account snapshot")
++		}
++		state, err := accounts.storage.decodeAccount(transaction, content)
++		if err != nil {
++			return 0, err
++		}
++		var revision int
++		revisionQuery := `SELECT revision FROM cn_account_snapshot WHERE user_id=?`
++		if row.table == "cn_save_snapshot" {
++			revisionQuery = `SELECT revision FROM cn_save_snapshot WHERE singleton=?`
++		}
++		if err := transaction.QueryRow(revisionQuery, key).Scan(&revision); err != nil {
++			return 0, err
++		}
++		var ownerExists int
++		if err := transaction.QueryRow(`SELECT COUNT(*) FROM cn_local_account WHERE user_id=?`, row.userID).Scan(&ownerExists); err != nil {
++			return 0, err
++		}
++		if ownerExists == 1 {
++			if err := upsertAccountProjection(transaction, row.userID, revision, updated, state); err != nil {
++				return 0, err
++			}
++		}
++		removed[row.userID] = true
++	}
++	if err := transaction.Commit(); err != nil {
++		return 0, err
++	}
++	for _, session := range accounts.battles {
++		session.timer.Stop()
++	}
++	clear(accounts.battles)
++	return len(removed), nil
++}
++
+ func NewAccounts(storage *Database) (*Accounts, error) {
+ 	if storage == nil {
+ 		return nil, errors.New("CN save database is required")
+diff --git a/server/internal/accountstore/account_snapshot.go b/server/internal/accountstore/account_snapshot.go
+index 258c7d1..9da65c6 100644
+--- a/server/internal/accountstore/account_snapshot.go
++++ b/server/internal/accountstore/account_snapshot.go
+@@ -6,6 +6,7 @@ import (
+ 	"encoding/json"
+ 	"errors"
+ 	"fmt"
++	"time"
+ 
+ 	"kairisei.local/server/internal/gamestate"
+ 	"kairisei.local/server/internal/masterdata"
+@@ -56,6 +57,8 @@ type accountSnapshot struct {
+ 	TeamBattleStartReceipts      []gamestate.TeamBattleStartReceipt        `json:"team_battle_start_receipts,omitempty"`
+ 	TeamBattleContinueReceipts   []gamestate.TeamBattleContinueReceipt     `json:"team_battle_continue_receipts,omitempty"`
+ 	TeamBattleSoloResultReceipts []gamestate.TeamBattleSoloResultReceipt   `json:"team_battle_solo_result_receipts,omitempty"`
++	ActiveSoloBattle             *gamestate.TeamBattleActiveState          `json:"active_solo_battle,omitempty"`
++	ActiveSoloBattleExpiresUnix  int64                                     `json:"active_solo_battle_expires_unix,omitempty"`
+ 	ExploreResultReceipt         *gamestate.ExploreResultReceipt           `json:"explore_result_receipt,omitempty"`
+ 	PVPResultReceipts            []gamestate.PVPResultReceipt              `json:"pvp_result_receipts,omitempty"`
+ 	TowerQuestProgress           []gamestate.TowerQuestProgress            `json:"tower_quest_progress,omitempty"`
+@@ -79,6 +82,12 @@ func accountSnapshotFromState(state gamestate.State) (accountSnapshot, error) {
+ 	if err != nil {
+ 		return accountSnapshot{}, err
+ 	}
++	var solo *gamestate.TeamBattleActiveState
++	var soloExpires int64
++	if active := state.ActiveTeamBattle; active != nil && active.EntryRole == gamestate.BattleEntrySolo && active.StartTime > 0 && active.SoloRequestKey != "" {
++		solo = cloneActiveTeamBattleState(active)
++		soloExpires = time.Now().Add(accountBattleLifetime).Unix()
++	}
+ 	return accountSnapshot{
+ 		InventorySequence:            state.InventorySequence,
+ 		Navigation:                   state.Navigation,
+@@ -116,6 +125,8 @@ func accountSnapshotFromState(state gamestate.State) (accountSnapshot, error) {
+ 		TeamBattleStartReceipts:      state.TeamBattleStartReceipts,
+ 		TeamBattleContinueReceipts:   state.TeamBattleContinueReceipts,
+ 		TeamBattleSoloResultReceipts: state.TeamBattleSoloResultReceipts,
++		ActiveSoloBattle:             solo,
++		ActiveSoloBattleExpiresUnix:  soloExpires,
+ 		ExploreResultReceipt:         state.ExploreResultReceipt,
+ 		PVPResultReceipts:            state.PVPResultReceipts,
+ 		TowerQuestProgress:           state.TowerQuestProgress,
+@@ -170,6 +181,9 @@ func (snapshot accountSnapshot) applyAccountData(state *gamestate.State) {
+ 	state.ExploreResultReceipt = snapshot.ExploreResultReceipt
+ 	state.PVPResultReceipts = snapshot.PVPResultReceipts
+ 	state.ActiveTeamBattle = nil
++	if snapshot.ActiveSoloBattle != nil && snapshot.ActiveSoloBattleExpiresUnix > time.Now().Unix() {
++		state.ActiveTeamBattle = cloneActiveTeamBattleState(snapshot.ActiveSoloBattle)
++	}
+ 	state.Navigation = snapshot.Navigation
+ 	state.BurstProgress = snapshot.BurstProgress
+ 	state.TowerQuestProgress = snapshot.TowerQuestProgress
+@@ -239,6 +253,19 @@ func DecodeAccountSnapshot(content []byte) (accountSnapshot, error) {
+ 	if snapshot.SchemaVersion != saveSnapshotSchemaVersion || snapshot.User.UserID < PrimaryUserID {
+ 		return snapshot, errors.New("unsupported CN account data schema or identity; use a fresh database")
+ 	}
++	if snapshot.ActiveSoloBattle == nil {
++		if snapshot.ActiveSoloBattleExpiresUnix != 0 {
++			return snapshot, errors.New("CN durable solo expiry has no battle")
++		}
++	} else {
++		active := snapshot.ActiveSoloBattle
++		if active.EntryRole != gamestate.BattleEntrySolo || active.StartTime <= 0 || active.SoloRequestKey == "" || snapshot.ActiveSoloBattleExpiresUnix <= 0 {
++			return snapshot, errors.New("CN durable solo identity or expiry is invalid")
++		}
++		if err := validateActiveTeamBattle(active); err != nil {
++			return snapshot, err
++		}
++	}
+ 	return snapshot, nil
+ }
+ 
+diff --git a/server/internal/admin/admin_maintenance.go b/server/internal/admin/admin_maintenance.go
+index 2335d6e..12edcb0 100644
+--- a/server/internal/admin/admin_maintenance.go
++++ b/server/internal/admin/admin_maintenance.go
+@@ -57,11 +57,11 @@ func (a *API) interruptBattles(w http.ResponseWriter, r *http.Request) {
+ 		if err != nil {
+ 			return err
+ 		}
+-		// Drop both serving-lifetime solo sessions and cached account handlers
+-		// after accepted settlements finish. Durable receipts remain available.
++		// Drop both durable solo openings and serving caches after accepted
++		// settlements finish. Durable result receipts remain available.
+ 		return runtime.WithAccountMaintenance(ctx, func() error {
+-			solo = a.accounts.DiscardUnsettledBattles()
+-			return nil
++			solo, err = a.accounts.DiscardUnsettledBattlesDurably()
++			return err
+ 		})
+ 	})
+ 	if errors.Is(err, operationservice.ErrMaintenanceConflict) {

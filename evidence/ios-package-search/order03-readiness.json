@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-25T03:10:39.748Z",
+  "checkedAt": "2026-11-25T06:28:28.266Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -31,16 +31,17 @@
     },
     {
       "id": "data_cohort_and_behavior_compatibility",
-      "state": "partial",
+      "state": "verified",
       "evidence": [
         "evidence/ios-package-search/order03-ios602-table-compatibility.json",
         "evidence/ios-package-search/order03-modern-metadata-enums.json",
         "evidence/ios-package-search/order03-modern-defaults.json",
         "evidence/ios-package-search/order03-value-parser-differential.json",
         "evidence/ios-package-search/order03-short-ai-tail.json",
-        "evidence/ios-package-search/order03-publication-provenance-lyd.json"
+        "evidence/ios-package-search/order03-publication-provenance-lyd.json",
+        "evidence/ios-package-search/order03-published-client-snapshot-lyd.json"
       ],
-      "remaining": "Recovered-project 2.0.4 publication, pinned base commit, selected resource manifest and all 29 table identities now match. Original official-client extraction/version/transform and complete original gameplay semantics remain UNKNOWN; selected modern metadata and static compatibility retain their stated scope."
+      "remaining": "Scoped to recovered-project 2.0.4: published server table identities and exact public Windows metadata now bind all 29 snapshot tables and 23/822 enum values to the same release. All 20 required tables are present. Official original-client extraction/transform and complete AI/skill/device behavior remain explicit limitations; they are not asserted by this version-cohort evidence."
     },
     {
       "id": "received_disk_and_listener_observation",
@@ -74,7 +75,7 @@
     },
     {
       "id": "actual_deployed_version_and_quest_scope",
-      "state": "partial",
+      "state": "verified",
       "evidence": [
         "evidence/ios-package-search/order03-server-delivery-validation.json",
         "evidence/ios-package-search/order03-quest-variant-gap.json",
@@ -82,7 +83,7 @@
         "evidence/ios-package-search/order03-live-battle-contract.json",
         "evidence/ios-package-search/order03-runtime-selection-validation.json"
       ],
-      "remaining": "Received process arguments select the reproduced executable resource manifest, matching 29 tables/static data and iOS profile; source loads the catalog before listening. Mutable publication and exact historical membership remain unverified."
+      "remaining": "Verified within the recorded observations: reproduced executable, explicit runtime-selected public manifest/table/static/iOS-profile identities, loader startup order and actual admission for 30010102. Mutable publication, exact historical list membership and complete device gameplay are not inferred."
     },
     {
       "id": "safe_battle_contract_and_redacted_interface_evidence",
@@ -92,9 +93,11 @@
         "evidence/ios-package-search/order03-isolated-quest-contract.json",
         "evidence/ios-package-search/order03-live-battle-contract.json",
         "evidence/ios-package-search/order03-real-battle-validation.json",
-        "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json"
+        "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
+        "evidence/ios-package-search/order03-restart-result-20261125T031514670Z-validation-lyd.json",
+        "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json"
       ],
-      "remaining": "Dedicated identities and actual service party/table inputs produced accepted engine victory, paid Continue with one 50-crystal debit and matching retry, engine revival, real defeat and delayed frozen-result retry. Remaining for the current targeted verification: actual service process-restart recovery. Wider gameplay/device work belongs to later plan rows. Latest received attempt timed out at initial login before character creation or battle entry. Submitted preflight records a start request after the failure, not readiness or a proven timeout cause."
+      "remaining": "Actual process restart and identity-checked relogin passed, but Start restoration failed. Reviewed deployed source and local SQLite/HTTP fixtures show that solo openings were memory-only while BP persisted. The failed restore HTTP status was overwritten by cleanup and remains NOT_CAPTURED. A separately compiled durable-solo fix has local tests; actual installation/startup/restart recovery must be verified on the independent service."
     },
     {
       "id": "published_project_table_cohort",
@@ -103,6 +106,14 @@
         "evidence/ios-package-search/order03-publication-provenance-lyd.json"
       ],
       "remaining": "All 29 received table byte identities match the recovered-project 2.0.4 published release manifest. The published resource manifest exactly matches the selected runtime manifest. Only ZIP directory/manifests were downloaded; the full archive digest was not checked. Official original-client extraction input/tool/transform remains UNKNOWN."
+    },
+    {
+      "id": "real_snapshot_byte_integrity",
+      "state": "verified",
+      "evidence": [
+        "evidence/ios-package-search/order03-published-client-snapshot-lyd.json"
+      ],
+      "remaining": "Existing isolated CombatTables.json is 57,738,263 bytes, with exact published CSV byte hashes and independently decoded 822 enum values. Managed transport source matches the validated version. Snapshot remains isolated pending service recovery/platform work."
     }
   ],
   "evidenceHashes": [
@@ -137,6 +148,10 @@
     {
       "file": "evidence/ios-package-search/order03-publication-provenance-lyd.json",
       "sha256": "a3744d1c8fa0a3c04a27b8b9fb4f97689b45a86288ef81eac607d1b67e957e66"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
+      "sha256": "592d0a4dc34df397e61a43bff73349f378e6c19e9410b9baf3223962118c888d"
     },
     {
       "file": "evidence/ios-package-search/order03-runtime-supplement-import.json",
@@ -193,6 +208,14 @@
     {
       "file": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
       "sha256": "adfb41d5517b3cf8482e3623bb45b304121e1b03d620755acc4a214b3757c6d4"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-restart-result-20261125T031514670Z-validation-lyd.json",
+      "sha256": "066ba8a668838ca4a1228739d2489babab2fd2dc083a04a9d6ab8f9ef5ab9ed8"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json",
+      "sha256": "1678cbb35b9a6b9798df638e7315548c3edcd1f72536c0db6265c9eb286f6e49"
     }
   ],
   "scope": "Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate."

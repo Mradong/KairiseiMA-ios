@@ -1,0 +1,24 @@
+{
+  "checkedAt": "2026-11-25T06:40:15.833Z",
+  "success": true,
+  "scriptSha256": "ea127979d5e1fd4755275b9d7ed31edfd79cfa7660365ab9f3cf80969a64ff87",
+  "cases": [
+    {
+      "scenario": "install_and_rollback",
+      "passed": true,
+      "unrelatedMarkerUnchanged": true
+    },
+    {
+      "scenario": "running_service",
+      "passed": true,
+      "unrelatedMarkerUnchanged": true
+    },
+    {
+      "scenario": "wrong_original",
+      "passed": true,
+      "unrelatedMarkerUnchanged": true
+    }
+  ],
+  "buildReceiptSha256": "1b9dcc7e588509dce6f161cd974201964434aac77414c919e0f4192faf6b6b04",
+  "scope": "Local file fixtures, ordinary PowerShell entry and mocked test-listener query. Install, already-installed, backup/rollback, running-service refusal and wrong-binary refusal verified. No actual service/account/production files accessed."
+}

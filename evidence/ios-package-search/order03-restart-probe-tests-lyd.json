@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-25T03:06:09.850Z",
+  "checkedAt": "2026-11-25T06:23:19.077Z",
   "success": true,
   "cases": [
     {
@@ -22,9 +22,17 @@
       "healthRequests": 0,
       "loginRequests": 0,
       "startRequests": 0
+    },
+    {
+      "scenario": "restore_rejection_cleanup",
+      "passed": true,
+      "healthRequests": 3,
+      "loginRequests": 3,
+      "startRequests": 2
     }
   ],
-  "scriptSha256": "fe152d678a01a7da036ca1f49946b0c40a1c1f51d3250c37df56740b68f1e290",
+  "expectedExecutableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+  "scriptSha256": "46844856402137b65d6f852bce16779735712522e433943ddae6cc0b43f12874",
   "helpersSha256": "3c99d07bd5cd368cd673a33a5ddb4042b2344bda3dcdfe3e9954e1286e150631",
-  "scope": "Local synthetic HTTP/process fixtures: delayed startup, transient recovery HTTP 503, unavailable service, and wrong executable. No persistent request before readiness. Actual service restart remains untested."
+  "scope": "Local synthetic HTTP/process fixtures: startup/recovery HTTP 503, unavailable/wrong executable, and failed-restore diagnostics preserved through successful cleanup. No persistent request before readiness. Actual service restart remains untested."
 }

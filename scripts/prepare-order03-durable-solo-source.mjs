@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const receipt=JSON.parse(fs.readFileSync(path.join(root,'evidence/ios-package-search/order03-reviewed-patch-reproduction.json')));
+const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+assert.equal(sha(path.join(root,receipt.build.executable)),receipt.build.sha256);
+const directory='test-output/order03-durable-solo-source-lyd';
+const target=path.join(root,directory);fs.mkdirSync(target);
+fs.cpSync(path.join(root,receipt.logs.directory,'server'),path.join(target,'server'),{recursive:true,force:false,errorOnExist:true,filter:file=>{if(fs.lstatSync(file).isSymbolicLink())throw Error('Unexpected source symlink');return !file.endsWith('order03_persistence_boundary_lyd_test.go');}});
+const report={preparedAt:new Date().toISOString(),directory,baseReceipt:'evidence/ios-package-search/order03-reviewed-patch-reproduction.json',baseReceiptSha256:sha(path.join(root,'evidence/ios-package-search/order03-reviewed-patch-reproduction.json')),baseObservedExecutableSha256:receipt.build.sha256,productionSourceChanged:false,serverExecuted:false};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/order03-durable-solo-source-lyd.json'),JSON.stringify(report,null,2)+'\n');
+console.log(JSON.stringify(report,null,2));

@@ -31,6 +31,19 @@ const publicationPath = p + 'order03-publication-provenance-lyd.json';
 const publication = fs.existsSync(path.join(root, publicationPath)) ? load(publicationPath) : null;
 const restartResultPath = p + 'order03-restart-result-20261125T025522528Z-validation-lyd.json';
 const restartResult = fs.existsSync(path.join(root, restartResultPath)) ? load(restartResultPath) : null;
+const publishedSnapshotPath = p + 'order03-published-client-snapshot-lyd.json';
+const publishedSnapshot = fs.existsSync(path.join(root, publishedSnapshotPath)) ? load(publishedSnapshotPath) : null;
+const latestRestartPath = p + 'order03-restart-result-20261125T031514670Z-validation-lyd.json';
+const latestRestart = fs.existsSync(path.join(root, latestRestartPath)) ? load(latestRestartPath) : null;
+if (publishedSnapshot) {
+  if (!publishedSnapshot.success || publishedSnapshot.scriptSha256 !== sha('scripts/audit-order03-published-client-snapshot.mjs') || publishedSnapshot.snapshot.sha256 !== sha(publishedSnapshot.snapshot.file)) throw Error('Published client/snapshot evidence missing or stale');
+  for (const input of publishedSnapshot.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Published client/snapshot input changed');
+}
+if (latestRestart) {
+  if (!latestRestart.analysisCompleted || latestRestart.scriptSha256 !== sha('scripts/audit-order03-restart-latest.mjs')) throw Error('Latest restart audit missing or stale');
+  for (const input of latestRestart.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Latest restart input changed');
+  if (latestRestart.sourceBoundary.sha256 !== sha(latestRestart.sourceBoundary.evidence)) throw Error('Restart source boundary evidence changed');
+}
 if (publication) {
   if (!publication.success || publication.tableCount !== 29 || publication.tableMismatches !== 0 || !publication.publishedResourceManifestMatchesSelectedRuntime || publication.scriptSha256 !== sha('scripts/audit-order03-publication-provenance.mjs')) throw Error('Publication provenance evidence missing or stale');
   for (const input of publication.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Publication provenance input changed');
@@ -110,6 +123,23 @@ if (restartResult) {
   const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
   contractGate.evidence.push(restartResultPath);
   contractGate.remaining += ' Latest received attempt timed out at initial login before character creation or battle entry. Submitted preflight records a start request after the failure, not readiness or a proven timeout cause.';
+}
+if (publishedSnapshot) {
+  const cohortGate = gates.find(g => g.id === 'data_cohort_and_behavior_compatibility');
+  cohortGate.evidence.push(publishedSnapshotPath);
+  cohortGate.state = 'verified';
+  cohortGate.remaining = 'Scoped to recovered-project 2.0.4: published server table identities and exact public Windows metadata now bind all 29 snapshot tables and 23/822 enum values to the same release. All 20 required tables are present. Official original-client extraction/transform and complete AI/skill/device behavior remain explicit limitations; they are not asserted by this version-cohort evidence.';
+  gates.push(gate('real_snapshot_byte_integrity', 'verified', [publishedSnapshotPath], 'Existing isolated CombatTables.json is 57,738,263 bytes, with exact published CSV byte hashes and independently decoded 822 enum values. Managed transport source matches the validated version. Snapshot remains isolated pending service recovery/platform work.'));
+}
+if (selection && reviewedPatch && publication && realBattle) {
+  const runtimeGate = gates.find(g => g.id === 'actual_deployed_version_and_quest_scope');
+  runtimeGate.state = 'verified';
+  runtimeGate.remaining = 'Verified within the recorded observations: reproduced executable, explicit runtime-selected public manifest/table/static/iOS-profile identities, loader startup order and actual admission for 30010102. Mutable publication, exact historical list membership and complete device gameplay are not inferred.';
+}
+if (latestRestart) {
+  const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
+  contractGate.evidence.push(latestRestartPath, latestRestart.sourceBoundary.evidence);
+  contractGate.remaining = 'Actual process restart and identity-checked relogin passed, but Start restoration failed. Reviewed deployed source and local SQLite/HTTP fixtures show that solo openings were memory-only while BP persisted. The failed restore HTTP status was overwritten by cleanup and remains NOT_CAPTURED. A separately compiled durable-solo fix has local tests; actual installation/startup/restart recovery must be verified on the independent service.';
 }
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),

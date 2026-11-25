@@ -1,0 +1,253 @@
+{
+  "checkedAt": "2026-11-25T03:25:08.439Z",
+  "success": true,
+  "planItem": "03",
+  "scriptSha256": "7408b9e12d9697e249131cb445a58f639a0325326e5b1afc82d49316cca0fb75",
+  "publication": {
+    "releaseURL": "https://github.com/kuuhaku1314/kairisei-ma-ch/releases/tag/2.0.4",
+    "projectVersion": "2.0.4",
+    "assetID": 746980950,
+    "assetURL": "https://github.com/kuuhaku1314/kairisei-ma-ch/releases/download/2.0.4/KairiseiMA-Windows.zip",
+    "archiveBytes": 148021626,
+    "githubDeclaredArchiveDigest": "sha256:c5b0cc41e540bef59ac5d8ee5c522bd1fee35b88d17f329b0c2ec9fbb20d8e5c",
+    "wholeArchiveDigestVerified": false,
+    "archiveMember": "ClientRebuild6_Data/il2cpp_data/Metadata/global-metadata.dat",
+    "memberCRC32Verified": true,
+    "downloadedRange": {
+      "start": 93009975,
+      "end": 96398679
+    }
+  },
+  "metadata": {
+    "file": "inputs/source-provenance/2.0.4/public-windows-metadata-lyd.dat",
+    "bytes": 11223492,
+    "sha256": "fd31c0a95cc4ef80e99643c0dff8afb2ef516625ec86b3e4863ad48a54596294",
+    "matchesPinnedWindowsInput": true,
+    "matchesIndependentlyDecodedEnums": true
+  },
+  "snapshot": {
+    "file": "test-output/order03-candidate/DO-NOT-DEPLOY-CombatTables.json",
+    "bytes": 57738263,
+    "sha256": "f69af8be21c9b4afa0e823d89f48908f12e8b729e4cef4ed574a640e960fb1cb",
+    "requiredTables": 20,
+    "requiredTablesMissing": [],
+    "totalTables": 29,
+    "allCSVBytesMatchPublishedServerManifest": true,
+    "enums": 23,
+    "constants": 822,
+    "allEnumValuesMatchPublishedClientMetadata": true,
+    "currentManagedTransportSourceMatchesValidatedSource": true
+  },
+  "tables": [
+    {
+      "name": "card.csv",
+      "bytes": 16226555,
+      "sha256": "0aefe9e72cd9212b69e04178f947b78265c3dc0036495b348d01e43d08050813",
+      "publishedPath": "resource-set/_local/control/server/cn602-card-master/card.csv"
+    },
+    {
+      "name": "buddy.csv",
+      "bytes": 173321,
+      "sha256": "0538f1628c4a61fc3365b86b0d96e8c6893ff64f9894ebd76fdca455ab45e8b1",
+      "publishedPath": "resource-set/_local/control/server/cn602-card-master/buddy.csv"
+    },
+    {
+      "name": "sphr.csv",
+      "bytes": 59454,
+      "sha256": "52d1c8633b2580a4e2f55c5dda9600470edcd86b9d7455b284b926f7b34bdd02",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/sphr.csv"
+    },
+    {
+      "name": "burst_gauge.csv",
+      "bytes": 184,
+      "sha256": "5df6dfb9ec02a8b7a3f1ad60091ac84e51256c80093cd9ed7ac728d3d3f7e983",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/burst_gauge.csv"
+    },
+    {
+      "name": "burst_gauge_reaction_rate.csv",
+      "bytes": 119,
+      "sha256": "1e227b09ca0b94a25674ff1356e67db64617e19f4a3278ef84e206c07faf56fb",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/burst_gauge_reaction_rate.csv"
+    },
+    {
+      "name": "skill_player.csv",
+      "bytes": 5177249,
+      "sha256": "d7bf4e81478ae571ce18d1060bf226d413b1f2bd8e50ab734e59afa6eb717a85",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_player.csv"
+    },
+    {
+      "name": "skill_role_player.csv",
+      "bytes": 5926156,
+      "sha256": "2ec44156cda18b6399edfc165b2c7567545f4ed6914de7ec6a4dc65944da6cef",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_role_player.csv"
+    },
+    {
+      "name": "burst_skill.csv",
+      "bytes": 197012,
+      "sha256": "8569077bb1beb81f3e80d7ed40e125c0847a3e81c9f05b2f058181ecdf371fbb",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/burst_skill.csv"
+    },
+    {
+      "name": "burst_skill_role.csv",
+      "bytes": 174669,
+      "sha256": "25a5284b1825762fe7412b68b6507c322bcfebaae5f1ff7372100c6a6d5ca72d",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/burst_skill_role.csv"
+    },
+    {
+      "name": "support_skill.csv",
+      "bytes": 1707169,
+      "sha256": "dd27f0cc8f47b430e366aefc630de734831ed9ded0727655a85448746349aecc",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/support_skill.csv"
+    },
+    {
+      "name": "support_skill_lvup.csv",
+      "bytes": 107,
+      "sha256": "4618f0b81b8de51b6cd6b3ad274ba142942bcc5e71a90988e33ba6240eb14b76",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/support_skill_lvup.csv"
+    },
+    {
+      "name": "support_skill_role.csv",
+      "bytes": 768063,
+      "sha256": "d9967895742976b218a51d61013e9041dbee23d4c5d0fdcffffc9c70811a4b3a",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/support_skill_role.csv"
+    },
+    {
+      "name": "skill_role_param_rule.csv",
+      "bytes": 15806,
+      "sha256": "2118fad5f60f40a1c62613a3ade6d0200bb9271049c30f4e339b6f9ce7f76b1a",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_role_param_rule.csv"
+    },
+    {
+      "name": "enemy_party.csv",
+      "bytes": 530898,
+      "sha256": "15837f4a7e61c1a635860bc58619e0e9943a7352d5705e16c7b95840cc399fa2",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/enemy_party.csv"
+    },
+    {
+      "name": "enemy.csv",
+      "bytes": 1999410,
+      "sha256": "e5131cc13d36bfc14269c8ca4c23feed53343835ad2c36798c9d9d62ebf3e3a0",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/enemy.csv"
+    },
+    {
+      "name": "enemy_lvup.csv",
+      "bytes": 10260444,
+      "sha256": "6041b87fb7d00ae0196f71eb7715d9493180fd8b54579a545368fe486ac78201",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/enemy_lvup.csv"
+    },
+    {
+      "name": "enemy_ai_order.csv",
+      "bytes": 1928564,
+      "sha256": "307707a019a68a9beaff64f6ee575ff2f3d1331b5e0d52e29caf6b44ab2f4afe",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/enemy_ai_order.csv"
+    },
+    {
+      "name": "skill_enemy.csv",
+      "bytes": 4142486,
+      "sha256": "0be0e106f6ee025c21fd939eb89a4c9d374dcfe27b187e56e423d9af5bbcabf0",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_enemy.csv"
+    },
+    {
+      "name": "skill_role_enemy.csv",
+      "bytes": 6048035,
+      "sha256": "67d981ed4119561ef4af116c1c05a3697e9b015d87983c0f835ccf5a2a965ec1",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_role_enemy.csv"
+    },
+    {
+      "name": "enemy_trance_gauge_reaction.csv",
+      "bytes": 864,
+      "sha256": "2b630151ce283788b428d40581effdbaa35b2c06a9149c3d5f8dc314d86e722b",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/enemy_trance_gauge_reaction.csv"
+    },
+    {
+      "name": "skill_player_alchemist.csv",
+      "bytes": 259334,
+      "sha256": "fb10bca663567cd2a801910a172374e79d376890dd62b335cdf13a6580521b41",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_player_alchemist.csv"
+    },
+    {
+      "name": "skill_role_player_alchemist.csv",
+      "bytes": 93827,
+      "sha256": "0927545b822b2b9032a099465901283631fc7486c998f93d55c65a5c657345ad",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/skill_role_player_alchemist.csv"
+    },
+    {
+      "name": "tower_skill_enemy.csv",
+      "bytes": 45400,
+      "sha256": "78de08ec141087a06dd628ecdd55aa02b6e7a4f8523ee1c8aa8a79af378267a7",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/tower_skill_enemy.csv"
+    },
+    {
+      "name": "tower_skill_role_enemy.csv",
+      "bytes": 65703,
+      "sha256": "f94a89efcaa667fe9700b95711195b7346a98ddfb97d4725c08d63cc7191725f",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/tower_skill_role_enemy.csv"
+    },
+    {
+      "name": "tower_enemy_ai_order.csv",
+      "bytes": 12787,
+      "sha256": "c738f2a809416eca1f9aff17c51ec2ddfc0444cf545447f22f7f8579752bf0a2",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/tower_enemy_ai_order.csv"
+    },
+    {
+      "name": "card_alchemist.csv",
+      "bytes": 1251282,
+      "sha256": "63e7033905eedc505f52fe3f88b724d6d83994f3a7472cf0339125575ff5b31e",
+      "publishedPath": "resource-set/_local/control/server/cn602-card-master/card_alchemist.csv"
+    },
+    {
+      "name": "summons.csv",
+      "bytes": 80160,
+      "sha256": "49baebd50461a24585d76c4b547f6bb97c96fde06e8279840253be75979ee54a",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/summons.csv"
+    },
+    {
+      "name": "npc_ai.csv",
+      "bytes": 46846,
+      "sha256": "4296e1e4cedbb7a0498cdd119a0d999578c3284e4acbcca3d189b6990b84698d",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/npc_ai.csv"
+    },
+    {
+      "name": "npc_ai_situation_param_rule.csv",
+      "bytes": 757,
+      "sha256": "3f85a668560d5ec47a8d7fcee79496b331e098a16ebfea15d91d2d4ce223b351",
+      "publishedPath": "resource-set/_local/control/server/cn602-battle-master/npc_ai_situation_param_rule.csv"
+    }
+  ],
+  "inputFiles": [
+    {
+      "file": "test-output/order03-release-204-metadata-lyd.json",
+      "sha256": "4c2e7ae5988457d17de0da9ff752a0ed0d0f2b3eaab9a585f31d44e9f12edc83"
+    },
+    {
+      "file": "inputs/source-provenance/2.0.4/windows-zip-tail-lyd.bin",
+      "sha256": "4544b8e9c7751b4a55d546d5af0890c0a1ee9ddbb1282937d25648fc231e1b62"
+    },
+    {
+      "file": "inputs/source-provenance/2.0.4/windows-metadata-range-lyd.bin",
+      "sha256": "77217595f56d21c3c4101f54f6985debc46a525cd3c93b898db0b660a0fc8b02"
+    },
+    {
+      "file": "inputs/source-provenance/2.0.4/public-windows-metadata-lyd.dat",
+      "sha256": "fd31c0a95cc4ef80e99643c0dff8afb2ef516625ec86b3e4863ad48a54596294"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-modern-metadata-enums.json",
+      "sha256": "cbfb9d9784ee49e8f151d1baf4d0a670bfbb80214aa972cbaeb2f4ab90a631db"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-candidate-snapshot.json",
+      "sha256": "c37e13ca0806c24c74e56f6709b9610688a1998ffb095338dca1de3f7993989d"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-candidate-validation.json",
+      "sha256": "bedca858a03d30eae2f142bdafbb3a9429540b0aee67ad28ad72a4b288b96b4e"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-publication-provenance-lyd.json",
+      "sha256": "a3744d1c8fa0a3c04a27b8b9fb4f97689b45a86288ef81eac607d1b67e957e66"
+    }
+  ],
+  "versionConclusion": "CSV identities and exact candidate enum source are published together under the recovered-project 2.0.4 release; the server and Windows client ZIP members have distinct roles.",
+  "scope": "Published reconstruction version and exact snapshot byte identities, not proof of original official-client extraction version, complete native skill execution, Unity/ARM64/device gameplay or production deployment. Only the public metadata member was decompressed; full ZIP digest not checked."
+}

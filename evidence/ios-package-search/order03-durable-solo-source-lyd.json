@@ -1,0 +1,9 @@
+{
+  "preparedAt": "2026-11-25T06:07:33.353Z",
+  "directory": "test-output/order03-durable-solo-source-lyd",
+  "baseReceipt": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
+  "baseReceiptSha256": "33eec013ea9fcb8bffc4e799faca1bed710bb3faf7620c72bff73d542fc5a747",
+  "baseObservedExecutableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+  "productionSourceChanged": false,
+  "serverExecuted": false
+}

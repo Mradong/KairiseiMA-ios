@@ -1,0 +1,72 @@
+{
+  "preparedAt": "2026-11-25T06:42:08.252Z",
+  "directory": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-solo-restart-fix-20261125-064206187Z-lyd.zip",
+  "archiveBytes": 10708354,
+  "archiveSha256": "002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98",
+  "expectedExecutableSha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1",
+  "files": [
+    {
+      "name": "Collect-Order03RuntimeSelection-lyd.ps1",
+      "bytes": 12880,
+      "sha256": "d796761595c8cd8d0b7f21b565b12b7a65b11d6508cca7dd15e3fe8b7327b6a9"
+    },
+    {
+      "name": "Install-Order03-Solo-Fix-lyd.cmd",
+      "bytes": 228,
+      "sha256": "b85d6ffaafa24b1f0ea80ef62712b8ced0178736915205fb3ac1e5799993926b"
+    },
+    {
+      "name": "Install-Order03SoloFix-lyd.ps1",
+      "bytes": 4714,
+      "sha256": "2050a00ac0284c205cb27a84ab6f8402d1139e3497bed5f8137f5db9960fda9c"
+    },
+    {
+      "name": "kairi-server-durable-solo-lyd.exe",
+      "bytes": 29750272,
+      "sha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1"
+    },
+    {
+      "name": "LICENSE-lyd.txt",
+      "bytes": 4563,
+      "sha256": "ffcca38841adb694b6f380647e15f17c446a4d1656fed51a1e2041d064c94cc8"
+    },
+    {
+      "name": "NOTICE-lyd.txt",
+      "bytes": 449,
+      "sha256": "699638e6bf2c9ca3166f1c3a418b8313743ca0936ab35e2ed0c11c4915e875b7"
+    },
+    {
+      "name": "order03-durable-solo-lyd.patch",
+      "bytes": 9786,
+      "sha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4"
+    },
+    {
+      "name": "Rollback-Order03-Solo-Fix-lyd.cmd",
+      "bytes": 238,
+      "sha256": "e78c548b9ecc926bf7aa1cc6a09b53dd69dcbfc644fb38954758959f488429b8"
+    },
+    {
+      "name": "source-receipt-lyd.json",
+      "bytes": 1157,
+      "sha256": "1480fbeecaa8a1d52d681c512b1190da39b75cb0170459aff37c31928e6699c7"
+    },
+    {
+      "name": "Verify-Order03-Restart-lyd.cmd",
+      "bytes": 230,
+      "sha256": "f8b949a1af57034887e8cdce5d05438b24ddfefaf0660a2b77352a122e0260ea"
+    },
+    {
+      "name": "Verify-Order03Restart-lyd.ps1",
+      "bytes": 13111,
+      "sha256": "c1113db640c98006be76cbef8d92b5261f0d2149c70351186445353eaae04998"
+    },
+    {
+      "name": "先读说明-lyd.md",
+      "bytes": 2340,
+      "sha256": "ca8b392763a77f9c50a678f7c1d7c4059d4bf3608f489974b49e35f2a7c29a34"
+    }
+  ],
+  "serverExecuted": false,
+  "scope": "Prepared reversible binary install/rollback and one-entry manual restart verification for the independent iOS test service. Original startup scripts are retained and their现场 compatibility remains to be observed."
+}

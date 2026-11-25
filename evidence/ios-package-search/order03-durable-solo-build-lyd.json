@@ -1,0 +1,54 @@
+{
+  "builtAt": "2026-11-25T06:38:50.803Z",
+  "success": true,
+  "scriptSha256": "8bf9feb72b0f8d7f7c6fc6d977e3bec5dece59ea34d216515bc24d4ad8248d9d",
+  "base": {
+    "commit": "d1a202eb539b99511e8a33f3975fac409ab545bf",
+    "iosPatchSha256": "b868e5db9c6fd673c0b7d90621780aed8d6d0b38389c4de30721047964aa360c",
+    "observedExecutableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918"
+  },
+  "patch": {
+    "file": "patches/order03-durable-solo-lyd.patch",
+    "sha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4",
+    "allowedProductionFiles": [
+      "server/internal/accountstore/accounts.go",
+      "server/internal/accountstore/account_snapshot.go",
+      "server/internal/admin/admin_maintenance.go"
+    ],
+    "exactPatchedGitSourceBytesReproduced": true
+  },
+  "sourceFiles": [
+    {
+      "file": "test-output/order03-durable-solo-source-lyd/server/internal/accountstore/accounts.go",
+      "sha256": "3372189c0a12fdf2d9442ade77a88c3192b6bdf19b07d80b3e429315a6ce8b76"
+    },
+    {
+      "file": "test-output/order03-durable-solo-source-lyd/server/internal/accountstore/account_snapshot.go",
+      "sha256": "b7dc487362ee1dd0b23cf4f6c779ed499e888801708d186561f5f19eb91ec31e"
+    },
+    {
+      "file": "test-output/order03-durable-solo-source-lyd/server/internal/admin/admin_maintenance.go",
+      "sha256": "87c2bf384faab98766f46ece1364751b2ff8c0a588540a4be8b3fdea1f776b0c"
+    }
+  ],
+  "tests": {
+    "file": "evidence/ios-package-search/order03-durable-solo-tests-lyd.json",
+    "sha256": "9b3511109b459dcccddd174353127b4f4f4be2fd292d61b795f6c96b0560e3d2"
+  },
+  "build": {
+    "executable": "test-output/order03-durable-solo-source-lyd/kairi-server-durable-solo-lyd.exe",
+    "bytes": 29750272,
+    "sha256": "1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1",
+    "goVersion": "go version go1.25.1 windows/amd64",
+    "GOOS": "windows",
+    "GOARCH": "amd64",
+    "CGO_ENABLED": "0",
+    "flags": [
+      "-buildvcs=false",
+      "-trimpath",
+      "-ldflags=-s -w"
+    ]
+  },
+  "serverDeployed": false,
+  "scope": "Compiled independently patched Windows iOS test-service executable. Two account persistence files and the Admin interruption call change; iOS patch and other inputs are retained. Local SQLite/HTTP/maintenance tests passed. Actual server deployment and process restart remain to be verified."
+}

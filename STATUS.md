@@ -1,5 +1,19 @@
 # 当前状态
 
+## 2026-11-25 现场开场恢复失败已定位，独立服务修复包已准备
+
+收到 `Order03-Restart-20261125T031514670Z-lyd.zip`，1,067 字节，SHA-256 `a76e368f7c1ffd57574e3b3740ce429e017ee060b97dd3c504b0bff5ace29605`。现场进程从 03:14:56.1529356Z 重启为 03:16:30.3454154Z，程序仍为已复现的 `7704963e...`；前后健康检查通过，重新登录已通过同一身份检查，失败在 restore_start，之后放弃请求成功。本轮现场最多新增一个专用账号/角色和一次入场，无通关奖励请求；最终 BP 未采集，不认定退款或额外扣费。清理请求覆盖了原错误的路径/HTTP状态，失败请求 HTTP 仍 NOT_CAPTURED。证据为 `order03-restart-result-20261125T031514670Z-validation-lyd.json`。
+
+已在对应服务器程序的固定源码中确认：Accounts 单人开场是服务进程内存缓存，账号持久化读取清除 ActiveTeamBattle。独立本地 SQLite/真实 Go Start 处理器复现：同一 repository 重试开场一致且不再扣 BP；新 repository 开场丢失、已扣后的 BP=5 保留，新 15-BP Start 返回 HTTP 400且不再扣费。此前 7 项本地测试只覆盖所列重载/结果范围，不能当作真实跨进程开场恢复。见 `order03-solo-persistence-boundary-lyd.json`。这解释了源码的恢复限制，但不把本地 HTTP 400 冒充现场未采集的错误。
+
+新增公开客户端版本证据：2.0.4 Windows ZIP 的 global-metadata.dat 成员已按 HTTPS 范围下载、解压长度/CRC32/SHA-256 核对，SHA-256 `fd31c0a9...` 与初始 Windows 输入及独立枚举读取器的来源一致。现有隔离快照 `test-output/order03-candidate/DO-NOT-DEPLOY-CombatTables.json` 为 57,738,263 字节，SHA-256 `f69af8be...`，20 必需表及 9 扩展表齐全，CSV 原文哈希全部匹配公开服务清单，23 族/822 枚举值全部匹配该公开客户端元数据。已证明恢复项目 2.0.4 的版本关联；官方原始提取/转换与完整技能/AI/iOS行为仍按各自范围待证。未下载核验整个客户端 ZIP，未部署候选快照。见 `order03-published-client-snapshot-lyd.json`。
+
+在独立源码副本补充单人开场及一小时到期时间的账号元数据保存/读取，旧元数据兼容；放弃和后台主动中断清除开场，中断的多账号元数据更新事务失败会回滚；跨进程 Start 保留已接受的完整开场和扣费。主账号及另一个独立账号的真实 SQLite/HTTP 定向测试、原 7 项战斗及 3 项后台维护检查通过；保存失败回滚、放弃、过期及旧元数据读取均验证。补丁为 `patches/order03-durable-solo-lyd.patch`，修改两份账号持久化源码及一份后台中断调用源码。Go 1.25.1 / windows-amd64 / CGO=0 / 原构建参数生成新程序 29,750,272 字节，SHA-256 `1c1488558e2ed859cb8a9f36b8720b125c0dbceb3ac3c83e3bec2603e1fdf2c1`。固定参考和运行服务未修改，新程序尚未部署。见 `order03-durable-solo-tests-lyd.json` / `order03-durable-solo-build-lyd.json`。
+
+交付包为 `dist/order03-solo-restart-fix-20261125-064206187Z-lyd.zip`，10,708,354 字节，SHA-256 `002546ca32ad1aa14c2c9e8a0caa8bd164259e4edd959a21dd2498073df98f98`。包内所有文件含 -lyd；源码与实际打包的安装/回滚、错误程序/未停服拒绝及重启验证脚本均本地检查通过，失败诊断在清理前冻结。用户将全部文件复制到原 IOS-Isolated-Test，停原 iOS 服务后运行 Install-Order03-Solo-Fix-lyd.cmd；确认 installed 后启动原 Start-Phone-Test.cmd，再运行 Verify-Order03-Restart-lyd.cmd 按提示重启。旧程序自动备份，新安装回执及重启结果必须返回。原启动脚本的现场兼容性未验证；安装器不读取账号/存档/资源，不自动启停服务。可停服后运行 Rollback-Order03-Solo-Fix-lyd.cmd 回滚程序。验证最多新增一个专用身份/角色、一次 15 BP 入场后放弃，身份可能保留。
+
+03 active / 未完成，当前待证为新程序在独立服务上的安装/启动和真实跨进程恢复；官方提取来源继续明确记录 UNKNOWN，完整平台及游戏验收仍按后续计划。七个原始核心文件已复核，固定参考只读。本轮没有 Unity/iOS 构建或设备更改。
+
 ## 2026-11-25 首次登录超时核验、公开 2.0.4 主表身份与服务就绪检查
 
 收到 `Order03-Restart-20261125T025522528Z-lyd.zip`（709 字节，SHA-256 `59d0da537169f88f7bf37d19a9786f006c040c14c1743f007b3b90dd6b312eef`）和 `preflight-result.json`，已隔离导入并校验。脚本在 identity_creation 的 `/local/client/login` 超时，未发起角色创建或战斗入场；超时请求是否已在服务端创建专用身份仍 UNKNOWN。本次没有重启前后进程证据，不能算恢复通过。预检记录 TEST_START_REQUESTED，时间在失败结束后 25.383 秒，程序/资源清单/内容 ID 与已核验版本一致，内存高于预检门槛；这只证明启动请求，不能证明服务就绪或确定超时根因。证据为 `order03-restart-result-20261125T025522528Z-validation-lyd.json`，旧重启失败证据保留。

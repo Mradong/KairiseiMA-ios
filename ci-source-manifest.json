@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T03:11:04.195Z",
+  "generatedAt": "2026-11-25T06:45:13.473Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 167725,
-      "sha256": "2a919f0d2b6c5d86e5c87b2050eb1d39be2190572730cc3a42f89ba57c109920"
+      "bytes": 171998,
+      "sha256": "146d9824be9bc4d1fc9a06dc0efd2acacb7264ee0a44fd24db16208e6b79fd44"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 111460,
-      "sha256": "e7459733888bc1a1c4f547fe11667cb8b082060c62d3c9d16dd5dffc6abda32e"
+      "bytes": 115891,
+      "sha256": "9f6284669dd4d21b3cf1361b0b044cdc22a59ef396a0695208666a35c711fa3b"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -464,6 +464,21 @@
       "sha256": "4930096751be1d9fdbb69263a7fc90221cdaad9e04a0ea23972c6484fcc8d19a"
     },
     {
+      "path": "evidence/ios-package-search/order03-durable-solo-build-lyd.json",
+      "bytes": 2385,
+      "sha256": "1b9dcc7e588509dce6f161cd974201964434aac77414c919e0f4192faf6b6b04"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-durable-solo-source-lyd.json",
+      "bytes": 454,
+      "sha256": "320cbe4df92580ea5b14a3e29e910b961385614ea6eddb0ed4888be4c1a4f370"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-durable-solo-tests-lyd.json",
+      "bytes": 4043,
+      "sha256": "9b3511109b459dcccddd174353127b4f4f4be2fd292d61b795f6c96b0560e3d2"
+    },
+    {
       "path": "evidence/ios-package-search/order03-enemy-flag-before-fix.json",
       "bytes": 27825,
       "sha256": "4fc5e8b5a8dad6423fa0c8c3b998f1939fea0dfc49011051c6103af4563ced6f"
@@ -609,6 +624,11 @@
       "sha256": "a3744d1c8fa0a3c04a27b8b9fb4f97689b45a86288ef81eac607d1b67e957e66"
     },
     {
+      "path": "evidence/ios-package-search/order03-published-client-snapshot-lyd.json",
+      "bytes": 10977,
+      "sha256": "592d0a4dc34df397e61a43bff73349f378e6c19e9410b9baf3223962118c888d"
+    },
+    {
       "path": "evidence/ios-package-search/order03-quest-variant-gap.json",
       "bytes": 2479,
       "sha256": "6b539a59e6cdb2a8766cb1d753f35e34b0960b44e0c9e1061ce730b9ff4c4bb2"
@@ -620,8 +640,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 10530,
-      "sha256": "dcc1995a5c3f373b2a9394e0795b3b772d371a13e853512bf0ad744ab41e4eb2"
+      "bytes": 11857,
+      "sha256": "415f4f001094f729ccfeddd046303a46a18309eaf78c7069ae8af40e3295bb2c"
     },
     {
       "path": "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
@@ -760,13 +780,13 @@
     },
     {
       "path": "evidence/ios-package-search/order03-restart-probe-packaged-tests-lyd.json",
-      "bytes": 942,
-      "sha256": "71812bc960f83374902033c25e760b0529329b2243a785107c1a71eaa7b009ea"
+      "bytes": 1237,
+      "sha256": "8ca58c92e62062a8d4a2bd968b4312e54610840939fd252d7b0d83657a04a7c6"
     },
     {
       "path": "evidence/ios-package-search/order03-restart-probe-tests-lyd.json",
-      "bytes": 942,
-      "sha256": "ed82b350411227598d19fa4b051bec1493017a42d5e4c8f90645401f0f064aba"
+      "bytes": 1237,
+      "sha256": "5d73c92bfbd50a81de9b055c00887c31054845cd487bf43761283efe6995148a"
     },
     {
       "path": "evidence/ios-package-search/order03-restart-probe-tests.json",
@@ -777,6 +797,11 @@
       "path": "evidence/ios-package-search/order03-restart-result-20261125T025522528Z-validation-lyd.json",
       "bytes": 2237,
       "sha256": "adfb41d5517b3cf8482e3623bb45b304121e1b03d620755acc4a214b3757c6d4"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-restart-result-20261125T031514670Z-validation-lyd.json",
+      "bytes": 2681,
+      "sha256": "066ba8a668838ca4a1228739d2489babab2fd2dc083a04a9d6ab8f9ef5ab9ed8"
     },
     {
       "path": "evidence/ios-package-search/order03-restart-result-validation-lyd.json",
@@ -887,6 +912,26 @@
       "path": "evidence/ios-package-search/order03-short-ai-tail.json",
       "bytes": 5623,
       "sha256": "07f152990e661c3787840d4c66ce413ba243ac00f8e28a53839bb2c977115360"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-solo-fix-installer-packaged-tests-lyd.json",
+      "bytes": 847,
+      "sha256": "cdad0ba04302cb2fcfa54df342981ec281564656c8f6362105609a62c45db3db"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-solo-fix-installer-tests-lyd.json",
+      "bytes": 847,
+      "sha256": "6a7c7f8a2740dc9222501645a58985888d50f2479f645eea85dba2638398e6a7"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-solo-fix-package-lyd.json",
+      "bytes": 2711,
+      "sha256": "01d9343256455a3681966f04d462c22560cb8895e51eba93bc5b597e89f6d71a"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-solo-persistence-boundary-lyd.json",
+      "bytes": 2145,
+      "sha256": "1678cbb35b9a6b9798df638e7315548c3edcd1f72536c0db6265c9eb286f6e49"
     },
     {
       "path": "evidence/ios-package-search/order03-source-link-reproduction.json",
@@ -1271,7 +1316,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "e801b1572ef693ff3c7a8ba548fd99345425c332b16e882600130024f4370d2c"
+      "sha256": "868e8f07a85182845cdbcd83b24ed30763484cfd17e2809bfa945c7b4c2d933a"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1584,6 +1629,11 @@
       "sha256": "7b8d1228e727970c63408843890a58022299b02122578de269bba94c697d7718"
     },
     {
+      "path": "patches/order03-durable-solo-lyd.patch",
+      "bytes": 9786,
+      "sha256": "328cecd4a9120c73ff2bf4059cd18ebb336b1bbe807d73371c933a976684dbe4"
+    },
+    {
       "path": "scripts/Build-IosServer.ps1",
       "bytes": 1875,
       "sha256": "25743c5415290e6ca074993a49f94452db422d1e9a23b60a06df6c4f47acfd59"
@@ -1659,6 +1709,11 @@
       "sha256": "106c8b71afbfd5d75626cd0b3ab6c339d5cba7475c78a41f4b9b1bf6b111cc40"
     },
     {
+      "path": "scripts/Install-Order03SoloFix.ps1",
+      "bytes": 4646,
+      "sha256": "ea127979d5e1fd4755275b9d7ed31edfd79cfa7660365ab9f3cf80969a64ff87"
+    },
+    {
       "path": "scripts/Start-IosClient006CloudBuild.ps1",
       "bytes": 3109,
       "sha256": "497e75e019625e67708d9b4b11f616ffb2c4dd34531d25dfb2bbdc077eb89500"
@@ -1725,8 +1780,8 @@
     },
     {
       "path": "scripts/Verify-Order03Restart.ps1",
-      "bytes": 12365,
-      "sha256": "fe152d678a01a7da036ca1f49946b0c40a1c1f51d3250c37df56740b68f1e290"
+      "bytes": 12922,
+      "sha256": "46844856402137b65d6f852bce16779735712522e433943ddae6cc0b43f12874"
     },
     {
       "path": "scripts/audit-602-home.mjs",
@@ -1774,6 +1829,11 @@
       "sha256": "07941f5177f3088dbeb162fbfca97400c9349de48a77a19e832c23c02b346035"
     },
     {
+      "path": "scripts/audit-order03-published-client-snapshot.mjs",
+      "bytes": 7051,
+      "sha256": "7408b9e12d9697e249131cb445a58f639a0325326e5b1afc82d49316cca0fb75"
+    },
+    {
       "path": "scripts/audit-order03-real-battle.mjs",
       "bytes": 3006,
       "sha256": "f9683390cf5ff345ab9f2a29dd838631e282b1b27455cf0653ed482e98ca2a28"
@@ -1782,6 +1842,11 @@
       "path": "scripts/audit-order03-remaining.mjs",
       "bytes": 9618,
       "sha256": "cf1f49e2a7364e0808164c65c3dc6ae9a8c052bc9561e952682fc2c4b05881d1"
+    },
+    {
+      "path": "scripts/audit-order03-restart-latest.mjs",
+      "bytes": 4256,
+      "sha256": "9e0f681531655b3b2f016012bb7217049603b04d00fee6f8bf26115b20909b20"
     },
     {
       "path": "scripts/audit-order03-restart-result.mjs",
@@ -1814,9 +1879,14 @@
       "sha256": "a37445b37d88bb74bc7afa286a79c055e57b83df11fef94b4f832e578685f4d3"
     },
     {
+      "path": "scripts/build-order03-durable-solo.mjs",
+      "bytes": 5374,
+      "sha256": "8bf9feb72b0f8d7f7c6fc6d977e3bec5dece59ea34d216515bc24d4ad8248d9d"
+    },
+    {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 16311,
-      "sha256": "815bf79b0980a2e2877c68350d739b3bba484a4005c8d3b76ae142653c71b847"
+      "bytes": 19804,
+      "sha256": "24d8339c55ce75cab24cf3bd60a3c6a89af5fed31568554b0dbb54a27b6800a9"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1859,6 +1929,11 @@
       "sha256": "78519bd27fa22a65364f7648867bcbb8b2e65e6d8acf5479edf4b506c7e65d1a"
     },
     {
+      "path": "scripts/prepare-order03-durable-solo-source.mjs",
+      "bytes": 1506,
+      "sha256": "50b5579e3a4665f1e92b7b65169c5b2a696c4ad1ba6075ea55d6c2078f8473b6"
+    },
+    {
       "path": "scripts/prepare-order03-live-engine.mjs",
       "bytes": 1382,
       "sha256": "5e610c2c35e7d01846dfa4cc75ad378e28cc23421ceaa693b733f6ee6f68dfb9"
@@ -1882,6 +1957,11 @@
       "path": "scripts/prepare-order03-server-handoff.mjs",
       "bytes": 5682,
       "sha256": "11e29cf96a0c82fa136317ec231339253766b6074fc42d8c498d21108f876556"
+    },
+    {
+      "path": "scripts/prepare-order03-solo-fix-package.mjs",
+      "bytes": 6477,
+      "sha256": "da7b5142cf00c3f8da023dbc2e2fa2de2b5622a9779065b52fab676448408cac"
     },
     {
       "path": "scripts/prepare-registered-wave-checkpoint.mjs",
@@ -2019,6 +2099,11 @@
       "sha256": "0732397359951887104036c082b8253e5b1b7273af7c9d78b595069c02613cea"
     },
     {
+      "path": "scripts/test-order03-durable-solo.mjs",
+      "bytes": 3398,
+      "sha256": "8988e5ba2cc18c99119569cd80527e2353dc25b073060b4cc7bfda4a4a31eb86"
+    },
+    {
       "path": "scripts/test-order03-enemy-flag.mjs",
       "bytes": 4100,
       "sha256": "b72039ef628c498335b379d79492cebf8d83b8d9c9aaff1c595043358904fc88"
@@ -2075,8 +2160,8 @@
     },
     {
       "path": "scripts/test-order03-restart-probe.mjs",
-      "bytes": 6640,
-      "sha256": "9e72ac089e270f71bb9336742c4793cd45c13b038e0c04185d5c044c530ff1e2"
+      "bytes": 7693,
+      "sha256": "d7195a28a535aff64295457554a832e6616fd79f25ffd53bac498fcf52596a4f"
     },
     {
       "path": "scripts/test-order03-role-alias-differential.mjs",
@@ -2107,6 +2192,16 @@
       "path": "scripts/test-order03-selected-tags.mjs",
       "bytes": 2752,
       "sha256": "2ee854a84040c2a76db59a90b98528a20ddb89fdf2fe28a33daa37487668c8b8"
+    },
+    {
+      "path": "scripts/test-order03-solo-fix-installer.mjs",
+      "bytes": 4799,
+      "sha256": "ccf8a79e9a8ec3a627714c71f24a0c2fdd25ea22eb0694292220334b9bd0ffb1"
+    },
+    {
+      "path": "scripts/test-order03-solo-persistence-boundary.mjs",
+      "bytes": 3386,
+      "sha256": "545aa19eec6de07a969767cc02a095070a462d6784f0878022a1a01b36142e12"
     },
     {
       "path": "scripts/test-order03-status.mjs",
@@ -2244,6 +2339,11 @@
       "sha256": "23bdc6f5efb727c33f1e92711d2e91a304ee76172ae064f864cf6e593883d178"
     },
     {
+      "path": "tests/Order03DurableSolo_test.go",
+      "bytes": 8481,
+      "sha256": "7a2f72fb112116fa81529d6e1960e21dd68187f92aad62219530879dcc8b3851"
+    },
+    {
       "path": "tests/Order03EnemyFlagProbe.cs",
       "bytes": 12022,
       "sha256": "a56d48f97dc448d70b7e474f31d8a9c9aa3c05bd50a89cb4c5f5323287f25299"
@@ -2307,6 +2407,11 @@
       "path": "tests/Order03SelectedTagsProbe.cs",
       "bytes": 5754,
       "sha256": "5409aee50ad596f95770c59da8b0f57773d2dd7d4c06f2547e66916df0eb431f"
+    },
+    {
+      "path": "tests/Order03SoloPersistenceBoundary_test.go",
+      "bytes": 3558,
+      "sha256": "03c2a34c2176923bd5b1b62650b0361b810d17d4fca06a14a0b25b4cd6371b2e"
     },
     {
       "path": "tests/Order03StatusProbe.cs",
@@ -2425,8 +2530,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 58776,
-      "sha256": "b48d9c9f0550c5f2170574038e8f36042c4f0e38ae658a7f0a7d06afc15c3066"
+      "bytes": 60675,
+      "sha256": "750f7b946a2e1479b9569f622dbd3d01020732e547dae44eee4a0e84e1813546"
     },
     {
       "path": "服务端协作需求.md",
@@ -2454,7 +2559,7 @@
       "sha256": "79842a51cab9bf4a3b997b4a0c605ad67c563af3659edb0edee8972fab2c41de"
     }
   ],
-  "bytes": 31925918,
+  "bytes": 32033349,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }
