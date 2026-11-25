@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-24T08:45:36.787Z",
+  "checkedAt": "2026-11-25T01:09:53.869Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -78,9 +78,10 @@
         "evidence/ios-package-search/order03-server-delivery-validation.json",
         "evidence/ios-package-search/order03-quest-variant-gap.json",
         "evidence/ios-package-search/order03-runtime-supplement-validation.json",
-        "evidence/ios-package-search/order03-live-battle-contract.json"
+        "evidence/ios-package-search/order03-live-battle-contract.json",
+        "evidence/ios-package-search/order03-runtime-selection-validation.json"
       ],
-      "remaining": "Live account evidence now establishes publication/admission for candidate 30010102 at the observed service, including one real Start. Effective loaded snapshot/configuration, deployed source/patch relation, original CSV transformation and exact historical list membership remain UNKNOWN. Do not infer them from disk/path/count matches."
+      "remaining": "Received process arguments select the reproduced executable resource manifest, matching 29 tables/static data and iOS profile; source loads the catalog before listening. Mutable publication and exact historical membership remain unverified."
     },
     {
       "id": "safe_battle_contract_and_redacted_interface_evidence",
@@ -157,6 +158,10 @@
     {
       "file": "evidence/ios-package-search/order03-live-battle-contract.json",
       "sha256": "ee16d4746dc65981899b7c7b69009b9e5580ce104cdfa2852fad4a28c57229a3"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-runtime-selection-validation.json",
+      "sha256": "a83c59cb215f810d5b597139243ad4965c7574ae0827f1b4eac0f0c37d4965d1"
     },
     {
       "file": "evidence/ios-package-search/order03-isolated-deck-contract.json",

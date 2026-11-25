@@ -23,6 +23,9 @@ const rawLoaderPath = p + 'order03-raw-static-loader.json';
 const rawLoader = fs.existsSync(path.join(root, rawLoaderPath)) ? load(rawLoaderPath) : null;
 const reviewedPatchPath = p + 'order03-reviewed-patch-reproduction.json';
 const reviewedPatch = fs.existsSync(path.join(root, reviewedPatchPath)) ? load(reviewedPatchPath) : null;
+const selectionPath = p + 'order03-runtime-selection-validation.json';
+const selection = fs.existsSync(path.join(root, selectionPath)) ? load(selectionPath) : null;
+if (selection && (!selection.success || !selection.selectedRuntimeInputsVerified || selection.scriptSha256 !== sha('scripts/audit-order03-runtime-selection.mjs') || selection.inputFile.sha256 !== sha(selection.inputFile.file))) throw Error('Runtime selection evidence missing or stale');
 if (reviewedPatch) {
   if (!reviewedPatch.analysisCompleted || !reviewedPatch.allBaseAndPatchedGitBlobIdentitiesMatched || !reviewedPatch.build.exactObservedBinaryReproduction || reviewedPatch.scriptSha256 !== sha('scripts/reproduce-order03-reviewed-patch.mjs') || reviewedPatch.inputPatch.sha256 !== sha(reviewedPatch.inputPatch.file)) throw Error('Reviewed patch reproduction evidence missing or stale');
   if (reviewedPatch.build.sha256 !== sha(reviewedPatch.build.executable)) throw Error('Reproduced executable changed');
@@ -67,6 +70,11 @@ if (reviewedPatch) {
   sourceGate.state = 'verified';
   sourceGate.evidence.push(reviewedPatchPath);
   sourceGate.remaining = 'The received reviewed patch plus pinned base d1a202eb, Go 1.25.1 and recorded flags reproduces the reported server disk executable SHA-256 exactly. Actual configuration/table selection and original CSV extraction remain separate evidence gaps.';
+}
+if (selection) {
+  const runtimeGate = gates.find(g => g.id === 'actual_deployed_version_and_quest_scope');
+  runtimeGate.evidence.push(selectionPath);
+  runtimeGate.remaining = 'Received process arguments select the reproduced executable resource manifest, matching 29 tables/static data and iOS profile; source loads the catalog before listening. Mutable publication and exact historical membership remain unverified.';
 }
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),

@@ -1,0 +1,30 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { fileURLToPath } from 'node:url';
+import {Order03Engine} from './order03-engine-client.mjs';
+import {playRounds} from './order03-play-rounds.mjs';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const definitions=JSON.parse(fs.readFileSync(path.join(root,'test-output/order03-independent-audit/projected-definitions.json'),'utf8'));
+const cards=Object.values(definitions.Cards).slice(0,10).map(card=>({cardid:card.ID,lv:1,love:0,fame:1,skill_lv:[]}));
+const party=Array.from({length:4},(_,index)=>({arthur_type:index+1,job_type:index+1,hp:10000,atkp:100,intp:100,mndp:100,deck:cards,support_deck:[],support_card_unlock_slot_num:0,sphrs:[],buddys:[]}));
+const engine=new Order03Engine();
+try {
+  await engine.request({operation:0,config:{enemy_party_id:30010102,cost_initial:3,hold_max:6,burst_gauge_initial:0,seed:12345,continue_allowed:true},enemy_type:1,party});
+  const started=await engine.request({operation:1});
+  assert(started.input_cmd.includes(',22,1,'));
+  await engine.request({operation:2});
+  await engine.request({operation:3});
+  for(let member=1;member<=4;member++)await engine.request({operation:4,selection:{member_type:member}});
+  await engine.request({operation:5});
+  await engine.request({operation:8});
+  await engine.request({operation:6});
+  const final=await engine.request({operation:9});
+  assert(final.input_cmd.includes(',2,1,'));
+  const init=await engine.request({operation:0,config:{enemy_party_id:30010102,cost_initial:3,hold_max:6,burst_gauge_initial:0,seed:12345,continue_allowed:true},enemy_type:1,party});
+  const knockedOut=await playRounds(command=>engine.request(command),await engine.request({operation:1}),init.card_metadata,'pass',true);
+  assert.ok(knockedOut.continueMember);
+  const revived=await engine.request({operation:13,member:knockedOut.continueMember});
+  assert(revived.state.Members.find(member=>member.MemberType===knockedOut.continueMember).HP>0);
+  console.log(JSON.stringify({success:true,syntheticParty:true,realDeliveredTables:true,journalBytes:final.input_cmd.length,scope:'Local helper preparation only. Party values are synthetic and never sent to the service.'}));
+}finally{engine.close();}

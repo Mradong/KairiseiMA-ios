@@ -272,6 +272,21 @@
         "exactObservedBinaryReproduction": true,
         "observedBinarySha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
         "scope": "Received reviewed patch applied to an isolated copy of the pinned full server module. Binary comparison and synthetic iOS protocol/manifest tests. Actual loaded configuration/table bytes, original CSV extraction, real battle contracts and device acceptance remain separate."
+      },
+      "order03RuntimeSelection": true,
+      "order03RealBattleContract": {
+        "checkedOn": "2026-11-25",
+        "computedVictoryAccepted": true,
+        "victoryRetryMatched": true,
+        "paidContinueDebitedOnce50": true,
+        "realDefeatAccepted": true,
+        "defeatFrozenResultRetry": "NOT_CAPTURED",
+        "evidence": [
+          "evidence/ios-package-search/order03-real-battle.json",
+          "evidence/ios-package-search/order03-real-battle-continue.json",
+          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
+        ],
+        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified."
       }
     },
     {
@@ -572,6 +587,21 @@
         "exactObservedBinaryReproduction": true,
         "observedBinarySha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
         "scope": "Received reviewed patch applied to an isolated copy of the pinned full server module. Binary comparison and synthetic iOS protocol/manifest tests. Actual loaded configuration/table bytes, original CSV extraction, real battle contracts and device acceptance remain separate."
+      },
+      "order03RuntimeSelection": true,
+      "order03RealBattleContract": {
+        "checkedOn": "2026-11-25",
+        "computedVictoryAccepted": true,
+        "victoryRetryMatched": true,
+        "paidContinueDebitedOnce50": true,
+        "realDefeatAccepted": true,
+        "defeatFrozenResultRetry": "NOT_CAPTURED",
+        "evidence": [
+          "evidence/ios-package-search/order03-real-battle.json",
+          "evidence/ios-package-search/order03-real-battle-continue.json",
+          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
+        ],
+        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified."
       }
     },
     {
@@ -763,7 +793,11 @@
       "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
       "evidence/ios-package-search/order03-reviewed-source-contract-tests.json",
       "evidence/ios-package-search/order03-runtime-selection-tests.json",
-      "evidence/ios-package-search/order03-runtime-selection-package.json"
+      "evidence/ios-package-search/order03-runtime-selection-package.json",
+      "evidence/ios-package-search/order03-runtime-selection-validation.json",
+      "evidence/ios-package-search/order03-real-battle.json",
+      "evidence/ios-package-search/order03-real-battle-continue.json",
+      "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
     ],
     "targetJobTypeCondition": "Windows x64 synthetic registered battle: member 1 actually receives/selects a packed support card, explicitly targets member 2 (JOB_TYPE=MILLIONAIRE), and executes the player action. Twelve first/second selector and both-condition-slot cases match original full traces, FunctionID/branch index and journals. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
     "friendSelectedConditions": "Windows x64 synthetic standalone battle: after actually selecting two cost-1 FIRE/ATTACK member-1 cards, 40 FRIEND_PLAY_ATTR_NUM/FRIEND_PLAY_SKILL_KIND_NUM/FRIEND_PLAY_COST_TOTAL queries across matching/nonmatching or range boundaries and both slots match the original DLL. This does not prove real service cards, complete effects, deployed table/version compatibility, Unity, ARM64 or device behavior.",
@@ -847,10 +881,26 @@
       "sourceScriptSha256": "ec89528f1cb239b3121ac39ec8b2507af6c0c45d2f4e3498bba4ee309c781e4a",
       "expectedServerSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
       "localFixtureTestsPassed": true,
-      "serverExecuted": false,
+      "serverExecuted": true,
       "scope": "Prepared targeted process/resource-selection collector. Local synthetic fixture validation only.",
       "sourcePushed": true,
-      "remoteSourceCommit": "303f5769f86d50d8fef1e21d8a35e848db944655"
+      "remoteSourceCommit": "303f5769f86d50d8fef1e21d8a35e848db944655",
+      "selectedRuntimeInputsVerified": true,
+      "validationEvidence": "evidence/ios-package-search/order03-runtime-selection-validation.json"
+    },
+    "realBattleContract": {
+      "checkedOn": "2026-11-25",
+      "computedVictoryAccepted": true,
+      "victoryRetryMatched": true,
+      "paidContinueDebitedOnce50": true,
+      "realDefeatAccepted": true,
+      "defeatFrozenResultRetry": "NOT_CAPTURED",
+      "evidence": [
+        "evidence/ios-package-search/order03-real-battle.json",
+        "evidence/ios-package-search/order03-real-battle-continue.json",
+        "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
+      ],
+      "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified."
     }
   }
 }

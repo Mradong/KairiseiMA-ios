@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-11-25T00:43:28.576Z",
+  "success": true,
+  "planItem": "03",
+  "receivedArchive": {
+    "file": "inputs/server-order03/Order03-Selection-20261124T092532030Z-9ff1e0.zip",
+    "bytes": 3460,
+    "sha256": "71f81476ceb6fa2d239f38e80372a75549dfe678725ae5bbef0ee4d667bc2990",
+    "entries": 2,
+    "checksumVerified": true
+  },
+  "inputFile": {
+    "file": "inputs/server-order03/Order03-Selection-20261124T092532030Z-9ff1e0/selection.json",
+    "sha256": "26edcba830c65076803aba330c773e16586619afd830e9a8776ac9973762ba43"
+  },
+  "reproducedExecutableSha256": "7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918",
+  "processStartUtc": "2026-11-24T07:43:45.6599012Z",
+  "collectionUtc": "2026-11-24T09:25:32.0795425Z",
+  "selectedRuntimeInputsVerified": true,
+  "selectedManifest": {
+    "bytes": 4260359,
+    "sha256": "1e499a8fa29efc6616f4de6cfc28b36f032ef97d05cccf0060b9dc1fe316a1ad",
+    "lastWriteUtc": "1979-12-31T16:00:00.0000000Z",
+    "stable": true
+  },
+  "matchedTables": 29,
+  "selectedStaticResources": [
+    {
+      "role": "battle",
+      "identity": {
+        "bytes": 16172227,
+        "sha256": "faeac09193b14619b4d4bef4145648dde38c9643f4b9ad663c98fcd39ecf80eb",
+        "lastWriteUtc": "1979-12-31T16:00:00.0000000Z",
+        "stable": true
+      }
+    },
+    {
+      "role": "normal_quest",
+      "identity": {
+        "bytes": 736871,
+        "sha256": "689df69e44ff14936b5def018ab46172a719e1f421a72ff9e86b365d97e90286",
+        "lastWriteUtc": "1979-12-31T16:00:00.0000000Z",
+        "stable": true
+      }
+    }
+  ],
+  "selectedPlatform": {
+    "identity": {
+      "bytes": 760,
+      "sha256": "6cf10a0341992ea4528652cde7cc073b9eb40348055d94efe0474eb5a7c16f87",
+      "lastWriteUtc": "2026-11-19T09:33:06.0000000Z",
+      "stable": true
+    },
+    "platform": "iOS",
+    "unityVersion": "6000.3.26f1",
+    "contentId": "55c68a8971aafc9a137f79f16d5c2795bfb37c89b7f64bdca1542fc0eb1fd2bb"
+  },
+  "declaredFileTimesPrecedeObservedProcessStart": true,
+  "sourceLoadOrder": {
+    "manifestBeforeCatalog": true,
+    "catalogBeforeListener": true,
+    "sourceFile": "source-review/kairisei-ma-ch/server/cmd/kairi-server/main.go",
+    "sourceSha256": "813ec8e76ec0c40bf9a716cffac8adc9633dc7a2c6befd950747aebe87487e11",
+    "baseCommit": "d1a202eb539b99511e8a33f3975fac409ab545bf"
+  },
+  "scriptSha256": "37c3cd95427d7f91c239c4a1279d2cf872f58aed4833e6b3c6fdc3d18e9af33c",
+  "scope": "User-supplied process-argument observation for the exactly reproduced executable, selected file identities matching received tables/static data, and verified source startup load order. These establish the selected startup resource cohort within this evidence scope. Process memory bytes and mutable publication/account state were not captured. Historical CSV extraction and real battle contracts remain unverified."
+}
