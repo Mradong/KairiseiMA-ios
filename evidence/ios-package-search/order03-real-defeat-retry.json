@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-11-25T01:21:47.232Z",
+  "success": true,
+  "stage": "complete",
+  "authorization": "Existing user authorization for dedicated real test identities on the isolated iOS service.",
+  "sideEffects": {
+    "maximumNewAccounts": 2,
+    "maximumNewCharacters": 2,
+    "maximumEntries": 1,
+    "expectedEntryBP": 15,
+    "clearRewardMayBeGrantedOnlyAfterComputedVictory": false,
+    "maximumContinueDebits": 0,
+    "expectedContinueCrystalCost": 50
+  },
+  "steps": [
+    {
+      "phase": "identity_battle",
+      "fresh": true,
+      "characterCreated": true
+    },
+    {
+      "phase": "identity_viewer",
+      "fresh": true,
+      "characterCreated": true
+    },
+    {
+      "phase": "actual_party_prepared",
+      "members": 4,
+      "cards": [
+        10,
+        10,
+        10,
+        10
+      ],
+      "allMemberParametersFromService": true
+    },
+    {
+      "phase": "engine_finished",
+      "victory": false,
+      "endType": 2,
+      "turns": 14,
+      "selectedCardActions": 0,
+      "journalBytes": 22549,
+      "computedDamage": 0,
+      "enemyDeadBits": 0
+    },
+    {
+      "phase": "settlement",
+      "isClear": 0,
+      "identicalRetry": true,
+      "frozenResultIdentical": true,
+      "fullPayloadIdentical": true,
+      "changedTopLevelFields": [],
+      "changedUserFields": [],
+      "bpBefore": 20,
+      "bpAfter": 5,
+      "coinBefore": 0,
+      "coinAfter": 0,
+      "coinFreeBefore": 0,
+      "coinFreeAfter": 0
+    }
+  ],
+  "scope": "Dedicated identities and actual service party data, delivered real tables and deterministic engine actions. Identity/session/name/instance identifiers and seed remain in memory.",
+  "logs": [
+    {
+      "file": "evidence/ios-package-search/order03-real-defeat-retry-logs-20261125T012147232Z/victory-input.txt",
+      "sha256": "9ed317398e9a98f4a4ad15748bc9ef2c2c5259b4ed6be1e91ef7107397151442"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-real-defeat-retry-logs-20261125T012147232Z/victory-steps.jsonl",
+      "sha256": "783190bd247959a7c55260b8912a6c56b547d0e80be27f8048ed45dad7654c1a"
+    }
+  ]
+}

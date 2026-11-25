@@ -1,0 +1,7 @@
+{
+  "checkedAt": "2026-11-25T01:31:55.111Z",
+  "success": true,
+  "scriptSha256": "a37b68fd3119c412e9de605f3a2aed8a6ee3ed9dcafd522602a8b30e7691e8c8",
+  "helpersSha256": "ec89528f1cb239b3121ac39ec8b2507af6c0c45d2f4e3498bba4ee309c781e4a",
+  "scope": "Local synthetic HTTP/process-change fixtures through the normal script entry point. Actual service restart remains untested."
+}

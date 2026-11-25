@@ -25,6 +25,12 @@ const reviewedPatchPath = p + 'order03-reviewed-patch-reproduction.json';
 const reviewedPatch = fs.existsSync(path.join(root, reviewedPatchPath)) ? load(reviewedPatchPath) : null;
 const selectionPath = p + 'order03-runtime-selection-validation.json';
 const selection = fs.existsSync(path.join(root, selectionPath)) ? load(selectionPath) : null;
+const realBattlePath = p + 'order03-real-battle-validation.json';
+const realBattle = fs.existsSync(path.join(root, realBattlePath)) ? load(realBattlePath) : null;
+if (realBattle) {
+  if (!realBattle.success || realBattle.scriptSha256 !== sha('scripts/audit-order03-real-battle.mjs') || realBattle.sourceReport.sha256 !== sha(realBattle.sourceReport.file)) throw Error('Real battle evidence missing or stale');
+  for (const log of realBattle.logs) if (log.sha256 !== sha(log.file)) throw Error('Real battle log changed');
+}
 if (selection && (!selection.success || !selection.selectedRuntimeInputsVerified || selection.scriptSha256 !== sha('scripts/audit-order03-runtime-selection.mjs') || selection.inputFile.sha256 !== sha(selection.inputFile.file))) throw Error('Runtime selection evidence missing or stale');
 if (reviewedPatch) {
   if (!reviewedPatch.analysisCompleted || !reviewedPatch.allBaseAndPatchedGitBlobIdentitiesMatched || !reviewedPatch.build.exactObservedBinaryReproduction || reviewedPatch.scriptSha256 !== sha('scripts/reproduce-order03-reviewed-patch.mjs') || reviewedPatch.inputPatch.sha256 !== sha(reviewedPatch.inputPatch.file)) throw Error('Reviewed patch reproduction evidence missing or stale');
@@ -75,6 +81,11 @@ if (selection) {
   const runtimeGate = gates.find(g => g.id === 'actual_deployed_version_and_quest_scope');
   runtimeGate.evidence.push(selectionPath);
   runtimeGate.remaining = 'Received process arguments select the reproduced executable resource manifest, matching 29 tables/static data and iOS profile; source loads the catalog before listening. Mutable publication and exact historical membership remain unverified.';
+}
+if (realBattle) {
+  const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
+  contractGate.evidence.push(realBattlePath);
+  contractGate.remaining = 'Dedicated identities and actual service party/table inputs produced accepted engine victory, paid Continue with one 50-crystal debit and matching retry, engine revival, real defeat and delayed frozen-result retry. Remaining: actual service process-restart recovery and wider failure/concurrency boundaries within the requested contract scope.';
 }
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),

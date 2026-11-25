@@ -1,6 +1,6 @@
 {
-  "checkedAt": "2026-11-25T01:02:55.139Z",
-  "success": false,
+  "checkedAt": "2026-11-25T01:23:25.108Z",
+  "success": true,
   "stage": "complete",
   "authorization": "Existing user authorization for dedicated real test identities on the isolated iOS service.",
   "sideEffects": {
@@ -38,16 +38,20 @@
       "phase": "engine_finished",
       "victory": true,
       "endType": 1,
-      "turns": 9,
-      "selectedCardActions": 29,
-      "journalBytes": 14403,
-      "computedDamage": 103832,
+      "turns": 5,
+      "selectedCardActions": 17,
+      "journalBytes": 7951,
+      "computedDamage": 94140,
       "enemyDeadBits": 1
     },
     {
       "phase": "settlement",
       "isClear": 1,
       "identicalRetry": true,
+      "frozenResultIdentical": true,
+      "fullPayloadIdentical": true,
+      "changedTopLevelFields": [],
+      "changedUserFields": [],
       "bpBefore": 20,
       "bpAfter": 21,
       "coinBefore": 0,
@@ -64,7 +68,14 @@
     {
       "phase": "defeat_settlement",
       "isClear": 0,
-      "identicalRetry": false,
+      "frozenResultIdentical": true,
+      "fullPayloadIdentical": false,
+      "changedTopLevelFields": [
+        "user"
+      ],
+      "changedUserFields": [
+        "bp_next_sec"
+      ],
       "coinFreeAfter": 0,
       "bpAfter": 6
     }
@@ -72,31 +83,20 @@
   "scope": "Dedicated identities and actual service party data, delivered real tables and deterministic engine actions. Identity/session/name/instance identifiers and seed remain in memory.",
   "logs": [
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/defeat-input.txt",
-      "sha256": "9c83d73cbb5f2db01bcf3cf5025249975b81f26c889500c2719a4a0573480260"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/defeat-input.txt",
+      "sha256": "206df8996cf8a924261ac2d5d066803ff24b45fbb5884a440f33d2a7979ef0c1"
     },
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/defeat-steps.jsonl",
-      "sha256": "4ef89f6aa1fbeba3e606f3a556d56bb35872268f12e6ff52e97c01d2fd157182"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/defeat-steps.jsonl",
+      "sha256": "808976d49e2d397c3bf14d34b9d1083292d0502a974c011c2d0e004eaad45ea6"
     },
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/victory-input.txt",
-      "sha256": "eb39fb913ad6f0c5bc11c5583f57dc53edb1ef93663dd76908e0de197b70ab9b"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/victory-input.txt",
+      "sha256": "82d6d1f304798b7af4b46bd331f861346d2acc5dc25e013aaed599a24d8a7a23"
     },
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/victory-steps.jsonl",
-      "sha256": "d130851d7ab8f08119c4d96adac73dd4a2fd60d64b2c588a2705a91bcc3edf91"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/victory-steps.jsonl",
+      "sha256": "41e5b0d07a3cda033ae2f7f512ad6fd50b76d65858993132c4f31801c364e096"
     }
-  ],
-  "validationLimits": {
-    "defeatRetryFullPayloadIdentical": false,
-    "defeatFrozenResultComparison": "NOT_CAPTURED",
-    "reason": "The completed run compared full payloads. The source serializer freezes grants while projecting the current user state; the exact differing fields were not captured."
-  },
-  "liveWorkflowCompleted": true,
-  "remainingValidation": [
-    "defeat frozen-result retry comparison",
-    "actual process-restart recovery",
-    "historical CSV provenance"
   ]
 }

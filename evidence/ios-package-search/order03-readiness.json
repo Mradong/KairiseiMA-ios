@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-25T01:09:53.869Z",
+  "checkedAt": "2026-11-25T01:38:10.656Z",
   "planItem": "03",
   "goalStatus": "active",
   "ready": false,
@@ -89,9 +89,10 @@
       "evidence": [
         "evidence/ios-package-search/order03-isolated-deck-contract.json",
         "evidence/ios-package-search/order03-isolated-quest-contract.json",
-        "evidence/ios-package-search/order03-live-battle-contract.json"
+        "evidence/ios-package-search/order03-live-battle-contract.json",
+        "evidence/ios-package-search/order03-real-battle-validation.json"
       ],
-      "remaining": "A dedicated live isolated account verified candidate admission, one 15-BP debit, identical Start retry, relog recovery, rejected no-charge Continue, non-clear End/abandon and identical End retry without clear reward. Successful paid/free Continue, real engine-produced victory/defeat logs, clear settlement/reward idempotency and actual process-restart recovery remain unverified; do not fabricate a victory to fill them."
+      "remaining": "Dedicated identities and actual service party/table inputs produced accepted engine victory, paid Continue with one 50-crystal debit and matching retry, engine revival, real defeat and delayed frozen-result retry. Remaining: actual service process-restart recovery and wider failure/concurrency boundaries within the requested contract scope."
     }
   ],
   "evidenceHashes": [
@@ -170,6 +171,10 @@
     {
       "file": "evidence/ios-package-search/order03-isolated-quest-contract.json",
       "sha256": "bfa3318c13714dd93b57353a6b8c862a7714d7f6d8961c39505fbe221ea51103"
+    },
+    {
+      "file": "evidence/ios-package-search/order03-real-battle-validation.json",
+      "sha256": "a7ae6b175eb57f5c643ff7aadedb7c797745994a23a5844707ea2bf7446a2940"
     }
   ],
   "scope": "Acceptance ledger, not an automatic certification of runtime versions or unobserved behavior. Historical test success is used only within its stated scope. Order 03 remains incomplete while any gate lacks required evidence; whole-game acceptance is separate."

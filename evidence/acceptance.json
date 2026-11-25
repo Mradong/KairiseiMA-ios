@@ -280,13 +280,18 @@
         "victoryRetryMatched": true,
         "paidContinueDebitedOnce50": true,
         "realDefeatAccepted": true,
-        "defeatFrozenResultRetry": "NOT_CAPTURED",
+        "defeatFrozenResultRetry": "VERIFIED",
         "evidence": [
           "evidence/ios-package-search/order03-real-battle.json",
           "evidence/ios-package-search/order03-real-battle-continue.json",
-          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
+          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
+          "evidence/ios-package-search/order03-real-defeat-retry.json",
+          "evidence/ios-package-search/order03-real-battle-validation.json"
         ],
-        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified."
+        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified.",
+        "changedLiveUserFields": [
+          "bp_next_sec"
+        ]
       }
     },
     {
@@ -595,13 +600,18 @@
         "victoryRetryMatched": true,
         "paidContinueDebitedOnce50": true,
         "realDefeatAccepted": true,
-        "defeatFrozenResultRetry": "NOT_CAPTURED",
+        "defeatFrozenResultRetry": "VERIFIED",
         "evidence": [
           "evidence/ios-package-search/order03-real-battle.json",
           "evidence/ios-package-search/order03-real-battle-continue.json",
-          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
+          "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
+          "evidence/ios-package-search/order03-real-defeat-retry.json",
+          "evidence/ios-package-search/order03-real-battle-validation.json"
         ],
-        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified."
+        "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified.",
+        "changedLiveUserFields": [
+          "bp_next_sec"
+        ]
       }
     },
     {
@@ -894,13 +904,25 @@
       "victoryRetryMatched": true,
       "paidContinueDebitedOnce50": true,
       "realDefeatAccepted": true,
-      "defeatFrozenResultRetry": "NOT_CAPTURED",
+      "defeatFrozenResultRetry": "VERIFIED",
       "evidence": [
         "evidence/ios-package-search/order03-real-battle.json",
         "evidence/ios-package-search/order03-real-battle-continue.json",
-        "evidence/ios-package-search/order03-real-battle-continue-attempt1.json"
+        "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
+        "evidence/ios-package-search/order03-real-defeat-retry.json",
+        "evidence/ios-package-search/order03-real-battle-validation.json"
       ],
-      "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified."
+      "scope": "Real isolated identities and service parameters with local Go battle engine. Full callback/device behavior and live process restart remain unverified.",
+      "changedLiveUserFields": [
+        "bp_next_sec"
+      ]
+    },
+    "restartProbe": {
+      "preparedOn": "2026-11-25",
+      "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-013329110Z.zip",
+      "archiveSha256": "03a4670b936bc50e3fa070d293a16bcf02b6cb84666b9f1d70664024845d5161",
+      "localFixturePassed": true,
+      "serverExecuted": false
     }
   }
 }

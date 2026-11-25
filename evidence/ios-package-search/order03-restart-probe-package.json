@@ -1,0 +1,31 @@
+{
+  "preparedAt": "2026-11-25T01:33:29.514Z",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-013329110Z.zip",
+  "archiveBytes": 9201,
+  "archiveSha256": "03a4670b936bc50e3fa070d293a16bcf02b6cb84666b9f1d70664024845d5161",
+  "files": [
+    {
+      "name": "Collect-Order03RuntimeSelection.ps1",
+      "bytes": 12847,
+      "sha256": "956a4b9472b1cfd9d6f0a68b7a1ce9cc2ccde3d69bb310d3a54e475f0f14ab0c"
+    },
+    {
+      "name": "Verify-Order03-Restart.cmd",
+      "bytes": 135,
+      "sha256": "9744ae62badc7cd27f017190d08b61c2ed9ccde97ee200d24a75389f59f2fd3e"
+    },
+    {
+      "name": "Verify-Order03Restart.ps1",
+      "bytes": 8510,
+      "sha256": "484c821ec49617aa1dc209ae0abd28b2c6808c96360bb55cd72d93cb466ab6ec"
+    },
+    {
+      "name": "先读说明.md",
+      "bytes": 1249,
+      "sha256": "0e662159c29c57d156132a8e24fca14279012d481dac9d71028909afc381b172"
+    }
+  ],
+  "serverExecuted": false,
+  "scope": "Prepared one-entry dedicated-account manual iOS-service restart recovery probe. Actual server execution pending.",
+  "packagedScriptFixturePassed": true
+}

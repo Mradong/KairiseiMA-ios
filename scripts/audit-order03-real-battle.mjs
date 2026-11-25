@@ -9,7 +9,7 @@ const prefix='evidence/ios-package-search/';
 const json=file=>JSON.parse(fs.readFileSync(path.join(root,file),'utf8'));
 const sha=file=>crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex');
 const result=json(prefix+'order03-real-battle-continue.json');
-assert.equal(result.liveWorkflowCompleted,true);
+assert.equal(result.success,true);
 const phase=name=>result.steps.find(step=>step.phase===name);
 assert.equal(phase('engine_finished').victory,true);
 assert.equal(phase('settlement').isClear,1);
@@ -17,6 +17,9 @@ assert.equal(phase('settlement').identicalRetry,true);
 assert.equal(phase('paid_continue').debitedCrystals,50);
 assert.equal(phase('paid_continue').identicalRetry,true);
 assert.equal(phase('defeat_settlement').isClear,0);
+assert.equal(phase('defeat_settlement').frozenResultIdentical,true);
+assert.deepEqual(phase('defeat_settlement').changedTopLevelFields,['user']);
+assert.deepEqual(phase('defeat_settlement').changedUserFields,['bp_next_sec']);
 for(const log of result.logs)assert.equal(sha(log.file),log.sha256);
 const trace=name=>{
   const file=result.logs.find(log=>log.file.endsWith(name+'-steps.jsonl')).file;
@@ -35,12 +38,13 @@ const report={
   localEngineRevivalObserved:true,realDefeatAccepted:true,
   actualServiceParametersAndDeliveredTables:true,
   traceRecords:{victory:victory.length,defeat:defeat.length},
-  defeatFrozenResultRetry:'NOT_CAPTURED',
+  defeatFrozenResultRetry:'VERIFIED',
+  changedLiveUserFields:phase('defeat_settlement').changedUserFields,
   actualServiceProcessRestartRecovery:'NOT_TESTED',
   sourceReport:{file:prefix+'order03-real-battle-continue.json',sha256:sha(prefix+'order03-real-battle-continue.json')},
   logs:result.logs,
   scriptSha256:sha('scripts/audit-order03-real-battle.mjs'),
-  scope:'Real dedicated service identities, source/table-based local Go engine logs, accepted victory/paid continue/defeat requests. Actual original client/device gameplay, frozen defeat-result retry and live service restart recovery remain unverified.'
+  scope:'Real dedicated service identities, source/table-based local Go engine logs, accepted victory/paid continue/defeat requests and delayed frozen-result retry. Original client/device gameplay and live service restart recovery remain unverified.'
 };
 fs.writeFileSync(path.join(root,prefix+'order03-real-battle-validation.json'),JSON.stringify(report,null,2)+'\n');
 console.log(JSON.stringify(report,null,2));

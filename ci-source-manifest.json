@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-25T01:17:43.120Z",
+  "generatedAt": "2026-11-25T01:38:13.111Z",
   "stage": "ios-resource-cache-bootstrap",
   "gameplayReady": false,
   "files": [
@@ -35,13 +35,13 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 160738,
-      "sha256": "c01a0d624f97849c5e9716dc4ccd6b3492492566ed6e5f14add6d1dda955bdea"
+      "bytes": 162791,
+      "sha256": "70912938e1077e5f77d85a42a0842bcfeb9c5206ced459517b7c8a814e974fa9"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 106022,
-      "sha256": "1e312c6796594583d6c48016547100e367f82422dd024e8e9a7d49693c925199"
+      "bytes": 106987,
+      "sha256": "89b252b6ed311285b4f9f238376634c1b85ce56b160e181bde208d87943c1a8f"
     },
     {
       "path": "evidence/feature-coverage.md",
@@ -615,13 +615,18 @@
     },
     {
       "path": "evidence/ios-package-search/order03-readiness.json",
-      "bytes": 9136,
-      "sha256": "91ad59e9d8b2bc372fd336a6792c5a53010715c8570fa1c08543423c0fe4ca17"
+      "bytes": 9309,
+      "sha256": "d0299fd30c508ab5b80db954315cd89b76be29e916ba959ff89a0cad0f246eb0"
     },
     {
       "path": "evidence/ios-package-search/order03-real-battle-continue-attempt1.json",
       "bytes": 1795,
       "sha256": "397aaccb9316db09094a734f8c7f1b0959352e5d69246a2f151d30a5ce3dcc59"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-battle-continue-attempt2.json",
+      "bytes": 3163,
+      "sha256": "9fd3c4eb05cb5840305cd0bf1ee6d4c07277ef498f9047846c6bdb9fb33ee624"
     },
     {
       "path": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/defeat-input.txt",
@@ -644,14 +649,34 @@
       "sha256": "d130851d7ab8f08119c4d96adac73dd4a2fd60d64b2c588a2705a91bcc3edf91"
     },
     {
+      "path": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/defeat-input.txt",
+      "bytes": 24536,
+      "sha256": "206df8996cf8a924261ac2d5d066803ff24b45fbb5884a440f33d2a7979ef0c1"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/defeat-steps.jsonl",
+      "bytes": 260401,
+      "sha256": "808976d49e2d397c3bf14d34b9d1083292d0502a974c011c2d0e004eaad45ea6"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/victory-input.txt",
+      "bytes": 7951,
+      "sha256": "82d6d1f304798b7af4b46bd331f861346d2acc5dc25e013aaed599a24d8a7a23"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/victory-steps.jsonl",
+      "bytes": 102395,
+      "sha256": "41e5b0d07a3cda033ae2f7f512ad6fd50b76d65858993132c4f31801c364e096"
+    },
+    {
       "path": "evidence/ios-package-search/order03-real-battle-continue.json",
-      "bytes": 3163,
-      "sha256": "9fd3c4eb05cb5840305cd0bf1ee6d4c07277ef498f9047846c6bdb9fb33ee624"
+      "bytes": 2969,
+      "sha256": "3665225a05f12e0f4200a3183f764796e4236f416df47475fbda968f000f621b"
     },
     {
       "path": "evidence/ios-package-search/order03-real-battle-validation.json",
-      "bytes": 1901,
-      "sha256": "35a5825af49af9d530bdb51738296c8b3e6fab110db0ae81942ce12d639656ab"
+      "bytes": 1946,
+      "sha256": "a7ae6b175eb57f5c643ff7aadedb7c797745994a23a5844707ea2bf7446a2940"
     },
     {
       "path": "evidence/ios-package-search/order03-real-battle.json",
@@ -662,6 +687,21 @@
       "path": "evidence/ios-package-search/order03-real-catalog-open.json",
       "bytes": 985,
       "sha256": "e46513c12ee7715cadfb14ab0b28af497cee348e0f09d132ff417d4a61108281"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-defeat-retry-logs-20261125T012147232Z/victory-input.txt",
+      "bytes": 22549,
+      "sha256": "9ed317398e9a98f4a4ad15748bc9ef2c2c5259b4ed6be1e91ef7107397151442"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-defeat-retry-logs-20261125T012147232Z/victory-steps.jsonl",
+      "bytes": 222884,
+      "sha256": "783190bd247959a7c55260b8912a6c56b547d0e80be27f8048ed45dad7654c1a"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-real-defeat-retry.json",
+      "bytes": 2099,
+      "sha256": "bc2726603ba10631ed39486e1a1ae3e20c4f4f9fd922b435ac73b9a4c8f6ec29"
     },
     {
       "path": "evidence/ios-package-search/order03-real-enemy-query-before-fix.json",
@@ -692,6 +732,16 @@
       "path": "evidence/ios-package-search/order03-remaining-validation.json",
       "bytes": 8087,
       "sha256": "98efaaffd9a3581070e06f5344fe8f9062f8b3eb1fe637b36511eaddf622f66d"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-restart-probe-package.json",
+      "bytes": 1117,
+      "sha256": "063c3d15b9d2eda13bb6b998676f1408695f6c7d58c37ea6ffb8e5e3d5339ade"
+    },
+    {
+      "path": "evidence/ios-package-search/order03-restart-probe-tests.json",
+      "bytes": 377,
+      "sha256": "d2216e10679c252b1d7aa8a4e4f8a2f4d3e1ffdf22528025c6ed74b75e5085a8"
     },
     {
       "path": "evidence/ios-package-search/order03-reviewed-patch-reproduction.json",
@@ -1171,7 +1221,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2046,
-      "sha256": "635189f82454d3285eeae53a0cdd3cb2fa5e07eca13cc1d6c157473ba18db4ad"
+      "sha256": "e7180d85e8d4d443ddc56205ec7dffbfcfa265874ce567fe7b8b0e32495fb500"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1619,6 +1669,16 @@
       "sha256": "93dbb5f48c797bb67bb5c4a48ba1434a3a770b0a4643af8cd9bc0e873ddef0bd"
     },
     {
+      "path": "scripts/Verify-Order03-Restart.cmd",
+      "bytes": 132,
+      "sha256": "0cb0389d43b72900b16a9036610fbefbcd037f3d964992b5596024e30a3a98cc"
+    },
+    {
+      "path": "scripts/Verify-Order03Restart.ps1",
+      "bytes": 8394,
+      "sha256": "a37b68fd3119c412e9de605f3a2aed8a6ee3ed9dcafd522602a8b30e7691e8c8"
+    },
+    {
       "path": "scripts/audit-602-home.mjs",
       "bytes": 2623,
       "sha256": "5c326229dbd369033e49888a774cbedf456c1a3c166c68aa6094b1ca7a98dfc3"
@@ -1660,8 +1720,8 @@
     },
     {
       "path": "scripts/audit-order03-real-battle.mjs",
-      "bytes": 2731,
-      "sha256": "6c11e63b45df876f5949dd10b663bbf41d463dab77fefe6901483cae6800460b"
+      "bytes": 3006,
+      "sha256": "f9683390cf5ff345ab9f2a29dd838631e282b1b27455cf0653ed482e98ca2a28"
     },
     {
       "path": "scripts/audit-order03-remaining.mjs",
@@ -1695,8 +1755,8 @@
     },
     {
       "path": "scripts/check-order03-readiness.mjs",
-      "bytes": 12558,
-      "sha256": "879d5635876257fd78a3dbab911c19967621bc0bc3c77108f59b62d3033745a2"
+      "bytes": 13625,
+      "sha256": "8cc32f2303844c05a5ebf23273ef5f701dd7d877d6aa626b32c964a6dd0cab21"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1747,6 +1807,11 @@
       "path": "scripts/prepare-order03-remaining-collector.mjs",
       "bytes": 5284,
       "sha256": "88a2f34ade422c0649016ee6db314c67531d761f5bb4150176d9c5480bc33111"
+    },
+    {
+      "path": "scripts/prepare-order03-restart-probe.mjs",
+      "bytes": 3556,
+      "sha256": "91212fd4759a17bb5a7e02ce2ca1f0ad9d717c07ac3ad49b68cfc299dc6ea0fc"
     },
     {
       "path": "scripts/prepare-order03-runtime-selection.mjs",
@@ -1800,8 +1865,8 @@
     },
     {
       "path": "scripts/probe-order03-real-battle.mjs",
-      "bytes": 11697,
-      "sha256": "3e8a8c1c0aab152d7afebd69b92ea9ffa834aedd65aec7fb336695a785a0e116"
+      "bytes": 12667,
+      "sha256": "70a97187d0a159250818accefa59b8e302337cf81b97b9c66980dc7dc3dc5518"
     },
     {
       "path": "scripts/probe-order03-starter-card-closure.mjs",
@@ -1942,6 +2007,11 @@
       "path": "scripts/test-order03-remaining-collector.mjs",
       "bytes": 6763,
       "sha256": "4c29af3be0bbdbccbb0aa3f6c347fc4be07e0c4f8929e08ebd632e5e8949da06"
+    },
+    {
+      "path": "scripts/test-order03-restart-probe.mjs",
+      "bytes": 4195,
+      "sha256": "5873e720e8053c9b79a46b4204c8ac6ccb954d862540cea68180c161ad14beb4"
     },
     {
       "path": "scripts/test-order03-role-alias-differential.mjs",
@@ -2285,8 +2355,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 55493,
-      "sha256": "1e65dcd9ace727f71e4dee6cc1a0c2d9bee456af09a83504b8d4202f17f545aa"
+      "bytes": 56433,
+      "sha256": "1436e95b2392dcb4681ab4824e1cfc13194915697355db845a7bfff69cf55d7b"
     },
     {
       "path": "服务端协作需求.md",
@@ -2305,16 +2375,16 @@
     },
     {
       "path": "顺序03服务端交付请求.md",
-      "bytes": 20833,
-      "sha256": "180ec654d152a766b871c1955bbec0e2c4692defd3ba023f0360849fab8756a2"
+      "bytes": 21233,
+      "sha256": "941db48c614d6a6ea24a061ef35216cc8d1b315202e8d5d66b224a7c5af1689f"
     },
     {
       "path": "顺序03补充取证说明.md",
-      "bytes": 7520,
-      "sha256": "452674454af70213b2066e93b5957c1bd67aa47aa2b25335aa86bed939843577"
+      "bytes": 8194,
+      "sha256": "9e1954d3863e65f2e99b1d268f0748629ceac74ae1e33e960594d520c95a5b89"
     }
   ],
-  "bytes": 31188188,
+  "bytes": 31859305,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

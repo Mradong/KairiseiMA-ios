@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import http from 'node:http';
 import crypto from 'node:crypto';
+import { isDeepStrictEqual } from 'node:util';
 import { fileURLToPath } from 'node:url';
 import { Order03Engine } from './order03-engine-client.mjs';
 import { playRounds } from './order03-play-rounds.mjs';
@@ -10,11 +11,13 @@ const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
 const origin='http://47.116.51.61:27040';
 const bossId=30010102;
 const verifyContinue=process.argv.includes('--continue');
-const baseName=verifyContinue?'order03-real-battle-continue':'order03-real-battle';
+const defeatOnly=process.argv.includes('--defeat-only');
+const baseName=defeatOnly?'order03-real-defeat-retry':verifyContinue?'order03-real-battle-continue':'order03-real-battle';
 const file=path.join(root,'evidence/ios-package-search/'+baseName+'.json');
 const report={checkedAt:new Date().toISOString(),success:false,stage:'before_identity_creation',authorization:'Existing user authorization for dedicated real test identities on the isolated iOS service.',sideEffects:{maximumNewAccounts:2,maximumNewCharacters:2,maximumEntries:1,expectedEntryBP:15,clearRewardMayBeGrantedOnlyAfterComputedVictory:true},steps:[],scope:'Dedicated identities and actual service party data, delivered real tables and deterministic engine actions. Identity/session/name/instance identifiers and seed remain in memory.'};
 const save=()=>fs.writeFileSync(file,JSON.stringify(report,null,2)+'\n');
 report.sideEffects.maximumEntries=verifyContinue?2:1;
+report.sideEffects.clearRewardMayBeGrantedOnlyAfterComputedVictory=!defeatOnly;
 report.sideEffects.maximumContinueDebits=verifyContinue?1:0;
 report.sideEffects.expectedContinueCrystalCost=50;
 const runStamp=new Date().toISOString().replace(/[-:.]/g,'');
@@ -58,8 +61,16 @@ function project(wire){
 }
 const hash=value=>crypto.createHash('sha256').update(JSON.stringify(value)).digest('hex');
 function frozenResult(value){const {user,...result}=value;return result;}
+function compareResult(first,second){
+  return {
+    frozenResultIdentical:isDeepStrictEqual(frozenResult(first),frozenResult(second)),
+    fullPayloadIdentical:isDeepStrictEqual(first,second),
+    changedTopLevelFields:Object.keys({...first,...second}).filter(key=>!isDeepStrictEqual(first[key],second[key])),
+    changedUserFields:Object.keys({...first.user,...second.user}).filter(key=>!isDeepStrictEqual(first.user?.[key],second.user?.[key]))
+  };
+}
 let main,engine,startPayload,active=false;
-let logName='victory';
+let logName=defeatOnly?'defeat':'victory';
 async function step(command){
   const result=await engine.request(command);
   fs.appendFileSync(path.join(logs,logName+'-steps.jsonl'),JSON.stringify({operation:command.operation,selection:command.selection,member:command.member,state:result.state,rows:result.rows})+'\n');
@@ -93,7 +104,7 @@ try {
   if(startPayload.battles?.length!==1)throw new Error('one-wave probe required');
   const party=[project(own),...startPayload.partner_deck.map(project)];
   const initialized=await engine.request({operation:0,config:{enemy_party_id:startPayload.battles[0].enemy_partyid,cost_initial:startPayload.cost_initial,hold_max:startPayload.hold_max,burst_gauge_initial:startPayload.burst_gauge_initial,seed:startPayload.seed,continue_allowed:true,end_turn:startPayload.end_turn},enemy_type:startPayload.battles[0].enemy_type,party});
-  const played=await playRounds(step,await step({operation:1}),initialized.card_metadata,'attack');
+  const played=await playRounds(step,await step({operation:1}),initialized.card_metadata,defeatOnly?'pass':'attack');
   let result=played.result;const actions=played.actions;
   const victory=result.state.EndType===1;
   let deadBits=0;for(const enemy of result.state.Members.filter(member=>member.MemberType>=5&&member.HP<=0))deadBits|=1<<(enemy.MemberType-5);
@@ -103,7 +114,9 @@ try {
   const endBody=body(main,payload);const ended=envelope(await request('/TeamBattleSoloEnd',endBody));active=false;
   const retry=envelope(await request('/TeamBattleSoloEnd',endBody));
   const after=envelope(await request('/HomeShow',main.session));
-  report.steps.push({phase:'settlement',isClear:ended.is_clear,identicalRetry:hash(ended)===hash(retry),bpBefore:before.user.bp,bpAfter:after.user.bp,coinBefore:before.user.coin,coinAfter:after.user.coin,coinFreeBefore:before.user.coin_free,coinFreeAfter:after.user.coin_free});
+  const compared=compareResult(ended,retry);
+  report.steps.push({phase:'settlement',isClear:ended.is_clear,identicalRetry:compared.fullPayloadIdentical,...compared,bpBefore:before.user.bp,bpAfter:after.user.bp,coinBefore:before.user.coin,coinAfter:after.user.coin,coinFreeBefore:before.user.coin_free,coinFreeAfter:after.user.coin_free});
+  if(!compared.frozenResultIdentical)throw new Error('frozen settlement receipt changed');
   if(verifyContinue){
     if(!victory||after.user.bp<15||after.user.coin+after.user.coin_free<50)throw new Error('earned continue budget unavailable');
     report.stage='second_entry';save();
@@ -125,9 +138,12 @@ try {
     report.stage='defeat_settlement';save();
     const defeatBody=body(main,{bossid:bossId,progress:1,is_clear:0,input_cmd:[lostAgain.result.input_cmd],enemy_dead_bit:[0],score_damage:lostAgain.result.score_damage});
     const defeat=envelope(await request('/TeamBattleSoloEnd',defeatBody));active=false;
+    await new Promise(resolve=>setTimeout(resolve,1500));
     const defeatRetry=envelope(await request('/TeamBattleSoloEnd',defeatBody));
     const finalHome=envelope(await request('/HomeShow',main.session));
-    report.steps.push({phase:'defeat_settlement',isClear:defeat.is_clear,fullPayloadIdentical:hash(defeat)===hash(defeatRetry),frozenResultIdentical:hash(frozenResult(defeat))===hash(frozenResult(defeatRetry)),coinFreeAfter:finalHome.user.coin_free,bpAfter:finalHome.user.bp});
+    const defeatComparison=compareResult(defeat,defeatRetry);
+    report.steps.push({phase:'defeat_settlement',isClear:defeat.is_clear,...defeatComparison,coinFreeAfter:finalHome.user.coin_free,bpAfter:finalHome.user.bp});
+    if(!defeatComparison.frozenResultIdentical)throw new Error('continued defeat receipt changed');
   }
   report.success=true;report.stage='complete';
 }catch(error){

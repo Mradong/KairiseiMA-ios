@@ -1,5 +1,5 @@
 {
-  "checkedAt": "2026-11-25T01:13:01.711Z",
+  "checkedAt": "2026-11-25T01:38:10.348Z",
   "success": true,
   "realServiceVictoryAccepted": true,
   "victoryRetryMatched": true,
@@ -10,33 +10,36 @@
   "realDefeatAccepted": true,
   "actualServiceParametersAndDeliveredTables": true,
   "traceRecords": {
-    "victory": 82,
-    "defeat": 150
+    "victory": 46,
+    "defeat": 141
   },
-  "defeatFrozenResultRetry": "NOT_CAPTURED",
+  "defeatFrozenResultRetry": "VERIFIED",
+  "changedLiveUserFields": [
+    "bp_next_sec"
+  ],
   "actualServiceProcessRestartRecovery": "NOT_TESTED",
   "sourceReport": {
     "file": "evidence/ios-package-search/order03-real-battle-continue.json",
-    "sha256": "9fd3c4eb05cb5840305cd0bf1ee6d4c07277ef498f9047846c6bdb9fb33ee624"
+    "sha256": "3665225a05f12e0f4200a3183f764796e4236f416df47475fbda968f000f621b"
   },
   "logs": [
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/defeat-input.txt",
-      "sha256": "9c83d73cbb5f2db01bcf3cf5025249975b81f26c889500c2719a4a0573480260"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/defeat-input.txt",
+      "sha256": "206df8996cf8a924261ac2d5d066803ff24b45fbb5884a440f33d2a7979ef0c1"
     },
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/defeat-steps.jsonl",
-      "sha256": "4ef89f6aa1fbeba3e606f3a556d56bb35872268f12e6ff52e97c01d2fd157182"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/defeat-steps.jsonl",
+      "sha256": "808976d49e2d397c3bf14d34b9d1083292d0502a974c011c2d0e004eaad45ea6"
     },
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/victory-input.txt",
-      "sha256": "eb39fb913ad6f0c5bc11c5583f57dc53edb1ef93663dd76908e0de197b70ab9b"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/victory-input.txt",
+      "sha256": "82d6d1f304798b7af4b46bd331f861346d2acc5dc25e013aaed599a24d8a7a23"
     },
     {
-      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T010255139Z/victory-steps.jsonl",
-      "sha256": "d130851d7ab8f08119c4d96adac73dd4a2fd60d64b2c588a2705a91bcc3edf91"
+      "file": "evidence/ios-package-search/order03-real-battle-continue-logs-20261125T012325108Z/victory-steps.jsonl",
+      "sha256": "41e5b0d07a3cda033ae2f7f512ad6fd50b76d65858993132c4f31801c364e096"
     }
   ],
-  "scriptSha256": "6c11e63b45df876f5949dd10b663bbf41d463dab77fefe6901483cae6800460b",
-  "scope": "Real dedicated service identities, source/table-based local Go engine logs, accepted victory/paid continue/defeat requests. Actual original client/device gameplay, frozen defeat-result retry and live service restart recovery remain unverified."
+  "scriptSha256": "f9683390cf5ff345ab9f2a29dd838631e282b1b27455cf0653ed482e98ca2a28",
+  "scope": "Real dedicated service identities, source/table-based local Go engine logs, accepted victory/paid continue/defeat requests and delayed frozen-result retry. Original client/device gameplay and live service restart recovery remain unverified."
 }

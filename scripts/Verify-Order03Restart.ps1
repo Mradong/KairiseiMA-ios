@@ -1,0 +1,116 @@
+param([string]$TestRoot=$PSScriptRoot,[int]$Port=27040)
+$ErrorActionPreference='Stop'
+. (Join-Path $PSScriptRoot 'Collect-Order03RuntimeSelection.ps1') -TestRoot $TestRoot -Port $Port
+
+function Invoke-Order03Request([string]$Route,[string]$Body) {
+    $request=[Net.HttpWebRequest]::Create('http://127.0.0.1:'+$Port+$Route)
+    $request.Method='POST';$request.ContentType='application/json';$request.Timeout=20000;$request.ReadWriteTimeout=20000
+    $data=[Text.Encoding]::UTF8.GetBytes($Body);$request.ContentLength=$data.Length
+    $stream=$request.GetRequestStream()
+    try{$stream.Write($data,0,$data.Length)}finally{$stream.Dispose()}
+    $response=$request.GetResponse()
+    try {
+        $reader=[IO.StreamReader]::new($response.GetResponseStream(),[Text.Encoding]::UTF8)
+        try{$text=$reader.ReadToEnd()}finally{$reader.Dispose()}
+        return $text
+    } finally {$response.Dispose()}
+}
+function Read-Order03Envelope([string]$Text) {
+    $parts=@($Text.Trim().Split([char]10) | Where-Object {$_.Trim()})
+    $common=$parts[0] | ConvertFrom-Json
+    if($common.res_code -ne 0 -or $parts.Count -lt 2){throw 'Business request failed.'}
+    return $parts[1] | ConvertFrom-Json
+}
+function Get-Order03TestProcess {
+    $owners=@(Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction Stop | Select-Object -ExpandProperty OwningProcess -Unique)
+    if($owners.Count -ne 1){throw 'One test listener is required.'}
+    $process=Get-Process -Id $owners[0] -ErrorAction Stop
+    $identity=Get-SelectionIdentity $process.MainModule.FileName
+    if($identity.sha256 -ne '7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918'){throw 'Test executable differs from reviewed version.'}
+    return [ordered]@{startUtc=$process.StartTime.ToUniversalTime().ToString('o');executable=$identity}
+}
+function Get-Order03ObjectHash($Value) {
+    $json=ConvertTo-Json -InputObject $Value -Depth 40 -Compress
+    $hasher=[Security.Cryptography.SHA256]::Create()
+    try{return ([BitConverter]::ToString($hasher.ComputeHash([Text.Encoding]::UTF8.GetBytes($json)))).Replace('-','').ToLowerInvariant()}
+    finally{$hasher.Dispose()}
+}
+if($MyInvocation.InvocationName -eq '.'){return}
+$output=Join-Path (Get-Item -LiteralPath $TestRoot).FullName ('Order03-Restart-'+[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ'))
+New-Item -ItemType Directory -Path $output | Out-Null
+$report=[ordered]@{schemaVersion=1;collector='order03-restart-20261125-1';startedUtc=[DateTime]::UtcNow.ToString('o');success=$false;stage='before_identity';sideEffects=@{newDedicatedAccountsMaximum=1;newCharactersMaximum=1;entryMaximum=1;expectedEntryBP=15;clearRewardRequested=$false;restartPerformedByUser=$true};steps=@()}
+function Save-Order03RestartReport {
+    [IO.File]::WriteAllText((Join-Path $output 'restart.json'),(ConvertTo-Json -InputObject $report -Depth 20)+"`n",[Text.UTF8Encoding]::new($false))
+}
+Save-Order03RestartReport
+$session=$null;$start=$null;$active=$false
+try {
+    $beforeProcess=Get-Order03TestProcess
+    $uuid=[Guid]::NewGuid().ToString();$characterName='ios'+[Guid]::NewGuid().ToString('N').Substring(0,12)
+    $loginBody=@{uuid=$uuid;clver='2.0.4';resource_platform='iOS';unity_version='6000.3.26f1'} | ConvertTo-Json -Compress
+    $report.stage='identity_creation';Save-Order03RestartReport
+    $login=Invoke-Order03Request '/local/client/login' $loginBody | ConvertFrom-Json
+    $session=[string]$login.sess_key;$userNumber=$login.userid
+    if(!$session -or !$userNumber){throw 'Login fields missing.'}
+    $connected=Read-Order03Envelope (Invoke-Order03Request '/Connect' ($session+'{}'))
+    if($connected.is_user -ne 0){throw 'Dedicated identity is not fresh.'}
+    $createBody=@{name=$characterName;arthur_type=1} | ConvertTo-Json -Compress
+    $created=Read-Order03Envelope (Invoke-Order03Request '/UserCreate' ($session+$createBody))
+    if($created.user.userid -ne $userNumber){throw 'Created identity mismatch.'}
+    $initialHome=Read-Order03Envelope (Invoke-Order03Request '/HomeShow' $session)
+    $partners=Read-Order03Envelope (Invoke-Order03Request '/TeamBattleSoloPartnerShow' ($session+'{"bossid":30010102}'))
+    $selected=@()
+    foreach($role in @(2,3,4)) {
+        $group=$partners.arthurs | Where-Object {$_.arthur_type -eq $role} | Select-Object -First 1
+        $candidate=$group.partners | Select-Object -First 1
+        if(!$candidate.userid){throw 'Required partner missing.'}
+        $selected+=@{userid=$candidate.userid;arthur_type=$role;deck_idx=$candidate.rental_idx}
+    }
+    $startBody=@{bossid=30010102;deck_arthur_type=1;deck_arthur_type_idx=0;partner_deck_selects=$selected} | ConvertTo-Json -Depth 8 -Compress
+    $report.stage='entry';Save-Order03RestartReport
+    $start=Read-Order03Envelope (Invoke-Order03Request '/TeamBattleSoloStart' ($session+$startBody));$active=$true
+    $openingHash=Get-Order03ObjectHash $start
+    $report.steps+=@{phase='entry';accepted=$true;initialBP=$initialHome.user.bp;waveCount=@($start.battles).Count}
+    $report.processBefore=$beforeProcess;$report.stage='waiting_for_user_restart';Save-Order03RestartReport
+    Write-Host 'Now restart ONLY the iOS test service window for port 27040.'
+    Write-Host 'In that service window press Ctrl+C, then double-click Start-Phone-Test.cmd again.'
+    Write-Host 'Keep THIS verification window open. Waiting up to 5 minutes...'
+    $afterProcess=$null
+    for($attempt=0;$attempt -lt 150;$attempt++) {
+        Start-Sleep -Seconds 2
+        try{$candidate=Get-Order03TestProcess;if($candidate.startUtc -ne $beforeProcess.startUtc){$afterProcess=$candidate;break}}catch{}
+    }
+    if(!$afterProcess){throw 'Changed test process was not observed within the wait limit.'}
+    $report.processAfter=$afterProcess;$report.stage='relogin_and_restore';Save-Order03RestartReport
+    $login=Invoke-Order03Request '/local/client/login' $loginBody | ConvertFrom-Json
+    if($login.userid -ne $userNumber -or !$login.sess_key){throw 'Identity changed after restart.'}
+    $session=[string]$login.sess_key
+    $restored=Read-Order03Envelope (Invoke-Order03Request '/TeamBattleSoloStart' ($session+$startBody))
+    $sameSeed=$start.seed -eq $restored.seed;$sameTime=$start.start_time -eq $restored.start_time
+    $sameOpening=$openingHash -eq (Get-Order03ObjectHash $restored)
+    $report.steps+=@{phase='restore';sameIdentity=$true;sameSeed=$sameSeed;sameStartTime=$sameTime;sameOpeningPayload=$sameOpening}
+    if(!$sameSeed -or !$sameTime -or !$sameOpening){throw 'Battle opening changed after restart.'}
+    $report.stage='abandon';Save-Order03RestartReport
+    $endBody=@{bossid=30010102;progress=0;is_clear=0;input_cmd=@($start.battles | ForEach-Object {''});enemy_dead_bit=@($start.battles | ForEach-Object {0})} | ConvertTo-Json -Depth 5 -Compress
+    $ended=Read-Order03Envelope (Invoke-Order03Request '/TeamBattleSoloEnd' ($session+$endBody));$active=$false
+    $homeAfter=Read-Order03Envelope (Invoke-Order03Request '/HomeShow' $session)
+    $report.steps+=@{phase='abandon';accepted=$true;isClear=$ended.is_clear;finalBP=$homeAfter.user.bp;bpDelta=$initialHome.user.bp-$homeAfter.user.bp}
+    if($initialHome.user.bp-$homeAfter.user.bp -ne 15){throw 'Entry debit did not match the single-entry policy.'}
+    $report.success=$true;$report.stage='complete'
+} catch {
+    $report.failureClass=$_.Exception.GetType().Name;$report.failureStage=$report.stage
+    if($active -and $session -and $start) {
+        try {
+            $abandon=@{bossid=30010102;progress=0;is_clear=0;input_cmd=@($start.battles | ForEach-Object {''});enemy_dead_bit=@($start.battles | ForEach-Object {0})} | ConvertTo-Json -Depth 5 -Compress
+            $null=Read-Order03Envelope (Invoke-Order03Request '/TeamBattleSoloEnd' ($session+$abandon))
+            $report.steps+=@{phase='failure_abandon';accepted=$true}
+        } catch {$report.steps+=@{phase='failure_abandon';accepted=$false}}
+    }
+} finally {
+    $report.finishedUtc=[DateTime]::UtcNow.ToString('o');Save-Order03RestartReport
+    $hash=(Get-FileHash -LiteralPath (Join-Path $output 'restart.json') -Algorithm SHA256).Hash.ToLowerInvariant()
+    [IO.File]::WriteAllText((Join-Path $output 'SHA256SUMS.txt'),$hash+'  restart.json'+"`n",[Text.UTF8Encoding]::new($false))
+    [IO.Compression.ZipFile]::CreateFromDirectory($output,$output+'.zip')
+    Write-Host ('Saved: '+$output+'.zip')
+    Write-Host ('State: '+$report.stage)
+}
