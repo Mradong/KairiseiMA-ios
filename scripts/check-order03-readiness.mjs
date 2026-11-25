@@ -27,6 +27,19 @@ const selectionPath = p + 'order03-runtime-selection-validation.json';
 const selection = fs.existsSync(path.join(root, selectionPath)) ? load(selectionPath) : null;
 const realBattlePath = p + 'order03-real-battle-validation.json';
 const realBattle = fs.existsSync(path.join(root, realBattlePath)) ? load(realBattlePath) : null;
+const publicationPath = p + 'order03-publication-provenance-lyd.json';
+const publication = fs.existsSync(path.join(root, publicationPath)) ? load(publicationPath) : null;
+const restartResultPath = p + 'order03-restart-result-20261125T025522528Z-validation-lyd.json';
+const restartResult = fs.existsSync(path.join(root, restartResultPath)) ? load(restartResultPath) : null;
+if (publication) {
+  if (!publication.success || publication.tableCount !== 29 || publication.tableMismatches !== 0 || !publication.publishedResourceManifestMatchesSelectedRuntime || publication.scriptSha256 !== sha('scripts/audit-order03-publication-provenance.mjs')) throw Error('Publication provenance evidence missing or stale');
+  for (const input of publication.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Publication provenance input changed');
+  for (const table of publication.tables) if (table.sha256 !== sha(table.receivedFile)) throw Error('Published table identity no longer matches received bytes');
+}
+if (restartResult) {
+  if (!restartResult.analysisCompleted || restartResult.scriptSha256 !== sha('scripts/audit-order03-restart-result.mjs')) throw Error('Restart result analysis missing or stale');
+  for (const input of restartResult.inputFiles) if (input.sha256 !== sha(input.file)) throw Error('Restart result input changed');
+}
 if (realBattle) {
   if (!realBattle.success || realBattle.scriptSha256 !== sha('scripts/audit-order03-real-battle.mjs') || realBattle.sourceReport.sha256 !== sha(realBattle.sourceReport.file)) throw Error('Real battle evidence missing or stale');
   for (const log of realBattle.logs) if (log.sha256 !== sha(log.file)) throw Error('Real battle log changed');
@@ -85,7 +98,18 @@ if (selection) {
 if (realBattle) {
   const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
   contractGate.evidence.push(realBattlePath);
-  contractGate.remaining = 'Dedicated identities and actual service party/table inputs produced accepted engine victory, paid Continue with one 50-crystal debit and matching retry, engine revival, real defeat and delayed frozen-result retry. Remaining: actual service process-restart recovery and wider failure/concurrency boundaries within the requested contract scope.';
+  contractGate.remaining = 'Dedicated identities and actual service party/table inputs produced accepted engine victory, paid Continue with one 50-crystal debit and matching retry, engine revival, real defeat and delayed frozen-result retry. Remaining for the current targeted verification: actual service process-restart recovery. Wider gameplay/device work belongs to later plan rows.';
+}
+if (publication) {
+  gates.push(gate('published_project_table_cohort', 'verified', [publicationPath], 'All 29 received table byte identities match the recovered-project 2.0.4 published release manifest. The published resource manifest exactly matches the selected runtime manifest. Only ZIP directory/manifests were downloaded; the full archive digest was not checked. Official original-client extraction input/tool/transform remains UNKNOWN.'));
+  const cohortGate = gates.find(g => g.id === 'data_cohort_and_behavior_compatibility');
+  cohortGate.evidence.push(publicationPath);
+  cohortGate.remaining = 'Recovered-project 2.0.4 publication, pinned base commit, selected resource manifest and all 29 table identities now match. Original official-client extraction/version/transform and complete original gameplay semantics remain UNKNOWN; selected modern metadata and static compatibility retain their stated scope.';
+}
+if (restartResult) {
+  const contractGate = gates.find(g => g.id === 'safe_battle_contract_and_redacted_interface_evidence');
+  contractGate.evidence.push(restartResultPath);
+  contractGate.remaining += ' Latest received attempt timed out at initial login before character creation or battle entry. Submitted preflight records a start request after the failure, not readiness or a proven timeout cause.';
 }
 const report = {checkedAt: new Date().toISOString(), planItem: '03', goalStatus: ['blocked','paused'].includes(acceptance.focusedGoal?.status) ? acceptance.focusedGoal.status : 'active', ready: gates.every(x => x.state === 'verified'), gates,
   evidenceHashes: [...new Set(gates.flatMap(x => x.evidence))].map(file => ({file, sha256: sha(file)})),

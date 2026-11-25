@@ -1,0 +1,30 @@
+{
+  "checkedAt": "2026-11-25T03:05:21.662Z",
+  "success": true,
+  "cases": [
+    {
+      "scenario": "delayed_startup_and_recovery",
+      "passed": true,
+      "healthRequests": 3,
+      "loginRequests": 3,
+      "startRequests": 2
+    },
+    {
+      "scenario": "service_unready",
+      "passed": true,
+      "healthRequests": 4,
+      "loginRequests": 0,
+      "startRequests": 0
+    },
+    {
+      "scenario": "wrong_executable",
+      "passed": true,
+      "healthRequests": 0,
+      "loginRequests": 0,
+      "startRequests": 0
+    }
+  ],
+  "scriptSha256": "69d63399d5dd6750fda051d204c907162f3dcce744d4b6bc343dcc91623cd50b",
+  "helpersSha256": "3c99d07bd5cd368cd673a33a5ddb4042b2344bda3dcdfe3e9954e1286e150631",
+  "scope": "Local synthetic HTTP/process fixtures: delayed startup, transient recovery HTTP 503, unavailable service, and wrong executable. No persistent request before readiness. Actual service restart remains untested."
+}

@@ -1,8 +1,8 @@
 {
-  "preparedAt": "2026-11-25T02:39:28.371Z",
-  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-023927564Z-lyd.zip",
-  "archiveBytes": 9686,
-  "archiveSha256": "fbb31d2bbc6aa5c8b47d7a09379dc87419b0087d160fbe43fddc1d77c39cad49",
+  "preparedAt": "2026-11-25T03:04:43.587Z",
+  "archive": "D:\\KairiseiMA-Windows\\KairiseiMA-ios\\dist\\order03-restart-probe-20261125-030443075Z-lyd.zip",
+  "archiveBytes": 10447,
+  "archiveSha256": "24ef4e2572ccf4b5dbe8b9674d6fb0ddfb70c82946b46efed20bad0ee9e781f5",
   "files": [
     {
       "name": "Collect-Order03RuntimeSelection-lyd.ps1",
@@ -16,16 +16,15 @@
     },
     {
       "name": "Verify-Order03Restart-lyd.ps1",
-      "bytes": 10139,
-      "sha256": "cb70f8b23547d12dca74390098063a4853825ca60f83a059b07b52759c81106d"
+      "bytes": 12552,
+      "sha256": "69d63399d5dd6750fda051d204c907162f3dcce744d4b6bc343dcc91623cd50b"
     },
     {
       "name": "先读说明-lyd.md",
-      "bytes": 1257,
-      "sha256": "0d11e6034ee99ebae103e3fb5ab3702e19a3388a32bc5df9618966934101a6a8"
+      "bytes": 1626,
+      "sha256": "2b93f935a3951d337da75a65d3b591370464a0130be3debe59b9c236b871c075"
     }
   ],
   "serverExecuted": false,
-  "scope": "Prepared one-entry dedicated-account manual iOS-service restart recovery probe. Actual server execution pending.",
-  "packagedScriptFixturePassed": true
+  "scope": "Prepared one-entry dedicated-account manual iOS-service restart recovery probe. Actual server execution pending."
 }

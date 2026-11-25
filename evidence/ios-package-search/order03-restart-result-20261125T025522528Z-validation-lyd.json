@@ -1,0 +1,53 @@
+{
+  "checkedAt": "2026-11-25T03:06:04.787Z",
+  "success": true,
+  "analysisCompleted": true,
+  "scriptSha256": "dfb1aff581fc4b73b0b55db41236c30419358a3e159a0016a1b4ed6982d19b7b",
+  "inputFiles": [
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T025522528Z-lyd.zip",
+      "bytes": 709,
+      "sha256": "59d0da537169f88f7bf37d19a9786f006c040c14c1743f007b3b90dd6b312eef"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T025522528Z-lyd/restart-lyd.json",
+      "bytes": 950,
+      "sha256": "57c6492a012a7e96f0a150b55beaa0304879a013b8808f69ee4844eb33bd4d34"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T025522528Z-lyd/SHA256SUMS-lyd.txt",
+      "bytes": 83,
+      "sha256": "a77ddb2434a92fc6cb8f09f038c2475469ca6346a387a54dfd98d8eb338bed91"
+    },
+    {
+      "file": "inputs/server-order03/Order03-Restart-20261125T025522528Z-lyd/preflight-result-lyd.json",
+      "bytes": 964,
+      "sha256": "4f6dc782c024bef3cc4244482b0352830f6629a751db440ae3387f0acd71ab71"
+    }
+  ],
+  "checksumVerified": true,
+  "recoveryPassed": false,
+  "actualProcessRestartObserved": false,
+  "failureStage": "identity_creation",
+  "lastRequestRoute": "/local/client/login",
+  "lastNetworkStatus": "Timeout",
+  "preflight": {
+    "state": "TEST_START_REQUESTED",
+    "checkedUtc": "2026-11-25T02:56:10.9339320Z",
+    "secondsAfterProbeFinished": 25.383,
+    "productionModified": false,
+    "binaryAndManifestMatchReviewedInputs": true,
+    "availableMemoryMB": 1080,
+    "minimumAvailableMB": 496
+  },
+  "sideEffects": {
+    "loginRequestedOnce": true,
+    "dedicatedAccountPersistence": "UNKNOWN after timed-out request",
+    "characterCreationRequested": false,
+    "battleEntryRequested": false,
+    "bpDebitRequested": false,
+    "rewardRequested": false
+  },
+  "conclusion": "Login timed out before character creation and battle entry. Submitted preflight reports a service-start request after probe failure; it does not prove service readiness or the timeout cause. Battle restart recovery remains untested in this attempt.",
+  "scope": "Checks the received sanitized report and preflight identities/times. Does not infer server account creation or root cause from a timeout."
+}

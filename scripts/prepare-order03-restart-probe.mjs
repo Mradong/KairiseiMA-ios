@@ -15,11 +15,11 @@ const readme=`# 顺序 03 独立服务进程重启恢复验证
 
 本步骤验证单人入场后，真正重启 iOS 测试服务时账号、同一战斗开场和扣费能否恢复。验证脚本会创建一个专用测试账号/角色，入场一次按 15 BP 规则扣费，最终以未通关方式放弃。
 
-1. 把包内三个脚本文件放到现有 IOS-Isolated-Test，与 isolated-config.json 同层。
-2. 双击 Verify-Order03-Restart.cmd，保持这个“验证窗口”打开。
+1. 把包内三个脚本文件放到现有 IOS-Isolated-Test，与 isolated-config.json 同层，替换同名脚本。
+2. 先双击 Start-Phone-Test.cmd 启动 iOS 测试服务，保留“服务窗口”；再双击 Verify-Order03-Restart.cmd，保持这个“验证窗口”打开。新脚本在首次登录和重启后均等待本机服务健康检查通过，并核对程序哈希；本机请求不使用系统代理。
 3. 当验证窗口显示 Now restart ONLY the iOS test service window for port 27040 时，在原来运行 iOS 服务的窗口按 Ctrl+C，再双击 Start-Phone-Test.cmd。
 4. 服务重新启动后，验证窗口会自动重新登录、恢复同一 Start、核对 seed/start_time/完整开场响应、放弃并核对单次扣费。
-5. 返回新生成的 Order03-Restart-日期时间-lyd.zip。若失败也会保存结果。
+5. 返回新生成的 Order03-Restart-日期时间-lyd.zip。若失败也会保存阶段、请求路径与 HTTP/网络状态。首次服务就绪检查未通过时，不发起登录、创建角色或战斗入场。
 
 此步骤会短暂中断 27040/27041 的独立 iOS 测试服务。服务的停止/启动由你操作，验证脚本保留专用账号和会话在内存，结果只输出状态与程序身份。新建测试身份可能继续保存在服务端。本地已用模拟 HTTP/进程更换验证完整脚本，实际服务器重启尚待本次操作。
 `;

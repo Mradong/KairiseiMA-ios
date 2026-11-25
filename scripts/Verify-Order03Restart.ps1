@@ -1,18 +1,23 @@
-param([string]$TestRoot=$PSScriptRoot,[int]$Port=27040)
+param([string]$TestRoot=$PSScriptRoot,[int]$Port=27040,[int]$ReadyAttempts=90)
 $ErrorActionPreference='Stop'
 . (Join-Path $PSScriptRoot 'Collect-Order03RuntimeSelection.ps1') -TestRoot $TestRoot -Port $Port
 
-function Invoke-Order03Request([string]$Route,[string]$Body) {
+function Invoke-Order03Request([string]$Route,[string]$Body,[string]$Method='POST',[int]$TimeoutMilliseconds=20000) {
     if($report){
         $report.lastRequestRoute=$Route
         foreach($key in @('lastNetworkFailureClass','lastNetworkStatus','lastHttpStatus')){$report.Remove($key)}
     }
     $request=[Net.HttpWebRequest]::Create('http://127.0.0.1:'+$Port+$Route)
-    $request.Method='POST';$request.ContentType='application/json';$request.Timeout=20000;$request.ReadWriteTimeout=20000
-    $data=[Text.Encoding]::UTF8.GetBytes($Body);$request.ContentLength=$data.Length
-    $stream=$request.GetRequestStream()
-    try{$stream.Write($data,0,$data.Length)}finally{$stream.Dispose()}
-    try{$response=$request.GetResponse()}catch{
+    $request.Method=$Method;$request.ContentType='application/json';$request.Timeout=$TimeoutMilliseconds;$request.ReadWriteTimeout=$TimeoutMilliseconds
+    $request.Proxy=$null
+    try {
+        if($Method -eq 'POST') {
+            $data=[Text.Encoding]::UTF8.GetBytes($Body);$request.ContentLength=$data.Length
+            $stream=$request.GetRequestStream()
+            try{$stream.Write($data,0,$data.Length)}finally{$stream.Dispose()}
+        }
+        $response=$request.GetResponse()
+    } catch {
         $networkError=$_.Exception
         while($networkError){
             if($report){
@@ -55,8 +60,34 @@ function Get-Order03TestProcess {
     if($owners.Count -ne 1){throw 'One test listener is required.'}
     $process=Get-Process -Id $owners[0] -ErrorAction Stop
     $identity=Get-SelectionIdentity $process.MainModule.FileName
-    if($identity.sha256 -ne '7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918'){throw 'Test executable differs from reviewed version.'}
+    if(!$identity.stable -or $identity.sha256 -ne '7704963e90c587aa4e8167fc7e74299f231e8b22f45a10012fbbe44301727918'){throw 'Test executable differs from reviewed version.'}
     return [ordered]@{startUtc=$process.StartTime.ToUniversalTime().ToString('o');executable=$identity}
+}
+function Wait-Order03ServiceReady([string]$Phase='startup') {
+    Write-Host 'Waiting for the iOS test service. Start Start-Phone-Test.cmd and keep its window open.'
+    $deadline=[DateTime]::UtcNow.AddMinutes(3)
+    for($attempt=0;$attempt -lt $ReadyAttempts -and [DateTime]::UtcNow -lt $deadline;$attempt++) {
+        $owners=@(Get-NetTCPConnection -LocalPort $Port -State Listen -ErrorAction SilentlyContinue | Select-Object -ExpandProperty OwningProcess -Unique)
+        if($owners.Count -gt 1){throw 'Multiple test listeners observed.'}
+        if($owners.Count -eq 1) {
+            $process=Get-Order03TestProcess
+            try {
+                $health=Invoke-Order03Request '/healthz' '' 'GET' 3000 | ConvertFrom-Json
+                if($health.state -eq 'PASS') {
+                    $after=Get-Order03TestProcess
+                    if($after.startUtc -eq $process.startUtc) {
+                        if(!$report.serviceReadiness){$report.serviceReadiness=@{}}
+                        $report.serviceReadiness[$Phase]=@{healthState='PASS';attempts=$attempt+1;loopbackProxyDisabled=$true}
+                        return $after
+                    }
+                }
+            } catch {
+                $report.readinessFailureSamples=@($report.readinessFailureSamples)+@{route='/healthz';httpStatus=$report.lastHttpStatus;networkStatus=$report.lastNetworkStatus}
+            }
+        }
+        if($attempt -lt $ReadyAttempts-1){Start-Sleep -Seconds 2}
+    }
+    throw 'Test service did not become ready; no further login or battle entry was requested.'
 }
 function Get-Order03ObjectHash($Value) {
     $json=ConvertTo-Json -InputObject $Value -Depth 40 -Compress
@@ -68,14 +99,15 @@ if($MyInvocation.InvocationName -eq '.'){return}
 $output=Join-Path (Get-Item -LiteralPath $TestRoot).FullName ('Order03-Restart-'+[DateTime]::UtcNow.ToString('yyyyMMddTHHmmssfffZ'))
 $output += '-lyd'
 New-Item -ItemType Directory -Path $output | Out-Null
-$report=[ordered]@{schemaVersion=1;collector='order03-restart-20261125-1';startedUtc=[DateTime]::UtcNow.ToString('o');success=$false;stage='before_identity';sideEffects=@{newDedicatedAccountsMaximum=1;newCharactersMaximum=1;entryMaximum=1;expectedEntryBP=15;clearRewardRequested=$false;restartPerformedByUser=$true};steps=@();recoveryFailureSamples=@()}
+$report=[ordered]@{schemaVersion=1;collector='order03-restart-20261125-2';startedUtc=[DateTime]::UtcNow.ToString('o');success=$false;stage='service_readiness';sideEffects=@{newDedicatedAccountsMaximum=1;newCharactersMaximum=1;entryMaximum=1;expectedEntryBP=15;clearRewardRequested=$false;restartPerformedByUser=$true};steps=@();recoveryFailureSamples=@();readinessFailureSamples=@()}
 function Save-Order03RestartReport {
     [IO.File]::WriteAllText((Join-Path $output 'restart-lyd.json'),(ConvertTo-Json -InputObject $report -Depth 20)+"`n",[Text.UTF8Encoding]::new($false))
 }
 Save-Order03RestartReport
 $session=$null;$start=$null;$active=$false
 try {
-    $beforeProcess=Get-Order03TestProcess
+    if($ReadyAttempts -lt 1 -or $ReadyAttempts -gt 90){throw 'Readiness attempts must be 1..90.'}
+    $beforeProcess=Wait-Order03ServiceReady
     $uuid=[Guid]::NewGuid().ToString();$characterName='ios'+[Guid]::NewGuid().ToString('N').Substring(0,12)
     $loginBody=@{uuid=$uuid;clver='2.0.4';resource_platform='iOS';unity_version='6000.3.26f1'} | ConvertTo-Json -Compress
     $report.stage='identity_creation';Save-Order03RestartReport
@@ -111,7 +143,10 @@ try {
         try{$candidate=Get-Order03TestProcess;if($candidate.startUtc -ne $beforeProcess.startUtc){$afterProcess=$candidate;break}}catch{}
     }
     if(!$afterProcess){throw 'Changed test process was not observed within the wait limit.'}
-    $report.processAfter=$afterProcess;$report.stage='relogin';Save-Order03RestartReport
+    $report.processAfter=$afterProcess;$report.stage='post_restart_readiness';Save-Order03RestartReport
+    $readyProcess=Wait-Order03ServiceReady 'afterRestart'
+    if($readyProcess.startUtc -ne $afterProcess.startUtc){throw 'Test process changed again before recovery.'}
+    $report.stage='relogin';Save-Order03RestartReport
     $login=Invoke-Order03RecoveryRequest '/local/client/login' $loginBody | ConvertFrom-Json
     if($login.userid -ne $userNumber -or !$login.sess_key){throw 'Identity changed after restart.'}
     $session=[string]$login.sess_key
@@ -144,4 +179,5 @@ try {
     [IO.Compression.ZipFile]::CreateFromDirectory($output,$output+'.zip')
     Write-Host ('Saved: '+$output+'.zip')
     Write-Host ('State: '+$report.stage)
+    if(!$report.success){Write-Host ('Failed stage: '+$report.failureStage);Write-Host ('Route: '+$report.lastRequestRoute+'; HTTP: '+$report.lastHttpStatus+'; Network: '+$report.lastNetworkStatus)}
 }
