@@ -10,6 +10,7 @@ const read = name => fs.readFileSync(path.join(root, name), 'utf8');
 const layout = JSON.parse(read(recovery + '/OriginalSceneContent/OriginalScenes.json'));
 const base = 'recovered-unity/ExportedProject/Assets';
 const sources = new Set([base + '/AnimationClip/Title_TS_Loop_00.anim', base + '/AnimationClip/Title_Connect_Loop_00.anim']);
+for (const option of ['01', '02', '03', '04']) sources.add(base + '/AnimationClip/Cmn_Std_Out' + option + '_00.anim');
 for (const scene of layout.definitions) {
   for (const node of scene.nodes) {
     if (node.enterAnimation) sources.add(node.enterAnimation.source);

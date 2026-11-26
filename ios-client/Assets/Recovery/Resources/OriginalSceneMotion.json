@@ -234,6 +234,206 @@
         }
       ]
     },
+    "Cmn_Std_Out01_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_Out01_00.anim",
+      "sha256": "85e24a0b32ef635bd4223360a8236426ce1ae61cfe61315f405a8fe27c09e101",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0,
+              -3300,
+              0,
+              0,
+              -3300,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              -1100,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "",
+          "keys": [
+            [
+              0,
+              1,
+              -6,
+              -6
+            ],
+            [
+              0.16666667,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_Out02_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_Out02_00.anim",
+      "sha256": "96ffac93cbb3b90d45e71a013610aef4e4e0541473d3800278b21b90099d15a0",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0,
+              3000,
+              0,
+              0,
+              3000,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              1000,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "",
+          "keys": [
+            [
+              0,
+              1,
+              -6,
+              -6
+            ],
+            [
+              0.16666667,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_Out03_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_Out03_00.anim",
+      "sha256": "62a174a43c4a80406e8a0eff6eb5880547e8ecc5c62a41515013993ffff89f02",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              3000,
+              0,
+              0,
+              3000,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              1000,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_Out04_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_Out04_00.anim",
+      "sha256": "0251a6f18a38a5991c2336bc2e33da32d10458ca1c9cecebe64ce6cf1c9757fa",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              -3000,
+              0,
+              0,
+              -3000,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              -1000,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
     "Home_Live2D_In_00": {
       "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Home_Live2D_In_00.anim",
       "sha256": "28000a82ae6f101beee5107fc29d96de740f6674db5cd466a4b3d7d5fbeed92a",

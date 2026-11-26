@@ -151,6 +151,19 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(arrowTap), arrowTap });
         Require(buttons.localPosition.x < initialMenuX, "The original scroll arrow did not move the clipped menu.");
         Capture("11-home-menu-scroll", main, renderer, ui, target);
+        Transform menuBar = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Top Anchor/Menu_MenuBar");
+        Transform end = menuBar.Find("MenuBase3");
+        Require(ui.WorldToViewportPoint(end.TransformPoint(new Vector3(0.5f, 0, 0))).x >= 0.999f, "The original end cap stops before the wide right edge.");
+        Transform menuButton = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Right Top Anchor/Menu_MenuBtn/Menu_MenuBtn/MenuBtn");
+        Vector2 menuTap = ui.WorldToScreenPoint(menuButton.position);
+        Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(menuTap), menuTap });
+        yield return new WaitForSecondsRealtime(0.45f);
+        Require(!menuBar.gameObject.activeInHierarchy && !buttons.gameObject.activeInHierarchy && model.isActiveAndEnabled, "The top-right button did not close the original Home menu while keeping the scene.");
+        Capture("12-home-menu-closed", main, renderer, ui, target);
+        Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(menuTap), menuTap });
+        yield return new WaitForSecondsRealtime(0.45f);
+        Require(menuBar.gameObject.activeInHierarchy && buttons.gameObject.activeInHierarchy && buttons.localPosition.x < initialMenuX, "The original Home menu did not reopen with its previous scroll offset.");
+        Capture("13-home-menu-reopened", main, renderer, ui, target);
     }
 
     private void Capture(string name, Camera main, OriginalSceneRenderer renderer, Camera ui, RenderTexture target)

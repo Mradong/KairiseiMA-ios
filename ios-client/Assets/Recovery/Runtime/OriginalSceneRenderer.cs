@@ -46,6 +46,11 @@ namespace Kairisei.Recovery
         private MaterialPropertyBlock menuClipProperties;
         private readonly List<OriginalSceneMotion> sceneMotions = new List<OriginalSceneMotion>();
         private readonly List<OriginalSceneMotion> dialogMotions = new List<OriginalSceneMotion>();
+        private readonly List<OriginalSceneMotion> menuMotions = new List<OriginalSceneMotion>();
+        private readonly List<MenuPanel> homeMenuPanels = new List<MenuPanel>();
+        private readonly Dictionary<Transform, Vector2> menuBarDesign = new Dictionary<Transform, Vector2>();
+        private bool menuOpen;
+        private float menuBarAspect;
         private GameObject dialogRoot;
         private string currentDialog;
         private int firstDialogWidget, firstDialogMesh, firstDialogMaterial;
@@ -73,6 +78,12 @@ namespace Kairisei.Recovery
             public Mesh ImageMesh;
             public Color[] Tint;
             public string DisplayedFrame;
+        }
+
+        private sealed class MenuPanel
+        {
+            public GameObject Object;
+            public string EnterClip;
         }
 
         private sealed class GlyphLabel
@@ -173,6 +184,11 @@ namespace Kairisei.Recovery
             ReleaseObjects(ownedMeshes, 0);
             ReleaseObjects(ownedMaterials, 0);
             sceneMotions.Clear();
+            menuMotions.Clear();
+            homeMenuPanels.Clear();
+            menuBarDesign.Clear();
+            menuBarAspect = 0;
+            menuOpen = true;
             titleArtwork = titlePrompt = titleConnecting = null;
             titleHitTarget = null;
             titleMotion = null;
@@ -322,6 +338,7 @@ namespace Kairisei.Recovery
                 }
                 foreach (string id in allGroups) localObjects[id].SetActive(homeGroups.Contains(id));
                 ConfigureMenuClip(definition, localObjects);
+                FitMenuBar();
             }
             if (isDialog)
                 foreach (GameObject item in localObjects.Values)
@@ -393,6 +410,14 @@ namespace Kairisei.Recovery
             foreach (JObject node in (JArray)definition["nodes"])
             {
                 GameObject item = page[(string)node["id"]];
+                if (item.name == "Menu_MenuBar" || item.name == "Menu_Status" || item.name == "Menu_Title" ||
+                    item.name == "Menu_MainBtn" || item.name == "Menu_HomeBtnR")
+                {
+                    string file = (string)node["enterAnimation"]["source"];
+                    homeMenuPanels.Add(new MenuPanel { Object = item, EnterClip = System.IO.Path.GetFileNameWithoutExtension(file) });
+                }
+                if (item.transform.parent.name == "Menu_MenuBar")
+                    menuBarDesign[item.transform] = new Vector2(item.transform.localPosition.x, item.transform.localScale.x);
                 switch (item.name)
                 {
                     case "Right Anchor":
@@ -428,6 +453,53 @@ namespace Kairisei.Recovery
             menuScrollMax = menuClip.xMin - first + iconHalfWidth + edgePadding;
             menuScrollMin = Mathf.Min(menuScrollMax, menuClip.xMax - last - iconHalfWidth - edgePadding);
             ScrollMenu(menuScrollMax - menuButtons.localPosition.x);
+        }
+
+        private void FitMenuBar()
+        {
+            float aspect = sceneCamera.aspect;
+            if (menuBarDesign.Count == 0 || Mathf.Approximately(aspect, menuBarAspect)) return;
+            menuBarAspect = aspect;
+            const float authoredWidth = 1140;
+            float extra = Mathf.Max(-400, 640f * aspect - authoredWidth);
+            foreach (var entry in menuBarDesign)
+            {
+                Transform part = entry.Key;
+                Vector3 position = part.localPosition, scale = part.localScale;
+                position.x = entry.Value.x;
+                scale.x = entry.Value.y;
+                switch (part.name)
+                {
+                    case "MenuBase1": position.x -= extra / 2; break;
+                    case "MenuBase3": position.x += extra / 2; break;
+                    case "MenuBase2":
+                    case "MenuBase4": scale.x += extra; break;
+                }
+                part.localPosition = position;
+                part.localScale = scale;
+            }
+        }
+
+        private void ToggleHomeMenu()
+        {
+            if (currentScene != "Home" || menuMotions.Count != 0 || sceneMotions.Count != 0) return;
+            menuOpen = !menuOpen;
+            foreach (MenuPanel panel in homeMenuPanels)
+            {
+                panel.Object.SetActive(true);
+                string clip = menuOpen ? panel.EnterClip : panel.EnterClip.Replace("_In", "_Out");
+                menuMotions.Add(StartMotion(clip, panel.Object.transform));
+            }
+        }
+
+        private void UpdateHomeMenu()
+        {
+            bool moving = menuMotions.Count != 0;
+            UpdateMotions(menuMotions);
+            if (moving && menuMotions.Count == 0 && !menuOpen)
+                foreach (MenuPanel panel in homeMenuPanels) panel.Object.SetActive(false);
+            FitMenuBar();
+            UpdateMenuClip();
         }
 
         private void ScrollMenu(float delta)
@@ -524,6 +596,7 @@ namespace Kairisei.Recovery
                     if (method == "OnClickOK") widget.Click = ShowNameInput;
                     if (scene == "Menu" && method == "OnLeftButton") widget.Click = () => ScrollMenu(648);
                     if (scene == "Menu" && method == "OnRightButton") widget.Click = () => ScrollMenu(-648);
+                    if (scene == "Menu" && method == "onClick_Menu") widget.Click = ToggleHomeMenu;
                     if(method=="OnClick"&&(string)script["type"]=="UIButtonMessage"&&widget.Object.name=="Back")widget.Click=delegate{SelectRole(0);};
                     if ((string)script["type"] == "UIInput") widget.Click = OpenNameInput;
                     if(method=="OnCenterButton")widget.Click=owner.CreateOriginalCharacter;
@@ -556,7 +629,7 @@ namespace Kairisei.Recovery
             if (dialogRoot == null && owner.OriginalHome != null && CanPresentHome && currentScene != "Home") Show("Home");
             UpdateMotions(sceneMotions);
             UpdateMotions(dialogMotions);
-            UpdateMenuClip();
+            if (currentScene == "Home") UpdateHomeMenu();
             if (currentScene == "Home" && sceneMotions.Count == 0 && dialogRoot == null && !displayedBonus && !String.IsNullOrEmpty(owner.OriginalBonusNotice))
             {
                 displayedBonus = true;
@@ -606,7 +679,7 @@ namespace Kairisei.Recovery
                 Touch touch = Input.GetTouch(0);
                 pressed = touch.phase == TouchPhase.Began;
                 screen = touch.position;
-                if (pressed && menuClipPanel != null && dialogRoot == null)
+                if (pressed && menuOpen && menuClipPanel != null && dialogRoot == null)
                 {
                     draggingMenu = MenuContains(sceneCamera.ScreenPointToRay(screen));
                     menuTouchId = touch.fingerId;

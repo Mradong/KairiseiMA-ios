@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T07:46:03.241Z",
+  "generatedAt": "2026-11-26T07:57:57.791Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -2470,8 +2470,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json",
-      "bytes": 21100,
-      "sha256": "c220a080c5820a072d266f96e25f7eb3d62a8a6ced2cb963d018dffa220f7ec0"
+      "bytes": 25168,
+      "sha256": "d35d66fa91ea1e9cd2647cd744fdc04b4bb33d906d07cc94116e4457f609e475"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json.meta",
@@ -2565,8 +2565,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
-      "bytes": 49286,
-      "sha256": "6949f32f9ac3056519a9f53bca1c3c07dc2f3c29afe32445ad5c6d691b1154ea"
+      "bytes": 52640,
+      "sha256": "6e85502225f6ace3b078e7a53955eb3e833f45321931b33048b2a48fd19fd9d2"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneSprite.shader",
@@ -3165,8 +3165,8 @@
     },
     {
       "path": "scripts/prepare-order05-scene-motion.mjs",
-      "bytes": 5272,
-      "sha256": "794195a3f5eee752e01411953ea8aa6292a2e432b4849011802d990cdf984523"
+      "bytes": 5391,
+      "sha256": "1a61d46a6e2ce6c757c3f2f7989accfe6542ae2b894c26e89daedba60a9167a7"
     },
     {
       "path": "scripts/prepare-order05-scene-resource-collector.mjs",
@@ -3700,8 +3700,8 @@
     },
     {
       "path": "tests/Order05ScenePreview.cs",
-      "bytes": 10328,
-      "sha256": "acd953ff696399457e4290355369d8d39ee4df5f397c24a39bc870992306b25b"
+      "bytes": 11754,
+      "sha256": "0e1c8459aba5f066a88219cbf2b6ef753a5d76a15e1e7dd8f361a1465a558e60"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
@@ -3834,7 +3834,7 @@
       "sha256": "79842a51cab9bf4a3b997b4a0c605ad67c563af3659edb0edee8972fab2c41de"
     }
   ],
-  "bytes": 60835936,
+  "bytes": 60844903,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Order05 0.0.10 checked by Unity Direct3D Windows preview; ARM64 build and iPhone validation remain separate."
+  "execution": "Order05 0.0.10 checked by Unity Direct3D Windows preview, including the restored top-right menu toggle; ARM64 build and iPhone validation remain separate."
 }
