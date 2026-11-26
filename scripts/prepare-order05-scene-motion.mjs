@@ -78,7 +78,8 @@ function readFrames(source, names) {
 }
 const atlases = {
   level: atlasFrames('Num_600_', Array.from({length: 10}, (_, index) => String(index))),
-  roleName: atlasFrames('IntroSlPl_Name', ['01','02','03','04'])
+  roleName: atlasFrames('IntroSlPl_Name', ['01','02','03','04']),
+  homeAp: atlasFrames('Menu_Point_', ['00', '01'])
 };
 const menu = layout.definitions.find(scene => scene.name === 'Menu');
 const menuFrames = new Map();

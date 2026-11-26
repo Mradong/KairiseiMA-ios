@@ -1259,6 +1259,25 @@
           0.0478515625
         ]
       }
+    },
+    "homeAp": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/MenuBar.prefab",
+      "sha256": "976f2d679dd7d54804b61e874a4c6c31dd9b9a4f6d260e2d04ea16a5b7cb9db9",
+      "texture": "original-bfe71eb065acf08a",
+      "frames": {
+        "Menu_Point_00": [
+          0.056640625,
+          0.033203125,
+          0.0546875,
+          0.046875
+        ],
+        "Menu_Point_01": [
+          0,
+          0.033203125,
+          0.0546875,
+          0.046875
+        ]
+      }
     }
   },
   "menuSprites": {

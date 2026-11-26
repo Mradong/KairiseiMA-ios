@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T09:06:24.204Z",
+  "generatedAt": "2026-11-26T09:27:27.306Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -2470,8 +2470,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json",
-      "bytes": 29196,
-      "sha256": "425a4ae4408d4b9da3eb722e6f6401fad3139d86c899320e8aa020e81d8b8f63"
+      "bytes": 29736,
+      "sha256": "35a8cf12af03a45ed8c4a6b86ef34b1b96417f8a1d2201387ff66e1f6398f11c"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json.meta",
@@ -2565,8 +2565,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
-      "bytes": 57163,
-      "sha256": "cc8002ac8d0f03d2325a86d9df3bd42279ae13a9e7494178ca3d35cb81b6457c"
+      "bytes": 64538,
+      "sha256": "988c7152edef9e6ddf4aad98f168df8e4457419c8e8e26736294c59c4c96329f"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneSprite.shader",
@@ -3165,8 +3165,8 @@
     },
     {
       "path": "scripts/prepare-order05-scene-motion.mjs",
-      "bytes": 6666,
-      "sha256": "c91b0e8022d2ff886c496ee84039e2d9b3215a6e933fef88eb3c1885fbf33308"
+      "bytes": 6718,
+      "sha256": "271f4e77f31dcba75bb3a3337908a6f2a9556411a795078c3146d33dd9246bb0"
     },
     {
       "path": "scripts/prepare-order05-scene-resource-collector.mjs",
@@ -3700,8 +3700,8 @@
     },
     {
       "path": "tests/Order05ScenePreview.cs",
-      "bytes": 17926,
-      "sha256": "24ebca7c382a97bf662ca99b3386cb9979aa626f2cf0eff8cd7148bcac5a28be"
+      "bytes": 22230,
+      "sha256": "a84c9b56b07be5911d7ee6f686b6af205dbb0eb86a2cc4b20e9da6cb07b884d4"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",

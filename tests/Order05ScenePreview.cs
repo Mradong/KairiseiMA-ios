@@ -162,11 +162,8 @@ public sealed class Order05ScenePreview : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.45f);
         Capture("17-role-name-error", main, renderer, ui, target);
         entry.Reset();
-        var home = new CnHomeState
-        {
-            UserId=1, Name="画面检查", Level=3, Bp=20, BpMax=20, Ap=1, ApMax=3, Gold=200,
-            Wire=JObject.Parse("{\"user\":{\"coin\":0,\"coin_free\":2,\"bp_next_sec\":0}}")
-        };
+        JObject homeWire = JObject.Parse("{\"server_time\":100,\"medal_num\":7,\"user\":{\"userid\":1,\"name\":\"画面检查\",\"lv\":3,\"active_arthur_type\":2,\"ap\":2,\"ap_max\":3,\"bp\":5,\"bp_max\":20,\"gold\":200,\"coin\":1,\"coin_free\":2,\"bp_next_sec\":85,\"now_lv_exp\":20,\"next_lv_exp\":60}}");
+        CnHomeState home = FixtureHome(homeWire);
         Field(typeof(RecoveryBootstrap), "homeState").SetValue(state, home);
         renderer.Show("Home");
         Capture("07-home-entry-start", main, renderer, ui, target);
@@ -178,6 +175,15 @@ public sealed class Order05ScenePreview : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.25f);
         Capture("09-home", main, renderer, ui, target);
         Require(model.transform.position.x > enteringPosition + 10, "The actual navi transform did not animate.");
+        Transform status = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Left Top Anchor/Menu_Status");
+        var bpBar = status.Find("BP/Anm_BpBar/Bar").GetComponentInChildren<MeshRenderer>();
+        var expBar = status.Find("EXP/Anm_ExpBar/Bar").GetComponentInChildren<MeshRenderer>();
+        Require(Mathf.Approximately(bpBar.transform.localScale.x, 0.25f), "The BP bar did not use current and maximum BP.");
+        Require(Mathf.Approximately(expBar.transform.localScale.x, 0.25f), "The EXP bar did not use current and remaining EXP.");
+        Vector2 apOne = status.Find("AP/Dmy_Ap1").GetComponentInChildren<MeshFilter>().sharedMesh.uv[0];
+        Vector2 apTwo = status.Find("AP/Dmy_Ap2").GetComponentInChildren<MeshFilter>().sharedMesh.uv[0];
+        Vector2 apThree = status.Find("AP/Dmy_Ap3").GetComponentInChildren<MeshFilter>().sharedMesh.uv[0];
+        Require(apOne == apTwo && apTwo != apThree, "The original AP indicators did not show two occupied points out of three.");
         bool touched = false;
         for (int x = 300; x <= Width / 2 && !touched; x += 45)
             for (int y = 200; y < Height - 140 && !touched; y += 45)
@@ -190,6 +196,8 @@ public sealed class Order05ScenePreview : MonoBehaviour
         float initialMenuX = buttons.localPosition.x;
         Transform rightMenu = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Right Anchor");
         Transform homePanel = rightMenu.Find("Menu_HomeBtnR");
+        Transform bannerItem = homePanel.Find("DynamicList/ListItem");
+        Require(!bannerItem.gameObject.activeSelf, "A HomeShow reply without a banner exposed the prefab placeholder.");
         Transform battlePanel = rightMenu.Find("Menu_BattleBtn02");
         Transform cardPanel = rightMenu.Find("Menu_KnightBtn");
         Transform shopPanel = rightMenu.Find("Menu_ShoptBtn");
@@ -231,6 +239,51 @@ public sealed class Order05ScenePreview : MonoBehaviour
         yield return new WaitForSecondsRealtime(0.45f);
         Require(menuBar.gameObject.activeInHierarchy && buttons.gameObject.activeInHierarchy && shopPanel.gameObject.activeInHierarchy && buttons.localPosition.x < initialMenuX, "The original menu did not reopen with its previous submenu and scroll offset.");
         Capture("13-home-menu-reopened", main, renderer, ui, target);
+
+        string bannerFixture = Environment.GetEnvironmentVariable("ORDER05_BANNER_FIXTURE_URL");
+        if (!String.IsNullOrEmpty(bannerFixture))
+        {
+            Transform left = (Transform)Field(typeof(OriginalSceneRenderer), "menuLeftArrow").GetValue(renderer);
+            Press(renderer, ui, left.Find("SwipeMark_Left"));
+            Press(renderer, ui, buttons.Find("MainBtn_Home/base"));
+            JObject updated = (JObject)homeWire.DeepClone();
+            updated["banners"] = new JArray(
+                Banner(13, bannerFixture + "ignored.png"), Banner(12, bannerFixture + "missing.png"),
+                Banner(12, bannerFixture + "cover-1.png"), Banner(12, bannerFixture + "cover-2.png"));
+            FieldInfo homeState = Field(typeof(RecoveryBootstrap), "homeState");
+            homeState.SetValue(state, FixtureHome(updated));
+            float deadline = Time.unscaledTime + 8;
+            while (!bannerItem.gameObject.activeInHierarchy && Time.unscaledTime < deadline) yield return null;
+            Require(bannerItem.gameObject.activeInHierarchy, "A valid HomeShow cover did not reach the authored banner template.");
+            yield return new WaitForSecondsRealtime(0.4f);
+            Material bannerMaterial = bannerItem.GetComponentInChildren<MeshRenderer>().sharedMaterial;
+            Texture firstCover = bannerMaterial.mainTexture;
+            Require(firstCover is Texture2D && !bannerItem.Find("Menu_Banner/Label").gameObject.activeSelf,
+                "The loaded banner did not replace the authored placeholder text.");
+            Capture("18-home-banner", main, renderer, ui, target);
+            yield return new WaitForSecondsRealtime(5.6f);
+            Require((int)Field(typeof(OriginalSceneRenderer), "homeBannerIndex").GetValue(renderer) == 1 &&
+                    bannerMaterial.mainTexture != firstCover, "The Home carousel did not advance on its original timer.");
+            Press(renderer, ui, menuButton);
+            yield return new WaitForSecondsRealtime(0.45f);
+            Require(!bannerItem.gameObject.activeInHierarchy, "The banner stayed visible with the Home menu closed.");
+            Press(renderer, ui, menuButton);
+            yield return new WaitForSecondsRealtime(0.45f);
+            Require(bannerItem.gameObject.activeInHierarchy, "The Home menu did not restore its loaded banner.");
+            homeState.SetValue(state, FixtureHome(homeWire));
+            yield return null;
+            Require(!bannerItem.gameObject.activeSelf && bannerMaterial.mainTexture == null, "An empty refreshed reply kept the previous banner.");
+        }
+    }
+
+    private static CnHomeState FixtureHome(JObject wire)
+    {
+        return CnProtocol.ParseHome("{\"res_code\":0}\n" + wire.ToString(Newtonsoft.Json.Formatting.None) + "\n{}", 1);
+    }
+
+    private static JObject Banner(int type, string url)
+    {
+        return new JObject { { "home_banner_type", type }, { "image_url", url }, { "open_url", "none" } };
     }
 
     private static void Press(OriginalSceneRenderer renderer, Camera ui, Transform target)

@@ -1,8 +1,10 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
+using UnityEngine.Networking;
 
 namespace Kairisei.Recovery
 {
@@ -50,9 +52,21 @@ namespace Kairisei.Recovery
         private readonly List<MenuPanel> homeMenuPanels = new List<MenuPanel>();
         private readonly Dictionary<string, MenuTab> menuSubgroups = new Dictionary<string, MenuTab>();
         private MenuTab selectedMenuTab;
+        private JObject menuBindings;
         private readonly Dictionary<Transform, Vector2> menuBarDesign = new Dictionary<Transform, Vector2>();
         private bool menuOpen;
         private float menuBarAspect;
+        private const float HomeBannerInterval = 5.5f;
+        private const int HomeBannerMaxBytes = 2 * 1024 * 1024;
+        private readonly List<byte[]> homeBannerImages = new List<byte[]>();
+        private CnHomeState bannerHome;
+        private Widget homeBanner;
+        private GameObject homeBannerItem;
+        private Texture2D homeBannerTexture;
+        private int homeBannerIndex;
+        private float homeBannerAdvanceAt;
+        private IEnumerator homeBannerLoading;
+        private UnityWebRequest homeBannerRequest;
         private GameObject dialogRoot;
         private string currentDialog;
         private int firstDialogWidget, firstDialogMesh, firstDialogMaterial;
@@ -81,6 +95,7 @@ namespace Kairisei.Recovery
             public Mesh ImageMesh;
             public Color[] Tint;
             public string DisplayedFrame;
+            public float BarFill = -1;
         }
 
         private sealed class MenuPanel
@@ -210,6 +225,9 @@ namespace Kairisei.Recovery
             if (currentScene == name) return;
             if (name == "Home" && !CanPresentHome) throw new InvalidOperationException("主页背景与导航角色资源尚未完整就绪。");
             JObject definition = Definition(name);
+            ClearHomeBanners();
+            homeBanner = null;
+            homeBannerItem = null;
             if (sceneRoot != null) { sceneRoot.SetActive(false); Destroy(sceneRoot); }
             if (worldRoot != null) { worldRoot.SetActive(false); Destroy(worldRoot); worldRoot = null; }
             worldCamera = null;
@@ -221,6 +239,7 @@ namespace Kairisei.Recovery
             homeMenuPanels.Clear();
             menuSubgroups.Clear();
             selectedMenuTab = null;
+            menuBindings = null;
             menuBarDesign.Clear();
             menuBarAspect = 0;
             menuOpen = true;
@@ -356,14 +375,23 @@ namespace Kairisei.Recovery
                         string frame = (string)data["frame"];
                         if (source == null && scene == "Menu" && !String.IsNullOrEmpty(frame))
                             source = (JObject)motionData["menuSprites"][frame];
-                        if (source == null) continue;
-                        BuildImage(widget, source);
+                        if (source != null) BuildImage(widget, source);
+                        else if (scene == "Menu" && (string)data["kind"] == "UITexture" &&
+                            item.name.TrimEnd('\r') == "Dmy_Banner" && item.transform.parent.name == "Menu_Banner")
+                        {
+                            homeBanner = widget;
+                            homeBannerItem = item.transform.parent.parent.gameObject;
+                            BuildImage(widget, new JObject { { "uv", new JArray(0, 0, 1, 1) } }, null);
+                        }
+                        else continue;
                     }
                     widgets.Add(widget);
                 }
             }
             if (scene == "Menu")
             {
+                menuBindings = definition["bindings"] as JObject;
+                if (homeBanner != null) homeBanner.Object.transform.parent.Find("Label")?.gameObject.SetActive(false);
                 ConfigureMenuClip(definition, localObjects);
                 ConfigureMenuSubgroups(definition, localObjects);
                 FitMenuBar();
@@ -625,6 +653,11 @@ namespace Kairisei.Recovery
             string key = (string)source["texture"];
             Texture2D texture;
             if (!textures.TryGetValue(key, out texture)) { texture = content.Load<Texture2D>(BundleName, key); textures.Add(key, texture); }
+            BuildImage(widget, source, texture);
+        }
+
+        private void BuildImage(Widget widget, JObject source, Texture2D texture)
+        {
             JArray uv = (JArray)source["uv"];
             Vector2 pivot = Pivot((int)widget.Data["pivot"]);
             var mesh = new Mesh();
@@ -649,6 +682,102 @@ namespace Kairisei.Recovery
             renderer.sortingOrder = widget.Depth;
             widget.Renderer=renderer;
             widget.ImageMesh=mesh;
+        }
+
+        private void UpdateHomeBanners()
+        {
+            if (homeBanner == null) return;
+            if (owner.OriginalHome != bannerHome)
+            {
+                ClearHomeBanners();
+                bannerHome = owner.OriginalHome;
+                if (bannerHome?.Wire?["banners"] is JArray rows && rows.Count > 0)
+                {
+                    homeBannerLoading = LoadHomeBanners(rows);
+                    StartCoroutine(homeBannerLoading);
+                }
+            }
+            float now = Time.unscaledTime;
+            if (!homeBannerItem.activeInHierarchy || dialogRoot != null) homeBannerAdvanceAt = now + HomeBannerInterval;
+            if (homeBannerImages.Count < 2 || now < homeBannerAdvanceAt) return;
+
+            int next = (homeBannerIndex + 1) % homeBannerImages.Count;
+            if (ShowHomeBanner(homeBannerImages[next])) homeBannerIndex = next;
+            else
+            {
+                homeBannerImages.RemoveAt(next);
+                if (next < homeBannerIndex) homeBannerIndex--;
+            }
+            homeBannerAdvanceAt = now + HomeBannerInterval;
+        }
+
+        private IEnumerator LoadHomeBanners(JArray rows)
+        {
+            // HOME1 is the authored carousel above the Home shortcuts.
+            foreach (JToken item in rows)
+            {
+                if (item is not JObject row || row["home_banner_type"]?.Type != JTokenType.Integer ||
+                    (long)row["home_banner_type"] != 12 || row["image_url"]?.Type != JTokenType.String) continue;
+                if (!Uri.TryCreate((string)row["image_url"], UriKind.Absolute, out Uri image) ||
+                    (image.Scheme != Uri.UriSchemeHttp && image.Scheme != Uri.UriSchemeHttps) || image.UserInfo.Length != 0) continue;
+
+                homeBannerRequest = UnityWebRequest.Get(image.AbsoluteUri);
+                homeBannerRequest.timeout = 10;
+                homeBannerRequest.redirectLimit = 0;
+                var download = homeBannerRequest.SendWebRequest();
+                while (!download.isDone && homeBannerRequest.downloadedBytes <= HomeBannerMaxBytes) yield return null;
+                byte[] bytes = null;
+                if (download.isDone && homeBannerRequest.result == UnityWebRequest.Result.Success &&
+                    homeBannerRequest.downloadedBytes <= HomeBannerMaxBytes) bytes = homeBannerRequest.downloadHandler.data;
+                ReleaseHomeBannerRequest();
+                if (bytes == null || bytes.Length == 0) continue;
+                if (homeBannerImages.Count == 0 && !ShowHomeBanner(bytes)) continue;
+                homeBannerImages.Add(bytes);
+                // This is also the maximum number of covers published by the service.
+                if (homeBannerImages.Count == 20) break;
+            }
+            homeBannerLoading = null;
+        }
+
+        private bool ShowHomeBanner(byte[] bytes)
+        {
+            var next = new Texture2D(2, 2) { filterMode = FilterMode.Point, wrapMode = TextureWrapMode.Clamp };
+            if (!ImageConversion.LoadImage(next, bytes, true))
+            {
+                Destroy(next);
+                return false;
+            }
+            homeBanner.Renderer.sharedMaterial.mainTexture = next;
+            if (homeBannerTexture != null) Destroy(homeBannerTexture);
+            homeBannerTexture = next;
+            homeBannerItem.SetActive(true);
+            homeBannerAdvanceAt = Time.unscaledTime + HomeBannerInterval;
+            return true;
+        }
+
+        private void ClearHomeBanners()
+        {
+            if (homeBannerLoading != null) StopCoroutine(homeBannerLoading);
+            homeBannerLoading = null;
+            ReleaseHomeBannerRequest();
+            if (homeBannerItem != null)
+            {
+                homeBannerItem.SetActive(false);
+                homeBanner.Renderer.sharedMaterial.mainTexture = null;
+            }
+            if (homeBannerTexture != null) Destroy(homeBannerTexture);
+            homeBannerTexture = null;
+            homeBannerImages.Clear();
+            homeBannerIndex = 0;
+            bannerHome = null;
+        }
+
+        private void ReleaseHomeBannerRequest()
+        {
+            if (homeBannerRequest == null) return;
+            if (!homeBannerRequest.isDone) homeBannerRequest.Abort();
+            homeBannerRequest.Dispose();
+            homeBannerRequest = null;
         }
 
         private void BuildLabel(Widget widget)
@@ -719,7 +848,11 @@ namespace Kairisei.Recovery
             if (dialogRoot == null && owner.OriginalHome != null && CanPresentHome && currentScene != "Home") Show("Home");
             UpdateMotions(sceneMotions);
             UpdateMotions(dialogMotions);
-            if (currentScene == "Home") UpdateHomeMenu();
+            if (currentScene == "Home")
+            {
+                UpdateHomeMenu();
+                UpdateHomeBanners();
+            }
             if (currentScene == "Home" && sceneMotions.Count == 0 && dialogRoot == null && !displayedBonus && !String.IsNullOrEmpty(owner.OriginalBonusNotice))
             {
                 displayedBonus = true;
@@ -952,21 +1085,18 @@ namespace Kairisei.Recovery
         private void BindHomeLabel(Widget widget)
         {
             CnHomeState home=owner.OriginalHome;
-            JObject definition=null;foreach(JObject item in (JArray)layout["definitions"])if((string)item["name"]=="Menu")definition=item;
-            JObject bindings=definition==null?null:definition["bindings"] as JObject;
-            if(bindings!=null)
+            if(menuBindings!=null)
             {
                 string id=(string)widget.Data["id"];
-                if(id==(string)bindings["m_name_label"])widget.Label.text=home.Name;
-                if(id==(string)bindings["m_bp_now_label"])widget.Label.text=home.Bp.ToString();
-                if(id==(string)bindings["m_bp_max_label"])widget.Label.text=home.BpMax.ToString();
-                if(id==(string)bindings["m_coin_label"])widget.Label.text=home.Gold.ToString();
-                if(id==(string)bindings["m_ap_label"])widget.Label.text=home.Ap+"/"+home.ApMax;
-                if(id==(string)bindings["m_bp_label"])widget.Label.text=home.Bp+"/"+home.BpMax;
-                if(id==(string)bindings["m_menu_crystal_label"])
+                if(id==(string)menuBindings["m_name_label"])widget.Label.text=home.Name;
+                if(id==(string)menuBindings["m_bp_now_label"])widget.Label.text=home.Bp.ToString();
+                if(id==(string)menuBindings["m_bp_max_label"])widget.Label.text=home.BpMax.ToString();
+                if(id==(string)menuBindings["m_ap_label"])widget.Label.text=home.Ap+"/"+home.ApMax;
+                if(id==(string)menuBindings["m_bp_label"])widget.Label.text=home.Bp+"/"+home.BpMax;
+                if(id==(string)menuBindings["m_menu_crystal_label"] || id==(string)menuBindings["m_coin_label"])
                 {
-                    JToken coin=home.Wire["user"]["coin"],free=home.Wire["user"]["coin_free"];
-                    if(coin!=null&&free!=null)widget.Label.text=((long)coin+(long)free).ToString();
+                    long? coin = (long?)home.Wire["user"]["coin"], free = (long?)home.Wire["user"]["coin_free"];
+                    widget.Label.text = (coin + free)?.ToString() ?? "";
                 }
             }
             switch(widget.Object.name)
@@ -978,16 +1108,44 @@ namespace Kairisei.Recovery
                     break;
                 case "Label_NumBp":widget.Label.text=home.Bp.ToString();break;
                 case "Label_NumBpMax":widget.Label.text=home.BpMax.ToString();break;
+                case "Label_NumKey":widget.Label.text=((long?)home.Wire["medal_num"])?.ToString() ?? "";break;
                 case "Label_Name":widget.Label.text=home.Name;break;
                 case "Label_NumGold":widget.Label.text=home.Gold.ToString();break;
             }
         }
         private void BindHomeSprite(Widget widget)
         {
+            CnHomeState home = owner.OriginalHome;
+            string frame = (string)widget.Data["frame"];
+            if (frame == "Menu_BpBar") SetHomeBar(widget, home.Bp, home.BpMax);
+            else if (frame == "Menu_ExpBar")
+            {
+                double progress = (long?)home.Wire["user"]["now_lv_exp"] ?? 0;
+                double remaining = (long?)home.Wire["user"]["next_lv_exp"] ?? 0;
+                SetHomeBar(widget, progress, progress + remaining);
+            }
+            else if (frame == "Menu_Point_00" || frame == "Menu_Point_01")
+            {
+                string name = widget.Object.name;
+                if (name == "Dmy_Ap1" || name == "Dmy_Ap2" || name == "Dmy_Ap3")
+                {
+                    int point = name[name.Length - 1] - '0';
+                    ApplyAtlasFrame(widget, "homeAp", point <= Math.Min(home.Ap, home.ApMax) ? "Menu_Point_01" : "Menu_Point_00");
+                }
+            }
             if (widget.Object.transform.parent.name != "Num_Lv") return;
-            long level = owner.OriginalHome.Level;
+            long level = home.Level;
             int place = widget.Object.name == "Num_1" ? 1 : widget.Object.name == "Num_2" ? 10 : 100;
             ApplyAtlasFrame(widget, "level", "Num_600_" + (level / place % 10));
+        }
+
+        private void SetHomeBar(Widget widget, double current, double maximum)
+        {
+            float fill = maximum > 0 ? Mathf.Clamp01((float)(current / maximum)) : 0;
+            if (widget.BarFill == fill) return;
+            widget.BarFill = fill;
+            widget.Renderer.transform.localScale = new Vector3(fill, 1, 1);
+            SetSpriteUv(widget.ImageMesh, (JArray)widget.Data["resolved"]["uv"], fill);
         }
 
         private void ApplyAtlasFrame(Widget widget, string atlas, string frame)
@@ -997,9 +1155,9 @@ namespace Kairisei.Recovery
             widget.DisplayedFrame = frame;
         }
 
-        private static void SetSpriteUv(Mesh mesh, JArray uv)
+        private static void SetSpriteUv(Mesh mesh, JArray uv, float fill = 1)
         {
-            float x = (float)uv[0], y = (float)uv[1], w = (float)uv[2], h = (float)uv[3];
+            float x = (float)uv[0], y = (float)uv[1], w = (float)uv[2] * fill, h = (float)uv[3];
             mesh.uv = new[] { new Vector2(x, y), new Vector2(x + w, y), new Vector2(x, y + h), new Vector2(x + w, y + h) };
         }
         private void RebuildFont(Font rebuilt)
@@ -1035,6 +1193,7 @@ namespace Kairisei.Recovery
         }
         private void OnDestroy()
         {
+            ClearHomeBanners();
             Font.textureRebuilt -= RebuildFont;
             if (sceneRoot != null) Destroy(sceneRoot);
             if (worldRoot != null) Destroy(worldRoot);
