@@ -93,6 +93,14 @@ public sealed class Order05ScenePreview : MonoBehaviour
         var ui = (Camera)Field(typeof(OriginalSceneRenderer), "sceneCamera").GetValue(renderer);
         ui.targetTexture = target;
         ui.aspect = (float)Width / Height;
+        var worldBundle = loaded[OriginalNaviModel.BundleName];
+        loaded.Remove(OriginalNaviModel.BundleName);
+        try { renderer.RefreshContent(); }
+        catch (InvalidOperationException) { }
+        Require(!renderer.CanPresentHome && renderer.Initialized, "The active resource failure did not block Home while preserving the title.");
+        loaded.Add(OriginalNaviModel.BundleName, worldBundle);
+        renderer.RefreshContent();
+        Require(renderer.CanPresentHome, "The active resource validation did not recover on retry.");
         renderer.Show("IntroSlPl");
         renderer.Show("Title");
         Method("Update").Invoke(renderer, null);
@@ -117,7 +125,13 @@ public sealed class Order05ScenePreview : MonoBehaviour
         var connecting = (GameObject)Field(typeof(OriginalSceneRenderer), "titleConnecting").GetValue(renderer);
         Require(connecting.activeInHierarchy, "The original connecting sprite did not activate.");
         Field(typeof(RecoveryBootstrap), "busy").SetValue(state, false);
+        var entry = (CnEntryFlow)Field(typeof(RecoveryBootstrap), "entry").GetValue(state);
+        entry.BeginHealth();
+        entry.Fail(new CnTransportException(0, "fixture transport error"));
         renderer.ShowError("无法连接服务器，请检查网络后再试。连接恢复后会继续使用当前游客身份。");
+        Require((string)Field(typeof(OriginalSceneRenderer), "dialogAcceptLabel").GetValue(renderer) == "重试", "The connection error did not surface the retry action.");
+        var retry = (Action)Field(typeof(OriginalSceneRenderer), "dialogAction").GetValue(renderer);
+        Require(retry.Target == state && retry.Method.Name == nameof(RecoveryBootstrap.RetryOriginalEntry), "The retry button is not bound to the real entry flow.");
         yield return new WaitForSecondsRealtime(0.28f);
         Capture("04-title-error", main, renderer, ui, target);
         renderer.Show("IntroSlPl");
@@ -126,6 +140,28 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Method("SelectRole").Invoke(renderer, new object[] { 2 });
         yield return new WaitForSecondsRealtime(0.4f);
         Capture("06-role-selected", main, renderer, ui, target);
+
+        var endpoint = ServerEndpoint.Parse("http://127.0.0.1:27040");
+        entry.BeginLogin();
+        entry.ReceiveLogin(new JObject {
+            { "res_code", 0 }, { "userid", 1 }, { "sess_key", "order05-fixture-session-0123456789" },
+            { "api_url", endpoint.ToString() }, { "version_url", endpoint.Route("/local/content/iOS/6000.3.26f1/fixture/").ToString() }
+        }.ToString(), endpoint);
+        entry.ResourcesReady();
+        entry.ReceiveConnect("{\"res_code\":0}\n{\"is_user\":0,\"tutorial_flag\":0}\n{}");
+        Field(typeof(RecoveryBootstrap), "login").SetValue(state, entry.Login);
+        Field(typeof(RecoveryBootstrap), "connectState").SetValue(state, entry.CharacterState);
+        Field(typeof(RecoveryBootstrap), "serverContentReady").SetValue(state, true);
+        Field(typeof(RecoveryBootstrap), "address").SetValue(state, endpoint.ToString());
+        Field(typeof(RecoveryBootstrap), "verifiedAddress").SetValue(state, endpoint.ToString());
+        Field(typeof(RecoveryBootstrap), "originalScene").SetValue(state, renderer);
+        state.CreateOriginalCharacter();
+        Require(entry.Step == CnEntryStep.Character && !entry.CreationMayHaveCommitted, "A blank role name left the editable character step.");
+        Require((string)Field(typeof(OriginalSceneRenderer), "dialogAcceptLabel").GetValue(renderer) == "确定" &&
+                (string)Field(typeof(OriginalSceneRenderer), "dialogBody").GetValue(renderer) == "请输入不含空格的角色名称。", "A blank name did not display the local validation error.");
+        yield return new WaitForSecondsRealtime(0.45f);
+        Capture("17-role-name-error", main, renderer, ui, target);
+        entry.Reset();
         var home = new CnHomeState
         {
             UserId=1, Name="画面检查", Level=3, Bp=20, BpMax=20, Ap=1, ApMax=3, Gold=200,

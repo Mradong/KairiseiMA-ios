@@ -55,6 +55,8 @@ namespace Kairisei.Recovery
         private CnEntryJournal entryJournal;
         private bool localInitializationFailed;
         private OriginalSceneRenderer originalScene;
+        private GUIStyle startupLabel;
+        private GUIStyle startupButton;
         public CnEntryStep OriginalEntryStep { get { return entry.Step; } }
         public CnHomeState OriginalHome { get { return homeState; } }
         public bool OriginalBusy { get { return busy; } }
@@ -96,6 +98,25 @@ namespace Kairisei.Recovery
             // The original title's OnStartLogin action starts the online flow.
         }
 
+        private void OnGUI()
+        {
+            if (!localInitializationFailed) return;
+            if (startupLabel == null)
+            {
+                startupLabel = new GUIStyle(GUI.skin.label) { font = font, fontSize = 18, wordWrap = true, alignment = TextAnchor.MiddleCenter };
+                startupButton = new GUIStyle(GUI.skin.button) { font = font, fontSize = 18 };
+            }
+            float scale = Screen.height / 640f;
+            float width = Screen.width / scale;
+            Rect panel = new Rect(width * 0.2f, 210, width * 0.6f, 220);
+            Matrix4x4 previous = GUI.matrix;
+            GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1));
+            GUI.Box(panel, GUIContent.none);
+            GUI.Label(new Rect(panel.x + 20, panel.y + 15, panel.width - 40, 132), status, startupLabel);
+            if (!busy && GUI.Button(new Rect(panel.center.x - 60, panel.y + 155, 120, 44), "重试", startupButton)) RetryEntry();
+            GUI.matrix = previous;
+        }
+
         private void OnDestroy()
         {
             StopAllCoroutines();
@@ -135,7 +156,7 @@ namespace Kairisei.Recovery
             endpoint = null;
             verifiedAddress = null;
             try { endpoint = ServerEndpoint.Parse(address); }
-            catch (Exception error) { status = error.Message; return; }
+            catch (Exception error) { EntryFailed(error); return; }
             string requestedAddress = address;
             StartCoroutine(Send("GET", endpoint.Route("/healthz"), null, delegate(string response) {
                 int battlePort = CnProtocol.ParseHealth(response);
@@ -193,6 +214,7 @@ namespace Kairisei.Recovery
                 {
                     title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
                     LoadPartyAtlas();
+                    originalScene.RefreshContent();
                     Debug.Log("Recovery server UI loaded: title=" + title.width + "x" + title.height + ", partyAtlas=" + (partyAtlas != null));
                 }
                 catch (Exception error) { serverContentReady = false; uiError = error.Message; }
@@ -417,7 +439,16 @@ namespace Kairisei.Recovery
             if (busy || login == null || connectState == null || connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
             string body;
             try { body = entry.BeginCreate(characterName, arthurType); entryJournal.BeginCreate(); }
-            catch (Exception error) { if (entry.Step == CnEntryStep.Create) EntryFailed(error); else status = error.Message; return; }
+            catch (Exception error)
+            {
+                if (entry.Step == CnEntryStep.Create) EntryFailed(error);
+                else
+                {
+                    status = error is ArgumentException ? "请输入不含空格的角色名称。" : error.Message;
+                    originalScene.ShowError(status);
+                }
+                return;
+            }
             CnLogin requestedLogin = login;
             // A timeout can follow a successful server commit: require Connect before another attempt.
             connectState = null;

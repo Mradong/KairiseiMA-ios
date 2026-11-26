@@ -59,13 +59,14 @@ namespace Kairisei.Recovery
         private Action dialogAction;
         private string dialogTitle;
         private string dialogBody;
+        private string dialogAcceptLabel;
         private bool displayedBonus;
         private bool homeResourcesReady;
         private bool rebuildingFont;
         private readonly List<Mesh> ownedMeshes=new List<Mesh>();
         private readonly List<Material> ownedMaterials=new List<Material>();
-        public bool CanPresentHome { get { return layout != null && homeResourcesReady && (bool?)layout["originalSceneResourcesPrepared"] == true; } }
-        public bool Initialized { get { return layout != null; } }
+        public bool CanPresentHome { get { return Initialized && homeResourcesReady; } }
+        public bool Initialized { get; private set; }
 
         private sealed class Widget
         {
@@ -147,30 +148,54 @@ namespace Kairisei.Recovery
 
         public void Initialize(RecoveryContentLoader loader, Font font, RecoveryBootstrap controller)
         {
+            Initialized = false;
             content = loader; originalFont = font; owner = controller;
-            layout = JObject.Parse(content.Load<TextAsset>(BundleName, "originalscenes").text);
-            if ((int?)layout["schemaVersion"] != 1 || !(layout["definitions"] is JArray)) throw new FormatException("原场景布局数据无效。");
-            if ((bool?)layout["originalSceneResourcesPrepared"] != true) throw new InvalidOperationException("主页原场景资源尚未准备完成。");
-            OriginalNaviModel.ValidateContent(content);
             TextAsset motion = Resources.Load<TextAsset>("OriginalSceneMotion");
             if (motion == null) throw new InvalidOperationException("原场景动画数据缺失。");
             motionData = JObject.Parse(motion.text);
             if ((int?)motionData["schemaVersion"] != 1) throw new FormatException("原场景动画数据无效。");
             titleHitCenter = Vector(motionData["titleHitBox"]["center"]);
             titleHitSize = Vector(motionData["titleHitBox"]["size"]);
-            homeResourcesReady = true;
             spriteShader = Resources.Load<Shader>("OriginalSceneUI");
             if (spriteShader == null) throw new InvalidOperationException("原场景界面着色器缺失。");
-            menuClipProperties = new MaterialPropertyBlock();
-            GameObject cameraObject = new GameObject("OriginalSceneCamera");
-            cameraObject.transform.SetParent(transform, false);
-            sceneCamera = cameraObject.AddComponent<Camera>();
-            sceneCamera.orthographic = true; sceneCamera.orthographicSize = 1;
-            sceneCamera.transform.localPosition = new Vector3(0, 0, -100);
-            sceneCamera.clearFlags = CameraClearFlags.Depth; sceneCamera.depth = 50;
-            sceneCamera.cullingMask = 1 << 29;
-            Font.textureRebuilt += RebuildFont;
+            RefreshContent();
+            if (sceneCamera == null)
+            {
+                menuClipProperties = new MaterialPropertyBlock();
+                GameObject cameraObject = new GameObject("OriginalSceneCamera");
+                cameraObject.transform.SetParent(transform, false);
+                sceneCamera = cameraObject.AddComponent<Camera>();
+                sceneCamera.orthographic = true;
+                sceneCamera.orthographicSize = 1;
+                sceneCamera.transform.localPosition = new Vector3(0, 0, -100);
+                sceneCamera.clearFlags = CameraClearFlags.Depth;
+                sceneCamera.depth = 50;
+                sceneCamera.cullingMask = 1 << 29;
+                Font.textureRebuilt += RebuildFont;
+            }
+            currentScene = null;
             Show("Title");
+            Initialized = true;
+        }
+
+        public void RefreshContent()
+        {
+            homeResourcesReady = false;
+            JObject updated = JObject.Parse(content.Load<TextAsset>(BundleName, "originalscenes").text);
+            if ((int?)updated["schemaVersion"] != 1 || !(updated["definitions"] is JArray definitions) ||
+                !(updated["textures"] is JArray sceneTextures)) throw new FormatException("原场景布局数据无效。");
+            if ((bool?)updated["originalSceneResourcesPrepared"] != true) throw new InvalidOperationException("主页原场景资源尚未准备完成。");
+
+            var required = new HashSet<string> { "Title", "IntroSlPl", "Home", "Menu", "Confirm" };
+            foreach (JObject scene in definitions)
+                if (scene["nodes"] is JArray nodes && nodes.Count > 0) required.Remove((string)scene["name"]);
+            if (required.Count != 0) throw new InvalidOperationException("缺少原场景：" + String.Join("、", required));
+            foreach (JObject texture in sceneTextures) content.Load<Texture2D>(BundleName, (string)texture["key"]);
+            OriginalNaviModel.ValidateContent(content);
+
+            textures.Clear();
+            layout = updated;
+            homeResourcesReady = true;
         }
 
         public void Show(string name)
@@ -685,7 +710,7 @@ namespace Kairisei.Recovery
 
         private void Update()
         {
-            if (layout == null) return;
+            if (!Initialized) return;
             if (nameKeyboard != null && nameKeyboard.status == TouchScreenKeyboard.Status.Done)
             {
                 owner.SetOriginalCharacterName(nameKeyboard.text); nameKeyboard = null;
@@ -698,10 +723,7 @@ namespace Kairisei.Recovery
             if (currentScene == "Home" && sceneMotions.Count == 0 && dialogRoot == null && !displayedBonus && !String.IsNullOrEmpty(owner.OriginalBonusNotice))
             {
                 displayedBonus = true;
-                dialogTitle = "登录奖励";
-                dialogBody = owner.OriginalBonusNotice;
-                dialogAction = owner.AcknowledgeOriginalBonus;
-                Show("Confirm");
+                ShowConfirmation("登录奖励", owner.OriginalBonusNotice, "确定", owner.AcknowledgeOriginalBonus);
             }
             if (currentScene == "Title")
             {
@@ -725,7 +747,7 @@ namespace Kairisei.Recovery
                 {
                     if(widget.Object.name=="Label_Text")widget.Label.text=dialogBody??"";
                     if(widget.Object.name=="Label_Title")widget.Label.text=dialogTitle;
-                    if(widget.Object.name=="Label_01")widget.Label.text="继续";
+                    if(widget.Object.name=="Label_01")widget.Label.text=dialogAcceptLabel;
                     if(widget.Object.name=="Label_02")widget.Label.text="返回";
                 }
                 if(dialogWidget && currentDialog=="ServerList")
@@ -875,17 +897,23 @@ namespace Kairisei.Recovery
 
         public void ConfirmHomeEntry()
         {
-            dialogTitle="确认";
-            dialogBody="进入主页会读取角色状态、领取可用登录奖励，并结束服务器残留的单人开场。";
-            dialogAction=owner.EnterOriginalHome;Show("Confirm");
+            ShowConfirmation("确认", "进入主页会读取角色状态、领取可用登录奖励，并结束服务器残留的单人开场。", "继续", owner.EnterOriginalHome);
         }
         public void NotifyHomeUpdated(){displayedBonus=false;}
         public void ShowError(string message)
         {
-            if(currentDialog=="Confirm"&&dialogBody==message)return;
-            dialogTitle="提示";
-            dialogBody=message;
-            dialogAction=owner.OriginalCanRetry?(Action)owner.RetryOriginalEntry:null;Show("Confirm");
+            if (currentDialog == "Confirm" && dialogBody == message) return;
+            bool retry = owner.OriginalCanRetry;
+            ShowConfirmation("提示", message, retry ? "重试" : "确定", retry ? (Action)owner.RetryOriginalEntry : null);
+        }
+
+        private void ShowConfirmation(string title, string message, string acceptLabel, Action action)
+        {
+            dialogTitle = title;
+            dialogBody = message;
+            dialogAcceptLabel = acceptLabel;
+            dialogAction = action;
+            Show("Confirm");
         }
         private void FitTitleArtwork()
         {
