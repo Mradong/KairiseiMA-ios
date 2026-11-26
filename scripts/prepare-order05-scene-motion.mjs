@@ -58,11 +58,14 @@ const titleHitBox = { node: start.id, center: boxVector('m_Center'), size: boxVe
 function atlasFrames(prefix, suffixes) {
   const widget = layout.definitions.flatMap(scene => scene.nodes.flatMap(node => node.widgets))
     .find(widget => widget.frame === prefix + suffixes[0] && widget.resolved);
-  const texture = layout.textures.find(texture => texture.key === widget.resolved.texture);
-  const atlas = read(widget.atlasSource);
+  return readFrames(widget.atlasSource, suffixes.map(suffix => prefix + suffix));
+}
+function readFrames(source, names) {
+  const texture = layout.textures.find(texture => texture.source === source.replace(/\/([^/]+)\.prefab$/, '/material/$1.png'));
+  assert(texture, 'Missing packaged atlas texture for ' + source);
+  const atlas = read(source);
   const frames = {};
-  for (const suffix of suffixes) {
-    const name = prefix + suffix;
+  for (const name of names) {
     const raw = [...atlas.matchAll(/^  - name: ([^\r\n]+)\r?\n([\s\S]*?)(?=^  - name:|^  mCoordinates:|(?![\s\S]))/gm)]
       .find(match => match[1] === name)?.[2];
     const outer = raw?.match(/^    outer:\r?\n([\s\S]*?)(?=^    inner:)/m)?.[1];
@@ -71,12 +74,29 @@ function atlasFrames(prefix, suffixes) {
     assert([x, y, width, height].every(Number.isFinite), name);
     frames[name] = [x / texture.width, 1 - (y + height) / texture.height, width / texture.width, height / texture.height];
   }
-  return { source: widget.atlasSource, sha256: sha(atlas), frames };
+  return { source, sha256: sha(atlas), texture: texture.key, frames };
 }
 const atlases = {
   level: atlasFrames('Num_600_', Array.from({length: 10}, (_, index) => String(index))),
   roleName: atlasFrames('IntroSlPl_Name', ['01','02','03','04'])
 };
+const menu = layout.definitions.find(scene => scene.name === 'Menu');
+const menuFrames = new Map();
+const menuAtlas = path.posix.join(path.posix.dirname(menu.source), '../03_ui_assets/menu/atlas');
+menuFrames.set(menuAtlas + '/Menu.prefab', ['Menu_BattleAlchemistBtn01_00']);
+menuFrames.set(menuAtlas + '/Menu2.prefab', ['Menu_FriendBtn01_01']);
+const menuOwners = new Set(menu.menuSubgroups.map(group => group.owner));
+for (const node of menu.nodes) {
+  if (!menuOwners.has(node.parent)) continue;
+  for (const widget of node.widgets) {
+    if (!widget.resolved || !/^Menu_MainBtn_.+_00$/.test(widget.frame)) continue;
+    if (!menuFrames.has(widget.atlasSource)) menuFrames.set(widget.atlasSource, []);
+    menuFrames.get(widget.atlasSource).push(widget.frame.replace(/00$/, '01'));
+  }
+}
+const menuAtlases = [...menuFrames].map(([source, names]) => readFrames(source, names));
+const menuSprites = Object.fromEntries(menuAtlases.flatMap(atlas => Object.entries(atlas.frames)
+  .map(([name, uv]) => [name, { texture: atlas.texture, uv, source: atlas.source, sha256: atlas.sha256 }])));
 const output = path.join(root, recovery + '/Resources/OriginalSceneMotion.json');
-fs.writeFileSync(output, JSON.stringify({ schemaVersion: 1, titleHitBox, clips, atlases }, null, 2) + '\n');
+fs.writeFileSync(output, JSON.stringify({ schemaVersion: 1, titleHitBox, clips, atlases, menuSprites }, null, 2) + '\n');
 console.log(JSON.stringify({ clips: Object.keys(clips).length, tracks: Object.values(clips).reduce((total, clip) => total + clip.tracks.length, 0), titleHitBox }));

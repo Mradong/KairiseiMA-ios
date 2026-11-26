@@ -24,7 +24,7 @@ public sealed class Order05ScenePreview : MonoBehaviour
     {
         try
         {
-            string output = Path.GetFullPath("scene-preview");
+            string output = Path.GetFullPath(Environment.GetEnvironmentVariable("ORDER05_PREVIEW_OUTPUT") ?? "scene-preview");
             Directory.CreateDirectory(output);
             string bundleFolder = Path.GetFullPath("preview-bundles");
             Directory.CreateDirectory(bundleFolder);
@@ -44,7 +44,7 @@ public sealed class Order05ScenePreview : MonoBehaviour
                 throw new InvalidOperationException("Could not build Windows editor preview bundles.");
             var sceneHandle = EditorSceneManager.NewScene(NewSceneSetup.EmptyScene, NewSceneMode.Single);
             new GameObject("Preview").AddComponent<Order05ScenePreview>().Output = output;
-            PlayerSettings.bundleVersion = "0.0.10";
+            PlayerSettings.bundleVersion = "0.0.11";
             if (!EditorSceneManager.SaveScene(sceneHandle, "Assets/Preview.unity")) throw new InvalidOperationException("Cannot save preview scene.");
             EditorApplication.EnterPlaymode();
         }
@@ -98,16 +98,21 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Method("Update").Invoke(renderer, null);
         Capture("00-title-entry-start", main, renderer, ui, target);
         yield return new WaitForSecondsRealtime(0.55f);
+        var promptMotion = (OriginalSceneMotion)Field(typeof(OriginalSceneRenderer), "titleMotion").GetValue(renderer);
+        float promptStart = (float)Field(typeof(OriginalSceneMotion), "started").GetValue(promptMotion);
+        promptMotion.Sample(promptStart);
         Capture("01-title", main, renderer, ui, target);
         foreach (var point in new[] { new Vector2(160, 900), new Vector2(Width / 2, Height / 2), new Vector2(Width - 160, 900) })
             Require((bool)Method("IsTitlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(point) }), "Title input missed outside the prompt.");
-        yield return new WaitForSecondsRealtime(0.3f);
+        promptMotion.Sample(promptStart + 0.25f);
         Capture("02-title-prompt-cycle", main, renderer, ui, target);
         var titleTap = new Vector2(160, 900);
         Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(titleTap), titleTap });
         Require((bool)Field(typeof(OriginalSceneRenderer), "titleWaiting").GetValue(renderer), "The title outside its prompt gave no immediate feedback.");
         Field(typeof(RecoveryBootstrap), "busy").SetValue(state, true);
-        yield return new WaitForSecondsRealtime(0.55f);
+        var connectMotion = (OriginalSceneMotion)Field(typeof(OriginalSceneRenderer), "titleMotion").GetValue(renderer);
+        float connectStart = (float)Field(typeof(OriginalSceneMotion), "started").GetValue(connectMotion);
+        connectMotion.Sample(connectStart + 0.55f);
         Capture("03-title-connecting", main, renderer, ui, target);
         var connecting = (GameObject)Field(typeof(OriginalSceneRenderer), "titleConnecting").GetValue(renderer);
         Require(connecting.activeInHierarchy, "The original connecting sprite did not activate.");
@@ -147,10 +152,36 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Transform buttons = (Transform)Field(typeof(OriginalSceneRenderer), "menuButtons").GetValue(renderer);
         Transform right = (Transform)Field(typeof(OriginalSceneRenderer), "menuRightArrow").GetValue(renderer);
         float initialMenuX = buttons.localPosition.x;
+        Transform rightMenu = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Right Anchor");
+        Transform homePanel = rightMenu.Find("Menu_HomeBtnR");
+        Transform battlePanel = rightMenu.Find("Menu_BattleBtn02");
+        Transform cardPanel = rightMenu.Find("Menu_KnightBtn");
+        Transform shopPanel = rightMenu.Find("Menu_ShoptBtn");
+        Transform battleButton = buttons.Find("MainBtn_Battle/base");
+        Mesh battleButtonMesh = battleButton.GetComponentInChildren<MeshFilter>().sharedMesh;
+        Vector2 unselectedBattleUv = battleButtonMesh.uv[0];
+        Press(renderer, ui, battleButton);
+        yield return new WaitForSecondsRealtime(0.45f);
+        Require(battlePanel.gameObject.activeInHierarchy && !homePanel.gameObject.activeInHierarchy, "The Battle button did not open the authored Battle submenu.");
+        Require(battleButtonMesh.uv[0] != unselectedBattleUv, "The Battle tab did not switch to its original selected sprite.");
+        Require(battlePanel.Find("Menu_AlchemistBattleBtn/AlchemistBattleBtn01").GetComponentInChildren<MeshRenderer>() != null, "The Alchemist Battle icon was left unresolved.");
+        Capture("14-home-battle-menu", main, renderer, ui, target);
+        Press(renderer, ui, buttons.Find("MainBtn_Card/base"));
+        yield return new WaitForSecondsRealtime(0.45f);
+        Require(cardPanel.gameObject.activeInHierarchy && !battlePanel.gameObject.activeInHierarchy, "The Card button did not replace the Battle submenu with its own.");
+        Require(battleButtonMesh.uv[0] == unselectedBattleUv, "The previous tab kept its selected sprite after switching.");
+        Capture("15-home-card-menu", main, renderer, ui, target);
+        Press(renderer, ui, buttons.Find("MainBtn_Home/base"));
+        yield return new WaitForSecondsRealtime(0.45f);
+        Require(homePanel.gameObject.activeInHierarchy && !cardPanel.gameObject.activeInHierarchy, "The Home button did not restore the authored Home shortcuts.");
         Vector2 arrowTap = ui.WorldToScreenPoint(right.Find("SwipeMark_Right").position);
         Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(arrowTap), arrowTap });
         Require(buttons.localPosition.x < initialMenuX, "The original scroll arrow did not move the clipped menu.");
         Capture("11-home-menu-scroll", main, renderer, ui, target);
+        Press(renderer, ui, buttons.Find("MainBtn_Shop/base"));
+        yield return new WaitForSecondsRealtime(0.45f);
+        Require(shopPanel.gameObject.activeInHierarchy && !homePanel.gameObject.activeInHierarchy, "The Shop button did not open after scrolling the menu.");
+        Capture("16-home-shop-menu", main, renderer, ui, target);
         Transform menuBar = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Top Anchor/Menu_MenuBar");
         Transform end = menuBar.Find("MenuBase3");
         Require(ui.WorldToViewportPoint(end.TransformPoint(new Vector3(0.5f, 0, 0))).x >= 0.999f, "The original end cap stops before the wide right edge.");
@@ -158,12 +189,18 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Vector2 menuTap = ui.WorldToScreenPoint(menuButton.position);
         Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(menuTap), menuTap });
         yield return new WaitForSecondsRealtime(0.45f);
-        Require(!menuBar.gameObject.activeInHierarchy && !buttons.gameObject.activeInHierarchy && model.isActiveAndEnabled, "The top-right button did not close the original Home menu while keeping the scene.");
+        Require(!menuBar.gameObject.activeInHierarchy && !buttons.gameObject.activeInHierarchy && !shopPanel.gameObject.activeInHierarchy && model.isActiveAndEnabled, "The top-right button did not close the selected submenu and navigation while keeping the scene.");
         Capture("12-home-menu-closed", main, renderer, ui, target);
         Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(menuTap), menuTap });
         yield return new WaitForSecondsRealtime(0.45f);
-        Require(menuBar.gameObject.activeInHierarchy && buttons.gameObject.activeInHierarchy && buttons.localPosition.x < initialMenuX, "The original Home menu did not reopen with its previous scroll offset.");
+        Require(menuBar.gameObject.activeInHierarchy && buttons.gameObject.activeInHierarchy && shopPanel.gameObject.activeInHierarchy && buttons.localPosition.x < initialMenuX, "The original menu did not reopen with its previous submenu and scroll offset.");
         Capture("13-home-menu-reopened", main, renderer, ui, target);
+    }
+
+    private static void Press(OriginalSceneRenderer renderer, Camera ui, Transform target)
+    {
+        Vector2 point = ui.WorldToScreenPoint(target.position);
+        Method("HandlePress").Invoke(renderer, new object[] { ui.ScreenPointToRay(point), point });
     }
 
     private void Capture(string name, Camera main, OriginalSceneRenderer renderer, Camera ui, RenderTexture target)

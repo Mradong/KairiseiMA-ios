@@ -1165,6 +1165,7 @@
     "level": {
       "source": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Num_600.prefab",
       "sha256": "df3dd049a5c7872e70501486dfcf32217d365075984953498931e41de21e5a24",
+      "texture": "original-bfd8dd799dccc25e",
       "frames": {
         "Num_600_0": [
           0.3828125,
@@ -1231,6 +1232,7 @@
     "roleName": {
       "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/intro/atlas/IntroSlPl.prefab",
       "sha256": "a7f6a225bea7f34c90245ccebdd7e1bd3f5f228e86d7e06cf001fc21cfd829dd",
+      "texture": "original-9ffec879238c0d10",
       "frames": {
         "IntroSlPl_Name01": [
           0.44140625,
@@ -1257,6 +1259,118 @@
           0.0478515625
         ]
       }
+    }
+  },
+  "menuSprites": {
+    "Menu_BattleAlchemistBtn01_00": {
+      "texture": "original-22fa558f14add603",
+      "uv": [
+        0.59375,
+        0.8134765625,
+        0.0927734375,
+        0.185546875
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu.prefab",
+      "sha256": "4ae6dc2f2da6b6a91f6ca938b827f279b4cc7356de5a56b2a242cd4810bb7430"
+    },
+    "Menu_FriendBtn01_01": {
+      "texture": "original-f9adbd1cf24c78c3",
+      "uv": [
+        0,
+        0.5224609375,
+        0.185546875,
+        0.185546875
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu2.prefab",
+      "sha256": "e861e49c5ad34face613a35b8eb4254a93bab8d13295ad264a46bbdfbf15d426"
+    },
+    "Menu_MainBtn_Home_01": {
+      "texture": "original-f9adbd1cf24c78c3",
+      "uv": [
+        0.30859375,
+        0.1884765625,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu2.prefab",
+      "sha256": "e861e49c5ad34face613a35b8eb4254a93bab8d13295ad264a46bbdfbf15d426"
+    },
+    "Menu_MainBtn_Freind_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0.7880859375,
+        0.35546875,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    "Menu_MainBtn_Story_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0,
+        0.58984375,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    "Menu_MainBtn_Quest_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0.3603515625,
+        0.435546875,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    "Menu_MainBtn_Battle_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0.6220703125,
+        0.1884765625,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    "Menu_MainBtn_Knight_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0.630859375,
+        0.4072265625,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    "Menu_MainBtn_Shop_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0.203125,
+        0.474609375,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    "Menu_MainBtn_CardPic_01": {
+      "texture": "original-6be97ef44f0c72e5",
+      "uv": [
+        0.1572265625,
+        0.037109375,
+        0.15625,
+        0.1083984375
+      ],
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
     }
   }
 }

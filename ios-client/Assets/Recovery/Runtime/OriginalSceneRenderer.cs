@@ -48,6 +48,8 @@ namespace Kairisei.Recovery
         private readonly List<OriginalSceneMotion> dialogMotions = new List<OriginalSceneMotion>();
         private readonly List<OriginalSceneMotion> menuMotions = new List<OriginalSceneMotion>();
         private readonly List<MenuPanel> homeMenuPanels = new List<MenuPanel>();
+        private readonly Dictionary<string, MenuTab> menuSubgroups = new Dictionary<string, MenuTab>();
+        private MenuTab selectedMenuTab;
         private readonly Dictionary<Transform, Vector2> menuBarDesign = new Dictionary<Transform, Vector2>();
         private bool menuOpen;
         private float menuBarAspect;
@@ -84,6 +86,12 @@ namespace Kairisei.Recovery
         {
             public GameObject Object;
             public string EnterClip;
+        }
+
+        private sealed class MenuTab
+        {
+            public Widget Button;
+            public readonly List<MenuPanel> Panels = new List<MenuPanel>();
         }
 
         private sealed class GlyphLabel
@@ -186,6 +194,8 @@ namespace Kairisei.Recovery
             sceneMotions.Clear();
             menuMotions.Clear();
             homeMenuPanels.Clear();
+            menuSubgroups.Clear();
+            selectedMenuTab = null;
             menuBarDesign.Clear();
             menuBarAspect = 0;
             menuOpen = true;
@@ -315,29 +325,22 @@ namespace Kairisei.Recovery
                     if (!(bool)data["enabled"]) continue;
                     var widget = new Widget { Object = item, Node = node, Data = data, Depth = (int)data["depth"] + (isDialog ? 1000 : 0),SourceColor=ColorValue(data["color"]) };
                     if ((string)data["kind"] == "UILabel") BuildLabel(widget);
-                    else if (data["resolved"] is JObject) BuildImage(widget);
-                    else continue; // Dynamic slots stay unresolved; readiness is recorded separately.
+                    else
+                    {
+                        JObject source = data["resolved"] as JObject;
+                        string frame = (string)data["frame"];
+                        if (source == null && scene == "Menu" && !String.IsNullOrEmpty(frame))
+                            source = (JObject)motionData["menuSprites"][frame];
+                        if (source == null) continue;
+                        BuildImage(widget, source);
+                    }
                     widgets.Add(widget);
                 }
             }
             if (scene == "Menu")
             {
-                var allGroups = new HashSet<string>();
-                var homeGroups = new HashSet<string>();
-                foreach (JObject subgroup in (JArray)definition["menuSubgroups"])
-                {
-                    var groups = (JArray)subgroup["groups"];
-                    for (int i = 0; i < groups.Count; i++)
-                    {
-                        string id = (string)groups[i];
-                        allGroups.Add(id);
-                        // Menu_HomeItem.OpenMenu opens the common group and
-                        // one of the TOP/STORY groups. Initial entry is TOP.
-                        if ((string)subgroup["type"] == "Menu_HomeItem" && i < 2) homeGroups.Add(id);
-                    }
-                }
-                foreach (string id in allGroups) localObjects[id].SetActive(homeGroups.Contains(id));
                 ConfigureMenuClip(definition, localObjects);
+                ConfigureMenuSubgroups(definition, localObjects);
                 FitMenuBar();
             }
             if (isDialog)
@@ -410,8 +413,7 @@ namespace Kairisei.Recovery
             foreach (JObject node in (JArray)definition["nodes"])
             {
                 GameObject item = page[(string)node["id"]];
-                if (item.name == "Menu_MenuBar" || item.name == "Menu_Status" || item.name == "Menu_Title" ||
-                    item.name == "Menu_MainBtn" || item.name == "Menu_HomeBtnR")
+                if (item.name == "Menu_MenuBar" || item.name == "Menu_Status" || item.name == "Menu_Title" || item.name == "Menu_MainBtn")
                 {
                     string file = (string)node["enterAnimation"]["source"];
                     homeMenuPanels.Add(new MenuPanel { Object = item, EnterClip = System.IO.Path.GetFileNameWithoutExtension(file) });
@@ -422,7 +424,7 @@ namespace Kairisei.Recovery
                 {
                     case "Right Anchor":
                         foreach (Transform panel in item.transform)
-                            if (panel.name.StartsWith("Menu_", StringComparison.Ordinal) && panel.name != "Menu_HomeBtnR")
+                            if (panel.name.StartsWith("Menu_", StringComparison.Ordinal))
                                 panel.gameObject.SetActive(false);
                         break;
                     case "Menu_HomeBtnL":
@@ -455,6 +457,49 @@ namespace Kairisei.Recovery
             ScrollMenu(menuScrollMax - menuButtons.localPosition.x);
         }
 
+        private void ConfigureMenuSubgroups(JObject definition, Dictionary<string, GameObject> page)
+        {
+            var clips = new Dictionary<string, string>();
+            foreach (JObject node in (JArray)definition["nodes"])
+            {
+                string source = (string)(node["enterAnimation"] as JObject)?["source"];
+                if (!String.IsNullOrEmpty(source)) clips.Add((string)node["id"], System.IO.Path.GetFileNameWithoutExtension(source));
+            }
+            foreach (JObject subgroup in (JArray)definition["menuSubgroups"])
+            {
+                string ownerId = (string)subgroup["owner"];
+                Transform button = page[ownerId].transform.Find("base");
+                var tab = new MenuTab { Button = widgets.Find(widget => widget.Object.transform == button && widget.ImageMesh != null) };
+                string type = (string)subgroup["type"];
+                JArray groups = (JArray)subgroup["groups"];
+                // Home and Battle each define a common group followed by their top page.
+                int count = type == "Menu_HomeItem" || type == "Menu_BattleItem" ? Math.Min(groups.Count, 2) : groups.Count;
+                for (int i = 0; i < count; i++)
+                {
+                    string id = (string)groups[i];
+                    GameObject item = page[id];
+                    // The home badges still require their server data binding.
+                    if (item.name == "Menu_HomeBtnL") continue;
+                    tab.Panels.Add(new MenuPanel { Object = item, EnterClip = clips[id] });
+                }
+                menuSubgroups.Add(ownerId, tab);
+                if (type == "Menu_HomeItem") selectedMenuTab = tab;
+            }
+            SetMenuHighlight(selectedMenuTab, true);
+            foreach (MenuPanel panel in selectedMenuTab.Panels) panel.Object.SetActive(true);
+        }
+
+        private void SetMenuHighlight(MenuTab tab, bool selected)
+        {
+            if (tab.Button == null) return;
+            string frame = (string)tab.Button.Data["frame"];
+            if (String.IsNullOrEmpty(frame) || !frame.EndsWith("_00", StringComparison.Ordinal)) return;
+            JObject activeSprite = motionData["menuSprites"][frame.Substring(0, frame.Length - 2) + "01"] as JObject;
+            if (activeSprite == null) return;
+            JArray uv = (JArray)(selected ? activeSprite["uv"] : tab.Button.Data["resolved"]["uv"]);
+            SetSpriteUv(tab.Button.ImageMesh, uv);
+        }
+
         private void FitMenuBar()
         {
             float aspect = sceneCamera.aspect;
@@ -484,10 +529,26 @@ namespace Kairisei.Recovery
         {
             if (currentScene != "Home" || menuMotions.Count != 0 || sceneMotions.Count != 0) return;
             menuOpen = !menuOpen;
-            foreach (MenuPanel panel in homeMenuPanels)
+            AnimateMenuPanels(homeMenuPanels, menuOpen);
+            AnimateMenuPanels(selectedMenuTab.Panels, menuOpen);
+        }
+
+        private void SelectHomeMenu(MenuTab tab)
+        {
+            if (!menuOpen || menuMotions.Count != 0 || sceneMotions.Count != 0 || selectedMenuTab == tab) return;
+            foreach (MenuPanel panel in selectedMenuTab.Panels) panel.Object.SetActive(false);
+            SetMenuHighlight(selectedMenuTab, false);
+            selectedMenuTab = tab;
+            SetMenuHighlight(tab, true);
+            AnimateMenuPanels(tab.Panels, true);
+        }
+
+        private void AnimateMenuPanels(List<MenuPanel> panels, bool open)
+        {
+            foreach (MenuPanel panel in panels)
             {
                 panel.Object.SetActive(true);
-                string clip = menuOpen ? panel.EnterClip : panel.EnterClip.Replace("_In", "_Out");
+                string clip = open ? panel.EnterClip : panel.EnterClip.Replace("_In", "_Out");
                 menuMotions.Add(StartMotion(clip, panel.Object.transform));
             }
         }
@@ -497,7 +558,10 @@ namespace Kairisei.Recovery
             bool moving = menuMotions.Count != 0;
             UpdateMotions(menuMotions);
             if (moving && menuMotions.Count == 0 && !menuOpen)
+            {
                 foreach (MenuPanel panel in homeMenuPanels) panel.Object.SetActive(false);
+                foreach (MenuPanel panel in selectedMenuTab.Panels) panel.Object.SetActive(false);
+            }
             FitMenuBar();
             UpdateMenuClip();
         }
@@ -531,9 +595,8 @@ namespace Kairisei.Recovery
                     widget.Renderer.SetPropertyBlock(menuClipProperties);
         }
 
-        private void BuildImage(Widget widget)
+        private void BuildImage(Widget widget, JObject source)
         {
-            JObject source = (JObject)widget.Data["resolved"];
             string key = (string)source["texture"];
             Texture2D texture;
             if (!textures.TryGetValue(key, out texture)) { texture = content.Load<Texture2D>(BundleName, key); textures.Add(key, texture); }
@@ -597,6 +660,8 @@ namespace Kairisei.Recovery
                     if (scene == "Menu" && method == "OnLeftButton") widget.Click = () => ScrollMenu(648);
                     if (scene == "Menu" && method == "OnRightButton") widget.Click = () => ScrollMenu(-648);
                     if (scene == "Menu" && method == "onClick_Menu") widget.Click = ToggleHomeMenu;
+                    if (scene == "Menu" && method == "onClickMain" && menuSubgroups.TryGetValue((string)node["id"], out var tab))
+                        widget.Click = () => SelectHomeMenu(tab);
                     if(method=="OnClick"&&(string)script["type"]=="UIButtonMessage"&&widget.Object.name=="Back")widget.Click=delegate{SelectRole(0);};
                     if ((string)script["type"] == "UIInput") widget.Click = OpenNameInput;
                     if(method=="OnCenterButton")widget.Click=owner.CreateOriginalCharacter;
@@ -900,10 +965,14 @@ namespace Kairisei.Recovery
         private void ApplyAtlasFrame(Widget widget, string atlas, string frame)
         {
             if (widget.DisplayedFrame == frame) return;
-            JArray uv = (JArray)motionData["atlases"][atlas]["frames"][frame];
-            float x = (float)uv[0], y = (float)uv[1], w = (float)uv[2], h = (float)uv[3];
-            widget.ImageMesh.uv = new[] { new Vector2(x, y), new Vector2(x + w, y), new Vector2(x, y + h), new Vector2(x + w, y + h) };
+            SetSpriteUv(widget.ImageMesh, (JArray)motionData["atlases"][atlas]["frames"][frame]);
             widget.DisplayedFrame = frame;
+        }
+
+        private static void SetSpriteUv(Mesh mesh, JArray uv)
+        {
+            float x = (float)uv[0], y = (float)uv[1], w = (float)uv[2], h = (float)uv[3];
+            mesh.uv = new[] { new Vector2(x, y), new Vector2(x + w, y), new Vector2(x, y + h), new Vector2(x + w, y + h) };
         }
         private void RebuildFont(Font rebuilt)
         {

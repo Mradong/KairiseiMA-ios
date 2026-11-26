@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T07:57:57.791Z",
+  "generatedAt": "2026-11-26T08:57:23.536Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -1546,7 +1546,7 @@
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
       "bytes": 4698,
-      "sha256": "9adfd47141066b396682b1fa68a24a23e0f1dcadbb31bc68e26c8ce18874ad26"
+      "sha256": "d73187e2fb4ecc67cc2a37ddd5e7e4780c0f125441619540505eccdd3923c31a"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
@@ -2470,8 +2470,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json",
-      "bytes": 25168,
-      "sha256": "d35d66fa91ea1e9cd2647cd744fdc04b4bb33d906d07cc94116e4457f609e475"
+      "bytes": 29196,
+      "sha256": "425a4ae4408d4b9da3eb722e6f6401fad3139d86c899320e8aa020e81d8b8f63"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json.meta",
@@ -2565,8 +2565,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
-      "bytes": 52640,
-      "sha256": "6e85502225f6ace3b078e7a53955eb3e833f45321931b33048b2a48fd19fd9d2"
+      "bytes": 55985,
+      "sha256": "17689cacfe4863b68f5100f0f31ef1a50cd33453021687be45c90e9b01b51d6b"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneSprite.shader",
@@ -3165,8 +3165,8 @@
     },
     {
       "path": "scripts/prepare-order05-scene-motion.mjs",
-      "bytes": 5391,
-      "sha256": "1a61d46a6e2ce6c757c3f2f7989accfe6542ae2b894c26e89daedba60a9167a7"
+      "bytes": 6666,
+      "sha256": "c91b0e8022d2ff886c496ee84039e2d9b3215a6e933fef88eb3c1885fbf33308"
     },
     {
       "path": "scripts/prepare-order05-scene-resource-collector.mjs",
@@ -3700,8 +3700,8 @@
     },
     {
       "path": "tests/Order05ScenePreview.cs",
-      "bytes": 11754,
-      "sha256": "0e1c8459aba5f066a88219cbf2b6ef753a5d76a15e1e7dd8f361a1465a558e60"
+      "bytes": 15020,
+      "sha256": "fa8a65c060eff8f292dea46b858ebbdc15af0c475f7754d839479b073a591874"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
