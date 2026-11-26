@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-26T02:32:04.554Z",
+  "generatedAt": "2026-11-26T07:46:03.241Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -50,8 +50,8 @@
     },
     {
       "path": "evidence/ios-package-search/cn602-import.json",
-      "bytes": 31430,
-      "sha256": "2ecba2b80608505789a5ae10c2565068e418aa8a586d563fc84a7d2dbd30333b"
+      "bytes": 30775,
+      "sha256": "ae5232dcdb14b3092cc9f7bc6f65fb5845ad67862516c4e531d0c3f485c61bb9"
     },
     {
       "path": "evidence/ios-package-search/content-loader-download-tests.json",
@@ -215,23 +215,23 @@
     },
     {
       "path": "evidence/ios-package-search/ios-client007-artifact-verification.json",
-      "bytes": 1763,
-      "sha256": "239876f44b48a7597d6f55f348ae0928ab687e46bc0671e4898144d6c03d7a14"
+      "bytes": 1722,
+      "sha256": "f70391c58fab7f824a0ee990da492b6c08a374e1cafe1c44153ae09db7bb7c1a"
     },
     {
       "path": "evidence/ios-package-search/ios-client007-cloud-request.json",
-      "bytes": 318,
-      "sha256": "8c5d387972d24e1884bc354a3d5e2c5e7974699eb0fedb3eeacb57829cf926fd"
+      "bytes": 308,
+      "sha256": "ae4eb24d26fb0c06d8cc434b8d535ddc43a6a739412e3efb3e34fd2745930075"
     },
     {
       "path": "evidence/ios-package-search/ios-client007-cloud-status.json",
-      "bytes": 3783,
-      "sha256": "1d167dba94055837360c18284e96ff8b290a805eaeeb16f2adf98bff60a247c4"
+      "bytes": 3782,
+      "sha256": "f40b0ed94b7f990d5d379862b520344001de9b3ef486431d4d69ae8fb40d26b6"
     },
     {
       "path": "evidence/ios-package-search/ios-client008-artifact-verification.json",
-      "bytes": 1763,
-      "sha256": "d1287a0b17bd5fbbca2944e8ab53a36296286e08f03e79654d4ea92385da0a46"
+      "bytes": 1722,
+      "sha256": "196ad8ccd7dcf3c5b68fbb1f09455417bbd980668635600060ff113b4fe780c2"
     },
     {
       "path": "evidence/ios-package-search/ios-client008-cloud-blocker.json",
@@ -240,13 +240,13 @@
     },
     {
       "path": "evidence/ios-package-search/ios-client008-cloud-request.json",
-      "bytes": 318,
-      "sha256": "e796f235ddeaec07461c2abcf007757716baef35043c7d35871e6c795ff196d3"
+      "bytes": 308,
+      "sha256": "6f535ade8bfc1d136cc8997b071f09cf14a500613be7742da738e8e7d24812b9"
     },
     {
       "path": "evidence/ios-package-search/ios-client008-cloud-status.json",
-      "bytes": 3783,
-      "sha256": "7062dcabdc74661ab1739db0c6f7a139a6d336aebb7704eaa965ccbf9e3564a2"
+      "bytes": 3782,
+      "sha256": "1083f0be66c2bb45a7447e43cb7bace04465ca4e8c39e56c7d0d5c3edc8b90ec"
     },
     {
       "path": "evidence/ios-package-search/ios-combat-table-tests.json",
@@ -385,13 +385,13 @@
     },
     {
       "path": "evidence/ios-package-search/ipa-client007-delivery.json",
-      "bytes": 8667,
-      "sha256": "85353f9c915ee0e4bf9cfd7fa5754c49ff6bdc6dde5f5d50776c4ddb9af8e45f"
+      "bytes": 8554,
+      "sha256": "66b1353d30196739f05adf779f7a5febf45212939999041c222780bf8e53ac63"
     },
     {
       "path": "evidence/ios-package-search/ipa-client008-delivery.json",
-      "bytes": 8667,
-      "sha256": "7e3639bffd75f21b44d91e7975016bf2ff24875916a414edb59f53dfb11e1c09"
+      "bytes": 8554,
+      "sha256": "a027ce6059bfae9f9ac800aad65d9e5f837662b9c7e7f2669f9fe6e48bf54560"
     },
     {
       "path": "evidence/ios-package-search/order03-archive-recheck.json",
@@ -880,8 +880,8 @@
     },
     {
       "path": "evidence/ios-package-search/order03-runtime-supplement-import.json",
-      "bytes": 1711,
-      "sha256": "79f59dd15208ec30098ea29f8c7ea3f0b4f33af651f21e0bfc2ca0884b2502e8"
+      "bytes": 1683,
+      "sha256": "410be859ba9aaf89d09a00cf5a29c0316e646129bfbbac33b993fbfc3c2063b4"
     },
     {
       "path": "evidence/ios-package-search/order03-runtime-supplement-tests.json",
@@ -1095,8 +1095,8 @@
     },
     {
       "path": "evidence/ios-package-search/order05-role-image-import-validation-lyd.json",
-      "bytes": 1544,
-      "sha256": "52016b53d442608a9d7d62bb6eb8f1d6eed325156fb7f25344ba187b184c67cf"
+      "bytes": 1510,
+      "sha256": "1b09d9e2c10e7c0b069296116caeb52a7de8c1413a0d2ce462ee6c056fd8f592"
     },
     {
       "path": "evidence/ios-package-search/order05-runtime-api-check.json",
@@ -1125,8 +1125,8 @@
     },
     {
       "path": "evidence/ios-package-search/order05-scene-resource-import-validation-lyd.json",
-      "bytes": 2910,
-      "sha256": "35f1dba5610c7a36875de9520cbc1b20de445e49c4fbf2e1398662413eeadfe0"
+      "bytes": 2856,
+      "sha256": "92ef31aa1f11133e3791b69cdd90c5d3389f836cc0ca699c14c374ad6c69c72c"
     },
     {
       "path": "evidence/ios-package-search/order05-scene-resource-inputs.json",
@@ -1475,8 +1475,8 @@
     },
     {
       "path": "evidence/original-input-verification.json",
-      "bytes": 2088,
-      "sha256": "083edfc848eafbcc5d9fe7f5d1eabe94a33efa39662e852b6831f410ac7b7a23"
+      "bytes": 2046,
+      "sha256": "54fd6c7e2edf7fe07d531ba823bcd8b467b69d1e18e35974228884197afac475"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1545,8 +1545,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
-      "bytes": 4703,
-      "sha256": "fc9d5c837275be3138926a74ec2f5583b57d43f37a51176199674127c0a9dcc8"
+      "bytes": 4698,
+      "sha256": "9adfd47141066b396682b1fa68a24a23e0f1dcadbb31bc68e26c8ce18874ad26"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
@@ -2185,8 +2185,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes",
-      "bytes": 9256,
-      "sha256": "d08419c8322d52c9530ecf6499888eb0ba25e662a635462db5353ebb5e31ab81"
+      "bytes": 9175,
+      "sha256": "8d74c39b4a257cbba27036fb517d8c84b023d76ad3553eb5463f7d8367c61b78"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes.meta",
@@ -2205,8 +2205,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes",
-      "bytes": 9266,
-      "sha256": "d023cf6a588226fe2d1708110eed52352b7533f107117c2b0e8a0f58eee80184"
+      "bytes": 9185,
+      "sha256": "c8599a20747403200c60d83ee5b1034ee89f93db738d9189f97221dfa469711f"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes.meta",
@@ -2225,8 +2225,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes",
-      "bytes": 9171,
-      "sha256": "8ccda3d50712360a75b36ba6d4a6a5310fcd9fe9b978bc050b181d27fdfd0332"
+      "bytes": 9090,
+      "sha256": "2683782ef9fe74c706369cdfaa7cecd8a01344a6c3c9dffc25c4c0f30e4c4a78"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes.meta",
@@ -2235,8 +2235,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes",
-      "bytes": 11208,
-      "sha256": "34f136393a099743039a9b6853391393f46f254e50c5e6572a8901995ea75b4c"
+      "bytes": 11127,
+      "sha256": "ff1d41bbdaea406e1e1ea04315f9073210f0bb82754af3aa730271c572de52a9"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes.meta",
@@ -2265,8 +2265,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes",
-      "bytes": 2708,
-      "sha256": "51350e2b85e3bd64784fc78b13ad6f49f3fd65efa4367469bacbeda03115c4e5"
+      "bytes": 2627,
+      "sha256": "42bc8ec4be924b5967d47a5292eddce9fef6f57f45cba19db249759597ce9b92"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes.meta",
@@ -2275,8 +2275,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes",
-      "bytes": 14464,
-      "sha256": "d816a6cf7eb2112ebc39db1740e1d6e13bf1d52a91e240c048514e6663974712"
+      "bytes": 14383,
+      "sha256": "ae1816f761e475c07ad8638f01ec43650c3b7bf8c9a68aedaca758f1e287a75f"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes.meta",
@@ -2295,8 +2295,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes",
-      "bytes": 5247,
-      "sha256": "3271b0e00600c8e64477c7711a3e67d2c2e5a3cfcf1adfc12d81139795c78aba"
+      "bytes": 5166,
+      "sha256": "ec2f59d88f7c464e813196a67164547cccf53fe83023f56e225e9d00fa3f1215"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes.meta",
@@ -2305,8 +2305,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes",
-      "bytes": 2863,
-      "sha256": "73495a3c5974de13dcbe375f307d3f0002bac69477e27766deac0e80ea7f3560"
+      "bytes": 2782,
+      "sha256": "b9ff83509da59f97acb2b633a77d96170a40fa0f585da9dfde929ac4c96b0ee0"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes.meta",
@@ -2325,8 +2325,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes",
-      "bytes": 4863,
-      "sha256": "e2db9302e238edbe8831a923fa7d608accf93f5f9c65ddd3105689559650e03d"
+      "bytes": 4782,
+      "sha256": "b660d5d24f4c63c98bc0b05043b1adef611460c4f381ed894518be1be17efd29"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes.meta",
@@ -2335,8 +2335,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes",
-      "bytes": 19988,
-      "sha256": "2c69cc61f6ad9213910e49c212a1c32c7e93845011efc253f40f482d3e82da2b"
+      "bytes": 19907,
+      "sha256": "448c806a82045ce41e29cfb877ca0b66febb005b90f376fd5f4fd42fa997700c"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes.meta",
@@ -2355,8 +2355,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes",
-      "bytes": 3748,
-      "sha256": "4814ebb350d2d0bf10626b1c98bd164fee23ebdc07910602b1371980ce38356a"
+      "bytes": 3667,
+      "sha256": "5f171a61d95615dbc7ac46c07b3bdcdcb66e6c6d44f858fbe161bbadac231a22"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes.meta",
@@ -2365,8 +2365,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes",
-      "bytes": 7229,
-      "sha256": "cf96130210780ec15173f0d63b6d0e1cacda1d3ca590e12b8a3a73d0ca640523"
+      "bytes": 7148,
+      "sha256": "deb0357cc6bb2e8ac9d7493a7289b9bbd0c7c4ff73ef1f6da73e475293c94d2c"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes.meta",
@@ -2375,8 +2375,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes",
-      "bytes": 8287,
-      "sha256": "85c18e5727b9975a1799559426997e90f2baa6d00d16c321f153130e082f4155"
+      "bytes": 8206,
+      "sha256": "81e4a33f321cac9ced774643afbba224dbb50a947687db02799c6519511459db"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes.meta",
@@ -2395,8 +2395,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes",
-      "bytes": 12051,
-      "sha256": "41bf7a9d9c095a0855ce41774c617db561a65b84fb14f34a2dc8ed411e158abd"
+      "bytes": 11970,
+      "sha256": "7f3ef44feac7b4dc7dce6a3ba5fabb32a53b8a3068c39e8aa27d89992c147508"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes.meta",
@@ -2415,8 +2415,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes",
-      "bytes": 4213,
-      "sha256": "3d8c1701b069fdad64886802f04ceabf421cc42d5e77d7e71760a0e8aedd2da1"
+      "bytes": 4132,
+      "sha256": "7043dd75d135e88fc1e8c6b3e97c34fd3b0846e8b5693dfcb356e1a398c0751a"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes.meta",
@@ -2425,8 +2425,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes",
-      "bytes": 3493,
-      "sha256": "15d26cf4b793231f934391186d839718ed69acea2631d979b77d640fe3bd5991"
+      "bytes": 3412,
+      "sha256": "dfaa41753583d7209f8a539393c583c587f8c4c324a64cc6d053db396f270a62"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes.meta",
@@ -2435,8 +2435,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes",
-      "bytes": 7390,
-      "sha256": "92f0c9b306d63ec060728591515fe556a963de812eace085853e2a4e1a1bf294"
+      "bytes": 7309,
+      "sha256": "56bce278af97d57b5c0f6daacdc176abeca77730930eee372e5e38c708c7401e"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes.meta",
@@ -2445,8 +2445,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/uathach.model.json.bytes",
-      "bytes": 5412,
-      "sha256": "d41eb18a1f61c365d53e61ef1e32fd60f3731bfafd3a8f931c43d310772e6aad"
+      "bytes": 5302,
+      "sha256": "826e6b936ac7db4b7aa316ac7b7b2ab671cce1dc31f94708ef6eabfaadc285b0"
     },
     {
       "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/uathach.model.json.bytes.meta",
@@ -2467,6 +2467,26 @@
       "path": "ios-client/Assets/Recovery/Resources/NativeValidationTrace.json",
       "bytes": 4949,
       "sha256": "51614e0e42bd36f4d4639d1bc348a3cb24ac966ae58e2adff2f68d907bf8d0cb"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json",
+      "bytes": 21100,
+      "sha256": "c220a080c5820a072d266f96e25f7eb3d62a8a6ced2cb963d018dffa220f7ec0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/OriginalSceneMotion.json.meta",
+      "bytes": 155,
+      "sha256": "66e279a0d386bb413266f926d774c1ca49140ffe368dc2edfcc5bb2930ae7c3e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/OriginalSceneUI.shader",
+      "bytes": 1517,
+      "sha256": "77429c2887866684116bffbd375777b709f9c3e6c079d23b9b94ddb00a824f02"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Resources/OriginalSceneUI.shader.meta",
+      "bytes": 201,
+      "sha256": "3fd653467480bda0b04fb4e009b3e6580e2df724101824490756fcf66ea243a4"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/RecoveryChinese.ttf",
@@ -2530,13 +2550,23 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalNaviModel.cs",
-      "bytes": 5601,
-      "sha256": "dfa87764461fc28bdce98e6950ccc9b6d7665d19415f3d6861b95ad585304e59"
+      "bytes": 8224,
+      "sha256": "b8894d429f1cffb544b07cc3186bc1a57aab029f1ad5cab4ddd360ca9a820251"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneMotion.cs",
+      "bytes": 2540,
+      "sha256": "724c7453a271fa467c5b756f94521de44b82e174e9eb29d6f35849a8eb3de6e1"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneMotion.cs.meta",
+      "bytes": 59,
+      "sha256": "3e32a0b672ad45e1a668373ead64a53e92545862608f8999db4fbb17f62463f6"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
-      "bytes": 31275,
-      "sha256": "d0936af2eecd39eaba168e79c7b1f0ad171366f1bb1da8e5dba5f179e32deb88"
+      "bytes": 49286,
+      "sha256": "6949f32f9ac3056519a9f53bca1c3c07dc2f3c29afe32445ad5c6d691b1154ea"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneSprite.shader",
@@ -2545,8 +2575,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveredCubism2.cs",
-      "bytes": 284404,
-      "sha256": "482fc4110c2deb8f75bb55a804032ad967f417cf3cfc8b9b6876ae86194d8d4d"
+      "bytes": 273931,
+      "sha256": "c98e9f678bc3ee23b3664aeecbf0398e76731b431d22ddc9c3474f33f80d7a9d"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs",
@@ -2555,8 +2585,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 27659,
-      "sha256": "b9aa6fb6d68b92d382e303f0b2fdaba1c9abaf664ae8fea8753ee4135d81bd34"
+      "bytes": 27840,
+      "sha256": "aae7781fde867af564535d335b7971ac9ebde21a7b2f44a788e0958a72eb159f"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
@@ -3134,6 +3164,11 @@
       "sha256": "1ae8043ca77c5e4d891abdb0de43e1ee890e724762a0526176746eb1052b3910"
     },
     {
+      "path": "scripts/prepare-order05-scene-motion.mjs",
+      "bytes": 5272,
+      "sha256": "794195a3f5eee752e01411953ea8aa6292a2e432b4849011802d990cdf984523"
+    },
+    {
       "path": "scripts/prepare-order05-scene-resource-collector.mjs",
       "bytes": 3126,
       "sha256": "8b21d13eb2d3fd1b8570d579b201da4b1964610763a3547c877666d9936b358e"
@@ -3664,6 +3699,11 @@
       "sha256": "31a838a9ef7ce10e8864bef89ed56d055e16ebd3d789824c8eafe7e1aa56c528"
     },
     {
+      "path": "tests/Order05ScenePreview.cs",
+      "bytes": 10328,
+      "sha256": "acd953ff696399457e4290355369d8d39ee4df5f397c24a39bc870992306b25b"
+    },
+    {
       "path": "tests/PreparedCardQueryDifferential.cs",
       "bytes": 5401,
       "sha256": "4776dee6766e89bc4998eb78caf8fb185365e8549a9289ccbf553ad8cad381eb"
@@ -3794,7 +3834,7 @@
       "sha256": "79842a51cab9bf4a3b997b4a0c605ad67c563af3659edb0edee8972fab2c41de"
     }
   ],
-  "bytes": 60787057,
+  "bytes": 60835936,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
-  "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
+  "execution": "Order05 0.0.10 checked by Unity Direct3D Windows preview; ARM64 build and iPhone validation remain separate."
 }

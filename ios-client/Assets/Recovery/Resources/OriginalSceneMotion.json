@@ -1,0 +1,1062 @@
+{
+  "schemaVersion": 1,
+  "titleHitBox": {
+    "node": "10",
+    "center": [
+      30,
+      200,
+      0
+    ],
+    "size": [
+      1200,
+      1000,
+      1
+    ],
+    "source": "recovered-unity/ExportedProject/Assets/Scene/Title.unity",
+    "sha256": "2ee9b888a57277b0d8e7aafb80ddc2bc0720da4ca2d775ef8bba395bd8abeac3"
+  },
+  "clips": {
+    "Cmn_Pop_In_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Pop_In_00.anim",
+      "sha256": "a16ba84a8a818d71d4cd39bb2d0cef1339bae0da222fcd14a757c424332dfb70",
+      "duration": 0.23333333,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "scale",
+          "path": "Anm_Scale",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              1,
+              0,
+              0,
+              0,
+              4.285714,
+              4.285714,
+              0
+            ],
+            [
+              0.23333333,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "Anm_Fade",
+          "keys": [
+            [
+              0,
+              0,
+              6,
+              6
+            ],
+            [
+              0.16666667,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_In01_00": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In01_00.anim",
+      "sha256": "7085888a5f2d00404f911aae5fa380aff8fde0285ce1b428f0483781584d82e0",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              -1100,
+              0,
+              0,
+              3300,
+              0,
+              0,
+              3300,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.16666667,
+              0,
+              0,
+              6
+            ],
+            [
+              0.33333334,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_In02_00": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In02_00.anim",
+      "sha256": "556d16467244d0267c224e43418192cf1b97d19cca2d43384faf34b85d1a03bc",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              1000,
+              0,
+              0,
+              -3000,
+              0,
+              0,
+              -3000,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              3,
+              3
+            ],
+            [
+              0.16666667,
+              0.5,
+              3,
+              3
+            ],
+            [
+              0.33333334,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_In03_00": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In03_00.anim",
+      "sha256": "ad83c51072ce4502b023a3aec38d6ddfe8534fd5f082db5c372e392fbdc3793d",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              1000,
+              0,
+              0,
+              -3000,
+              0,
+              0,
+              -3000,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Home_Live2D_In_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Home_Live2D_In_00.anim",
+      "sha256": "28000a82ae6f101beee5107fc29d96de740f6674db5cd466a4b3d7d5fbeed92a",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              -20,
+              0,
+              0,
+              60,
+              0,
+              0,
+              60,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Home_Window_In_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Home_Window_In_00.anim",
+      "sha256": "2714c354cae1124476789957c1a7e734180887a3e47ceaee70fb67b62a7b05c0",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "scale",
+          "path": "Anm_Window",
+          "keys": [
+            [
+              0,
+              0.85,
+              0.85,
+              1,
+              0.70588213,
+              0.99999964,
+              0,
+              0.99999964,
+              0.99999964,
+              0
+            ],
+            [
+              0.2,
+              1.05,
+              1.05,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.25,
+              1,
+              1,
+              1,
+              -0.9999991,
+              -0.9999991,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              3.7499998,
+              3.7499998
+            ],
+            [
+              0.26666668,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "IntroSlPl_Chr_In_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/IntroSlPl_Chr_In_00.anim",
+      "sha256": "58e2f9060ed4201baa0d8ed2df3dd91c9b4c34248129c490e588af4d1057958e",
+      "duration": 0.53333336,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              -150,
+              0,
+              0,
+              1050,
+              0,
+              0,
+              1050,
+              0,
+              0
+            ],
+            [
+              0.13333334,
+              -10,
+              0,
+              0,
+              1050,
+              0,
+              0,
+              100.00001,
+              0,
+              0
+            ],
+            [
+              0.20000003,
+              -3.3333302,
+              0,
+              0,
+              100.000015,
+              0,
+              0,
+              100.000015,
+              0,
+              0
+            ],
+            [
+              0.23333333,
+              0,
+              0,
+              0,
+              100.00001,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.53333336,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "position",
+          "path": "Name/NameMain",
+          "keys": [
+            [
+              0,
+              53,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333337,
+              53,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -382.50012,
+              0,
+              0
+            ],
+            [
+              0.46666667,
+              2,
+              0,
+              0,
+              -382.50012,
+              0,
+              0,
+              -29.999989,
+              0,
+              0
+            ],
+            [
+              0.53333336,
+              0,
+              0,
+              0,
+              -29.999989,
+              0,
+              0,
+              -60.000004,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "position",
+          "path": "Name/NameSub",
+          "keys": [
+            [
+              0,
+              53,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              53,
+              0,
+              0,
+              0,
+              0,
+              0,
+              -382.50012,
+              0,
+              0
+            ],
+            [
+              0.46666664,
+              2,
+              0,
+              0,
+              -382.50012,
+              0,
+              0,
+              -29.999975,
+              0,
+              0
+            ],
+            [
+              0.53333336,
+              0,
+              0,
+              0,
+              -29.999975,
+              0,
+              0,
+              60.000004,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "scale",
+          "path": "Name/Line",
+          "keys": [
+            [
+              0,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.16666664,
+              1,
+              0,
+              1,
+              0,
+              0,
+              0,
+              0,
+              6,
+              0
+            ],
+            [
+              0.33333334,
+              1,
+              1,
+              1,
+              0,
+              6,
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.53333336,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "Name/NameMain",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.28333336,
+              0,
+              0,
+              0
+            ],
+            [
+              0.35000002,
+              0,
+              0,
+              8.57143
+            ],
+            [
+              0.46666667,
+              1,
+              8.57143,
+              0
+            ],
+            [
+              0.53333336,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "Name/NameSub",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.28333336,
+              0,
+              0,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              7.5000005
+            ],
+            [
+              0.46666667,
+              1,
+              7.5000005,
+              0
+            ],
+            [
+              0.53333336,
+              1,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "Chr",
+          "keys": [
+            [
+              0,
+              0,
+              5,
+              5
+            ],
+            [
+              0.2,
+              1,
+              5,
+              0
+            ],
+            [
+              0.53333336,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Title_Connect_Loop_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Title_Connect_Loop_00.anim",
+      "sha256": "af8fd4914cd955d43452d273bbaa39eb1ab3a9574276c77979cebb6dec5e1408",
+      "duration": 1.5666667,
+      "loop": true,
+      "tracks": [
+        {
+          "property": "alpha",
+          "path": "Anm_Img",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0
+            ],
+            [
+              0.23333333,
+              0,
+              0,
+              0
+            ],
+            [
+              0.4,
+              1,
+              0,
+              0
+            ],
+            [
+              1,
+              1,
+              0,
+              0
+            ],
+            [
+              1.5,
+              0,
+              -2,
+              0
+            ],
+            [
+              1.5666667,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Title_MainLogo_In_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Title_MainLogo_In_00.anim",
+      "sha256": "f1aec3a036c2845f2643f93058ef9dcebc346c568a469db95c645ef1b8ca66a1",
+      "duration": 0.5,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "alpha",
+          "path": "Anm_Logo",
+          "keys": [
+            [
+              0,
+              0,
+              2,
+              2
+            ],
+            [
+              0.5,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Title_TS_Loop_00": {
+      "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Title_TS_Loop_00.anim",
+      "sha256": "25cc276c78563a3828eea9ba90341d4d1246d6eb2e0966bd1c8364ca2c796e2a",
+      "duration": 1,
+      "loop": true,
+      "tracks": [
+        {
+          "property": "alpha",
+          "path": "",
+          "keys": [
+            [
+              0,
+              1,
+              0,
+              -6
+            ],
+            [
+              0.16666667,
+              0,
+              -1.8749999,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              3
+            ],
+            [
+              0.6666667,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Scale_In_00": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Scale_In_00.anim",
+      "sha256": "2980ece65194717352d229a7279869b1ae4e4b080be3b5872d5886831683d465",
+      "duration": 0.16666667,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "scale",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              1,
+              6,
+              6,
+              0,
+              6,
+              6,
+              0
+            ],
+            [
+              0.16666667,
+              1,
+              1,
+              1,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Cmn_Std_In04_00": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In04_00.anim",
+      "sha256": "e14ccfb64ae95c5bb7cb6e9c1123dce15cd98b007e43d3253ca04e0bf0f579d1",
+      "duration": 0.33333334,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "",
+          "keys": [
+            [
+              0,
+              0,
+              -1000,
+              0,
+              0,
+              3000,
+              0,
+              0,
+              3000,
+              0
+            ],
+            [
+              0.33333334,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    },
+    "Menu_Filter_In_00": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Menu_Filter_In_00.anim",
+      "sha256": "f2dfb1d7874fcad8271a7a78e2dc2761f8be9e8e4c115fea1870adc1b676d315",
+      "duration": 0.16666667,
+      "loop": false,
+      "tracks": [
+        {
+          "property": "position",
+          "path": "Anm_Filter",
+          "keys": [
+            [
+              0,
+              0,
+              0,
+              0,
+              1.0248255e-25,
+              0,
+              0,
+              3.756046e-39,
+              0,
+              0
+            ],
+            [
+              0.16666667,
+              0,
+              0,
+              0,
+              1.0248255e-25,
+              0,
+              0,
+              3.756046e-39,
+              0,
+              0
+            ]
+          ]
+        },
+        {
+          "property": "alpha",
+          "path": "Anm_Filter",
+          "keys": [
+            [
+              0,
+              0,
+              6,
+              6
+            ],
+            [
+              0.16666667,
+              1,
+              0,
+              0
+            ]
+          ]
+        }
+      ]
+    }
+  },
+  "atlases": {
+    "level": {
+      "source": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Num_600.prefab",
+      "sha256": "df3dd049a5c7872e70501486dfcf32217d365075984953498931e41de21e5a24",
+      "frames": {
+        "Num_600_0": [
+          0.3828125,
+          0,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_1": [
+          0.19140625,
+          0.19140625,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_2": [
+          0,
+          0.765625,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_3": [
+          0,
+          0.57421875,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_4": [
+          0.765625,
+          0,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_5": [
+          0,
+          0,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_6": [
+          0.57421875,
+          0,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_7": [
+          0.19140625,
+          0,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_8": [
+          0,
+          0.19140625,
+          0.1875,
+          0.1875
+        ],
+        "Num_600_9": [
+          0,
+          0.3828125,
+          0.1875,
+          0.1875
+        ]
+      }
+    },
+    "roleName": {
+      "source": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/intro/atlas/IntroSlPl.prefab",
+      "sha256": "a7f6a225bea7f34c90245ccebdd7e1bd3f5f228e86d7e06cf001fc21cfd829dd",
+      "frames": {
+        "IntroSlPl_Name01": [
+          0.44140625,
+          0.8486328125,
+          0.2353515625,
+          0.0478515625
+        ],
+        "IntroSlPl_Name02": [
+          0.7548828125,
+          0.8544921875,
+          0.2353515625,
+          0.0478515625
+        ],
+        "IntroSlPl_Name03": [
+          0.7626953125,
+          0.9033203125,
+          0.2353515625,
+          0.0478515625
+        ],
+        "IntroSlPl_Name04": [
+          0.7626953125,
+          0.9521484375,
+          0.2353515625,
+          0.0478515625
+        ]
+      }
+    }
+  }
+}

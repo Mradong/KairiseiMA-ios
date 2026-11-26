@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using Newtonsoft.Json.Linq;
 using UnityEngine;
 using Kairisei.Recovery.Cubism2;
@@ -13,6 +14,9 @@ namespace Kairisei.Recovery
         private Camera targetCamera;
         private Matrix4x4 modelMatrix;
         private Live2DMotion idle;
+        private readonly List<Live2DMotion> touchMotions = new List<Live2DMotion>();
+        private readonly List<int> hitAreas = new List<int>();
+        private int nextTouch;
         private MotionQueueManager motionQueue;
         private long started;
         public static void ValidateContent(RecoveryContentLoader content)
@@ -38,9 +42,9 @@ namespace Kairisei.Recovery
                 JArray textures=(JArray)modelDefinition["textures"];
                 if(textures==null||textures.Count==0)throw new InvalidOperationException("Original Live2D textures are absent.");
                 foreach(JToken texture in textures)content.Load<Texture2D>(BundleName,((string)texture).ToLowerInvariant());
-                JObject idle=(JObject)modelDefinition["motions"]["idle"][0];
-                if(idle==null||Live2DMotion.loadMotion(content.Load<TextAsset>(BundleName,((string)idle["file"]).ToLowerInvariant()).bytes)==null)
-                    throw new InvalidOperationException("Original Live2D idle motion could not be decoded.");
+                JObject motions = (JObject)modelDefinition["motions"];
+                LoadMotion(content, (JObject)motions["idle"][0]);
+                foreach (JObject motion in (JArray)motions["tap_body"]) LoadMotion(content, motion);
             }
             finally{if(probe!=null)probe.releaseModel();}
         }
@@ -60,10 +64,26 @@ namespace Kairisei.Recovery
             float width=model.getCanvasWidth(),height=model.getCanvasHeight();
             float scale=layout["height"]!=null?(float)layout["height"]/height:2f/width;
             float centerX=(float?)layout["center_x"]??0,centerY=(float?)layout["center_y"]??0;
-            modelMatrix=Matrix4x4.Scale(new Vector3(10,1,10))*Matrix4x4.TRS(new Vector3(centerX-width*scale/2,centerY+height*scale/2,0),Quaternion.identity,new Vector3(scale,-scale,-1));
-            JObject motion=(JObject)definition["model"]["motions"]["idle"][0];
-            idle=Live2DMotion.loadMotion(content.Load<TextAsset>(BundleName,((string)motion["file"]).ToLowerInvariant()).bytes);
+            modelMatrix=Matrix4x4.TRS(new Vector3(centerX-width*scale/2,centerY+height*scale/2,0),Quaternion.identity,new Vector3(scale,-scale,-1));
+            JObject motions = (JObject)definition["model"]["motions"];
+            idle = LoadMotion(content, (JObject)motions["idle"][0]);
+            foreach (JObject motion in (JArray)motions["tap_body"]) touchMotions.Add(LoadMotion(content, motion));
+            foreach (JObject hitArea in (JArray)definition["model"]["hit_areas"])
+            {
+                int index = model.getDrawDataIndex((string)hitArea["id"]);
+                if (index >= 0) hitAreas.Add(index);
+            }
             motionQueue=new MotionQueueManager();started=UtSystem.getUserTimeMSec();Ready=true;
+            Update();
+        }
+        private static Live2DMotion LoadMotion(RecoveryContentLoader content, JObject definition)
+        {
+            string file = ((string)definition["file"]).ToLowerInvariant();
+            Live2DMotion motion = Live2DMotion.loadMotion(content.Load<TextAsset>(BundleName, file).bytes);
+            if (motion == null) throw new InvalidOperationException("Could not decode original navi motion: " + file);
+            if ((int?)definition["fade_in"] is int fadeIn) motion.setFadeIn(fadeIn);
+            if ((int?)definition["fade_out"] is int fadeOut) motion.setFadeOut(fadeOut);
+            return motion;
         }
         private void Update()
         {
@@ -78,8 +98,41 @@ namespace Kairisei.Recovery
         {
             if(!Ready||Camera.current!=targetCamera)return;
             // The original canvas rotates -90 degrees; LAppModel.draw applies +90.
-            model.setMatrix(transform.localToWorldMatrix*Matrix4x4.Rotate(Quaternion.Euler(90,0,0))*modelMatrix);
+            model.setMatrix(ModelToWorld());
             model.draw();
+        }
+
+        private Matrix4x4 ModelToWorld()
+        {
+            // Live2D_Canvas_0 has local extents (10, 0, 10), in the canvas's XZ plane.
+            var canvasScale = Matrix4x4.Scale(new Vector3(10, 1, 10));
+            return transform.localToWorldMatrix * canvasScale * Matrix4x4.Rotate(Quaternion.Euler(90, 0, 0)) * modelMatrix;
+        }
+
+        public bool TryPlayTouch(Ray ray)
+        {
+            if (!Ready || touchMotions.Count == 0) return false;
+            Matrix4x4 worldToModel = ModelToWorld().inverse;
+            var localRay = new Ray(worldToModel.MultiplyPoint3x4(ray.origin), worldToModel.MultiplyVector(ray.direction));
+            if (!new Plane(Vector3.forward, Vector3.zero).Raycast(localRay, out float distance)) return false;
+            Vector3 point = localRay.GetPoint(distance);
+            foreach (int index in hitAreas)
+            {
+                float[] vertices = model.getTransformedPoints(index);
+                if (vertices == null || vertices.Length < 2) continue;
+                Vector2 min = new Vector2(vertices[0], vertices[1]), max = min;
+                for (int i = 2; i + 1 < vertices.Length; i += 2)
+                {
+                    var vertex = new Vector2(vertices[i], vertices[i + 1]);
+                    min = Vector2.Min(min, vertex);
+                    max = Vector2.Max(max, vertex);
+                }
+                if (!Rect.MinMaxRect(min.x, min.y, max.x, max.y).Contains(point)) continue;
+                motionQueue.startMotion(touchMotions[nextTouch], false);
+                nextTouch = (nextTouch + 1) % touchMotions.Count;
+                return true;
+            }
+            return false;
         }
         private void OnDestroy(){Ready=false;if(model!=null)model.releaseModel();model=null;}
     }

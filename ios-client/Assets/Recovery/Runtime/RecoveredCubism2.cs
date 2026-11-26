@@ -7027,16 +7027,7 @@ namespace Kairisei.Recovery.Cubism2
 
 		internal static bool _3000_0020()
 		{
-			if (Application.platform == RuntimePlatform.IPhonePlayer)
-			{
-				return true;
-			}
-			string text = StackTraceUtility.ExtractStackTrace();
-			if (text.IndexOf("OnPostRender()") == -1 && text.IndexOf("OnRenderObject()") == -1)
-			{
-				return false;
-			}
-			return true;
+			return Camera.current != null;
 		}
 
 		internal static bool _3000_0020_0020()
@@ -7517,9 +7508,9 @@ namespace Kairisei.Recovery.Cubism2
 				{
 					material = argument1.colorType switch
 					{
-						1 => _3000_0020_0020(4 + num, 5, 1, 0, 1, culling ? 2 : 0).CubismField_423,
+						1 => _3000_0020_0020(4 + num, argument3 ? 1 : 5, 1, 0, 1, culling ? 2 : 0).CubismField_423,
 						2 => _3000_0020_0020(8 + num, 2, 10, 0, 1, culling ? 2 : 0).CubismField_423,
-						_ => _3000_0020_0020(num, 1, 10, 1, 10, culling ? 2 : 0).CubismField_423,
+						_ => _3000_0020_0020(num, argument3 ? 1 : 5, 10, 1, 10, culling ? 2 : 0).CubismField_423,
 					};
 				}
 				if (flag)

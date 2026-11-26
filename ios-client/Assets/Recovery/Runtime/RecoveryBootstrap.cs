@@ -230,7 +230,16 @@ namespace Kairisei.Recovery
                 entry.BeginHome(entryJournal.HasPendingBattle);
                 previousUnconfirmed = entryJournal.BeginHome();
             }
-            catch (Exception error) { if (entry.Step == CnEntryStep.PendingBattle) status = error.Message; else EntryFailed(error); return; }
+            catch (Exception error)
+            {
+                if (entry.Step == CnEntryStep.PendingBattle)
+                {
+                    status = error.Message;
+                    originalScene.ShowError(status);
+                }
+                else EntryFailed(error);
+                return;
+            }
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/HomeShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, null), delegate(string response) {
                 entry.ReceiveHome(response);
                 homeState = entry.Home;

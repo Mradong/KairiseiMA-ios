@@ -62,8 +62,8 @@ namespace Kairisei.Recovery.Editor
             CreateScene();
             PlayerSettings.companyName = "KairiseiRecovery";
             PlayerSettings.productName = "Kairisei Recovery";
-            PlayerSettings.bundleVersion = "0.0.9";
-            PlayerSettings.iOS.buildNumber = "9";
+            PlayerSettings.bundleVersion = "0.0.10";
+            PlayerSettings.iOS.buildNumber = "10";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "local.kairisei.recovery");
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(NamedBuildTarget.iOS, 1); // ARM64
@@ -78,7 +78,7 @@ namespace Kairisei.Recovery.Editor
             string[] arguments = Environment.GetCommandLineArgs();
             for (int i = 0; i + 1 < arguments.Length; i++) if (arguments[i] == "-recoveryOutput") output = Path.GetFullPath(arguments[i + 1]);
             BuildReport report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
-                scenes = new[] { ScenePath }, locationPathName = output, target = BuildTarget.iOS, options = BuildOptions.Development
+                scenes = new[] { ScenePath }, locationPathName = output, target = BuildTarget.iOS, options = BuildOptions.None
             });
             if (report.summary.result != BuildResult.Succeeded)
                 throw new InvalidOperationException("iOS build failed: " + report.summary.result);
