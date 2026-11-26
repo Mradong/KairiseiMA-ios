@@ -1,5 +1,31 @@
 # 当前状态
 
+## 2026-11-26 用户已授权05推送与云构建
+
+用户明确回复“允许你推送代码，和云构建”。此前仅本地交付限制已由该新指令取代。本轮将先完成0.0.9白名单同步、敏感/原始二进制排除审计和本地提交，再推送并触发目标Unity 6000.3.26f1构建。构建成功只证明编译/打包范围；05仍需同一0.0.9在iPhone 13 / iOS 17.4.1完成启动、登录/角色分流、真实主页画面和错误恢复。
+
+## 2026-11-26 顺序05续作：修复原场景屏外根节点、九宫格与主页副作用前置检查
+
+窗口记录丢失后已按《详细执行计划》和接手记录继续05。静态复核发现四个真实 NGUI 场景根节点（Title、IntroSlPl、Home、Menu）保留了模板期 `Y=-10000`，此前重建器没有执行原 `UIRoot` 实例化时的复位，实机将看不到整层 UI；现已在运行时恢复根节点。40个原版 sliced sprite 改为按 atlas outer/inner 边界生成九宫格，不再整帧拉伸。每次新的 HomeShow 响应可重新显示其奖励或结果未确认提示。
+
+为避免先触发有领奖/放弃残留单人开场副作用的 HomeShow、再发现主页资源无法呈现，进入主页前现在会从当前哈希校验资源集实际预检默认主页 prefab、乌莎哈 MOC 尺寸、四张纹理、idle 动作及五个 Cubism Shader；缺失或不可解码会在请求前拒绝。辅助 C# 全源码编译通过，登录状态/持久标记28项继续通过，真实乌莎哈27组 CPU 几何差分继续逐字节一致。证据 `evidence/ios-package-search/order05-original-scene-runtime-fixes.json`。
+
+本机仅有 Unity 6000.6.9f1，且编辑器因执行主机报告的 Windows build 过旧，在打开临时工程前退出，因此本轮仍没有目标6000.3.26f1 Editor/Shader/IL2CPP/Xcode、IPA或设备像素证据。下一步将05白名单源码/资源整理为0.0.9构建提交并审计，再按用户最新授权推送及云构建。05保持active，同版iPhone 13/iOS 17.4.1启动到主页仍是完成门槛。
+
+## 2026-11-25 顺序05「登录到主页」正式目标执行中
+
+用户补充：登录到主页必须还原真实游戏场景，禁止测试页。已移除 `RecoveryBootstrap.OnGUI` 与通用主页数字面板，开始由 `OriginalSceneRenderer` 读取原Windows重建场景/菜单的对象层级、Transform、图集、文字、锚点和入场动画终态重建；该代码尚未在Unity/手机运行，不能描述成场景已还原。拟定源码版本0.0.9，未构建/交付。
+
+已收到并核验两个用户资源包：`Order05-SceneResources-20261125T085738780Z-lyd.zip` 14,891,515字节，SHA-256 `28700259213cbb7726b0c0a66b05aad13483a6cfb1aa8f1711e00562cc704589`；六份canonical/PC主页UI、默认01000背景与乌莎哈资源都匹配公开2.0.4各自清单。`Order05-RoleImages-20261125T103605088Z-lyd.zip` 401,590字节，SHA-256 `d3e1ab86b6c273406adcab104b9503c9c8f75c6404a0176b1d6bbbb3be9fd4a9`，三个canonical职业资源匹配清单；它们是尚未解码的原容器，不能把AssetRipper无报错视为已取得图像。本地PC职业1/2/3可解码但与canonical对应版本关系仍UNKNOWN；职业4与已发布PC清单一致。均只读原资源，不读取账号/存档。导入证据 `order05-scene-resource-import-validation-lyd.json`、`order05-role-image-import-validation-lyd.json`，无需重复索取已收到资源。
+
+主页世界资源工作副本在 `ios-client/Assets/Recovery/OriginalWorldContent`：原背景网格/材质、乌莎哈MOC/四纹理/动作/表情/物理；导出器的三个Dummy Shader重写为可移植纹理/颜色/光图版本，五个Cubism渲染分支另行实现，实际像素/遮罩/Shader编译仍未验证。原有Live2D托管库只读分析并重建为命名空间隔离源码 `RecoveredCubism2.cs`，无原DLL复制进客户端；实际乌莎哈MOC的27组姿态/眼/口下201个绘制上下文、每组16,722浮点数，与原SDK计算结果逐字节一致，见 `order05-cubism-geometry-differential.json`。该CPU差分禁用裁剪且不执行Unity绘制，不能证明GPU、iOS或物理/动作完整一致。
+
+登录逻辑已新增 `CnEntryFlow` / `CnEntryJournal`：同游客UUID重试、创建结果未知先Connect确认、过期会话重新登录、本地未提交战斗标记阻止HomeShow。28项状态/持久标记测试、111项协议/回环测试、资源失败/回退与缺失必需场景包拒绝测试通过。独立服务实际探针 `order05-live-entry-2026-11-25T11-53-36-532Z.json` 通过：最多一个新专用身份/角色，两次同UUID登录、三次HomeShow，角色保持、gold/coin/coin_free一致；无入场、结算或消费，本次无奖励返回，因此奖励实际发放/重试仍待测。凭据/名称/UUID未记录。此前沙箱health失败未产生身份，历史失败证据保留。
+
+全部当前运行源码用Microsoft签名编译器4.12.0和UnityEngine.Modules 2021.3.33完整参考程序集辅助编译通过；原Unity6000客户端元数据被裁剪，直接参考检查失败留证。2021参考不等于目标6000.3.26f1编译，未生成Unity/Xcode/ARM64/IPA，也没有真机实景。后续继续补齐：真实UI点击/切职业/弹窗、九宫格/遮罩/字体、选择角色3D演出、动态Banner和开关、默认背景/navi服务字段关联，进行Unity6真正构建和同版iPhone验收。服务现有iOS内容仍是旧UI单包，缺scenes/world新包必须在更新前明确拒绝，不能静默退回测试页。用户“仅本地、不推送”持续有效；不能自动云端推新源码。
+
+用户已明确把05设为目标。03/04按范围完成的历史证据保留；现有0.0.8资源和连接证据不代替本次客户端功能/设备验收。当前从实际 `RecoveryBootstrap.cs` / `CnProtocol.cs` 接通登录、资源、Connect角色分流、创建后重读、主页与明确重试；HomeShow有领奖/放弃上下文副作用，必须先处理待提交战斗，创建超时必须重读Connect确认，身份重试不能换游客。目标保持active，直到独立服务/错误恢复和同版目标设备启动到主页证据齐全。只保留本地，不推送。
+
 ## 2026-11-25 顺序 04 原行为和范围基线按范围完成
 
 按用户要求将04设为正式目标，已增量实现并核验 `evidence/feature-coverage.md` 的当前基线，旧记录原文保留为历史。40个功能/平台依赖项各有来源/版本、状态、依赖和下一步；优先主页、卡组、关卡、战斗和结算，并保留仓库、名声训练、球/伙伴、爬塔、称号、TeamRace/PetitRaid、剧情/探索、商店/抽卡及平台SDK等范围。6.0.2的53个场景全归属；现代固定参考的158处账号注册（142个不同端点）和146处国服协议注册均已归属。241个来源文件核对哈希，五个优先主流程共17个旧版方法体锚点通过，现代7处关键调用边界单列。证据为 `evidence/ios-package-search/order04-feature-baseline.json`、`order04-baseline-validation.json` 和 `order04-completion-audit.json`。

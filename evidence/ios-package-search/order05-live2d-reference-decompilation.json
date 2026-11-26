@@ -1,0 +1,14 @@
+{
+  "checkedAt": "2026-11-25T09:51:15.056Z",
+  "success": true,
+  "normalization": "Normalized 472 metadata identifiers in a local working copy; IL instructions and original assembly untouched.",
+  "normalizedWorkingCopySha256": "5d3bb147d513315a37ea40939ebdf8b9d55524fb32aab52aeef22b7e11e283f1",
+  "stdout": "Reference-only decompilation completed with invalid identifiers normalized; source assembly was not executed.",
+  "stderr": "",
+  "input": "legacy-managed/Live2DUnity.dll",
+  "inputSha256": "14660a7ae8189909e7c44f0d22e065d6519873d50bf05d726f47dd893910bc33",
+  "inputUnchanged": true,
+  "referenceOutput": "test-output/order05-live2d-reference/Live2DUnity-reference.cs",
+  "referenceSha256": "cc02fc37e18485a234ab8f789ffa4feff0d34ec8609508d707ed837971ca6800",
+  "scope": "Only existing managed Live2D assembly metadata/IL decompiled into an ignored local reference. No SDK method, original game, account or Unity license executed/read. Raw reference output is not a production source or upload artifact."
+}

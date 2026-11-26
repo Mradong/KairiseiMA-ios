@@ -1,0 +1,475 @@
+{
+  "checkedAt": "2026-11-25T11:45:25.880Z",
+  "sourceFiles": [
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Scene/Title.unity",
+      "bytes": 67556,
+      "sha256": "2ee9b888a57277b0d8e7aafb80ddc2bc0720da4ca2d775ef8bba395bd8abeac3"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Title6.prefab",
+      "bytes": 1761,
+      "sha256": "44dbff3bf8c040f69a15698d5e5682c1114b99ad9a2903f7c3ee85cc9703f738"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Title6.png",
+      "bytes": 239,
+      "sha256": "b566afd91aace353462f9c0f80ddbe1b3c3e55436408cb1d83a81cb42f39b681"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Title2.prefab",
+      "bytes": 6137,
+      "sha256": "f3fcc2a250166b2e857236db98417bfb36385433693e0fc0d3fd4adbec7ba62b"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Title2.png",
+      "bytes": 340409,
+      "sha256": "fb0da0050df89879648af83206989060d11d7932093adbdd9a9c89f84e51bb4f"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/TitleAnniversary.prefab",
+      "bytes": 2106,
+      "sha256": "05dd5913d44b811098b2758134ef5203ae2966a0e90f8c1acfd56aa1fd57dbea"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/TitleAnniversary.png",
+      "bytes": 290141,
+      "sha256": "bd6ce0375a4dbc27ed543d800559e1918afd53b53d0b31ff14944178b00cdd2b"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Texture2D/TitleDefault.png",
+      "bytes": 3807118,
+      "sha256": "65ec90c1b8839196aa2dc8e5a4bec098071f83165cca7284dedfb2d6fbd508f0"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/05_image_assets/bg/BG_Anniversary.png",
+      "bytes": 1492921,
+      "sha256": "77b2b336e25b8c1ba4c2fa07855bdfd532dc6334a23dd31e7c643340b8bdcd16"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Title5.prefab",
+      "bytes": 3763,
+      "sha256": "4170df4dde72452652cd983ff6eb878cf9538490f9fba4f1bc03ec2d184214b1"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Title5.png",
+      "bytes": 49961,
+      "sha256": "1622a14f4f8670263567c6d1b0e63bd91d7c27dba4a6a8d5bfe1f22b75caf02a"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Title_MainLogo_In_00.anim",
+      "bytes": 2024,
+      "sha256": "f1aec3a036c2845f2643f93058ef9dcebc346c568a469db95c645ef1b8ca66a1"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Scene/IntroSlPl.unity",
+      "bytes": 201528,
+      "sha256": "91459d7014d4b9985db0bc8e25d4058dcadfeff45bf177171b72c861b93f00ef"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/intro/atlas/Intro.prefab",
+      "bytes": 6406,
+      "sha256": "90b9433c5a5553b59cad169f2fb1bacdbf975261fac91e0572c82e220ab6714c"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/intro/atlas/material/Intro.png",
+      "bytes": 387927,
+      "sha256": "4a7a6e1837ef4193a37ff35fef5a4ce7181106a50351978828c8842417f98661"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/intro/atlas/IntroSlPl.prefab",
+      "bytes": 9963,
+      "sha256": "a7f6a225bea7f34c90245ccebdd7e1bd3f5f228e86d7e06cf001fc21cfd829dd"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/intro/atlas/material/IntroSlPl.png",
+      "bytes": 735415,
+      "sha256": "e218046636180e1ad475ba3a23646cb8b8cd3663c32737807c8d6fc3b900f3be"
+    },
+    {
+      "file": "test-output/order05-role-pc-cache-export/ExportedProject/Assets/resources/05_image_assets/chr82/30/002/chr82_30002000.png",
+      "bytes": 611560,
+      "sha256": "b9f62ccb64fdfba26f899f6b275f5b5d9bd5b49d05b4f915afe3ceaab838bed7"
+    },
+    {
+      "file": "test-output/order05-role-pc-cache-export/ExportedProject/Assets/resources/05_image_assets/chr82/30/001/chr82_30001000.png",
+      "bytes": 747442,
+      "sha256": "4bb271c3e1dad1b4dc7205fd219c40a5ac53d0a18653a2eebc1af699bf4adc58"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/05_image_assets/bg/Bg_Intro00.png",
+      "bytes": 1187535,
+      "sha256": "c80f675943d4caaf5b6763ef5f1cb8ecad0220de5164095ae3cf13e53108b3e7"
+    },
+    {
+      "file": "test-output/order05-arthur-portrait-export-verified/ExportedProject/Assets/resources/05_image_assets/chr82/30/004/chr82_30004000.png",
+      "bytes": 1216890,
+      "sha256": "bd8ab163367e44efe9c198b6607db1012dde3fb38302d49c3471703bbde26645"
+    },
+    {
+      "file": "test-output/order05-role-pc-cache-export/ExportedProject/Assets/resources/05_image_assets/chr82/30/003/chr82_30003000.png",
+      "bytes": 673221,
+      "sha256": "be23834462893cacdfff6608c210a71e7ed23c95ae79b86891e3047243cf3732"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/IntroSlPl_Chr_In_00.anim",
+      "bytes": 11449,
+      "sha256": "58e2f9060ed4201baa0d8ed2df3dd91c9b4c34248129c490e588af4d1057958e"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_In02_00.anim",
+      "bytes": 3043,
+      "sha256": "556d16467244d0267c224e43418192cf1b97d19cca2d43384faf34b85d1a03bc"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_In03_00.anim",
+      "bytes": 2111,
+      "sha256": "ad83c51072ce4502b023a3aec38d6ddfe8534fd5f082db5c372e392fbdc3793d"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Std_In01_00.anim",
+      "bytes": 3040,
+      "sha256": "7085888a5f2d00404f911aae5fa380aff8fde0285ce1b428f0483781584d82e0"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Pop_In_00.anim",
+      "bytes": 3768,
+      "sha256": "a16ba84a8a818d71d4cd39bb2d0cef1339bae0da222fcd14a757c424332dfb70"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Scene/Home.unity",
+      "bytes": 42465,
+      "sha256": "7c4c45ac6daf2bfc1412e2f63137b238e9b69a09011ca1b5e83dacb778089d58"
+    },
+    {
+      "file": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/03_ui_assets/home/atlas/Home_3.prefab",
+      "bytes": 1766,
+      "sha256": "1705c6019e5cb349f2225c05f80cbe2c02ba3e0f726789204dfeea709ec46395"
+    },
+    {
+      "file": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/03_ui_assets/home/atlas/material/Home_3.png",
+      "bytes": 53245,
+      "sha256": "1fc20185819e3132127f52d9d45e548a5b315db497b924f95e9bee7fbddd3897"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Home_Window_In_00.anim",
+      "bytes": 7945,
+      "sha256": "2714c354cae1124476789957c1a7e734180887a3e47ceaee70fb67b62a7b05c0"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/AnimationClip/Home_Live2D_In_00.anim",
+      "bytes": 2106,
+      "sha256": "28000a82ae6f101beee5107fc29d96de740f6674db5cd466a4b3d7d5fbeed92a"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/scenes/Menu.prefab",
+      "bytes": 690206,
+      "sha256": "9f6c3c25cb0b0fb005e3ec2c0d0a615eeaf44118deefe36bca0a43afb3311195"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In04_00.anim",
+      "bytes": 2110,
+      "sha256": "e14ccfb64ae95c5bb7cb6e9c1123dce15cd98b007e43d3253ca04e0bf0f579d1"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu2.prefab",
+      "bytes": 11014,
+      "sha256": "e861e49c5ad34face613a35b8eb4254a93bab8d13295ad264a46bbdfbf15d426"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/material/Menu2.png",
+      "bytes": 1300597,
+      "sha256": "45c9cdd821c2357a343f9321bf9073a5569cd1e74a998d1f751e139a472524e5"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu3.prefab",
+      "bytes": 20064,
+      "sha256": "81bfdcd16f106bab605efd1c1c6e1c31b98d74ef54a0687f5718f09221bf43de"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/material/Menu3.png",
+      "bytes": 1403489,
+      "sha256": "6f9fae419bb48f9875dae485808a6022a8c4b1ae450500f059b4385fca3c8584"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In01_00.anim",
+      "bytes": 3040,
+      "sha256": "7085888a5f2d00404f911aae5fa380aff8fde0285ce1b428f0483781584d82e0"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In03_00.anim",
+      "bytes": 2111,
+      "sha256": "ad83c51072ce4502b023a3aec38d6ddfe8534fd5f082db5c372e392fbdc3793d"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/MenuBar.prefab",
+      "bytes": 15092,
+      "sha256": "976f2d679dd7d54804b61e874a4c6c31dd9b9a4f6d260e2d04ea16a5b7cb9db9"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/material/MenuBar.png",
+      "bytes": 365784,
+      "sha256": "9bc112880e9a06800b37eddb8fc9c0f995fce47c2d364a585151a4f30c7f26d1"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Scale_In_00.anim",
+      "bytes": 2100,
+      "sha256": "2980ece65194717352d229a7279869b1ae4e4b080be3b5872d5886831683d465"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Num_600.prefab",
+      "bytes": 4501,
+      "sha256": "df3dd049a5c7872e70501486dfcf32217d365075984953498931e41de21e5a24"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Num_600.png",
+      "bytes": 19081,
+      "sha256": "c9aff587dfbdf6c7d0298183d6dc018f68da4377ee9621f728148cd69ce6593c"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Cmn_Std_In02_00.anim",
+      "bytes": 3043,
+      "sha256": "556d16467244d0267c224e43418192cf1b97d19cca2d43384faf34b85d1a03bc"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu.prefab",
+      "bytes": 9783,
+      "sha256": "4ae6dc2f2da6b6a91f6ca938b827f279b4cc7356de5a56b2a242cd4810bb7430"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/material/Menu.png",
+      "bytes": 2022550,
+      "sha256": "319e86c1b95035629e3d79ad87eb95c6ff55ced7a4bae8185ac350c7cb9c858a"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Cmn99.prefab",
+      "bytes": 1767,
+      "sha256": "fea39381e83e8b4e622d631848d71e58eb68075f327fc11e5b291ab18792f3fa"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Cmn99.png",
+      "bytes": 8413,
+      "sha256": "604c2677ea91b548c4911dd404a6b27581d457f45ebb161084571c953fccc523"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/Menu6.prefab",
+      "bytes": 2416,
+      "sha256": "d5df4f2082ae8a98af8a548a6f642b4381d65b9f99cb169cae13d13f2513fce6"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/resources/03_ui_assets/menu/atlas/material/Menu6.png",
+      "bytes": 283021,
+      "sha256": "28acc7f6bae49af83baabec876a973cfb7a30c26bae034e8f79facf6825e6a0f"
+    },
+    {
+      "file": "test-output/order05-scene-export/ExportedProject/Assets/AnimationClip/Menu_Filter_In_00.anim",
+      "bytes": 2884,
+      "sha256": "f2dfb1d7874fcad8271a7a78e2dc2761f8be9e8e4c115fea1870adc1b676d315"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/cmn/Cmn_Window01.prefab",
+      "bytes": 11381,
+      "sha256": "695df4d4a1f31227a02e0d996ee17091e580c90b3c76b178ae234630bacd1db6"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Cmn3.prefab",
+      "bytes": 4236,
+      "sha256": "647285851fd16999009b6aef3c30598a7b9fdaa8d7624d06f1dc012645a291d5"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Cmn3.png",
+      "bytes": 251643,
+      "sha256": "4b10ad2eaad3405390ff7ece554e52de2023a26fc49ac40d41d6743e68676903"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/cmn/Cmn_Window02.prefab",
+      "bytes": 35571,
+      "sha256": "ca1449e150353393123c50350c89e1a3fd0f42cd3f5462150b311d048fc0cfd8"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Cmn5.prefab",
+      "bytes": 16217,
+      "sha256": "5c4f9705167827c43660197e1c21f1a25218f7586675184bbf8bf16e99630602"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Cmn5.png",
+      "bytes": 812107,
+      "sha256": "cdc7bf960220fb2f8d941fae763f23145e552a11fdc776a6de8876fff58e6e43"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/cmn/Cmn_ServerListWindow.prefab",
+      "bytes": 58569,
+      "sha256": "2a2fb36ad08ec34574a9167f1867b3a6015c8a131f4dca63d50555a0f03140bf"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Texture2D/item10_10050.png",
+      "bytes": 48421,
+      "sha256": "ebd3c4e9efb6744eeb575741dd964271f17ce951bba5fe482daea755639b8ca3"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/Cmn.prefab",
+      "bytes": 8296,
+      "sha256": "e9a6ac6245c2e2fbeb1eea3778426b6467a8bc870766f964a1d6a4f61eb3b19c"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/atlas/material/Cmn.png",
+      "bytes": 438444,
+      "sha256": "d050635e4593a441b91f33f9233c6a377a503db04c4c34925af99231932eec16"
+    },
+    {
+      "file": "recovered-unity/ExportedProject/Assets/Resources/03_ui_assets/cmn/Cmn_DownloadBar.prefab",
+      "bytes": 8721,
+      "sha256": "de637b4207e9d6a6c06cb66893283f9e0722bf1b0f2e3776930169284cf8dd19"
+    }
+  ],
+  "scenes": [
+    {
+      "name": "Title",
+      "nodes": 39,
+      "widgets": 12
+    },
+    {
+      "name": "IntroSlPl",
+      "nodes": 105,
+      "widgets": 53
+    },
+    {
+      "name": "Home",
+      "nodes": 21,
+      "widgets": 2
+    },
+    {
+      "name": "Menu",
+      "nodes": 370,
+      "widgets": 149
+    },
+    {
+      "name": "Message",
+      "nodes": 6,
+      "widgets": 3
+    },
+    {
+      "name": "Confirm",
+      "nodes": 17,
+      "widgets": 11
+    },
+    {
+      "name": "ServerList",
+      "nodes": 33,
+      "widgets": 21
+    },
+    {
+      "name": "Download",
+      "nodes": 5,
+      "widgets": 3
+    }
+  ],
+  "copiedTextures": 25,
+  "missingWidgetDependencies": [
+    {
+      "scene": "IntroSlPl",
+      "node": "Texture",
+      "widget": "269",
+      "type": "UITexture",
+      "textureReference": {
+        "id": "8400000",
+        "guid": "fc54fd4b58f003442b2397441f0384b0"
+      }
+    },
+    {
+      "scene": "IntroSlPl",
+      "node": "Dmy_Chr",
+      "widget": "333",
+      "type": "UITexture",
+      "textureReference": {
+        "id": "0",
+        "guid": null
+      }
+    },
+    {
+      "scene": "Menu",
+      "node": "Sprite",
+      "widget": "114610617575939957",
+      "type": "UITexture",
+      "textureReference": {
+        "id": "0",
+        "guid": "0000000deadbeef15deadf00d0000000"
+      }
+    },
+    {
+      "scene": "Menu",
+      "node": "QuestType",
+      "widget": "114359389490549736",
+      "type": "UISprite",
+      "frame": "StatusBar_QuestType_00",
+      "atlasName": "",
+      "atlasPath": ""
+    },
+    {
+      "scene": "Menu",
+      "node": "Dmy_Title",
+      "widget": "114358017255082712",
+      "type": "UITexture",
+      "textureReference": {
+        "id": "0",
+        "guid": null
+      }
+    },
+    {
+      "scene": "Menu",
+      "node": "ArthurBtn03",
+      "widget": "114189131814739177",
+      "type": "UISprite",
+      "frame": "Menu_FriendBtn01_01",
+      "atlasName": "Menu",
+      "atlasPath": "03_UI_Assets/Menu/Atlas/Menu"
+    },
+    {
+      "scene": "Menu",
+      "node": "Dmy_Banner\r",
+      "widget": "114916014319211171",
+      "type": "UITexture",
+      "textureReference": {
+        "id": "0",
+        "guid": null
+      }
+    },
+    {
+      "scene": "Menu",
+      "node": "AlchemistBattleBtn01",
+      "widget": "114941517718441080",
+      "type": "UISprite",
+      "frame": "Menu_BattleAlchemistBtn01_00",
+      "atlasName": "",
+      "atlasPath": ""
+    },
+    {
+      "scene": "Menu",
+      "node": "Dmy_Banner\r",
+      "widget": "114995997411268787",
+      "type": "UITexture",
+      "textureReference": {
+        "id": "0",
+        "guid": null
+      }
+    },
+    {
+      "scene": "Menu",
+      "node": "Menu_MainQuestBtn",
+      "widget": "114696470628892310",
+      "type": "UISprite",
+      "frame": "SideBtn_HomeMainQuest",
+      "atlasName": "",
+      "atlasPath": ""
+    }
+  ],
+  "requiredHomeDependencies": [
+    "default home_01000 background and corresponding original scene/materials",
+    "navi type 0 uathach model/textures/compatible Live2D rendering"
+  ],
+  "layoutAndAppearance": "Original transforms, hierarchy, pivot, color, depth, atlas rectangles and serialized text. No invented dashboard or diagnostic form.",
+  "runtimeAccepted": false,
+  "deviceVerified": false,
+  "ready": false,
+  "scriptSha256": "1ae8043ca77c5e4d891abdb0de43e1ee890e724762a0526176746eb1052b3910"
+}

@@ -1,0 +1,54 @@
+﻿{
+    "checkedAt":  "2026-11-25T09:02:03.4841642Z",
+    "planItem":  "05",
+    "imported":  true,
+    "archive":  "Order05-SceneResources-20261125T085738780Z-lyd.zip",
+    "archiveSha256":  "28700259213cbb7726b0c0a66b05aad13483a6cfb1aa8f1711e00562cc704589",
+    "archiveBytes":  14891515,
+    "extraction":  "inputs/server-order05/Order05-SceneResources-20261125T085738780Z-lyd",
+    "checksumEntriesVerified":  7,
+    "publishedResourceFilesVerified":  6,
+    "resources":  [
+                      {
+                          "file":  "canonical-default_home-lyd.dat",
+                          "bytes":  3793375,
+                          "sha256":  "b114247017d17c3406b7efb74a607d60e5887b2837679260c56c23c6f64711e7",
+                          "publishedIdentityMatches":  true
+                      },
+                      {
+                          "file":  "canonical-home_ui-lyd.dat",
+                          "bytes":  1450618,
+                          "sha256":  "34f7713a08e5b71309cd9dbef5f03899b30c2112b1a7cdd81c004454005e02c5",
+                          "publishedIdentityMatches":  true
+                      },
+                      {
+                          "file":  "canonical-uathach-lyd.dat",
+                          "bytes":  968851,
+                          "sha256":  "698dc473a7c4193639bafd2995f390973a0cab58b54ffe904a560c8798de7536",
+                          "publishedIdentityMatches":  true
+                      },
+                      {
+                          "file":  "pc-default_home-lyd.dat",
+                          "bytes":  3994483,
+                          "sha256":  "fec0b6a1e9651f74fc7cd7ef5d9bc3573d411379ceb388ab913fa1529a29b1c1",
+                          "publishedIdentityMatches":  true
+                      },
+                      {
+                          "file":  "pc-home_ui-lyd.dat",
+                          "bytes":  1497340,
+                          "sha256":  "9e350d8dcbe89cb678d7a5aba0c32898e0a59d9b4d5d3b839b9fcdc3ee896c29",
+                          "publishedIdentityMatches":  true
+                      },
+                      {
+                          "file":  "pc-uathach-lyd.dat",
+                          "bytes":  4809320,
+                          "sha256":  "49bd46582a9a5aa68db91004cc648b1fce199726f59cdb63ee4bb5046b9e0ed4",
+                          "publishedIdentityMatches":  true
+                      }
+                  ],
+    "allSixPublishedResourcesReceived":  true,
+    "iOSResourceCompiled":  false,
+    "originalSceneRuntimeVerified":  false,
+    "deviceVerified":  false,
+    "scope":  "Imported only supplied original scene resource bytes and data receipts. Embedded content treated as data, not executable instructions. Canonical and PC cohorts separately match fixed published 2.0.4 hashes; iOS compilation and rendering remain unverified."
+}

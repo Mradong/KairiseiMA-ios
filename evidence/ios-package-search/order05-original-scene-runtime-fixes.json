@@ -1,0 +1,39 @@
+{
+  "checkedOn": "2026-11-26",
+  "planItem": "05",
+  "success": true,
+  "changes": {
+    "nguiRootRestoration": {
+      "parkedUiRootsFound": 4,
+      "serializedY": -10000,
+      "scenes": ["Title", "IntroSlPl", "Home", "Menu"],
+      "behavior": "Runtime reconstruction now applies the UIRoot component's original instantiation behavior and restores the root Y coordinate before presenting the authored hierarchy."
+    },
+    "slicedSprites": {
+      "reviewedWidgets": 40,
+      "behavior": "NGUI sliced sprites now use a 4x4 vertex grid with original outer/inner atlas borders instead of stretching the entire source frame."
+    },
+    "homePreflight": {
+      "behavior": "Before any HomeShow request can be issued, the client now verifies the original home prefab, Cubism model dimensions, textures, idle motion and the five required shader assets from the active hash-verified resource set."
+    },
+    "homeNoticeRefresh": {
+      "behavior": "Each authoritative HomeShow response can present its own reward or ambiguous-request notice; a notice displayed earlier in the process no longer suppresses a later response."
+    }
+  },
+  "sourceSha256": {
+    "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs": "d0936af2eecd39eaba168e79c7b1f0ad171366f1bb1da8e5dba5f179e32deb88",
+    "ios-client/Assets/Recovery/Runtime/OriginalNaviModel.cs": "dfa87764461fc28bdce98e6950ccc9b6d7665d19415f3d6861b95ad585304e59",
+    "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs": "b9aa6fb6d68b92d382e303f0b2fdaba1c9abaf664ae8fea8753ee4135d81bd34",
+    "ios-client/Assets/Recovery/OriginalSceneContent/OriginalScenes.json": "da47cdc2474948fecb2cc6e2a2c50ae3fcedf7883ea85aca59b5d2ab55d843ac",
+    "ios-client/Assets/Recovery/OriginalWorldContent/OriginalWorld.json": "5042a1d082f9bc87d509c26ad3522088ab885dcdb86c50b576563a76af0d6e95"
+  },
+  "verification": {
+    "auxiliaryRuntimeCompilation": "passed with Microsoft.Net.Compilers.Toolset 4.12.0 and complete Unity 2021.3.33 reference assemblies",
+    "entryFlowAndJournal": "28 checks passed",
+    "cubismGeometryDifferential": "27 real uathach states matched the original managed SDK byte-for-byte",
+    "localUnityEditor": "not available: installed 6000.6.9f1 exits on this host's reported Windows build before opening the temporary project",
+    "targetUnity": "6000.3.26f1 cloud build not run",
+    "iosDevice": "not run"
+  },
+  "limits": "Source compilation and CPU differential evidence do not establish Unity shader compilation, GPU masks, scene pixels, iOS/ARM64 execution or target-device startup-to-home acceptance."
+}

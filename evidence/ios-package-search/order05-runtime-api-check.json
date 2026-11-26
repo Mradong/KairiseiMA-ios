@@ -1,0 +1,93 @@
+{
+  "generatedAt": "2026-11-25T09:06:54.060Z",
+  "success": false,
+  "compiler": "Microsoft.Net.Compilers.Toolset 4.12.0",
+  "compilerSha256": "48fc3f6dbd905197a6c46b46ce02e230bae2b2862eec59879b62553797999b85",
+  "stdout": "ios-client\\Assets\\Recovery\\Runtime\\RecoveryContentLoader.cs(35,30): error CS0308: 非泛型 方法“AssetBundle.LoadAsset(string)”不能与类型参数一起使用\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(85,38): error CS0266: 无法将类型“int”隐式转换为“UnityEngine.CameraClearFlags”。存在一个显式转换(是否缺少强制转换?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(85,62): error CS0200: 无法为属性或索引器“Camera.depth”赋值 - 它是只读的\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(179,13): error CS0200: 无法为属性或索引器“Renderer.sortingOrder”赋值 - 它是只读的\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(187,122): error CS0200: 无法为属性或索引器“Renderer.sortingOrder”赋值 - 它是只读的\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(60,43): error CS1061: “CharacterInfo”未包含“minX”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“minX”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(60,70): error CS1061: “CharacterInfo”未包含“maxX”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“maxX”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(60,98): error CS1061: “CharacterInfo”未包含“minY”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“minY”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(60,123): error CS1061: “CharacterInfo”未包含“maxY”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“maxY”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(62,33): error CS1061: “CharacterInfo”未包含“uvBottomLeft”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“uvBottomLeft”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(62,60): error CS1061: “CharacterInfo”未包含“uvBottomRight”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“uvBottomRight”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(62,88): error CS1061: “CharacterInfo”未包含“uvTopLeft”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“uvTopLeft”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(62,112): error CS1061: “CharacterInfo”未包含“uvTopRight”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“uvTopRight”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(64,31): error CS1061: “CharacterInfo”未包含“advance”的定义，并且找不到可接受第一个“CharacterInfo”类型参数的可访问扩展方法“advance”(是否缺少 using 指令或程序集引用?)\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(70,73): error CS1503: 参数 2: 无法从“System.Collections.Generic.List<UnityEngine.Vector2>”转换为“System.Collections.Generic.List<UnityEngine.Vector4>”\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(70,125): error CS1503: 参数 1: 无法从“System.Collections.Generic.List<UnityEngine.Color>”转换为“System.Collections.Generic.List<UnityEngine.Color32>”\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(220,75): error CS1501: “Open”方法没有采用 2 个参数的重载\r\nios-client\\Assets\\Recovery\\Runtime\\OriginalSceneRenderer.cs(225,41): error CS0019: 运算符“==”无法应用于“TouchScreenKeyboard.Status”和“int”类型的操作数\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryContentLoader.cs(221,108): error CS0019: 运算符“!=”无法应用于“UnityWebRequest.Result”和“int”类型的操作数\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(484,25): error CS0019: 运算符“!=”无法应用于“UnityWebRequest.Result”和“int”类型的操作数\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(44,25): warning CS0169: 从不使用字段“RecoveryBootstrap.bonusScroll”\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(32,22): warning CS0414: 字段“RecoveryBootstrap.showingDeck”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(28,21): warning CS0414: 字段“RecoveryBootstrap.soloPartnerIndex”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(39,21): warning CS0414: 字段“RecoveryBootstrap.editSlot”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(24,22): warning CS0414: 字段“RecoveryBootstrap.showingQuests”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(40,21): warning CS0414: 字段“RecoveryBootstrap.cardChoice”已被赋值，但从未使用过它的值",
+  "stderr": "",
+  "sourceFiles": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryFlow.cs",
+      "sha256": "93b0c47ac19cbb630329112740364495c7828439159587957ca174de063208f3"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryJournal.cs",
+      "sha256": "34a4dbf69fdcfbe83f0b4b130e5070b2ccf5a590e096b50827c8ba97c6df30e2"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "58d1ac65880ba35a6478d32936461c294a61625fa3ddfcddd2691e7a35c3a651"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CombatTableSet.cs",
+      "sha256": "c6d83ed0f892cc76abfc0578c95c177fb2f1270b483ce6a3ed6b6d22a8ccf2dd"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
+      "sha256": "73561296629abcb74fa61567c386188b54aa4e8be0ee92c6fc760df66d9beeec"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/NativeRegisteredBattle.cs",
+      "sha256": "e1b05d6a86064ff3f8575b954fd17907b91bcf3f1e6e8c9c8676afa83bf1a06e"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
+      "sha256": "20244ce962317113206d90497b3f676ed17efb779e61aa190c737a3747a3f237"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs",
+      "sha256": "31eb95df4ce2396797a6b3cb5543de56ef68fec1170dcc8eac965c0a9100d9a6"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
+      "sha256": "73f8969ff06b35c47fb70a3580ba8500116312db5bd1a34054684e1c8ebb827b"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
+      "sha256": "d8381f156d34448495ab16c54e85b3a98a4e3957e5056e03d4df11e584906f59"
+    }
+  ],
+  "referenceFiles": [
+    {
+      "file": "code-dump/DummyDll/UnityEngine.CoreModule.dll",
+      "sha256": "a46b413a54fc7a9c81a6db3ea3273cc38984f63c69912f1064afd5cf6d27eebd"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.AssetBundleModule.dll",
+      "sha256": "1181052fe1010da4376867eaae63de9ccf6074867732eb64015a80a6e9e7a30f"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.IMGUIModule.dll",
+      "sha256": "c345daf97bd90d9e511fb77d09abe534fd8e85a11dc3350ef8b97177f9d7dbac"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.UnityWebRequestModule.dll",
+      "sha256": "db269ff1b6c5d1759da5283b4e243974b33ff6e89bb443fdc4c5f77578347461"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.TextRenderingModule.dll",
+      "sha256": "53bc4b237e371ff31579504e048ab706f9aa34917f0e4665b379ff26ac359172"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.JSONSerializeModule.dll",
+      "sha256": "a6346a0f169b9f957deb48a21ba45864f06448095dd788becfe21e3518dad24d"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.InputLegacyModule.dll",
+      "sha256": "0661ff754f76dedf9427d6da047924106be48181962e93992da00ec3e192448f"
+    },
+    {
+      "file": "code-dump/DummyDll/UnityEngine.PhysicsModule.dll",
+      "sha256": "d61e4418d3a6034acc9d19ba199b7536147b5f42a87c975eab0593f162607ab0"
+    },
+    {
+      "file": "code-dump/DummyDll/Il2CppDummyDll.dll",
+      "sha256": "4e93721db2c217c643810f0723ef3c665b8d7c0f3d37319b6159cd9198a73677"
+    }
+  ],
+  "scope": "Runtime C# compile against recovered modern Unity public API metadata only. The referenced assemblies are dummy symbol assemblies and are never executed or uploaded. This is not Unity Editor, IL2CPP, Xcode, shader compilation, rendering or device validation."
+}

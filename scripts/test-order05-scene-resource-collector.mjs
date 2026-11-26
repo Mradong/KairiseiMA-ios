@@ -1,0 +1,40 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import crypto from 'node:crypto';
+import assert from 'node:assert/strict';
+import {spawnSync} from 'node:child_process';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const base=fs.mkdtempSync(path.join(root,'test-output/order05-scene-collector-'));
+const receipt=JSON.parse(fs.readFileSync(path.join(root,'evidence/ios-package-search/order05-scene-resource-collector-package-lyd.json'),'utf8'));
+const packageRoot=path.join(root,receipt.archive.slice(0,-4));
+const hash=p=>crypto.createHash('sha256').update(fs.readFileSync(p)).digest('hex');
+const escaped=p=>"'"+p.replaceAll("'","''")+"'";
+const results=[];
+for(const [kind,input] of [['source',path.join(root,'scripts/Export-Order05-SceneResources-lyd.ps1')],['packaged',path.join(packageRoot,'Export-Order05-SceneResources-lyd.ps1')]]) {
+  assert.equal(hash(input),receipt.scriptSha256);
+  const folder=path.join(base,kind),fixture=path.join(folder,'resource-set');fs.mkdirSync(fixture,{recursive:true});
+  const script=path.join(folder,'Export-Order05-SceneResources-lyd.ps1');fs.copyFileSync(input,script);
+  const syntax=spawnSync('powershell',['-NoProfile','-ExecutionPolicy','Bypass','-Command',`[ScriptBlock]::Create([IO.File]::ReadAllText(${escaped(script)})) | Out-Null`],{encoding:'utf8',windowsHide:true});
+  assert.equal(syntax.status,0,syntax.stderr);
+  fs.writeFileSync(path.join(fixture,'resource-set.json'),'{}');
+  const rejected=spawnSync('powershell',['-NoProfile','-ExecutionPolicy','Bypass','-File',script,'-ResourceSetRoot',fixture],{encoding:'utf8',windowsHide:true});
+  assert.notEqual(rejected.status,0);assert(rejected.stderr.includes('not the accepted Order03 snapshot'));
+  assert(!fs.readdirSync(folder).some(n=>n.startsWith('Order05-SceneResources-')),'Wrong manifest must not create an export');
+  fs.copyFileSync(path.join(root,'inputs/source-provenance/2.0.4/resource-manifest-lyd.json'),path.join(fixture,'resource-set.json'));
+  const before=hash(path.join(fixture,'resource-set.json'));
+  const missing=spawnSync('powershell',['-NoProfile','-ExecutionPolicy','Bypass','-File',script,'-ResourceSetRoot',fixture],{encoding:'utf8',windowsHide:true});
+  assert.equal(missing.status,0,missing.stderr);assert(missing.stdout.includes('PARTIAL_RESOURCES'));
+  const exports=fs.readdirSync(folder).filter(n=>n.startsWith('Order05-SceneResources-')&&!n.endsWith('.zip'));assert.equal(exports.length,1);
+  const output=path.join(folder,exports[0]);
+  const report=JSON.parse(fs.readFileSync(path.join(output,'scene-resources-lyd.json'),'utf8').replace(/^\uFEFF/,''));
+  assert.equal(report.allRequiredFamiliesCollected,false);assert.equal(report.files.length,6);assert(report.files.every(r=>r.state==='MISSING'&&r.exportedFile===null));
+  assert.equal(before,hash(path.join(fixture,'resource-set.json')));assert(fs.readdirSync(output).every(n=>n.includes('-lyd.')));
+  const zip=output+'.zip';assert(fs.existsSync(zip));
+  const checkZip=spawnSync('powershell',['-NoProfile','-ExecutionPolicy','Bypass','-Command',`Add-Type -AssemblyName System.IO.Compression.FileSystem; $sceneArchive = [IO.Compression.ZipFile]::OpenRead(${escaped(zip)}); try { if (@($sceneArchive.Entries | Where-Object { $_.FullName -notlike '*-lyd.*' }).Count -ne 0) { throw 'Unexpected archive name' } } finally { $sceneArchive.Dispose() }`],{encoding:'utf8',windowsHide:true});
+  assert.equal(checkZip.status,0,checkZip.stderr);
+  results.push({kind,syntaxPassed:true,wrongManifestRefusedBeforeWrites:true,missingFilesNeverReportedAsCollected:true,manifestUnchanged:true,allOutputNamesLyd:true});
+}
+const report={checkedAt:new Date().toISOString(),success:true,scriptSha256:receipt.scriptSha256,results,
+  scope:'PowerShell 5.1 actual source and packaged collector: syntax, wrong accepted-manifest rejection, all-six-files-missing export, unchanged public manifest, ZIP/output naming. Positive real resource copies await the user server; no account, game request, service operation or actual scene/device proof.'};
+fs.writeFileSync(path.join(root,'evidence/ios-package-search/order05-scene-resource-collector-tests-lyd.json'),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

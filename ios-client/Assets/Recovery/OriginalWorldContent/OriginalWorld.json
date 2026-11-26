@@ -1,0 +1,555 @@
+{
+  "schemaVersion": 1,
+  "backgroundAsset": "home-background-01000",
+  "naviType": 0,
+  "modelDefinition": "live2d/uathach/uathach.model.json",
+  "model": {
+    "version": "Sample 1.0.04",
+    "name": "uathach",
+    "model": "Live2D/uathach/moc/uathach.moc",
+    "textures": [
+      "Live2D/uathach/moc/uathach1024/texture_00",
+      "Live2D/uathach/moc/uathach1024/texture_01",
+      "Live2D/uathach/moc/uathach1024/texture_02",
+      "Live2D/uathach/moc/uathach1024/texture_03"
+    ],
+    "physics": "Live2D/uathach/json/physics.json",
+    "pose": "Live2D/uathach/json/pose.json",
+    "expressions": [
+      {
+        "name": "F01",
+        "file": "Live2D/uathach/json/F01.exp.json"
+      },
+      {
+        "name": "F02",
+        "file": "Live2D/uathach/json/F02.exp.json"
+      },
+      {
+        "name": "F03",
+        "file": "Live2D/uathach/json/F03.exp.json"
+      },
+      {
+        "name": "F04",
+        "file": "Live2D/uathach/json/F04.exp.json"
+      },
+      {
+        "name": "F05",
+        "file": "Live2D/uathach/json/F05.exp.json"
+      },
+      {
+        "name": "F06",
+        "file": "Live2D/uathach/json/F06.exp.json"
+      },
+      {
+        "name": "F07",
+        "file": "Live2D/uathach/json/F07.exp.json"
+      },
+      {
+        "name": "F08",
+        "file": "Live2D/uathach/json/F08.exp.json"
+      },
+      {
+        "name": "F09",
+        "file": "Live2D/uathach/json/F09.exp.json"
+      },
+      {
+        "name": "F10",
+        "file": "Live2D/uathach/json/F10.exp.json"
+      },
+      {
+        "name": "F11",
+        "file": "Live2D/uathach/json/F11.exp.json"
+      },
+      {
+        "name": "F12",
+        "file": "Live2D/uathach/json/F12.exp.json"
+      }
+    ],
+    "layout": {
+      "height": 2,
+      "center_x": 0,
+      "center_y": 0
+    },
+    "hit_areas": [
+      {
+        "name": "head",
+        "id": "D_REF.PT_HEAD"
+      },
+      {
+        "name": "body",
+        "id": "D_REF.PT_BODY"
+      }
+    ],
+    "motions": {
+      "idle": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01.mtn",
+          "fade_in": 2000,
+          "fade_out": 2000,
+          "expressions": "F01"
+        }
+      ],
+      "tap_body": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "11",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_07.mtn",
+          "msg_id": "12",
+          "fade_in": 500,
+          "fade_out": 1000
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_08.mtn",
+          "msg_id": "13",
+          "fade_in": 500,
+          "fade_out": 500
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P04.mtn",
+          "msg_id": "14",
+          "expressions": "F08"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_09.mtn",
+          "msg_id": "15"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P07.mtn",
+          "msg_id": "16",
+          "expressions": "F11"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_03.mtn",
+          "msg_id": "17",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_09.mtn",
+          "msg_id": "18",
+          "expressions": "F06"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P07.mtn",
+          "msg_id": "19",
+          "expressions": "F05"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_10.mtn",
+          "msg_id": "20",
+          "fade_in": 500,
+          "fade_out": 1000
+        }
+      ],
+      "game_start": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "3",
+          "expressions": "F05"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "27",
+          "expressions": "F09"
+        }
+      ],
+      "game_restart": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_03.mtn",
+          "msg_id": "1",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "2",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "3",
+          "expressions": "F05"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "4",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "5",
+          "expressions": "F03"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "6",
+          "expressions": "F09"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_04.mtn",
+          "msg_id": "7",
+          "fade_in": 500,
+          "fade_out": 1000
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_05.mtn",
+          "msg_id": "8",
+          "fade_in": 500,
+          "fade_out": 1000
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_06.mtn",
+          "msg_id": "9",
+          "fade_in": 500,
+          "fade_out": 1000
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P07.mtn",
+          "msg_id": "10",
+          "expressions": "F05"
+        }
+      ],
+      "navi": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "28",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "29",
+          "expressions": "F02"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P04.mtn",
+          "msg_id": "30",
+          "expressions": "F05"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P02.mtn",
+          "msg_id": "31",
+          "expressions": "F05"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "32",
+          "expressions": "F06"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "33",
+          "expressions": "F09"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P04.mtn",
+          "msg_id": "34",
+          "expressions": "F03"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "35",
+          "expressions": "F06"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_idle_01_P06.mtn",
+          "msg_id": "36",
+          "expressions": "F06"
+        }
+      ],
+      "joint": [
+        {
+          "name": "M05",
+          "file": "Live2D/uathach/mtn/uathach_m_05b.mtn"
+        },
+        {
+          "name": "M06",
+          "file": "Live2D/uathach/mtn/uathach_m_06b.mtn"
+        },
+        {
+          "name": "M07",
+          "file": "Live2D/uathach/mtn/uathach_m_07b.mtn"
+        },
+        {
+          "name": "M10",
+          "file": "Live2D/uathach/mtn/uathach_m_10b.mtn"
+        }
+      ],
+      "shake": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_20.mtn",
+          "msg_id": "21"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_20.mtn",
+          "msg_id": "22"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_20.mtn",
+          "msg_id": "23"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_20.mtn",
+          "msg_id": "24"
+        },
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_20.mtn",
+          "msg_id": "25"
+        }
+      ],
+      "change": [
+        {
+          "file": "Live2D/uathach/mtn/uathach_m_03.mtn",
+          "msg_id": "27",
+          "expressions": "F09"
+        }
+      ]
+    }
+  },
+  "addressableAssets": [
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/02_map_assets/home/home_01000/hm_01000.prefab",
+      "address": "home-background-01000"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F01.exp.json.bytes",
+      "address": "live2d/uathach/json/f01.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F02.exp.json.bytes",
+      "address": "live2d/uathach/json/f02.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F03.exp.json.bytes",
+      "address": "live2d/uathach/json/f03.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F04.exp.json.bytes",
+      "address": "live2d/uathach/json/f04.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F05.exp.json.bytes",
+      "address": "live2d/uathach/json/f05.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F06.exp.json.bytes",
+      "address": "live2d/uathach/json/f06.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F07.exp.json.bytes",
+      "address": "live2d/uathach/json/f07.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F08.exp.json.bytes",
+      "address": "live2d/uathach/json/f08.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F09.exp.json.bytes",
+      "address": "live2d/uathach/json/f09.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F10.exp.json.bytes",
+      "address": "live2d/uathach/json/f10.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F11.exp.json.bytes",
+      "address": "live2d/uathach/json/f11.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F12.exp.json.bytes",
+      "address": "live2d/uathach/json/f12.exp.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/physics.json.bytes",
+      "address": "live2d/uathach/json/physics.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/pose.json.bytes",
+      "address": "live2d/uathach/json/pose.json"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach.moc.bytes",
+      "address": "live2d/uathach/moc/uathach.moc"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_00.png",
+      "address": "live2d/uathach/moc/uathach1024/texture_00"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_01.png",
+      "address": "live2d/uathach/moc/uathach1024/texture_01"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_02.png",
+      "address": "live2d/uathach/moc/uathach1024/texture_02"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_03.png",
+      "address": "live2d/uathach/moc/uathach1024/texture_03"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01_p02.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P03.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01_p03.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01_p04.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P05.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01_p05.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01_p06.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_idle_01_p07.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_01.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_01.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_02.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_02.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_03.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_04.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_05.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_05a.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_05b.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_06.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_06a.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_06b.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_07.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_07a.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_07b.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_08.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08_02.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_08_02.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_09.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_10.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_10a.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_10b.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_m_20.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_P06.mtn.bytes",
+      "address": "live2d/uathach/mtn/uathach_p06.mtn"
+    },
+    {
+      "asset": "Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/uathach.model.json.bytes",
+      "address": "live2d/uathach/uathach.model.json"
+    }
+  ],
+  "shaderReconstructions": [
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/InsMapShader_ColorAdj_Std.shader",
+      "name": "InsMapShader/ColorAdj_Std",
+      "reason": "Exporter only emitted a dummy shader; portable texture/color/optional-lightmap implementation reconstructed. Exact original shader behavior/rendering remains unverified."
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/Mobile_Legacy_Lightmap_Lightmap AlphaTest.shader",
+      "name": "Mobile/Legacy/Lightmap/Lightmap AlphaTest",
+      "reason": "Exporter only emitted a dummy shader; portable texture/color/optional-lightmap implementation reconstructed. Exact original shader behavior/rendering remains unverified."
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/InsMapShader_ColorAdj_TexAlpha.shader",
+      "name": "InsMapShader/ColorAdj_TexAlpha",
+      "reason": "Exporter only emitted a dummy shader; portable texture/color/optional-lightmap implementation reconstructed. Exact original shader behavior/rendering remains unverified."
+    }
+  ],
+  "resourceFilesPrepared": true,
+  "renderingVerified": false,
+  "iOSCompiled": false,
+  "shaderAssets": [
+    {
+      "originalName": "Live2D/Live2D",
+      "address": "cubism-normal",
+      "asset": "Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-normal.shader"
+    },
+    {
+      "originalName": "Live2D/Live2D Masked",
+      "address": "cubism-normal-masked",
+      "asset": "Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-normal-masked.shader"
+    },
+    {
+      "originalName": "Live2D/Live2D PremultipliedAlpha",
+      "address": "cubism-premultiplied",
+      "asset": "Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-premultiplied.shader"
+    },
+    {
+      "originalName": "Live2D/Live2D Masked PremultipliedAlpha",
+      "address": "cubism-premultiplied-masked",
+      "asset": "Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-premultiplied-masked.shader"
+    },
+    {
+      "originalName": "Live2D/SetupMask",
+      "address": "cubism-setup-mask",
+      "asset": "Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-setup-mask.shader"
+    }
+  ],
+  "shaderCompatibility": "Reconstructed standard Cubism 2.1 texture, premultiplication, blend and RGBA clipping branches using the recovered SDK uniform contract. Shader compilation/GPU appearance unverified; HSL/ColorList remain explicitly unsupported."
+}

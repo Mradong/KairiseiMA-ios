@@ -1,0 +1,19 @@
+{
+  "preparedAt": "2026-11-25T08:55:02.980Z",
+  "archive": "dist/order05-scene-resources-2026-11-25T08-55-02-179Z-lyd.zip",
+  "bytes": 3830,
+  "sha256": "683c74e6bf0968f791d8b8067823a6d7de8c121806ed1e1913b7327a41200e0a",
+  "scriptSha256": "018572034602c6fbb1bb7bbe9007e23ecc5e751322c24be7c446803faed40ac1",
+  "expectedResourceSetRoot": "C:\\Users\\Administrator\\Desktop\\ma\\Server\\resource-set",
+  "originalResourcesReadOnly": true,
+  "accountDataRead": false,
+  "networkRequests": 0,
+  "serverExecuted": false,
+  "readyForSceneAcceptance": false,
+  "files": [
+    "Export-Order05-SceneResources-lyd.cmd",
+    "Export-Order05-SceneResources-lyd.ps1",
+    "README-lyd.md",
+    "SHA256SUMS-lyd.txt"
+  ]
+}

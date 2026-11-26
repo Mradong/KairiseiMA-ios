@@ -1,0 +1,74 @@
+{
+  "checkedAt": "2026-11-25T08:22:57.869Z",
+  "files": [
+    {
+      "source": "../client-data/persistent/patch/main_c/ui/ui_menu.dat",
+      "copiedTo": "inputs/order05-scene-sources/main_c_ui_ui_menu.dat",
+      "bytes": 7160053,
+      "sha256": "0c525fc2846436c15773f0d1396c36381c61d85d3fa680e60c5b623fe118eec6",
+      "cohort": "Published reconstruction 2.0.4 PC-platform counterpart verified by exact length/SHA-256. Original official extraction and iOS compatibility remain separate.",
+      "publishedPCSource": {
+        "path": "platform/pc/bundles/main_c/ui/ui_menu.dat",
+        "bytes": 7160053,
+        "sha256": "0c525fc2846436c15773f0d1396c36381c61d85d3fa680e60c5b623fe118eec6"
+      },
+      "publishedPCIdentityMatches": true
+    },
+    {
+      "source": "../client-data/persistent/patch/main_c/ui/ui_intro.dat",
+      "copiedTo": "inputs/order05-scene-sources/main_c_ui_ui_intro.dat",
+      "bytes": 1434277,
+      "sha256": "fc1e80e52e6148c2c455582aea93285045df78dd7522876357477f0012e9ef75",
+      "cohort": "Published reconstruction 2.0.4 PC-platform counterpart verified by exact length/SHA-256. Original official extraction and iOS compatibility remain separate.",
+      "publishedPCSource": {
+        "path": "platform/pc/bundles/main_c/ui/ui_intro.dat",
+        "bytes": 1434277,
+        "sha256": "fc1e80e52e6148c2c455582aea93285045df78dd7522876357477f0012e9ef75"
+      },
+      "publishedPCIdentityMatches": true
+    },
+    {
+      "source": "../client-data/persistent/patch/main_c/scenes/scene_menu.dat",
+      "copiedTo": "inputs/order05-scene-sources/main_c_scenes_scene_menu.dat",
+      "bytes": 94310,
+      "sha256": "32413c9c0fb5ffac162641a85108ddcca1f7a4047300f5739681e8505ec0cda8",
+      "cohort": "Published reconstruction 2.0.4 PC-platform counterpart verified by exact length/SHA-256. Original official extraction and iOS compatibility remain separate.",
+      "publishedPCSource": {
+        "path": "platform/pc/bundles/main_c/scenes/scene_menu.dat",
+        "bytes": 94310,
+        "sha256": "32413c9c0fb5ffac162641a85108ddcca1f7a4047300f5739681e8505ec0cda8"
+      },
+      "publishedPCIdentityMatches": true
+    },
+    {
+      "source": "../client-data/persistent/patch/main_c/map/map_home_04000.dat",
+      "copiedTo": "inputs/order05-scene-sources/main_c_map_map_home_04000.dat",
+      "bytes": 2009892,
+      "sha256": "0963c8449b50e9c5d2d81418846b4ee8dccfb9967d06e0781928600285de4026",
+      "cohort": "Published reconstruction 2.0.4 PC-platform counterpart verified by exact length/SHA-256. Original official extraction and iOS compatibility remain separate.",
+      "publishedPCSource": {
+        "path": "platform/pc/bundles/main_c/map/map_home_04000.dat",
+        "bytes": 2009892,
+        "sha256": "0963c8449b50e9c5d2d81418846b4ee8dccfb9967d06e0781928600285de4026"
+      },
+      "publishedPCIdentityMatches": true
+    },
+    {
+      "source": "../client-data/persistent/patch/main_c/map/map_home_05000.dat",
+      "copiedTo": "inputs/order05-scene-sources/main_c_map_map_home_05000.dat",
+      "bytes": 2303014,
+      "sha256": "7f54b7546f7dbda684410aa8687c15992c7e009f5610671256e4f832f6416366",
+      "cohort": "Published reconstruction 2.0.4 PC-platform counterpart verified by exact length/SHA-256. Original official extraction and iOS compatibility remain separate.",
+      "publishedPCSource": {
+        "path": "platform/pc/bundles/main_c/map/map_home_05000.dat",
+        "bytes": 2303014,
+        "sha256": "7f54b7546f7dbda684410aa8687c15992c7e009f5610671256e4f832f6416366"
+      },
+      "publishedPCIdentityMatches": true
+    }
+  ],
+  "originalsReadOnly": true,
+  "privateAccountDataRead": false,
+  "scope": "Targeted resource-only inputs for original-scene recovery, not iOS runtime or version compatibility proof.",
+  "initialCanonicalManifestComparison": "Different canonical-versus-PC bytes; this initial comparison did not establish a version mismatch."
+}

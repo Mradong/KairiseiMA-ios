@@ -1,0 +1,20 @@
+{
+  "preparedAt": "2026-11-25T10:01:32.597Z",
+  "reference": "test-output/order05-live2d-reference/Live2DUnity-reference.cs",
+  "referenceSha256": "cc02fc37e18485a234ab8f789ffa4feff0d34ec8609508d707ed837971ca6800",
+  "originalAssemblySha256": "14660a7ae8189909e7c44f0d22e065d6519873d50bf05d726f47dd893910bc33",
+  "source": "ios-client/Assets/Recovery/Runtime/RecoveredCubism2.cs",
+  "sourceSha256": "d9e9c509bd10ef29770a13679ff31a44234fa1f03b90fd6e8458968124fabb49",
+  "changes": [
+    "invalid identifier normalization without renaming virtual methods",
+    "remove original assembly-level attributes",
+    "isolate Kairisei.Recovery.Cubism2 namespace",
+    "remove unreferenced compiler-generated blob holder; numeric initializers retained",
+    "explicit recovery shader resolver instead of silently missing original shader names"
+  ],
+  "originalDllCopiedIntoClient": false,
+  "originalDllExecuted": false,
+  "unity6000Validated": false,
+  "iOSValidated": false,
+  "deviceValidated": false
+}

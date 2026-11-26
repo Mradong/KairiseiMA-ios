@@ -12,7 +12,7 @@ namespace Kairisei.Recovery
     public sealed class RecoveryBootstrap : MonoBehaviour
     {
         private string address;
-        private string status = "输入服务器地址后检查连接。此工程尚未包含完整游戏玩法。";
+        private string status = "输入服务器地址后连接并登录。";
         private string verifiedAddress;
         private bool busy;
         private ServerEndpoint endpoint;
@@ -51,19 +51,30 @@ namespace Kairisei.Recovery
         private Texture2D partyAtlasTexture;
         private RecoveryAtlas partyAtlas;
         private RecoveryContentLoader content;
-        private GUIStyle headingStyle;
-        private GUIStyle bodyStyle;
-        private GUIStyle inputStyle;
-        private GUIStyle buttonStyle;
+        private readonly CnEntryFlow entry = new CnEntryFlow();
+        private CnEntryJournal entryJournal;
+        private bool localInitializationFailed;
+        private OriginalSceneRenderer originalScene;
+        public CnEntryStep OriginalEntryStep { get { return entry.Step; } }
+        public CnHomeState OriginalHome { get { return homeState; } }
+        public bool OriginalBusy { get { return busy; } }
+        public string OriginalMessage { get { return status; } }
+        public string OriginalCharacterName { get { return characterName; } }
+        public int OriginalArthurRole { get { return arthurType; } }
+        public string OriginalBonusNotice { get { return bonusNotice; } }
+        public bool OriginalCanRetry { get { return entry.CanRetry || localInitializationFailed; } }
+        public string OriginalServerAddress { get { return address; } }
 
         private void Awake()
         {
             Application.targetFrameRate = 60;
-            address = PlayerPrefs.GetString("ios-recovery.server", "");
+            address = PlayerPrefs.GetString("ios-recovery.server", "http://47.116.51.61:27040");
             title = Resources.Load<Texture2D>("RecoveryTitle");
             font = Resources.Load<Font>("RecoveryChinese");
             if (font == null) font = Resources.Load<Font>("RecoveryFont");
             content = gameObject.AddComponent<RecoveryContentLoader>();
+            content.RequiredBundles = new[] { OriginalSceneRenderer.BundleName,OriginalNaviModel.BundleName };
+            originalScene = gameObject.AddComponent<OriginalSceneRenderer>();
         }
 
         private IEnumerator Start()
@@ -76,10 +87,13 @@ namespace Kairisei.Recovery
                 if (!content.Ready) throw new InvalidOperationException(content.Error ?? "资源初始化未完成。");
                 title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
                 LoadPartyAtlas();
-                status = "本地资源已就绪。新安装 " + content.Installed + "，缓存复用 " + content.Reused + "。输入服务器地址后检查连接。";
+                originalScene.Initialize(content, font, this);
+                status = "本地资源已就绪，请连接并登录。";
+                localInitializationFailed = false;
             }
-            catch (Exception error) { status = "资源加载失败：" + error.Message; }
+            catch (Exception error) { localInitializationFailed = true; status = "资源加载失败：" + error.Message; }
             finally { busy = false; }
+            // The original title's OnStartLogin action starts the online flow.
         }
 
         private void OnDestroy()
@@ -103,164 +117,11 @@ namespace Kairisei.Recovery
             catch (Exception error) { Debug.LogWarning("Party atlas unavailable: " + error.Message); }
         }
 
-        private void OnGUI()
-        {
-            if (title != null) GUI.DrawTexture(new Rect(0, 0, Screen.width, Screen.height), title, ScaleMode.ScaleAndCrop);
-            Rect safe = Screen.safeArea;
-            float scale = Mathf.Min(safe.width / 1280f, safe.height / 720f);
-            if (scale <= 0) return;
-            bool showBonus = !String.IsNullOrEmpty(bonusNotice) && login != null && verifiedAddress == address;
-            bool showDeck = showingDeck && cardCollection != null && login != null && verifiedAddress == address;
-            bool showQuest = showingQuests && quests != null && login != null && verifiedAddress == address;
-            Matrix4x4 previousMatrix = GUI.matrix;
-            float left = safe.x + (safe.width - 1280f * scale) / 2f;
-            float top = Screen.height - safe.yMax + (safe.height - 720f * scale) / 2f;
-            GUI.matrix = Matrix4x4.TRS(new Vector3(left, top, 0), Quaternion.identity, new Vector3(scale, scale, 1));
-            if (headingStyle == null)
-            {
-                headingStyle = new GUIStyle(GUI.skin.label) { fontSize = 34, wordWrap = true };
-                bodyStyle = new GUIStyle(GUI.skin.label) { fontSize = 22, wordWrap = true };
-                inputStyle = new GUIStyle(GUI.skin.textField) { fontSize = 25, alignment = TextAnchor.MiddleLeft };
-                buttonStyle = new GUIStyle(GUI.skin.button) { fontSize = 23 };
-                if (font != null) { headingStyle.font = font; bodyStyle.font = font; inputStyle.font = font; buttonStyle.font = font; }
-            }
-            Color previousColor = GUI.color;
-            GUI.color = new Color(0, 0, 0, 0.9f);
-            GUI.DrawTexture(new Rect(60, 65, 1160, 590), Texture2D.whiteTexture);
-            GUI.color = previousColor;
-            GUI.Label(new Rect(100, 95, 1080, 60), "乖离性 MA · iOS 恢复验证", headingStyle);
-            GUI.Label(new Rect(100, 167, 1080, 45), "服务器地址（例如 192.168.1.10:26040）", bodyStyle);
-            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
-            address = GUI.TextField(new Rect(100, 220, 1080, 58), address, 300, inputStyle);
-            if (GUI.Button(new Rect(100, 300, 320, 64), busy ? "连接中…" : "检查连接", buttonStyle)) CheckHealth();
-            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest && endpoint != null && verifiedAddress == address;
-            if (GUI.Button(new Rect(450, 300, 350, 64), "创建／登录测试游客", buttonStyle)) LoginGuest();
-            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest && login != null && serverContentReady && verifiedAddress == address;
-            if (GUI.Button(new Rect(830, 300, 350, 64), "检查角色状态", buttonStyle)) ReadConnect();
-            GUI.enabled = true;
-            GUI.Label(new Rect(100, 390, 1080, 125), status, bodyStyle);
-            if (connectState != null && connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
-            {
-                GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
-                if (GUI.Button(new Rect(995, 465, 185, 54), "进入主页", buttonStyle)) ReadHome();
-                if (homeState != null && GUI.Button(new Rect(460, 540, 320, 64), "查看单人关卡", buttonStyle)) ReadQuests();
-                if (homeState != null && GUI.Button(new Rect(800, 540, 380, 64), "查看服务器卡组", buttonStyle)) ReadDecks();
-                GUI.enabled = true;
-                if (homeState != null)
-                {
-                    GUI.Label(new Rect(100, 465, 800, 55), homeState.Name + "  等级 " + homeState.Level + "  体力 " + homeState.Ap + "/" + homeState.ApMax + "  战斗点 " + homeState.Bp + "/" + homeState.BpMax + "  金币 " + homeState.Gold, bodyStyle);
-                    if (partyAtlas != null && partyAtlasTexture != null && homeState.ArthurType >= 1 && homeState.ArthurType <= 4)
-                    {
-                        float[] uv = partyAtlas.Frame("BattleLo_Job0" + homeState.ArthurType + "_01.png");
-                        GUI.DrawTextureWithTexCoords(new Rect(915, 462, 50, 52), partyAtlasTexture, new Rect(uv[0], uv[1], uv[2], uv[3]));
-                    }
-                }
-            }
-            if (connectState != null && !connectState.UserCreated && login != null && verifiedAddress == address && serverContentReady)
-            {
-                GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
-                characterName = GUI.TextField(new Rect(100, 465, 280, 54), characterName, 32, inputStyle);
-                string[] roles = { "佣兵", "富豪", "盗贼", "歌姬" };
-                for (int i = 0; i < roles.Length; i++)
-                    if (GUI.Button(new Rect(400 + i * 145, 465, 135, 54), (arthurType == i + 1 ? "✓ " : "") + roles[i], buttonStyle)) arthurType = i + 1;
-                if (GUI.Button(new Rect(995, 465, 185, 54), "创建角色", buttonStyle)) CreateCharacter();
-                GUI.enabled = true;
-            }
-            if (showDeck && !showBonus)
-            {
-                GUI.enabled = true;
-                GUI.color = new Color(0, 0, 0, 0.96f);
-                GUI.DrawTexture(new Rect(200, 90, 880, 540), Texture2D.whiteTexture);
-                GUI.color = previousColor;
-                string deckText = DeckText();
-                GUI.Label(new Rect(240, 115, 800, 50), "服务器卡组", headingStyle);
-                if (!String.IsNullOrEmpty(deckError)) GUI.Label(new Rect(490, 115, 540, 50), deckError, bodyStyle);
-                deckScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 210), deckScroll, new Rect(0, 0, 760, Mathf.Max(210, bodyStyle.CalcHeight(new GUIContent(deckText), 750))));
-                GUI.Label(new Rect(0, 0, 750, bodyStyle.CalcHeight(new GUIContent(deckText), 750)), deckText, bodyStyle);
-                GUI.EndScrollView();
-                if (deckDraft != null && deckDraft.Length > 0)
-                {
-                    if (GUI.Button(new Rect(240, 400, 120, 48), "上一槽", buttonStyle)) editSlot = (editSlot + deckDraft.Length - 1) % deckDraft.Length;
-                    if (GUI.Button(new Rect(370, 400, 120, 48), "下一槽", buttonStyle)) editSlot = (editSlot + 1) % deckDraft.Length;
-                    if (GUI.Button(new Rect(510, 400, 120, 48), "上一卡", buttonStyle)) cardChoice = (cardChoice + cardChoices.Count - 1) % cardChoices.Count;
-                    if (GUI.Button(new Rect(640, 400, 120, 48), "下一卡", buttonStyle)) cardChoice = (cardChoice + 1) % cardChoices.Count;
-                    if (GUI.Button(new Rect(780, 400, 220, 48), "放入选中槽", buttonStyle)) { deckDraft[editSlot] = cardChoices[cardChoice]; deckDirty = true; deckError = null; }
-                    CnCard selected;
-                    string choice = cardChoices[cardChoice] == 0 ? "空" : cardCollection.Cards.TryGetValue(cardChoices[cardChoice], out selected) ? "卡牌 " + selected.CardId + " 等级 " + selected.Level : "不可用";
-                    GUI.Label(new Rect(240, 460, 760, 48), "选中槽位 " + (editSlot + 1) + "；候选 " + choice + (deckDirty ? "（未保存）" : ""), bodyStyle);
-                }
-                GUI.enabled = !busy && !deckDirty;
-                if (GUI.Button(new Rect(240, 530, 150, 55), "上一组", buttonStyle) && deckIndex > 0) { deckIndex--; PrepareDeckDraft(); }
-                if (GUI.Button(new Rect(400, 530, 150, 55), "下一组", buttonStyle) && deckIndex + 1 < cardCollection.Decks.Count) { deckIndex++; PrepareDeckDraft(); }
-                GUI.enabled = !busy && deckDirty;
-                if (GUI.Button(new Rect(580, 530, 190, 55), "保存卡组", buttonStyle)) SaveDeck();
-                GUI.enabled = !busy;
-                if (GUI.Button(new Rect(790, 530, 210, 55), deckDirty ? "放弃并返回" : "返回", buttonStyle)) showingDeck = false;
-            }
-            if (showQuest && !showBonus && !showDeck)
-            {
-                GUI.enabled = true;
-                GUI.color = new Color(0, 0, 0, 0.96f);
-                GUI.DrawTexture(new Rect(200, 90, 880, 540), Texture2D.whiteTexture);
-                GUI.color = previousColor;
-                GUI.Label(new Rect(240, 115, 800, 50), "单人关卡", headingStyle);
-                GUI.enabled = !busy;
-                if (GUI.Button(new Rect(670, 115, 150, 45), "读取卡组", buttonStyle)) ReadSoloDecks();
-                GUI.enabled = !busy && soloDecks != null && soloDecks.Count > 0;
-                if (GUI.Button(new Rect(830, 115, 150, 45), "切换卡组", buttonStyle)) soloDeckIndex = (soloDeckIndex + 1) % soloDecks.Count;
-                string questText = QuestText();
-                float height = bodyStyle.CalcHeight(new GUIContent(questText), 750);
-                questScroll = GUI.BeginScrollView(new Rect(240, 175, 800, 245), questScroll, new Rect(0, 0, 760, Mathf.Max(245, height)));
-                GUI.Label(new Rect(0, 0, 750, height), questText, bodyStyle);
-                GUI.EndScrollView();
-                GUI.enabled = !busy && quests.Count > 0;
-                if (GUI.Button(new Rect(240, 515, 110, 55), "上一关", buttonStyle) && questIndex > 0) { questIndex--; soloPartners = null; soloParty.Clear(); }
-                if (GUI.Button(new Rect(360, 515, 110, 55), "下一关", buttonStyle) && questIndex + 1 < quests.Count) { questIndex++; soloPartners = null; soloParty.Clear(); }
-                if (GUI.Button(new Rect(480, 515, 200, 55), "查看队友", buttonStyle)) ReadSoloPartners();
-                if (soloPartners != null && soloPartners.Count > 0)
-                {
-                    CnSoloPartner candidate = soloPartners[soloPartnerIndex];
-                    GUI.Label(new Rect(240, 425, 760, 38), "候选：" + candidate.Name + "  职业 " + candidate.ArthurType + "  等级 " + candidate.Level + "  已选 " + soloParty.Count + "/3", bodyStyle);
-                    if (GUI.Button(new Rect(240, 465, 150, 42), "上一位", buttonStyle)) soloPartnerIndex = (soloPartnerIndex + soloPartners.Count - 1) % soloPartners.Count;
-                    if (GUI.Button(new Rect(400, 465, 150, 42), "下一位", buttonStyle)) soloPartnerIndex = (soloPartnerIndex + 1) % soloPartners.Count;
-                    if (GUI.Button(new Rect(560, 465, 170, 42), "加入队伍", buttonStyle)) { try { soloParty.Add(candidate); } catch (Exception error) { status = error.Message; } }
-                    if (GUI.Button(new Rect(740, 465, 170, 42), "撤销队友", buttonStyle)) soloParty.RemoveLast();
-                }
-                GUI.enabled = !busy;
-                if (GUI.Button(new Rect(760, 530, 240, 55), "返回", buttonStyle)) showingQuests = false;
-            }
-            if (showBonus)
-            {
-                GUI.enabled = true;
-                GUI.color = new Color(0, 0, 0, 0.96f);
-                GUI.DrawTexture(new Rect(260, 120, 760, 485), Texture2D.whiteTexture);
-                GUI.color = previousColor;
-                GUI.Label(new Rect(300, 145, 680, 45), "登录奖励", headingStyle);
-                bonusScroll = GUI.BeginScrollView(new Rect(300, 200, 680, 300), bonusScroll, new Rect(0, 0, 640, Mathf.Max(300, bodyStyle.CalcHeight(new GUIContent(bonusNotice), 630))));
-                GUI.Label(new Rect(0, 0, 630, bodyStyle.CalcHeight(new GUIContent(bonusNotice), 630)), bonusNotice, bodyStyle);
-                GUI.EndScrollView();
-                if (GUI.Button(new Rect(490, 525, 300, 55), "知道了", buttonStyle))
-                {
-                    PlayerPrefs.DeleteKey(bonusKey); PlayerPrefs.Save(); bonusNotice = "";
-                }
-            }
-            GUI.enabled = !busy && !showBonus && !showDeck && !showQuest;
-            if (!showBonus && !showDeck && !showQuest && GUI.Button(new Rect(100, 540, 350, 64), "离线战斗内核验证", buttonStyle))
-            {
-                try { status = NativeBattleValidation.Run(); }
-                catch (Exception error) { status = "战斗内核验证失败：" + error.Message; }
-            }
-            GUI.enabled = true;
-            if (!showBonus && !showDeck && !showQuest && homeState == null) GUI.Label(new Rect(480, 540, 700, 95), "此项离线运行合成战斗。测试游客与 Windows 存档独立。", bodyStyle);
-            // Draw after modal panels so the build version stays visible while
-            // navigating and in screenshots, without duplicating build metadata.
-            GUI.Label(new Rect(1030, 660, 180, 36), "v" + Application.version, bodyStyle);
-            GUI.matrix = previousMatrix;
-            GUI.color = previousColor;
-        }
-
         private void CheckHealth()
         {
+            if (busy) return;
+            if (localInitializationFailed) { StartCoroutine(Start()); return; }
+            entry.BeginHealth(); entryJournal = null;
             login = null;
             connectState = null;
             homeState = null;
@@ -281,13 +142,15 @@ namespace Kairisei.Recovery
                 verifiedAddress = requestedAddress;
                 PlayerPrefs.SetString("ios-recovery.server", endpoint.ToString());
                 PlayerPrefs.Save();
-                status = "已连接到游戏服务器。战斗端口：" + battlePort + "。可以继续测试 iOS 资源和游客登录。";
-            }));
+                status = "连接成功，正在登录…";
+                LoginGuest();
+            }, EntryFailed));
         }
 
         private void LoginGuest()
         {
-            if (endpoint == null || verifiedAddress != address) return;
+            if (busy || endpoint == null || verifiedAddress != address) return;
+            entry.BeginLogin();
             login = null;
             connectState = null;
             homeState = null;
@@ -304,22 +167,22 @@ namespace Kairisei.Recovery
             string uuid = PlayerPrefs.GetString(key, "");
             if (String.IsNullOrEmpty(uuid)) uuid = Guid.NewGuid().ToString("D");
             try { uuid = CnProtocol.NormalizeGuestUuid(uuid); }
-            catch (Exception error) { status = error.Message; return; }
+            catch (Exception error) { EntryFailed(error); return; }
             PlayerPrefs.SetString(key, uuid); PlayerPrefs.Save();
             StartCoroutine(Send("POST", endpoint.Route("/local/client/login"), CnProtocol.CreateLogin(uuid, Application.unityVersion), delegate(string response) {
-                login = CnProtocol.ParseLogin(response, endpoint);
+                entry.ReceiveLogin(response, endpoint);
+                login = entry.Login;
+                entryJournal = new CnEntryJournal(Application.persistentDataPath, endpoint, login.UserId);
                 using (SHA256 hash = SHA256.Create())
                     bonusKey = "ios-recovery.bonus." + BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(endpoint.ToString() + "|" + login.UserId))).Replace("-", "");
                 bonusNotice = PlayerPrefs.GetString(bonusKey, "");
-                status = "测试游客登录成功，正在检查服务器资源…";
+                status = "登录成功，正在检查游戏资源…";
                 StartCoroutine(UpdateServerContent(login));
-            }));
+            }, EntryFailed));
         }
 
         private IEnumerator UpdateServerContent(CnLogin requestedLogin)
         {
-            // The login request releases its busy flag after invoking its callback.
-            yield return null;
             busy = true;
             yield return content.UpdateFromServer(requestedLogin);
             serverContentReady = content.Ready && login == requestedLogin;
@@ -334,34 +197,58 @@ namespace Kairisei.Recovery
                 }
                 catch (Exception error) { serverContentReady = false; uiError = error.Message; }
             }
-            status = serverContentReady ? "测试游客与服务器资源已就绪。新安装 " + content.Installed + "，缓存复用 " + content.Reused + "。可以检查角色状态。" : "服务器资源加载失败：" + (uiError ?? content.Error);
             busy = false;
+            if (!serverContentReady) { EntryFailed(new InvalidOperationException("游戏资源加载失败：" + (uiError ?? content.Error))); yield break; }
+            entry.ResourcesReady();
+            Debug.Log("Recovery entry resources ready: installed=" + content.Installed + ", reused=" + content.Reused);
+            ReadConnect();
         }
 
         private void ReadConnect()
         {
-            if (login == null || !serverContentReady || verifiedAddress != address) return;
+            if (busy || login == null || !serverContentReady || verifiedAddress != address) return;
+            entry.BeginConnect();
             StartCoroutine(Send("POST", login.Api.Route("/Connect"), CnProtocol.CreateSessionRequest(login.SessionKey, new JObject()), delegate(string response) {
-                connectState = CnProtocol.ParseConnect(response);
-                homeState = null;
-                status = connectState.UserCreated ? "服务器确认角色已创建。进入主页会结束未完成的单人战斗，并可能领取登录奖励；奖励展示尚未恢复。" : "请输入名称并选择职业，然后创建角色。";
-            }));
+                entry.ReceiveConnect(response);
+                connectState = entry.CharacterState;
+                if (entryJournal != null) entryJournal.ConfirmCharacterState();
+                status = connectState.UserCreated ? "已有角色已确认，可以继续进入主页。" : "请输入名称并选择初始职业，然后创建角色。";
+                if(connectState.UserCreated)originalScene.ConfirmHomeEntry();
+            }, EntryFailed));
         }
 
         private void ReadHome()
         {
-            if (login == null || connectState == null || !connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
+            if (busy || login == null || connectState == null || !connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
             CnLogin requestedLogin = login;
-            homeState = null;
+            bool previousUnconfirmed;
+            try
+            {
+                if (originalScene == null || !originalScene.CanPresentHome)
+                    throw new InvalidOperationException("主页场景资源尚未完整就绪，请先完成资源更新。");
+                if (entryJournal == null) throw new InvalidOperationException("登录记录尚未就绪，请重新登录。");
+                entry.BeginHome(entryJournal.HasPendingBattle);
+                previousUnconfirmed = entryJournal.BeginHome();
+            }
+            catch (Exception error) { if (entry.Step == CnEntryStep.PendingBattle) status = error.Message; else EntryFailed(error); return; }
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/HomeShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, null), delegate(string response) {
-                homeState = CnProtocol.ParseHome(response, requestedLogin.UserId);
+                entry.ReceiveHome(response);
+                homeState = entry.Home;
+                if (previousUnconfirmed)
+                {
+                    const string uncertain = "上次主页请求结果未确认，奖励可能已发放；本次显示服务器当前状态。";
+                    if (!bonusNotice.Contains(uncertain)) bonusNotice = String.IsNullOrEmpty(bonusNotice) ? uncertain : bonusNotice + "\n" + uncertain;
+                }
                 if (!String.IsNullOrEmpty(homeState.BonusNotice))
                 {
                     bonusNotice = String.IsNullOrEmpty(bonusNotice) ? homeState.BonusNotice : bonusNotice + "\n" + homeState.BonusNotice;
-                    PlayerPrefs.SetString(bonusKey, bonusNotice); PlayerPrefs.Save();
                 }
-                status = "已读取服务器主页角色状态；主页场景与导航仍在恢复。";
-            }));
+                if (!String.IsNullOrEmpty(bonusNotice)) { PlayerPrefs.SetString(bonusKey, bonusNotice); PlayerPrefs.Save(); }
+                if(originalScene!=null)originalScene.NotifyHomeUpdated();
+                status = "主页已更新。";
+                try { entryJournal.ConfirmHome(); }
+                catch (Exception) { status = "主页已读取，本地确认记录未能保存。重新登录后请核对奖励。"; }
+            }, EntryFailed));
         }
 
         private void ReadDecks()
@@ -518,17 +405,71 @@ namespace Kairisei.Recovery
 
         private void CreateCharacter()
         {
-            if (login == null || connectState == null || connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
+            if (busy || login == null || connectState == null || connectState.UserCreated || !serverContentReady || verifiedAddress != address) return;
             string body;
-            try { body = CnProtocol.CreateUserRequest(login.SessionKey, characterName, arthurType); }
-            catch (Exception error) { status = error.Message; return; }
+            try { body = entry.BeginCreate(characterName, arthurType); entryJournal.BeginCreate(); }
+            catch (Exception error) { if (entry.Step == CnEntryStep.Create) EntryFailed(error); else status = error.Message; return; }
             CnLogin requestedLogin = login;
             // A timeout can follow a successful server commit: require Connect before another attempt.
             connectState = null;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/UserCreate"), body, delegate(string response) {
-                CnCreatedUser created = CnProtocol.ParseCreatedUser(response, requestedLogin.UserId);
-                status = "角色“" + created.Name + "”已创建。请再次检查角色状态；主页尚未接入。";
-            }));
+                entry.ReceiveCreated(response);
+                ReadConnect();
+            }, EntryFailed));
+        }
+
+        private void EntryFailed(Exception error)
+        {
+            entry.Fail(error);
+            login = entry.Login;
+            if (login == null) { connectState = null; homeState = null; serverContentReady = false; }
+            status = entry.CreationMayHaveCommitted ? "创建结果未确认。请重试查询角色状态，确认后再继续。"
+                : entry.HomeMayHaveCommitted ? "主页请求未完成，奖励可能已发放。重试会重新查询当前角色状态。"
+                : error is CnProtocolException && ((CnProtocolException)error).Code == -3208 ? "登录已失效。请重试登录，将继续使用同一游客身份。"
+                : error.Message;
+            if(originalScene!=null&&originalScene.Initialized)originalScene.ShowError(status);
+        }
+
+        private void RetryEntry()
+        {
+            if (busy) return;
+            if (localInitializationFailed) { StartCoroutine(Start()); return; }
+            if (!entry.CanRetry) return;
+            switch (entry.PrepareRetry())
+            {
+                case CnEntryStep.Health: CheckHealth(); break;
+                case CnEntryStep.Login: LoginGuest(); break;
+                case CnEntryStep.Content: StartCoroutine(UpdateServerContent(login)); break;
+                case CnEntryStep.Connect: ReadConnect(); break;
+                case CnEntryStep.HomePermission: ReadHome(); break;
+            }
+        }
+
+        public void BeginFromOriginalTitle()
+        {
+            if (busy) return;
+            if (entry.CanRetry || localInitializationFailed) { RetryEntry(); return; }
+            if (login == null) { CheckHealth(); return; }
+            if (connectState != null && connectState.UserCreated) ReadHome();
+        }
+
+        public void SelectOriginalArthur(int role)
+        {
+            if (!busy && entry.Step == CnEntryStep.Character && role >= 1 && role <= 4) arthurType = role;
+        }
+        public void SetOriginalCharacterName(string value)
+        {
+            if (busy || entry.Step != CnEntryStep.Character) return;
+            characterName = value ?? "";
+            if (characterName.Length > 10) characterName = characterName.Substring(0, 10);
+        }
+        public void CreateOriginalCharacter() { CreateCharacter(); }
+        public void EnterOriginalHome() { ReadHome(); }
+        public void RetryOriginalEntry() { RetryEntry(); }
+        public void AcknowledgeOriginalBonus()
+        {
+            if(String.IsNullOrEmpty(bonusKey))return;
+            PlayerPrefs.DeleteKey(bonusKey);PlayerPrefs.Save();bonusNotice="";
         }
 
         private IEnumerator Send(string method, Uri uri, string body, Action<string> receive, Action<Exception> failed = null)
@@ -548,6 +489,8 @@ namespace Kairisei.Recovery
                     request.SetRequestHeader("Content-Type", "application/json; charset=utf-8");
                 }
                 yield return request.SendWebRequest();
+                Exception failure = null;
+                string response = null;
                 try
                 {
                     if (request.result != UnityWebRequest.Result.Success)
@@ -555,13 +498,20 @@ namespace Kairisei.Recovery
                         string text = request.downloadHandler.text;
                         if (request.responseCode == 400 && text != null && text.Contains("no content for the requested platform"))
                             throw new InvalidOperationException("服务器尚未提供与此 Unity 版本匹配的 iOS 资源，需要先构建并配置 iOS 资源包。");
-                        throw new InvalidOperationException("连接失败（HTTP " + request.responseCode + "）：" + request.error);
+                        throw new CnTransportException(request.responseCode, "连接失败（HTTP " + request.responseCode + "）：" + request.error);
                     }
                     if (request.downloadHandler.data.Length > 4 * 1024 * 1024) throw new FormatException("验证响应超过大小限制。");
-                    receive(request.downloadHandler.text);
+                    response = request.downloadHandler.text;
+                }
+                catch (Exception error) { failure = error; }
+                finally { if (pending == request) { pending = null; busy = false; } }
+                try
+                {
+                    if (failure == null) receive(response);
+                    else if (failed != null) failed(failure);
+                    else status = failure.Message;
                 }
                 catch (Exception error) { status = error.Message; if (failed != null) failed(error); }
-                finally { pending = null; busy = false; }
             }
         }
     }

@@ -1,0 +1,32 @@
+{
+  "checkedAt": "2026-11-25T11:51:00.8766540Z",
+  "success": false,
+  "stage": "health",
+  "errorType": "HttpRequestException",
+  "sameIdentity": false,
+  "characterRetained": false,
+  "repeatedDirectBalancesMatched": false,
+  "dedicatedIdentitiesMaximum": 0,
+  "dedicatedCharactersMaximum": 0,
+  "homeRequests": 0,
+  "steps": [],
+  "battleAdmissions": 0,
+  "settlements": 0,
+  "privateIdentitiesUsed": false,
+  "credentialsRecorded": false,
+  "scope": "Actual CnEntryFlow/CnProtocol via Windows HttpClient against the authorized isolated service. One fresh guest/character maximum, two logins using the same in-memory UUID, at most three HomeShow calls with configured reward/persistence side effects. No existing account, battle entry, currency spending or artificial progress/reward. Content-ready is supplied for protocol-only execution: no Unity scene, content loader, resource delivery, mask/GPU, iOS/ARM64 or device acceptance.",
+  "sources": [
+    {
+      "file": "tests/Order05LiveEntryProbe.cs",
+      "sha256": "31a838a9ef7ce10e8864bef89ed56d055e16ebd3d789824c8eafe7e1aa56c528"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "58d1ac65880ba35a6478d32936461c294a61625fa3ddfcddd2691e7a35c3a651"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryFlow.cs",
+      "sha256": "93b0c47ac19cbb630329112740364495c7828439159587957ca174de063208f3"
+    }
+  ]
+}

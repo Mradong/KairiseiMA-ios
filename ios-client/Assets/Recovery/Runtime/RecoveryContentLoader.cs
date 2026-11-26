@@ -13,6 +13,7 @@ namespace Kairisei.Recovery
         public string Error { get; private set; }
         public int Reused { get; private set; }
         public int Installed { get; private set; }
+        public string[] RequiredBundles { get; set; }
         private readonly Dictionary<string, AssetBundle> loaded = new Dictionary<string, AssetBundle>();
         private readonly Dictionary<string, string> hashes = new Dictionary<string, string>();
         private ContentManifest activeManifest;
@@ -77,6 +78,13 @@ namespace Kairisei.Recovery
                     manifest = ContentManifest.Parse(File.ReadAllText(stage),Application.unityVersion);
                     string revision = login.VersionUrl.Segments[login.VersionUrl.Segments.Length-1].Trim('/');
                     if (revision != manifest.contentId) throw new InvalidDataException("Server resource revision differs from login.");
+                    if (RequiredBundles != null)
+                        foreach (string required in RequiredBundles)
+                        {
+                            bool found = false;
+                            foreach (ContentBundle bundle in manifest.DependencyOrder()) if (bundle.name == required) found = true;
+                            if (!found) throw new InvalidDataException("服务器资源尚未包含当前客户端所需的真实场景，请先更新资源交付配置。");
+                        }
                 }
                 catch (Exception error) { Error = error.Message; }
                 if (Error != null) yield break;
@@ -89,6 +97,13 @@ namespace Kairisei.Recovery
 
         private IEnumerator Install(ContentManifest manifest, Func<ContentBundle,string> location)
         {
+            if(RequiredBundles!=null)
+                foreach(string required in RequiredBundles)
+                {
+                    bool found=false;
+                    foreach(ContentBundle item in manifest.DependencyOrder())if(item.name==required)found=true;
+                    if(!found){Error="当前资源缺少必需的真实场景包："+required;yield break;}
+                }
             ContentCache cache = null;
             try { cache = NewCache(); }
             catch (Exception error) { Error = error.Message; }

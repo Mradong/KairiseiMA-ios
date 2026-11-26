@@ -1,0 +1,13 @@
+{
+  "checkedAt": "2026-11-25T10:30:54.966Z",
+  "archive": "dist/order05-role-images-20261125-lyd.zip",
+  "bytes": 2536,
+  "sha256": "9e47ab4d8665aa868f8c5d7c131581d47c11c737045d5c90a1279c99a218a5f3",
+  "scriptSha256": "bf138f808eb53ddbf2a9cf55cf652b287675bd9b85bb841a8933305de458daea",
+  "wrongManifestRefusedBeforeWrites": true,
+  "missingRoleImagesNotReportedAsCopied": true,
+  "allOutputNamesLyd": true,
+  "serverExecuted": false,
+  "accountDataRead": false,
+  "gameRequests": 0
+}

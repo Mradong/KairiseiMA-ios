@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-11-25T10:12:01.779Z",
+  "success": false,
+  "reports": [
+    {
+      "kind": "original",
+      "success": false,
+      "stdout": "canvas=1600,1900\r\nFAIL TypeLoadException: RVA Ϊ non_NULL ���ڲ����÷�����\n   �� live2d.������.draw(DrawParam dp, ModelContext mdc, IDrawContext _cdata)\r\n   �� live2d.ModelContext.draw(DrawParam dp)\r\n   �� CubismModelGeometryProbe.CpuModel.draw()\r\n   �� CubismModelGeometryProbe.Main(String[] args)",
+      "stderr": ""
+    },
+    {
+      "kind": "rebuilt",
+      "success": false,
+      "stdout": "canvas=1600,1900\r\nFAIL TypeLoadException: RVA Ϊ non_NULL ���ڲ����÷�����\n   �� Kairisei.Recovery.Cubism2.CubismType_15.draw(DrawParam argument0, ModelContext argument1, IDrawContext argument2)\r\n   �� Kairisei.Recovery.Cubism2.ModelContext.draw(DrawParam argument0)\r\n   �� CubismModelGeometryProbe.CpuModel.draw()\r\n   �� CubismModelGeometryProbe.Main(String[] args)",
+      "stderr": ""
+    }
+  ],
+  "model": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/moc/uathach.moc.bytes",
+  "modelSha256": "e1d0e8ea9f0377aed1006a12c8aeab008df9df7064e1b32a0e466fd89e31c209",
+  "scope": "Windows .NET CPU-only original managed SDK versus rebuilt Cubism source, real received uathach MOC, 27 actual pose/eye/mouth states; serialized triangle/vertex/UV/opacity/flags compared exactly. Clipping disabled only in this probe and no GPU/Unity runtime or game account used. Does not establish masks, shading, native renderer, iOS/ARM64 or device behavior."
+}

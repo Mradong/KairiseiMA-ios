@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-11-25T07:51:41.922Z",
-  "stage": "ios-resource-cache-bootstrap",
+  "generatedAt": "2026-11-26T02:32:04.554Z",
+  "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
     {
@@ -20,13 +20,13 @@
     },
     {
       "path": "AGENTS.md",
-      "bytes": 5022,
-      "sha256": "8863eb2b31b9e257610ddef54621c2168c2ba7322e2fd97c22457a583f50b85d"
+      "bytes": 6633,
+      "sha256": "14502da5c7dac441e336c83f51d14b95269d7d7b0db3b701971f7e72580df661"
     },
     {
       "path": "EXECUTION_PLAN.md",
-      "bytes": 9200,
-      "sha256": "49127dd6d47348fb7d7703155c0e4334d7bddca82a66e72d7c7abd33ec9d1c7d"
+      "bytes": 9874,
+      "sha256": "1632a91f547fca78f66b2079623de2ea7147f25fa2401bdb77550aa28f9e4610"
     },
     {
       "path": "README.md",
@@ -35,18 +35,18 @@
     },
     {
       "path": "STATUS.md",
-      "bytes": 178357,
-      "sha256": "6cb20a47c754d6f65faa73e80798670dfd91e27989677ee8cf66a11f20e967c4"
+      "bytes": 186890,
+      "sha256": "52099c3dda4aa9927e98121f4f0c70bac94061c66a2097a1eb023783949a2f51"
     },
     {
       "path": "evidence/acceptance.json",
-      "bytes": 119101,
-      "sha256": "7dbbcd591bba554e243166cd8c520b1c30b281e08d68e029f005efde9074f995"
+      "bytes": 123039,
+      "sha256": "15b1d74df82392545d8bc2f507a0ddf62246dd662f256669640ef00d916a8a83"
     },
     {
       "path": "evidence/feature-coverage.md",
-      "bytes": 12407,
-      "sha256": "5f49a8806a34b52d816f8a6a5b0220652a975870875de9ce9c829ee68d697c9f"
+      "bytes": 55821,
+      "sha256": "be1cbd5d63a41f1ebf87259b54b57aa4f5dcd540fea33311e4530a1e62a78ec9"
     },
     {
       "path": "evidence/ios-package-search/cn602-import.json",
@@ -1019,6 +1019,126 @@
       "sha256": "4b97d769a505ece99ea75fe53e3e7c57c043aa0cf6ecf2e1938c0687bf462f9f"
     },
     {
+      "path": "evidence/ios-package-search/order04-baseline-validation.json",
+      "bytes": 1849,
+      "sha256": "e9e4eafccff53b7515da070d7290eeceb68153768e34fbedda552f2076e8afcf"
+    },
+    {
+      "path": "evidence/ios-package-search/order04-completion-audit.json",
+      "bytes": 4692,
+      "sha256": "2f07f214a5238c466848912f0336fb26a76bbffdc172ff7e8115d46607066981"
+    },
+    {
+      "path": "evidence/ios-package-search/order04-feature-baseline.json",
+      "bytes": 919186,
+      "sha256": "534a4959f88965e3c983515a2dc36f5d0d4a26a570c8f557cdfc6295c6b11f82"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-cubism-geometry-differential.json",
+      "bytes": 5321,
+      "sha256": "51e21b555f1cec6c66184948abd1982fa93097326cceec74ef7b0f36ee51a1b6"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-cubism-reference-runtime-failure.json",
+      "bytes": 1641,
+      "sha256": "324906265bc3a12d2c1a79d5186e7bcb56bb61a595a617aa963e47966888cbc2"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-cubism-source-preparation.json",
+      "bytes": 996,
+      "sha256": "3a59b51417b57ac9794945e2bfba83fc024cb8e767301155081c9eac6098e5bf"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-dialog-inputs.json",
+      "bytes": 130,
+      "sha256": "990a7f82f57d9adfcd0d12e8a057416ded3ec3b746f79baea98ad57bdeffdddb"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-entry-flow-tests.json",
+      "bytes": 1226,
+      "sha256": "206a886c47059b4fb301b79a0603582a893fdd9b4a163a1c4cfe18f2522dd4c8"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-live-entry-2026-11-25T11-51-01-013Z.json",
+      "bytes": 1427,
+      "sha256": "cf65da414c7fba67031e5da389f9285f3dd94c096dfa58b0a6e6a9fbb3aabb5e"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-live-entry-2026-11-25T11-53-36-532Z.json",
+      "bytes": 2486,
+      "sha256": "12d0a87e23f85234431ce94c5415066c334296e8f80f0e442a7ef0771939252c"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-live2d-reference-decompilation.json",
+      "bytes": 1016,
+      "sha256": "b0d2bfb9d7c57e92c7b276dc969bece8f982797571384eff4285c928c1d4ddb6"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-original-scene-preparation.json",
+      "bytes": 17898,
+      "sha256": "46e7391e61636af1b822b497f155f3786f44abdd1b2d6535edaaa3baa5f71c50"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-original-scene-runtime-fixes.json",
+      "bytes": 2585,
+      "sha256": "99a4950aea6c8fab207d1aef1c1d12e0c7c8ec941cc72e15380880f5b097972f"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-role-cache-analysis-inputs.json",
+      "bytes": 1592,
+      "sha256": "daeecbad1a341b3028916c627316e6244f5982188de6d77561b259efcc2551ac"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-role-image-collector-package-lyd.json",
+      "bytes": 484,
+      "sha256": "1d79933c945f33c5463228ccecaea93280719d7c55b019831515b83ebecf691c"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-role-image-import-validation-lyd.json",
+      "bytes": 1544,
+      "sha256": "52016b53d442608a9d7d62bb6eb8f1d6eed325156fb7f25344ba187b184c67cf"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-runtime-api-check.json",
+      "bytes": 9543,
+      "sha256": "db13fe2e4814c2623b49d8a058de28b6c7c8e5d6aeaaca9e0063606a7c654b31"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-runtime-api-legacy-compiler-failure.json",
+      "bytes": 533,
+      "sha256": "56fd44ff6527f3c965704a704567e3b96e8c2f868c3e9d4f548cd7be92a76903"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-runtime-reference-compilation.json",
+      "bytes": 7313,
+      "sha256": "07b78488e0e5838c849b3bc2e001c17ab7afe5f90a4ddfdec05cbf25c96928dd"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-scene-resource-collector-package-lyd.json",
+      "bytes": 706,
+      "sha256": "296aaaabf6b8ad108cd233a4205fa73fbf53dd678ff50003bffe6462da71adde"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-scene-resource-collector-tests-lyd.json",
+      "bytes": 945,
+      "sha256": "fff3931158489c0f15bd0574903453582172b6a12f3719bd70a11f848c4f84e0"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-scene-resource-import-validation-lyd.json",
+      "bytes": 2910,
+      "sha256": "35f1dba5610c7a36875de9520cbc1b20de445e49c4fbf2e1398662413eeadfe0"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-scene-resource-inputs.json",
+      "bytes": 3923,
+      "sha256": "e9979afa0f52f04eb272d7c4aa58a99cf5cc0ec2e35e33caf465dec155c870c9"
+    },
+    {
+      "path": "evidence/ios-package-search/order05-world-resource-preparation.json",
+      "bytes": 35224,
+      "sha256": "31c3fd47743cd4c285926f3ed66de13bdb37c7707aea557c8f03fdba5a050d4c"
+    },
+    {
       "path": "evidence/ios-package-search/resource-failure-fixture-tests.json",
       "bytes": 1104,
       "sha256": "dc3c567df2f228c0a28df17cc83514217d9b7c560157a897e8a6f09cc96e50c4"
@@ -1356,7 +1476,7 @@
     {
       "path": "evidence/original-input-verification.json",
       "bytes": 2088,
-      "sha256": "2605783681229624fc4a5be057a238c0cd3a80316b7cef7f831162a6af78d8cb"
+      "sha256": "083edfc848eafbcc5d9fe7f5d1eabe94a33efa39662e852b6831f410ac7b7a23"
     },
     {
       "path": "evidence/protocol-tests.json",
@@ -1425,13 +1545,913 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryBuild.cs",
-      "bytes": 4727,
-      "sha256": "4d555494d413a70116259178c14c4532d58d84fc16e516f11bacd9f4a34c25cf"
+      "bytes": 4703,
+      "sha256": "fc9d5c837275be3138926a74ec2f5583b57d43f37a51176199674127c0a9dcc8"
     },
     {
       "path": "ios-client/Assets/Recovery/Editor/RecoveryContentBuild.cs",
-      "bytes": 7128,
-      "sha256": "fc6d0b97cd6b329ac0bc4bb5d8a71d5c872e1fd158f235c01c3862a02ada4a85"
+      "bytes": 10048,
+      "sha256": "cc0a71b2ed7f6bb9a54d957f6a0c5972c6a5dbc53342fe5524aeed19ece08b45"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/OriginalScenes.json",
+      "bytes": 835619,
+      "sha256": "da47cdc2474948fecb2cc6e2a2c50ae3fcedf7883ea85aca59b5d2ab55d843ac"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-034cf1ce187064ee.png",
+      "bytes": 438444,
+      "sha256": "d050635e4593a441b91f33f9233c6a377a503db04c4c34925af99231932eec16"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-06ac166d068ee988.png",
+      "bytes": 49961,
+      "sha256": "1622a14f4f8670263567c6d1b0e63bd91d7c27dba4a6a8d5bfe1f22b75caf02a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-187986e680b67b13.png",
+      "bytes": 387927,
+      "sha256": "4a7a6e1837ef4193a37ff35fef5a4ce7181106a50351978828c8842417f98661"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-1dc23c8149664482.png",
+      "bytes": 1187535,
+      "sha256": "c80f675943d4caaf5b6763ef5f1cb8ecad0220de5164095ae3cf13e53108b3e7"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-22fa558f14add603.png",
+      "bytes": 2022550,
+      "sha256": "319e86c1b95035629e3d79ad87eb95c6ff55ced7a4bae8185ac350c7cb9c858a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-2b7e37fa0c71134b.png",
+      "bytes": 48421,
+      "sha256": "ebd3c4e9efb6744eeb575741dd964271f17ce951bba5fe482daea755639b8ca3"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-3bbe13ca9359ba50.png",
+      "bytes": 611560,
+      "sha256": "b9f62ccb64fdfba26f899f6b275f5b5d9bd5b49d05b4f915afe3ceaab838bed7"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-3c4dc40942e91e3e.png",
+      "bytes": 673221,
+      "sha256": "be23834462893cacdfff6608c210a71e7ed23c95ae79b86891e3047243cf3732"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-4498014ee1b25b61.png",
+      "bytes": 239,
+      "sha256": "b566afd91aace353462f9c0f80ddbe1b3c3e55436408cb1d83a81cb42f39b681"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-510871e07ad61eab.png",
+      "bytes": 53245,
+      "sha256": "1fc20185819e3132127f52d9d45e548a5b315db497b924f95e9bee7fbddd3897"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-6650ab84c48f3a2e.png",
+      "bytes": 812107,
+      "sha256": "cdc7bf960220fb2f8d941fae763f23145e552a11fdc776a6de8876fff58e6e43"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-6be97ef44f0c72e5.png",
+      "bytes": 1403489,
+      "sha256": "6f9fae419bb48f9875dae485808a6022a8c4b1ae450500f059b4385fca3c8584"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-93d5a219b90807b1.png",
+      "bytes": 747442,
+      "sha256": "4bb271c3e1dad1b4dc7205fd219c40a5ac53d0a18653a2eebc1af699bf4adc58"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-98d67bf6cfd3c1f5.png",
+      "bytes": 251643,
+      "sha256": "4b10ad2eaad3405390ff7ece554e52de2023a26fc49ac40d41d6743e68676903"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-9ffec879238c0d10.png",
+      "bytes": 735415,
+      "sha256": "e218046636180e1ad475ba3a23646cb8b8cd3663c32737807c8d6fc3b900f3be"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-a69ac582609c952d.png",
+      "bytes": 3807118,
+      "sha256": "65ec90c1b8839196aa2dc8e5a4bec098071f83165cca7284dedfb2d6fbd508f0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-ab9f92cbdce8763f.png",
+      "bytes": 283021,
+      "sha256": "28acc7f6bae49af83baabec876a973cfb7a30c26bae034e8f79facf6825e6a0f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-bfd8dd799dccc25e.png",
+      "bytes": 19081,
+      "sha256": "c9aff587dfbdf6c7d0298183d6dc018f68da4377ee9621f728148cd69ce6593c"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-bfe71eb065acf08a.png",
+      "bytes": 365784,
+      "sha256": "9bc112880e9a06800b37eddb8fc9c0f995fce47c2d364a585151a4f30c7f26d1"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-d0651066b6137c5f.png",
+      "bytes": 1492921,
+      "sha256": "77b2b336e25b8c1ba4c2fa07855bdfd532dc6334a23dd31e7c643340b8bdcd16"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-d453900589eef149.png",
+      "bytes": 290141,
+      "sha256": "bd6ce0375a4dbc27ed543d800559e1918afd53b53d0b31ff14944178b00cdd2b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-d92c6f5c50ba44d0.png",
+      "bytes": 340409,
+      "sha256": "fb0da0050df89879648af83206989060d11d7932093adbdd9a9c89f84e51bb4f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-f9adbd1cf24c78c3.png",
+      "bytes": 1300597,
+      "sha256": "45c9cdd821c2357a343f9321bf9073a5569cd1e74a998d1f751e139a472524e5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-fe8dada92dd9d3cf.png",
+      "bytes": 1216890,
+      "sha256": "bd8ab163367e44efe9c198b6607db1012dde3fb38302d49c3471703bbde26645"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalSceneContent/original-ff8ecb8fcb131401.png",
+      "bytes": 8413,
+      "sha256": "604c2677ea91b548c4911dd404a6b27581d457f45ebb161084571c953fccc523"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-647.mat",
+      "bytes": 952,
+      "sha256": "110f78ae4683aa8e59f5d585053570cf12654ce7b55dea5f9a30d69a0dffd27e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-647.mat.meta",
+      "bytes": 227,
+      "sha256": "a19d652e5360c2e1ec0b00654373977ae225c6528c5b60948c430f7cfddefb2a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-648.mat",
+      "bytes": 1132,
+      "sha256": "bf7801c6859fd7f158ec871bae2644382b3f4eb7176d352dae0af17fcaced936"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-648.mat.meta",
+      "bytes": 227,
+      "sha256": "afb0f6299cd35dbbaa99d6746ead7ef27fae86d970d992a3c66bd5c7317d3ed1"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-649.mat",
+      "bytes": 952,
+      "sha256": "3a2310c87c3923c5c74eb89bf2da62869b92bb43d2cfad0e1ac1ec13b3178137"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-649.mat.meta",
+      "bytes": 227,
+      "sha256": "de50531564a42dd9d86d4c80bc21f3e31a87ca94768350697e6ccd11f0accaa2"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-650.mat",
+      "bytes": 970,
+      "sha256": "1b6bb95aafb6429ee26a94a7cbe28cd7855b25fd88084aeaee8a969bdaa9f024"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-650.mat.meta",
+      "bytes": 227,
+      "sha256": "2d6e44b8b007a4f0dde7c11c814f5648d5d44b99e3f223da0b56f3edb2fc22f6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-651.mat",
+      "bytes": 952,
+      "sha256": "ef6c8d32ff3e349fb88c4c6e3ef9cd53690315031b6ad6c18f9135af47ec9274"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-651.mat.meta",
+      "bytes": 227,
+      "sha256": "eabc70e6c617d0e278db640fa9f68b2921b9c9d7115c22816406259816d43624"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/00_sky_tama.asset",
+      "bytes": 35531,
+      "sha256": "0c734a7e6fbc2648657bb27af2ea37a3ae449977020ba4cda667be4f5253b6cd"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/00_sky_tama.asset.meta",
+      "bytes": 227,
+      "sha256": "6dca523d99d6381a90b53b5cb1e2ac91cd89164164c95fd6c6eed70ecc73f578"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/00_yuka1.asset",
+      "bytes": 106248,
+      "sha256": "28e9913f2eece6713bac53d302b0078fca2ca423f8da1f3cb1832b802ca9f589"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/00_yuka1.asset.meta",
+      "bytes": 227,
+      "sha256": "8a39e28251c58ed960aba23e3d91d3ac831e979bd36268cb33ca4f0e8beab0b3"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/01_taki_ball.asset",
+      "bytes": 8616,
+      "sha256": "810daaa491d2c2ccc928e023d573f7c418551a82b654be07dace48cda74e876d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/01_taki_ball.asset.meta",
+      "bytes": 227,
+      "sha256": "c781c5904517b2b38ff7ec7cb68319f93b1e1c6acd395a7e9c207884c5a64d7f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/02_enkei2_bal1.asset",
+      "bytes": 9868,
+      "sha256": "9b849598d7ccb558112a8c721c1f2e8ac4d9be8001db1c93cb07ed130b2d4698"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/02_enkei2_bal1.asset.meta",
+      "bytes": 227,
+      "sha256": "02c6d106dcd105528bcb91b31de1a94c19e6bc320d0510a6d4081aaedf88cd79"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/03_saku1.asset",
+      "bytes": 5682,
+      "sha256": "5cac1cbb8ae56c07e2c5ccd76964099fd15b758fa58a3b8805af6e3606f39ed1"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/03_saku1.asset.meta",
+      "bytes": 227,
+      "sha256": "a3a8edf1749e6bd201fa892eb02c6bac1a3c88476e3546be1e69ff6cd0cb66df"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/04_tuta1.asset",
+      "bytes": 13310,
+      "sha256": "40b1fb4592b00e98becf473e5b64ba3b2112dcd517cf8f784952b34a5c4538b3"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/04_tuta1.asset.meta",
+      "bytes": 227,
+      "sha256": "cd4399b0bdf75c6f430c3d866071bb4a55fee6098a306ce579850938d12811f5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/05_hana1.asset",
+      "bytes": 5684,
+      "sha256": "3a780ed4442b8b605d240b6bfcdc707730764a40350c961d981145b5d277b94f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/05_hana1.asset.meta",
+      "bytes": 227,
+      "sha256": "9df20a2c8db6ef513f2dd9ca5c8adcae385b240b8bbb97d6177587a90aaece22"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/06_hana2.asset",
+      "bytes": 5656,
+      "sha256": "7ed46b96e8b5cfbeeba8f4d6e8ef11816abb82793543115a6ad614f4f5b8c94d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/06_hana2.asset.meta",
+      "bytes": 227,
+      "sha256": "85edb767db141249452e1cd4f004f82dc2eee91e7eff104b1148ea2fcd5c94f8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/07_syokubutu1.asset",
+      "bytes": 44648,
+      "sha256": "49825720f30080712730c11474719a97dbecf0b11f7a4da1599c25a1c5f0b860"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/07_syokubutu1.asset.meta",
+      "bytes": 227,
+      "sha256": "5a28c3bc90c2c0cacd9efc995ff0b569cd9ab9f650c2e639e6b35717be4cc4af"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/08_syokubutu2.asset",
+      "bytes": 45094,
+      "sha256": "da6fb11693f831d5fd871e71786fa456ab0d3309d04a1d142d2d050aed0f476a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/08_syokubutu2.asset.meta",
+      "bytes": 227,
+      "sha256": "f903a8d5432ba3c07dd4898149c32d49e1ae3c5cde32f1fe3aec08fcd82acc37"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/09_syokubutu3.asset",
+      "bytes": 44710,
+      "sha256": "21c2b44fbaaff1a63056a23a6c7fb57fa46966318e79007c872cfe1c164c425d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/09_syokubutu3.asset.meta",
+      "bytes": 227,
+      "sha256": "0cc3555bfaddc14aa90af54aa2c6aad8675eb030a454e52b03050f9615f9dbb6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/OriginalWorld.json",
+      "bytes": 19019,
+      "sha256": "5042a1d082f9bc87d509c26ad3522088ab885dcdb86c50b576563a76af0d6e95"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-normal-masked.shader",
+      "bytes": 1222,
+      "sha256": "c1e25a06f641a64b01995208e534cd2fc9a6a0fdcb496b6c67b8781a8aa2f3e6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-normal.shader",
+      "bytes": 1130,
+      "sha256": "3b3d6d6cac1eebda3b17f85b4b980cf335f7499d78656b1af6fc731844001103"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-premultiplied-masked.shader",
+      "bytes": 1241,
+      "sha256": "6a6c55abe4209f9cc9047bde6cba5b82d4be2a71c8ba30f6ba109680d9adac3b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-premultiplied.shader",
+      "bytes": 1149,
+      "sha256": "d056052c574a820958a9eccbfcff6c9c3a315cbf6471edac358620bba06c237a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/RecoveredShaders/cubism-setup-mask.shader",
+      "bytes": 1165,
+      "sha256": "1918e5233194375275c09595a409648277898954cc6b5c0bcd5b81caf5cca703"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/InsMapShader_ColorAdj_Std.shader",
+      "bytes": 853,
+      "sha256": "9deb70439b6183430276c83c61277d725f73c055dab5cc6d1f54d762506e97f5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/InsMapShader_ColorAdj_Std.shader.meta",
+      "bytes": 243,
+      "sha256": "8ffcd42291c4ba827c764495ea8abb0c6f6e78fdf3b758beaa57fe5e116cd84b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/InsMapShader_ColorAdj_TexAlpha.shader",
+      "bytes": 908,
+      "sha256": "335b03831838adf919e735b58ab565986985f9f91994d44d6080db25692a99c6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/InsMapShader_ColorAdj_TexAlpha.shader.meta",
+      "bytes": 243,
+      "sha256": "8e43117df5fbf44769909dcf6d436ee3053f99b874427b9f7c9cf98a419749ec"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/Mobile_Legacy_Lightmap_Lightmap AlphaTest.shader",
+      "bytes": 903,
+      "sha256": "471e9c8a78b778f63893909a2b6862713b554565ac15322f7209486c3dc84b69"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/Mobile_Legacy_Lightmap_Lightmap AlphaTest.shader.meta",
+      "bytes": 243,
+      "sha256": "20cad783e7defe41a72a36e2d26828e6261f01acabc3e179e91e292b31afa6db"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_beranda04.png",
+      "bytes": 25256,
+      "sha256": "29a56d57c5ac19893b5269cf23782c320c9f717dd25b1b8dd22dfacc428c86ec"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_beranda04.png.meta",
+      "bytes": 2787,
+      "sha256": "0ab4eaa5781dbb3ce7a6c505ebd79487627e087cbe67048da1198c9edde4f135"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_enkei07.png",
+      "bytes": 2633450,
+      "sha256": "95218a84aed24477104ee760fed2796fa73ac4192ebf45986a1a899b0b430eab"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_enkei07.png.meta",
+      "bytes": 2787,
+      "sha256": "253168d60954a13b83f8ee47c1ae66d38d3566e65def0ae76f49b6dad17a5f6b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_sky02.png",
+      "bytes": 272360,
+      "sha256": "f6a622adb135f7cd9c6fe71428f4938105cfbb49d0b93bb40681746de4018bbd"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_sky02.png.meta",
+      "bytes": 2787,
+      "sha256": "9ebc9e7ce9029cfad7b3f8e390ec64f191eb090b33cb50bef31699f640c7ccb8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_taki02.png",
+      "bytes": 8871,
+      "sha256": "33eecbed96c238ecbe9bcfed1c7ff0b15224f607b9f63b7c24162b1de15b2491"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_taki02.png.meta",
+      "bytes": 2787,
+      "sha256": "6cdefac5cb1445a63de6620b5ffb20299244d58137e81b547aa78a877261935b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_yuka03.png",
+      "bytes": 34492,
+      "sha256": "78050e18cc659a2cceb3a6d6d5c47cba1aa1848b4e5db34ce21ef121cebdf99c"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_yuka03.png.meta",
+      "bytes": 2787,
+      "sha256": "a8305514f6e73c9ae8faa61550b57455e7bf39ac620f2993eb4a256d2b819cc9"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_yuka03_LM.png",
+      "bytes": 18725,
+      "sha256": "4db735c06bff350ff862b04a75cfc65c9f7e4af57971e97cb223938764747f52"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_yuka03_LM.png.meta",
+      "bytes": 2787,
+      "sha256": "babf46e461791a5cc959f1b814d1b8117f37b71c0717c37f15ffbe390fea14b0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/02_map_assets/home/home_01000/hm_01000.prefab",
+      "bytes": 29905,
+      "sha256": "1a91b68a3b86a0292735cf3b58ac00020d2ef8145ef287104e32aecfbe9bcb66"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/02_map_assets/home/home_01000/hm_01000.prefab.meta",
+      "bytes": 320,
+      "sha256": "f815caf9d5cf74cd654006a2a9f2d4b3cdc1049543b4d05636e7a833d58961af"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F01.exp.json.bytes",
+      "bytes": 66,
+      "sha256": "3173cfaf18a770909b98adaa3be2f57225c5b7fd4b4939c6e53228179a4b238b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F01.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "5b6bfb0b40691a4289f20dfe60adbf8a9113f4ed87f54cf51b6a58e9919e4490"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F02.exp.json.bytes",
+      "bytes": 423,
+      "sha256": "63cd2c0dfe229547c8293537b8e0549b02725b579f5426693b7a681881aa658e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F02.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "faf8391a3a14d72dd4c305e846595cc28d7fc9f29d21b6be6b428adf3c0b9788"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F03.exp.json.bytes",
+      "bytes": 622,
+      "sha256": "91370b6c107dbc3b19662238d38f16cb20eec62383570e3650b9f066535eaf76"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F03.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "98f40d37d1f5190c34beb220dafff3973e9031435cc07c4c8999a68b341f9ba0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F04.exp.json.bytes",
+      "bytes": 517,
+      "sha256": "ecb93c8742e65a7154cfa3e8680de5d3d6583dd09c39f57d6c4303fa37bd2456"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F04.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "2e8d54b55cab6a246632dafdc14983a0bd60b85c6496ccb74265e81b733ef5cd"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F05.exp.json.bytes",
+      "bytes": 464,
+      "sha256": "07994a675cc665a6fdbf7bededf9e145a0ddcc58c3b88653e738822572ae259a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F05.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "4caf2016c8588d56807cddedba0d1596bebb5520c471e2e7a1702fdd64eeb1b1"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F06.exp.json.bytes",
+      "bytes": 537,
+      "sha256": "e8284fa37e8d6ed60604337eefb47ac84f8b23e859c4e9ac882da40caf66cf85"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F06.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "282d7a0f2765f41fcf45e4e5884905390f1d13fb33625af505689bf17c52aa04"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F07.exp.json.bytes",
+      "bytes": 493,
+      "sha256": "2ba78fb308ca2b0eefc72304db36d311506f22f2fa390a237eab2359ba172201"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F07.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "686c7085493e33b1ecc09d3e97346bd7d58d19f0d80688c95015ddc498405ab5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F08.exp.json.bytes",
+      "bytes": 691,
+      "sha256": "dd63421cf7c2603c136a03c0eb055791ef7e54624930c7c5b2d17094794ab94f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F08.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "37d1d4fca3f786072267a8e7089fb3a292d2aa846704a6fe9da6606bdff1b944"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F09.exp.json.bytes",
+      "bytes": 413,
+      "sha256": "976573040be943fac04f36066fdb91c98a7c35d878c8eaf71053e1b84bcdf5b5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F09.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "4025f667fcb2142e43efa941616d9efad715bf3c7f340a9ff72699038e449909"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F10.exp.json.bytes",
+      "bytes": 613,
+      "sha256": "51d6e8f4eb0ab0ecc6d79de3da27e71d15f6c99d578be18ddde2141b4c9b2508"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F10.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "5556bef38a2cd12a3a9c31517c853b46264d09d948a37e2477c65e8042333d7d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F11.exp.json.bytes",
+      "bytes": 613,
+      "sha256": "f2b1c4369dd743b779140f2f34d8f8f90db843e2d204679a60658c12caddca91"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F11.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "e203292483782e584ac9d4517421583bbef98d60e140a45bc930392c37241e5c"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F12.exp.json.bytes",
+      "bytes": 423,
+      "sha256": "9a317591105395228e0a96be0d03a1bbad097f100a366adfe07c41ccf997eb73"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F12.exp.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "4ffcf998ca4ae736b073ee576d59f56f6bf0e01e8c8de8e79cb4a748ee6429c8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/physics.json.bytes",
+      "bytes": 1842,
+      "sha256": "23a97e0bf769c7733eb29153903575df589241c76026f45003f6160eb43642fd"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/physics.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "34f303551d193df719fa2ac1d769f566f49a030898cb21241a99c54516ec50f6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/pose.json.bytes",
+      "bytes": 259,
+      "sha256": "93d061d7c3b75b59b69443c1e28731c15f4f3d4cb98021803429e18959deea85"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/pose.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "8ab7a01c2d09eb1b6ca63dc0e22136d2b334b566cf8933d6f3e8e2009584818b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach.moc.bytes",
+      "bytes": 266404,
+      "sha256": "e1d0e8ea9f0377aed1006a12c8aeab008df9df7064e1b32a0e466fd89e31c209"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach.moc.bytes.meta",
+      "bytes": 223,
+      "sha256": "2f25daec24ff14e0d4246782f388fa47e707c7bb74108d3d9401ac0e5a0065d7"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_00.png",
+      "bytes": 1302156,
+      "sha256": "f04c5fcb42fa21ea2c93663e6c70db686b5166352384dbe70f6f4a7ec2674bb9"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_00.png.meta",
+      "bytes": 2813,
+      "sha256": "26eed90f4421513eb429b518a71b4fa0d0483711aa6c69b64fd5ad622d45bb07"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_01.png",
+      "bytes": 835336,
+      "sha256": "6481a9e3edaea0fd0c6ee1d531793f93804192587d85e13b686a2f6698436990"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_01.png.meta",
+      "bytes": 2813,
+      "sha256": "103c878da2a74249139fed96b03e02f08ecd84a2fbc3442df51c5d4db229aad7"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_02.png",
+      "bytes": 1225484,
+      "sha256": "2f4db41c8e0e92d89e49eb2c449ee336e1ae6a366fb2d2b20740e15a40e5147c"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_02.png.meta",
+      "bytes": 2813,
+      "sha256": "6658aabed4492f54e65c837aa4e75956cdc6ea6c9442227703cb179fc6aac0e3"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_03.png",
+      "bytes": 392332,
+      "sha256": "fb53e990b1811981c7845b182362f9f7e41b50c4449fdd875564dd13ccd94a83"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_03.png.meta",
+      "bytes": 2813,
+      "sha256": "787f2c6cc6253db8a180b83a66de28162ce808fb6dafed0afc6c0159dde5c846"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_P06.mtn.bytes",
+      "bytes": 1650,
+      "sha256": "473107e81d9342ae050cb8b3aa6c3a66e5e68188340235f7298f2761abc274cf"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_P06.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "754dde1daa5a9d8d9d098f748474d31dee0c2725f4b72f11b91707f4b4402eda"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01.mtn.bytes",
+      "bytes": 8518,
+      "sha256": "33d63dd86278a8da8f3a40214b11ee6fd9369a59f152a0d88c4625c7024d4dfa"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "7337ee2aaabbf148f04b3e09549d64b0cdeeb5eebff4ab025961c76bae5701f0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes",
+      "bytes": 9256,
+      "sha256": "d08419c8322d52c9530ecf6499888eb0ba25e662a635462db5353ebb5e31ab81"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "692b63c68f066bdf3c964cd0aa1f014c70c75523d68c37ef54229b18fd022f24"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P03.mtn.bytes",
+      "bytes": 8517,
+      "sha256": "9251c9f85b1bd9a57af47475d48fcf73f4421b2926839ef41eb14a7dc09b559d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P03.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "9e607cd9ac648ddd70cd47c89691757670579fe0983f9264287967c0224ea53f"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes",
+      "bytes": 9266,
+      "sha256": "d023cf6a588226fe2d1708110eed52352b7533f107117c2b0e8a0f58eee80184"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "af36dbb3560b64cafcdfc7ddc8c24dc59a480694249e97eafee85e1b305384e7"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P05.mtn.bytes",
+      "bytes": 8519,
+      "sha256": "38f446e69b76282b704055cb91378a952d0f1cf38f7a029d1d9c056c00b15a1c"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P05.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "a3c8c352ab0aec73f12b72986c9235b146b85d5b20bba5e6199810fabf4497e0"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes",
+      "bytes": 9171,
+      "sha256": "8ccda3d50712360a75b36ba6d4a6a5310fcd9fe9b978bc050b181d27fdfd0332"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "2a06aa6f4f463057bfdb562354dfccedb1c2de4dfd679740f493bc13025f5c29"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes",
+      "bytes": 11208,
+      "sha256": "34f136393a099743039a9b6853391393f46f254e50c5e6572a8901995ea75b4c"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "e319a374f69ac119b633f3ba7a13f0e53df8cfe8ea9c4161d8dde2a8e9dcda51"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_01.mtn.bytes",
+      "bytes": 1384,
+      "sha256": "9ba1839463e7bb1422ea281b26f7d9b2332d57d2819e9206cebc350e9db5c2ea"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_01.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "62bda0111b292e3d130554057b70fd1cd48c0c47860e65359e28b48f3ff83220"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_02.mtn.bytes",
+      "bytes": 2094,
+      "sha256": "381c2709b76e45e84784234985c3fb643581519188da707ff74f379a523241fb"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_02.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "5828b0b7530dfd64aaee8ce0ccdf4339fade0a9c317fe6d9c5c4cb3e6b5d468e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes",
+      "bytes": 2708,
+      "sha256": "51350e2b85e3bd64784fc78b13ad6f49f3fd65efa4367469bacbeda03115c4e5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "d987861c7842357ab883909a975beb3432586fdf0155210a5645b80c7b834f95"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes",
+      "bytes": 14464,
+      "sha256": "d816a6cf7eb2112ebc39db1740e1d6e13bf1d52a91e240c048514e6663974712"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "ff127c667dfffa13216a40f4e3a0e776f51d569bf0c9bdea71ff72acb3999a7d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05.mtn.bytes",
+      "bytes": 17003,
+      "sha256": "54140860a570aa242f0340802bd91dd0447f50a2ecae9ca73f26322b9c5e1863"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "12b6d8b9008b1de58e31bb49621e78ccfcc55108a418f5aa8d715740407b4bc6"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes",
+      "bytes": 5247,
+      "sha256": "3271b0e00600c8e64477c7711a3e67d2c2e5a3cfcf1adfc12d81139795c78aba"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "7292818c7a21e1b1bde3cdc8e235f9b6d33b2cb3635eaf32db68b6d1053b2767"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes",
+      "bytes": 2863,
+      "sha256": "73495a3c5974de13dcbe375f307d3f0002bac69477e27766deac0e80ea7f3560"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "7b81e246e3745297eba6547680308a83d2ad3550357bb796953690fc83ac010e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06.mtn.bytes",
+      "bytes": 30199,
+      "sha256": "2074c8204d6a89b411b84bf078ba538d6f75508db784f9935361bc226dc78921"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "95221eb9a205b2dcf9293778f31a4d7dde9a17e2f203895988aae54823d07d1e"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes",
+      "bytes": 4863,
+      "sha256": "e2db9302e238edbe8831a923fa7d608accf93f5f9c65ddd3105689559650e03d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "7466a211b811b29bd3ab4ab3b96090c73efe512d5fee81d25af66a8b469cfc8b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes",
+      "bytes": 19988,
+      "sha256": "2c69cc61f6ad9213910e49c212a1c32c7e93845011efc253f40f482d3e82da2b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "6d2d51391fc67ce189908d1687bb2da44b3270d9ce4fa1bcba8918ccac62a358"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07.mtn.bytes",
+      "bytes": 14790,
+      "sha256": "ed419ce6e6c8002a5e115067887ac7d71aaf237574577f7fba9d43c739a98dab"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "150a3313ae993e4abcd347c2491a6c0092b6c739a49cf4c9a6d7f6fdb4222ca2"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes",
+      "bytes": 3748,
+      "sha256": "4814ebb350d2d0bf10626b1c98bd164fee23ebdc07910602b1371980ce38356a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "5eea7b786999e6335e45e6a1e1890513dfe421edcd2199863d9da5d3737f6b22"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes",
+      "bytes": 7229,
+      "sha256": "cf96130210780ec15173f0d63b6d0e1cacda1d3ca590e12b8a3a73d0ca640523"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "cad7dbb2759873801ba52912b8df80a62cb3969ee73e36e7f58ef2334aa7be0a"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes",
+      "bytes": 8287,
+      "sha256": "85c18e5727b9975a1799559426997e90f2baa6d00d16c321f153130e082f4155"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "ab7b96684f1563a63d1a719a9c123fb00318a0f52e5368f39573c012149bb3b5"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08_02.mtn.bytes",
+      "bytes": 7263,
+      "sha256": "ac8fe8735ce0ddf9a000bed1ec1021f2cd98e718467f575bf4f7ac0bc500807d"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08_02.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "436d81c7b365cd2ac77bc719e816a993c1622e37f2c0448857a2065c895a99a8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes",
+      "bytes": 12051,
+      "sha256": "41bf7a9d9c095a0855ce41774c617db561a65b84fb14f34a2dc8ed411e158abd"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "6a5b066494eb378ba51d008f16147bf565a583c2c51fb902b8d789082c92a898"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10.mtn.bytes",
+      "bytes": 18835,
+      "sha256": "5ad2b2da467aecf6559fb129d727900511cfb2f993bd46ce6b902c475efb5fd4"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "6daa97f0ac21b0f354dbc22facc86f6d7856d7758d6237cff7a70b09e12aab43"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes",
+      "bytes": 4213,
+      "sha256": "3d8c1701b069fdad64886802f04ceabf421cc42d5e77d7e71760a0e8aedd2da1"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "7211ca6322609c07afe5a613638795ba08400a4599daaa1c6aeb5b88afe79aa8"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes",
+      "bytes": 3493,
+      "sha256": "15d26cf4b793231f934391186d839718ed69acea2631d979b77d640fe3bd5991"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "5c5bf8246ac2db469d73846e90d3a67abd44b81e304805e92d54efc041e7faef"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes",
+      "bytes": 7390,
+      "sha256": "92f0c9b306d63ec060728591515fe556a963de812eace085853e2a4e1a1bf294"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes.meta",
+      "bytes": 223,
+      "sha256": "6edd179c63d1019468f665502644f8611b139b1055f13b2d80b89f475c0f533b"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/uathach.model.json.bytes",
+      "bytes": 5412,
+      "sha256": "d41eb18a1f61c365d53e61ef1e32fd60f3731bfafd3a8f931c43d310772e6aad"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/uathach.model.json.bytes.meta",
+      "bytes": 223,
+      "sha256": "5f29169f0dafc17546351dc11206f5752ab0aed1d9336213049f406ebaf55105"
     },
     {
       "path": "ios-client/Assets/Recovery/Resources/NativeValidationBattle.json",
@@ -1474,6 +2494,16 @@
       "sha256": "6c7e76c2264d618fd2b431ab245b133bb9bf462a0b895f26b79c2060971a72f6"
     },
     {
+      "path": "ios-client/Assets/Recovery/Runtime/CnEntryFlow.cs",
+      "bytes": 5126,
+      "sha256": "93b0c47ac19cbb630329112740364495c7828439159587957ca174de063208f3"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/CnEntryJournal.cs",
+      "bytes": 2316,
+      "sha256": "34a4dbf69fdcfbe83f0b4b130e5070b2ccf5a590e096b50827c8ba97c6df30e2"
+    },
+    {
       "path": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
       "bytes": 38004,
       "sha256": "58d1ac65880ba35a6478d32936461c294a61625fa3ddfcddd2691e7a35c3a651"
@@ -1494,14 +2524,39 @@
       "sha256": "e1b05d6a86064ff3f8575b954fd17907b91bcf3f1e6e8c9c8676afa83bf1a06e"
     },
     {
+      "path": "ios-client/Assets/Recovery/Runtime/OriginalLive2DShaders.cs",
+      "bytes": 934,
+      "sha256": "3c0b736160a5b68da7bff9e335c1f2df30d2e161cb6c057ebe29672d18588f67"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/OriginalNaviModel.cs",
+      "bytes": 5601,
+      "sha256": "dfa87764461fc28bdce98e6950ccc9b6d7665d19415f3d6861b95ad585304e59"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
+      "bytes": 31275,
+      "sha256": "d0936af2eecd39eaba168e79c7b1f0ad171366f1bb1da8e5dba5f179e32deb88"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneSprite.shader",
+      "bytes": 861,
+      "sha256": "765749a29c51cfa9ce8487e6af8fd9193749d197659e2ee281a3f998389ddcd2"
+    },
+    {
+      "path": "ios-client/Assets/Recovery/Runtime/RecoveredCubism2.cs",
+      "bytes": 284404,
+      "sha256": "482fc4110c2deb8f75bb55a804032ad967f417cf3cfc8b9b6876ae86194d8d4d"
+    },
+    {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs",
       "bytes": 2339,
       "sha256": "31eb95df4ce2396797a6b3cb5543de56ef68fec1170dcc8eac965c0a9100d9a6"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
-      "bytes": 34658,
-      "sha256": "2a35f920400cc2f17e064ba99b48ff544aacae7f374cb5e46c8bfe8fe8d556bc"
+      "bytes": 27659,
+      "sha256": "b9aa6fb6d68b92d382e303f0b2fdaba1c9abaf664ae8fea8753ee4135d81bd34"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
@@ -1510,8 +2565,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
-      "bytes": 11313,
-      "sha256": "902844a35cae1fc4ce931f8ea9d695beb54139e6d08f56fbaade65e790efee42"
+      "bytes": 12284,
+      "sha256": "1d536012f6eab2445b50e1fca75ba996bb11666561296eeda5eafbda90022c6f"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/link.xml",
@@ -1749,6 +2804,16 @@
       "sha256": "106c8b71afbfd5d75626cd0b3ab6c339d5cba7475c78a41f4b9b1bf6b111cc40"
     },
     {
+      "path": "scripts/Import-Order05-RoleImages-lyd.ps1",
+      "bytes": 3922,
+      "sha256": "44e97fdb3fd168032ae24ddf654a9ff9082c73144201ae6e93331e57f466d553"
+    },
+    {
+      "path": "scripts/Import-Order05-SceneResources-lyd.ps1",
+      "bytes": 6173,
+      "sha256": "cc4c134693555019582e2513da73e678bc0a73ca40254f55bf5433f4753f1915"
+    },
+    {
       "path": "scripts/Install-Order03SoloFix.ps1",
       "bytes": 6344,
       "sha256": "05a5045781ef5d23073f3506fc3c43f3b41cdafedb96ec7cc7fdc8b84139736c"
@@ -1934,6 +2999,11 @@
       "sha256": "a37445b37d88bb74bc7afa286a79c055e57b83df11fef94b4f832e578685f4d3"
     },
     {
+      "path": "scripts/audit-order04-feature-baseline.mjs",
+      "bytes": 24657,
+      "sha256": "0a576611502593a5ed3ce0b0c934854adb63b04ce69432eb034314dca2026d38"
+    },
+    {
       "path": "scripts/build-order03-durable-solo.mjs",
       "bytes": 5374,
       "sha256": "8bf9feb72b0f8d7f7c6fc6d977e3bec5dece59ea34d216515bc24d4ad8248d9d"
@@ -1942,6 +3012,21 @@
       "path": "scripts/check-order03-readiness.mjs",
       "bytes": 22792,
       "sha256": "57ef83e3c4427bc47ad6571a93e2ab14546175cfa58044542bfafa988ead6f2b"
+    },
+    {
+      "path": "scripts/check-order05-runtime-reference.mjs",
+      "bytes": 2523,
+      "sha256": "483e39cb6aba4f0c1540f9ceadf13ecbdb438696731d3495fee2d1c32bf2d6d2"
+    },
+    {
+      "path": "scripts/check-unity-runtime-api.mjs",
+      "bytes": 2772,
+      "sha256": "550670f140dde205907a38ea9ca9643c993036a864cde49b6529d42765917c5a"
+    },
+    {
+      "path": "scripts/decompile-order05-live2d-reference.mjs",
+      "bytes": 4678,
+      "sha256": "e6c630bdd4e6634fe5624a78224740b686586c43f97fd81643dbc6efe635b2f5"
     },
     {
       "path": "scripts/export-unity.mjs",
@@ -1982,6 +3067,11 @@
       "path": "scripts/order03-runtime-supplement-validation.mjs",
       "bytes": 12721,
       "sha256": "f08ea1cb328439d660e1028f701893444ae0655203ef3bb2c76a6fd7922704cc"
+    },
+    {
+      "path": "scripts/order04-feature-specs.json",
+      "bytes": 31765,
+      "sha256": "1d0d67d8711a550a9c18eabcd6ee7b01367a6a6fc4c22bdecbde4ba1cf4a8375"
     },
     {
       "path": "scripts/prepare-order03-candidate-snapshot.mjs",
@@ -2027,6 +3117,31 @@
       "path": "scripts/prepare-order03-startup-pin-package.mjs",
       "bytes": 4326,
       "sha256": "79eeecfdee597ede8e1318a3017069e934f6da88dd0fd561581debfb87c0eb7f"
+    },
+    {
+      "path": "scripts/prepare-order05-cubism-shaders.mjs",
+      "bytes": 3014,
+      "sha256": "8af01c9031dfa8dc6c0981aa8db68b10f1f16a8a88faaeddb1106e4ae13fab65"
+    },
+    {
+      "path": "scripts/prepare-order05-cubism-source.mjs",
+      "bytes": 3124,
+      "sha256": "6c0935aba4b4c6148902535d9f8ad744f9f51a0b86ff6bb6387229d17a345a04"
+    },
+    {
+      "path": "scripts/prepare-order05-original-scenes.mjs",
+      "bytes": 17562,
+      "sha256": "1ae8043ca77c5e4d891abdb0de43e1ee890e724762a0526176746eb1052b3910"
+    },
+    {
+      "path": "scripts/prepare-order05-scene-resource-collector.mjs",
+      "bytes": 3126,
+      "sha256": "8b21d13eb2d3fd1b8570d579b201da4b1964610763a3547c877666d9936b358e"
+    },
+    {
+      "path": "scripts/prepare-order05-world-assets.mjs",
+      "bytes": 6521,
+      "sha256": "67d062235ae8c002b14fa3ce28d4344965344358a567f6ec96ce7a10cff5151b"
     },
     {
       "path": "scripts/prepare-registered-wave-checkpoint.mjs",
@@ -2079,6 +3194,11 @@
       "sha256": "2d8749d2e7a653edbb3b53706a7c0c20680cf56dfda2d613df41221e07e865be"
     },
     {
+      "path": "scripts/probe-order05-live-entry.mjs",
+      "bytes": 1726,
+      "sha256": "cd5e1dd7d60c263051007dd2fe8c3d53652fb742d1b2b3cc14770a3c06eff806"
+    },
+    {
       "path": "scripts/reproduce-order03-reviewed-patch.mjs",
       "bytes": 6475,
       "sha256": "0fdedd678451b5ed4f55fca3f7a766aee9ca42b9341934a95e77f1303dbc2e9a"
@@ -2087,6 +3207,11 @@
       "path": "scripts/resource-failure-fixture.mjs",
       "bytes": 2935,
       "sha256": "03706c7d25d648bcd54b63305883e1a9ca5d6310f81033886ae60eaa816a72e8"
+    },
+    {
+      "path": "scripts/review-ci-checkpoint.mjs",
+      "bytes": 21012,
+      "sha256": "9d608d4478ad4d4058ec46eb4c414de240b09a77f63554efaf7e8c0007407144"
     },
     {
       "path": "scripts/run-tests.mjs",
@@ -2294,6 +3419,21 @@
       "sha256": "b523782d005c3b00cf80e8a9bfd8d995c2841df958c13ec84e68a77e51eb503f"
     },
     {
+      "path": "scripts/test-order05-cubism-geometry.mjs",
+      "bytes": 2885,
+      "sha256": "484eeab7a3820f81b4798778b66d41b534d806a10efa49c9bc508eca7dec7b7e"
+    },
+    {
+      "path": "scripts/test-order05-entry-flow.mjs",
+      "bytes": 2059,
+      "sha256": "d524f2780b8a10e2397c0644f9199c610c629f8fc4de7d44d4a0da14f2e06af0"
+    },
+    {
+      "path": "scripts/test-order05-scene-resource-collector.mjs",
+      "bytes": 4285,
+      "sha256": "78f4b176445e76b4bf19e906b2b62a8bd81074d8deefbf9dcba67066da8e0791"
+    },
+    {
       "path": "scripts/test-prepared-card-query.mjs",
       "bytes": 2180,
       "sha256": "8a892c2a96c60e4aa999871d05f11256640776d1d843146f4c65862592353d1d"
@@ -2389,6 +3529,11 @@
       "sha256": "4ceb2591cedc4e7e773911eb82412eb001ea61f8f76c9d57060ee7b87327486d"
     },
     {
+      "path": "tests/CubismModelGeometryProbe.cs",
+      "bytes": 4766,
+      "sha256": "14f4c1c0e110b36440708747ec79921585aacce4ab0ac86d2b91faf6740ae80e"
+    },
+    {
       "path": "tests/DeckSaveRecoveryTransportTests.cs",
       "bytes": 2820,
       "sha256": "1b837027bf867cde44bb8335d199b9f09506eaface4a4ffc6ba2494f118b7b87"
@@ -2402,6 +3547,11 @@
       "path": "tests/NativeEnumSchemaProbe.cs",
       "bytes": 2724,
       "sha256": "8711ef6efbc251ffd63b5a81d835ead8dff72d0972ba009bba33e34f8eb9a8a5"
+    },
+    {
+      "path": "tests/NormalizeCubismMetadata.cs",
+      "bytes": 3352,
+      "sha256": "a44a977b81c6f96f93f3c915b2f9d5cfae9c377bceba5f978ad0323beb798c05"
     },
     {
       "path": "tests/Order03ArthurTypeProbe.cs",
@@ -2502,6 +3652,16 @@
       "path": "tests/Order03TurnQueryProbe.cs",
       "bytes": 4453,
       "sha256": "fdf7beb5070ff67865ecb321e6160c3196d44fb47a1ecb4d2813f17a599e5605"
+    },
+    {
+      "path": "tests/Order05EntryFlowTests.cs",
+      "bytes": 6911,
+      "sha256": "a964bf2dc23e394a0d736fce204fdb8aadd4c9940044bd08ca6e1cb0c25df123"
+    },
+    {
+      "path": "tests/Order05LiveEntryProbe.cs",
+      "bytes": 6722,
+      "sha256": "31a838a9ef7ce10e8864bef89ed56d055e16ebd3d789824c8eafe7e1aa56c528"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",
@@ -2605,8 +3765,8 @@
     },
     {
       "path": "新窗口接手.md",
-      "bytes": 63812,
-      "sha256": "5d0efecd13be86a1f7ce9d219a817d062e04181d440f2db2520d10565e7b2047"
+      "bytes": 66944,
+      "sha256": "b4bca13e9a7fb0da9863a5f75d871aa8febea3e5450de7f3e5bb9f224fb684c5"
     },
     {
       "path": "服务端协作需求.md",
@@ -2615,8 +3775,8 @@
     },
     {
       "path": "详细执行计划.md",
-      "bytes": 13655,
-      "sha256": "e9e0779ed34b629fd3606afc4a50326a0e4b1c0eafc510e9922b664604a30709"
+      "bytes": 14714,
+      "sha256": "26263ead3a623453d94b849138bc54e21ea8437c1e0926f51c171268b3509169"
     },
     {
       "path": "资源切换设备验证.md",
@@ -2634,7 +3794,7 @@
       "sha256": "79842a51cab9bf4a3b997b4a0c605ad67c563af3659edb0edee8972fab2c41de"
     }
   ],
-  "bytes": 32112955,
+  "bytes": 60787057,
   "privacy": "Explicit source, synthetic fixtures, tests and acceptance evidence only; original DLLs, user account data, saves, credentials, licenses and local tools are excluded.",
   "execution": "Source checkpoint; the Windows comparisons require a separately supplied original DLL. This manifest does not claim an iOS build or device validation for this source."
 }

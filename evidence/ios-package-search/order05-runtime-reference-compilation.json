@@ -1,0 +1,102 @@
+{
+  "checkedAt": "2026-11-26T02:10:58.123Z",
+  "success": true,
+  "compiler": "Microsoft.Net.Compilers.Toolset 4.12.0",
+  "referenceVersion": "UnityEngine.Modules 2021.3.33",
+  "targetUnityVersion": "6000.3.26f1",
+  "stdout": "ios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(8024,24): warning CS0809: 过时成员“Live2DModelUnity.deleteTextures()”重写未过时成员“ALive2DModel.deleteTextures()”\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(8135,5): warning CS0612: “Live2DModelUnity.setCulling(bool)”已过时\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(44,25): warning CS0169: 从不使用字段“RecoveryBootstrap.bonusScroll”\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(6882,23): warning CS0169: 从不使用字段“CubismType_51.CubismField_343”\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(7151,17): warning CS0649: 从未对字段“CubismType_56.name”赋值，字段将一直保持其默认值 null\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(6032,19): warning CS0649: 从未对字段“CubismType_43.CubismType_46.rect”赋值，字段将一直保持其默认值 \r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(7588,23): warning CS0414: 字段“CubismType_60.CubismField_422”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(6059,26): warning CS0414: 字段“CubismType_43.CubismField_308”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(6075,23): warning CS0414: 字段“CubismType_43.CubismField_316”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(39,21): warning CS0414: 字段“RecoveryBootstrap.editSlot”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(24,22): warning CS0414: 字段“RecoveryBootstrap.showingQuests”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(8015,23): warning CS0414: 字段“Live2DModelUnity.CubismField_463”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(32,22): warning CS0414: 字段“RecoveryBootstrap.showingDeck”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(6057,27): warning CS0414: 字段“CubismType_43.CubismField_307”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(40,21): warning CS0414: 字段“RecoveryBootstrap.cardChoice”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveryBootstrap.cs(28,21): warning CS0414: 字段“RecoveryBootstrap.soloPartnerIndex”已被赋值，但从未使用过它的值\r\nios-client\\Assets\\Recovery\\Runtime\\RecoveredCubism2.cs(5183,15): warning CS0414: 字段“CubismType_34.CubismField_222”已被赋值，但从未使用过它的值",
+  "stderr": "",
+  "sources": [
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryFlow.cs",
+      "sha256": "93b0c47ac19cbb630329112740364495c7828439159587957ca174de063208f3"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryJournal.cs",
+      "sha256": "34a4dbf69fdcfbe83f0b4b130e5070b2ccf5a590e096b50827c8ba97c6df30e2"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "58d1ac65880ba35a6478d32936461c294a61625fa3ddfcddd2691e7a35c3a651"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CombatTableSet.cs",
+      "sha256": "c6d83ed0f892cc76abfc0578c95c177fb2f1270b483ce6a3ed6b6d22a8ccf2dd"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/NativeBattleValidation.cs",
+      "sha256": "73561296629abcb74fa61567c386188b54aa4e8be0ee92c6fc760df66d9beeec"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/NativeRegisteredBattle.cs",
+      "sha256": "e1b05d6a86064ff3f8575b954fd17907b91bcf3f1e6e8c9c8676afa83bf1a06e"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/OriginalLive2DShaders.cs",
+      "sha256": "3c0b736160a5b68da7bff9e335c1f2df30d2e161cb6c057ebe29672d18588f67"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/OriginalNaviModel.cs",
+      "sha256": "dfa87764461fc28bdce98e6950ccc9b6d7665d19415f3d6861b95ad585304e59"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/OriginalSceneRenderer.cs",
+      "sha256": "d0936af2eecd39eaba168e79c7b1f0ad171366f1bb1da8e5dba5f179e32deb88"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveredCubism2.cs",
+      "sha256": "d9e9c509bd10ef29770a13679ff31a44234fa1f03b90fd6e8458968124fabb49"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryAtlas.cs",
+      "sha256": "31eb95df4ce2396797a6b3cb5543de56ef68fec1170dcc8eac965c0a9100d9a6"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryBootstrap.cs",
+      "sha256": "b9aa6fb6d68b92d382e303f0b2fdaba1c9abaf664ae8fea8753ee4135d81bd34"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContent.cs",
+      "sha256": "ee9eb897602301e6312c039365dc4e81dd2797e4e3f30547f9f533d8740d2313"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/RecoveryContentLoader.cs",
+      "sha256": "1d536012f6eab2445b50e1fca75ba996bb11666561296eeda5eafbda90022c6f"
+    }
+  ],
+  "referenceAssemblies": [
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.CoreModule.dll",
+      "sha256": "3cbe147e5c2d5c8d32c1065671ca02035700a0a329607ad5baf689312b0aaad7"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.AssetBundleModule.dll",
+      "sha256": "5df492899c74df34ea016a93d926f71c729c11f89486ad7738d02a64ba52b5e8"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.IMGUIModule.dll",
+      "sha256": "3fe2afaf000557ec559b485ba664d7de7c3f9190e1747518dc35cdd980b092b4"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.UnityWebRequestModule.dll",
+      "sha256": "13ad70a7b6f6470355ca60e3e52029764f5d9c9be7c6c1e2beef29f6bbdce159"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.TextRenderingModule.dll",
+      "sha256": "16f4576102de45eac5f03726a0d421e044a6e22a186eb770428e47b59b6668b1"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.JSONSerializeModule.dll",
+      "sha256": "c69ae3ea6da0fc4633e912b7c3d79018672b11be022d109e65ba58013cc80ca1"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.InputLegacyModule.dll",
+      "sha256": "303b7e4089e85fb9794f1e88a74c652ef85ce0ffa3e2da0b839a7a59ea42858e"
+    },
+    {
+      "file": "tools/csharp/unity-reference/UnityEngine.PhysicsModule.dll",
+      "sha256": "426af91674144c44d0acaf67b4fb94c3e2f61d1f145051dd017e7af6044e4887"
+    }
+  ],
+  "scope": "Auxiliary Windows C# source compilation against complete Unity 2021.3.33 API references. Original Unity 6000 client symbols are trimmed and cannot establish a complete API surface. This check does not establish exact Unity 6000 compatibility, Editor/IL2CPP/Xcode/shader builds, runtime rendering, iOS resources or device behavior. Reference DLLs are never executed or shipped."
+}

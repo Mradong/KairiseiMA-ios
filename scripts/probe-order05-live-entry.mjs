@@ -1,0 +1,13 @@
+import fs from 'node:fs';import path from 'node:path';import crypto from 'node:crypto';import {spawnSync} from 'node:child_process';import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const out=fs.mkdtempSync(path.join(root,'test-output/order05-live-entry-'));
+const library=path.join(root,'tools/Newtonsoft.Json/lib/net45/Newtonsoft.Json.dll');fs.copyFileSync(library,path.join(out,'Newtonsoft.Json.dll'));
+const sources=['tests/Order05LiveEntryProbe.cs','ios-client/Assets/Recovery/Runtime/CnProtocol.cs','ios-client/Assets/Recovery/Runtime/CnEntryFlow.cs'];
+const exe=path.join(out,'Order05LiveEntryProbe.exe');
+const compile=spawnSync(path.join(process.env.WINDIR,'Microsoft.NET/Framework64/v4.0.30319/csc.exe'),['/nologo','/codepage:65001','/reference:'+library,'/reference:System.Net.Http.dll','/out:'+exe,...sources.map(p=>path.join(root,p))],{encoding:'utf8',windowsHide:true});
+if(compile.status!==0)throw new Error(compile.stdout+compile.stderr);
+const run=spawnSync(exe,['http://47.116.51.61:27040'],{encoding:'utf8',windowsHide:true,timeout:120000});
+if(!run.stdout.trim())throw new Error('Probe produced no sanitized evidence.');
+const report=JSON.parse(run.stdout.replace(/^\uFEFF/,''));report.sources=sources.map(file=>({file,sha256:crypto.createHash('sha256').update(fs.readFileSync(path.join(root,file))).digest('hex')}));
+const stamp=new Date().toISOString().replace(/[:.]/g,'-'),evidence='evidence/ios-package-search/order05-live-entry-'+stamp+'.json';
+fs.writeFileSync(path.join(root,evidence),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify({evidence,...report},null,2));if(run.status!==0||!report.success)process.exitCode=1;

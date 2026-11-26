@@ -11,12 +11,12 @@ namespace Kairisei.Recovery.Editor
 {
     public static class RecoveryBuild
     {
-        private const string ScenePath = "Assets/Recovery/Scenes/Recovery.unity";
+        private const string ScenePath = "Assets/Recovery/Scenes/Title.unity";
 
         [Serializable]
         private sealed class BuildStage
         {
-            public string stage = "ios-resource-cache-bootstrap";
+            public string stage = "ios-login-home";
             public bool gameplayReady = false;
             public bool nativeBattleValidation = true;
             public string unityVersion;
@@ -61,9 +61,9 @@ namespace Kairisei.Recovery.Editor
             RecoveryContentBuild.BuildIOS();
             CreateScene();
             PlayerSettings.companyName = "KairiseiRecovery";
-            PlayerSettings.productName = "Kairisei Connection Test";
-            PlayerSettings.bundleVersion = "0.0.8";
-            PlayerSettings.iOS.buildNumber = "8";
+            PlayerSettings.productName = "Kairisei Recovery";
+            PlayerSettings.bundleVersion = "0.0.9";
+            PlayerSettings.iOS.buildNumber = "9";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "local.kairisei.recovery");
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(NamedBuildTarget.iOS, 1); // ARM64

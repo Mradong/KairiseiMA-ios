@@ -1,0 +1,31 @@
+{
+  "checkedAt": "2026-11-25T11:16:36.873Z",
+  "records": [
+    {
+      "role": 1,
+      "source": "../client-data/persistent/patch/main_c/image/image_chr82_30_001.dat",
+      "file": "inputs/order05-role-pc-cache-analysis/image_chr82_30_001.dat",
+      "bytes": 976648,
+      "sha256": "a7df8d9bcc8eee412920dc6f04edf5f7f08ac6170bb09609054dcb3be5a66956",
+      "relationshipToCanonical": "UNKNOWN: canonical file received and pinned separately; this PC cache is a resource-only decode source, not a claimed byte-equivalent published version."
+    },
+    {
+      "role": 2,
+      "source": "../client-data/persistent/patch/main_c/image/image_chr82_30_002.dat",
+      "file": "inputs/order05-role-pc-cache-analysis/image_chr82_30_002.dat",
+      "bytes": 839462,
+      "sha256": "c2293d3e8827ff8fd8815ee2fd88c978d7e1d8cbfc143c578ebde5c1642c634b",
+      "relationshipToCanonical": "UNKNOWN: canonical file received and pinned separately; this PC cache is a resource-only decode source, not a claimed byte-equivalent published version."
+    },
+    {
+      "role": 3,
+      "source": "../client-data/persistent/patch/main_c/image/image_chr82_30_003.dat",
+      "file": "inputs/order05-role-pc-cache-analysis/image_chr82_30_003.dat",
+      "bytes": 880494,
+      "sha256": "fd785e8698d7ecef5a451f68cf31838a1567bda001e8f7526672835f918630d7",
+      "relationshipToCanonical": "UNKNOWN: canonical file received and pinned separately; this PC cache is a resource-only decode source, not a claimed byte-equivalent published version."
+    }
+  ],
+  "privateDataRead": false,
+  "originalsReadOnly": true
+}

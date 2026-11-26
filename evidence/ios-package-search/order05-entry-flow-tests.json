@@ -1,0 +1,25 @@
+{
+  "checkedAt": "2026-11-26T02:09:16.575Z",
+  "success": true,
+  "stdout": "PASS 28 entry-flow and journal checks; synthetic identity only",
+  "stderr": "",
+  "sources": [
+    {
+      "file": "tests/Order05EntryFlowTests.cs",
+      "sha256": "a964bf2dc23e394a0d736fce204fdb8aadd4c9940044bd08ca6e1cb0c25df123"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnProtocol.cs",
+      "sha256": "58d1ac65880ba35a6478d32936461c294a61625fa3ddfcddd2691e7a35c3a651"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryFlow.cs",
+      "sha256": "93b0c47ac19cbb630329112740364495c7828439159587957ca174de063208f3"
+    },
+    {
+      "file": "ios-client/Assets/Recovery/Runtime/CnEntryJournal.cs",
+      "sha256": "34a4dbf69fdcfbe83f0b4b130e5070b2ccf5a590e096b50827c8ba97c6df30e2"
+    }
+  ],
+  "scope": "Windows .NET actual CnEntryFlow/CnProtocol/CnEntryJournal with synthetic responses and workspace-only persistent markers. Checks ambiguous create, duplicate operations, resource retry, HTTP-200/401 expired sessions, wrong home identity, previous home retention and pending-battle guard. Does not execute RecoveryBootstrap coroutines, Unity networking/rendering, actual service, iOS/ARM64 or device."
+}

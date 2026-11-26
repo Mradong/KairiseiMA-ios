@@ -1,0 +1,550 @@
+{
+  "preparedAt": "2026-11-25T11:48:37.110Z",
+  "sourceVersion": "Exact received 2.0.4 PC-platform resource hashes verified by order05-scene-resource-import-validation-lyd.json",
+  "nativeBackgroundPrefab": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/02_map_assets/home/home_01000/hm_01000.prefab",
+  "naviModel": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/uathach.model.json.bytes",
+  "files": [
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/02_map_assets/home/home_01000/hm_01000.prefab",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/02_map_assets/home/home_01000/hm_01000.prefab",
+      "sourceSha256": "b87d87d8a628f04fc846630befe5519a01f14e66d939b6562229cac3a9b97c4e",
+      "bytes": 37403,
+      "unrecoveredMonoBehavioursRemoved": 14,
+      "outputSha256": "1a91b68a3b86a0292735cf3b58ac00020d2ef8145ef287104e32aecfbe9bcb66"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/00_sky_tama.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/00_sky_tama.asset",
+      "sourceSha256": "0c734a7e6fbc2648657bb27af2ea37a3ae449977020ba4cda667be4f5253b6cd",
+      "bytes": 35531,
+      "outputSha256": "0c734a7e6fbc2648657bb27af2ea37a3ae449977020ba4cda667be4f5253b6cd"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Material/material-647.mat",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-647.mat",
+      "sourceSha256": "110f78ae4683aa8e59f5d585053570cf12654ce7b55dea5f9a30d69a0dffd27e",
+      "bytes": 952,
+      "outputSha256": "110f78ae4683aa8e59f5d585053570cf12654ce7b55dea5f9a30d69a0dffd27e"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/InsMapShader_ColorAdj_Std.shader",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/InsMapShader_ColorAdj_Std.shader",
+      "sourceSha256": "b815a49afa0d08b50afd2b0573cddbc0522d44964f67dc3d96b02f90a328e315",
+      "bytes": 1162,
+      "outputSha256": "9deb70439b6183430276c83c61277d725f73c055dab5cc6d1f54d762506e97f5"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Texture2D/hm_01000_sky02.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_sky02.png",
+      "sourceSha256": "f6a622adb135f7cd9c6fe71428f4938105cfbb49d0b93bb40681746de4018bbd",
+      "bytes": 272360,
+      "outputSha256": "f6a622adb135f7cd9c6fe71428f4938105cfbb49d0b93bb40681746de4018bbd"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/00_yuka1.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/00_yuka1.asset",
+      "sourceSha256": "28e9913f2eece6713bac53d302b0078fca2ca423f8da1f3cb1832b802ca9f589",
+      "bytes": 106248,
+      "outputSha256": "28e9913f2eece6713bac53d302b0078fca2ca423f8da1f3cb1832b802ca9f589"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Material/material-648.mat",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-648.mat",
+      "sourceSha256": "bf7801c6859fd7f158ec871bae2644382b3f4eb7176d352dae0af17fcaced936",
+      "bytes": 1132,
+      "outputSha256": "bf7801c6859fd7f158ec871bae2644382b3f4eb7176d352dae0af17fcaced936"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/Mobile_Legacy_Lightmap_Lightmap AlphaTest.shader",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/Mobile_Legacy_Lightmap_Lightmap AlphaTest.shader",
+      "sourceSha256": "321bd506c45fe3dea817c70dc62f2eb3d509fb26f709aba88ac1fc0b3366a97c",
+      "bytes": 1249,
+      "outputSha256": "471e9c8a78b778f63893909a2b6862713b554565ac15322f7209486c3dc84b69"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Texture2D/hm_01000_yuka03_LM.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_yuka03_LM.png",
+      "sourceSha256": "4db735c06bff350ff862b04a75cfc65c9f7e4af57971e97cb223938764747f52",
+      "bytes": 18725,
+      "outputSha256": "4db735c06bff350ff862b04a75cfc65c9f7e4af57971e97cb223938764747f52"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Texture2D/hm_01000_yuka03.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_yuka03.png",
+      "sourceSha256": "78050e18cc659a2cceb3a6d6d5c47cba1aa1848b4e5db34ce21ef121cebdf99c",
+      "bytes": 34492,
+      "outputSha256": "78050e18cc659a2cceb3a6d6d5c47cba1aa1848b4e5db34ce21ef121cebdf99c"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/01_taki_ball.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/01_taki_ball.asset",
+      "sourceSha256": "810daaa491d2c2ccc928e023d573f7c418551a82b654be07dace48cda74e876d",
+      "bytes": 8616,
+      "outputSha256": "810daaa491d2c2ccc928e023d573f7c418551a82b654be07dace48cda74e876d"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Material/material-649.mat",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-649.mat",
+      "sourceSha256": "3a2310c87c3923c5c74eb89bf2da62869b92bb43d2cfad0e1ac1ec13b3178137",
+      "bytes": 952,
+      "outputSha256": "3a2310c87c3923c5c74eb89bf2da62869b92bb43d2cfad0e1ac1ec13b3178137"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Texture2D/hm_01000_taki02.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_taki02.png",
+      "sourceSha256": "33eecbed96c238ecbe9bcfed1c7ff0b15224f607b9f63b7c24162b1de15b2491",
+      "bytes": 8871,
+      "outputSha256": "33eecbed96c238ecbe9bcfed1c7ff0b15224f607b9f63b7c24162b1de15b2491"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/02_enkei2_bal1.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/02_enkei2_bal1.asset",
+      "sourceSha256": "9b849598d7ccb558112a8c721c1f2e8ac4d9be8001db1c93cb07ed130b2d4698",
+      "bytes": 9868,
+      "outputSha256": "9b849598d7ccb558112a8c721c1f2e8ac4d9be8001db1c93cb07ed130b2d4698"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Material/material-650.mat",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-650.mat",
+      "sourceSha256": "1b6bb95aafb6429ee26a94a7cbe28cd7855b25fd88084aeaee8a969bdaa9f024",
+      "bytes": 970,
+      "outputSha256": "1b6bb95aafb6429ee26a94a7cbe28cd7855b25fd88084aeaee8a969bdaa9f024"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/InsMapShader_ColorAdj_TexAlpha.shader",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Shader/InsMapShader_ColorAdj_TexAlpha.shader",
+      "sourceSha256": "795adb59e72405ebc86f258ad07c1e7cf72bdd8af515ce05852d349e6427fe1b",
+      "bytes": 1167,
+      "outputSha256": "335b03831838adf919e735b58ab565986985f9f91994d44d6080db25692a99c6"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Texture2D/hm_01000_enkei07.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_enkei07.png",
+      "sourceSha256": "95218a84aed24477104ee760fed2796fa73ac4192ebf45986a1a899b0b430eab",
+      "bytes": 2633450,
+      "outputSha256": "95218a84aed24477104ee760fed2796fa73ac4192ebf45986a1a899b0b430eab"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/03_saku1.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/03_saku1.asset",
+      "sourceSha256": "5cac1cbb8ae56c07e2c5ccd76964099fd15b758fa58a3b8805af6e3606f39ed1",
+      "bytes": 5682,
+      "outputSha256": "5cac1cbb8ae56c07e2c5ccd76964099fd15b758fa58a3b8805af6e3606f39ed1"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Material/material-651.mat",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Material/material-651.mat",
+      "sourceSha256": "ef6c8d32ff3e349fb88c4c6e3ef9cd53690315031b6ad6c18f9135af47ec9274",
+      "bytes": 952,
+      "outputSha256": "ef6c8d32ff3e349fb88c4c6e3ef9cd53690315031b6ad6c18f9135af47ec9274"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Texture2D/hm_01000_beranda04.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Texture2D/hm_01000_beranda04.png",
+      "sourceSha256": "29a56d57c5ac19893b5269cf23782c320c9f717dd25b1b8dd22dfacc428c86ec",
+      "bytes": 25256,
+      "outputSha256": "29a56d57c5ac19893b5269cf23782c320c9f717dd25b1b8dd22dfacc428c86ec"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/04_tuta1.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/04_tuta1.asset",
+      "sourceSha256": "40b1fb4592b00e98becf473e5b64ba3b2112dcd517cf8f784952b34a5c4538b3",
+      "bytes": 13310,
+      "outputSha256": "40b1fb4592b00e98becf473e5b64ba3b2112dcd517cf8f784952b34a5c4538b3"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/05_hana1.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/05_hana1.asset",
+      "sourceSha256": "3a780ed4442b8b605d240b6bfcdc707730764a40350c961d981145b5d277b94f",
+      "bytes": 5684,
+      "outputSha256": "3a780ed4442b8b605d240b6bfcdc707730764a40350c961d981145b5d277b94f"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/06_hana2.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/06_hana2.asset",
+      "sourceSha256": "7ed46b96e8b5cfbeeba8f4d6e8ef11816abb82793543115a6ad614f4f5b8c94d",
+      "bytes": 5656,
+      "outputSha256": "7ed46b96e8b5cfbeeba8f4d6e8ef11816abb82793543115a6ad614f4f5b8c94d"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/07_syokubutu1.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/07_syokubutu1.asset",
+      "sourceSha256": "49825720f30080712730c11474719a97dbecf0b11f7a4da1599c25a1c5f0b860",
+      "bytes": 44648,
+      "outputSha256": "49825720f30080712730c11474719a97dbecf0b11f7a4da1599c25a1c5f0b860"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/08_syokubutu2.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/08_syokubutu2.asset",
+      "sourceSha256": "da6fb11693f831d5fd871e71786fa456ab0d3309d04a1d142d2d050aed0f476a",
+      "bytes": 45094,
+      "outputSha256": "da6fb11693f831d5fd871e71786fa456ab0d3309d04a1d142d2d050aed0f476a"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Mesh/09_syokubutu3.asset",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/Mesh/09_syokubutu3.asset",
+      "sourceSha256": "21c2b44fbaaff1a63056a23a6c7fb57fa46966318e79007c872cfe1c164c425d",
+      "bytes": 44710,
+      "outputSha256": "21c2b44fbaaff1a63056a23a6c7fb57fa46966318e79007c872cfe1c164c425d"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F01.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F01.exp.json.bytes",
+      "sourceSha256": "3173cfaf18a770909b98adaa3be2f57225c5b7fd4b4939c6e53228179a4b238b",
+      "bytes": 66,
+      "outputSha256": "3173cfaf18a770909b98adaa3be2f57225c5b7fd4b4939c6e53228179a4b238b"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F02.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F02.exp.json.bytes",
+      "sourceSha256": "63cd2c0dfe229547c8293537b8e0549b02725b579f5426693b7a681881aa658e",
+      "bytes": 423,
+      "outputSha256": "63cd2c0dfe229547c8293537b8e0549b02725b579f5426693b7a681881aa658e"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F03.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F03.exp.json.bytes",
+      "sourceSha256": "91370b6c107dbc3b19662238d38f16cb20eec62383570e3650b9f066535eaf76",
+      "bytes": 622,
+      "outputSha256": "91370b6c107dbc3b19662238d38f16cb20eec62383570e3650b9f066535eaf76"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F04.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F04.exp.json.bytes",
+      "sourceSha256": "ecb93c8742e65a7154cfa3e8680de5d3d6583dd09c39f57d6c4303fa37bd2456",
+      "bytes": 517,
+      "outputSha256": "ecb93c8742e65a7154cfa3e8680de5d3d6583dd09c39f57d6c4303fa37bd2456"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F05.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F05.exp.json.bytes",
+      "sourceSha256": "07994a675cc665a6fdbf7bededf9e145a0ddcc58c3b88653e738822572ae259a",
+      "bytes": 464,
+      "outputSha256": "07994a675cc665a6fdbf7bededf9e145a0ddcc58c3b88653e738822572ae259a"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F06.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F06.exp.json.bytes",
+      "sourceSha256": "e8284fa37e8d6ed60604337eefb47ac84f8b23e859c4e9ac882da40caf66cf85",
+      "bytes": 537,
+      "outputSha256": "e8284fa37e8d6ed60604337eefb47ac84f8b23e859c4e9ac882da40caf66cf85"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F07.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F07.exp.json.bytes",
+      "sourceSha256": "2ba78fb308ca2b0eefc72304db36d311506f22f2fa390a237eab2359ba172201",
+      "bytes": 493,
+      "outputSha256": "2ba78fb308ca2b0eefc72304db36d311506f22f2fa390a237eab2359ba172201"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F08.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F08.exp.json.bytes",
+      "sourceSha256": "dd63421cf7c2603c136a03c0eb055791ef7e54624930c7c5b2d17094794ab94f",
+      "bytes": 691,
+      "outputSha256": "dd63421cf7c2603c136a03c0eb055791ef7e54624930c7c5b2d17094794ab94f"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F09.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F09.exp.json.bytes",
+      "sourceSha256": "976573040be943fac04f36066fdb91c98a7c35d878c8eaf71053e1b84bcdf5b5",
+      "bytes": 413,
+      "outputSha256": "976573040be943fac04f36066fdb91c98a7c35d878c8eaf71053e1b84bcdf5b5"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F10.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F10.exp.json.bytes",
+      "sourceSha256": "51d6e8f4eb0ab0ecc6d79de3da27e71d15f6c99d578be18ddde2141b4c9b2508",
+      "bytes": 613,
+      "outputSha256": "51d6e8f4eb0ab0ecc6d79de3da27e71d15f6c99d578be18ddde2141b4c9b2508"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F11.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F11.exp.json.bytes",
+      "sourceSha256": "f2b1c4369dd743b779140f2f34d8f8f90db843e2d204679a60658c12caddca91",
+      "bytes": 613,
+      "outputSha256": "f2b1c4369dd743b779140f2f34d8f8f90db843e2d204679a60658c12caddca91"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/F12.exp.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/F12.exp.json.bytes",
+      "sourceSha256": "9a317591105395228e0a96be0d03a1bbad097f100a366adfe07c41ccf997eb73",
+      "bytes": 423,
+      "outputSha256": "9a317591105395228e0a96be0d03a1bbad097f100a366adfe07c41ccf997eb73"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/physics.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/physics.json.bytes",
+      "sourceSha256": "23a97e0bf769c7733eb29153903575df589241c76026f45003f6160eb43642fd",
+      "bytes": 1842,
+      "outputSha256": "23a97e0bf769c7733eb29153903575df589241c76026f45003f6160eb43642fd"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/json/pose.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/json/pose.json.bytes",
+      "sourceSha256": "93d061d7c3b75b59b69443c1e28731c15f4f3d4cb98021803429e18959deea85",
+      "bytes": 259,
+      "outputSha256": "93d061d7c3b75b59b69443c1e28731c15f4f3d4cb98021803429e18959deea85"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/moc/uathach.moc.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach.moc.bytes",
+      "sourceSha256": "e1d0e8ea9f0377aed1006a12c8aeab008df9df7064e1b32a0e466fd89e31c209",
+      "bytes": 266404,
+      "outputSha256": "e1d0e8ea9f0377aed1006a12c8aeab008df9df7064e1b32a0e466fd89e31c209"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/moc/uathach1024/texture_00.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_00.png",
+      "sourceSha256": "f04c5fcb42fa21ea2c93663e6c70db686b5166352384dbe70f6f4a7ec2674bb9",
+      "bytes": 1302156,
+      "outputSha256": "f04c5fcb42fa21ea2c93663e6c70db686b5166352384dbe70f6f4a7ec2674bb9"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/moc/uathach1024/texture_01.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_01.png",
+      "sourceSha256": "6481a9e3edaea0fd0c6ee1d531793f93804192587d85e13b686a2f6698436990",
+      "bytes": 835336,
+      "outputSha256": "6481a9e3edaea0fd0c6ee1d531793f93804192587d85e13b686a2f6698436990"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/moc/uathach1024/texture_02.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_02.png",
+      "sourceSha256": "2f4db41c8e0e92d89e49eb2c449ee336e1ae6a366fb2d2b20740e15a40e5147c",
+      "bytes": 1225484,
+      "outputSha256": "2f4db41c8e0e92d89e49eb2c449ee336e1ae6a366fb2d2b20740e15a40e5147c"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/moc/uathach1024/texture_03.png",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/moc/uathach1024/texture_03.png",
+      "sourceSha256": "fb53e990b1811981c7845b182362f9f7e41b50c4449fdd875564dd13ccd94a83",
+      "bytes": 392332,
+      "outputSha256": "fb53e990b1811981c7845b182362f9f7e41b50c4449fdd875564dd13ccd94a83"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01.mtn.bytes",
+      "sourceSha256": "33d63dd86278a8da8f3a40214b11ee6fd9369a59f152a0d88c4625c7024d4dfa",
+      "bytes": 8518,
+      "outputSha256": "33d63dd86278a8da8f3a40214b11ee6fd9369a59f152a0d88c4625c7024d4dfa"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P02.mtn.bytes",
+      "sourceSha256": "d08419c8322d52c9530ecf6499888eb0ba25e662a635462db5353ebb5e31ab81",
+      "bytes": 9256,
+      "outputSha256": "d08419c8322d52c9530ecf6499888eb0ba25e662a635462db5353ebb5e31ab81"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01_P03.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P03.mtn.bytes",
+      "sourceSha256": "9251c9f85b1bd9a57af47475d48fcf73f4421b2926839ef41eb14a7dc09b559d",
+      "bytes": 8517,
+      "outputSha256": "9251c9f85b1bd9a57af47475d48fcf73f4421b2926839ef41eb14a7dc09b559d"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P04.mtn.bytes",
+      "sourceSha256": "d023cf6a588226fe2d1708110eed52352b7533f107117c2b0e8a0f58eee80184",
+      "bytes": 9266,
+      "outputSha256": "d023cf6a588226fe2d1708110eed52352b7533f107117c2b0e8a0f58eee80184"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01_P05.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P05.mtn.bytes",
+      "sourceSha256": "38f446e69b76282b704055cb91378a952d0f1cf38f7a029d1d9c056c00b15a1c",
+      "bytes": 8519,
+      "outputSha256": "38f446e69b76282b704055cb91378a952d0f1cf38f7a029d1d9c056c00b15a1c"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P06.mtn.bytes",
+      "sourceSha256": "8ccda3d50712360a75b36ba6d4a6a5310fcd9fe9b978bc050b181d27fdfd0332",
+      "bytes": 9171,
+      "outputSha256": "8ccda3d50712360a75b36ba6d4a6a5310fcd9fe9b978bc050b181d27fdfd0332"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_idle_01_P07.mtn.bytes",
+      "sourceSha256": "34f136393a099743039a9b6853391393f46f254e50c5e6572a8901995ea75b4c",
+      "bytes": 11208,
+      "outputSha256": "34f136393a099743039a9b6853391393f46f254e50c5e6572a8901995ea75b4c"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_01.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_01.mtn.bytes",
+      "sourceSha256": "9ba1839463e7bb1422ea281b26f7d9b2332d57d2819e9206cebc350e9db5c2ea",
+      "bytes": 1384,
+      "outputSha256": "9ba1839463e7bb1422ea281b26f7d9b2332d57d2819e9206cebc350e9db5c2ea"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_02.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_02.mtn.bytes",
+      "sourceSha256": "381c2709b76e45e84784234985c3fb643581519188da707ff74f379a523241fb",
+      "bytes": 2094,
+      "outputSha256": "381c2709b76e45e84784234985c3fb643581519188da707ff74f379a523241fb"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_03.mtn.bytes",
+      "sourceSha256": "51350e2b85e3bd64784fc78b13ad6f49f3fd65efa4367469bacbeda03115c4e5",
+      "bytes": 2708,
+      "outputSha256": "51350e2b85e3bd64784fc78b13ad6f49f3fd65efa4367469bacbeda03115c4e5"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_04.mtn.bytes",
+      "sourceSha256": "d816a6cf7eb2112ebc39db1740e1d6e13bf1d52a91e240c048514e6663974712",
+      "bytes": 14464,
+      "outputSha256": "d816a6cf7eb2112ebc39db1740e1d6e13bf1d52a91e240c048514e6663974712"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_05.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05.mtn.bytes",
+      "sourceSha256": "54140860a570aa242f0340802bd91dd0447f50a2ecae9ca73f26322b9c5e1863",
+      "bytes": 17003,
+      "outputSha256": "54140860a570aa242f0340802bd91dd0447f50a2ecae9ca73f26322b9c5e1863"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05a.mtn.bytes",
+      "sourceSha256": "3271b0e00600c8e64477c7711a3e67d2c2e5a3cfcf1adfc12d81139795c78aba",
+      "bytes": 5247,
+      "outputSha256": "3271b0e00600c8e64477c7711a3e67d2c2e5a3cfcf1adfc12d81139795c78aba"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_05b.mtn.bytes",
+      "sourceSha256": "73495a3c5974de13dcbe375f307d3f0002bac69477e27766deac0e80ea7f3560",
+      "bytes": 2863,
+      "outputSha256": "73495a3c5974de13dcbe375f307d3f0002bac69477e27766deac0e80ea7f3560"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_06.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06.mtn.bytes",
+      "sourceSha256": "2074c8204d6a89b411b84bf078ba538d6f75508db784f9935361bc226dc78921",
+      "bytes": 30199,
+      "outputSha256": "2074c8204d6a89b411b84bf078ba538d6f75508db784f9935361bc226dc78921"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06a.mtn.bytes",
+      "sourceSha256": "e2db9302e238edbe8831a923fa7d608accf93f5f9c65ddd3105689559650e03d",
+      "bytes": 4863,
+      "outputSha256": "e2db9302e238edbe8831a923fa7d608accf93f5f9c65ddd3105689559650e03d"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_06b.mtn.bytes",
+      "sourceSha256": "2c69cc61f6ad9213910e49c212a1c32c7e93845011efc253f40f482d3e82da2b",
+      "bytes": 19988,
+      "outputSha256": "2c69cc61f6ad9213910e49c212a1c32c7e93845011efc253f40f482d3e82da2b"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_07.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07.mtn.bytes",
+      "sourceSha256": "ed419ce6e6c8002a5e115067887ac7d71aaf237574577f7fba9d43c739a98dab",
+      "bytes": 14790,
+      "outputSha256": "ed419ce6e6c8002a5e115067887ac7d71aaf237574577f7fba9d43c739a98dab"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07a.mtn.bytes",
+      "sourceSha256": "4814ebb350d2d0bf10626b1c98bd164fee23ebdc07910602b1371980ce38356a",
+      "bytes": 3748,
+      "outputSha256": "4814ebb350d2d0bf10626b1c98bd164fee23ebdc07910602b1371980ce38356a"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_07b.mtn.bytes",
+      "sourceSha256": "cf96130210780ec15173f0d63b6d0e1cacda1d3ca590e12b8a3a73d0ca640523",
+      "bytes": 7229,
+      "outputSha256": "cf96130210780ec15173f0d63b6d0e1cacda1d3ca590e12b8a3a73d0ca640523"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08.mtn.bytes",
+      "sourceSha256": "85c18e5727b9975a1799559426997e90f2baa6d00d16c321f153130e082f4155",
+      "bytes": 8287,
+      "outputSha256": "85c18e5727b9975a1799559426997e90f2baa6d00d16c321f153130e082f4155"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_08_02.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_08_02.mtn.bytes",
+      "sourceSha256": "ac8fe8735ce0ddf9a000bed1ec1021f2cd98e718467f575bf4f7ac0bc500807d",
+      "bytes": 7263,
+      "outputSha256": "ac8fe8735ce0ddf9a000bed1ec1021f2cd98e718467f575bf4f7ac0bc500807d"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_09.mtn.bytes",
+      "sourceSha256": "41bf7a9d9c095a0855ce41774c617db561a65b84fb14f34a2dc8ed411e158abd",
+      "bytes": 12051,
+      "outputSha256": "41bf7a9d9c095a0855ce41774c617db561a65b84fb14f34a2dc8ed411e158abd"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_10.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10.mtn.bytes",
+      "sourceSha256": "5ad2b2da467aecf6559fb129d727900511cfb2f993bd46ce6b902c475efb5fd4",
+      "bytes": 18835,
+      "outputSha256": "5ad2b2da467aecf6559fb129d727900511cfb2f993bd46ce6b902c475efb5fd4"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10a.mtn.bytes",
+      "sourceSha256": "3d8c1701b069fdad64886802f04ceabf421cc42d5e77d7e71760a0e8aedd2da1",
+      "bytes": 4213,
+      "outputSha256": "3d8c1701b069fdad64886802f04ceabf421cc42d5e77d7e71760a0e8aedd2da1"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_10b.mtn.bytes",
+      "sourceSha256": "15d26cf4b793231f934391186d839718ed69acea2631d979b77d640fe3bd5991",
+      "bytes": 3493,
+      "outputSha256": "15d26cf4b793231f934391186d839718ed69acea2631d979b77d640fe3bd5991"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_m_20.mtn.bytes",
+      "sourceSha256": "92f0c9b306d63ec060728591515fe556a963de812eace085853e2a4e1a1bf294",
+      "bytes": 7390,
+      "outputSha256": "92f0c9b306d63ec060728591515fe556a963de812eace085853e2a4e1a1bf294"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/mtn/uathach_P06.mtn.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/mtn/uathach_P06.mtn.bytes",
+      "sourceSha256": "473107e81d9342ae050cb8b3aa6c3a66e5e68188340235f7298f2761abc274cf",
+      "bytes": 1650,
+      "outputSha256": "473107e81d9342ae050cb8b3aa6c3a66e5e68188340235f7298f2761abc274cf"
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/resources/live2d/uathach/uathach.model.json.bytes",
+      "destination": "ios-client/Assets/Recovery/OriginalWorldContent/resources/live2d/uathach/uathach.model.json.bytes",
+      "sourceSha256": "d41eb18a1f61c365d53e61ef1e32fd60f3731bfafd3a8f931c43d310772e6aad",
+      "bytes": 5412,
+      "outputSha256": "d41eb18a1f61c365d53e61ef1e32fd60f3731bfafd3a8f931c43d310772e6aad"
+    }
+  ],
+  "addressableAssets": 49,
+  "shaderReconstructions": [
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/InsMapShader_ColorAdj_Std.shader",
+      "name": "InsMapShader/ColorAdj_Std",
+      "reason": "Exporter only emitted a dummy shader; portable texture/color/optional-lightmap implementation reconstructed. Exact original shader behavior/rendering remains unverified."
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/Mobile_Legacy_Lightmap_Lightmap AlphaTest.shader",
+      "name": "Mobile/Legacy/Lightmap/Lightmap AlphaTest",
+      "reason": "Exporter only emitted a dummy shader; portable texture/color/optional-lightmap implementation reconstructed. Exact original shader behavior/rendering remains unverified."
+    },
+    {
+      "source": "test-output/order05-home-pc-export/ExportedProject/Assets/Shader/InsMapShader_ColorAdj_TexAlpha.shader",
+      "name": "InsMapShader/ColorAdj_TexAlpha",
+      "reason": "Exporter only emitted a dummy shader; portable texture/color/optional-lightmap implementation reconstructed. Exact original shader behavior/rendering remains unverified."
+    }
+  ],
+  "originalFilesUnmodified": true,
+  "rawReferenceCodeOrBinariesCopied": false,
+  "resourceFilesPrepared": true,
+  "renderingVerified": false,
+  "iOSCompiled": false
+}

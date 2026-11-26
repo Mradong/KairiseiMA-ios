@@ -35,6 +35,34 @@ namespace Kairisei.Recovery.Editor
                 new AssetBundleBuild { assetBundleName = "recovery-ui.bundle", assetNames = paths,
                     addressableNames = paths.Select(f => Path.GetFileNameWithoutExtension(f).ToLowerInvariant()).ToArray() }
             };
+            const string originalSceneRoot = "Assets/Recovery/OriginalSceneContent";
+            const string originalShader = "Assets/Recovery/Runtime/OriginalSceneSprite.shader";
+            if (!File.Exists(Path.Combine(originalSceneRoot, "OriginalScenes.json"))) throw new InvalidDataException("原场景布局未准备。");
+            string[] originalPaths = Directory.GetFiles(originalSceneRoot).Where(f => f.EndsWith(".png") || f.EndsWith(".json"))
+                .Concat(new[] { originalShader }).Select(f => f.Replace('\\','/')).OrderBy(f => f, StringComparer.Ordinal).ToArray();
+            foreach (string file in originalPaths.Where(f => f.EndsWith(".png")))
+            {
+                TextureImporter texture = AssetImporter.GetAtPath(file) as TextureImporter;
+                if (texture == null) throw new InvalidDataException("原场景贴图未导入：" + file);
+                texture.mipmapEnabled = false; texture.alphaIsTransparency = true;
+                texture.SetPlatformTextureSettings(new TextureImporterPlatformSettings { name = "iPhone", overridden = true, maxTextureSize = 8192, format = TextureImporterFormat.ASTC_6x6 });
+                texture.SaveAndReimport();
+            }
+            builds.Add(new AssetBundleBuild { assetBundleName = "original-scenes.bundle", assetNames = originalPaths,
+                addressableNames = originalPaths.Select(f => Path.GetFileNameWithoutExtension(f) == "OriginalSceneSprite" ? "original-scene-sprite" : Path.GetFileNameWithoutExtension(f).ToLowerInvariant()).ToArray() });
+            const string worldRoot="Assets/Recovery/OriginalWorldContent";
+            string worldDescriptor=Path.Combine(worldRoot,"OriginalWorld.json");
+            if(!File.Exists(worldDescriptor))throw new InvalidDataException("原主页背景/模型资源未准备。");
+            Newtonsoft.Json.Linq.JObject world=Newtonsoft.Json.Linq.JObject.Parse(File.ReadAllText(worldDescriptor));
+            var worldAssets=new List<string>{worldDescriptor.Replace('\\','/')};
+            var worldNames=new List<string>{"originalworld"};
+            foreach(Newtonsoft.Json.Linq.JObject item in ((Newtonsoft.Json.Linq.JArray)world["addressableAssets"]).Concat((Newtonsoft.Json.Linq.JArray)world["shaderAssets"]))
+            {
+                string asset=(string)item["asset"];
+                if(!asset.StartsWith(worldRoot+"/",StringComparison.Ordinal)||!File.Exists(asset))throw new InvalidDataException("Missing original world asset.");
+                worldAssets.Add(asset);worldNames.Add((string)item["address"]);
+            }
+            builds.Add(new AssetBundleBuild { assetBundleName="original-world.bundle",assetNames=worldAssets.ToArray(),addressableNames=worldNames.ToArray() });
             const string combatSource = "Assets/Recovery/Combat/CombatTables.json";
             bool combatIncluded = File.Exists(combatSource);
             if (combatIncluded)
@@ -55,7 +83,7 @@ namespace Kairisei.Recovery.Editor
                 if (build.GetAllDependencies(spec.assetBundleName).Length != 0) throw new InvalidDataException("Unexpected recovery bundle dependency: " + spec.assetBundleName);
                 string built = Path.Combine(temporary, spec.assetBundleName);
                 string hash = ContentIntegrity.HashFile(built);
-                ContentBundle item = new ContentBundle { name = spec.assetBundleName == "recovery-ui.bundle" ? "recovery/ui.dat" : CombatTableSet.BundleName,
+                ContentBundle item = new ContentBundle { name = spec.assetBundleName == "recovery-ui.bundle" ? "recovery/ui.dat" : spec.assetBundleName == "original-scenes.bundle" ? OriginalSceneRenderer.BundleName : spec.assetBundleName=="original-world.bundle" ? OriginalNaviModel.BundleName : CombatTableSet.BundleName,
                     file = hash + ".bundle", bytes = new FileInfo(built).Length, sha256 = hash,
                     crc32 = ContentIntegrity.FileCrc(built).ToString("X8", CultureInfo.InvariantCulture), dependencies = new string[0] };
                 File.Copy(built, Path.Combine(output, item.file), true);
