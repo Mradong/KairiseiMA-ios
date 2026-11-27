@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.Networking;
 
@@ -26,6 +27,9 @@ namespace Kairisei.Recovery
         private ContentCache activeCache;
         private UnityWebRequest pending;
         private bool running;
+        private const string AddressAliasBundle = "recovery/address-aliases.dat";
+        private ContentManifest addressAliasManifest;
+        private Dictionary<string, string> addressAliases;
 
         public NativeRegisteredBattle CreateRegisteredBattle()
         {
@@ -47,6 +51,7 @@ namespace Kairisei.Recovery
         public T LoadOptional<T>(string bundle, string asset) where T : UnityEngine.Object
         {
             if (!Ready) throw new InvalidOperationException("Content is not ready.");
+            asset = ResolveOriginalAddress(bundle, asset);
             AssetBundle mounted;
             if (loaded.TryGetValue(bundle, out mounted)) return mounted.LoadAsset<T>(asset);
             if (activeBundles == null || !activeBundles.ContainsKey(bundle)) return null;
@@ -61,6 +66,134 @@ namespace Kairisei.Recovery
                 hashes[item.name] = item.sha256;
             }
             return loaded[bundle].LoadAsset<T>(asset);
+        }
+
+        private string ResolveOriginalAddress(string bundle, string address)
+        {
+            if (bundle == AddressAliasBundle || activeBundles == null || !activeBundles.ContainsKey(AddressAliasBundle)) return address;
+            if (addressAliases == null || !ReferenceEquals(addressAliasManifest, activeManifest))
+            {
+                TextAsset source = Load<TextAsset>(AddressAliasBundle, "address-aliases");
+                JObject index = JObject.Parse(source.text);
+                var entries = index["entries"] as JArray;
+                if ((int?)index["format"] != 1 || entries == null)
+                    throw new InvalidDataException("Invalid original resource address index.");
+
+                var aliases = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase);
+                foreach (JObject entry in entries)
+                {
+                    string owner = (string)entry["bundle"];
+                    string original = (string)entry["original"];
+                    string targetAddress = (string)entry["target"];
+                    if (string.IsNullOrEmpty(owner) || owner == AddressAliasBundle || !activeBundles.ContainsKey(owner) ||
+                        string.IsNullOrEmpty(original) || string.IsNullOrEmpty(targetAddress) ||
+                        original.IndexOf('\0') >= 0 || targetAddress.IndexOf('\0') >= 0 ||
+                        StringComparer.OrdinalIgnoreCase.Equals(original, targetAddress))
+                        throw new InvalidDataException("Invalid original resource address alias.");
+                    string key = owner + "\0" + original;
+                    if (aliases.ContainsKey(key)) throw new InvalidDataException("Duplicate original resource address alias.");
+                    aliases.Add(key, targetAddress);
+                }
+                foreach (KeyValuePair<string, string> alias in aliases)
+                {
+                    string prefix = alias.Key.Substring(0, alias.Key.IndexOf('\0') + 1);
+                    if (aliases.ContainsKey(prefix + alias.Value)) throw new InvalidDataException("Resource address alias points to another alias.");
+                }
+                addressAliases = aliases;
+                addressAliasManifest = activeManifest;
+            }
+            string target;
+            return addressAliases.TryGetValue(bundle + "\0" + address, out target) ? target : address;
+        }
+
+        private const string MediaIndexBundle = "media/index.dat";
+        private ContentManifest mediaIndexManifest;
+        private Dictionary<string, MediaEntry> mediaIndex;
+
+        private sealed class MediaEntry
+        {
+            public ContentBundle bundle;
+            public int bytes;
+            public string sha256;
+        }
+
+        public byte[] LoadAudioCpk(string logicalName)
+        {
+            return LoadMediaBytes("audio", logicalName);
+        }
+
+        public byte[] LoadMovieMp4(string logicalName)
+        {
+            return LoadMediaBytes("movies", logicalName);
+        }
+
+        private byte[] LoadMediaBytes(string kind, string logicalName)
+        {
+            if (!Ready) throw new InvalidOperationException("Content is not ready.");
+            if (!ValidMediaName(logicalName)) throw new ArgumentException("Invalid original media name.", nameof(logicalName));
+            if (activeBundles == null || !activeBundles.ContainsKey(MediaIndexBundle)) return null;
+            if (mediaIndex == null || !ReferenceEquals(mediaIndexManifest, activeManifest))
+            {
+                mediaIndex = ReadMediaIndex(Load<TextAsset>(MediaIndexBundle, "media-index").text);
+                mediaIndexManifest = activeManifest;
+            }
+            if (!mediaIndex.TryGetValue(kind + "/" + logicalName, out MediaEntry entry)) return null;
+
+            bool alreadyMounted = loaded.TryGetValue(entry.bundle.name, out AssetBundle bundle);
+            if (!alreadyMounted) bundle = AssetBundle.LoadFromFile(activeCache.PathFor(entry.bundle));
+            if (bundle == null) throw new InvalidDataException("Could not open verified media bundle: " + entry.bundle.name);
+            try
+            {
+                TextAsset asset = bundle.LoadAsset<TextAsset>("media-bytes");
+                byte[] bytes = asset == null ? null : asset.bytes;
+                if (bytes == null || bytes.Length != entry.bytes || ContentIntegrity.Hash(bytes) != entry.sha256)
+                    throw new InvalidDataException("Media bytes differ from the index: " + logicalName);
+                return bytes;
+            }
+            finally
+            {
+                if (!alreadyMounted) bundle.Unload(true);
+            }
+        }
+
+        private static bool ValidMediaName(string name)
+        {
+            return !String.IsNullOrEmpty(name) && name.EndsWith(".cpk", StringComparison.OrdinalIgnoreCase) &&
+                name.IndexOf('/') < 0 && ContentManifest.ValidName("media/" + name.ToLowerInvariant());
+        }
+
+        private Dictionary<string, MediaEntry> ReadMediaIndex(string json)
+        {
+            JObject root = JObject.Parse(json);
+            if ((int?)root["format"] != 1 || !ContentIntegrity.ValidHash((string)root["pcManifestSha256"]) ||
+                !(root["entries"] is JArray entries) || entries.Count == 0)
+                throw new InvalidDataException("Invalid original media index.");
+
+            var index = new Dictionary<string, MediaEntry>(StringComparer.OrdinalIgnoreCase);
+            var indexedBundles = new HashSet<string>(StringComparer.Ordinal);
+            foreach (JObject item in entries)
+            {
+                string kind = (string)item["kind"];
+                string name = (string)item["logicalName"];
+                string sha256 = (string)item["sha256"];
+                string bundle = (string)item["bundle"];
+                int? bytes = (int?)item["bytes"];
+                string key = kind + "/" + name;
+                if ((kind != "audio" && kind != "movies") || !ValidMediaName(name) ||
+                    (string)item["format"] != (kind == "audio" ? "cpk" : "mp4") || (string)item["address"] != "media-bytes" ||
+                    !ContentIntegrity.ValidHash(sha256) || bundle != "media/" + kind + "/" + sha256 + ".dat" ||
+                    !(bytes > 0) || !activeBundles.TryGetValue(bundle, out ContentBundle source) ||
+                    source.dependencies.Length != 0 || index.ContainsKey(key) || !indexedBundles.Add(bundle))
+                    throw new InvalidDataException("Invalid or duplicated original media entry: " + key);
+                index.Add(key, new MediaEntry { bundle = source, bytes = bytes.Value, sha256 = sha256 });
+            }
+            foreach (string name in activeBundles.Keys)
+            {
+                if ((name.StartsWith("media/audio/", StringComparison.Ordinal) ||
+                    name.StartsWith("media/movies/", StringComparison.Ordinal)) && !indexedBundles.Contains(name))
+                    throw new InvalidDataException("Media bundle missing from the index: " + name);
+            }
+            return index;
         }
 
         // Compute the transitive set of bundles that must be opened together.
