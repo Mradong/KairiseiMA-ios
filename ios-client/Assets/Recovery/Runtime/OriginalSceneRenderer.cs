@@ -65,6 +65,8 @@ namespace Kairisei.Recovery
         private Texture2D homeBannerTexture;
         private int homeBannerIndex;
         private float homeBannerAdvanceAt;
+        private int? homeBannerTouch;
+        private Vector2 homeBannerTouchStart;
         private IEnumerator homeBannerLoading;
         private UnityWebRequest homeBannerRequest;
         private GameObject dialogRoot;
@@ -96,6 +98,7 @@ namespace Kairisei.Recovery
             public Color[] Tint;
             public string DisplayedFrame;
             public float BarFill = -1;
+            public Rect? HitBounds;
         }
 
         private sealed class MenuPanel
@@ -698,17 +701,51 @@ namespace Kairisei.Recovery
                 }
             }
             float now = Time.unscaledTime;
-            if (!homeBannerItem.activeInHierarchy || dialogRoot != null) homeBannerAdvanceAt = now + HomeBannerInterval;
+            if (!homeBannerItem.activeInHierarchy || dialogRoot != null) homeBannerTouch = null;
+            if (!homeBannerItem.activeInHierarchy || dialogRoot != null || homeBannerTouch.HasValue)
+                homeBannerAdvanceAt = now + HomeBannerInterval;
             if (homeBannerImages.Count < 2 || now < homeBannerAdvanceAt) return;
+            AdvanceHomeBanner(1);
+        }
 
-            int next = (homeBannerIndex + 1) % homeBannerImages.Count;
+        private void AdvanceHomeBanner(int direction)
+        {
+            if (homeBannerImages.Count < 2) return;
+            int next = (homeBannerIndex + direction + homeBannerImages.Count) % homeBannerImages.Count;
             if (ShowHomeBanner(homeBannerImages[next])) homeBannerIndex = next;
             else
             {
                 homeBannerImages.RemoveAt(next);
                 if (next < homeBannerIndex) homeBannerIndex--;
             }
-            homeBannerAdvanceAt = now + HomeBannerInterval;
+            homeBannerAdvanceAt = Time.unscaledTime + HomeBannerInterval;
+        }
+
+        private bool HandleHomeBannerTouch(int finger, TouchPhase phase, Vector2 position)
+        {
+            if (phase == TouchPhase.Began && HomeBannerContains(sceneCamera.ScreenPointToRay(position)))
+            {
+                homeBannerTouch = finger;
+                homeBannerTouchStart = position;
+            }
+            if (homeBannerTouch != finger) return false;
+            if (phase == TouchPhase.Ended || phase == TouchPhase.Canceled)
+            {
+                homeBannerTouch = null;
+                Vector2 offset = (position - homeBannerTouchStart) * (640f / sceneCamera.pixelHeight);
+                if (phase == TouchPhase.Ended && Mathf.Abs(offset.x) >= 24 && Mathf.Abs(offset.x) > Mathf.Abs(offset.y))
+                    AdvanceHomeBanner(offset.x < 0 ? 1 : -1);
+            }
+            return true;
+        }
+
+        private bool HomeBannerContains(Ray ray)
+        {
+            if (homeBannerItem == null || !homeBannerItem.activeInHierarchy || dialogRoot != null) return false;
+            Transform slot = homeBanner.Object.transform;
+            if (!new Plane(slot.forward, slot.position).Raycast(ray, out float distance)) return false;
+            Vector3 local = slot.InverseTransformPoint(ray.GetPoint(distance));
+            return Mathf.Abs(local.x) <= 0.5f && Mathf.Abs(local.y) <= 0.5f;
         }
 
         private IEnumerator LoadHomeBanners(JArray rows)
@@ -769,6 +806,7 @@ namespace Kairisei.Recovery
             homeBannerTexture = null;
             homeBannerImages.Clear();
             homeBannerIndex = 0;
+            homeBannerTouch = null;
             bannerHome = null;
         }
 
@@ -808,7 +846,19 @@ namespace Kairisei.Recovery
                     if (method == "showServerListWindow") widget.Click = delegate { Show("ServerList"); };
                     if ((string)script["type"] == "IntroSlPlChr" && role >= 1 && role <= 4)
                     {
-                        int choice = role; widget.Click = delegate { owner.SelectOriginalArthur(choice);SelectRole(choice); };
+                        if (motionData["roleHitBoxes"]?[(string)widget.Node["id"]] is JObject authored)
+                        {
+                            Vector3 center = Vector(authored["center"]);
+                            Vector3 size = Vector(authored["size"]);
+                            widget.HitBounds = new Rect(center.x - size.x / 2, center.y - size.y / 2, size.x, size.y);
+                            int choice = role;
+                            widget.Click = () =>
+                            {
+                                if (owner.OriginalEntryStep != CnEntryStep.Character) return;
+                                owner.SelectOriginalArthur(choice);
+                                SelectRole(choice);
+                            };
+                        }
                     }
                     if (method == "OnClickOK") widget.Click = ShowNameInput;
                     if (scene == "Menu" && method == "OnLeftButton") widget.Click = () => ScrollMenu(648);
@@ -899,6 +949,7 @@ namespace Kairisei.Recovery
                 Touch touch = Input.GetTouch(0);
                 pressed = touch.phase == TouchPhase.Began;
                 screen = touch.position;
+                if (HandleHomeBannerTouch(touch.fingerId, touch.phase, screen)) return;
                 if (pressed && menuOpen && menuClipPanel != null && dialogRoot == null)
                 {
                     draggingMenu = MenuContains(sceneCamera.ScreenPointToRay(screen));
@@ -938,7 +989,8 @@ namespace Kairisei.Recovery
                 float distance; if (!plane.Raycast(ray,out distance)) continue;
                 Vector3 point = widget.Object.transform.InverseTransformPoint(ray.GetPoint(distance));
                 Vector2 pivot = Pivot((int)widget.Data["pivot"]);
-                if (point.x < -pivot.x || point.x > 1-pivot.x || point.y < -pivot.y || point.y > 1-pivot.y) continue;
+                Rect bounds = widget.HitBounds ?? new Rect(-pivot.x, -pivot.y, 1, 1);
+                if (!bounds.Contains(point)) continue;
                 if (hit == null || widget.Depth > hit.Depth) hit = widget;
             }
             if (hit != null) { hit.Click(); return; }
@@ -949,7 +1001,7 @@ namespace Kairisei.Recovery
                 StartTitleMotion(true);
                 owner.BeginFromOriginalTitle();
             }
-            else if (currentScene == "Home" && navi != null && !MenuContains(ray))
+            else if (currentScene == "Home" && navi != null && !MenuContains(ray) && !HomeBannerContains(ray))
                 navi.TryPlayTouch(worldCamera.ScreenPointToRay(screen));
         }
 

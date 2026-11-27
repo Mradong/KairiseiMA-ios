@@ -134,13 +134,6 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Require(retry.Target == state && retry.Method.Name == nameof(RecoveryBootstrap.RetryOriginalEntry), "The retry button is not bound to the real entry flow.");
         yield return new WaitForSecondsRealtime(0.28f);
         Capture("04-title-error", main, renderer, ui, target);
-        renderer.Show("IntroSlPl");
-        yield return new WaitForSecondsRealtime(0.62f);
-        Capture("05-role-selection", main, renderer, ui, target);
-        Method("SelectRole").Invoke(renderer, new object[] { 2 });
-        yield return new WaitForSecondsRealtime(0.4f);
-        Capture("06-role-selected", main, renderer, ui, target);
-
         var endpoint = ServerEndpoint.Parse("http://127.0.0.1:27040");
         entry.BeginLogin();
         entry.ReceiveLogin(new JObject {
@@ -155,6 +148,30 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Field(typeof(RecoveryBootstrap), "address").SetValue(state, endpoint.ToString());
         Field(typeof(RecoveryBootstrap), "verifiedAddress").SetValue(state, endpoint.ToString());
         Field(typeof(RecoveryBootstrap), "originalScene").SetValue(state, renderer);
+        Method("CloseDialog").Invoke(renderer, null);
+        yield return new WaitForSecondsRealtime(0.62f);
+        Transform roles = renderer.transform.Find("Restored_IntroSlPl/UI Root (2D)/Camera/Center Anchor");
+        Require(roles != null, "A fresh Connect response did not open the authored role screen.");
+        Capture("05-role-selection", main, renderer, ui, target);
+        Transform back = renderer.transform.Find("Restored_IntroSlPl/UI Root (2D)/Camera/Right Bottom Anchor/IntroSlPl_InfoBackBtn/Back/Back");
+        foreach (int role in new[] { 1, 3, 4, 2 })
+        {
+            Transform portrait = roles.Find("IntroSlPl_Chr" + role.ToString("D2") + "/Chr");
+            Press(renderer, ui, portrait);
+            Require(state.OriginalArthurRole == role, "Tapping portrait " + role + " did not select its authored role.");
+            string body = entry.BeginCreate("预览测试", state.OriginalArthurRole);
+            var request = JObject.Parse(body.Substring(entry.Login.SessionKey.Length));
+            Require((int)request["arthur_type"] == role, "The serialized creation request lost the selected role.");
+            entry.BeginConnect();
+            entry.ReceiveConnect("{\"res_code\":0}\n{\"is_user\":0,\"tutorial_flag\":0}\n{}");
+            Field(typeof(RecoveryBootstrap), "connectState").SetValue(state, entry.CharacterState);
+            yield return new WaitForSecondsRealtime(0.4f);
+            if (role == 2) break;
+            Press(renderer, ui, back);
+            for (int choice = 1; choice <= 4; choice++)
+                Require(roles.Find("IntroSlPl_Chr" + choice.ToString("D2")).gameObject.activeInHierarchy, "Back did not restore all portraits.");
+        }
+        Capture("06-role-selected", main, renderer, ui, target);
         state.CreateOriginalCharacter();
         Require(entry.Step == CnEntryStep.Character && !entry.CreationMayHaveCommitted, "A blank role name left the editable character step.");
         Require((string)Field(typeof(OriginalSceneRenderer), "dialogAcceptLabel").GetValue(renderer) == "确定" &&
@@ -264,6 +281,18 @@ public sealed class Order05ScenePreview : MonoBehaviour
             yield return new WaitForSecondsRealtime(5.6f);
             Require((int)Field(typeof(OriginalSceneRenderer), "homeBannerIndex").GetValue(renderer) == 1 &&
                     bannerMaterial.mainTexture != firstCover, "The Home carousel did not advance on its original timer.");
+            Vector2 bannerTap = ui.WorldToScreenPoint(bannerItem.position);
+            var bannerTouch = Method("HandleHomeBannerTouch");
+            var bannerIndex = Field(typeof(OriginalSceneRenderer), "homeBannerIndex");
+            Require((bool)bannerTouch.Invoke(renderer, new object[] { 1, TouchPhase.Began, bannerTap }), "The original banner did not capture a touch.");
+            bannerTouch.Invoke(renderer, new object[] { 1, TouchPhase.Ended, bannerTap + new Vector2(0, 110) });
+            Require((int)bannerIndex.GetValue(renderer) == 1, "A vertical swipe unexpectedly changed the banner.");
+            bannerTouch.Invoke(renderer, new object[] { 1, TouchPhase.Began, bannerTap });
+            bannerTouch.Invoke(renderer, new object[] { 1, TouchPhase.Ended, bannerTap + new Vector2(110, 0) });
+            Require((int)bannerIndex.GetValue(renderer) == 0, "A right swipe did not show the previous banner.");
+            bannerTouch.Invoke(renderer, new object[] { 1, TouchPhase.Began, bannerTap });
+            bannerTouch.Invoke(renderer, new object[] { 1, TouchPhase.Ended, bannerTap - new Vector2(110, 0) });
+            Require((int)bannerIndex.GetValue(renderer) == 1, "A left swipe did not show the next banner.");
             Press(renderer, ui, menuButton);
             yield return new WaitForSecondsRealtime(0.45f);
             Require(!bannerItem.gameObject.activeInHierarchy, "The banner stayed visible with the Home menu closed.");

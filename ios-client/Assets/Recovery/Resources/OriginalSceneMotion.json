@@ -15,6 +15,68 @@
     "source": "recovered-unity/ExportedProject/Assets/Scene/Title.unity",
     "sha256": "2ee9b888a57277b0d8e7aafb80ddc2bc0720da4ca2d775ef8bba395bd8abeac3"
   },
+  "roleHitBoxes": {
+    "40": {
+      "node": "40",
+      "center": [
+        0,
+        0,
+        -5
+      ],
+      "size": [
+        0.5,
+        1.5,
+        1
+      ],
+      "source": "recovered-unity/ExportedProject/Assets/Scene/IntroSlPl.unity",
+      "sha256": "91459d7014d4b9985db0bc8e25d4058dcadfeff45bf177171b72c861b93f00ef"
+    },
+    "49": {
+      "node": "49",
+      "center": [
+        0,
+        0,
+        -5
+      ],
+      "size": [
+        0.5,
+        1.5,
+        1
+      ],
+      "source": "recovered-unity/ExportedProject/Assets/Scene/IntroSlPl.unity",
+      "sha256": "91459d7014d4b9985db0bc8e25d4058dcadfeff45bf177171b72c861b93f00ef"
+    },
+    "60": {
+      "node": "60",
+      "center": [
+        0,
+        0,
+        -5
+      ],
+      "size": [
+        0.5,
+        1.5,
+        1
+      ],
+      "source": "recovered-unity/ExportedProject/Assets/Scene/IntroSlPl.unity",
+      "sha256": "91459d7014d4b9985db0bc8e25d4058dcadfeff45bf177171b72c861b93f00ef"
+    },
+    "78": {
+      "node": "78",
+      "center": [
+        0,
+        0,
+        -5
+      ],
+      "size": [
+        0.5,
+        1.5,
+        1
+      ],
+      "source": "recovered-unity/ExportedProject/Assets/Scene/IntroSlPl.unity",
+      "sha256": "91459d7014d4b9985db0bc8e25d4058dcadfeff45bf177171b72c861b93f00ef"
+    }
+  },
   "clips": {
     "Cmn_Pop_In_00": {
       "source": "recovered-unity/ExportedProject/Assets/AnimationClip/Cmn_Pop_In_00.anim",

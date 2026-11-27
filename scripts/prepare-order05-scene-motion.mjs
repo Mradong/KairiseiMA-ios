@@ -48,13 +48,24 @@ for (const source of [...sources].sort()) {
 
 const title = layout.definitions.find(scene => scene.name === 'Title');
 const start = title.nodes.find(node => node.scripts.some(script => script.method === 'OnStartLogin'));
-const titleSource = read(title.source);
-const collider = [...titleSource.matchAll(/^--- !u!65 &\d+\r?\n([\s\S]*?)(?=^--- |(?![\s\S]))/gm)]
-  .find(match => match[1].includes('m_GameObject: {fileID: ' + start.id + '}'));
-const boxVector = field => collider[1].match(new RegExp('^  ' + field + ': ' + vector, 'm')).slice(1).map(Number);
+function sceneHitBoxes(scene, nodes) {
+  const yaml = read(scene.source);
+  const boxes = [...yaml.matchAll(/^--- !u!65 &\d+\r?\n([\s\S]*?)(?=^--- |(?![\s\S]))/gm)];
+  return nodes.map(node => {
+    const collider = boxes.find(match => match[1].includes('m_GameObject: {fileID: ' + node.id + '}'));
+    assert(collider, 'Missing authored collider for ' + scene.name + '/' + node.name);
+    const readVector = field => collider[1].match(new RegExp('^  ' + field + ': ' + vector, 'm')).slice(1).map(Number);
+    return { node: node.id, center: readVector('m_Center'), size: readVector('m_Size'), source: scene.source, sha256: sha(yaml) };
+  });
+}
 assert(clips.Title_TS_Loop_00.loop && clips.Title_Connect_Loop_00.loop);
 assert(clips.Home_Live2D_In_00.duration > 0 && clips.Cmn_Std_In04_00.duration > 0);
-const titleHitBox = { node: start.id, center: boxVector('m_Center'), size: boxVector('m_Size'), source: title.source, sha256: sha(titleSource) };
+const [titleHitBox] = sceneHitBoxes(title, [start]);
+const roleScene = layout.definitions.find(scene => scene.name === 'IntroSlPl');
+const roleRoots = new Set(roleScene.nodes.filter(node => node.scripts.some(script => script.type === 'IntroSlPlChr')).map(node => node.id));
+const rolePortraits = roleScene.nodes.filter(node => roleRoots.has(node.parent) && node.scripts.some(script => script.method === 'OnClick'));
+assert.equal(rolePortraits.length, 4);
+const roleHitBoxes = Object.fromEntries(sceneHitBoxes(roleScene, rolePortraits).map(box => [box.node, box]));
 function atlasFrames(prefix, suffixes) {
   const widget = layout.definitions.flatMap(scene => scene.nodes.flatMap(node => node.widgets))
     .find(widget => widget.frame === prefix + suffixes[0] && widget.resolved);
@@ -99,5 +110,5 @@ const menuAtlases = [...menuFrames].map(([source, names]) => readFrames(source, 
 const menuSprites = Object.fromEntries(menuAtlases.flatMap(atlas => Object.entries(atlas.frames)
   .map(([name, uv]) => [name, { texture: atlas.texture, uv, source: atlas.source, sha256: atlas.sha256 }])));
 const output = path.join(root, recovery + '/Resources/OriginalSceneMotion.json');
-fs.writeFileSync(output, JSON.stringify({ schemaVersion: 1, titleHitBox, clips, atlases, menuSprites }, null, 2) + '\n');
+fs.writeFileSync(output, JSON.stringify({ schemaVersion: 1, titleHitBox, roleHitBoxes, clips, atlases, menuSprites }, null, 2) + '\n');
 console.log(JSON.stringify({ clips: Object.keys(clips).length, tracks: Object.values(clips).reduce((total, clip) => total + clip.tracks.length, 0), titleHitBox }));
