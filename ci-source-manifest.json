@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-27T01:03:19.125Z",
+  "generatedAt": "2026-11-27T01:30:18.297Z",
   "stage": "connection-and-synthetic-native-validation",
   "gameplayReady": false,
   "files": [
@@ -2550,8 +2550,8 @@
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalNaviModel.cs",
-      "bytes": 8224,
-      "sha256": "b8894d429f1cffb544b07cc3186bc1a57aab029f1ad5cab4ddd360ca9a820251"
+      "bytes": 12469,
+      "sha256": "c9d93c73501ce760c116df4791639d9a8b437e6942f192d4933d585e11791a80"
     },
     {
       "path": "ios-client/Assets/Recovery/Runtime/OriginalSceneMotion.cs",
@@ -3700,8 +3700,8 @@
     },
     {
       "path": "tests/Order05ScenePreview.cs",
-      "bytes": 24899,
-      "sha256": "0aba895c23f42630b7e8e8b5b412030c89530622994bb5f5a9e9dea9a2649590"
+      "bytes": 26285,
+      "sha256": "6dfd4b911d004c9961e970cbe57b1207f27cab394173134ab7e617e0f4a0af20"
     },
     {
       "path": "tests/PreparedCardQueryDifferential.cs",

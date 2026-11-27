@@ -10,6 +10,7 @@ using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
 using Kairisei.Recovery;
+using Kairisei.Recovery.Cubism2;
 
 // Copied only into an isolated Windows editor project by the preview runner.
 public sealed class Order05ScenePreview : MonoBehaviour
@@ -186,11 +187,14 @@ public sealed class Order05ScenePreview : MonoBehaviour
         Capture("07-home-entry-start", main, renderer, ui, target);
         var world = (Camera)Field(typeof(OriginalSceneRenderer), "worldCamera").GetValue(renderer);
         var model = (OriginalNaviModel)Field(typeof(OriginalSceneRenderer), "navi").GetValue(renderer);
+        var cubism = (Live2DModelUnity)Field(typeof(OriginalNaviModel), "model").GetValue(model);
+        Require(HasUathachPose(cubism, 1, 1), "The first Home frame did not hide alternative arms.");
         float enteringPosition = model.transform.position.x;
         yield return new WaitForSecondsRealtime(0.18f);
         Capture("08-home-entry-mid", main, renderer, ui, target);
         yield return new WaitForSecondsRealtime(0.25f);
         Capture("09-home", main, renderer, ui, target);
+        Require(HasUathachPose(cubism, 1, 1), "The idle motion exposed an alternative arm.");
         Require(model.transform.position.x > enteringPosition + 10, "The actual navi transform did not animate.");
         Transform status = renderer.transform.Find("Restored_Home/Menu/UI Root (2D)/Camera/Left Top Anchor/Menu_Status");
         var bpBar = status.Find("BP/Anm_BpBar/Bar").GetComponentInChildren<MeshRenderer>();
@@ -207,7 +211,12 @@ public sealed class Order05ScenePreview : MonoBehaviour
                 touched = model.TryPlayTouch(world.ScreenPointToRay(new Vector2(x, y)));
         Require(touched, "The original navi hit area did not receive a visible tap.");
         yield return new WaitForSecondsRealtime(0.8f);
+        Require(HasUathachPose(cubism, 1, 2), "The touch motion did not switch to its authored right arm.");
         Capture("10-home-navi-touch", main, renderer, ui, target);
+        float idleDeadline = Time.unscaledTime + 15;
+        while (!HasUathachPose(cubism, 1, 1) && Time.unscaledTime < idleDeadline) yield return null;
+        Require(HasUathachPose(cubism, 1, 1), "The model did not restore its idle arm pose after the touch motion.");
+        Capture("19-home-navi-idle-restored", main, renderer, ui, target);
         Transform buttons = (Transform)Field(typeof(OriginalSceneRenderer), "menuButtons").GetValue(renderer);
         Transform right = (Transform)Field(typeof(OriginalSceneRenderer), "menuRightArrow").GetValue(renderer);
         float initialMenuX = buttons.localPosition.x;
@@ -303,6 +312,15 @@ public sealed class Order05ScenePreview : MonoBehaviour
             yield return null;
             Require(!bannerItem.gameObject.activeSelf && bannerMaterial.mainTexture == null, "An empty refreshed reply kept the previous banner.");
         }
+    }
+
+    private static bool HasUathachPose(Live2DModelUnity model, int left, int right)
+    {
+        return Mathf.Approximately(model.getPartsOpacity("PARTS_01_ARM_L_01"), left == 1 ? 1 : 0) &&
+               Mathf.Approximately(model.getPartsOpacity("PARTS_01_ARM_L_02"), left == 2 ? 1 : 0) &&
+               Mathf.Approximately(model.getPartsOpacity("PARTS_01_ARM_R_01"), right == 1 ? 1 : 0) &&
+               Mathf.Approximately(model.getPartsOpacity("PARTS_01_ARM_R_02"), right == 2 ? 1 : 0) &&
+               Mathf.Approximately(model.getPartsOpacity("PARTS_01_ARM_R_03"), right == 3 ? 1 : 0);
     }
 
     private static CnHomeState FixtureHome(JObject wire)

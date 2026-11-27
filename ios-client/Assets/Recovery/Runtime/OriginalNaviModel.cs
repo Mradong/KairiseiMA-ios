@@ -18,7 +18,83 @@ namespace Kairisei.Recovery
         private readonly List<int> hitAreas = new List<int>();
         private int nextTouch;
         private MotionQueueManager motionQueue;
+        private PartPose pose;
         private long started;
+
+        private sealed class PartPose
+        {
+            private sealed class Part
+            {
+                public int Index;
+                public int Visibility;
+                public readonly List<int> Links = new List<int>();
+            }
+
+            private readonly List<Part[]> groups = new List<Part[]>();
+            private readonly float fadeMilliseconds;
+            private long? lastUpdate;
+
+            public PartPose(Live2DModelUnity model, JObject definition)
+            {
+                fadeMilliseconds = (float?)definition["fade_in"] ?? 500f;
+                if (!(definition["parts_visible"] is JArray rows) || rows.Count == 0)
+                    throw new FormatException("Original Live2D pose has no part groups.");
+                foreach (JObject row in rows)
+                {
+                    if (!(row["group"] is JArray members) || members.Count == 0)
+                        throw new FormatException("Original Live2D pose has an empty part group.");
+                    var group = new Part[members.Count];
+                    for (int i = 0; i < members.Count; i++)
+                    {
+                        string id = (string)members[i]["id"];
+                        var part = new Part { Index = ResolvePart(model, id), Visibility = model.getParamIndex("VISIBLE:" + id) };
+                        if (members[i]["link"] is JArray links)
+                            foreach (JToken link in links) part.Links.Add(ResolvePart(model, (string)link));
+                        group[i] = part;
+                    }
+                    groups.Add(group);
+                }
+            }
+
+            private static int ResolvePart(Live2DModelUnity model, string id)
+            {
+                int index = String.IsNullOrEmpty(id) ? -1 : model.getPartsDataIndex(id);
+                if (index < 0) throw new FormatException("Original Live2D pose references a missing part: " + id);
+                return index;
+            }
+
+            public void Update(Live2DModelUnity model, long now)
+            {
+                float fadeStep = lastUpdate.HasValue && fadeMilliseconds > 0
+                    ? Mathf.Clamp01((now - lastUpdate.Value) / fadeMilliseconds) : 1f;
+                lastUpdate = now;
+                foreach (Part[] group in groups)
+                {
+                    Part visible = null;
+                    foreach (Part part in group)
+                    {
+                        if (model.getParamFloat(part.Visibility) == 0) continue;
+                        visible = part;
+                        break;
+                    }
+                    float opacity = visible == null ? 1f : Mathf.Clamp01(model.getPartsOpacity(visible.Index) + fadeStep);
+                    if (visible == null) visible = group[0];
+                    model.setPartsOpacity(visible.Index, opacity);
+
+                    // Cubism 2 limits the outgoing part during the pose crossfade.
+                    float outgoingLimit = 1f - opacity;
+                    if (opacity * outgoingLimit > 0.15f)
+                        outgoingLimit = 1f - 0.15f / (1f - opacity);
+                    foreach (Part part in group)
+                    {
+                        if (part != visible) model.setPartsOpacity(part.Index, Mathf.Min(model.getPartsOpacity(part.Index), outgoingLimit));
+                    }
+                    foreach (Part part in group)
+                        foreach (int link in part.Links) model.setPartsOpacity(link, model.getPartsOpacity(part.Index));
+                }
+            }
+        }
+
         public static void ValidateContent(RecoveryContentLoader content)
         {
             JObject definition=JObject.Parse(content.Load<TextAsset>(BundleName,"originalworld").text);
@@ -39,6 +115,7 @@ namespace Kairisei.Recovery
             {
                 probe=Live2DModelUnity.loadModel(content.Load<TextAsset>(BundleName,moc).bytes);
                 if(probe==null||probe.getCanvasWidth()<=0||probe.getCanvasHeight()<=0)throw new InvalidOperationException("Original Live2D model could not be decoded.");
+                LoadPose(content, probe, modelDefinition);
                 JArray textures=(JArray)modelDefinition["textures"];
                 if(textures==null||textures.Count==0)throw new InvalidOperationException("Original Live2D textures are absent.");
                 foreach(JToken texture in textures)content.Load<Texture2D>(BundleName,((string)texture).ToLowerInvariant());
@@ -58,6 +135,7 @@ namespace Kairisei.Recovery
             JObject layout=(JObject)definition["model"]["layout"];
             string moc=((string)definition["model"]["model"]).ToLowerInvariant();
             model=Live2DModelUnity.loadModel(content.Load<TextAsset>(BundleName,moc).bytes);
+            pose = LoadPose(content, model, (JObject)definition["model"]);
             model.setRenderMode(0);
             JArray textures=(JArray)definition["model"]["textures"];
             for(int i=0;i<textures.Count;i++)model.setTexture(i,content.Load<Texture2D>(BundleName,((string)textures[i]).ToLowerInvariant()));
@@ -85,13 +163,23 @@ namespace Kairisei.Recovery
             if ((int?)definition["fade_out"] is int fadeOut) motion.setFadeOut(fadeOut);
             return motion;
         }
+
+        private static PartPose LoadPose(RecoveryContentLoader content, Live2DModelUnity model, JObject definition)
+        {
+            string address = ((string)definition["pose"])?.ToLowerInvariant();
+            if (String.IsNullOrEmpty(address)) throw new FormatException("Original Live2D pose asset is absent.");
+            return new PartPose(model, JObject.Parse(content.Load<TextAsset>(BundleName, address).text));
+        }
+
         private void Update()
         {
             if(!Ready)return;
             if(motionQueue.isFinished())motionQueue.startMotion(idle,false);
             model.loadParam();motionQueue.updateParam(model);model.saveParam();
-            double seconds=(UtSystem.getUserTimeMSec()-started)/1000.0;
+            long now = UtSystem.getUserTimeMSec();
+            double seconds=(now-started)/1000.0;
             model.setParamFloat("PARAM_BREATH",(float)(0.5+0.5*Math.Sin(seconds*2.0)));
+            pose.Update(model, now);
             model.update();
         }
         private void OnRenderObject()
