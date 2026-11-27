@@ -23,6 +23,8 @@ namespace Kairisei.Recovery
     [Serializable]
     public sealed class ContentManifest
     {
+        public const int MaximumManifestBytes = 8 * 1024 * 1024;
+
         [JsonProperty(Required = Required.Always)] public int format = 1;
         [JsonProperty(Required = Required.Always)] public string platform = "iOS";
         [JsonProperty(Required = Required.Always)] public string unityVersion;
@@ -31,7 +33,8 @@ namespace Kairisei.Recovery
 
         public static ContentManifest Parse(string json, string expectedUnity)
         {
-            if (json == null || json.Length > 1024 * 1024) throw new FormatException("Resource manifest size is invalid.");
+            if (json == null || json.Length > MaximumManifestBytes || Encoding.UTF8.GetByteCount(json) > MaximumManifestBytes)
+                throw new FormatException("Resource manifest size is invalid.");
             ContentManifest result = JsonConvert.DeserializeObject<ContentManifest>(json);
             if (result == null || result.format != 1 || result.platform != "iOS" || result.unityVersion != expectedUnity ||
                 result.bundles == null || result.bundles.Length == 0 || result.bundles.Length > 16384)
@@ -110,6 +113,27 @@ namespace Kairisei.Recovery
         public static string Hash(byte[] data) { using (SHA256 hash = SHA256.Create()) return Hex(hash.ComputeHash(data)); }
         public static string HashFile(string file) { using (Stream input = File.OpenRead(file)) using (SHA256 hash = SHA256.Create()) return Hex(hash.ComputeHash(input)); }
         private static string Hex(byte[] bytes) { return BitConverter.ToString(bytes).Replace("-", "").ToLowerInvariant(); }
+        private static readonly uint[] CrcTable = CreateCrcTable();
+
+        // Use the reflected IEEE CRC-32 table for both publication and cache checks.
+        private static uint[] CreateCrcTable()
+        {
+            var table = new uint[256];
+            for (uint value = 0; value < table.Length; value++)
+            {
+                uint crc = value;
+                for (int bit = 0; bit < 8; bit++) crc = (crc >> 1) ^ ((crc & 1) == 0 ? 0 : 0xedb88320);
+                table[value] = crc;
+            }
+            return table;
+        }
+
+        private static uint UpdateCrc(uint crc, byte[] data, int count)
+        {
+            for (int i = 0; i < count; i++) crc = (crc >> 8) ^ CrcTable[(crc ^ data[i]) & 255];
+            return crc;
+        }
+
         public static uint FileCrc(string file)
         {
             uint crc = 0xffffffff;
@@ -117,19 +141,31 @@ namespace Kairisei.Recovery
             using (Stream input = File.OpenRead(file))
             {
                 int count;
-                while ((count = input.Read(buffer, 0, buffer.Length)) > 0)
-                    for (int i = 0; i < count; i++)
-                    {
-                        crc ^= buffer[i];
-                        for (int bit = 0; bit < 8; bit++) crc = (crc >> 1) ^ ((crc & 1) == 0 ? 0 : 0xedb88320);
-                    }
+                while ((count = input.Read(buffer, 0, buffer.Length)) > 0) crc = UpdateCrc(crc, buffer, count);
             }
             return ~crc;
         }
+
+        // Check both digests in one read so a full cache verification reads the data once.
         public static bool Matches(string file, ContentBundle item)
         {
-            return File.Exists(file) && new FileInfo(file).Length == item.bytes && HashFile(file) == item.sha256 &&
-                FileCrc(file).ToString("X8", CultureInfo.InvariantCulture) == item.crc32;
+            if (!File.Exists(file)) return false;
+            using (FileStream input = File.OpenRead(file))
+            using (SHA256 sha = SHA256.Create())
+            {
+                if (input.Length != item.bytes) return false;
+                byte[] buffer = new byte[65536];
+                uint crc = 0xffffffff;
+                int count;
+                while ((count = input.Read(buffer, 0, buffer.Length)) > 0)
+                {
+                    sha.TransformBlock(buffer, 0, count, null, 0);
+                    crc = UpdateCrc(crc, buffer, count);
+                }
+                sha.TransformFinalBlock(buffer, 0, 0);
+                return input.Position == item.bytes && Hex(sha.Hash) == item.sha256 &&
+                    (~crc).ToString("X8", CultureInfo.InvariantCulture) == item.crc32;
+            }
         }
     }
 

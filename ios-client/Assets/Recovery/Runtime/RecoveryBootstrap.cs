@@ -125,7 +125,12 @@ namespace Kairisei.Recovery
             Matrix4x4 previous = GUI.matrix;
             GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1));
             GUI.Box(panel, GUIContent.none);
-            GUI.Label(new Rect(panel.x + 20, panel.y + 15, panel.width - 40, 132), status, startupLabel);
+            string message = status;
+            if (busy && entry.Step == CnEntryStep.Content && content.TotalBundles > 0)
+                message += "\n" + String.Format("已校验 {0:N0} / {1:N0} MB（{2} / {3} 个包）",
+                    content.VerifiedBytes / 1000000.0, content.TotalBytes / 1000000.0,
+                    content.Installed + content.Reused, content.TotalBundles);
+            GUI.Label(new Rect(panel.x + 20, panel.y + 15, panel.width - 40, 132), message, startupLabel);
             bool retry = entry.CanRetry || localInitializationFailed;
             if (!busy && GUI.Button(new Rect(panel.center.x - 60, panel.y + 155, 120, 44), retry ? "重试" : "连接", startupButton))
                 BeginFromOriginalTitle();

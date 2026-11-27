@@ -66,8 +66,8 @@ namespace Kairisei.Recovery.Editor
             CreateScene();
             PlayerSettings.companyName = "KairiseiRecovery";
             PlayerSettings.productName = "Kairisei Recovery";
-            PlayerSettings.bundleVersion = "0.0.12";
-            PlayerSettings.iOS.buildNumber = "12";
+            PlayerSettings.bundleVersion = "0.0.13";
+            PlayerSettings.iOS.buildNumber = "13";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "local.kairisei.recovery");
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(NamedBuildTarget.iOS, 1); // ARM64
