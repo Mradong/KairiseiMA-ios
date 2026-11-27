@@ -2,6 +2,9 @@ name: Build iOS resource-bootstrap IPA
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - order05a-full-resources-lyd
 
 permissions:
   contents: read
