@@ -10,7 +10,7 @@ namespace Kairisei.Recovery
 {
     // Rebuilds the recorded NGUI scene hierarchy, rather than arranging a new screen.
     // Missing model/background dependencies keep home unavailable; there is no dashboard fallback.
-    public sealed class OriginalSceneRenderer : MonoBehaviour
+    public sealed partial class OriginalSceneRenderer : MonoBehaviour
     {
         public const string BundleName = "recovery/scenes.dat";
         private JObject layout;
@@ -168,12 +168,6 @@ namespace Kairisei.Recovery
         {
             Initialized = false;
             content = loader; originalFont = font; owner = controller;
-            TextAsset motion = Resources.Load<TextAsset>("OriginalSceneMotion");
-            if (motion == null) throw new InvalidOperationException("原场景动画数据缺失。");
-            motionData = JObject.Parse(motion.text);
-            if ((int?)motionData["schemaVersion"] != 1) throw new FormatException("原场景动画数据无效。");
-            titleHitCenter = Vector(motionData["titleHitBox"]["center"]);
-            titleHitSize = Vector(motionData["titleHitBox"]["size"]);
             spriteShader = Resources.Load<Shader>("OriginalSceneUI");
             if (spriteShader == null) throw new InvalidOperationException("原场景界面着色器缺失。");
             RefreshContent();
@@ -210,8 +204,17 @@ namespace Kairisei.Recovery
             if (required.Count != 0) throw new InvalidOperationException("缺少原场景：" + String.Join("、", required));
             foreach (JObject texture in sceneTextures) content.Load<Texture2D>(BundleName, (string)texture["key"]);
             OriginalNaviModel.ValidateContent(content);
+            JObject motion = JObject.Parse(content.Load<TextAsset>(BundleName, "originalscenemotion").text);
+            if ((int?)motion["schemaVersion"] != 1 || !(motion["titleHitBox"] is JObject hitBox))
+                throw new FormatException("原场景动画数据无效。");
+            titleHitCenter = Vector(hitBox["center"]);
+            titleHitSize = Vector(hitBox["size"]);
+            motionData = motion;
 
             textures.Clear();
+            workDefinitions = null;
+            workCards = null;
+            workCardPictures.Clear();
             layout = updated;
             homeResourcesReady = true;
         }
@@ -227,7 +230,11 @@ namespace Kairisei.Recovery
             CloseDialog();
             if (currentScene == name) return;
             if (name == "Home" && !CanPresentHome) throw new InvalidOperationException("主页背景与导航角色资源尚未完整就绪。");
-            JObject definition = Definition(name);
+            ShowScene(name, Definition(name));
+        }
+
+        private void ShowScene(string name, JObject definition)
+        {
             ClearHomeBanners();
             homeBanner = null;
             homeBannerItem = null;
@@ -378,13 +385,13 @@ namespace Kairisei.Recovery
                         string frame = (string)data["frame"];
                         if (source == null && scene == "Menu" && !String.IsNullOrEmpty(frame))
                             source = (JObject)motionData["menuSprites"][frame];
-                        if (source != null) BuildImage(widget, source);
+                        if (source != null) BuildImage(widget, source, IsWorkScene(scene) ? WorkBundleName : BundleName);
                         else if (scene == "Menu" && (string)data["kind"] == "UITexture" &&
                             item.name.TrimEnd('\r') == "Dmy_Banner" && item.transform.parent.name == "Menu_Banner")
                         {
                             homeBanner = widget;
                             homeBannerItem = item.transform.parent.parent.gameObject;
-                            BuildImage(widget, new JObject { { "uv", new JArray(0, 0, 1, 1) } }, null);
+                            BuildImage(widget, new JObject { { "uv", new JArray(0, 0, 1, 1) } }, texture: null);
                         }
                         else continue;
                     }
@@ -651,11 +658,12 @@ namespace Kairisei.Recovery
                     widget.Renderer.SetPropertyBlock(menuClipProperties);
         }
 
-        private void BuildImage(Widget widget, JObject source)
+        private void BuildImage(Widget widget, JObject source, string bundle = BundleName)
         {
             string key = (string)source["texture"];
             Texture2D texture;
-            if (!textures.TryGetValue(key, out texture)) { texture = content.Load<Texture2D>(BundleName, key); textures.Add(key, texture); }
+            string cacheKey = bundle + ":" + key;
+            if (!textures.TryGetValue(cacheKey, out texture)) { texture = content.Load<Texture2D>(bundle, key); textures.Add(cacheKey, texture); }
             BuildImage(widget, source, texture);
         }
 
@@ -837,6 +845,9 @@ namespace Kairisei.Recovery
         {
             string scene = (string)definition["name"];
             JObject node = widget.Node;
+            if ((string)node["deckAction"] is string deckAction) { widget.Click = deckActions[deckAction]; return; }
+            if ((bool?)node["workBack"] == true) { widget.Click = workBack; return; }
+            if ((int?)node["workIndex"] is int workIndex) { widget.Click = () => workSelect(workIndex); return; }
             while (node != null)
             {
                 foreach (JObject script in (JArray)node["scripts"])
@@ -864,6 +875,8 @@ namespace Kairisei.Recovery
                     if (scene == "Menu" && method == "OnLeftButton") widget.Click = () => ScrollMenu(648);
                     if (scene == "Menu" && method == "OnRightButton") widget.Click = () => ScrollMenu(-648);
                     if (scene == "Menu" && method == "onClick_Menu") widget.Click = ToggleHomeMenu;
+                    if (scene == "Menu" && method == "onClickQuestEvent") widget.Click = owner.OpenOriginalQuests;
+                    if (scene == "Menu" && method == "onClickDeck") widget.Click = owner.OpenOriginalDeck;
                     if (scene == "Menu" && method == "onClickMain" && menuSubgroups.TryGetValue((string)node["id"], out var tab))
                         widget.Click = () => SelectHomeMenu(tab);
                     if(method=="OnClick"&&(string)script["type"]=="UIButtonMessage"&&widget.Object.name=="Back")widget.Click=delegate{SelectRole(0);};
@@ -895,7 +908,8 @@ namespace Kairisei.Recovery
                 owner.SetOriginalCharacterName(nameKeyboard.text); nameKeyboard = null;
             }
             if (dialogRoot == null && owner.OriginalEntryStep == CnEntryStep.Character && currentScene != "IntroSlPl") Show("IntroSlPl");
-            if (dialogRoot == null && owner.OriginalHome != null && CanPresentHome && currentScene != "Home") Show("Home");
+            if (dialogRoot == null && owner.OriginalHome != null && CanPresentHome && currentScene != "Home" && !IsWorkScene(currentScene)) Show("Home");
+            if (dialogRoot == null && owner.OriginalHome == null && IsWorkScene(currentScene)) Show("Title");
             UpdateMotions(sceneMotions);
             UpdateMotions(dialogMotions);
             if (currentScene == "Home")
@@ -949,6 +963,7 @@ namespace Kairisei.Recovery
                 Touch touch = Input.GetTouch(0);
                 pressed = touch.phase == TouchPhase.Began;
                 screen = touch.position;
+                if (HandleWorkTouch(touch.fingerId, touch.phase, screen)) return;
                 if (HandleHomeBannerTouch(touch.fingerId, touch.phase, screen)) return;
                 if (pressed && menuOpen && menuClipPanel != null && dialogRoot == null)
                 {
@@ -974,6 +989,8 @@ namespace Kairisei.Recovery
                     return;
                 }
             }
+            if (dialogRoot == null && currentScene == workPage && Input.mouseScrollDelta.y != 0 && WorkRowAt(sceneCamera.ScreenPointToRay(screen)))
+                ScrollWork(Input.mouseScrollDelta.y > 0 ? -1 : 1);
             if (pressed) HandlePress(sceneCamera.ScreenPointToRay(screen), screen);
         }
 
@@ -983,14 +1000,8 @@ namespace Kairisei.Recovery
             for (int i = dialogRoot == null ? 0 : firstDialogWidget; i < widgets.Count; i++)
             {
                 Widget widget = widgets[i];
-                if (widget.Click == null || !widget.Object.activeInHierarchy) continue;
+                if (widget.Click == null || !WidgetContains(widget, ray)) continue;
                 if (menuClipPanel != null && widget.Object.transform.IsChildOf(menuClipPanel) && !MenuContains(ray)) continue;
-                Plane plane = new Plane(widget.Object.transform.forward, widget.Object.transform.position);
-                float distance; if (!plane.Raycast(ray,out distance)) continue;
-                Vector3 point = widget.Object.transform.InverseTransformPoint(ray.GetPoint(distance));
-                Vector2 pivot = Pivot((int)widget.Data["pivot"]);
-                Rect bounds = widget.HitBounds ?? new Rect(-pivot.x, -pivot.y, 1, 1);
-                if (!bounds.Contains(point)) continue;
                 if (hit == null || widget.Depth > hit.Depth) hit = widget;
             }
             if (hit != null) { hit.Click(); return; }
@@ -1003,6 +1014,18 @@ namespace Kairisei.Recovery
             }
             else if (currentScene == "Home" && navi != null && !MenuContains(ray) && !HomeBannerContains(ray))
                 navi.TryPlayTouch(worldCamera.ScreenPointToRay(screen));
+        }
+
+        // Authored widget geometry is the shared hit area for taps and scroll initiation.
+        private static bool WidgetContains(Widget widget, Ray ray)
+        {
+            if (!widget.Object.activeInHierarchy) return false;
+            Plane plane = new Plane(widget.Object.transform.forward, widget.Object.transform.position);
+            if (!plane.Raycast(ray, out float distance)) return false;
+            Vector3 point = widget.Object.transform.InverseTransformPoint(ray.GetPoint(distance));
+            Vector2 pivot = Pivot((int)widget.Data["pivot"]);
+            Rect bounds = widget.HitBounds ?? new Rect(-pivot.x, -pivot.y, 1, 1);
+            return bounds.Contains(point);
         }
 
         private bool MenuContains(Ray ray)
@@ -1090,6 +1113,18 @@ namespace Kairisei.Recovery
             if (currentDialog == "Confirm" && dialogBody == message) return;
             bool retry = owner.OriginalCanRetry;
             ShowConfirmation("提示", message, retry ? "重试" : "确定", retry ? (Action)owner.RetryOriginalEntry : null);
+        }
+
+        // The caller supplies the read to retry; the entry retry state remains independent.
+        public void ShowWorkError(string message, Action retry)
+        {
+            ShowConfirmation("提示", message, retry == null ? "确定" : "重试", retry);
+        }
+
+        // Confirm before discarding server-deck edits that have not been submitted.
+        public void ConfirmDeckDiscard(Action discard)
+        {
+            ShowConfirmation("卡组", "当前卡组有未保存的修改，确定放弃修改？", "放弃", discard);
         }
 
         private void ShowConfirmation(string title, string message, string acceptLabel, Action action)

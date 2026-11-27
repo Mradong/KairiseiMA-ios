@@ -13,6 +13,7 @@ namespace Kairisei.Recovery
         public string Error { get; private set; }
         public int Reused { get; private set; }
         public int Installed { get; private set; }
+        public string ActiveContentId { get { return activeManifest == null ? null : activeManifest.contentId; } }
         public string[] RequiredBundles { get; set; }
         private readonly Dictionary<string, AssetBundle> loaded = new Dictionary<string, AssetBundle>();
         private readonly Dictionary<string, string> hashes = new Dictionary<string, string>();
@@ -30,13 +31,21 @@ namespace Kairisei.Recovery
 
         public T Load<T>(string bundle, string asset) where T : UnityEngine.Object
         {
-            AssetBundle source;
-            if (!Ready || !loaded.TryGetValue(bundle, out source)) throw new InvalidOperationException("Content is not ready.");
-            T value = source.LoadAsset<T>(asset);
+            T value = LoadOptional<T>(bundle, asset);
             if (value == null) throw new InvalidDataException("Required asset is absent: " + asset);
             return value;
         }
 
+        // Decode optional assets from an already verified bundle. The bundle itself must be ready.
+        public T LoadOptional<T>(string bundle, string asset) where T : UnityEngine.Object
+        {
+            AssetBundle source;
+            if (!Ready || !loaded.TryGetValue(bundle, out source)) throw new InvalidOperationException("Content is not ready.");
+            return source.LoadAsset<T>(asset);
+        }
+
+#if !UNITY_IOS || UNITY_EDITOR
+        // Desktop tools can open explicitly staged fixtures.
         public IEnumerator Initialize()
         {
             if (running) yield break;
@@ -58,6 +67,8 @@ namespace Kairisei.Recovery
             }
             finally { running = false; }
         }
+
+#endif
 
         public IEnumerator UpdateFromServer(CnLogin login)
         {
@@ -211,7 +222,9 @@ namespace Kairisei.Recovery
             {
                 request = UnityWebRequest.Get(uri);
                 request.downloadHandler = new DownloadHandlerFile(stage) { removeFileOnAbort = true };
-                request.timeout = 30; request.redirectLimit = 0;
+                // A known 37-second scene download exceeds the old 30-second limit. Bound larger transfers by size.
+                request.timeout = (int)Math.Min(600L, Math.Max(60L, 30L + maximum / (256L * 1024)));
+                request.redirectLimit = 0;
                 pending = request;
                 operation = request.SendWebRequest();
             }

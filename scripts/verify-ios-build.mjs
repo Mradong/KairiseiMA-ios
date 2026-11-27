@@ -95,7 +95,33 @@ export function verifyHttpTransport(info) {
     if (Object.hasOwn(ats, key)) throw new Error('ATS key overrides the global HTTP exception: ' + key);
 }
 
-export function verifyApp(appDirectory, info, deviceOS = '17.4.1') {
+// Scan the archived app itself, including its framework and Unity Raw data.
+export function verifyServerOnlyResources(appDirectory) {
+  const pending = [appDirectory];
+  const bundleHeaders = new Set(['UnityFS', 'UnityWeb', 'UnityRaw', 'UnityArchive']);
+  let filesChecked = 0;
+  while (pending.length) {
+    const directory = pending.pop();
+    for (const entry of fs.readdirSync(directory, { withFileTypes: true })) {
+      const location = path.join(directory, entry.name);
+      const relative = path.relative(appDirectory, location);
+      if (/^(?:RecoveryContent|IosContentManifest(?:\.json)?|client-manifest\.json|ios-delivery\.json|resource-build\.json)$/i.test(entry.name))
+        throw new Error('Embedded server resource path: ' + relative);
+      if (entry.isDirectory()) { pending.push(location); continue; }
+      if (!entry.isFile()) continue;
+      const prefix = Buffer.alloc(16);
+      const fd = fs.openSync(location, 'r');
+      try { fs.readSync(fd, prefix, 0, prefix.length, 0); }
+      finally { fs.closeSync(fd); }
+      if (bundleHeaders.has(prefix.toString('ascii').split('\0')[0]))
+        throw new Error('Embedded Unity resource bundle: ' + relative);
+      filesChecked++;
+    }
+  }
+  return { policy: 'server-only', passed: true, filesChecked };
+}
+
+export function verifyApp(appDirectory, info, deviceOS = '17.4.1', serverOnly = false) {
   if (!appDirectory.endsWith('.app') || !fs.statSync(appDirectory).isDirectory()) throw new Error('Expected an application bundle');
   if (info.CFBundlePackageType !== 'APPL' || !Array.isArray(info.CFBundleSupportedPlatforms) || !info.CFBundleSupportedPlatforms.includes('iPhoneOS')) throw new Error('Info.plist does not identify a device iOS application');
   if (typeof info.CFBundleIdentifier !== 'string' || !/^[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)+$/.test(info.CFBundleIdentifier)) throw new Error('Bundle identifier is invalid');
@@ -132,6 +158,7 @@ export function verifyApp(appDirectory, info, deviceOS = '17.4.1') {
     throw new Error('Unexpected IL2CPP metadata format for the pinned Unity version');
   return {
     structuralValidation: 'passed', device: { model: 'iPhone 13', iOS: deviceOS },
+    ...(serverOnly ? { resourceDelivery: verifyServerOnlyResources(appDirectory) } : {}),
     bundleIdentifier: info.CFBundleIdentifier, minimumOS: info.MinimumOSVersion, executable,
     executableSHA256: crypto.createHash('sha256').update(binary).digest('hex'), slices, frameworks, il2cppMetadata: metadata,
     il2cppMetadataVersion: metadataHeader.readUInt32LE(4),
@@ -141,7 +168,8 @@ export function verifyApp(appDirectory, info, deviceOS = '17.4.1') {
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
-  const [app, infoFile, targetOS] = process.argv.slice(2);
-  if (!app || !infoFile) throw new Error('Usage: node verify-ios-build.mjs <app-directory> <Info.plist-as-JSON> [target-iOS]');
-  console.log(JSON.stringify(verifyApp(path.resolve(app), JSON.parse(fs.readFileSync(infoFile, 'utf8')), targetOS || '17.4.1'), null, 2));
+  const [app, infoFile, targetOS, policy] = process.argv.slice(2);
+  if (!app || !infoFile || (policy && policy !== '--server-only'))
+    throw new Error('Usage: node verify-ios-build.mjs <app-directory> <Info.plist-as-JSON> [target-iOS] [--server-only]');
+  console.log(JSON.stringify(verifyApp(path.resolve(app), JSON.parse(fs.readFileSync(infoFile, 'utf8')), targetOS || '17.4.1', policy === '--server-only'), null, 2));
 }

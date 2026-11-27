@@ -43,7 +43,7 @@ if [[ ${#applications[@]} -ne 1 || ! -d "${applications[0]}" ]]; then
 fi
 application="${applications[0]}"
 plutil -convert json -o "$output_root/application-info.json" "$application/Info.plist"
-node "$script_root/verify-ios-build.mjs" "$application" "$output_root/application-info.json" '17.4.1' > "$output_root/structural-validation.json"
+node "$script_root/verify-ios-build.mjs" "$application" "$output_root/application-info.json" '17.4.1' --server-only > "$output_root/structural-validation.json"
 shasum -a 256 "$application/Info.plist" > "$output_root/application-plist-sha256.txt"
 if [[ -f "$application/embedded.mobileprovision" ]]; then
   echo 'An unexpected provisioning profile appeared in this unsigned build.' >&2
@@ -54,5 +54,11 @@ ditto "$application" "$output_root/Packaging/Payload/$(basename "$application")"
 ipa="$output_root/KairiseiMA-ios-connection-test-unsigned.ipa"
 COPYFILE_DISABLE=1 ditto -c -k --norsrc --noextattr --keepParent "$output_root/Packaging/Payload" "$ipa"
 unzip -tq "$ipa" > "$output_root/zip-validation.txt"
+# Check the archive produced by ditto as well as the app verified before packaging.
+unzip -Z1 "$ipa" > "$output_root/ipa-entries.txt"
+if grep -Ei '(^|/)(RecoveryContent|IosContentManifest(\.json)?|client-manifest\.json|ios-delivery\.json|resource-build\.json)(/|$)' "$output_root/ipa-entries.txt"; then
+  echo "An iOS delivery resource appeared in the IPA." >&2
+  exit 1
+fi
 shasum -a 256 "$ipa" > "$output_root/ipa-sha256.txt"
 printf '%s\n' "Unsigned connection-test IPA created: $ipa" 'This is not a restored playable game. It still requires local Apple-ID signing and device validation.'

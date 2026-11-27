@@ -24,17 +24,21 @@ namespace Kairisei.Recovery
         private bool showingQuests;
         private Vector2 questScroll;
         private int questIndex;
+        private long questBattlePoints;
+        private readonly List<List<int>> eventQuestGroups = new List<List<int>>();
+        private List<int> eventQuestDifficulties;
         private List<CnSoloPartner> soloPartners;
-        private int soloPartnerIndex;
         private readonly CnSoloPartyDraft soloParty = new CnSoloPartyDraft();
-        private List<CnDeck> soloDecks;
-        private int soloDeckIndex;
+        private CnDeck selectedSoloDeck;
+        private CnSoloPlayerLoadout selectedSoloLoadout;
         private bool showingDeck;
         private int deckIndex;
         private Vector2 deckScroll;
         private long[] deckDraft;
         private string deckError;
         private CnDeckSaveRecovery pendingDeckRecovery;
+        private string pendingDeckServer;
+        private long pendingDeckUserId;
         private List<long> cardChoices;
         private int editSlot;
         private int cardChoice;
@@ -46,7 +50,6 @@ namespace Kairisei.Recovery
         private int arthurType = 1;
         private bool serverContentReady;
         private UnityWebRequest pending;
-        private Texture2D title;
         private Font font;
         private Texture2D partyAtlasTexture;
         private RecoveryAtlas partyAtlas;
@@ -71,23 +74,32 @@ namespace Kairisei.Recovery
         {
             Application.targetFrameRate = 60;
             address = PlayerPrefs.GetString("ios-recovery.server", "http://47.116.51.61:27040");
-            title = Resources.Load<Texture2D>("RecoveryTitle");
             font = Resources.Load<Font>("RecoveryChinese");
             if (font == null) font = Resources.Load<Font>("RecoveryFont");
             content = gameObject.AddComponent<RecoveryContentLoader>();
-            content.RequiredBundles = new[] { OriginalSceneRenderer.BundleName,OriginalNaviModel.BundleName };
+            content.RequiredBundles = new[] { "recovery/ui.dat", OriginalSceneRenderer.BundleName, OriginalNaviModel.BundleName };
             originalScene = gameObject.AddComponent<OriginalSceneRenderer>();
         }
 
         private IEnumerator Start()
         {
+#if UNITY_IOS && !UNITY_EDITOR
+            // The first screen is available before any server package has been downloaded.
+            status = "连接服务器以下载游戏资源。";
+            yield break;
+#else
+            // A local package is optional for editor fixtures. A clean checkout follows the server path.
+            if (Resources.Load<TextAsset>("IosContentManifest") == null)
+            {
+                status = "连接服务器以下载游戏资源。";
+                yield break;
+            }
             busy = true;
             status = "正在检查并安装游戏资源…";
             yield return content.Initialize();
             try
             {
                 if (!content.Ready) throw new InvalidOperationException(content.Error ?? "资源初始化未完成。");
-                title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
                 LoadPartyAtlas();
                 originalScene.Initialize(content, font, this);
                 status = "本地资源已就绪，请连接并登录。";
@@ -96,11 +108,12 @@ namespace Kairisei.Recovery
             catch (Exception error) { localInitializationFailed = true; status = "资源加载失败：" + error.Message; }
             finally { busy = false; }
             // The original title's OnStartLogin action starts the online flow.
+#endif
         }
 
         private void OnGUI()
         {
-            if (!localInitializationFailed) return;
+            if (originalScene.Initialized) return;
             if (startupLabel == null)
             {
                 startupLabel = new GUIStyle(GUI.skin.label) { font = font, fontSize = 18, wordWrap = true, alignment = TextAnchor.MiddleCenter };
@@ -113,7 +126,9 @@ namespace Kairisei.Recovery
             GUI.matrix = Matrix4x4.Scale(new Vector3(scale, scale, 1));
             GUI.Box(panel, GUIContent.none);
             GUI.Label(new Rect(panel.x + 20, panel.y + 15, panel.width - 40, 132), status, startupLabel);
-            if (!busy && GUI.Button(new Rect(panel.center.x - 60, panel.y + 155, 120, 44), "重试", startupButton)) RetryEntry();
+            bool retry = entry.CanRetry || localInitializationFailed;
+            if (!busy && GUI.Button(new Rect(panel.center.x - 60, panel.y + 155, 120, 44), retry ? "重试" : "连接", startupButton))
+                BeginFromOriginalTitle();
             GUI.matrix = previous;
         }
 
@@ -147,9 +162,9 @@ namespace Kairisei.Recovery
             connectState = null;
             homeState = null;
             cardCollection = null;
-            pendingDeckRecovery = null;
             showingDeck = false;
             quests = null; showingQuests = false;
+            ClearSoloFormation();
             bonusKey = null;
             bonusNotice = "";
             serverContentReady = false;
@@ -176,9 +191,9 @@ namespace Kairisei.Recovery
             connectState = null;
             homeState = null;
             cardCollection = null;
-            pendingDeckRecovery = null;
             showingDeck = false;
             quests = null; showingQuests = false;
+            ClearSoloFormation();
             bonusKey = null;
             bonusNotice = "";
             serverContentReady = false;
@@ -193,6 +208,9 @@ namespace Kairisei.Recovery
             StartCoroutine(Send("POST", endpoint.Route("/local/client/login"), CnProtocol.CreateLogin(uuid, Application.unityVersion), delegate(string response) {
                 entry.ReceiveLogin(response, endpoint);
                 login = entry.Login;
+                // A relogin can replace the session while keeping the same guest and server.
+                if (pendingDeckRecovery != null && (pendingDeckServer != endpoint.ToString() || pendingDeckUserId != login.UserId))
+                    pendingDeckRecovery = null;
                 entryJournal = new CnEntryJournal(Application.persistentDataPath, endpoint, login.UserId);
                 using (SHA256 hash = SHA256.Create())
                     bonusKey = "ios-recovery.bonus." + BitConverter.ToString(hash.ComputeHash(Encoding.UTF8.GetBytes(endpoint.ToString() + "|" + login.UserId))).Replace("-", "");
@@ -205,17 +223,19 @@ namespace Kairisei.Recovery
         private IEnumerator UpdateServerContent(CnLogin requestedLogin)
         {
             busy = true;
+            status = "正在下载并校验游戏资源…";
             yield return content.UpdateFromServer(requestedLogin);
             serverContentReady = content.Ready && login == requestedLogin;
             string uiError = null;
+            bool firstScene = !originalScene.Initialized;
             if (serverContentReady)
             {
                 try
                 {
-                    title = content.Load<Texture2D>("recovery/ui.dat", "title-background");
                     LoadPartyAtlas();
-                    originalScene.RefreshContent();
-                    Debug.Log("Recovery server UI loaded: title=" + title.width + "x" + title.height + ", partyAtlas=" + (partyAtlas != null));
+                    if (firstScene) originalScene.Initialize(content, font, this);
+                    else originalScene.RefreshContent();
+                    Debug.Log("Recovery server UI loaded: content=" + content.ActiveContentId + ", partyAtlas=" + (partyAtlas != null));
                 }
                 catch (Exception error) { serverContentReady = false; uiError = error.Message; }
             }
@@ -223,7 +243,8 @@ namespace Kairisei.Recovery
             if (!serverContentReady) { EntryFailed(new InvalidOperationException("游戏资源加载失败：" + (uiError ?? content.Error))); yield break; }
             entry.ResourcesReady();
             Debug.Log("Recovery entry resources ready: installed=" + content.Installed + ", reused=" + content.Reused);
-            ReadConnect();
+            // On first launch the player starts Connect from the downloaded original title.
+            if (!firstScene) ReadConnect();
         }
 
         private void ReadConnect()
@@ -282,12 +303,22 @@ namespace Kairisei.Recovery
             }, EntryFailed));
         }
 
+        // This callback is bound to the original Home card menu’s deck entry.
+        public void OpenOriginalDeck()
+        {
+            if (busy || login == null || homeState == null || !originalScene.CanOpenWork()) return;
+            ReadDecks();
+        }
+
+        // Read the authoritative deck before resuming any edit after a save attempt.
         private void ReadDecks()
         {
-            if (login == null || homeState == null || verifiedAddress != address) return;
+            if (busy || login == null || homeState == null || verifiedAddress != address) return;
             CnLogin requestedLogin = login;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardShow2"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", 1 } }), delegate(string response) {
-                cardCollection = CnProtocol.ParseCardShow(response);
+                CnCardCollection current = CnProtocol.ParseCardShow(response);
+                CnProtocol.SelectSoloDecks(current);
+                cardCollection = current;
                 deckIndex = 0; PrepareDeckDraft(); showingDeck = true;
                 status = "已读取服务器卡组；卡牌名称与插画仍在恢复。";
                 if (pendingDeckRecovery != null)
@@ -308,72 +339,354 @@ namespace Kairisei.Recovery
                     else deckError = "服务器卡组或库存已变化，请重新编辑。";
                     status = deckError;
                 }
-            }));
+                ShowOriginalDeck();
+                if (!String.IsNullOrEmpty(deckError)) originalScene.ShowWorkError(deckError, null);
+            }, error => WorkReadFailed(error, ReadDecks)));
         }
 
+        // The Home menu opens the original event list after the matching scene pack is available.
+        public void OpenOriginalQuests()
+        {
+            if (busy || login == null || homeState == null || !originalScene.CanOpenWork()) return;
+            ReadQuests();
+        }
+
+        // Listing quests can clear the server stage selection, so protect a pending local battle.
         private void ReadQuests()
         {
-            if (login == null || homeState == null || verifiedAddress != address) return;
-            if (homeState.ArthurType < 1 || homeState.ArthurType > 5) { status = "服务器返回的当前职业无效。"; return; }
+            if (busy || login == null || homeState == null || verifiedAddress != address) return;
+            if (entryJournal == null || entryJournal.HasPendingBattle)
+            {
+                originalScene.ShowWorkError("请先处理未提交的战斗记录，再读取关卡。", null);
+                return;
+            }
+            if (homeState.ArthurType < 1 || homeState.ArthurType > 5) { originalScene.ShowWorkError("服务器返回的当前职业无效。", null); return; }
             CnLogin requestedLogin = login;
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", homeState.ArthurType } }), delegate(string response) {
-                quests = CnProtocol.ParseSoloQuests(response);
-                questScroll = Vector2.zero; questIndex = 0; soloPartners = null; soloParty.Clear(); soloDecks = null; showingQuests = true;
-                status = "已读取服务器单人关卡；进入战斗尚未接入。";
-            }));
+                quests = CnProtocol.ParseSoloQuests(response, out long? points);
+                questBattlePoints = points ?? homeState.Bp;
+                questScroll = Vector2.zero; questIndex = 0; showingQuests = true;
+                ClearSoloFormation();
+                status = "已读取服务器单人关卡。";
+                BindEventQuestGroups();
+                ShowEventGroups();
+            }, error => WorkReadFailed(error, ReadQuests)));
         }
 
-        private string QuestText()
+        // Keep event categories distinct even when the server reuses a group ID.
+        private void BindEventQuestGroups()
         {
-            if (quests.Count == 0) return "服务器没有返回可显示的单人关卡。";
-            var text = new StringBuilder();
-            if (soloDecks != null && soloDecks.Count > 0)
-                text.Append("我方卡组：").Append(soloDecks[soloDeckIndex].Name).Append("  职业 ").Append(soloDecks[soloDeckIndex].ArthurType).AppendLine().AppendLine();
-            else text.AppendLine("请先读取卡组。").AppendLine();
-            for (int i = 0; i < quests.Count; i++)
+            eventQuestGroups.Clear();
+            var groups = new Dictionary<(string, long), List<int>>();
+            for (int index = 0; index < quests.Count; index++)
             {
-                CnQuest quest = quests[i];
-                text.Append(i == questIndex ? "▶ " : "   ").Append(quest.Category).Append("  ").Append(quest.GroupName).Append("  ").Append(quest.Difficulty)
-                    .Append("  战斗点 ").Append(quest.BpCost).Append(quest.Locked != 0 ? "  已锁定" : "").AppendLine();
+                CnQuest quest = quests[index];
+                if (quest.Category == "普通") continue;
+                var key = (quest.Category, quest.GroupId);
+                if (!groups.TryGetValue(key, out var group))
+                {
+                    group = new List<int>();
+                    groups.Add(key, group);
+                    eventQuestGroups.Add(group);
+                }
+                group.Add(index);
             }
-            if (soloPartners != null)
-            {
-                text.AppendLine().AppendLine("可选队友：");
-                foreach (CnSoloPartner partner in soloPartners)
-                    text.Append("职业 ").Append(partner.ArthurType).Append("  ").Append(partner.Name).Append("  等级 ").Append(partner.Level).AppendLine();
-            }
-            if (soloParty.Count > 0)
-            {
-                text.AppendLine().AppendLine("已选队友：");
-                for (int i = 0; i < soloParty.Count; i++) text.Append(soloParty[i].Name).Append("  职业 ").Append(soloParty[i].ArthurType).AppendLine();
-            }
-            return text.ToString();
+            foreach (List<int> group in eventQuestGroups) group.Sort((a, b) => quests[b].BossId.CompareTo(quests[a].BossId));
         }
 
+        // Readable labels are projected onto the original group tiles, then the selected difficulty tiles.
+        private void ShowEventGroups()
+        {
+            if (eventQuestGroups.Count == 0)
+            {
+                originalScene.ShowWorkError("服务器当前没有活动副本。", null);
+                return;
+            }
+            originalScene.OpenWorkPicker("QuestGroups", eventQuestGroups.Count, index =>
+            {
+                CnQuest entry = quests[eventQuestGroups[index][0]];
+                return new Dictionary<string, string> { { "1806657225351454", entry.GroupName }, { "1208575754630950", entry.Category } };
+            }, index =>
+            {
+                eventQuestDifficulties = eventQuestGroups[index];
+                ShowEventDifficulties();
+            }, () => originalScene.Show("Home"));
+        }
+
+        private void ShowEventDifficulties()
+        {
+            originalScene.OpenWorkPicker("QuestDifficulties", eventQuestDifficulties.Count, index =>
+            {
+                CnQuest quest = quests[eventQuestDifficulties[index]];
+                return new Dictionary<string, string>
+                {
+                    { "1066778049879928", quest.Difficulty + (quest.Locked != 0 ? " · 未解锁" : quest.EntryRules.AllowsSolo ? "" : " · 仅多人") },
+                    { "1294885792020211", quest.BpCost.ToString() },
+                };
+            }, index =>
+            {
+                if (busy) return;
+                questIndex = eventQuestDifficulties[index];
+                ReadSoloPartners();
+            }, () => { if (!busy) ShowEventGroups(); });
+        }
+
+        // Apply the exact borrowed deck identity from the server list.
+        private void ToggleQuestPartner(int index)
+        {
+            if (!busy && ToggleSoloDeck(soloPartners[index])) originalScene.RefreshWorkPicker();
+        }
+
+        // Reject choices that cannot fit any available slot, retaining the existing formation.
+        private bool ToggleSoloDeck(CnSoloPartner candidate)
+        {
+            if (soloParty.Remove(candidate)) return true;
+            try
+            {
+                soloParty.Add(candidate);
+                if (soloParty.CanComplete(quests[questIndex], login.UserId, selectedSoloDeck)) return true;
+                soloParty.Remove(candidate);
+                throw new InvalidOperationException("该卡组不符合当前队伍的职业或来源要求。");
+            }
+            catch (InvalidOperationException error) { originalScene.ShowWorkError(error.Message, null); return false; }
+        }
+
+        // Reopen the same party after browsing decks. The chosen deck and helpers belong to this stage.
+        private void ShowQuestPartners()
+        {
+            CnSoloEntryRules rules = quests[questIndex].EntryRules;
+            var selectedOwnNames = new List<string>();
+            for (int index = 0; index < soloParty.Count; index++)
+                if (soloParty[index].UserId == login.UserId) selectedOwnNames.Add(soloParty[index].Name);
+            string ownCaption = selectedOwnNames.Count == 0 ? "选择自有队友卡组" : "已选自有队友\n" + String.Join("\n", selectedOwnNames);
+            originalScene.OpenQuestPartnerPicker(soloPartners.Count, index =>
+            {
+                CnSoloPartner partner = soloPartners[index];
+                return new Dictionary<string, string>
+                {
+                    { "1771092198208730", partner.Name },
+                    { "1649986673806370", (soloParty.Contains(partner) ? "已选  " : "") + "Lv." + partner.Level },
+                };
+            }, ToggleQuestPartner, () =>
+            {
+                if (busy) return;
+                ClearSoloFormation();
+                ShowEventDifficulties();
+            }, selectedSoloDeck == null ? "选择我方卡组" : "已选卡组\n" + selectedSoloDeck.Name + "\n生命值 " + selectedSoloLoadout.Health,
+                () => ReadSoloDecks(false), ownCaption, rules.AllowsPartnerSource(true) ? (Action)(() => ReadSoloDecks(true)) : null);
+        }
+
+        // A different stage or a return to the stage list invalidates the selected loadout and all partner slots.
+        private void ClearSoloFormation()
+        {
+            soloPartners = null;
+            soloParty.Clear();
+            selectedSoloDeck = null;
+            selectedSoloLoadout = null;
+        }
+
+        // Enter the local party editor. Own-deck and player-only stages skip the rental read.
         private void ReadSoloPartners()
         {
             if (busy || login == null || quests == null || questIndex < 0 || questIndex >= quests.Count || verifiedAddress != address) return;
             CnLogin requestedLogin = login;
             CnQuest selected = quests[questIndex];
-            soloPartners = null; soloParty.Clear();
+            string restriction = SoloStageRestriction(selected);
+            if (restriction != null)
+            {
+                originalScene.ShowWorkError(restriction, null);
+                return;
+            }
+            ClearSoloFormation();
+            if (!selected.EntryRules.AllowsPartnerSource(false))
+            {
+                soloPartners = new List<CnSoloPartner>();
+                ShowQuestPartners();
+                return;
+            }
             StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloPartnerShow"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "bossid", selected.BossId } }), delegate(string response) {
                 soloPartners = CnProtocol.ParseSoloPartners(response);
-                soloPartnerIndex = 0;
-                status = "已读取关卡队友；战斗入口尚未接入。";
+                soloPartners.RemoveAll(partner => partner.UserId == requestedLogin.UserId);
+                status = "已读取关卡队友。";
+                ShowQuestPartners();
+            }, error => WorkReadFailed(error, ReadSoloPartners)));
+        }
+
+        // Check cached publication, permissions and the last observed balance without sending battle admission.
+        private string SoloStageRestriction(CnQuest selected)
+        {
+            if (selected.Locked != 0) return "此关卡尚未解锁。";
+            if (selected.State < 0 || selected.State > 2 || selected.BpCost < 0) return "此关卡当前无法进入。";
+            if (!selected.EntryRules.AllowsSolo) return "此关卡仅支持多人战斗。";
+            if (selected.BpCost > questBattlePoints) return "当前战斗点不足。";
+            return null;
+        }
+
+        // Refresh inventory from the current session before browsing primary or self-partner decks.
+        private void ReadSoloDecks(bool forPartner)
+        {
+            if (busy || login == null || soloPartners == null || verifiedAddress != address) return;
+            CnLogin requestedLogin = login;
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardShow2"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", 1 } }), delegate(string response) {
+                CnCardCollection collection = CnProtocol.ParseCardShow(response);
+                List<CnDeck> decks = CnProtocol.SelectSoloDecks(collection);
+                decks.RemoveAll(deck => !UsableSoloDeck(collection, deck));
+                if (selectedSoloDeck != null)
+                {
+                    CnDeck refreshed = decks.Find(deck => deck.ArthurType == selectedSoloDeck.ArthurType && deck.Index == selectedSoloDeck.Index);
+                    if (selectedSoloLoadout.Matches(refreshed, collection)) selectedSoloDeck = refreshed;
+                    else { selectedSoloDeck = null; selectedSoloLoadout = null; }
+                }
+                soloParty.ReconcileOwn(requestedLogin.UserId, decks);
+                if (forPartner) decks.RemoveAll(deck => deck.ArthurType > 4);
+                else decks.RemoveAll(deck => !quests[questIndex].EntryRules.AllowsPlayer(deck.ArthurType));
+                if (decks.Count == 0)
+                {
+                    ShowQuestPartners();
+                    originalScene.ShowWorkError("服务器没有可选择的卡组。", null);
+                    return;
+                }
+                int index = selectedSoloDeck != null ? decks.IndexOf(selectedSoloDeck) : decks.FindIndex(deck => deck.ArthurType == homeState.ArthurType);
+                ShowSoloDeck(collection, decks, Math.Max(0, index), forPartner);
+            }, error => WorkReadFailed(error, () => ReadSoloDecks(forPartner))));
+        }
+
+        // The battle loadout needs ten instantiated main cards. The server falls back to the first card if the leader slot is invalid.
+        private static bool UsableSoloDeck(CnCardCollection collection, CnDeck deck)
+        {
+            if (deck.Cards.Length != 10) return false;
+            var definitions = new HashSet<long>();
+            foreach (long id in deck.Cards)
+                if (!collection.Cards.TryGetValue(id, out CnCard card) || card.Level <= 0 || !definitions.Add(card.CardId)) return false;
+            long leader = deck.Wire["3"]?.Type == JTokenType.Integer ? (long)deck.Wire["3"] : 0;
+            if (leader < 0 || leader >= deck.Cards.Length) leader = 0;
+            JToken fame = collection.Cards[deck.Cards[leader]].Wire?["17"];
+            return fame == null || (fame.Type == JTokenType.Integer && (long)fame >= 1 && (long)fame <= 100);
+        }
+
+        // Paging is read-only. Confirm either updates the leader or toggles an owned team member.
+        private void ShowSoloDeck(CnCardCollection collection, List<CnDeck> decks, int index, bool forPartner)
+        {
+            CnDeck deck = decks[index];
+            var selfPartner = new CnSoloPartner { UserId = login.UserId, ArthurType = deck.ArthurType, RentalIndex = deck.Index, Name = deck.Name };
+            string title = forPartner && soloParty.Contains(selfPartner) ? "已选 · " + deck.Name : deck.Name;
+            originalScene.ShowQuestDeck(title, Array.ConvertAll(deck.Cards, id => originalScene.DescribeDeckCard(collection, id)),
+                index > 0 ? (Action)(() => { if (!busy) ShowSoloDeck(collection, decks, index - 1, forPartner); }) : null,
+                index + 1 < decks.Count ? (Action)(() => { if (!busy) ShowSoloDeck(collection, decks, index + 1, forPartner); }) : null,
+                () =>
+                {
+                    if (busy) return;
+                    if (forPartner)
+                    {
+                        if (ToggleSoloDeck(selfPartner)) ShowQuestPartners();
+                        return;
+                    }
+                    if (!soloParty.CanComplete(quests[questIndex], login.UserId, deck))
+                    {
+                        originalScene.ShowWorkError("该队长卡组与已选队友不匹配，请调整编队。", null);
+                        return;
+                    }
+                    ReadSoloPlayerLoadout(collection, deck);
+                }, () => { if (!busy) ShowQuestPartners(); });
+        }
+
+        // Confirm the primary deck only after the authenticated service validates the exact selection.
+        private void ReadSoloPlayerLoadout(CnCardCollection reviewedInventory, CnDeck deck)
+        {
+            if (busy || login == null || soloPartners == null || verifiedAddress != address) return;
+            CnLogin requestedLogin = login;
+            string request = CnProtocol.CreateSoloPlayerLoadoutRequest(requestedLogin.SessionKey, deck);
+            StartCoroutine(Send("POST", requestedLogin.Api.Route("/TeamBattleSoloPlayerDeckShow"), request, response =>
+            {
+                CnSoloPlayerLoadout loadout = CnProtocol.ParseSoloPlayerLoadout(response, requestedLogin.UserId, deck);
+                if (!loadout.Matches(deck, reviewedInventory))
+                {
+                    originalScene.ShowWorkError("卡组已变更，请重新读取卡组。", () => ReadSoloDecks(false));
+                    return;
+                }
+                selectedSoloDeck = deck;
+                selectedSoloLoadout = loadout;
+                ShowQuestPartners();
+            }, error =>
+            {
+                if (error is CnTransportException transport && transport.HttpStatus == 404)
+                    originalScene.ShowWorkError("服务器尚未提供我方战斗卡组，请更新测试服务后重试。", () => ReadSoloPlayerLoadout(reviewedInventory, deck));
+                else WorkReadFailed(error, () => ReadSoloPlayerLoadout(reviewedInventory, deck));
             }));
         }
 
-        private void ReadSoloDecks()
+        // Emit an unsent start request only after validating the final formation and its local battle marker.
+        private string CreateSelectedSoloStartRequest()
         {
-            if (busy || login == null || verifiedAddress != address) return;
-            CnLogin requestedLogin = login;
-            soloDecks = null;
-            StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardShow2"), CnProtocol.CreateSessionRequest(requestedLogin.SessionKey, new JObject { { "0", 1 } }), delegate(string response) {
-                CnCardCollection collection = CnProtocol.ParseCardShow(response);
-                soloDecks = CnProtocol.SelectSoloDecks(collection);
-                soloDeckIndex = 0;
-                status = soloDecks.Count == 0 ? "服务器没有可选择的卡组。" : "已读取我方卡组；入场条件仍由服务器校验。";
-            }));
+            if (busy || login == null || soloPartners == null || selectedSoloDeck == null || selectedSoloLoadout == null ||
+                selectedSoloLoadout.UserId != login.UserId || verifiedAddress != address)
+                throw new InvalidOperationException("请先完成副本编队。");
+            if (entryJournal == null || entryJournal.HasPendingBattle) throw new InvalidOperationException("请先处理未提交的战斗记录。");
+            CnQuest quest = quests[questIndex];
+            string restriction = SoloStageRestriction(quest);
+            if (restriction != null) throw new InvalidOperationException(restriction);
+            return soloParty.CreateStartRequest(login.SessionKey, quest, login.UserId, selectedSoloDeck);
+        }
+
+        private void ShowOriginalDeck()
+        {
+            if (deckDraft == null || deckDraft.Length == 0 || deckDraft.Length > 10)
+            {
+                originalScene.ShowWorkError("服务器未返回可显示的主卡组。", null);
+                return;
+            }
+            CnDeck deck = cardCollection.Decks[deckIndex];
+            var visuals = Array.ConvertAll(deckDraft, id => originalScene.DescribeDeckCard(cardCollection, id));
+            originalScene.ShowDeckEditor(deck.Name, visuals, ShowOwnedDeckInventory,
+                deckIndex > 0 ? (Action)(() => ChangeOriginalDeck(-1)) : null,
+                deckIndex + 1 < cardCollection.Decks.Count ? (Action)(() => ChangeOriginalDeck(1)) : null,
+                deckDirty ? (Action)SaveDeck : null,
+                () => LeaveOriginalDeck(() => originalScene.Show("Home")));
+        }
+
+        // A deck switch and a Home return use the same discard confirmation.
+        private void LeaveOriginalDeck(Action leave)
+        {
+            if (deckDirty) originalScene.ConfirmDeckDiscard(leave);
+            else leave();
+        }
+
+        private void ChangeOriginalDeck(int direction)
+        {
+            if (cardCollection == null) return;
+            int next = deckIndex + direction;
+            if (next < 0 || next >= cardCollection.Decks.Count) return;
+            LeaveOriginalDeck(() => { deckIndex = next; PrepareDeckDraft(); ShowOriginalDeck(); });
+        }
+
+        private void ShowOwnedDeckInventory(int slot)
+        {
+            if (deckDraft == null || slot < 0 || slot >= deckDraft.Length) return;
+            editSlot = slot;
+            originalScene.OpenDeckInventory(cardChoices.Count, index => originalScene.DescribeDeckCard(cardCollection, cardChoices[index]),
+                ApplyOwnedDeckCard, ShowOriginalDeck);
+        }
+
+        // Moving an already-equipped copy swaps its original slot. Different copies of the
+        // same definition are validated by the same rules used for the outgoing write.
+        private void ApplyOwnedDeckCard(int index)
+        {
+            long id = cardChoices[index];
+            long[] changed = (long[])deckDraft.Clone();
+            int existing = id == 0 ? -1 : Array.IndexOf(changed, id);
+            if (existing >= 0) changed[existing] = changed[editSlot];
+            changed[editSlot] = id;
+            CnDeck deck = cardCollection.Decks[deckIndex];
+            try { CnProtocol.CreateDeckSetRequest(login.SessionKey, deck, changed, cardCollection.Cards); }
+            catch (Exception error) when (error is FormatException || error is ArgumentException)
+            {
+                originalScene.ShowWorkError(error.Message, null);
+                return;
+            }
+            deckDraft = changed;
+            deckDirty = false;
+            for (int slot = 0; slot < changed.Length; slot++) if (changed[slot] != deck.Cards[slot]) { deckDirty = true; break; }
+            ShowOriginalDeck();
         }
 
         private void PrepareDeckDraft()
@@ -383,24 +696,36 @@ namespace Kairisei.Recovery
             cardChoices = new List<long>(cardCollection.Cards.Keys); cardChoices.Sort(); cardChoices.Insert(0, 0);
         }
 
+        // Snapshot the submitted draft before sending. Recovery always retries a read.
         private void SaveDeck()
         {
             if (busy || login == null || cardCollection == null || deckDraft == null || !deckDirty || verifiedAddress != address) return;
+            CnDeck deck = cardCollection.Decks[deckIndex];
             string request;
-            try { request = CnProtocol.CreateDeckSetRequest(login.SessionKey, cardCollection.Decks[deckIndex], deckDraft); }
-            catch (Exception error) { deckError = error.Message; status = error.Message; return; }
-            CnLogin requestedLogin = login;
-            CnDeckSaveRecovery recovery = new CnDeckSaveRecovery(cardCollection.Decks[deckIndex], deckDraft);
-            pendingDeckRecovery = null;
-            // After any transport result, force a fresh read before another edit.
+            try { request = CnProtocol.CreateDeckSetRequest(login.SessionKey, deck, deckDraft, cardCollection.Cards); }
+            catch (ArgumentException error) { deckError = status = error.Message; originalScene.ShowWorkError(status, null); return; }
+            catch (FormatException error) { deckError = status = error.Message; originalScene.ShowWorkError(status, null); return; }
+            pendingDeckRecovery = new CnDeckSaveRecovery(deck, deckDraft);
+            pendingDeckServer = endpoint.ToString();
+            pendingDeckUserId = login.UserId;
             showingDeck = false; cardCollection = null; deckDraft = null;
-            StartCoroutine(Send("POST", requestedLogin.Api.Route("/CardDeckSet"), request, delegate(string response) {
+            StartCoroutine(Send("POST", login.Api.Route("/CardDeckSet"), request, delegate(string response) {
                 CnProtocol.ParseEnvelope(response);
-                status = "服务器已确认保存。请重新读取卡组以查看当前状态。";
-            }, delegate(Exception error) {
-                pendingDeckRecovery = recovery;
-                status = "保存结果未确认，请重新读取卡组后检查。";
-            }));
+                ReadDecks();
+            }, error => WorkReadFailed(error, ReadDecks, "保存结果未确认。请重新读取卡组后检查。")));
+        }
+
+        // Expired sessions return to the entry flow. Other failures offer the idempotent read.
+        private void WorkReadFailed(Exception error, Action retry, string message = null)
+        {
+            if ((error is CnTransportException transport && transport.HttpStatus == 401) ||
+                (error is CnProtocolException protocol && protocol.Code == -3208))
+            {
+                EntryFailed(error);
+                return;
+            }
+            status = message ?? error.Message;
+            originalScene.ShowWorkError(status, retry);
         }
 
         private string DeckText()
@@ -490,6 +815,7 @@ namespace Kairisei.Recovery
             if (busy) return;
             if (entry.CanRetry || localInitializationFailed) { RetryEntry(); return; }
             if (login == null) { CheckHealth(); return; }
+            if (entry.Step == CnEntryStep.Connect && connectState == null) { ReadConnect(); return; }
             if (connectState != null && connectState.UserCreated) ReadHome();
         }
 

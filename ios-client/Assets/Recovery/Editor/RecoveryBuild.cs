@@ -16,7 +16,8 @@ namespace Kairisei.Recovery.Editor
         [Serializable]
         private sealed class BuildStage
         {
-            public string stage = "ios-login-home";
+            public string stage = "ios-server-resource-bootstrap";
+            public string resourceDelivery = "server-only";
             public bool gameplayReady = false;
             public bool nativeBattleValidation = true;
             public string unityVersion;
@@ -58,12 +59,15 @@ namespace Kairisei.Recovery.Editor
                 throw new InvalidOperationException("Use Unity " + CnProtocol.UnityVersion + "; resource profiles are version-specific.");
             if (!BuildPipeline.IsBuildTargetSupported(BuildTargetGroup.iOS, BuildTarget.iOS))
                 throw new InvalidOperationException("Unity iOS Build Support is not installed.");
-            RecoveryContentBuild.BuildIOS();
+            // Reject legacy bundle staging before exporting the actual player.
+            if (Directory.Exists("Assets/StreamingAssets/RecoveryContent") ||
+                Directory.GetFiles("Assets", "IosContentManifest.*", SearchOption.AllDirectories).Length != 0)
+                throw new InvalidOperationException("Legacy embedded iOS content exists under Assets. Use a clean project checkout.");
             CreateScene();
             PlayerSettings.companyName = "KairiseiRecovery";
             PlayerSettings.productName = "Kairisei Recovery";
-            PlayerSettings.bundleVersion = "0.0.11";
-            PlayerSettings.iOS.buildNumber = "11";
+            PlayerSettings.bundleVersion = "0.0.12";
+            PlayerSettings.iOS.buildNumber = "12";
             PlayerSettings.SetApplicationIdentifier(NamedBuildTarget.iOS, "local.kairisei.recovery");
             PlayerSettings.SetScriptingBackend(NamedBuildTarget.iOS, ScriptingImplementation.IL2CPP);
             PlayerSettings.SetArchitecture(NamedBuildTarget.iOS, 1); // ARM64
@@ -76,7 +80,19 @@ namespace Kairisei.Recovery.Editor
             PlayerSettings.insecureHttpOption = InsecureHttpOption.AlwaysAllowed;
             string output = Path.GetFullPath("Builds/iOS");
             string[] arguments = Environment.GetCommandLineArgs();
-            for (int i = 0; i + 1 < arguments.Length; i++) if (arguments[i] == "-recoveryOutput") output = Path.GetFullPath(arguments[i + 1]);
+            string serverContent = Path.GetFullPath("Builds/ServerContent");
+            for (int i = 0; i + 1 < arguments.Length; i++)
+            {
+                if (arguments[i] == "-recoveryOutput") output = Path.GetFullPath(arguments[i + 1]);
+                if (arguments[i] == "-recoveryResourceOutput") serverContent = Path.GetFullPath(arguments[i + 1]);
+            }
+            string separator = Path.DirectorySeparatorChar.ToString();
+            string playerRoot = output.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + separator;
+            string deliveryRoot = serverContent.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + separator;
+            if (deliveryRoot.StartsWith(playerRoot, StringComparison.OrdinalIgnoreCase) ||
+                playerRoot.StartsWith(deliveryRoot, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("Use separate directories for the Xcode export and server resources.");
+            RecoveryContentBuild.BuildIOS(serverContent);
             BuildReport report = BuildPipeline.BuildPlayer(new BuildPlayerOptions {
                 scenes = new[] { ScenePath }, locationPathName = output, target = BuildTarget.iOS, options = BuildOptions.None
             });

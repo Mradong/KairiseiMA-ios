@@ -29,6 +29,8 @@ namespace Kairisei.Recovery
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_preparation_enemy_skill(ulong prep,int member,int kind,int slot,byte[] data,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_create_registered(ulong catalog,ulong prep,byte[] input,int count,out ulong battle);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_next_registered(ulong battle,ulong prep,int enemyType);
+        [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_create_solo_opening(ulong catalog, byte[] input, int count, out ulong battle);
+        [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_next_solo_opening(ulong battle);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_context_close(ulong battle);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_step(ulong battle,int operation,byte[] input,int count);
         [DllImport(Library, CallingConvention=CallingConvention.Cdecl)] private static extern int battlecore_result_size(ulong battle,out int count);
@@ -160,6 +162,121 @@ namespace Kairisei.Recovery
             EnsureBattle();
             Check(battlecore_context_next_registered(battle,preparation,enemyType),"next registered wave");
             return ReadResult();
+        }
+
+        // Register a paid or recovered opening validated against the retained selection.
+        public string StartSolo(CnSoloBattleStart opening)
+        {
+            if (opening == null || opening.Player == null)
+                throw new ArgumentException("缺少已校验的战斗开场。", "opening");
+            return StartSolo(opening, opening.Player, opening.ContinueAllowed);
+        }
+
+        // Register the authoritative primary loadout and returned partners against the active catalog.
+        public string StartSolo(CnSoloBattleStart opening, CnSoloPlayerLoadout primary, bool continueAllowed)
+        {
+            if (primary == null) throw new ArgumentNullException("primary");
+            return StartSolo(opening, primary.Wire, continueAllowed);
+        }
+
+        // Replay callers can supply an already verified wire snapshot.
+        // The owning flow provides the loadout for the selected deck and the stage's continue policy.
+        public string StartSolo(CnSoloBattleStart opening, JObject primary, bool continueAllowed)
+        {
+            EnsureOpen();
+            if (battle != 0) throw new InvalidOperationException("战斗已经启动。");
+            var partners = opening == null || opening.Wire == null ? null : opening.Wire["partner_deck"] as JArray;
+            if (partners == null || opening.Battles == null || primary == null || partners.Count != 3 ||
+                opening.Seed < Int32.MinValue || opening.Seed > UInt32.MaxValue)
+                throw new FormatException("缺少可注册的单人战斗编队或开场参数。");
+
+            var party = new JArray(ProjectServiceMember(primary));
+            foreach (JObject partner in partners) party.Add(ProjectServiceMember(partner));
+            var waves = new JArray();
+            foreach (JObject wave in opening.Battles) waves.Add(ProjectServiceWave(wave));
+            var request = new JObject {
+                { "seed", unchecked((uint)opening.Seed) }, { "end_turn", opening.EndTurn },
+                { "continue_allowed", continueAllowed }, { "party", party }, { "waves", waves }
+            };
+            CopyServiceFields(opening.Wire, request, "cost_initial", "hold_max", "burst_gauge_initial", "is_active_only_burst_gauge_initial");
+            byte[] data = Utf8.GetBytes(request.ToString(Formatting.None));
+            if (data.Length > 65536) throw new FormatException("战斗开场数据超出内核限制。");
+            Check(battlecore_context_create_solo_opening(catalog, data, data.Length, out battle), "register solo opening");
+            return Advance(1, null);
+        }
+
+        // Advance only through the published enemy parties retained by the opening registration.
+        public string NextSoloWave()
+        {
+            EnsureBattle();
+            Check(battlecore_context_next_solo_opening(battle), "next solo wave");
+            return ReadResult();
+        }
+
+        // Strip presentation and account fields while keeping the authoritative combat slots.
+        private static JObject ProjectServiceMember(JObject member)
+        {
+            var result = new JObject();
+            CopyServiceFields(member, result, "arthur_type", "job_type", "hp", "atkp", "intp", "mndp",
+                "support_card_unlock_slot_num");
+            foreach (string key in new[] { "deck", "support_deck", "sphrs", "buddys" })
+            {
+                var slots = member[key] as JArray;
+                if (slots == null) throw new FormatException("战斗卡组缺少字段：" + key);
+                var projected = new JArray();
+                foreach (JObject slot in slots)
+                {
+                    var item = new JObject();
+                    if (key == "deck" || key == "support_deck") CopyServiceFields(slot, item, "cardid", "lv", "fame", "love", "skill_lv");
+                    else CopyServiceFields(slot, item, key == "sphrs" ? "sphrid" : "buddyid", "lv");
+                    projected.Add(item);
+                }
+                result[key] = projected;
+            }
+            return result;
+        }
+
+        // Map each planned drop to its enemy slot. The battle engine emits display events only.
+        private static JObject ProjectServiceWave(JObject wave)
+        {
+            var result = new JObject();
+            CopyServiceFields(wave, result, "enemy_partyid", "enemy_type");
+            var drops = new JArray();
+            var groups = wave["drop"] as JArray;
+            if (groups == null) throw new FormatException("战斗开场缺少掉落资料。");
+            foreach (JObject group in groups)
+            {
+                var rewards = group["drops"] as JArray;
+                if (rewards == null) throw new FormatException("战斗掉落资料无效。");
+                foreach (JObject reward in rewards)
+                {
+                    var value = new JObject();
+                    CopyServiceFields(group, value, "enemy_idx");
+                    CopyServiceFields(reward, value, "type", "num", "reward_typeid");
+                    var drop = new JObject {
+                        { "EnemyIndex", value["enemy_idx"] }, { "RewardType", value["type"] },
+                        { "Num", value["num"] }, { "RewardTypeID", value["reward_typeid"] }
+                    };
+                    drops.Add(drop);
+                }
+            }
+            result["drops"] = drops;
+            return result;
+        }
+
+        // Validate the presence and JSON type before forwarding a field to the native registration.
+        private static void CopyServiceFields(JObject source, JObject target, params string[] fields)
+        {
+            foreach (string key in fields)
+            {
+                JToken value = source[key];
+                bool supported = value != null && (key == "skill_lv"
+                    ? value.Type == JTokenType.Array || value.Type == JTokenType.Null
+                    : value.Type == JTokenType.Integer);
+                if (!supported)
+                    throw new FormatException("战斗资料缺少有效字段：" + key);
+                target.Add(key, value.DeepClone());
+            }
         }
 
         public string Advance(int operation,string json)

@@ -62,7 +62,7 @@ jobs:
           unityVersion: 6000.3.26f1
           targetPlatform: iOS
           buildMethod: Kairisei.Recovery.Editor.RecoveryBuild.BuildIOS
-          customParameters: -recoveryOutput ${{ github.workspace }}/build/iOS/Xcode
+          customParameters: -recoveryOutput ${{ github.workspace }}/build/iOS/Xcode -recoveryResourceOutput ${{ github.workspace }}/build/iOS/ServerContent
           versioning: None
           cacheUnityInstallationOnMac: false
           unityHubVersionOnMac: 3.22.6
@@ -84,7 +84,7 @@ jobs:
         run: |
           bash scripts/Build-UnsignedIPA.sh "$GITHUB_WORKSPACE/build/iOS/Xcode" "$GITHUB_WORKSPACE/dist/connection-test-$GITHUB_RUN_ID"
           cp native/build/ios-arm64/native-build.json "dist/connection-test-$GITHUB_RUN_ID/native-build.json"
-          cp ios-client/Assets/StreamingAssets/RecoveryContent/resource-build.json "dist/connection-test-$GITHUB_RUN_ID/resource-build.json"
+          cp build/iOS/ServerContent/resource-build.json "dist/connection-test-$GITHUB_RUN_ID/resource-build.json"
       - name: Validate iOS server against the compiled resource bundle
         shell: bash
         run: |
@@ -93,14 +93,14 @@ jobs:
           mkdir -p server-ios/server
           cp -R source-review/kairisei-ma-ch/server/. server-ios/server/
           git apply --directory=server-ios patches/ios-server.patch
-          export IOS_COMPILED_PROFILE="$GITHUB_WORKSPACE/ios-client/Assets/StreamingAssets/RecoveryContent/ios-delivery.json"
+          export IOS_COMPILED_PROFILE="$GITHUB_WORKSPACE/build/iOS/ServerContent/ios-delivery.json"
           cd server-ios/server
           CGO_ENABLED=0 go test ./internal/cnbootstrap -run 'Test(IOS|Platform|ModernLogin)' -count=1 -timeout=180s -json > "$GITHUB_WORKSPACE/dist/connection-test-$GITHUB_RUN_ID/ios-server-tests.jsonl"
       - name: Save iOS resource delivery package
         uses: actions/upload-artifact@v4
         with:
           name: ios-resource-delivery
-          path: ios-client/Assets/StreamingAssets/RecoveryContent/
+          path: build/iOS/ServerContent/
           if-no-files-found: error
           retention-days: 7
       - name: Save sideload package and validation reports

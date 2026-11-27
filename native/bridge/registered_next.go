@@ -33,7 +33,7 @@ func battlecore_context_next_registered(battleID, preparationID C.ulonglong, ene
 	if battle.faulted {
 		return 6
 	}
-	if !battle.registered || battle.mode != 1 {
+	if !battle.registered || battle.mode != 1 || len(battle.soloWaves) != 0 {
 		return statusInvalid
 	}
 	if (enemyType == 4) != (battle.value.EndType() == 4) {
@@ -62,15 +62,20 @@ func battlecore_context_next_registered(battleID, preparationID C.ulonglong, ene
 	if p.settings.burst != nil {
 		projection.catalog.BurstGauge = *p.settings.burst
 	}
+	return advanceRegisteredWave(battle, projection.catalog, *projection.encounter, int(enemyType))
+}
+
+// Start the next encounter using the same result and input-journal contract as a packed registration.
+func advanceRegisteredWave(battle *libraryBattle, catalog *battlecore.CombatCatalog, encounter battlecore.Encounter, enemyType int) C.int {
 	if battle.journal == nil {
 		return statusInvalid
 	}
-	if err = battle.journal.begin(battle.value.StateView(), 1, 0, int(enemyType), 0, battlecore.StandaloneCardPlay{}, battlecore.BurstSelection{}); err != nil {
+	if err := battle.journal.begin(battle.value.StateView(), 1, 0, enemyType, 0, battlecore.StandaloneCardPlay{}, battlecore.BurstSelection{}); err != nil {
 		return statusInvalid
 	}
 	battle.value.SetDeckOrderObserver(battle.journal.deckChanged)
 	defer battle.value.SetDeckOrderObserver(nil)
-	next, err := battle.value.NextEncounter(projection.catalog, *projection.encounter, battlecore.WaveTakeover{})
+	next, err := battle.value.NextEncounter(catalog, encounter, battlecore.WaveTakeover{})
 	if err != nil {
 		return statusInvalid
 	}
@@ -94,7 +99,7 @@ func battlecore_context_next_registered(battleID, preparationID C.ulonglong, ene
 		return 6
 	}
 	battle.value = next
-	battle.enemyType = int(enemyType)
+	battle.enemyType = enemyType
 	battle.pending = []byte(text)
 	return statusOK
 }

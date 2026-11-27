@@ -6,6 +6,7 @@ using System.IO.Compression;
 using System.Linq;
 using System.Text;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using UnityEditor;
 using UnityEngine;
 
@@ -13,8 +14,66 @@ namespace Kairisei.Recovery.Editor
 {
     public static class RecoveryContentBuild
     {
-        public static void BuildIOS()
+        private const string OriginalWorkBundle = "original-work.bundle";
+        private const string OriginalWorkDelivery = "recovery/work.dat";
+
+        // Import only the scene snapshot and the textures it names and authenticates.
+        private static AssetBundleBuild PrepareOriginalWorkAssets(string descriptor)
         {
+            JObject layout = JObject.Parse(File.ReadAllText(descriptor));
+            if ((int?)layout["schemaVersion"] != 1 || !(layout["definitions"] is JArray scenes) ||
+                scenes.Count == 0 || !(layout["textures"] is JArray textures) || textures.Count == 0)
+                throw new InvalidDataException("工作原场景资源清单格式不正确。");
+
+            List<string> assets = new List<string> { descriptor };
+            List<string> addresses = new List<string> { "originalwork" };
+            HashSet<string> keys = new HashSet<string>(StringComparer.Ordinal);
+            string directory = Path.GetDirectoryName(descriptor).Replace('\\', '/');
+            string cardDescriptor = directory + "/OriginalCards.json";
+            IEnumerable<JToken> workTextures = textures;
+            if (File.Exists(cardDescriptor))
+            {
+                JObject cards = JObject.Parse(File.ReadAllText(cardDescriptor));
+                if ((int?)cards["schemaVersion"] != 1 || !(cards["cards"] is JObject) || !(cards["textures"] is JArray portraits))
+                    throw new InvalidDataException("原卡牌资源清单格式不正确。");
+                assets.Add(cardDescriptor);
+                addresses.Add("originalcards");
+                workTextures = workTextures.Concat(portraits);
+            }
+            foreach (JObject entry in workTextures)
+            {
+                string key = (string)entry["key"];
+                string file = (string)entry["file"];
+                if (String.IsNullOrEmpty(key) || !ContentManifest.ValidName(key) || key.Contains("/") ||
+                    file != key + ".png" || !keys.Add(key))
+                    throw new InvalidDataException("工作原场景贴图名称无效或重复。");
+                string asset = directory + "/" + file;
+                if (!File.Exists(asset) || ContentIntegrity.HashFile(asset) != (string)entry["sha256"])
+                    throw new InvalidDataException("工作原场景贴图校验失败：" + file);
+                TextureImporter texture = AssetImporter.GetAtPath(asset) as TextureImporter;
+                if (texture == null) throw new InvalidDataException("工作原场景贴图未导入：" + file);
+                texture.mipmapEnabled = false;
+                texture.alphaIsTransparency = true;
+                texture.SetPlatformTextureSettings(new TextureImporterPlatformSettings { name = "iPhone", overridden = true, maxTextureSize = 8192, format = TextureImporterFormat.ASTC_6x6 });
+                texture.SaveAndReimport();
+                assets.Add(asset);
+                addresses.Add(key);
+            }
+            foreach (JToken sprite in scenes.SelectTokens("$..resolved.texture"))
+                if (!keys.Contains((string)sprite)) throw new InvalidDataException("工作原场景引用了未列出的贴图。");
+            return new AssetBundleBuild { assetBundleName = OriginalWorkBundle, assetNames = assets.ToArray(), addressableNames = addresses.ToArray() };
+        }
+
+        // Server delivery is emitted outside the Unity asset import tree.
+        public static void BuildIOS(string output)
+        {
+            output = Path.GetFullPath(output);
+            string assets = Path.GetFullPath("Assets") + Path.DirectorySeparatorChar;
+            if ((output.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar) + Path.DirectorySeparatorChar)
+                .StartsWith(assets, StringComparison.OrdinalIgnoreCase))
+                throw new InvalidOperationException("iOS delivery resources must not be generated under Assets.");
+            if (Directory.Exists(output) && Directory.EnumerateFileSystemEntries(output).Any())
+                throw new InvalidOperationException("Use a new server resource output directory.");
             const string source = "Assets/Recovery/Content";
             string[] paths = Directory.GetFiles(source).Where(f => f.EndsWith(".png") || f.EndsWith(".json")).Select(f => f.Replace('\\','/')).OrderBy(f => f, StringComparer.Ordinal).ToArray();
             if (paths.Length != 10) throw new InvalidDataException("Expected the ten reviewed recovered texture and atlas metadata sources.");
@@ -50,6 +109,9 @@ namespace Kairisei.Recovery.Editor
             }
             builds.Add(new AssetBundleBuild { assetBundleName = "original-scenes.bundle", assetNames = originalPaths,
                 addressableNames = originalPaths.Select(f => Path.GetFileNameWithoutExtension(f) == "OriginalSceneSprite" ? "original-scene-sprite" : Path.GetFileNameWithoutExtension(f).ToLowerInvariant()).ToArray() });
+            const string originalWorkDescriptor = "Assets/Recovery/OriginalWorkContent/OriginalWork.json";
+            bool originalWorkIncluded = File.Exists(originalWorkDescriptor);
+            if (originalWorkIncluded) builds.Add(PrepareOriginalWorkAssets(originalWorkDescriptor));
             const string worldRoot="Assets/Recovery/OriginalWorldContent";
             string worldDescriptor=Path.Combine(worldRoot,"OriginalWorld.json");
             if(!File.Exists(worldDescriptor))throw new InvalidDataException("原主页背景/模型资源未准备。");
@@ -75,7 +137,6 @@ namespace Kairisei.Recovery.Editor
             }
             AssetBundleManifest build = BuildPipeline.BuildAssetBundles(temporary, builds.ToArray(), BuildAssetBundleOptions.ChunkBasedCompression | BuildAssetBundleOptions.StrictMode, BuildTarget.iOS);
             if (build == null) throw new InvalidOperationException("iOS resource compilation failed.");
-            string output = "Assets/StreamingAssets/RecoveryContent";
             Directory.CreateDirectory(output);
             List<ContentBundle> items = new List<ContentBundle>();
             foreach (AssetBundleBuild spec in builds)
@@ -83,7 +144,7 @@ namespace Kairisei.Recovery.Editor
                 if (build.GetAllDependencies(spec.assetBundleName).Length != 0) throw new InvalidDataException("Unexpected recovery bundle dependency: " + spec.assetBundleName);
                 string built = Path.Combine(temporary, spec.assetBundleName);
                 string hash = ContentIntegrity.HashFile(built);
-                ContentBundle item = new ContentBundle { name = spec.assetBundleName == "recovery-ui.bundle" ? "recovery/ui.dat" : spec.assetBundleName == "original-scenes.bundle" ? OriginalSceneRenderer.BundleName : spec.assetBundleName=="original-world.bundle" ? OriginalNaviModel.BundleName : CombatTableSet.BundleName,
+                ContentBundle item = new ContentBundle { name = spec.assetBundleName == "recovery-ui.bundle" ? "recovery/ui.dat" : spec.assetBundleName == "original-scenes.bundle" ? OriginalSceneRenderer.BundleName : spec.assetBundleName == OriginalWorkBundle ? OriginalWorkDelivery : spec.assetBundleName=="original-world.bundle" ? OriginalNaviModel.BundleName : CombatTableSet.BundleName,
                     file = hash + ".bundle", bytes = new FileInfo(built).Length, sha256 = hash,
                     crc32 = ContentIntegrity.FileCrc(built).ToString("X8", CultureInfo.InvariantCulture), dependencies = new string[0] };
                 File.Copy(built, Path.Combine(output, item.file), true);
@@ -92,7 +153,6 @@ namespace Kairisei.Recovery.Editor
             ContentManifest manifest = new ContentManifest { unityVersion = Application.unityVersion, bundles = items.ToArray() };
             manifest.contentId = ContentManifest.ComputeId(manifest.bundles);
             string clientManifest = JsonConvert.SerializeObject(manifest,Formatting.Indented);
-            File.WriteAllText("Assets/Recovery/Resources/IosContentManifest.json",clientManifest,new UTF8Encoding(false));
             string publicManifest = Path.Combine(output,"client-manifest.json");
             File.WriteAllText(publicManifest,clientManifest,new UTF8Encoding(false));
             // Same bundle bytes can be served by the patched platform delivery layer.
@@ -107,7 +167,7 @@ namespace Kairisei.Recovery.Editor
                 client_manifest = new { file = "client-manifest.json", bytes = new FileInfo(publicManifest).Length, sha256 = ContentIntegrity.HashFile(publicManifest) },
                 bundles = items.Select(item => new { name = item.name, file = item.file, bytes = item.bytes, sha256 = item.sha256, crc32 = item.crc32 }).ToArray() };
             File.WriteAllText(Path.Combine(output,"ios-delivery.json"),JsonConvert.SerializeObject(profile,Formatting.Indented),new UTF8Encoding(false));
-            File.WriteAllText(Path.Combine(output,"resource-build.json"),JsonConvert.SerializeObject(new { generatedAt=DateTime.UtcNow.ToString("o"),platform="iOS",unityVersion=Application.unityVersion,manifest.contentId,bundleSha256=items[0].sha256,bundleBytes=items[0].bytes,sourceAssets=paths,combatTablesIncluded=combatIncluded,fontGlyphCheck=true,scope="Partial recovered UI content; optional supplied combat tables. Completeness and gameplay remain unverified.",gameplayReady=false },Formatting.Indented),new UTF8Encoding(false));
+            File.WriteAllText(Path.Combine(output,"resource-build.json"),JsonConvert.SerializeObject(new { generatedAt=DateTime.UtcNow.ToString("o"),platform="iOS",unityVersion=Application.unityVersion,manifest.contentId,bundleSha256=items[0].sha256,bundleBytes=items[0].bytes,sourceAssets=paths,combatTablesIncluded=combatIncluded,originalWorkIncluded,fontGlyphCheck=true,scope="Partial recovered UI content; optional supplied combat tables. Completeness and gameplay remain unverified.",gameplayReady=false },Formatting.Indented),new UTF8Encoding(false));
             AssetDatabase.Refresh();
             Debug.Log("Compiled real iOS resource set: " + manifest.contentId + "; combat tables included=" + combatIncluded);
         }

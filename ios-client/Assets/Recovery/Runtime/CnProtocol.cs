@@ -117,6 +117,7 @@ namespace Kairisei.Recovery
         public long State { get; internal set; }
         public long Locked { get; internal set; }
         public string Category { get; internal set; }
+        public CnSoloEntryRules EntryRules { get; internal set; }
         public JObject Wire { get; internal set; }
     }
 
@@ -125,8 +126,77 @@ namespace Kairisei.Recovery
         public long Seed { get; internal set; }
         public long StartTime { get; internal set; }
         public int EndTurn { get; internal set; }
+        public bool ContinueAllowed { get; internal set; }
+        public CnSoloPlayerLoadout Player { get; internal set; }
         public JArray Battles { get; internal set; }
         public JObject Wire { get; internal set; }
+    }
+
+    // Retain the exact ordered selection independently of the current login session.
+    public sealed class CnSoloBattleSelection
+    {
+        public long UserId { get; private set; }
+        public long BossId { get; private set; }
+        public int ArthurType { get; private set; }
+        public int DeckIndex { get; private set; }
+        internal JArray Partners { get; private set; }
+
+        internal CnSoloBattleSelection(long userId, long bossId, int arthurType, int deckIndex, JArray partners)
+        {
+            UserId = userId;
+            BossId = bossId;
+            ArthurType = arthurType;
+            DeckIndex = deckIndex;
+            Partners = (JArray)partners.DeepClone();
+        }
+
+        // Start and read-only recovery submit the same selection body with the current session.
+        public string CreateRequest(string sessionKey)
+        {
+            return CnProtocol.CreateSoloBattleStartRequest(sessionKey, BossId, ArthurType, DeckIndex, Partners);
+        }
+    }
+
+    // Point-in-time loadout from the authenticated player's selected deck.
+    public sealed class CnSoloPlayerLoadout
+    {
+        public long UserId { get; internal set; }
+        public long ArthurType { get; internal set; }
+        public long Index { get; internal set; }
+        public long Health { get; internal set; }
+        internal JObject Wire { get; set; }
+
+        // Keep the loadout tied to the inventory snapshot the player reviewed.
+        public bool Matches(CnDeck deck, CnCardCollection inventory)
+        {
+            if (deck == null || inventory == null || ArthurType != deck.ArthurType || Index != deck.Index ||
+                !JToken.DeepEquals(Wire["leader_card_idx"], deck.Wire["3"])) return false;
+            return MatchCards((JArray)Wire["deck"], deck.Cards, inventory) &&
+                MatchCards((JArray)Wire["support_deck"], deck.Support, inventory);
+        }
+
+        // Compare slot order, card instances' published definitions and available progression fields.
+        private static bool MatchCards(JArray wire, long[] slots, CnCardCollection inventory)
+        {
+            if (wire.Count != slots.Length) return false;
+            for (int index = 0; index < slots.Length; index++)
+            {
+                var entry = (JObject)wire[index];
+                long cardId = (long)entry["cardid"];
+                if (slots[index] == 0 && cardId == 0) continue;
+                CnCard card;
+                if (!inventory.Cards.TryGetValue(slots[index], out card) || card.CardId != cardId ||
+                    card.Level != (long)entry["lv"] || !MatchIfPresent(card.Wire["5"], entry["love"]) ||
+                    !MatchIfPresent(card.Wire["6"], entry["skill_lv"]) || !MatchIfPresent(card.Wire["17"], entry["fame"])) return false;
+            }
+            return true;
+        }
+
+        // Older CardShow2 profiles may omit auxiliary progression fields.
+        private static bool MatchIfPresent(JToken reviewed, JToken current)
+        {
+            return reviewed == null || JToken.DeepEquals(reviewed, current);
+        }
     }
 
     public sealed class CnSoloPartner
@@ -139,34 +209,184 @@ namespace Kairisei.Recovery
         public JObject Wire { get; internal set; }
     }
 
+    // Decode the lobby's stage and slot restrictions before building an admission request.
+    public sealed class CnSoloEntryRules
+    {
+        private readonly int[] roles = { 1, 2, 3, 4 };
+        private readonly int[] sources = new int[4];
+        private readonly bool alchemist, onlyOwnDecks;
+        public bool AllowsSolo { get; private set; }
+
+        // Follow the service: the first entry-limit row is authoritative, with ordinary slots as the default.
+        internal CnSoloEntryRules(long stageType, JObject boss)
+        {
+            alchemist = stageType == 19 || stageType == 20;
+            onlyOwnDecks = ReadRule(boss, "1", 0, Int32.MaxValue) != 0;
+            AllowsSolo = ReadRule(boss, "24", 0, Int32.MaxValue) != 3;
+            JToken limits = boss["entry_limit"];
+            if (limits == null || limits.Type == JTokenType.Null) return;
+            var rows = limits as JArray;
+            if (rows == null) throw new FormatException("关卡编队限制格式无效。");
+            if (rows.Count == 0) return;
+            var slots = rows[0] as JObject;
+            if (slots == null) throw new FormatException("关卡编队槽位格式无效。");
+            for (int slot = 0; slot < roles.Length; slot++)
+            {
+                string prefix = "slot" + (slot + 1);
+                roles[slot] = ReadRule(slots, prefix + "_arthur_type", -1, 4);
+                sources[slot] = ReadRule(slots, prefix + "_partner_type", 0, 2);
+            }
+        }
+
+        // The service defaults omitted scalar fields to zero. Reject unknown slot restrictions.
+        private static int ReadRule(JObject fields, string field, int minimum, int maximum)
+        {
+            JToken token = fields[field];
+            if (token == null || token.Type == JTokenType.Null) return 0;
+            if (token.Type != JTokenType.Integer || (long)token < minimum || (long)token > maximum)
+                throw new FormatException("关卡编队限制无效：" + field);
+            return (int)token;
+        }
+
+        // The controlled deck takes the first eligible slot. Borrow-only slots cannot host it.
+        private int PlayerSlot(long role)
+        {
+            if (!AllowsSolo || role < 1 || role > 4) return -1;
+            for (int slot = 0; slot < roles.Length; slot++)
+                if (sources[slot] != 2 && (roles[slot] == 0 || roles[slot] == role)) return slot;
+            return -1;
+        }
+
+        // Determine which primary decks can be offered for this stage.
+        public bool AllowsPlayer(long role) { return alchemist ? AllowsSolo && role == 5 : PlayerSlot(role) >= 0; }
+
+        // Before picking the primary deck, expose both sources wherever an eligible layout allows them.
+        public bool AllowsPartnerSource(bool own)
+        {
+            if (alchemist) return false;
+            for (int role = 1; role <= 4; role++)
+            {
+                int player = PlayerSlot(role);
+                if (player < 0) continue;
+                for (int slot = 0; slot < roles.Length; slot++)
+                    if (slot != player && roles[slot] >= 0 && SourceMatches(slot, own)) return true;
+            }
+            return false;
+        }
+
+        // Check the stage-wide own-deck restriction and the individual slot's source.
+        private bool SourceMatches(int slot, bool own)
+        {
+            return own ? sources[slot] != 2 : !onlyOwnDecks && sources[slot] != 1;
+        }
+
+        // Validate partial parties against the chosen role or any eligible role before one is chosen.
+        public bool CanComplete(long role, long userId, IReadOnlyList<CnSoloPartner> selected)
+        {
+            if (role != 0) return Place(role, userId, selected, false) != null;
+            for (int candidate = 1; candidate <= 5; candidate++)
+                if (Place(candidate, userId, selected, false) != null) return true;
+            return false;
+        }
+
+        // Return partners in the server's enabled slot order. A complete entry must fill every slot.
+        internal CnSoloPartner[] Place(long role, long userId, IReadOnlyList<CnSoloPartner> selected, bool complete)
+        {
+            if (alchemist) return AllowsPlayer(role) && selected.Count == 0 ? new CnSoloPartner[0] : null;
+            int player = PlayerSlot(role);
+            if (player < 0) return null;
+            var slots = new List<int>(3);
+            for (int slot = 0; slot < roles.Length; slot++)
+                if (slot != player && roles[slot] >= 0) slots.Add(slot);
+            if (selected.Count > slots.Count || (complete && selected.Count != slots.Count)) return null;
+            var ordered = new CnSoloPartner[slots.Count];
+            return AssignPartner(0, userId, selected, slots, ordered) ? ordered : null;
+        }
+
+        // Try each compatible free slot. At most three partners need assignment.
+        private bool AssignPartner(int index, long userId, IReadOnlyList<CnSoloPartner> selected,
+            List<int> slots, CnSoloPartner[] ordered)
+        {
+            if (index == selected.Count) return true;
+            CnSoloPartner partner = selected[index];
+            for (int target = 0; target < slots.Count; target++)
+            {
+                int slot = slots[target];
+                if (ordered[target] != null || (roles[slot] != 0 && roles[slot] != partner.ArthurType) ||
+                    !SourceMatches(slot, partner.UserId == userId)) continue;
+                ordered[target] = partner;
+                if (AssignPartner(index + 1, userId, selected, slots, ordered)) return true;
+                ordered[target] = null;
+            }
+            return false;
+        }
+    }
+
     public sealed class CnSoloPartyDraft
     {
         private readonly List<CnSoloPartner> selected = new List<CnSoloPartner>();
         public int Count { get { return selected.Count; } }
         public CnSoloPartner this[int index] { get { return selected[index]; } }
+        // A single account may supply different profession or rental decks.
         public void Add(CnSoloPartner partner)
         {
             if (partner == null || partner.UserId < 1 || partner.ArthurType < 1 || partner.ArthurType > 4 || partner.RentalIndex < 0 || partner.RentalIndex > 127)
                 throw new ArgumentException("队友信息无效。");
             if (selected.Count >= 3) throw new InvalidOperationException("最多选择三名队友。");
-            foreach (CnSoloPartner entry in selected)
-                if (entry.UserId == partner.UserId) throw new InvalidOperationException("已经选择该队友。");
+            if (Contains(partner)) throw new InvalidOperationException("已经选择该队友卡组。");
             selected.Add(partner);
         }
+
+        // Match the exact deck identity across reordered candidate lists and fresh inventory reads.
+        private static bool SameDeck(CnSoloPartner a, CnSoloPartner b)
+        {
+            return a.UserId == b.UserId && a.ArthurType == b.ArthurType && a.RentalIndex == b.RentalIndex;
+        }
+
+        public bool Contains(CnSoloPartner partner) { return selected.Exists(entry => SameDeck(entry, partner)); }
+        public bool Remove(CnSoloPartner partner) { return selected.RemoveAll(entry => SameDeck(entry, partner)) != 0; }
         public void RemoveLast() { if (selected.Count > 0) selected.RemoveAt(selected.Count - 1); }
         public void Clear() { selected.Clear(); }
-        public JArray RequestPartners()
+
+        // Remove selected self decks that are no longer present or valid after a fresh CardShow2 read.
+        public void ReconcileOwn(long userId, List<CnDeck> available)
+        {
+            selected.RemoveAll(partner => partner.UserId == userId &&
+                !available.Exists(deck => deck.ArthurType == partner.ArthurType && deck.Index == partner.RentalIndex));
+        }
+
+        // A partial team can be edited as long as all its choices can occupy compatible slots.
+        public bool CanComplete(CnQuest quest, long userId, CnDeck primary)
+        {
+            return (primary == null || !selected.Exists(partner => partner.UserId == userId &&
+                partner.ArthurType == primary.ArthurType && partner.RentalIndex == primary.Index)) &&
+                quest.EntryRules.CanComplete(primary == null ? 0 : primary.ArthurType, userId, selected);
+        }
+
+        // Encode selected identities without changing their index or profession.
+        private static JArray EncodePartners(IEnumerable<CnSoloPartner> ordered)
         {
             var result = new JArray();
-            foreach (CnSoloPartner partner in selected)
+            foreach (CnSoloPartner partner in ordered)
                 result.Add(new JObject { { "userid", partner.UserId }, { "arthur_type", partner.ArthurType }, { "deck_idx", partner.RentalIndex } });
             return result;
         }
-        public string CreateStartRequest(string sessionKey, long bossId, CnDeck deck)
+        public JArray RequestPartners() { return EncodePartners(selected); }
+
+        // Encode only a full, rule-compatible formation. Callers still own live admission and recovery.
+        public string CreateStartRequest(string sessionKey, CnQuest quest, long userId, CnDeck deck)
         {
-            if (deck == null || deck.ArthurType < 1 || deck.ArthurType > 5 || deck.Index < 0 || deck.Index > 127)
+            return Confirm(quest, userId, deck).CreateRequest(sessionKey);
+        }
+
+        // Keep the server slot order stable even if the draft or session changes later.
+        public CnSoloBattleSelection Confirm(CnQuest quest, long userId, CnDeck deck)
+        {
+            if (quest == null || quest.BossId < 1 || userId < 1 || deck == null || deck.ArthurType < 1 || deck.ArthurType > 5 || deck.Index < 0 || deck.Index > 127)
                 throw new ArgumentException("请选择有效的我方卡组。");
-            return CnProtocol.CreateSoloBattleStartRequest(sessionKey, bossId, (int)deck.ArthurType, (int)deck.Index, RequestPartners());
+            CnSoloPartner[] ordered = quest.EntryRules.Place(deck.ArthurType, userId, selected, true);
+            if (ordered == null || !CanComplete(quest, userId, deck)) throw new InvalidOperationException("请按关卡要求补齐编队。");
+            return new CnSoloBattleSelection(userId, quest.BossId, (int)deck.ArthurType, (int)deck.Index, EncodePartners(ordered));
         }
     }
 
@@ -194,14 +414,17 @@ namespace Kairisei.Recovery
     public sealed class CnDeckSaveRecovery
     {
         private readonly long arthurType, index;
+        private static readonly string[] EditedAlongsideMain = { "2", "3", "5", "6", "7", "8", "9", "10" };
         private readonly long[] previous, proposed;
+        private readonly JObject previousWire;
 
         public CnDeckSaveRecovery(CnDeck deck, long[] draft)
         {
-            if (deck == null || deck.Cards == null || draft == null || deck.Cards.Length != draft.Length)
+            if (deck == null || deck.Wire == null || deck.Cards == null || draft == null || deck.Cards.Length != draft.Length)
                 throw new ArgumentException("卡组草稿无效。");
             arthurType = deck.ArthurType; index = deck.Index;
             previous = (long[])deck.Cards.Clone(); proposed = (long[])draft.Clone();
+            previousWire = (JObject)deck.Wire.DeepClone();
         }
 
         private static bool Same(long[] a, long[] b)
@@ -223,7 +446,12 @@ namespace Kairisei.Recovery
                 deckIndex = i;
             }
             if (deckIndex < 0) return CnDeckRecoveryResult.Conflict;
-            long[] current = collection.Decks[deckIndex].Cards;
+            CnDeck currentDeck = collection.Decks[deckIndex];
+            // CardDeckSet also writes these fields. A recalculated rank may legitimately change.
+            if (currentDeck.Wire == null) return CnDeckRecoveryResult.Conflict;
+            foreach (string field in EditedAlongsideMain)
+                if (!JToken.DeepEquals(previousWire[field], currentDeck.Wire[field])) return CnDeckRecoveryResult.Conflict;
+            long[] current = currentDeck.Cards;
             if (Same(current, proposed)) return CnDeckRecoveryResult.Saved;
             if (!Same(current, previous)) return CnDeckRecoveryResult.Conflict;
             foreach (long card in proposed)
@@ -371,8 +599,16 @@ namespace Kairisei.Recovery
 
         public static List<CnQuest> ParseSoloQuests(string content)
         {
+            long? points;
+            return ParseSoloQuests(content, out points);
+        }
+
+        // Field 0 is the live account balance, refreshed by TeamBattleSoloShow.
+        public static List<CnQuest> ParseSoloQuests(string content, out long? battlePoints)
+        {
             JObject payload = ParseEnvelope(content).Payload as JObject;
             if (payload == null) throw new FormatException("关卡响应格式无效。");
+            battlePoints = OptionalNonNegativeInteger(payload, "0");
             var result = new List<CnQuest>();
             string[] keys = { "9", "10", "11", "12" };
             string[] names = { "普通", "活动", "钥匙", "特别活动" };
@@ -385,6 +621,7 @@ namespace Kairisei.Recovery
                     JObject group = token as JObject;
                     if (group == null || !(group["10"] is JArray)) throw new FormatException("关卡组格式无效。");
                     long id = RequiredInteger(group, "0");
+                    long stageType = OptionalNonNegativeInteger(group, "1") ?? 0;
                     string groupName = FieldString(group, "4");
                     foreach (JToken item in (JArray)group["10"])
                     {
@@ -392,7 +629,8 @@ namespace Kairisei.Recovery
                         if (boss == null) throw new FormatException("关卡格式无效。");
                         result.Add(new CnQuest { GroupId = id, GroupName = groupName, BossId = RequiredInteger(boss, "0"),
                             Difficulty = FieldString(boss, "4"), BpCost = RequiredInteger(boss, "5"), State = RequiredInteger(boss, "10"),
-                            Locked = RequiredInteger(boss, "26"), Category = names[category], Wire = (JObject)boss.DeepClone() });
+                            Locked = RequiredInteger(boss, "26"), Category = names[category], EntryRules = new CnSoloEntryRules(stageType, boss),
+                            Wire = (JObject)boss.DeepClone() });
                     }
                 }
             }
@@ -401,6 +639,32 @@ namespace Kairisei.Recovery
 
         public static string CreateSoloBattleStartRequest(string sessionKey, long bossId, int arthurType, int deckIndex, JArray partnerDecks)
         {
+            return CreateSessionRequest(sessionKey, SoloBattleSelectionPayload(bossId, arthurType, deckIndex, partnerDecks));
+        }
+
+        // Store only the request fields. Account and connection scope come from the journal path.
+        internal static string SaveSoloBattleSelection(CnSoloBattleSelection selection)
+        {
+            return SoloBattleSelectionPayload(selection.BossId, selection.ArthurType, selection.DeckIndex, selection.Partners)
+                .ToString(Formatting.None);
+        }
+
+        // Validate the journal independently of current card inventory, stage rules and session.
+        internal static CnSoloBattleSelection LoadSoloBattleSelection(string text, long userId)
+        {
+            JObject saved;
+            try { saved = JObject.Parse(text, new JsonLoadSettings { DuplicatePropertyNameHandling = DuplicatePropertyNameHandling.Error }); }
+            catch (JsonException error) { throw new FormatException("本地战斗编队记录格式无效。", error); }
+            if (saved.Count != 4 || userId < 1) throw new FormatException("本地战斗编队记录不完整。");
+            long bossId = RequiredInteger(saved, "bossid");
+            int role = UserInt(saved, "deck_arthur_type"), index = UserInt(saved, "deck_arthur_type_idx");
+            var payload = SoloBattleSelectionPayload(bossId, role, index, saved["partner_deck_selects"] as JArray);
+            return new CnSoloBattleSelection(userId, bossId, role, index, (JArray)payload["partner_deck_selects"]);
+        }
+
+        // Keep on-disk and transport copies in the same validated order and wire shape.
+        private static JObject SoloBattleSelectionPayload(long bossId, int arthurType, int deckIndex, JArray partnerDecks)
+        {
             if (bossId < 1 || arthurType < 1 || arthurType > 5 || deckIndex < 0 || deckIndex > 127 || partnerDecks == null || partnerDecks.Count > 3)
                 throw new ArgumentException("Invalid solo battle selection");
             var partners = new JArray();
@@ -408,13 +672,13 @@ namespace Kairisei.Recovery
             {
                 JObject partner = item as JObject;
                 if (partner == null || partner.Count != 3 || RequiredInteger(partner, "userid") < 1 ||
-                    RequiredInteger(partner, "arthur_type") < 1 || RequiredInteger(partner, "arthur_type") > 5 ||
+                    RequiredInteger(partner, "arthur_type") < 1 || RequiredInteger(partner, "arthur_type") > 4 ||
                     RequiredInteger(partner, "deck_idx") < 0 || RequiredInteger(partner, "deck_idx") > 127)
                     throw new ArgumentException("Invalid partner deck selection");
                 partners.Add(partner.DeepClone());
             }
-            return CreateSessionRequest(sessionKey, new JObject { { "bossid", bossId }, { "deck_arthur_type", arthurType },
-                { "deck_arthur_type_idx", deckIndex }, { "partner_deck_selects", partners } });
+            return new JObject { { "bossid", bossId }, { "deck_arthur_type", arthurType },
+                { "deck_arthur_type_idx", deckIndex }, { "partner_deck_selects", partners } };
         }
 
         public static List<CnSoloPartner> ParseSoloPartners(string content)
@@ -442,9 +706,113 @@ namespace Kairisei.Recovery
             return result;
         }
 
-        public static CnSoloBattleStart ParseSoloBattleStart(string content)
+        // The account identity comes from the session. This request only carries the exact deck key.
+        public static string CreateSoloPlayerLoadoutRequest(string sessionKey, CnDeck deck)
+        {
+            if (deck == null || deck.ArthurType < 1 || deck.ArthurType > 5 || deck.Index < 0 || deck.Index > 127)
+                throw new ArgumentException("请选择有效的我方卡组。");
+            return CreateSessionRequest(sessionKey, new JObject {
+                { "deck_arthur_type", deck.ArthurType }, { "deck_arthur_type_idx", deck.Index }
+            });
+        }
+
+        // Fail closed when the service returns a different owner, role, deck index or malformed battle slots.
+        public static CnSoloPlayerLoadout ParseSoloPlayerLoadout(string content, long userId, CnDeck selected)
         {
             JObject payload = ParseEnvelope(content).Payload as JObject;
+            if (selected == null) throw new ArgumentNullException("selected");
+            return ReadSoloBattleLoadout(payload == null ? null : payload["player_deck"] as JObject,
+                userId, selected.ArthurType, selected.Index);
+        }
+
+        // Both primary and partner battle projections must match the original account, profession and deck index.
+        private static CnSoloPlayerLoadout ReadSoloBattleLoadout(JObject deck, long userId, long role, long index)
+        {
+            if (deck == null || userId < 1 || RequiredInteger(deck, "userid") != userId ||
+                RequiredInteger(deck, "arthur_type") != role || RequiredInteger(deck, "rental_idx") != index)
+                throw new FormatException("服务器返回的战斗卡组与当前账号或所选卡组不一致。");
+            long hp = UserInt(deck, "hp"), job = UserInt(deck, "job_type");
+            if (hp == 0 || job < 1 || job > 5) throw new FormatException("我方战斗参数无效。");
+            UserInt(deck, "atkp");
+            UserInt(deck, "intp");
+            UserInt(deck, "mndp");
+            RequiredInteger(deck, "leader_card_idx");
+            JArray main = ReadBattleLoadoutSlots(deck, "deck", 10, 10);
+            JArray support = ReadBattleLoadoutSlots(deck, "support_deck", 0, 10);
+            if (UserInt(deck, "support_card_unlock_slot_num") > support.Count) throw new FormatException("我方支援卡槽位无效。");
+            ValidateBattleLoadoutSlots(main, "cardid", true);
+            ValidateBattleLoadoutSlots(support, "cardid", false);
+            ValidateBattleLoadoutSlots(ReadBattleLoadoutSlots(deck, "sphrs", 3, 3), "sphrid", false);
+            ValidateBattleLoadoutSlots(ReadBattleLoadoutSlots(deck, "buddys", 5, 5), "buddyid", false);
+            return new CnSoloPlayerLoadout { UserId = userId, ArthurType = role, Index = index, Health = hp,
+                Wire = (JObject)deck.DeepClone() };
+        }
+
+        // Check the actual CN slot vector lengths before accessing their entries.
+        private static JArray ReadBattleLoadoutSlots(JObject deck, string field, int minimum, int maximum)
+        {
+            var slots = deck[field] as JArray;
+            if (slots == null || slots.Count < minimum || slots.Count > maximum)
+                throw new FormatException("我方战斗卡组槽位无效：" + field);
+            return slots;
+        }
+
+        // A zero ID is valid only in optional equipment slots. Real slots must have an instance level.
+        private static void ValidateBattleLoadoutSlots(JArray slots, string field, bool required)
+        {
+            foreach (JToken token in slots)
+            {
+                var slot = token as JObject;
+                if (slot == null) throw new FormatException("我方战斗卡组槽位格式无效。");
+                int id = UserInt(slot, field), level = UserInt(slot, "lv");
+                if ((id == 0 && (required || level != 0)) || (id != 0 && level == 0))
+                    throw new FormatException("我方战斗卡组的装备编号或等级无效。");
+                if (field != "cardid") continue;
+                UserInt(slot, "love");
+                if (UserInt(slot, "fame") > 100 || !(slot["skill_lv"] is JArray) && (slot["skill_lv"] == null || slot["skill_lv"].Type != JTokenType.Null))
+                    throw new FormatException("我方战斗卡牌的名声或技能等级无效。");
+                var skills = slot["skill_lv"] as JArray;
+                if (skills != null && skills.Count > 6) throw new FormatException("我方战斗卡牌的技能等级超出范围。");
+                if (skills != null)
+                    foreach (JToken skill in skills)
+                        if (skill.Type != JTokenType.Integer || (long)skill < 0 || (long)skill > Int32.MaxValue)
+                            throw new FormatException("我方战斗卡牌的技能等级无效。");
+            }
+        }
+
+        // Decode archived original responses and their enemy wave identities.
+        public static CnSoloBattleStart ParseSoloBattleStart(string content)
+        {
+            return ReadSoloBattleStart(ParseEnvelope(content).Payload as JObject);
+        }
+
+        // Both live start and recovery must return the original party and the accepted continue policy.
+        public static CnSoloBattleStart ParseSoloBattleStart(string content, CnSoloBattleSelection selection)
+        {
+            if (selection == null) throw new ArgumentNullException("selection");
+            CnSoloBattleStart opening = ParseSoloBattleStart(content);
+            JObject payload = opening.Wire;
+            var partners = payload["partner_deck"] as JArray;
+            var continueAllowed = payload["continue_allowed"];
+            if (RequiredInteger(payload, "bossid") != selection.BossId || partners == null ||
+                partners.Count != selection.Partners.Count || continueAllowed == null || continueAllowed.Type != JTokenType.Boolean ||
+                opening.Seed < Int32.MinValue || opening.Seed > UInt32.MaxValue)
+                throw new FormatException("战斗开场与原编队不一致。");
+            opening.Player = ReadSoloBattleLoadout(payload["player_deck"] as JObject,
+                selection.UserId, selection.ArthurType, selection.DeckIndex);
+            for (int i = 0; i < partners.Count; i++)
+            {
+                var expected = (JObject)selection.Partners[i];
+                ReadSoloBattleLoadout(partners[i] as JObject, RequiredInteger(expected, "userid"),
+                    RequiredInteger(expected, "arthur_type"), RequiredInteger(expected, "deck_idx"));
+            }
+            opening.ContinueAllowed = (bool)continueAllowed;
+            return opening;
+        }
+
+        // Validate common fields shared by archived and current opening responses.
+        private static CnSoloBattleStart ReadSoloBattleStart(JObject payload)
+        {
             JArray battles = payload == null ? null : payload["battles"] as JArray;
             if (battles == null || battles.Count == 0) throw new FormatException("Battle segments are missing");
             foreach (JToken item in battles)
@@ -571,14 +939,24 @@ namespace Kairisei.Recovery
             return selected;
         }
 
-        public static string CreateDeckSetRequest(string sessionKey, CnDeck deck, long[] cards)
+        // Validate known ownership and identical card definitions before building the write.
+        // Different definitions in the same family and equipment limits are validated by the service.
+        public static string CreateDeckSetRequest(string sessionKey, CnDeck deck, long[] cards, IDictionary<long, CnCard> owned = null)
         {
             if (deck == null || deck.Wire == null || cards == null || cards.Length != deck.Cards.Length)
                 throw new ArgumentException("卡组草稿无效。");
-            var selectedCards = new HashSet<long>();
+            var instances = new HashSet<long>();
+            var definitions = new HashSet<long>();
             foreach (long card in cards)
-                if (card != 0 && !selectedCards.Add(card))
-                    throw new ArgumentException("同一张卡牌不能重复放入主卡组，请调整后再保存。");
+            {
+                if (card == 0) continue;
+                if (card < 0) throw new ArgumentException("主卡组中有无效的卡牌。");
+                if (!instances.Add(card)) throw new ArgumentException("同一张卡牌不能重复放入主卡组，请调整后再保存。");
+                if (owned == null) continue;
+                CnCard ownedCard;
+                if (!owned.TryGetValue(card, out ownedCard)) throw new ArgumentException("主卡组中有未持有的卡牌。");
+                if (!definitions.Add(ownedCard.CardId)) throw new ArgumentException("同种卡牌不能重复放入主卡组，请调整后再保存。");
+            }
             JObject wire = deck.Wire;
             JObject draft = new JObject {
                 { "arthur_type", RequiredInteger(wire, "0") }, { "idx", RequiredInteger(wire, "1") },

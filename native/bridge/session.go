@@ -44,6 +44,8 @@ type libraryBattle struct {
 	catalogID  uint64
 	mode       int
 	enemyType  int
+	soloWaves  []soloWave
+	waveIndex  int
 	pending    []byte
 	faulted    bool
 	lastError  []byte
